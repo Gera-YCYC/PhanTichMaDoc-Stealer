@@ -1,0 +1,232 @@
+{
+  "sample_path": "D:\\PhanTichMaDoc-Stealer\\samples\\benign_stealer_sim.py",
+  "model_name": "mock-slm-react-v1",
+  "timestamp": "2026-11-21T03:06:33.700386+00:00",
+  "file_type": "Python Script",
+  "hashes": {
+    "size_bytes": 4266,
+    "md5": "b970bc4b4bce435d748c55184646ff6e",
+    "sha1": "db4fb91cf15ed1cdab31dc1e0389702a4491ad20",
+    "sha256": "52e8bf3faab7a6704df29458a806c73c25c824432ef4a9618afad3d35f6a2bd0"
+  },
+  "yara_matches": [
+    {
+      "file": "benign_stealer_sim.py",
+      "rule": "InfoStealer_Browser_Credential_Theft",
+      "severity": "HIGH",
+      "mitre_attack": "T1555.003",
+      "description": "Matched via built-in fallback signature engine (yara-python not installed)."
+    },
+    {
+      "file": "benign_stealer_sim.py",
+      "rule": "InfoStealer_Session_Discord_Telegram",
+      "severity": "HIGH",
+      "mitre_attack": "T1528",
+      "description": "Matched via built-in fallback signature engine (yara-python not installed)."
+    },
+    {
+      "file": "benign_stealer_sim.py",
+      "rule": "InfoStealer_Crypto_Wallet_Targeting",
+      "severity": "HIGH",
+      "mitre_attack": "T1005",
+      "description": "Matched via built-in fallback signature engine (yara-python not installed)."
+    }
+  ],
+  "final_analysis": {
+    "verdict": "MALICIOUS",
+    "risk_score": 100,
+    "confidence": "HIGH",
+    "behavior_summary": "Mẫu được phân loại `Python Script`. Khớp 3 luật YARA (InfoStealer_Browser_Credential_Theft, InfoStealer_Session_Discord_Telegram, InfoStealer_Crypto_Wallet_Targeting). Phân tích AST phát hiện 7 lời gọi nguy hiểm và 18 dấu hiệu truy cập thông tin nhạy cảm. Trích xuất được 11 IOCs liên quan đến hạ tầng C2/Exfiltration và ví crypto.",
+    "iocs": {
+      "urls": [
+        "http://198.51.100.42:8080/api/v1/upload",
+        "https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument",
+        "https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef"
+      ],
+      "discord_webhooks": [
+        "https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef"
+      ],
+      "telegram_bot_tokens": [
+        "123456789:AAFakeTestBotTokenForStaticTest0001"
+      ],
+      "telegram_api_urls": [
+        "https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument"
+      ],
+      "ipv4": [
+        "198.51.100.42"
+      ],
+      "domains": [
+        "api.telegram.org",
+        "discord.com"
+      ],
+      "btc_wallets": [
+        "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+      ],
+      "eth_wallets": [
+        "0x000000000000000000000000000000000000dEaD"
+      ]
+    },
+    "mitre_attack": [
+      {
+        "technique_id": "T1555.003",
+        "name": "InfoStealer_Browser_Credential_Theft",
+        "tactic": "Malware Behavior",
+        "evidence": "Matched via built-in fallback signature engine (yara-python not installed)."
+      },
+      {
+        "technique_id": "T1528",
+        "name": "InfoStealer_Session_Discord_Telegram",
+        "tactic": "Malware Behavior",
+        "evidence": "Matched via built-in fallback signature engine (yara-python not installed)."
+      },
+      {
+        "technique_id": "T1005",
+        "name": "InfoStealer_Crypto_Wallet_Targeting",
+        "tactic": "Malware Behavior",
+        "evidence": "Matched via built-in fallback signature engine (yara-python not installed)."
+      },
+      {
+        "technique_id": "T1027",
+        "name": "Obfuscated Files or Information",
+        "tactic": "Defense Evasion",
+        "evidence": "Nested exec() with decode/decompress at line 85"
+      },
+      {
+        "technique_id": "T1567",
+        "name": "Exfiltration Over Web Service",
+        "tactic": "Exfiltration",
+        "evidence": "Phát hiện cấu hình gửi dữ liệu qua Discord Webhook / Telegram Bot API."
+      },
+      {
+        "technique_id": "T1059.006",
+        "name": "Command and Scripting Interpreter: Python",
+        "tactic": "Execution",
+        "evidence": "Mẫu thuộc loại `Python Script`."
+      }
+    ],
+    "recommendations": [
+      "Chặn các domain/IP/Webhook C2 phát hiện được tại Firewall/Proxy và kiểm tra nhật ký truy cập.",
+      "Thu hồi mật khẩu trình duyệt, Discord token, Telegram session và kiểm tra ví crypto trên máy nghi nhiễm.",
+      "Giữ nguyên mẫu trong môi trường cô lập; không thực thi trực tiếp trên hệ thống thật."
+    ]
+  },
+  "reasoning_trace": [
+    {
+      "iteration": 1,
+      "thought": "Bước đầu tiên cần xác định định dạng file, entropy và hash của mẫu nghi ngờ.",
+      "action": "identify_file_type",
+      "action_input": {
+        "file_path": "D:\\PhanTichMaDoc-Stealer\\samples\\benign_stealer_sim.py"
+      },
+      "observation": "{\n  \"status\": \"ok\",\n  \"tool\": \"identify_file_type\",\n  \"file_path\": \"D:\\\\PhanTichMaDoc-Stealer\\\\samples\\\\benign_stealer_sim.py\",\n  \"file_name\": \"benign_stealer_sim.py\",\n  \"detected_type\": \"Python Script\",\n  \"magic_description\": \"unavailable\",\n  \"entropy\": 5.605,\n  \"high_entropy_warning\": false,\n  \"hashes\": {\n    \"size_bytes\": 4266,\n    \"md5\": \"b970bc4b4bce435d748c55184646ff6e\",\n    \"sha1\": \"db4fb91cf15ed1cdab31dc1e0389702a4491ad20\",\n    \"sha256\": \"52e8bf3faab7a6704df29458a806c73c25c824432ef4a9618afad3d35f6a2bd0\"\n  },\n  \"recommended_next_tools\": [\n    \"ast_python_scanner\",\n    \"extract_iocs_and_yara\"\n  ]\n}",
+      "self_corrections": 0,
+      "elapsed_ms": 2
+    },
+    {
+      "iteration": 2,
+      "thought": "Mẫu là mã nguồn Python; sử dụng ast_python_scanner để phát hiện lời gọi nguy hiểm và làm rối.",
+      "action": "ast_python_scanner",
+      "action_input": {
+        "source_code": "D:\\PhanTichMaDoc-Stealer\\samples\\benign_stealer_sim.py"
+      },
+      "observation": "{\"status\":\"ok\",\"tool\":\"ast_python_scanner\",\"source\":\"D:\\\\PhanTichMaDoc-Stealer\\\\samples\\\\benign_stealer_sim.py\",\"lines_of_code\":102,\"static_risk_score\":100,\"suspicious_imports\":[\"base64\",\"shutil\",\"sqlite3\",\"subprocess\",\"urllib.request\"],\"dangerous_calls\":[{\"line\":55,\"call\":\"sqlite3.connect\",\"category\":\"sqlite_or_network_connect\"},{\"line\":72,\"call\":\"shutil.copyfile\",\"category\":\"file_staging\"},{\"line\":73,\"call\":\"subprocess.run\",\"category\":\"subprocess_execution\"},{\"line\":85,\"call\":\"exec\",\"category\":\"dynamic_code_execution\"},{\"line\":86,\"call\":\"urllib.request.Request\",\"category\":\"http_request\"},{\"line\":90,\"call\":\"urllib.request.urlopen\",\"category\":\"http_request\"},{\"line\":85,\"call\":\"base64.b64decode\",\"category\":\"base64_decoding\"}],\"stealer_indicators\":[{\"line\":23,\"value\":\"https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef\"},{\"line\":25,\"value\":\"https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument\"},{\"line\":62,\"value\":\"Hàm mô phỏng tĩnh hành vi nhắm vào Discord, Telegram tdata và ví tiền điện tử.\"},{\"line\":39,\"value\":\"Login Data\"},{\"line\":40,\"value\":\"Local State\"},{\"line\":46,\"value\":\"encrypted_key_field\"},{\"line\":45,\"value\":\"os_crypt\"},{\"line\":46,\"value\":\"encrypted_key\"},{\"line\":47,\"value\":\"win32crypt.CryptUnprotectData\"},{\"line\":64,\"value\":\"discord_leveldb\"},{\"line\":66,\"value\":\"telegram_tdata\"},{\"line\":67,\"value\":\"metamask_ext\"},{\"line\":68,\"value\":\"exodus_dir\"},{\"line\":64,\"value\":\"discord\\\\Local Storage\\\\leveldb\"},{\"line\":65,\"value\":\"dQw4w9WgXcQ\"},{\"line\":66,\"value\":\"Telegram Desktop\\\\tdata\"},{\"line\":68,\"value\":\"exodus.wallet\"},{\"line\":69,\"value\":\"wallet.dat\"}],\"extracted_urls\":[\"http://198.51.100.42:8080/api/v1/upload\",\"https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument\",\"https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef\"],\"encoded_or_high_entropy_strings\":[{\"line\":1,\"length\":403,\"entropy\":5.57,\"preview\":\"MẪU MÃ ĐỘC GIẢ LẬP AN TOÀN (BENIGN SIMULATION FIXTURE).\\n\\nCẢNH BÁO AN TOÀN:\\n- Fil\"},{\"line\":23,\"length\":92,\"entropy\":5.175,\"preview\":\"https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123\"},{\"line\":25,\"length\":86,\"entropy\":4.825,\"preview\":\"https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDo\"},{\"line\":32,\"length\":48,\"entropy\":4.704,\"preview\":\"cHJpbnQoJ2JlbmlnbiBzaW11bGF0aW9uIHBheWxvYWQnKQ==\",\"base64_decoded_preview\":\"print('benign simulation payload')\"},{\"line\":62,\"length\":78,\"entropy\":4.677,\"preview\":\"Hàm mô phỏng tĩnh hành vi nhắm vào Discord, Telegram tdata và ví tiền điện tử.\"},{\"line\":78,\"length\":63,\"entropy\":4.767,\"preview\":\"Hàm mô phỏng kỹ thuật làm rối chuỗi bằng XOR và giải mã Base64.\"}],\"obfuscation_flags\":[\"Nested exec() with decode/decompress at line 85\"]}",
+      "self_corrections": 0,
+      "elapsed_ms": 3
+    },
+    {
+      "iteration": 3,
+      "thought": "Cần trích xuất toàn bộ IOCs (C2, Webhook, Bot Token, Ví Crypto) và quét đối chiếu YARA.",
+      "action": "extract_iocs_and_yara",
+      "action_input": {
+        "target_path": "D:\\PhanTichMaDoc-Stealer\\samples\\benign_stealer_sim.py"
+      },
+      "observation": "{\n  \"status\": \"ok\",\n  \"tool\": \"extract_iocs_and_yara\",\n  \"target_path\": \"D:\\\\PhanTichMaDoc-Stealer\\\\samples\\\\benign_stealer_sim.py\",\n  \"scanned_file_count\": 1,\n  \"iocs\": {\n    \"urls\": [\n      \"http://198.51.100.42:8080/api/v1/upload\",\n      \"https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument\",\n      \"https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef\"\n    ],\n    \"discord_webhooks\": [\n      \"https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef\"\n    ],\n    \"telegram_bot_tokens\": [\n      \"123456789:AAFakeTestBotTokenForStaticTest0001\"\n    ],\n    \"telegram_api_urls\": [\n      \"https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument\"\n    ],\n    \"ipv4\": [\n      \"198.51.100.42\"\n    ],\n    \"domains\": [\n      \"api.telegram.org\",\n      \"discord.com\"\n    ],\n    \"btc_wallets\": [\n      \"bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh\"\n    ],\n    \"eth_wallets\": [\n      \"0x000000000000000000000000000000000000dEaD\"\n    ]\n  },\n  \"total_ioc_count\": 11,\n  \"yara_scan\": {\n    \"engine\": \"builtin_fallback\",\n    \"rules_file\": \"infostealer_rules.yar\",\n    \"matches\": [\n      {\n        \"file\": \"benign_stealer_sim.py\",\n        \"rule\": \"InfoStealer_Browser_Credential_Theft\",\n        \"severity\": \"HIGH\",\n        \"mitre_attack\": \"T1555.003\",\n        \"description\": \"Matched via built-in fallback signature engine (yara-python not installed).\"\n      },\n      {\n        \"file\": \"benign_stealer_sim.py\",\n        \"rule\": \"InfoStealer_Session_Discord_Telegram\",\n        \"severity\": \"HIGH\",\n        \"mitre_attack\": \"T1528\",\n        \"description\": \"Matched via built-in fallback signature engine (yara-python not installed).\"\n      },\n      {\n        \"file\": \"benign_stealer_sim.py\",\n        \"rule\": \"InfoStealer_Crypto_Wallet_Targeting\",\n        \"severity\": \"HIGH\",\n        \"mitre_attack\": \"T1005\",\n        \"description\": \"Matched via built-in fallback signature engine (yara-python not installed).\"\n      }\n    ]\n  }\n}",
+      "self_corrections": 0,
+      "elapsed_ms": 2
+    },
+    {
+      "iteration": 4,
+      "thought": "Đã có đủ bằng chứng từ nhận diện file, phân tích tĩnh AST/binary và quét IOC/YARA. Tiến hành kết luận.",
+      "action": "Final Answer",
+      "action_input": {
+        "verdict": "MALICIOUS",
+        "risk_score": 100,
+        "confidence": "HIGH",
+        "behavior_summary": "Mẫu được phân loại `Python Script`. Khớp 3 luật YARA (InfoStealer_Browser_Credential_Theft, InfoStealer_Session_Discord_Telegram, InfoStealer_Crypto_Wallet_Targeting). Phân tích AST phát hiện 7 lời gọi nguy hiểm và 18 dấu hiệu truy cập thông tin nhạy cảm. Trích xuất được 11 IOCs liên quan đến hạ tầng C2/Exfiltration và ví crypto.",
+        "iocs": {
+          "urls": [
+            "http://198.51.100.42:8080/api/v1/upload",
+            "https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument",
+            "https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef"
+          ],
+          "discord_webhooks": [
+            "https://discord.com/api/webhooks/123456789012345678/FAKE_TEST_WEBHOOK_TOKEN_0123456789abcdef"
+          ],
+          "telegram_bot_tokens": [
+            "123456789:AAFakeTestBotTokenForStaticTest0001"
+          ],
+          "telegram_api_urls": [
+            "https://api.telegram.org/bot123456789:AAFakeTestBotTokenForStaticTest0001/sendDocument"
+          ],
+          "ipv4": [
+            "198.51.100.42"
+          ],
+          "domains": [
+            "api.telegram.org",
+            "discord.com"
+          ],
+          "btc_wallets": [
+            "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+          ],
+          "eth_wallets": [
+            "0x000000000000000000000000000000000000dEaD"
+          ]
+        },
+        "mitre_attack": [
+          {
+            "technique_id": "T1555.003",
+            "name": "InfoStealer_Browser_Credential_Theft",
+            "tactic": "Malware Behavior",
+            "evidence": "Matched via built-in fallback signature engine (yara-python not installed)."
+          },
+          {
+            "technique_id": "T1528",
+            "name": "InfoStealer_Session_Discord_Telegram",
+            "tactic": "Malware Behavior",
+            "evidence": "Matched via built-in fallback signature engine (yara-python not installed)."
+          },
+          {
+            "technique_id": "T1005",
+            "name": "InfoStealer_Crypto_Wallet_Targeting",
+            "tactic": "Malware Behavior",
+            "evidence": "Matched via built-in fallback signature engine (yara-python not installed)."
+          },
+          {
+            "technique_id": "T1027",
+            "name": "Obfuscated Files or Information",
+            "tactic": "Defense Evasion",
+            "evidence": "Nested exec() with decode/decompress at line 85"
+          },
+          {
+            "technique_id": "T1567",
+            "name": "Exfiltration Over Web Service",
+            "tactic": "Exfiltration",
+            "evidence": "Phát hiện cấu hình gửi dữ liệu qua Discord Webhook / Telegram Bot API."
+          }
+        ],
+        "recommendations": [
+          "Chặn các domain/IP/Webhook C2 phát hiện được tại Firewall/Proxy và kiểm tra nhật ký truy cập.",
+          "Thu hồi mật khẩu trình duyệt, Discord token, Telegram session và kiểm tra ví crypto trên máy nghi nhiễm.",
+          "Giữ nguyên mẫu trong môi trường cô lập; không thực thi trực tiếp trên hệ thống thật."
+        ]
+      },
+      "observation": "Final analysis JSON validated successfully.",
+      "self_corrections": 0,
+      "elapsed_ms": 1
+    }
+  ],
+  "iterations_used": 4,
+  "total_self_corrections": 0,
+  "elapsed_seconds": 0.01,
+  "status": "completed"
+}

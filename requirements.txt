@@ -1,0 +1,11 @@
+# Core Binary & Static Analysis
+pefile>=2023.2.7
+dnfile>=0.15.1
+yara-python>=4.5.0
+python-magic>=0.4.27; sys_platform != 'win32'
+python-magic-bin>=0.4.14; sys_platform == 'win32'
+
+# LLM Client & Orchestration (Part 3 & 4)
+requests>=2.31.0
+pydantic>=2.7.0
+rich>=13.7.0
