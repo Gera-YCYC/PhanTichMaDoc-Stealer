@@ -44,6 +44,14 @@ Sau một lượt ReAct hoàn tất, đo nhật ký:
 
 Script kiểm hash chain, hash các full-message sẵn có, số request/response chứa giá trị đã nhận diện, và tái tạo bản chiếu từ từng raw observation. Không in giá trị hay hash riêng của mật khẩu. Run lịch sử trước sửa có [baseline audit](../deliverables/real-demo-evidence/model-projection-v5-baseline-audit.json): 11 request-evidence còn literal nhận diện được, 2 phản hồi lặp literal. Các kết quả run mới được ghi trong STATUS sau khi kết thúc, không điền trước số đo.
 
+## Nhật ký request đầy đủ và lượt chưa hoàn tất
+
+Từ bản tích hợp thao tác `/8`, controller, generator, reviewer và replay đều ghi nguyên messages + schema + evidence đã chiếu bằng `record_model_request`; quá giới hạn 512.000 byte thì từ chối, không cắt ngầm. Đây là dữ liệu riêng tư dưới `runs/` hoặc `private/`, không đưa lên Git. Audit `/2` kiểm cả hash schema và chỉ trả gate full-request khi mọi request có đủ hai thành phần.
+
+Audit chạy được cả khi chưa tạo báo cáo: các trường report để `null`, không thay bằng báo cáo rỗng rồi coi không có rò rỉ. [Lượt thiếu RAM](../deliverables/real-demo-evidence/model-projection-v8-incomplete-audit.json) đã kiểm đủ 14 request/schema; kết quả chỉ bao phủ ba literal detector đã nhận diện. [Chi tiết tích hợp](OPERATIONS_CONTEXT_V8.md).
+
+Audit `/3` bổ sung trạng thái `no_detected_literals`: nếu không có literal đủ điều kiện hoặc detector bị giới hạn thì gate để `null`. Lượt .NET v8 có 49 request đủ message/schema nhưng không có literal nhận diện được; số hit bằng 0 không là bằng chứng detector đã tìm hết bí mật hoặc phép thử che dữ liệu đã pass.
+
 ## Việc tiếp theo
 
-Tách riêng mức bảo đảm của trang nguồn, message và schema; bổ sung full-request provenance ở revision tiếp theo. Khi mở rộng detector, thêm ca kiểm escaped/split/short/alias và kiểm lại trên dữ liệu thật. Việc che literal không giải quyết nhận định sai, thiếu chứng cứ liên hàm, ATT&CK, YARA hoặc các ngưỡng chấm của môn học.
+Tiếp tục giữ riêng mức bảo đảm của trang nguồn, message và schema. Khi mở rộng detector, thêm ca kiểm escaped/split/short/alias và kiểm lại trên dữ liệu thật. Việc che literal không giải quyết nhận định sai, thiếu chứng cứ liên hàm, ATT&CK, YARA hoặc các ngưỡng chấm của môn học.

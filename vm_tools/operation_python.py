@@ -1,4 +1,4 @@
-"""Narrow Python bindings for sqlite3, SMTP and archive calls; never import code."""
+"""Narrow Python bindings for SQLite, SMTP, archive and AES calls; never import code."""
 import ast
 from collections import Counter
 
@@ -40,6 +40,10 @@ def candidates(source):
             for alias in node.names:
                 if alias.name in {'sqlite3','smtplib','shutil'}:
                     imports[alias.asname or alias.name] = (alias.name, node)
+        elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module in {'Crypto.Cipher','Cryptodome.Cipher'}:
+            for alias in node.names:
+                if alias.name == 'AES':
+                    imports[alias.asname or alias.name] = (node.module+'.AES', node)
     imported_names = Counter()
     for node in nodes:
         if isinstance(node, (ast.Import, ast.ImportFrom)):
@@ -105,6 +109,10 @@ def candidates(source):
             return 'sqlite_connection',ranges
         if api in {'smtplib.SMTP','smtplib.SMTP_SSL'}:
             return 'smtp',ranges
+        if api in {'Crypto.Cipher.AES.new','Cryptodome.Cipher.AES.new'} and len(value.args)==3:
+            mode = value.args[1]
+            if isinstance(mode,ast.Attribute) and isinstance(mode.value,ast.Name) and mode.attr=='MODE_GCM' and mode.value.id==value.func.value.id:
+                return 'aes_gcm_cipher',ranges
         if isinstance(value.func,ast.Attribute) and value.func.attr=='cursor' and isinstance(value.func.value,ast.Name):
             parent_type,parent_ranges = instance(value.func.value.id,value,depth+1)
             if parent_type=='sqlite_connection':
@@ -142,6 +150,12 @@ def candidates(source):
             elif kind=='smtp' and method=='sendmail' and len(args)==3:
                 operation,api,inputs,meaning = 'smtp_send','smtplib.SMTP.sendmail',{'sender_expression':args[0],
                     'recipient_expression':args[1],'message_expression':args[2]},'recipient_refusal_mapping_not_message_bytes'
+            elif kind=='aes_gcm_cipher' and method=='decrypt' and len(args)==1:
+                constructor = next(d[1] for d in definitions if d[0].id==call.func.value.id and owner(d[0])==owner(call))
+                key, nonce = expr(constructor.args[0]), expr(constructor.args[2])
+                if key is not None and nonce is not None:
+                    operation,api,inputs,meaning = 'aes_gcm_decrypt','PyCryptodome.AES.GCM.decrypt',{
+                        'ciphertext_expression':args[0],'key_expression':key,'nonce_expression':nonce},'plaintext_bytes_not_authentication_or_text_decoding'
             if operation:
                 ranges = [*ranges,span(call)]
         if operation:

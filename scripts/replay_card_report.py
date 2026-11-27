@@ -14,7 +14,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from stealer_agent.evidence_cards import create_card_report
-from stealer_agent.journal import Journal, canonical, dump_json, verify_journal
+from stealer_agent.journal import Journal, canonical, dump_json, verify_journal, record_model_request
 from stealer_agent.telemetry import available_memory_bytes
 from stealer_agent.transport import OllamaClient
 from stealer_agent.model_projection import ModelEvidenceView
@@ -92,8 +92,7 @@ def main():
                 llm.unload()
                 raise RuntimeError('ResourceBudgetExceeded in captured-feature experiment')
         step = metrics['model_calls'] + 1
-        journal.append('model_request', step=step, phase=phase, messages=messages,
-                       evidence=request_evidence, messages_sha256=hashlib.sha256(canonical(messages)).hexdigest())
+        record_model_request(journal,step=step,phase=phase,messages=messages,schema=schema,evidence=request_evidence)
         response, usage = llm.chat(messages, schema)
         metrics['model_calls'] += 1
         for key in ('prompt_tokens', 'completion_tokens'):

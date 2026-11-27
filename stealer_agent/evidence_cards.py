@@ -14,6 +14,7 @@ from .journal import dump_json
 from .verdict_support import SUPPORT_KEYS, enforce_stealer_support
 from .context_cards import linked_cards
 from .api_reference import reference_for, reference_prompt
+from .operation_context import enrich_card, model_operations
 
 CODE_TOOLS = {'decompile_dotnet', 'decompile_python', 'decode_python_literals',
               'disassemble_python', 'python_ast'}
@@ -97,7 +98,7 @@ def select_cards(evidence, *, max_cards=10, max_lines=32, max_chars=4600):
                           'sample_sha256': record.get('sample_sha256'),
                           'reference': {'evidence_id': eid, 'line': start, 'end_line': end, 'quote': quote}})
             covered.setdefault(eid, set()).update(numbers)
-    return cards
+    return [enrich_card(card,evidence,max_chars=max_chars) for card in cards]
 
 
 def object_schema(properties):
@@ -147,6 +148,13 @@ For a standard API use its documented operation, not a guessed implementation. A
 needs no custom constructor body, but a claimed custom helper effect requires its useful implementation.
 Reject extra qualifiers even if part of a sentence is true. Give a short evidence assessment."""
 
+OPERATION_GUIDANCE = """\nParser operations describe narrow static API bindings, with their supporting source ranges included below.
+Use them to distinguish argument roles and return meanings; check the actual source too.
+They do not establish successful execution, upstream secret contents, downstream use, or maliciousness.
+An AES-GCM decrypt call implements decryption even without authentication; it does not prove tag verification,
+correct plaintext, password recovery, or text decoding. Do not upgrade a parser fact into those extra claims.
+Do not accept a claim merely because an operation ID is present."""
+
 
 def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True):
     """call_model(messages, schema, phase, evidence_records) owns telemetry/exposure logs."""
@@ -169,9 +177,11 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
         exposure = [{'evidence_id': ref['evidence_id'], 'tool': card['tool'], 'status': 'ok', 'lines': lines}]
         payload = {'tool': card['tool'], 'card_id': card['card_id'], 'focus_lines': card['focus_lines'],
                    'focus_origin': card['focus_origin'],
-                   'code': numbered_sections}
+                   'code': numbered_sections, 'parser_operations':model_operations(card)}
         api_pack = reference_for(numbered_sections) if api_guidance else {'entries': []}
-        api_context = reference_prompt(api_pack)
+        api_context = reference_prompt(api_pack) + (OPERATION_GUIDANCE if card.get('operations') else '')
+        journal.append('card_operation_context',card_id=card['card_id'],operations=card.get('operations',[]),
+                       scope='Fact integrity and all binding/call ranges verified; not an automatic semantic grade of model claims')
         journal.append('card_api_reference', card_id=card['card_id'], reference=api_pack,
                        scope='Trusted offline API semantics, not sample-specific evidence or type binding')
         response = call_model([{'role': 'system', 'content': CARD_PROMPT + api_context},
@@ -186,7 +196,8 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
             journal.append('card_claim_proposed', card_id=card['card_id'], claim=claim)
             check = call_model([{'role': 'system', 'content': REVIEW_PROMPT + api_context},
                                 {'role': 'user', 'content': json.dumps({'claim': claim['text'],
-                                                                       'code': numbered_sections}, ensure_ascii=False)}],
+                                                                       'code': numbered_sections,
+                                                                       'parser_operations':model_operations(card)}, ensure_ascii=False)}],
                                REVIEW_SCHEMA, 'card_review', exposure)
             if not Draft202012Validator(REVIEW_SCHEMA).is_valid(check):
                 check = {'supported': False, 'reason': 'Invalid reviewer response'}
@@ -239,7 +250,8 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
     checked = enforce_stealer_support(checked, support)
     checked['rejected_claims'] += rejected
-    checked['report_method'] = 'evidence-cards/7'
+    checked['report_method'] = 'evidence-cards/8'
+    checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
     checked['api_guidance_enabled'] = api_guidance
     checked['review_output_order'] = 'evidence-assessment-before-decision'
     checked['local_semantic_check'] = 'per-claim same-SLM heuristic, not independent ground truth'

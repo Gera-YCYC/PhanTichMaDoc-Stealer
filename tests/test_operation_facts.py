@@ -36,7 +36,7 @@ def test_upload_path_response_and_character_decode_are_distinct(tmp_path):
     assert {'line':1,'end_line':1} in upload['ranges']
     assert {'line':1,'end_line':1} in decode['ranges']
     assert {'line':2,'end_line':2} in decode['ranges']
-    assert upload['backend'] == out['backend'] == 'static-operation-facts/2'
+    assert upload['backend'] == out['backend'] == 'static-operation-facts/3'
 
 
 @pytest.mark.parametrize('mutation',[
@@ -160,3 +160,37 @@ def test_csharp_ref_mutation_invalidates_binding(tmp_path,statement,expected):
 def test_python_reimport_and_method_mutation_do_not_prove_sql_query(tmp_path,mutation):
     _,out=extract(tmp_path,mutation(PY),'decompile_python')
     assert 'sql_select' not in {f['operation'] for f in out['facts']}
+
+
+AES_SOURCE = '''from Crypto.Cipher import AES
+def transform(key, nonce, payload):
+    cipher = AES.new(key, AES.MODE_GCM, nonce)
+    clear = cipher.decrypt(payload)
+    return clear
+'''
+
+
+def test_aes_decrypt_has_key_nonce_and_payload_roles_but_no_authentication_claim(tmp_path):
+    _,out=extract(tmp_path,AES_SOURCE,'decompile_python')
+    assert len(out['facts'])==1
+    fact=out['facts'][0]
+    assert fact['operation']=='aes_gcm_decrypt'
+    assert fact['inputs']=={'key_expression':'key','nonce_expression':'nonce','ciphertext_expression':'payload'}
+    assert fact['result']['meaning']=='plaintext_bytes_not_authentication_or_text_decoding'
+    assert fact['ranges']==[{'line':1,'end_line':1},{'line':3,'end_line':3},{'line':4,'end_line':4}]
+
+
+@pytest.mark.parametrize('mutation',[
+    lambda s:s.replace('Crypto.Cipher','custom.Cipher'),
+    lambda s:s.replace('AES.MODE_GCM','AES.MODE_CBC'),
+    lambda s:s.replace('AES.MODE_GCM','other.MODE_GCM'),
+    lambda s:s.replace('    clear =','    cipher = other\n    clear ='),
+    lambda s:s.replace('    clear =','    cipher.decrypt = custom\n    clear ='),
+    lambda s:s.replace('def transform(key, nonce, payload):','def transform(key, nonce, payload, AES):'),
+    lambda s:s.replace('    clear =','    setattr(AES, "new", custom)\n    clear ='),
+    lambda s:s.replace('cipher.decrypt(payload)','cipher.decrypt_and_verify(payload, tag)'),
+    lambda s:s.replace('AES.MODE_GCM, nonce','AES.MODE_GCM, nonce=nonce'),
+])
+def test_aes_unknown_binding_or_unsupported_form_is_not_a_decrypt_fact(tmp_path,mutation):
+    _,out=extract(tmp_path,mutation(AES_SOURCE),'decompile_python')
+    assert out['facts']==[]

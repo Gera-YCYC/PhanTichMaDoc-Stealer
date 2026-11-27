@@ -193,6 +193,43 @@ def test_change_sample_rejected(tmp_path):
     assert not tools.calls and result["metrics"]["validation_errors"] == 1
 
 
+def test_search_follows_new_helper_and_rejects_case_insensitive_duplicate(tmp_path):
+    class SearchTools(FakeTools):
+        def inspect(self):
+            return {'tools':{name:{'available':True} for name in ('identify','python_ast','search_evidence')}}
+
+        def call(self,name,args):
+            self.calls.append((name,dict(args)))
+            return {'sample':'safe.py','sample_sha256':DIGEST,'status':'ok','backend':'TEST_ONLY',
+                    'tool':'identify' if name=='identify' else 'python_ast',
+                    'evidence_id':'ev_'+('1' if name=='identify' else '2')*16,
+                    'total_lines':150,'page_count':2,'page':0,
+                    'lines':[{'line':1,'text':'def write_local_summary(): pass'}]}
+
+    eid='ev_'+'2'*16
+    replies=[action('identify',{'sample':'safe.py'}),action('python_ast',{'sample':'safe.py'}),
+             action('search_evidence',{'sample':'safe.py','evidence_id':eid,'query':'write_local_summary'}),
+             action('search_evidence',{'sample':'safe.py','evidence_id':eid,'query':' WRITE_LOCAL_SUMMARY '}),
+             action('search_evidence',{'sample':'safe.py','evidence_id':'ev_'+'9'*16,'query':'unseen'})]
+    tools=SearchTools()
+    result=Agent({'model':'TEST_ONLY','output_dir':str(tmp_path),'max_steps':len(replies)},FakeLLM(replies),tools).run('safe.py')
+    assert [name for name,args in tools.calls]==['identify','python_ast','search_evidence']
+    assert tools.calls[-1][1]['query']=='write_local_summary'
+    assert result['metrics']['validation_errors']==2
+
+
+def test_empty_card_report_is_incomplete_not_an_analysis_pass(tmp_path,monkeypatch):
+    monkeypatch.setattr('stealer_agent.evidence_cards.create_card_report',
+                        lambda *args,**kwargs:(report(),report(rejected_claims=[],card_count=2)))
+    replies=[action('identify',{'sample':'safe.txt'}),action('strings',{'sample':'safe.txt'}),action('finalize')]
+    config={'model':'TEST_ONLY','output_dir':str(tmp_path),'max_steps':3,'report_mode':'evidence-cards-v1'}
+    result=Agent(config,FakeLLM(replies),FakeTools()).run('safe.txt')
+    assert result['status']=='incomplete'
+    assert result['acceptance']['has_model_findings'] is False
+    assert result['analysis']['verdict']=='inconclusive'
+    assert 'empty_model_report' in (Path(result['run_directory'])/'events.jsonl').read_text()
+
+
 def test_two_tools_and_explicit_inconclusive_finish(tmp_path):
     observed = claim(evidence=[{"evidence_id": "ev_" + "1" * 16, "line": 1, "quote": "fixture marker"}])
     result, tools = run_fake(tmp_path, [action("identify", {"sample": "safe.txt"}),

@@ -1,0 +1,111 @@
+{
+  "created_at": "2026-11-27T21:10:46.113908+00:00",
+  "kind": "real-local-model-vm-experiment-metadata",
+  "runs": [
+    {
+      "run_id": "20261127T210746_9922cc4e",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "evidence_kind": "real-public-malware-local-slm-vm",
+      "status": "completed_needs_review",
+      "source_manifest_sha256": "38b58254b85773bfc1e02a41cbcbce232b87207efb3d31dd167e95444322fa10",
+      "model": {
+        "tag": "qwen2.5-coder:7b",
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "size_bytes": 4683087561,
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M"
+        }
+      },
+      "settings": {
+        "max_steps": 18,
+        "num_ctx": 4096,
+        "num_predict": 1800,
+        "seed": 42,
+        "think": null,
+        "report_mode": "evidence-cards-v1",
+        "max_report_cards": 10,
+        "min_code_searches": 4,
+        "evidence_chars": 6000,
+        "code_evidence_chars": 4000
+      },
+      "successful_tools": [
+        "decode_python_literals",
+        "disassemble_python",
+        "identify",
+        "unpack_pyinstaller"
+      ],
+      "metrics": {
+        "model_calls": 27,
+        "tool_calls": 17,
+        "tool_errors": 1,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 62198,
+        "completion_tokens": 1563,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4199263764,
+        "host_rss_bytes": 25677824,
+        "minimum_observed_host_available_memory_bytes": 1719455744,
+        "elapsed_s": 162.1999,
+        "host_peak_rss_bytes": 29872128
+      },
+      "journal": {
+        "events": 140,
+        "sha256": "ca12d392ed205debeff442c0be9d76b73f47e03d60e324ec7e8b2c09d8bf7b50",
+        "chain_verified": true,
+        "every_response_has_request": true
+      },
+      "model_responses_by_phase": {
+        "react": 18,
+        "card_generate": 9
+      },
+      "report_method": "evidence-cards/8",
+      "raw_report_available": true,
+      "raw_report_sha256": "4840f03cef6a765a6b624c3b96886d063e07356cb545937d5c5f904ddb0c514c",
+      "proposed_claims": 0,
+      "accepted_claims": 0,
+      "rejected_claims": 0,
+      "card_count": 9,
+      "skipped_import_cards": 0,
+      "verdict": "inconclusive",
+      "proposed_verdict": "inconclusive",
+      "verdict_support_missing": [
+        "sensitive_collection_claim_ids",
+        "outbound_transfer_claim_ids",
+        "data_link_claim_ids"
+      ],
+      "verdict_support_invalid": [],
+      "error_classes": [],
+      "quality_metrics": null,
+      "typed_operations": {
+        "count": 11,
+        "counts_by_operation": {
+          "database_open": 4,
+          "sql_select": 4,
+          "aes_gcm_decrypt": 1,
+          "archive_create": 1,
+          "smtp_send": 1
+        },
+        "backends": [
+          "static-operation-facts/3"
+        ],
+        "fact_hashes_and_cited_rows_verified": true,
+        "used_to_adjudicate_slm_claims": false,
+        "semantic_accuracy_score": null
+      },
+      "limits": [
+        "Tool success and valid hash chain do not prove semantic accuracy.",
+        "Raw source, endpoints, credentials and model prose are intentionally excluded.",
+        "This receipt is not an independent grade or a full-coursework acceptance."
+      ]
+    }
+  ]
+}

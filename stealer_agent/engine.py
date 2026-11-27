@@ -13,12 +13,13 @@ from jsonschema.exceptions import ValidationError
 
 from .contracts import ANALYSIS_TOOLS, validate_action, decision_schema
 from .grounding import validate_report
-from .journal import Journal, dump_json, canonical
+from .journal import Journal, dump_json, canonical, record_model_request
 from .prompts import system_prompt, report_prompt
 from .reporting import write_report
 from .security import check_sample_name, guard_observation
 from .telemetry import process_memory, available_memory_bytes
 from .model_projection import ModelEvidenceView
+from .search_queries import query_options
 
 
 class ResourceBudgetExceeded(RuntimeError):
@@ -125,12 +126,9 @@ class Agent:
         def report_call(request_messages, schema, phase, request_evidence):
             request_id = self.config.get('max_steps', 12) + metrics['model_calls'] + 1
             check_memory(request_id)
-            journal.append('model_request', step=request_id, phase=phase,
-                           messages_sha256=hashlib.sha256(canonical(request_messages)).hexdigest(),
-                           messages=request_messages, evidence=request_evidence,
-                           schema_sha256=hashlib.sha256(canonical(schema)).hexdigest(),
-                           guard_enabled=self.config.get('guard_enabled', True),
-                           scope='Exact card or accepted-claim payload; private log, not for public upload')
+            record_model_request(journal,step=request_id,phase=phase,messages=request_messages,
+                                 schema=schema,evidence=request_evidence,
+                                 guard_enabled=self.config.get('guard_enabled',True))
             reply, call_metrics = self.llm.chat(request_messages, schema=schema)
             model_replies.append(reply)
             metrics['model_calls'] += 1
@@ -204,10 +202,7 @@ class Agent:
                     eligible = [t for t in eligible if t != "read_evidence"]
                 if not ioc_sources:
                     eligible = [t for t in eligible if t != "extract_ioc"]
-                queries = ['Login Data', 'password_value', 'cookie', 'token', 'UploadFile', 'urlbot',
-                           'webhook', 'SmtpClient', 'NetworkCredential', 'requests', 'send',
-                           'CryptUnprotectData', 'CopyFromScreen', 'Local State', 'base64', 'sendmail', 'smtp', 'execute(', 'decrypt_password']
-                search_options = {eid: [q for q in queries if (eid, q) not in searched]
+                search_options = {eid: query_options(record,[q for previous_id,q in searched if previous_id==eid])
                                   for eid, record in evidence.items() if record['status'] == 'ok'
                                   and record.get('total_lines', 0) > 100 and record['tool'] in
                                   {'decompile_dotnet', 'decompile_python', 'disassemble_python', 'python_ast', 'decode_python_literals', 'strings', 'floss'}}
@@ -218,7 +213,11 @@ class Agent:
                 if not any(search_options.values()):
                     eligible = [t for t in eligible if t != 'search_evidence']
                 search_debt = max(0,self.config.get('min_code_searches',0)-len(code_searches)) if long_code else 0
-                if search_debt and self.config.get('max_steps',12)-step+1 <= search_debt+1:
+                # Inspect supported decoded source before spending navigation
+                # budget on its bytecode wrapper. Tool failure stays explicit.
+                if 'decode_python_literals' in eligible and python_sources:
+                    eligible = ['decode_python_literals']
+                elif search_debt:
                     focused = {eid:queries for eid,queries in search_options.items() if eid in long_code and queries}
                     if focused and 'search_evidence' in eligible:
                         eligible = ['search_evidence']
@@ -232,6 +231,8 @@ class Agent:
                          "searches_done": sorted(searched), "failed_tools": sorted(failed_tools)}
                 state['code_searches_completed'] = len(code_searches)
                 state['code_searches_required'] = self.config.get('min_code_searches', 0) if long_code else 0
+                state['search_query_hints'] = search_options
+                state['search_policy'] = 'Choose one literal substring from search_query_hints. Choices include untrusted identifiers in retrieved code, not findings. Follow missing helper bodies; do not repeat a query for the same evidence.'
                 evidence_text = compact_evidence(evidence, self.config.get('evidence_chars',5000),
                                                  self.config.get('code_evidence_chars',1600))
                 request_evidence = list(map(json.loads, evidence_text.splitlines()))
@@ -252,11 +253,6 @@ class Agent:
                              for item in map(json.loads, evidence_text.splitlines())
                              if item['status'] == 'ok' for line in item['lines']
                              if 4 <= len(line['text'].strip()) <= 600 and '[REDACTED-INJECTION]' not in line['text']][:160]
-                journal.append('model_request', step=step,
-                               messages_sha256=hashlib.sha256(canonical(request_messages)).hexdigest(),
-                               evidence=request_evidence,
-                               guard_enabled=self.config.get('guard_enabled', True),
-                               scope='Exact bounded evidence in the next model request; completion requires a matching model_response step')
                 action_schema=decision_schema(
                     sample, eligible, successful_eids, can_finish, unread_pages=unread,
                     ioc_sources=ioc_sources, python_entries=python_entries, citation_options=citations,
@@ -264,13 +260,15 @@ class Agent:
                 for branch in action_schema['anyOf']:
                     if branch['properties']['action'].get('const')=='decode_python_literals':
                         branch['properties']['arguments']['properties']['evidence_id']={'enum':python_sources}
+                record_model_request(journal,step=step,messages=request_messages,schema=action_schema,
+                                     evidence=request_evidence,guard_enabled=self.config.get('guard_enabled',True))
                 action, call_metrics = self.llm.chat(request_messages, schema=action_schema)
                 model_replies.append(action)
                 metrics["model_calls"] += 1
                 for key in ("prompt_tokens", "completion_tokens"):
                     value = call_metrics.get(key)
                     metrics[key] = metrics[key] + value if metrics[key] is not None and isinstance(value, int) else None
-                journal.append("model_response", step=step, action=action, metrics=call_metrics)
+                journal.append("model_response", step=step, phase='react', action=action, metrics=call_metrics)
                 try:
                     if action.get('action') == 'finish' and isinstance(action.get('report'), dict):
                         resolved = copy.deepcopy(action)
@@ -295,6 +293,11 @@ class Agent:
                         dump_json(journal.directory / 'report.model-raw.json', raw)
                         report = checked
                         status = 'completed_needs_review' if not checked['rejected_claims'] else 'completed_with_rejected_claims'
+                        if not raw['claims']:
+                            status = 'incomplete'
+                            checked['limitations'].append('Model returned no findings from the selected excerpts; this is not a completed analysis or evidence of benignness.')
+                            journal.append('empty_model_report',card_count=checked.get('card_count'),
+                                           scope='Explicit abstention/empty output; quality metrics remain unevaluable')
                         journal.append('report_validated', analysis=report)
                         break
                     if name == "finish":
@@ -328,6 +331,17 @@ class Agent:
                         raise ValueError(f"Tool is unavailable: {name}")
                     if args["sample"] != sample:
                         raise ValueError("Model attempted to change the authorized sample ID")
+                    if name == 'search_evidence':
+                        query = args['query']
+                        if not 3 <= len(query.strip()) <= 80 or any(c in query for c in '\r\n\x00'):
+                            raise ValueError('Search requires one bounded literal substring')
+                        if args['evidence_id'] not in search_options:
+                            raise ValueError('Search evidence is not eligible in the current state')
+                        if any(eid == args['evidence_id'] and old.casefold() == query.strip().casefold() for eid,old in searched):
+                            raise ValueError('Literal query was already searched for this evidence; follow a different observed helper')
+                        if query.strip() not in search_options[args['evidence_id']]:
+                            raise ValueError('Choose a literal from the current source-derived search choices')
+                        args['query'] = query.strip()
                     call_key = hashlib.sha256(canonical({"action": name, "arguments": args})).hexdigest()
                     if call_key in seen_calls:
                         raise ValueError("Duplicate tool call; use a different tool or evidence page")
@@ -456,6 +470,7 @@ class Agent:
                   "acceptance": {"two_distinct_tools": len(successful) >= 2,
                                  "required_branch_tools": required_tools <= successful,
                                  "model_minimum_met": model_meets_minimum(metadata),
+                                 "has_model_findings": bool(report.get('claims') or report.get('rejected_claims')),
                                  "python_source_decompiled": ('decompile_python' in successful) if detected_pyinstaller else None,
                                  "python_candidate_source_decoded": ('decode_python_literals' in successful) if detected_pyinstaller else None,
                                  "teacher_dataset_verified": False, "coursework_accepted": False},

@@ -1,0 +1,364 @@
+{
+  "created_at": "2026-11-27T21:24:08.262288+00:00",
+  "run_id": "20261127T211223_9602dfdd",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "dataset_origin": "public-development-sample-source-audit",
+  "human_reviewers": [],
+  "raw_report_sha256": "d002adb205df0b9f9793101106f4c5bd901ee62048805dc66e1ee6379422356a",
+  "journal_sha256": "7385c0c47821a77964a356a0355af1280d3ea146149cc61edb211fbf153bde0c",
+  "source_manifest_sha256": "11c3e88b9f4d9e280548a022f4a89a771cabb5996dc46924981b200856e8fea6",
+  "all_submitted_quotes_verified_against_projected_observations": true,
+  "scope": "All eleven raw claims, including five rejected ones; static capability only, strict claim-local citations. Labels remain open to independent correction.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The login helper calls sqlite3.connect on the temporary login_db path. The claim describes this static connection operation, not successful runtime access.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 289,
+          "end_line": 304,
+          "projected_quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 134,
+          "end_line": 154,
+          "projected_quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 69,
+          "end_line": 75,
+          "projected_quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 9,
+          "end_line": 9,
+          "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 12,
+          "end_line": 12,
+          "projected_quote_sha256": "f50a2f30595d9f88aadf781290441424dcaf49e820fdd1f913f35e08461643c9"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "SELECT includes password_value at index 2, the loop passes row[2] with master_key to decrypt_password, and the full helper derives iv/payload then calls AES-GCM decrypt. Slicing the encrypted field before decryption does not contradict this claim. Same-model rejection incorrectly treats the slice as unrelated data.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 289,
+          "end_line": 304,
+          "projected_quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 134,
+          "end_line": 154,
+          "projected_quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 69,
+          "end_line": 75,
+          "projected_quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 9,
+          "end_line": 9,
+          "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 12,
+          "end_line": 12,
+          "projected_quote_sha256": "f50a2f30595d9f88aadf781290441424dcaf49e820fdd1f913f35e08461643c9"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The supplied archive helper calls shutil.make_archive with zip format and the temporary Browser directory and returns Browser.zip. Browser in the prose is the directory basename; this does not establish any particular files inside it.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 313,
+          "end_line": 328,
+          "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 82,
+          "end_line": 113,
+          "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 276,
+          "end_line": 286,
+          "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 10,
+          "end_line": 10,
+          "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 14,
+          "end_line": 14,
+          "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The archive helper, its caller and the complete send_email body are all supplied. The returned archive path becomes attachment_path, is read into a MIME part, attached, serialized and passed to sendmail on the configured SMTP host. This is implemented static capability, not observed successful delivery or proof the archive contains stolen credentials.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 313,
+          "end_line": 328,
+          "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 82,
+          "end_line": 113,
+          "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 276,
+          "end_line": 286,
+          "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 10,
+          "end_line": 10,
+          "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 14,
+          "end_line": 14,
+          "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The SELECT column order places card_number_encrypted at row[3], which is passed with master_key to the included AES-GCM helper. The cited body slices IV/payload and decrypts. No authentication or runtime success is asserted.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 162,
+          "end_line": 177,
+          "projected_quote_sha256": "7055073e101470d6b04b5715b8edccaa7281d07b49c34ec7f6ee045c6deff4da"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 69,
+          "end_line": 75,
+          "projected_quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 12,
+          "end_line": 12,
+          "projected_quote_sha256": "f50a2f30595d9f88aadf781290441424dcaf49e820fdd1f913f35e08461643c9"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 9,
+          "end_line": 9,
+          "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The cited code explicitly selects credit-card fields including card_number_encrypted from credit_cards. It does not assert that SELECT itself decrypts the data.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 162,
+          "end_line": 177,
+          "projected_quote_sha256": "7055073e101470d6b04b5715b8edccaa7281d07b49c34ec7f6ee045c6deff4da"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 69,
+          "end_line": 75,
+          "projected_quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 12,
+          "end_line": 12,
+          "projected_quote_sha256": "f50a2f30595d9f88aadf781290441424dcaf49e820fdd1f913f35e08461643c9"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 9,
+          "end_line": 9,
+          "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The call passes a variable named zip_path but this claim citation lacks the implementation of combine_and_zip_files. The name/comment alone cannot prove the argument is a zipped file path. Another claim has that body, but it is absent from this claim own citations.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 326,
+          "end_line": 338,
+          "projected_quote_sha256": "a1ef5ffdba3c7398952d4af7f95404afece56deff139a09573937e3f2290c51a"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 288,
+          "end_line": 323,
+          "projected_quote_sha256": "b3f8b8106b74d7e34b178006cf3c3d629b9977d02e20745f342c9b649a32bf8f"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 52,
+          "end_line": 66,
+          "projected_quote_sha256": "c370afc1ec4eacedeb3035fb8f3c94c2448796ef70e69727a8822aeecfae2b6f"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The complete get_master_key body reads encrypted_key, Base64-decodes it, removes its prefix and calls CryptUnprotectData. The reviewer incorrectly says this call is absent. This audit describes the visible static API operation only.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 326,
+          "end_line": 338,
+          "projected_quote_sha256": "a1ef5ffdba3c7398952d4af7f95404afece56deff139a09573937e3f2290c51a"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 288,
+          "end_line": 323,
+          "projected_quote_sha256": "b3f8b8106b74d7e34b178006cf3c3d629b9977d02e20745f342c9b649a32bf8f"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 52,
+          "end_line": 66,
+          "projected_quote_sha256": "c370afc1ec4eacedeb3035fb8f3c94c2448796ef70e69727a8822aeecfae2b6f"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The code calls server.sendmail; no call named smtp_send is present in the submitted source. smtp_send is a parser category promoted to a claimed source function. Classed as unsupported under the lecturer no-evidence category, even though the sendmail argument description is otherwise supported.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 101,
+          "end_line": 132,
+          "projected_quote_sha256": "376d7b8e1b083ae96ceca5bca1a54a2c340a23a7aa227d95e5eb1f2cd49040e1"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 14,
+          "end_line": 14,
+          "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The supplied get_credit_cards body includes SELECT of card_number_encrypted from credit_cards and cursor.fetchall. The query/retrieval claim is supported; reviewer rejection is a false negative.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 156,
+          "end_line": 187,
+          "projected_quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 9,
+          "end_line": 9,
+          "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Exact submitted projected source ranges at original VM coordinates",
+      "reason": "The excerpt passes row[3] into decrypt_password but does not include that helper body for this claim. Calling a suggestively named helper does not establish its cryptographic effect; C5 contains the missing body, but this separate claim does not cite it.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 156,
+          "end_line": 187,
+          "projected_quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+        },
+        {
+          "evidence_id": "ev_c862ffaf2b5f4de5",
+          "line": 9,
+          "end_line": 9,
+          "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        }
+      ]
+    }
+  ]
+}

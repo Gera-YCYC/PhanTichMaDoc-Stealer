@@ -1,0 +1,151 @@
+{
+  "created_at": "2026-11-27T20:35:03.632007+00:00",
+  "kind": "live-VM-HTTP-parser-guard-check-not-SLM-demo",
+  "backend": "static-operation-facts/3",
+  "source_matches_vm": true,
+  "source_manifest_sha256": "db8afc4633774cec6cf2797e5ce82beb2a3d28412444c1071e0c59a9b65f39cf",
+  "cases": [
+    {
+      "source_run": "20261127T180215_b3a8ccf4",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "evidence_id": "ev_d744577906c14963",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "fresh_static_tools": [
+        {
+          "action": "decompile_dotnet",
+          "backend": "ilspycmd",
+          "evidence_id": "ev_d744577906c14963",
+          "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+        }
+      ],
+      "same_source_output_as_captured": true,
+      "calls": [
+        {
+          "query": "UploadFile",
+          "elapsed_s": 1.1841,
+          "fact_count": 0,
+          "operations": [],
+          "response_sha256": "a537fb77d8cc5a98cac935ab00d9f36f2537089e0b5607bfda4a93cc5872ebde",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": true
+        },
+        {
+          "query": ".UploadFile(",
+          "elapsed_s": 1.1366,
+          "fact_count": 4,
+          "operations": [
+            "file_upload",
+            "response_text_decode"
+          ],
+          "response_sha256": "5bb354a3998eb8754e38eaabc9429be6d7b7709f47e5d1e85c9cb3fe07c1e61c",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "Encoding.ASCII.GetString",
+          "elapsed_s": 1.4496,
+          "fact_count": 4,
+          "operations": [
+            "file_upload",
+            "response_text_decode"
+          ],
+          "response_sha256": "ffb3411f87fa5c99e09de1e52fe7022a9b446f787249dac7ca7887afb59a4908",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        }
+      ],
+      "expected_operations_observed": true
+    },
+    {
+      "source_run": "20261127T175019_6cbdf3e9",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "evidence_id": "ev_4b4f888f8b2e4416",
+      "output_sha256": "dc34199fb98c625caea573a78bcaef93743d88c32721f7fa7bbea38b679ce8cd",
+      "fresh_static_tools": [
+        {
+          "action": "unpack_pyinstaller",
+          "backend": "pyinstxtractor/815d31cf+bounded-entry-adapter",
+          "evidence_id": "ev_6a0a4b28f1294bdd",
+          "output_sha256": "54dac2e5d4cf49ce6ebfbf8640681f200daed262e4063064a963a290983e9793"
+        },
+        {
+          "action": "disassemble_python",
+          "backend": "pycdas/b4289760",
+          "evidence_id": "ev_29f38aec94654f54",
+          "output_sha256": "a6fb32dd8d6bcd0cfc76436f851be12373980a086a6a045a66018b07524173ed"
+        },
+        {
+          "action": "decode_python_literals",
+          "backend": "bounded-literal-decoder/1",
+          "evidence_id": "ev_4b4f888f8b2e4416",
+          "output_sha256": "dc34199fb98c625caea573a78bcaef93743d88c32721f7fa7bbea38b679ce8cd"
+        }
+      ],
+      "same_source_output_as_captured": false,
+      "calls": [
+        {
+          "query": "cursor.execute",
+          "elapsed_s": 0.3476,
+          "fact_count": 4,
+          "operations": [
+            "aes_gcm_decrypt",
+            "database_open",
+            "sql_select"
+          ],
+          "response_sha256": "6599ef515ec91b5db2d9bce6162774859654e4e770a3aab3eba8283a3e372802",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "decrypt_password",
+          "elapsed_s": 0.4028,
+          "fact_count": 4,
+          "operations": [
+            "aes_gcm_decrypt",
+            "database_open",
+            "sql_select"
+          ],
+          "response_sha256": "26fc72f405b4664b4bc6c1f7a602fc6e0234e9f78b81a8a2d6b671348816e807",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "sendmail",
+          "elapsed_s": 0.3959,
+          "fact_count": 2,
+          "operations": [
+            "archive_create",
+            "smtp_send"
+          ],
+          "response_sha256": "0e1b7871fdd0ff80ef960a6aeeb30f5eca19692f62fe421fd424b26f569f76f4",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "make_archive",
+          "elapsed_s": 0.4033,
+          "fact_count": 1,
+          "operations": [
+            "archive_create"
+          ],
+          "response_sha256": "ce75ecbbc8f425a7eddab6c9ed8ed1f9359d152b7a00a4211a104cebe26a751a",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        }
+      ],
+      "expected_operations_observed": true
+    }
+  ],
+  "limits": [
+    "Re-runs static tools on development samples with actions captured from earlier runs; not a new holdout.",
+    "No model inference or malware execution; no precision, recall or verdict score.",
+    "Argument values, source, credentials and endpoint text are excluded from the public receipt."
+  ]
+}

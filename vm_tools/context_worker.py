@@ -16,7 +16,16 @@ try:
     operations = extract_operations(request['record'])
     present = {r['line'] for r in result['lines']} | set(request['anchors'])
     chosen, rows, used = [], {}, 0
-    for fact in operations['facts']:
+    # Prefer a call at the actual search anchor, then dependencies visible in
+    # linked context. Imports alone must not use the bounded fact slots first.
+    def priority(fact):
+        call = fact['ranges'][-1]
+        hit = any(call['line'] <= n <= call['end_line'] for n in request['anchors'])
+        callee = any(link['ranges'][1]['line'] <= call['line'] and call['end_line'] <= link['ranges'][1]['end_line']
+                     for link in result.get('context_links',[]) if len(link['ranges'])>=2)
+        distance = min((abs(call['line']-n) for n in request['anchors']), default=0)
+        return (not hit, not callee, distance, call['line'])
+    for fact in sorted(operations['facts'], key=priority):
         numbers = {n for r in fact['ranges'] for n in range(r['line'],r['end_line']+1)}
         if not present & numbers:
             continue

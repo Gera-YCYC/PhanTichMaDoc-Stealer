@@ -6,6 +6,10 @@ Model 1.5B ban đầu trên D không đủ ngưỡng hướng 6, được giữ 
 
 ## Phép thử Qwen3 8B
 
+Thí nghiệm v8 giữ Qwen2.5 Coder 7B là baseline/Release, chưa thay bằng 8B. Lượt 7B có query từ source `20261127T210746_9922cc4e` hoàn tất điều phối trong 162,2 s nhưng trả 0 nhận định trên 9 card. Lượt 8B `20261127T211223_9602dfdd` tạo 11 câu trong 484,7 s, source audit chấm 8 đúng/3 thiếu căn cứ; verdict suspicious. Các lần này khác một sửa trạng thái báo cáo rỗng, không coi là benchmark kiểm soát hoàn toàn. Bản 8B còn một lượt trước đó bị giới hạn RAM ngắt. [Kết quả và phạm vi](OPERATIONS_CONTEXT_V8.md), [điểm đầy đủ](../deliverables/real-demo-evidence/python2024-operations-v8-claim-score.json).
+
+Metadata/API fact tốt hơn không bảo đảm model sinh hoặc duyệt câu chính xác hơn. Không chọn model chỉ vì lớn hơn, trả nhiều câu hơn hoặc tự duyệt giữ nhiều câu hơn; phải so chất lượng, bỏ sót và tài nguyên trên cùng corpus/revision. Model 8B chưa đưa vào Release vì chưa đủ bằng chứng thay baseline.
+
 Nguồn [Ollama Qwen3:8b](https://ollama.com/library/qwen3:8b): Q4_K_M, 8.190.735.360 tham số. Download thực tế 5.225.388.164 byte, digest `500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41`. Dùng cùng endpoint cục bộ và `think=false` theo [Ollama chat API](https://docs.ollama.com/api/chat), context 8192. Không tải dữ liệu mẫu lên dịch vụ model.
 
 Run `20261127T154828_a39039e6` trên PythonStealer2024 đã phải dừng chủ động sau 15 tool action vì máy thiếu RAM. [Receipt dừng riêng](../deliverables/real-demo-evidence/qwen3-8b-aborted.json) giữ hash journal 65 event, metadata model và số đo:

@@ -101,3 +101,7 @@ Hai lượt v3 đã chạy end-to-end với Qwen3 trên cùng bản source: Pyth
 `search_evidence` có thêm worker parser trong VM, trả các đoạn caller/callee giữ nguyên số dòng. `context_cards.py` chọn tối đa bốn mục liên kết, mỗi mục 2–3 khoảng đã truy xuất; các mục còn lại vẫn dùng đoạn đơn. Mỗi khoảng kiểm quote/source riêng; không ghép qua khoảng thiếu như một đoạn liên tục. Nhận định có thể dẫn đồng thời lời gọi và phần triển khai, nhưng link chỉ là ứng viên cú pháp, không tự chứng minh luồng dữ liệu hay ngữ nghĩa hàm. [Thiết kế, dependency, cài đặt và kiểm chứng](SYNTAX_CONTEXT.md).
 
 Tất cả SECTION được đưa vào request sinh câu và request duyệt; context_links chỉ chứa tọa độ/nhãn quan hệ cố định, không có chỉ dẫn lấy từ source. Guard áp dụng cho dòng mới giống dòng tìm kiếm thường. Câu vượt quá tất cả SECTION vẫn là câu thiếu căn cứ dù các quote đều hợp lệ.
+
+## Bản `/8`: chọn đoạn chứa thao tác và giữ đủ binding
+
+Các cải tiến `/5`–`/7` có receipt riêng trong STATUS. Bản `/8` tích hợp fact API đã kiểm hash vào cùng ngữ cảnh của generator/reviewer, chọn đoạn đầy đủ dựa trên thao tác chưa phủ và không bỏ đoạn đến muộn. Các dòng import/constructor/call cần cho một fact phải có đủ trong evidence đã truy xuất. Không tạo claim đúng bằng cách gán nhãn từ fact. Controller đã mở truy vấn literal mới để model có thể tìm helper ngoài các từ khóa gợi ý. [Thiết kế và phép kiểm](OPERATIONS_CONTEXT_V8.md).

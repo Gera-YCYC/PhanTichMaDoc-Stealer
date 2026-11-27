@@ -1,0 +1,16 @@
+{
+  "manifest_path": "/opt/stealer-lab/private/evaluation/real-yara-v1.json",
+  "manifest_sha256": "4e2fecff1a2714c1fd0ddae975eae34fdf5ba4f318e99fceddf471b076ac5a3b",
+  "malware_development_count": 5,
+  "clean_holdout_count": 8,
+  "tool_service_config_changed": false,
+  "samples_executed": false,
+  "created_at": "2026-11-27T21:21:33.073634+00:00",
+  "kind": "real-clean-corpus-import-not-detection-evaluation",
+  "host_manifest_sha256": "fa952b971dfe90afc42a41e2682f40c764a388cf27da44c94223855fba0f09ab",
+  "source_files": {
+    "scripts/prepare_clean_corpus.ps1": "1ce0a9c8426405f7e423e403dd7d4ef6e30ce7eb7a8238ee6b84964d46d8eb29",
+    "scripts/import_clean_corpus.py": "2ac7646915ec62f44518ef42166dbfa4c85def9edf261084a240a8a979a4222d",
+    "scripts/import_clean_corpus_vm.py": "814e03ac4ec764ac061e73dff267cf9d6e66c1fb1150ef3a1d8aab4f3619e6f8"
+  }
+}

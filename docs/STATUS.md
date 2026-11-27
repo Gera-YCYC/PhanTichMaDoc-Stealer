@@ -4,7 +4,33 @@
 
 ## Cập nhật hiện tại
 
-### Sửa truy xuất nhiều hàm và che literal trước mô hình
+### Báo cáo v8, truy vấn theo hàm và provenance đầy đủ
+
+**Chất lượng vẫn chưa đạt.** [Thiết kế v8](OPERATIONS_CONTEXT_V8.md) gồm AES-GCM fact hẹp, chọn đoạn đầy đủ theo thao tác, đưa cùng source/fact vào generator và reviewer, truy vấn literal từ tên hàm đã quan sát và log nguyên messages/schema. **223 kiểm thử phần mềm đạt trên Windows.** Đây là kiểm hợp đồng, không phải 223 mẫu độc.
+
+| Lượt thật | Kết quả | Diễn giải |
+|---|---|---|
+| Qwen3 8B `20261127T203557_3580d286` | Ngắt do RAM còn 199.147.520 byte, 4 tool thành công | Chưa tạo report; không có điểm chất lượng |
+| 7B, query tự do `20261127T204500_5a3210fc` | 7 tool, 1 query lặp, 2 JSON lỗi | Thử nghiệm thất bại được giữ; bản hiện tại dùng enum mở rộng theo source |
+| 7B, query từ source `20261127T210746_9922cc4e` | 162,2 s, 4 tool, 27 model call; 0 câu trên 9 card | Không tính đạt. Log cũ ghi completed_needs_review; đã sửa code để lần sau báo cáo rỗng là incomplete, không viết lại log lịch sử |
+| 8B, query từ source `20261127T211223_9602dfdd` | 484,7 s, 4 tool, 36 model call; verdict suspicious | 8/11 câu đủ căn cứ, 3 thiếu căn cứ; tự duyệt còn 4/6 đúng |
+| 8B, .NET `20261127T212209_478cc179` | 503,5 s, 2 tool, 49 model call; verdict suspicious | 14/20 câu đúng, 1 sai, 5 thiếu căn cứ; sau lọc 14/19 đúng |
+
+Lượt Python cuối có Precision/grounding **72,73%**, hallucination **27,27%**; sau lọc lần lượt **66,67%** và **33,33%**. Recall/F1 vẫn `null` vì chưa chuẩn hóa đủ đơn vị đáp án. Bốn câu đúng bị cùng model loại, hai câu thiếu căn cứ được giữ. [Audit đủ 11 câu](../eval/adjudications/python2024-operations-v8-full-audit.json), [score](../deliverables/real-demo-evidence/python2024-operations-v8-claim-score.json), [receipt chạy](../deliverables/real-demo-evidence/operations-v8-source-query-8b-python-run.json). Nhãn do source audit tự động, chưa có người thật/GV duyệt.
+
+Audit privacy kiểm đủ 36 messages và 36 schema của lượt Python 8B; ba literal detector đã nhận diện không xuất hiện trong request/schema/response. [Receipt](../deliverables/real-demo-evidence/model-projection-v8-source-query-8b-python.json). Chỉ kết luận trong phạm vi detector, không bảo đảm mọi bí mật đều được tìm thấy.
+
+Đã nhập và khóa **8 file sạch thật có chữ ký Microsoft** cùng 5 mẫu độc development trong manifest YARA riêng. [Corpus và cách tái lập](CLEAN_CORPUS.md). Chưa đo luật trên bộ mới, chưa có positive holdout hoặc ứng dụng PyInstaller sạch. Không dùng receipt nhập file để đóng YARA/FPR.
+
+Nhánh .NET đã phân biệt đúng file upload với response ASCII trong các câu C1–C8, nhưng còn suy tác dụng `Decrypt` khi thiếu thân hàm, nhầm tên biến với tên field/filename, và suy lời gọi từ khai báo P/Invoke. [Audit đủ 20 câu](../eval/adjudications/gomorrah-operations-v8-full-audit.json), [score](../deliverables/real-demo-evidence/gomorrah-operations-v8-claim-score.json), [receipt](../deliverables/real-demo-evidence/operations-v8-source-query-8b-dotnet-run.json). Precision 70%, hallucination 25%; chưa đủ >=4 công cụ riêng biệt cho mức xuất sắc. Hai lượt 8B dùng cùng manifest 44 file core, hash `11c3e88b9f4d9e280548a022f4a89a771cabb5996dc46924981b200856e8fea6`.
+
+Nhật ký .NET có đủ 49 messages/schema nhưng detector không tìm thấy literal riêng tư đủ điều kiện trong các đoạn đã truy hồi. [Audit `/3`](../deliverables/real-demo-evidence/model-projection-v8-source-query-8b-dotnet.json) để gate privacy `null`, không biến tập rỗng thành pass. Kiểm thử thứ 223 xác nhận điều này; các audit cũ vẫn giữ riêng theo revision.
+
+Đã dừng runtime sau đợt đo: PID Ollama 9148 không còn, cổng 11435 không lắng nghe, VMware báo 0 VM chạy, GPU quan sát 0/6144 MiB. Model và đĩa VM giữ nguyên. [Receipt dừng](../deliverables/real-demo-evidence/runtime-stopped-after-operations-v8.json). Lần chạy sau dùng Start-Lab/sync/verify theo TEAM_SETUP; việc tắt runtime không đánh dấu mục tiêu đồ án hoàn thành.
+
+Các mục dưới giữ nguyên số đo lịch sử theo revision. Không lấy kết quả tốt nhất ở các revision khác nhau ghép thành một lần nghiệm thu.
+
+### Lịch sử v7: truy xuất nhiều hàm và che literal trước mô hình
 
 - Đã sửa lỗi v2 dùng cả hai slot cho cùng một hàm khi truy vấn trả hai anchor. `tree-sitter-context/3` chia ngân sách theo hàm chứa hit; `evidence-cards/7` giữ hai caller khác nhau của cùng helper. [Kiểm HTTP thật](../deliverables/real-demo-evidence/context-v3-projection-http-check.json) tái chạy công cụ VM và xác minh cả hai nhánh cùng có helper; [giải thích](SYNTAX_CONTEXT.md).
 - Run ReAct mới **`20261127T201007_3f8805e5`**, Python2024 public + Qwen3 8B + VM thật: **433,9208 giây, 4 tool thành công, 17 tool call, 38 model request**, 1 lỗi pycdc; 7 card, 12 câu thô/11 được giữ, verdict **suspicious**. Có 6 typed operations; chưa dùng chúng chấm tự động câu SLM. [Receipt](../deliverables/real-demo-evidence/context-v3-projection-python-run.json).

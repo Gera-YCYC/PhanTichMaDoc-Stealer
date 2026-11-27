@@ -1,6 +1,7 @@
 """Compose exact retrieved ranges; never infer a flow from a syntax link."""
 import hashlib
 import json
+from .operation_context import intersecting_operations
 
 
 def linked_cards(evidence, max_cards=4, max_chars=6500):
@@ -49,6 +50,23 @@ def linked_cards(evidence, max_cards=4, max_chars=6500):
                           'reference': refs[0], 'references': refs, 'focus_lines': [link['call_line']],
                           'focus_origin': 'syntactic_call_candidate_not_dataflow_proof',
                           'callee_complete': link.get('callee_complete', False)})
-            if len(cards) >= max_cards:
-                return cards
-    return cards
+    # Inspect every bounded candidate before selecting. Arrival order previously
+    # let a tiny hostname helper displace a later complete SMTP/attachment body.
+    selected, covered_facts = [], set()
+    while cards and len(selected)<max_cards:
+        def priority(card):
+            facts={f['fact_id'] for f in intersecting_operations(card,evidence)}
+            rows={(r['evidence_id'],n) for r in card['references'] for n in range(r['line'],r['end_line']+1)}
+            return (len(facts-covered_facts), len(rows), -sum(len(r['quote']) for r in card['references']))
+        best=max(cards,key=priority)
+        cards.remove(best)
+        # Remove contained shorter candidates even when they arrived first.
+        for candidate in list(cards):
+            if all(any(old['evidence_id']==ref['evidence_id'] and old['line']<=ref['line'] and
+                       old['end_line']>=ref['end_line'] for old in best['references']) for ref in candidate['references']):
+                best['focus_lines']=list(dict.fromkeys(best['focus_lines']+candidate['focus_lines']))
+                best['subsumed_context_count']=best.get('subsumed_context_count',0)+1
+                cards.remove(candidate)
+        selected.append(best)
+        covered_facts.update(f['fact_id'] for f in intersecting_operations(best,evidence))
+    return selected

@@ -23,6 +23,22 @@ def dump_json(path: Path, value) -> None:
     temp.replace(path)
 
 
+def record_model_request(journal, *, step, messages, schema, evidence, phase='react', **details):
+    """Log the exact projected inputs, not a reconstruction from earlier pages.
+
+    These are private request artifacts. Refuse an oversized request rather than
+    claim an incomplete/truncated log proves exposure to a complete payload.
+    """
+    body={'messages':messages,'schema':schema,'evidence':evidence}
+    if len(canonical(body)) > 512_000:
+        raise ValueError('Model request provenance exceeds 512000-byte bound')
+    return journal.append('model_request',step=step,phase=phase,**body,
+                          messages_sha256=hashlib.sha256(canonical(messages)).hexdigest(),
+                          schema_sha256=hashlib.sha256(canonical(schema)).hexdigest(),
+                          scope='Exact messages/schema and projected evidence for next model call; private, not public export',
+                          **details)
+
+
 class Journal:
     def __init__(self, directory: Path, live: bool = False):
         directory.mkdir(parents=True, exist_ok=False)

@@ -163,3 +163,19 @@ Nếu VM được dựng trước khi tích hợp DIE/FLOSS, chạy thêm trư�
 ```
 
 Cài đặt này cập nhật version directory của tool, không xóa snapshot/mẫu. Không chạy lại Finish để gắn nhãn sạch cho VM đã nhập mẫu. Chi tiết và các giới hạn: NATIVE_TOOLS_AND_EXPOSURE.md.
+
+## Chọn cấu hình demo và đọc kết quả
+
+`Run-Demo.ps1` có tham số `-Profile`: `baseline` giữ cấu hình mặc định; `cards-7b` thử báo cáo theo đoạn với model trong Release; `cards-8b` cần cài thêm Qwen3 8B tại máy. Các profile gọi công cụ thật trong VM và cùng kiểm hash mẫu public, không dùng fixture để thay demo.
+
+```powershell
+.\scripts\Start-Lab.ps1
+.\.venv\Scripts\python.exe scripts/sync_vm.py
+.\.venv\Scripts\python.exe scripts/verify_lab.py
+.\scripts\Run-Demo.ps1 -Profile cards-8b -Sample public_python2024.bin
+.\scripts\Stop-Lab.ps1
+```
+
+Chỉ chọn `cards-8b` khi model đã cài; chương trình không tự tải model. Với `cards-7b`, phép thử mới trả rỗng trên 9 đoạn nên chưa chọn làm cấu hình báo cáo mặc định. Một dòng `[DONE]` chỉ báo vòng chạy đã kết thúc: phải đọc status, số nhận định, lỗi và score. Báo cáo rỗng hoặc dừng do thiếu RAM là incomplete; `completed_needs_review` cũng chưa phải đạt điểm môn học. [So sánh và lỗi thực nghiệm](OPERATIONS_CONTEXT_V8.md).
+
+Sau khi đo xong, Stop-Lab chỉ tắt VM/Ollama thuộc dự án; giữ nguyên model, ổ đĩa và log. Chuẩn bị bộ âm tính thật theo [CLEAN_CORPUS.md](CLEAN_CORPUS.md) ngoài một lượt phân tích đang chạy; chưa có score YARA trên bộ mới.

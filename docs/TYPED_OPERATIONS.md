@@ -34,6 +34,10 @@ Run v5 `20261127T184945_91217ab1` sử dụng backend `/1`: sáu dữ kiện đi
 
 Hai lỗi thiết kế phép kiểm đã được sửa trước khi ghi receipt đạt: Evidence ID cũ không tồn tại trong session service mới, nên phép kiểm phải chạy lại tool lấy ID mới; truy vấn UploadFile rộng trả LateGet ngoài phạm vi hỗ trợ, nên fact rỗng được ghi rõ thay vì yêu cầu mọi truy vấn đều phải có fact. Dạng trực tiếp được kiểm bằng truy vấn riêng, không che trường hợp rộng chưa nhận dạng. Không coi phép kiểm có chủ đích này là bằng chứng SLM sẽ tự tìm đủ thao tác.
 
+## Bản v3 và báo cáo đoạn v8
+
+Đã thêm dạng AES-GCM hẹp, ưu tiên fact đúng anchor/callee và truyền fact kèm mọi dòng binding cho cả generator/reviewer. Bộ chọn đoạn xét các ứng viên đến muộn thay vì để helper ngắn chiếm hết chỗ. [Thiết kế, kiểm source/HTTP/card thật và lượt thiếu RAM](OPERATIONS_CONTEXT_V8.md). Dữ kiện thao tác vẫn không tự chấm đúng câu model hoặc chứng minh nội dung thực tế đã gửi.
+
 ## Việc chưa hoàn thành
 
 Chưa dùng các dữ kiện này để chứng minh luồng DB → biến → archive/message → kênh gửi. Chưa có đối chiếu đủ các đơn vị reference, chưa đo Recall/F1 cho tập thao tác, chưa chứng minh rằng thêm parser làm SLM chính xác hơn. Cần tích hợp có kiểm chứng vào báo cáo và đo trên cả mẫu phát triển, mẫu giữ riêng và bộ file sạch; vẫn giữ câu SLM sai trong mẫu số đánh giá.

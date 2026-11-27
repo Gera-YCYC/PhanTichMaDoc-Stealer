@@ -1,0 +1,335 @@
+{
+  "created_at": "2026-11-27T20:35:22.699563+00:00",
+  "kind": "host-card-contract-check-on-real-VM-responses-not-SLM-demo",
+  "source_responses": [
+    {
+      "filename": "20261127T175019_6cbdf3e9-0.json",
+      "sha256": "a4c46811626403b6f6d3601b27b92025b624eb129cfaeefe1188d85a6e0820ba"
+    },
+    {
+      "filename": "20261127T175019_6cbdf3e9-1.json",
+      "sha256": "69d41d46c97c80a1e1e7656473013fc70819e5eb10fc2dc62532f65127e85e5c"
+    },
+    {
+      "filename": "20261127T175019_6cbdf3e9-2.json",
+      "sha256": "7ee28fb9cee94b7d3f3845a97639d7d94bd75563970986a5fb0df678b2c54c4d"
+    },
+    {
+      "filename": "20261127T175019_6cbdf3e9-3.json",
+      "sha256": "81d30e0b06a3288533d4b858f87f98a97530f9ff0852383efaf52d8b40bdad08"
+    },
+    {
+      "filename": "20261127T180215_b3a8ccf4-0.json",
+      "sha256": "8909a43726555fec0d7bf2f23224f62848f23a484b2b4670af26a342c640924f"
+    },
+    {
+      "filename": "20261127T180215_b3a8ccf4-1.json",
+      "sha256": "48979b8909058988e3ec0c0a974dc65e2772ff3011102a85c3cdf25f25f1c1e3"
+    },
+    {
+      "filename": "20261127T180215_b3a8ccf4-2.json",
+      "sha256": "62fa2c6499ebb5da4e02bd0bd0c79d65bf3fe9e6c0cb1945b5c0f33bba946561"
+    }
+  ],
+  "cases": [
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "tool": "decode_python_literals",
+      "card_count": 6,
+      "operations": [
+        "aes_gcm_decrypt",
+        "archive_create",
+        "database_open",
+        "smtp_send",
+        "sql_select"
+      ],
+      "cards": [
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 134,
+              "end_line": 149
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 69,
+              "end_line": 75
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 12,
+              "end_line": 12
+            }
+          ],
+          "operation_ids": [
+            "op_61ba38c1ac1470d3",
+            "op_b642a37e3a4edff3",
+            "op_20c7118597d40760"
+          ],
+          "operation_types": [
+            "sql_select",
+            "aes_gcm_decrypt",
+            "database_open"
+          ]
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 313,
+              "end_line": 328
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 82,
+              "end_line": 113
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 276,
+              "end_line": 286
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 14,
+              "end_line": 14
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 10,
+              "end_line": 10
+            }
+          ],
+          "operation_ids": [
+            "op_75684533aa446fdf",
+            "op_5d8aacc359e448a9"
+          ],
+          "operation_types": [
+            "smtp_send",
+            "archive_create"
+          ]
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 162,
+              "end_line": 177
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 69,
+              "end_line": 75
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 12,
+              "end_line": 12
+            }
+          ],
+          "operation_ids": [
+            "op_3dcc04305a3f3f6a",
+            "op_b642a37e3a4edff3"
+          ],
+          "operation_types": [
+            "sql_select",
+            "aes_gcm_decrypt"
+          ]
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 305,
+              "end_line": 320
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 276,
+              "end_line": 286
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 116,
+              "end_line": 131
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 10,
+              "end_line": 10
+            }
+          ],
+          "operation_ids": [
+            "op_5d8aacc359e448a9"
+          ],
+          "operation_types": [
+            "archive_create"
+          ]
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 9,
+              "end_line": 10
+            }
+          ],
+          "operation_ids": [],
+          "operation_types": []
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 261,
+              "end_line": 292
+            },
+            {
+              "evidence_id": "ev_4b4f888f8b2e4416",
+              "line": 10,
+              "end_line": 10
+            }
+          ],
+          "operation_ids": [
+            "op_5d8aacc359e448a9"
+          ],
+          "operation_types": [
+            "archive_create"
+          ]
+        }
+      ],
+      "all_operations_include_binding_ranges": true
+    },
+    {
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "tool": "decompile_dotnet",
+      "card_count": 5,
+      "operations": [
+        "file_upload",
+        "response_text_decode"
+      ],
+      "cards": [
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 3518,
+              "end_line": 3533
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 3593,
+              "end_line": 3617
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 3645,
+              "end_line": 3669
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 22,
+              "end_line": 22
+            }
+          ],
+          "operation_ids": [
+            "op_de0e2cb2af90ac36",
+            "op_64b08ab2f4ea8eb4",
+            "op_10d411a08916e14a"
+          ],
+          "operation_types": [
+            "file_upload",
+            "response_text_decode",
+            "file_upload"
+          ]
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 3530,
+              "end_line": 3545
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 4284,
+              "end_line": 4319
+            }
+          ],
+          "operation_ids": [],
+          "operation_types": []
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 4240,
+              "end_line": 4267
+            }
+          ],
+          "operation_ids": [],
+          "operation_types": []
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 3562,
+              "end_line": 3593
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 22,
+              "end_line": 22
+            }
+          ],
+          "operation_ids": [
+            "op_64f663b0384d1c13",
+            "op_3d74932966267ee4"
+          ],
+          "operation_types": [
+            "file_upload",
+            "response_text_decode"
+          ]
+        },
+        {
+          "ranges": [
+            {
+              "evidence_id": "ev_d744577906c14963",
+              "line": 15,
+              "end_line": 15
+            }
+          ],
+          "operation_ids": [],
+          "operation_types": []
+        }
+      ],
+      "all_operations_include_binding_ranges": true
+    }
+  ],
+  "limits": [
+    "Parser facts and card coverage only; no automatic accuracy or verdict grade.",
+    "Source text, literal arguments and credentials excluded."
+  ]
+}

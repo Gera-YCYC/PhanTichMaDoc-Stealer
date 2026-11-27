@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-27T21:32:21.9358367+00:00",
+  "kind": "owned-runtime-stopped-after-v8-experiments",
+  "owned_pid": 9148,
+  "owned_pid_present": false,
+  "port_11435_listening": false,
+  "vm_list": [
+    "Total running VMs: 0"
+  ],
+  "gpu_observation": "0 MiB, 6144 MiB",
+  "weights_and_vm_disks_preserved": true,
+  "samples_executed": false
+}

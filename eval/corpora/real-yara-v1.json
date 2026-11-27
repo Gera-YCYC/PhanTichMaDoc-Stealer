@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "dataset_origin": "public-malware-development-and-signed-clean-holdout/1",
+  "corpora": {
+    "training": [
+      {
+        "sample": "public_gomorrah.bin",
+        "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+        "positive": true
+      },
+      {
+        "sample": "public_agenttesla.bin",
+        "sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+        "positive": true
+      },
+      {
+        "sample": "public_python2024.bin",
+        "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "positive": true
+      },
+      {
+        "sample": "public_luna.bin",
+        "sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+        "positive": true
+      },
+      {
+        "sample": "public_mercurial.bin",
+        "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+        "positive": true
+      }
+    ],
+    "holdout": [
+      {
+        "sample": "clean_ms_where.bin",
+        "sha256": "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_whoami.bin",
+        "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ipconfig.bin",
+        "sha256": "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_findstr.bin",
+        "sha256": "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_sort.bin",
+        "sha256": "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ping.bin",
+        "sha256": "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_msbuild.bin",
+        "sha256": "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_csc.bin",
+        "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+        "positive": false
+      }
+    ]
+  },
+  "source_manifest": {
+    "schema_version": 1,
+    "collected_at": "2026-11-27T21:15:13.1676500+00:00",
+    "dataset_origin": "genuine-signed-microsoft-utilities",
+    "sample_execution": false,
+    "redistribution": "Metadata only in Git; obtain binaries from each authorized Windows installation",
+    "rows": [
+      {
+        "sample": "clean_ms_where.bin",
+        "sha256": "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+        "bytes": 65536,
+        "positive": false,
+        "source_path": "C:\\Windows\\System32\\where.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "product": "Microsoft® Windows® Operating System",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_whoami.bin",
+        "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+        "bytes": 98304,
+        "positive": false,
+        "source_path": "C:\\Windows\\System32\\whoami.exe",
+        "file_version": "10.0.26100.8115 (WinBuild.160101.0800)",
+        "product": "Microsoft® Windows® Operating System",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_ipconfig.bin",
+        "sha256": "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+        "bytes": 61440,
+        "positive": false,
+        "source_path": "C:\\Windows\\System32\\ipconfig.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "product": "Microsoft® Windows® Operating System",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_findstr.bin",
+        "sha256": "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+        "bytes": 65536,
+        "positive": false,
+        "source_path": "C:\\Windows\\System32\\findstr.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "product": "Microsoft® Windows® Operating System",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_sort.bin",
+        "sha256": "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+        "bytes": 49152,
+        "positive": false,
+        "source_path": "C:\\Windows\\System32\\sort.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "product": "Microsoft® Windows® Operating System",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_ping.bin",
+        "sha256": "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+        "bytes": 45056,
+        "positive": false,
+        "source_path": "C:\\Windows\\System32\\ping.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "product": "Microsoft® Windows® Operating System",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_msbuild.bin",
+        "sha256": "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+        "bytes": 252448,
+        "positive": false,
+        "source_path": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\MSBuild.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "product": "Microsoft® .NET Framework",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      },
+      {
+        "sample": "clean_ms_csc.bin",
+        "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+        "bytes": 2569832,
+        "positive": false,
+        "source_path": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "product": "Microsoft® .NET Framework",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known Microsoft OS/developer utility with valid Authenticode signature; expected non-stealer, not proof of harmlessness in every use"
+      }
+    ]
+  },
+  "limits": [
+    "Five malware specimens are development, not independent positive holdout.",
+    "Eight clean files were locked before new rule tuning; holdout TPR is null without positives.",
+    "Native Windows and managed tools only; no benign PyInstaller coverage yet.",
+    "Signature verification occurred on Windows, VM independently verifies exact hashes.",
+    "No source sample execution; these labels describe expected software identity, not all possible uses."
+  ]
+}
