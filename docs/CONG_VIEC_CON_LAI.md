@@ -4,7 +4,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 
 Ưu tiên sau run `20261127T211223_9602dfdd`: đã có card chứa fact/binding và provenance đủ messages/schema, nhưng Python chỉ 8/11 câu đủ căn cứ; tự duyệt còn 4/6. Cần tách nhãn thao tác nội bộ khỏi tên hàm source, hạn chế câu lặp từ card thiếu helper và xử lý false rejection của reviewer đối với AES/SELECT/DPAPI có chứng cứ. 7B trả rỗng trên 9 card; chưa chọn bản báo cáo này làm mặc định. Bộ 8 file sạch thật đã nhập VM và khóa; tiếp theo đo YARA, thêm positive holdout và ứng dụng PyInstaller sạch. Các gate chất lượng cuối môn vẫn mở. Xem STATUS và OPERATIONS_CONTEXT_V8 để đọc số đo/giới hạn hiện tại.
 
-Nhánh .NET cùng bản core đạt 14/20 câu đúng nhưng chỉ gọi 2 công cụ khác nhau. Vòng điều phối còn dùng 15 lượt tìm kiếm, có các từ khóa không hợp nhánh. Cần phân bổ lượt cho metadata/IOC/DIE hoặc công cụ bổ sung có ích để đáp ứng >=4 tool ở mức xuất sắc, phản hồi hit/no-hit rõ hơn, và giữ ngân sách tổng hợp. Không tăng số tool bằng cách đếm read/search như backend độc lập. Chưa có ba mẫu trên revision này, chưa đo stability ba lượt, chưa có đủ mười cặp injection hợp lệ.
+Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ khác nhau; hợp hai nhánh có 5 công cụ thật, đã đủ phần số lượng >=4 trong rubric. Không đặt thêm ngưỡng 4 công cụ cho từng mẫu. Vòng điều phối còn dùng 15 lượt tìm kiếm, có từ khóa không hợp nhánh; cần phản hồi hit/no-hit rõ hơn, giữ ngân sách tổng hợp và gọi thêm metadata/IOC/DIE khi có ích cho chứng cứ. Read/search không được tính như backend phân tích độc lập. Chưa có ba mẫu trên revision này, chưa đo stability ba lượt, chưa có đủ mười cặp injection hợp lệ.
 
 | ID | Phần việc | Trạng thái thực tế | Điều kiện đóng |
 |---|---|---|---|

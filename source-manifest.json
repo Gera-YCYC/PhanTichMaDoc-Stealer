@@ -501,8 +501,8 @@
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 9553,
-    "sha256": "fb0f7139cc6bdaf52fe996dcc2d2ade2bdd0f7ddb898bcfe453c4938690d47a5"
+    "bytes": 9614,
+    "sha256": "557e43c29c14c5a5a139acfed2420b9c61495303e0d1ace03259c67c6b559a6c"
   },
   {
     "path": "docs/DATASET.md",
@@ -671,8 +671,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 31110,
-    "sha256": "97b40e66120d41714182dabdc41fedab133a23e4c200971d2ba7071780719303"
+    "bytes": 31311,
+    "sha256": "58c8ebd42d874a0326ce6aaf92e5186a5c342e670bea643f907b8ce6ea716ede"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
