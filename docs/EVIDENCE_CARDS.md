@@ -6,6 +6,18 @@
 
 Nhánh `evidence-cards-v1` là thí nghiệm sửa phần báo cáo. Cấu hình nằm ở `config/host.cards-candidate.example.json`. Nó chưa thay thế cấu hình mặc định cho tới khi có bảng chấm đủ trên mẫu thật. Kết quả âm và báo cáo cũ được giữ.
 
+## Bản chọn đoạn v6
+
+Sau khi có context gồm caller/callee/helper, bộ chọn cũ chỉ xét khoảng đầu tiên khi kiểm một hit đã có trong card hay chưa. Vì thế một hit nằm trong thân callee vẫn tạo đoạn rời thiếu helper; một link ngắn đã nằm hoàn toàn trong card khác cũng chiếm thêm slot.
+
+Bản `evidence-cards/6` kiểm tất cả khoảng của card. Nếu một link được **một** card sẵn có bao trọn, giữ vị trí focus và bỏ bản lặp; không hợp nhất tùy tiện qua nhiều card, không thêm dòng chưa truy xuất. Các test mới kiểm trường hợp hit trong khoảng phụ, dependency bị thiếu dòng, và một caller khác vẫn được giữ. Prompt/API guidance không đổi so với v5; dữ kiện typed operations vẫn trình bày riêng, chưa làm nhãn tự động.
+
+Phép so trên record của run `20261127T193524_b2342ecf` giảm từ 8 card xuống 7, giữ focus của hit bị gộp. Đây là thay đổi lựa chọn chứng cứ, chưa tự chứng minh tăng độ chính xác hoặc bao phủ. Đo model từ record lưu sẵn phải ghi rõ **captured-feature replay**, không tính là một lượt ReAct gọi tool mới.
+
+[Replay v6 đã hoàn tất](../deliverables/real-demo-evidence/report-selection-v6-replay.json): 207,046 giây/20 request, 12 câu thô, 9 được giữ. [Source audit đủ câu](../eval/adjudications/python2024-cards-v6-replay-full-audit.json) chấm 8 đúng/1 sai/3 thiếu căn cứ, Precision 66,67%; vẫn dưới 80%. Dữ liệu lấy từ cùng run phát triển, không phải mẫu test độc lập. Lỗi thiếu helper ở nhánh thẻ vẫn tồn tại vì record đã truy xuất không chứa liên kết tương ứng; sửa host không được tự bịa thêm source chưa nhận.
+
+Raw prose của một câu còn nhắc lại hai literal credential trong source dù prompt đã yêu cầu tránh. Redaction che được hai literal đã nhận diện trong bản xem, nhưng journal/claim raw luôn private. Receipt chỉ công bố số lượng và hash; không xuất credential hoặc raw source lên Git. Cần tiếp tục cải thiện bước cung cấp feature và báo cáo, không xem prompt là lớp bảo vệ đủ.
+
 ## Luồng sản phẩm
 
 1. ReAct vẫn để SLM chọn công cụ và câu tìm kiếm trong danh sách cho phép. Parser/ILSpy/pycdas/decoder chạy trong VM, mẫu không được thực thi.

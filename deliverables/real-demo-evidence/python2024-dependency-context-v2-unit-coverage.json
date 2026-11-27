@@ -1,0 +1,118 @@
+{
+  "profile_id": "python2024.behavior-units/1",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "run_id": "20261127T193524_b2342ecf",
+  "profile_sha256": "4197edc9211f1f0b46568cd0c66f73dbcd3aef9246a75744b942c043c63eddb6",
+  "audit_sha256": "d76ae8021b6e85c4a6eff33b7de1dbea7f06156dbbc104b05fb51d6e626cf482",
+  "raw_report_sha256": "a1265c8b9f5164e684c3011f00e49616f896ac28b30b66f5cdf757d1be759206",
+  "reference_units": 13,
+  "raw_covered_units": 7,
+  "raw_missed_units": 6,
+  "raw_reference_coverage": 0.5384615384615384,
+  "filtered_covered_units": 6,
+  "filtered_reference_coverage": 0.46153846153846156,
+  "units": [
+    {
+      "unit_id": "PY24-U01",
+      "matched_claim_ids": [],
+      "covered_in_raw": false,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U02",
+      "matched_claim_ids": [
+        "C1",
+        "C3"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": true
+    },
+    {
+      "unit_id": "PY24-U03",
+      "matched_claim_ids": [],
+      "covered_in_raw": false,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U04",
+      "matched_claim_ids": [
+        "C2"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U05",
+      "matched_claim_ids": [],
+      "covered_in_raw": false,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U06",
+      "matched_claim_ids": [
+        "C9"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": true
+    },
+    {
+      "unit_id": "PY24-U07",
+      "matched_claim_ids": [],
+      "covered_in_raw": false,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U08",
+      "matched_claim_ids": [],
+      "covered_in_raw": false,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U09",
+      "matched_claim_ids": [
+        "C6"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": true
+    },
+    {
+      "unit_id": "PY24-U10",
+      "matched_claim_ids": [
+        "C5"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": true
+    },
+    {
+      "unit_id": "PY24-U11",
+      "matched_claim_ids": [],
+      "covered_in_raw": false,
+      "covered_after_filter": false
+    },
+    {
+      "unit_id": "PY24-U12",
+      "matched_claim_ids": [
+        "C5",
+        "C12"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": true
+    },
+    {
+      "unit_id": "PY24-U13",
+      "matched_claim_ids": [
+        "C5"
+      ],
+      "covered_in_raw": true,
+      "covered_after_filter": true
+    }
+  ],
+  "f1": null,
+  "full_coursework_quality_gate_passed": false,
+  "limits": [
+    "Coverage of the declared development subset, not full-corpus recall.",
+    "Explicit source-audit mapping is not independently human-approved or inferred by this script.",
+    "Duplicate claims cover a reference unit only once; rejected correct claims remain in raw coverage.",
+    "Raw-sentence precision and reference-unit coverage use different denominators; no F1 is calculated."
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "created_at": "2026-11-27T19:55:32.229262+00:00",
+  "run_id": "20261127T194910_06da706e",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "dataset_origin": "public-development-sample-captured-feature-replay",
+  "human_reviewers": [],
+  "raw_report_sha256": "c348cf09d3a04f973fadcaf0a262c9a3d987e550e2cc0dfad8ce19c62c0f09d2",
+  "source_run": "20261127T193524_b2342ecf",
+  "source_journal_sha256": "234e551a50ea37f12d28bbbe63f4e3ec74a1b67a4aa964fee176a8380dd5e9d0",
+  "all_submitted_quotes_verified_against_observations": true,
+  "scope": "All twelve raw claims from local-SLM replay, not a new end-to-end ReAct run. Source-audit labels require independent review.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "Caller and login helper show Login Data copy and temporary destination.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 289,
+          "end_line": 304,
+          "quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 134,
+          "end_line": 154,
+          "quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 69,
+          "end_line": 75,
+          "quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "Citation includes password column selection and its argument passed to the complete AES-GCM helper. This is static decryption capability, not observed recovered credentials.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 289,
+          "end_line": 304,
+          "quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 134,
+          "end_line": 154,
+          "quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 69,
+          "end_line": 75,
+          "quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "Caller supplies the stated subject/message/recipient and zip_path variable to send_email. Quoted zip_path is interpreted as argument identifier, not literal filename; included helpers establish its role.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 313,
+          "end_line": 328,
+          "quote_sha256": "9942ce95c86a0b8ad7d6a2ce32743a0d1b6081890a580975cfe49e5bc011c52f"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 82,
+          "end_line": 113,
+          "quote_sha256": "90326a4a813eb2098f310dd40d95850af07090f9c0f71a7b7a4a73135f37b5b6"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 276,
+          "end_line": 286,
+          "quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "Caller, ZIP helper, attachment reading/MIME construction, SMTP login and sendmail substantiate capability and configured literals. Raw prose repeats credentials, a separate disclosure defect; only hashes/metadata are published.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 313,
+          "end_line": 328,
+          "quote_sha256": "9942ce95c86a0b8ad7d6a2ce32743a0d1b6081890a580975cfe49e5bc011c52f"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 82,
+          "end_line": 113,
+          "quote_sha256": "90326a4a813eb2098f310dd40d95850af07090f9c0f71a7b7a4a73135f37b5b6"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 276,
+          "end_line": 286,
+          "quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "The hostname helper and From-header construction substantiate the formatting claim.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 82,
+          "end_line": 93,
+          "quote_sha256": "da81b83a4d54912a1db36e704efef257aa9bb3410619eaacd8ccf288b9ffec0c"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 78,
+          "end_line": 79,
+          "quote_sha256": "61c605b058e8edf558f4adc2cf40a2b90f3966e9b091196a38f12a50ac8f9c1d"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "Citation stops at header setup and hostname retrieval; attachment and SMTP send implementations are absent.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 82,
+          "end_line": 93,
+          "quote_sha256": "da81b83a4d54912a1db36e704efef257aa9bb3410619eaacd8ccf288b9ffec0c"
+        },
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 78,
+          "end_line": 79,
+          "quote_sha256": "61c605b058e8edf558f4adc2cf40a2b90f3966e9b091196a38f12a50ac8f9c1d"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "The credit_cards SELECT, encrypted-number column and fetchall support query/retrieval.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 151,
+          "end_line": 182,
+          "quote_sha256": "d970afee7b3ad0bc867ca30380c5af7c03b08ab529f0ba0781930c36c0f5f621"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "This card cites the decrypt_password invocation only. A complete helper in another claim cannot substitute for this claim citation.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 151,
+          "end_line": 182,
+          "quote_sha256": "d970afee7b3ad0bc867ca30380c5af7c03b08ab529f0ba0781930c36c0f5f621"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "The cited range includes msg.attach(part), correctly attributed to the attachment API.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 102,
+          "end_line": 133,
+          "quote_sha256": "a87b296cf8fe2bad8ac35cb0a4e664c753d2e0eee12b2bb14e69b40de9c9b915"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "The complete save_results body in this range opens the stated temporary-directory path in write mode and writes content.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 102,
+          "end_line": 133,
+          "quote_sha256": "a87b296cf8fe2bad8ac35cb0a4e664c753d2e0eee12b2bb14e69b40de9c9b915"
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "total_browsers is a counter argument, not a destination receiving joined Autofill data.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 308,
+          "end_line": 338,
+          "quote_sha256": "c6e7a5eff64bea7d8c3c0ee8d22547c5d72f8386e74bc3fd325a590daff3134c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable VM source ranges from source run 20261127T193524_b2342ecf",
+      "reason": "Caller supplies email arguments but citation omits archive creation and email implementation needed for the asserted sending effect.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_5f1536759b1e404d",
+          "line": 308,
+          "end_line": 338,
+          "quote_sha256": "c6e7a5eff64bea7d8c3c0ee8d22547c5d72f8386e74bc3fd325a590daff3134c"
+        }
+      ]
+    }
+  ]
+}

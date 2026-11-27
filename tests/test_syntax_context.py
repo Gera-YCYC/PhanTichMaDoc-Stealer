@@ -111,7 +111,7 @@ def test_linked_report_preserves_both_excerpts_and_journals_the_same_exposure(tm
         return next(replies)
     raw, checked = create_card_report({r['evidence_id']:r}, 'a'*64, invoke, Journal(tmp_path/'run'), max_cards=1)
     assert len(raw['claims'][0]['evidence']) == 2
-    assert checked['claims'] and checked['report_method'] == 'evidence-cards/5'
+    assert checked['claims'] and checked['report_method'] == 'evidence-cards/6'
     assert 'SECTION 1' in calls[0][0][-1]['content'] and 'SECTION 2' in calls[0][0][-1]['content']
     assert calls[0][2] == calls[1][2]
 
@@ -128,4 +128,40 @@ def test_search_dispatcher_runs_bounded_parser_and_keeps_original_tool(tmp_path)
         backend='inert-fixture', text='def leaf(x):\n    print(x)\ndef main():\n    leaf("inert")\n')
     result = service.call('search_evidence', {'sample':'fixture.bin', 'evidence_id':first['evidence_id'], 'query':'print'})
     assert result['tool'] == 'decompile_python' and result['status'] == 'ok'
-    assert result['context_links'] and result['syntax_context']['backend'] == 'tree-sitter-context/1'
+    assert result['context_links'] and result['syntax_context']['backend'] == 'tree-sitter-context/2'
+
+
+def test_callee_dependency_precedes_unrelated_sibling(tmp_path):
+    source='def transform(x):\n    return x.upper()\ndef collect(path):\n    value = transform(path)\n    return value\ndef sibling(x):\n    return x\ndef main():\n    value = collect("inert")\n    other = sibling("other")\n'
+    r=record(tmp_path,source)
+    result=related_contexts(r,[4])
+    link=next(item for item in result['context_links'] if item['call_line']==9)
+    assert link['related_context_kind']=='callee_dependency_candidate_not_dataflow_proof'
+    assert link['related_call_line']==4
+    assert link['ranges'][2]=={'line':1,'end_line':2}
+    assert len(link['ranges'])==3
+
+
+def test_zero_argument_child_does_not_displace_caller_preparation(tmp_path):
+    source='def label():\n    return "label"\ndef prepare():\n    return "inert"\ndef send(value):\n    heading = label()\n    print(heading, value)\ndef main():\n    value = prepare()\n    send(value)\n'
+    r=record(tmp_path,source)
+    result=related_contexts(r,[7])
+    link=next(item for item in result['context_links'] if item['call_line']==10)
+    assert link['related_context_kind']=='caller_neighbor_candidate_not_dataflow_proof'
+    assert link['ranges'][2]=={'line':3,'end_line':4}
+
+
+def test_recursive_helper_does_not_expand_without_bound(tmp_path):
+    source='def recur(x):\n    return recur(x)\ndef main():\n    return recur("inert")\n'
+    r=record(tmp_path,source)
+    result=related_contexts(r,[2])
+    assert all(len(link['ranges'])<=3 and link['related_context_kind'] is None for link in result['context_links'])
+    assert all(row==r['lines'][row['line']-1] for row in result['lines'])
+
+
+def test_dependency_longer_than_bound_is_not_marked_complete(tmp_path):
+    source='def long_helper(x):\n'+''.join('    x = x\n' for _ in range(40))+'    return x\ndef collect(x):\n    return long_helper(x)\ndef main():\n    return collect("inert")\n'
+    r=record(tmp_path,source)
+    result=related_contexts(r,[44])
+    link=next(item for item in result['context_links'] if item['call_line']==46)
+    assert len(link['ranges'])==2 and link['related_context_kind'] is None

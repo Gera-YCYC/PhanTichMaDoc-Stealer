@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-11-27T19:53:21.369659+00:00",
+  "run_id": "20261127T194910_06da706e",
+  "kind": "real-slm-on-captured-vm-features-not-end-to-end-demo",
+  "source_run": "20261127T193524_b2342ecf",
+  "source_journal_sha256": "234e551a50ea37f12d28bbbe63f4e3ec74a1b67a4aa964fee176a8380dd5e9d0",
+  "source_manifest_sha256": "c032c8c6174300876c296f0119d31ef9de17b52d2c8e531574f883ab5437bb94",
+  "config_file_sha256": "a2f74a31ccb7457bcaf7bc9a3c85b3acf293c66d91ba518ccd199d125ed97c64",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41"
+  },
+  "config": {
+    "seed": 42,
+    "think": false,
+    "num_ctx": 4096,
+    "num_predict": 1800
+  },
+  "max_cards": 10,
+  "api_guidance": true,
+  "card_count": 7,
+  "report_method": "evidence-cards/6",
+  "raw_claims": 12,
+  "accepted_claims": 9,
+  "verdict": "suspicious",
+  "metrics": {
+    "model_calls": 20,
+    "prompt_tokens": 18051,
+    "completion_tokens": 1478,
+    "minimum_free_ram_bytes": 1582317568,
+    "elapsed_s": 207.046
+  },
+  "journal_events": 75,
+  "journal_sha256": "27af0a4dde35d394aa5c6a26f1e259a7168939a331085313052e1fb3230c8513",
+  "raw_report_sha256": "c348cf09d3a04f973fadcaf0a262c9a3d987e550e2cc0dfad8ce19c62c0f09d2",
+  "limits": [
+    "Actual local SLM generation on previously captured VM source; not a fresh ReAct/tool demo.",
+    "Development sample only. No source/credential literals in this receipt.",
+    "Report method/selection changed; no whole-corpus or causal improvement claim."
+  ],
+  "known_credential_literals_repeated_in_raw_prose": 2,
+  "known_repeated_literals_removed_from_local_view": true,
+  "public_raw_export_approved": false
+}

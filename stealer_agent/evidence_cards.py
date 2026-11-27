@@ -53,8 +53,9 @@ def select_cards(evidence, *, max_cards=10, max_lines=32, max_chars=4600):
         for anchor in dict.fromkeys(anchors):
             if anchor not in line_map or '[REDACTED-INJECTION]' in line_map[anchor]:
                 continue
-            containing = next((c for c in cards if c['reference']['evidence_id'] == eid
-                               and c['reference']['line'] <= anchor <= c['reference']['end_line']), None)
+            containing = next((c for c in cards if any(ref['evidence_id']==eid and
+                               ref['line']<=anchor<=ref['end_line']
+                               for ref in c.get('references',[c['reference']]))),None)
             if containing is not None:
                 if anchor in search_anchors and anchor not in containing['focus_lines']:
                     containing['focus_lines'].append(anchor)
@@ -238,7 +239,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
     checked = enforce_stealer_support(checked, support)
     checked['rejected_claims'] += rejected
-    checked['report_method'] = 'evidence-cards/5'
+    checked['report_method'] = 'evidence-cards/6'
     checked['api_guidance_enabled'] = api_guidance
     checked['review_output_order'] = 'evidence-assessment-before-decision'
     checked['local_semantic_check'] = 'per-claim same-SLM heuristic, not independent ground truth'

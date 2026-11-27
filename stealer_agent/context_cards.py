@@ -28,6 +28,18 @@ def linked_cards(evidence, max_cards=4, max_chars=6500):
             target = (eid, refs[1]['line'], refs[1]['end_line']) if len(refs) >= 2 else None
             if not 2 <= len(refs) <= 3 or sum(len(r['quote']) for r in refs) > max_chars or key in seen or target in targets:
                 continue
+            # A callee-only link can be entirely contained in a caller/callee/
+            # dependency card already selected. Keep its focus without spending
+            # another scarce card slot on a shorter view of the same source.
+            containing = next((c for c in cards if all(any(
+                old['evidence_id']==ref['evidence_id'] and old['line']<=ref['line'] and
+                old['end_line']>=ref['end_line'] for old in c['references']) for ref in refs)),None)
+            if containing:
+                if link['call_line'] not in containing['focus_lines']:
+                    containing['focus_lines'].append(link['call_line'])
+                containing['subsumed_context_count']=containing.get('subsumed_context_count',0)+1
+                seen.add(key)
+                continue
             seen.add(key)
             targets.add(target)
             cards.append({'tool': record['tool'], 'sample_sha256': record['sample_sha256'],

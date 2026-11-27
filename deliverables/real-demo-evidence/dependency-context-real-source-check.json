@@ -1,0 +1,64 @@
+{
+  "kind": "real-source-helper-context-check-not-model-inference",
+  "evidence_id": "ev_0d6ed3dfedb14f9f",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "output_sha256": "e129fc7b195417d233c6b64aa3d8b3f3b1ef3278e9e305718d0ca369ba1702b3",
+  "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+  "parser_sha256": "fa436a9180614c83c9d83c35dfa7738c0e10d02d8c67f297bbc62a9d9dde0a53",
+  "checks": [
+    {
+      "function": "get_login_data",
+      "anchor_line": 144,
+      "helper_complete_range": {
+        "line": 69,
+        "end_line": 75
+      },
+      "ranges": [
+        {
+          "line": 289,
+          "end_line": 304
+        },
+        {
+          "line": 134,
+          "end_line": 154
+        },
+        {
+          "line": 69,
+          "end_line": 75
+        }
+      ],
+      "original_rows_verified": true,
+      "backend": "tree-sitter-context/2"
+    },
+    {
+      "function": "get_credit_cards",
+      "anchor_line": 172,
+      "helper_complete_range": {
+        "line": 69,
+        "end_line": 75
+      },
+      "ranges": [
+        {
+          "line": 290,
+          "end_line": 305
+        },
+        {
+          "line": 157,
+          "end_line": 183
+        },
+        {
+          "line": 69,
+          "end_line": 75
+        }
+      ],
+      "original_rows_verified": true,
+      "backend": "tree-sitter-context/2"
+    }
+  ],
+  "limits": [
+    "Unique-name syntax candidate only; no executed behavior or semantic/dataflow proof.",
+    "No model accuracy score; source text and credential literals excluded."
+  ],
+  "source_run": "20261127T175019_6cbdf3e9",
+  "local_parser_sha256": "fa436a9180614c83c9d83c35dfa7738c0e10d02d8c67f297bbc62a9d9dde0a53"
+}

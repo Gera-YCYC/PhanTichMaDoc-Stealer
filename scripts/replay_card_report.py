@@ -63,8 +63,6 @@ def main():
     cfg = json.loads(args.config.read_text(encoding='utf-8'))
     if args.model:
         cfg['model'] = args.model
-    if cfg['model'].startswith('qwen3:'):
-        cfg['think'] = False
     llm = OllamaClient(cfg)
     model = llm.inspect()
     run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '_' + uuid.uuid4().hex[:8]
@@ -75,6 +73,7 @@ def main():
     journal.append('replay_started', evidence_kind='real-slm-on-captured-vm-features-not-end-to-end-demo',
                    source_run=args.run, source_journal_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                    model=model, config={k:v for k,v in cfg.items() if 'token' not in k},
+                   config_file_sha256=hashlib.sha256(args.config.read_bytes()).hexdigest(),
                    source_files=source_files, source_manifest_sha256=hashlib.sha256(canonical(source_files)).hexdigest(),
                    reporter_source_sha256=hashlib.sha256((ROOT/'stealer_agent/evidence_cards.py').read_bytes()).hexdigest())
     journal.append('replay_settings', max_cards=args.cards, api_guidance=not args.no_api_guidance)

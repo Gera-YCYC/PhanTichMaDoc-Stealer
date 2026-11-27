@@ -1,0 +1,245 @@
+{
+  "evidence_id": "ev_0d6ed3dfedb14f9f",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "output_sha256": "e129fc7b195417d233c6b64aa3d8b3f3b1ef3278e9e305718d0ca369ba1702b3",
+  "parser_source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+  "verified_units": [
+    {
+      "unit_id": "PY24-U01",
+      "ranges": [
+        {
+          "line": 8,
+          "end_line": 11,
+          "quote_sha256": "69dde746bd223790c53905c20de70f87e101f225fe81273ea2c05b8509a9f701"
+        },
+        {
+          "line": 52,
+          "end_line": 66,
+          "quote_sha256": "c370afc1ec4eacedeb3035fb8f3c94c2448796ef70e69727a8822aeecfae2b6f"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U02",
+      "ranges": [
+        {
+          "line": 10,
+          "end_line": 10,
+          "quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+        },
+        {
+          "line": 134,
+          "end_line": 140,
+          "quote_sha256": "707be0996910c9d9931b08ea3179f3a037ab04ed9a8969bd2658207842d7b7ea"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U03",
+      "ranges": [
+        {
+          "line": 9,
+          "end_line": 9,
+          "quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        },
+        {
+          "line": 140,
+          "end_line": 143,
+          "quote_sha256": "c79fc9e069a003c0b038574ab3fe9bf0b353ef12153e2cf7188acd66f57638d8"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U04",
+      "ranges": [
+        {
+          "line": 12,
+          "end_line": 12,
+          "quote_sha256": "f50a2f30595d9f88aadf781290441424dcaf49e820fdd1f913f35e08461643c9"
+        },
+        {
+          "line": 69,
+          "end_line": 75,
+          "quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        },
+        {
+          "line": 142,
+          "end_line": 154,
+          "quote_sha256": "b48149f4bbb241d09d7ce1c6832462fac315288f043387ef6d4810969af25d3e"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U05",
+      "ranges": [
+        {
+          "line": 10,
+          "end_line": 10,
+          "quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+        },
+        {
+          "line": 157,
+          "end_line": 164,
+          "quote_sha256": "76ed7b4f633c81039855c2bf8bf306ad903a77d7744e1a138e2440909b7484ff"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U06",
+      "ranges": [
+        {
+          "line": 9,
+          "end_line": 9,
+          "quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+        },
+        {
+          "line": 164,
+          "end_line": 170,
+          "quote_sha256": "904cd29c57b4b13245044cd79b1e913940b345509b7278b91c84d07845c299b4"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U07",
+      "ranges": [
+        {
+          "line": 12,
+          "end_line": 12,
+          "quote_sha256": "f50a2f30595d9f88aadf781290441424dcaf49e820fdd1f913f35e08461643c9"
+        },
+        {
+          "line": 69,
+          "end_line": 75,
+          "quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+        },
+        {
+          "line": 166,
+          "end_line": 183,
+          "quote_sha256": "933d7c02e970fd8e21fa3b4b3e66c10dcdc0d55727190748863781a184c3f7c8"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U08",
+      "ranges": [
+        {
+          "line": 116,
+          "end_line": 131,
+          "quote_sha256": "c471f484f2cfcc7c8198c141de84b7e2ad4b91cd7b5a0f6934ebb0aa39e53b1c"
+        },
+        {
+          "line": 293,
+          "end_line": 312,
+          "quote_sha256": "b908931a3a5bb1c435733033c90e7110d5d6e627af7fb79a7307b621ffeb24e4"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U09",
+      "ranges": [
+        {
+          "line": 10,
+          "end_line": 10,
+          "quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+        },
+        {
+          "line": 276,
+          "end_line": 286,
+          "quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U10",
+      "ranges": [
+        {
+          "line": 15,
+          "end_line": 18,
+          "quote_sha256": "95f7a0e3e9142551dab3f28aa54605c52fc1e9572726ff48c6ec607ab2d8faee"
+        },
+        {
+          "line": 82,
+          "end_line": 104,
+          "quote_sha256": "aab5594414312fb9eef72cfb49789f410674da96cc618a546be4a6dc87a2c3f2"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U11",
+      "ranges": [
+        {
+          "line": 14,
+          "end_line": 14,
+          "quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+        },
+        {
+          "line": 82,
+          "end_line": 87,
+          "quote_sha256": "658ffc8ee011de1559665c795624f57e7e1744bafc032f0757b03b7c49e5133e"
+        },
+        {
+          "line": 105,
+          "end_line": 109,
+          "quote_sha256": "4c442ae5fcc63541be97ecafc46a453501611a7b199bb966a9e6f9084071df5e"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U12",
+      "ranges": [
+        {
+          "line": 14,
+          "end_line": 18,
+          "quote_sha256": "c9c9d0bc3da6a83ecd8a71bed6907f623f69f935ce4d26732caa71cb01612f32"
+        },
+        {
+          "line": 88,
+          "end_line": 109,
+          "quote_sha256": "cbb3edbb226d3bfa1cc3f77da0a2b6758f1afbdf162c18e2629fe3b38585d77a"
+        }
+      ],
+      "markers_present": true
+    },
+    {
+      "unit_id": "PY24-U13",
+      "ranges": [
+        {
+          "line": 276,
+          "end_line": 286,
+          "quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        },
+        {
+          "line": 313,
+          "end_line": 323,
+          "quote_sha256": "f8e2d400712d97e6759e199aeb04381e20577d6a0c02537c51eca70f5623a931"
+        },
+        {
+          "line": 82,
+          "end_line": 109,
+          "quote_sha256": "d4f08a2ef6f63219e2c6525b082f5f02ffffabc78786590189cbc107676cba8b"
+        }
+      ],
+      "markers_present": true
+    }
+  ],
+  "kind": "reference-unit-source-provenance-check-not-semantic-grade",
+  "profile_id": "python2024.behavior-units/1",
+  "profile_sha256": "4197edc9211f1f0b46568cd0c66f73dbcd3aef9246a75744b942c043c63eddb6",
+  "units_checked": 13,
+  "scoring_ready": false,
+  "limits": [
+    "Source hashes, coordinate ranges and marker presence only; no model correctness score.",
+    "Reference definitions are a development source audit, not lecturer or human approval."
+  ]
+}

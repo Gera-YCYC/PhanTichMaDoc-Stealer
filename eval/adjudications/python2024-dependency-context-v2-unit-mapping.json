@@ -1,0 +1,92 @@
+{
+  "created_at": "2026-11-27T19:47:32.247906+00:00",
+  "profile_sha256": "4197edc9211f1f0b46568cd0c66f73dbcd3aef9246a75744b942c043c63eddb6",
+  "audit_sha256": "d76ae8021b6e85c4a6eff33b7de1dbea7f06156dbbc104b05fb51d6e626cf482",
+  "raw_report_sha256": "a1265c8b9f5164e684c3011f00e49616f896ac28b30b66f5cdf757d1be759206",
+  "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+  "human_reviewers": [],
+  "scope": "Functional-unit matching for the declared development subset; paraphrases by effect are allowed only with complete submitted evidence. Query-only is not fetch, authentication-only is not STARTTLS.",
+  "units": [
+    {
+      "unit_id": "PY24-U01",
+      "matched_claim_ids": [],
+      "reason": "No correct claim describes Local State key recovery or CryptUnprotectData."
+    },
+    {
+      "unit_id": "PY24-U02",
+      "matched_claim_ids": [
+        "C1",
+        "C3"
+      ],
+      "reason": "Both correct claims describe copying browser Login Data to a temporary file; count this unit once."
+    },
+    {
+      "unit_id": "PY24-U03",
+      "matched_claim_ids": [],
+      "reason": "C4 explicitly describes SELECT, but does not describe fetching rows. This composite query-and-fetch unit is only partially asserted."
+    },
+    {
+      "unit_id": "PY24-U04",
+      "matched_claim_ids": [
+        "C2"
+      ],
+      "reason": "C2 asserts password-field decryption using the key and returned login data, with the actual helper implementation now cited. The reviewer rejected it, but it remains covered in raw output."
+    },
+    {
+      "unit_id": "PY24-U05",
+      "matched_claim_ids": [],
+      "reason": "No correct claim describes copying Web Data; a query claim does not assert the copy operation."
+    },
+    {
+      "unit_id": "PY24-U06",
+      "matched_claim_ids": [
+        "C9"
+      ],
+      "reason": "C9 describes retrieving encrypted card numbers and other card details, with SELECT and fetchall in its citation."
+    },
+    {
+      "unit_id": "PY24-U07",
+      "matched_claim_ids": [],
+      "reason": "C10 describes the intended decryption effect but is unsupported by its own citation, so it earns no coverage."
+    },
+    {
+      "unit_id": "PY24-U08",
+      "matched_claim_ids": [],
+      "reason": "No correct claim describes the result-staging effect. C13 confuses a counter with a destination."
+    },
+    {
+      "unit_id": "PY24-U09",
+      "matched_claim_ids": [
+        "C6"
+      ],
+      "reason": "C6 describes creation and returned path of the ZIP archive, with the library implementation in the supplied ranges."
+    },
+    {
+      "unit_id": "PY24-U10",
+      "matched_claim_ids": [
+        "C5"
+      ],
+      "reason": "The correctly supported zipped-file attachment claim covers file-to-MIME attachment construction by effect; citation includes read, encode and attach. Literal API names are not required to paraphrase the same supported effect."
+    },
+    {
+      "unit_id": "PY24-U11",
+      "matched_claim_ids": [],
+      "reason": "Authentication is asserted by C5/C12 but STARTTLS is not; the complete connection/TLS/authentication unit is not covered."
+    },
+    {
+      "unit_id": "PY24-U12",
+      "matched_claim_ids": [
+        "C5",
+        "C12"
+      ],
+      "reason": "Both supported claims describe SMTP message submission. They cover the same unit once; the citation establishes the serialized MIME argument."
+    },
+    {
+      "unit_id": "PY24-U13",
+      "matched_claim_ids": [
+        "C5"
+      ],
+      "reason": "C5 describes sending the zipped attachment; its combined caller/archive/email citations demonstrate the archive path passed into the file attachment path."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-27T19:47:37.0334841Z",
+  "kind": "project-runtime-stop-verification",
+  "after_run": "20261127T193524_b2342ecf",
+  "recorded_ollama_pid": 26964,
+  "recorded_pid_running": false,
+  "port_11435_listening": false,
+  "project_vm_running": false,
+  "gpu_used_mib_observed": [
+    "0"
+  ],
+  "host_available_memory_bytes": 3382788096,
+  "model_weights_preserved": true,
+  "vm_disk_preserved": true,
+  "other_projects_stopped": false,
+  "scope": "Point-in-time check after graceful project shutdown; GPU is whole-machine observation, not model allocation or peak."
+}

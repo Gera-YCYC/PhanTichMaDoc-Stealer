@@ -8,7 +8,7 @@ Một đoạn quanh từ khóa có thể chỉ chứa lời gọi `send_email(..
 
 ## Cách xây dựng
 
-Backend `tree-sitter-context/1` dùng ba gói đã khóa: tree-sitter 0.25.2, tree-sitter-python 0.25.0, tree-sitter-c-sharp 0.23.5. Linux wheels được khóa URL/kích thước/SHA256 trong `config/setup-assets.lock.json`. Host tải dependency, VM cài offline vào `/opt/stealer-lab/deps`; VM không cần Internet. Giao diện Parser/Language theo [tài liệu chính thức py-tree-sitter](https://github.com/tree-sitter/py-tree-sitter); [grammar C#](https://github.com/tree-sitter/tree-sitter-c-sharp) cung cấp cây cú pháp, không phải Roslyn semantic model.
+Backend ban đầu `tree-sitter-context/1` dùng ba gói đã khóa: tree-sitter 0.25.2, tree-sitter-python 0.25.0, tree-sitter-c-sharp 0.23.5. Bản `/2` giữ dependency này và đổi cách chọn helper như mục dưới. Linux wheels được khóa URL/kích thước/SHA256 trong `config/setup-assets.lock.json`. Host tải dependency, VM cài offline vào `/opt/stealer-lab/deps`; VM không cần Internet. Giao diện Parser/Language theo [tài liệu chính thức py-tree-sitter](https://github.com/tree-sitter/py-tree-sitter); [grammar C#](https://github.com/tree-sitter/tree-sitter-c-sharp) cung cấp cây cú pháp, không phải Roslyn semantic model.
 
 1. Ghép lại các dòng nguồn từ record bất biến trong VM, kể cả dòng dài đã tách thành đoạn 600 ký tự. Ánh xạ từ dòng nguồn sang dòng evidence vẫn được giữ.
 2. Với source được decoder thu, chỉ nhận đúng một candidate; hai dòng provenance được để trống trong bản nhìn để parse nhằm giữ tọa độ. Nhiều candidate không được nối như cùng một module.
@@ -28,6 +28,18 @@ Các mục liên kết ưu tiên đa dạng hàm đích, tối đa bốn mục t
 - Hash bản nhìn source dùng cho parse khác hash mẫu và có thể khác hash payload decoder vì cách giữ các dòng provenance trống. Receipt giữ cả hash output gốc để đối chiếu, không thay thế hash mẫu.
 
 ## Kiểm chứng hiện có
+
+### Bổ sung thân helper ở bản v2
+
+Đối chiếu Python v5 cho thấy model viết về tác dụng của `decrypt_password` khi citation chỉ có lời gọi. Bản v1 thường chọn một helper song song ở hàm cha làm khoảng thứ ba, dẫn đến lặp nội dung lấy mật khẩu/thẻ và vẫn thiếu implementation được nhắc tới.
+
+Bản v2 ưu tiên hàm con có đối số được gọi trong phần callee đã hiển thị, nếu tên đích duy nhất và toàn thân không quá 35 dòng source. Chỉ thêm một mức, không mở rộng đệ quy. Hàm con không đối số không đẩy mất helper chuẩn bị dữ liệu ở caller; nếu không tìm được dependency phù hợp thì giữ cách chọn neighbor. Vẫn tối đa ba khoảng, ngân sách ký tự giữ nguyên; thiếu chỗ thì bỏ khoảng tùy chọn, không cắt giả thành thân đầy đủ.
+
+Trường `related_context_kind` phân biệt `callee_dependency_candidate_not_dataflow_proof` và `caller_neighbor_candidate_not_dataflow_proof`. `related_call_line` ghi vị trí lời gọi tương ứng. Đây vẫn là ứng viên cú pháp, chưa giải alias/shadowing hoặc chứng minh việc truyền dữ liệu.
+
+[Kiểm source thật trong VM](../deliverables/real-demo-evidence/dependency-context-real-source-check.json) xác nhận cả `get_login_data` và `get_credit_cards` nhận đủ thân helper ở dòng evidence 69–75, nguyên văn so với record đã khóa hash. Bốn test bổ sung kiểm ưu tiên dependency, giữ neighbor khi child không đối số, recursion và thân quá dài. Tổng 172 test phần mềm đạt trên Windows tại bản này. Kết quả độ chính xác cần run SLM mới và source audit riêng; không suy tăng Precision từ việc thêm source.
+
+### Bằng chứng bản v1
 
 [Kiểm trên source thật đã thu trong VM](../deliverables/real-demo-evidence/syntax-context-real-source-check.json) nhận diện 14 hàm Python/19 lời gọi ứng viên và 130 hàm C#/158 lời gọi ứng viên; không có lỗi parse trong hai record này. Tất cả dòng trả về khớp record gốc. Trường hợp Python ghép được lời gọi gửi email, thân hàm gửi và helper tạo archive; trường hợp .NET có callee dài nên ghi rõ chưa đầy đủ.
 

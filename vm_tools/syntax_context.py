@@ -12,7 +12,7 @@ from tree_sitter import Language, Parser
 import tree_sitter_c_sharp
 import tree_sitter_python
 
-BACKEND = 'tree-sitter-context/1'
+BACKEND = 'tree-sitter-context/2'
 CODE_TOOLS = {'decompile_dotnet', 'decompile_python', 'decode_python_literals'}
 
 
@@ -81,14 +81,17 @@ def index_source(record):
                                   'static': any(c.type == 'modifier' and c.text == b'static' for c in node.children)})
         elif node.type == call_type and not node.has_error:
             target = node.child_by_field_name('function')
+            arguments = node.child_by_field_name('arguments')
+            argument_count = len(arguments.named_children) if arguments else 0
             # Unqualified calls only. obj.method() is not bound without type analysis.
             if target and target.type == 'identifier':
-                calls.append({'name': target.text.decode('utf-8'), 'line': node.start_point.row+1, 'qualifier': None})
+                calls.append({'name': target.text.decode('utf-8'), 'line': node.start_point.row+1,
+                              'qualifier': None, 'argument_count': argument_count})
             elif language == 'csharp' and target and target.type == 'member_access_expression':
                 qualifier, name = target.child_by_field_name('expression'), target.child_by_field_name('name')
                 if qualifier and name and qualifier.type in {'identifier', 'this_expression'} and name.type == 'identifier':
                     calls.append({'name': name.text.decode('utf-8'), 'line': node.start_point.row+1,
-                                  'qualifier': qualifier.text.decode('utf-8')})
+                                  'qualifier': qualifier.text.decode('utf-8'), 'argument_count': argument_count})
     by_name = defaultdict(list)
     for item in functions:
         by_name[item['name']].append(item)
@@ -109,7 +112,8 @@ def index_source(record):
         containers = [f for f in functions if f is not target and f['start'] < target['start'] <= f['end']]
         if containers and owner not in containers:
             continue
-        links.append({'caller': owner, 'callee': target, 'call_line': call['line']})
+        links.append({'caller': owner, 'callee': target, 'call_line': call['line'],
+                      'argument_count': call['argument_count']})
     return {'source_sha256': hashlib.sha256(source).hexdigest(), 'mapping': mapping,
             'functions': functions, 'links': links, 'has_parse_errors': tree.root_node.has_error,
             'language': language}
@@ -146,20 +150,41 @@ def related_contexts(record, anchors, *, max_links=2, max_chars=5800):
         pieces = [excerpt(caller_start, caller_end), excerpt(target['start'], target_end)]
         if any(p is None for p in pieces):
             continue
-        # Add a nearby uniquely named helper called by the same caller. This can
-        # expose archive construction before a send call without declaring a flow.
+        # First prefer a small helper called WITH arguments inside the displayed
+        # callee. This exposes transformations hidden behind a function name.
+        # Zero-argument helpers (e.g. display-name setup) do not displace a nearby
+        # preparation helper. This is only a navigation heuristic, not def-use proof.
+        dependencies = [other for other in index['links'] if other['caller'] is target and
+                        other['callee'] is not target and other['callee'] is not caller and
+                        other['argument_count'] > 0 and target['start'] <= other['call_line'] <= target_end]
+        related_kind = None
+        related_call_line = None
+        for other in sorted(dependencies, key=lambda x:x['call_line']):
+            f = other['callee']
+            extra = excerpt(f['start'], f['end']) if f['end']-f['start'] < 35 else None
+            if extra:
+                pieces.append(extra)
+                related_kind = 'callee_dependency_candidate_not_dataflow_proof'
+                related_call_line = index['mapping'][other['call_line']][0]
+                break
+        # Fall back to a nearby helper called by the same caller. This can
+        # expose archive construction before a send call without asserting a flow.
         neighbors = [other for other in index['links'] if other is not link and other['caller'] is caller
                      and caller_start <= other['call_line'] <= caller_end and other['callee'] is not target]
-        for other in sorted(neighbors, key=lambda x:abs(x['call_line']-call_line))[:1]:
+        for other in ([] if len(pieces)==3 else sorted(neighbors, key=lambda x:abs(x['call_line']-call_line))[:1]):
             f = other['callee']
             extra = excerpt(f['start'], f['end']) if f['end']-f['start'] < 30 else None
             if extra:
                 pieces.append(extra)
+                related_kind = 'caller_neighbor_candidate_not_dataflow_proof'
+                related_call_line = index['mapping'][other['call_line']][0]
         numbers = sorted({n for _, ns in pieces for n in ns})
         cost = sum(len(rows[n]['text'])+50 for n in numbers if n not in selected)
         if used+cost > max_chars:
             # The optional neighbor can be omitted, never the caller/callee pair.
             pieces = pieces[:2]
+            related_kind = None
+            related_call_line = None
             numbers = sorted({n for _, ns in pieces for n in ns})
             cost = sum(len(rows[n]['text'])+50 for n in numbers if n not in selected)
         if used+cost > max_chars:
@@ -168,6 +193,7 @@ def related_contexts(record, anchors, *, max_links=2, max_chars=5800):
         used += cost
         result.append({'call_line': index['mapping'][call_line][0],
                        'ranges': [r for r, _ in pieces], 'callee_complete': target_end == target['end'],
+                       'related_context_kind': related_kind, 'related_call_line': related_call_line,
                        'relation': 'unique_name_local_call_candidate_not_semantic_binding'})
         if len(result) >= max_links:
             break

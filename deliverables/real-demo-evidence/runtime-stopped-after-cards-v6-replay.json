@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-27T19:54:42.3950674Z",
+  "kind": "project-runtime-stop-verification",
+  "after_experiment": "20261127T194910_06da706e",
+  "recorded_ollama_pid": 18436,
+  "recorded_pid_running": false,
+  "port_11435_listening": false,
+  "project_vm_running": false,
+  "gpu_used_mib_observed": [
+    "0"
+  ],
+  "host_available_memory_bytes": 4099416064,
+  "model_weights_preserved": true,
+  "vm_disk_preserved": true,
+  "other_projects_stopped": false,
+  "scope": "Point-in-time check after project model shutdown; VM stayed off during captured-feature replay."
+}

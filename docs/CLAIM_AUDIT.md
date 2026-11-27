@@ -63,6 +63,12 @@ Lượt này có sáu typed operations nhưng chúng chưa được dùng trong 
 
 ## Công việc kế tiếp sau khi chấm hai nền tảng
 
+Lượt dependency-context v2 `20261127T193524_b2342ecf` đã có thân hàm giải mã trong C2: lần này nhận định về password_value có căn cứ, nhưng reviewer vẫn loại nhầm. Toàn bộ 14 câu được chấm 9 đúng/3 sai/2 thiếu căn cứ; Precision 64,29%, hallucination 14,29%, sau lọc 8/12 câu đúng. [Audit](../eval/adjudications/python2024-dependency-context-v2-full-audit.json), [score](../deliverables/real-demo-evidence/python2024-dependency-context-v2-claim-score.json).
+
+Các lỗi còn lại gồm optional attachment không khớp chữ ký, gán việc attach cho `add_header`, hiểu sai bộ đếm và thiếu helper ở card rời. Theo [tài liệu email.message](https://docs.python.org/3/library/email.message.html#email.message.EmailMessage.add_header), add_header thiết lập header; việc gắn part vào message là thao tác khác. Nhãn ở đây chấm chặt vai trò API, vẫn cần review độc lập và không là phê duyệt của GV.
+
+[Phép đo 13 đơn vị tham chiếu](../eval/reference_units/README.md) cho thấy report thô phủ 7/13 và sau lọc 6/13. Không suy F1 bằng cách ghép mẫu số câu thô với mẫu số đơn vị chức năng. Tiếp tục sửa chọn card, kiểm cả false rejection và bỏ sót rồi mở rộng corpus.
+
 Nhánh .NET còn có [chín phản ví dụ source/API](../eval/adjudications/gomorrah-qwen3-cards-v3-counterexamples.json). Ba câu nhầm byte trả về của UploadFile thành dữ liệu file gửi đi; một câu suy phản hồi/SMTP qua sai API; các câu khác thiếu thân hàm hoặc thao tác cuối. Theo [tài liệu Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0), UploadFile nhận đường dẫn file và trả thân phản hồi từ resource. Chuyển mảng trả về đó sang ASCII là xử lý phản hồi, không phải chuyển file thành ASCII trước khi gửi. Đây là kiểm một phần, không tính Precision/F1 cho đủ 20 câu từ chín phản ví dụ này.
 
 1. Ghép chứng cứ qua caller/callee với nguồn, đích và các phép biến đổi rõ; giữ cả khoảng dòng của hàm gọi lẫn hàm được gọi.
