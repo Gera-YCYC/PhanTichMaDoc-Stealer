@@ -3,13 +3,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from .journal import dump_json
-from .security import redact
+from .redaction import redact_document
 
 
-def write_report(directory: Path, result: dict) -> None:
+def write_report(directory: Path, result: dict, *, redaction_context=()) -> None:
     dump_json(directory / "report.private.json", result)
-    # Redact recursively through serialization, preserving schema and citations.
-    shared = json.loads(redact(json.dumps(result, ensure_ascii=False)))
+    shared, redaction = redact_document(result, context=redaction_context)
+    shared['redaction'] = redaction
     dump_json(directory / "report.redacted.json", shared)
     report = shared["analysis"]
     lines = [f"# Phân tích tĩnh: {shared['sample']}", "",
@@ -19,6 +19,7 @@ def write_report(directory: Path, result: dict) -> None:
              f"- SHA256 mẫu: `{shared.get('sample_sha256') or 'chưa có'}`",
              f"- Công cụ thành công: {', '.join(shared['successful_tools']) or 'chưa có'}",
              f"- Mô hình đạt tối thiểu 7B: `{shared['acceptance']['model_minimum_met']}`", "",
+             "Bản xem cục bộ đã che các literal/pattern được hỗ trợ; chưa được duyệt để công bố. Trích dẫn đã che không thay thế chứng cứ nguyên bản trong report.private.json.", "",
              "Các trích dẫn được đối chiếu chuỗi/dòng; kiểm tra bằng cùng SLM vẫn chỉ là heuristic. Chưa có bảng chấm độc lập của nhóm.", ""]
     if shared.get('file_facts'):
         lines.extend(['## Quan sát trực tiếp từ công cụ', '',

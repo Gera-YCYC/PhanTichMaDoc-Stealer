@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-27T18:14:21.4086782+00:00",
+  "recorded_model_pid": 3164,
+  "recorded_process_alive": false,
+  "project_port_listening": false,
+  "project_vm_running": false,
+  "project_runner_count": 0,
+  "available_ram_bytes": 2704846848,
+  "gpu_memory_used_mib": "0",
+  "weights_deleted": false,
+  "vm_disks_deleted": false,
+  "scope": "Point-in-time check after graceful shutdown; global GPU usage is not a continuous project-only measurement"
+}

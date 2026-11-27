@@ -143,6 +143,15 @@ Sau `git pull`, trước lượt demo mới, đồng bộ source vào VM bằng 
 
 Chỉ chạy Run-Demo khi `source_matches_vm=true`. Các demo cũ gắn với source hash ở thời điểm chạy, không tự đại diện bản hiện tại.
 
+Nếu VM được dựng trước bản thêm ngữ cảnh cú pháp Python/C#, cài ba wheel đã khóa hash rồi sync lại (không có run đang chạy):
+
+```powershell
+.\.venv\Scripts\python.exe scripts/install_syntax_tools.py
+.\.venv\Scripts\python.exe scripts/sync_vm.py
+```
+
+Script tải dependency trên host và chuyển vào VM qua SSH đã ghim khóa, VM vẫn offline. VM dựng mới dùng `setup-assets.lock.json` cập nhật nên đã có các wheel này từ bootstrap. [Phạm vi và giới hạn parser](SYNTAX_CONTEXT.md).
+
 Nếu VM được dựng trước khi tích hợp DIE/FLOSS, chạy thêm trước sync (VM phải đang bật, không có lượt phân tích đang chạy):
 
 ```powershell

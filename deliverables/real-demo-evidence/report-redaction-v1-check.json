@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-11-27T18:13:49.726460+00:00",
+  "kind": "saved-real-report-render-check",
+  "runs": [
+    {
+      "run_id": "20261127T175019_6cbdf3e9",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "original_private_report_sha256": "d60a006b9c844f62bc7574dae6290cdf834cacad0def1ac7a61b36fa2d0eae89",
+      "original_report_unchanged": true,
+      "detected_literal_count": 2,
+      "literals_present_in_private_report": 2,
+      "known_literals_remaining_in_rendered_view": 0,
+      "scan_truncated": false,
+      "public_export_approved": false
+    },
+    {
+      "run_id": "20261127T180215_b3a8ccf4",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "original_private_report_sha256": "f3f9f429730d954adfca44ea94ef62465ef7caabb79c49cb8fe8ab81fc581f31",
+      "original_report_unchanged": true,
+      "detected_literal_count": 0,
+      "literals_present_in_private_report": 0,
+      "known_literals_remaining_in_rendered_view": 0,
+      "scan_truncated": false,
+      "public_export_approved": false
+    }
+  ],
+  "limits": [
+    "This re-renders saved reports; no new model/tool analysis occurred.",
+    "Known literals/patterns only; not proof that all possible secrets were detected.",
+    "Outputs remain private; source, prose and secret values are excluded from this receipt."
+  ]
+}

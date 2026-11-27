@@ -10,7 +10,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |
 | T01 | Detect It Easy | Đã chạy backend thật và được SLM chọn trên Gomorrah | Kiểm thêm mẫu Python và môi trường dựng mới sau thay đổi installer |
 | T02 | FLOSS | Đã chạy thật; .NET dùng static-only | Không gọi static strings là CIL deobfuscation; kiểm native mode/timeout |
-| A01 | Chọn chứng cứ và báo cáo hành vi | Đã giữ anchor và chặn import-only; cần ghép caller/callee và tách SQL/giải mã | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
+| A01 | Chọn chứng cứ và báo cáo hành vi | Đã ghép caller/callee bằng parser trong VM; còn thiếu dependency sâu, lẫn SQL/giải mã và ý nghĩa đối số | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
 | A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
 | S01 | Unicode và kiểm exposure | Đã sửa; P06 guard on/off có request thật | Giữ byte offset, log evidence thực đã gửi, không đếm payload bị mất |
 | S02 | Bộ injection | P06 hợp lệ; bộ lịch sử không đủ request provenance | >=10 ca đủ exposure, on/off, cả hai chiều; thống kê mẫu số chính xác |
@@ -19,7 +19,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
 | TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
-| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python v1/v2/v3; v3 Precision 70% trên 10 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
+| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python v1/v2/v3/v4; v4 Precision 50% trên 16 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
 | E02 | Stability | Thử lịch sử chưa đạt | 3 run cùng sample/model/source/config; intersection/union>=80% |
 | E03 | Tài nguyên và so phương án | Cache 256 MiB giúp 8B chạy lại; Python v3 hoàn tất 458,6 s, min free RAM 534 MB giữa request | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở là hoàn tất |
 | R01 | Tài liệu kỹ thuật | Đang cập nhật theo sản phẩm | Thiết kế, cài/chạy, luồng, dataset, training, đánh giá, giới hạn |
@@ -43,6 +43,8 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | Training bổ sung | Thấy quá trình train thật | Loại train chưa rõ; không dùng tải model/prompt thay training |
 
 Các bước ưu tiên: cải thiện hành vi/IOC ở cả hai nhánh → lập đáp án độc lập → train/evaluate → YARA/injection/stability → tái lập và tài liệu chốt. Dữ liệu đã xem dùng để sửa chương trình phải mang nhãn development.
+
+Sau v4, việc tiếp theo của A01/A02 là biểu diễn rõ từng thao tác và đầu vào/đầu ra có dẫn chứng, đặc biệt API trả phản hồi so với file gửi đi, query so với helper giải mã. Điều hướng cú pháp đã có nhưng chưa phải semantic/dataflow engine. Không tiếp tục coi tăng số câu hoặc tăng tỷ lệ câu được reviewer giữ là cải thiện. Cần xử lý cả phần che thông tin đăng nhập nhúng trong source và bị model nhắc lại: raw journal/report luôn để cục bộ; bản công khai chỉ xuất metadata theo danh sách trường cho phép.
 
 Cập nhật sau thí nghiệm báo cáo đoạn: đã có cấu hình cache 256 MiB giúp 7B/8B hoàn tất mà không tích lũy nhiều GiB cache. A01 cần giữ vị trí hit của tìm kiếm khi tạo claim để model không chỉ mô tả các dòng đầu đoạn. A02 cần chặn import-only bị gán behavior và đo cả false rejection (SQLite/ghi file có chứng cứ) lẫn false acceptance. Qwen3 có một run Python thật 4 tool/verdict malicious nhưng còn các lỗi này, chưa đủ thay default hoặc đóng ANALYSIS/TRUST. Nhánh báo cáo đoạn hiện chưa bao phủ IOC/ATT&CK/YARA đầy đủ; không được bỏ các đầu ra đó khỏi tiêu chí cuối.
 

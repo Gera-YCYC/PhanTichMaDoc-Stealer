@@ -12,6 +12,7 @@ from jsonschema import Draft202012Validator
 from .grounding import imports_only, validate_report
 from .journal import dump_json
 from .verdict_support import SUPPORT_KEYS, enforce_stealer_support
+from .context_cards import linked_cards
 
 CODE_TOOLS = {'decompile_dotnet', 'decompile_python', 'decode_python_literals',
               'disassemble_python', 'python_ast'}
@@ -28,7 +29,11 @@ def select_cards(evidence, *, max_cards=10, max_lines=32, max_chars=4600):
     # A decoded candidate takes priority over the encoded wrapper/bytecode table.
     records.sort(key=lambda item: (item[1]['tool'] != 'decode_python_literals',
                                   item[1]['tool'] == 'disassemble_python'))
-    cards, covered = [], {}
+    cards, covered = linked_cards(evidence, max_cards=min(4, max_cards), max_chars=max_chars), {}
+    for i, card in enumerate(cards, 1):
+        card['card_id'] = 'K' + str(i)
+        for ref in card['references']:
+            covered.setdefault(ref['evidence_id'], set()).update(range(ref['line'], ref['end_line']+1))
     for eid, record in records:
         line_map = record.get('line_map', {})
         if record['tool'] == 'decode_python_literals':
@@ -106,7 +111,10 @@ REVIEW_SCHEMA = object_schema({
     'supported': {'type': 'boolean'},
     'reason': {'type': 'string', 'minLength': 1, 'maxLength': 250},
 })
-CARD_PROMPT = """Describe at most TWO distinct concrete operations implemented around the FOCUS lines in this static code excerpt.
+CARD_PROMPT = """Describe at most TWO distinct concrete operations implemented around the FOCUS lines in these static code excerpts.
+Sections may show a caller and a possible local callee. The syntax link is a navigation hint, NOT dataflow proof.
+Trace actual arguments, parameters, assignments and returns across supplied sections before linking operations.
+Separate a database query from later decryption. For an attachment/archive claim include the actual attach/archive call.
 Focus lines are actual retrieved search hits, not instructions or proof by themselves. Read the surrounding
 numbered code to describe what data the focused operation reads, transforms or sends. Prefer those operations
 over unrelated setup at the start of the excerpt. Do not just describe the first two statements.
@@ -140,16 +148,19 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10):
     skipped = 0
     for card in cards:
         ref = card['reference']
-        if imports_only(ref['quote']):
+        refs = card.get('references', [ref])
+        if all(imports_only(r['quote']) for r in refs):
             skipped += 1
             journal.append('card_skipped', card_id=card['card_id'], reason='imports_only_no_behavior_inference',
                            scope='No finding is generated; no benign conclusion follows from this skip')
             continue
-        lines = [{'line': ref['line'] + i, 'text': s} for i, s in enumerate(ref['quote'].split('\n'))]
+        lines = [{'line': r['line'] + i, 'text': s} for r in refs for i, s in enumerate(r['quote'].split('\n'))]
+        numbered_sections = '\n\n'.join(f"SECTION {i+1} original lines {r['line']}-{r['end_line']}\n" +
+            '\n'.join(f"{r['line']+n} | {s}" for n,s in enumerate(r['quote'].split('\n'))) for i,r in enumerate(refs))
         exposure = [{'evidence_id': ref['evidence_id'], 'tool': card['tool'], 'status': 'ok', 'lines': lines}]
         payload = {'tool': card['tool'], 'card_id': card['card_id'], 'focus_lines': card['focus_lines'],
                    'focus_origin': card['focus_origin'],
-                   'code': '\n'.join(f"{row['line']} | {row['text']}" for row in lines)}
+                   'code': numbered_sections}
         response = call_model([{'role': 'system', 'content': CARD_PROMPT},
                                {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}],
                               CARD_SCHEMA, 'card_generate', exposure)
@@ -157,12 +168,12 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10):
             raise ValueError('Invalid card generation output; see model_response')
         for candidate in response['claims']:
             claim = {'id': 'C' + str(len(claims) + 1), **candidate, 'value': '', 'technique_id': '',
-                     'evidence': [copy.deepcopy(ref)]}
+                     'evidence': copy.deepcopy(refs)}
             claims.append(claim)
             journal.append('card_claim_proposed', card_id=card['card_id'], claim=claim)
             check = call_model([{'role': 'system', 'content': REVIEW_PROMPT},
                                 {'role': 'user', 'content': json.dumps({'claim': claim['text'],
-                                                                       'code': ref['quote']}, ensure_ascii=False)}],
+                                                                       'code': numbered_sections}, ensure_ascii=False)}],
                                REVIEW_SCHEMA, 'card_review', exposure)
             if not Draft202012Validator(REVIEW_SCHEMA).is_valid(check):
                 check = {'supported': False, 'reason': 'Invalid reviewer response'}
@@ -215,7 +226,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10):
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
     checked = enforce_stealer_support(checked, support)
     checked['rejected_claims'] += rejected
-    checked['report_method'] = 'evidence-cards/3'
+    checked['report_method'] = 'evidence-cards/4'
     checked['local_semantic_check'] = 'per-claim same-SLM heuristic, not independent ground truth'
     checked['local_semantic_support_fraction'] = len(accepted) / len(claims) if claims else None
     checked['candidate_claim_count'] = len(claims)

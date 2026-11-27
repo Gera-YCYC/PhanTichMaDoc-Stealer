@@ -10,6 +10,8 @@ Tài nguyên dùng [Release tai-nguyen-lab-20261127 của repo nhóm](https://gi
 
 Các mục bên dưới là **lịch sử kho tạm**, giữ liên kết cũ để truy vết các lần kiểm chứng; không phải repo nhận push tiếp theo.
 
+Mốc kiểm tiếp theo của repo nhóm là `7aa4db2c5b7d9843e60cb3db7d940f16696eddf5`: 261 Git blob khớp local; [CI](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer/actions/runs/46043118717) đạt 119 kiểm thử. Đợt bổ sung ngữ cảnh cú pháp có số kiểm thử và receipt chạy thật riêng ở [STATUS](STATUS.md). Không dùng CI 119 ca để nói bản source mới đã được CI kiểm; trạng thái pipeline tương ứng mỗi commit nằm trong GitHub Actions.
+
 **Release đã công bố:** [buoi4-real-demo-20261127](https://github.com/duongthanhmong/PhanTichMaDoc_DoAn/releases/tag/buoi4-real-demo-20261127).
 
 - Release gắn commit `13e6d62cf7009db3ce909c5d6a9f0cdbc6f1fdc6`. Các commit tài liệu/receipt tiếp theo nằm trên main; không đổi tag hoặc sửa lịch sử.

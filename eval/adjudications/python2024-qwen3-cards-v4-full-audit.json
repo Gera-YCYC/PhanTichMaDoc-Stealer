@@ -1,0 +1,359 @@
+{
+  "created_at": "2026-11-27T18:03:49.064577+00:00",
+  "run_id": "20261127T175019_6cbdf3e9",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "dataset_origin": "public-development-sample-source-audit",
+  "human_reviewers": [],
+  "raw_report_sha256": "d52a8a719bc0f51b249d800a4a387436fe1b01904d00e0bdfa52416558975867",
+  "reference_sha256": "e91277705e7a944f97738728574b850838c9a8a81250cd773c48a2a40fa1b997",
+  "scope": "All sixteen raw claims. Local helper semantics require implementation evidence; known library APIs use their documented semantics. No full-corpus grade.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "Copy/query operations are visible, but the claim includes decrypted passwords. The linked sections do not include the implementation of decrypt_password, only its invocation.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 289,
+          "end_line": 304,
+          "quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 134,
+          "end_line": 154,
+          "quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 157,
+          "end_line": 183,
+          "quote_sha256": "98f3d68a6bda7eacfb63290305faf049c9a9a962dc6f9ebe69c36354ba760a97"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The sections show a Web Data copy/query and a decrypt_password invocation, but not the helper implementation required to prove decrypted card-number output.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 289,
+          "end_line": 304,
+          "quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 134,
+          "end_line": 154,
+          "quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 157,
+          "end_line": 183,
+          "quote_sha256": "98f3d68a6bda7eacfb63290305faf049c9a9a962dc6f9ebe69c36354ba760a97"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "get_credit_cards returns a formatted result assembled after the decrypt_password call, not the raw encrypted credit-card data asserted by this sentence.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 290,
+          "end_line": 305,
+          "quote_sha256": "9b906b3dd05a2e0d2c295618a1f39a44284c7c17b8690fae6640ba64b6569350"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 157,
+          "end_line": 183,
+          "quote_sha256": "98f3d68a6bda7eacfb63290305faf049c9a9a962dc6f9ebe69c36354ba760a97"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 134,
+          "end_line": 154,
+          "quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "get_login_data returns a formatted result assembled after the decrypt_password call, not the encrypted login-data result asserted by this sentence.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 290,
+          "end_line": 305,
+          "quote_sha256": "9b906b3dd05a2e0d2c295618a1f39a44284c7c17b8690fae6640ba64b6569350"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 157,
+          "end_line": 183,
+          "quote_sha256": "98f3d68a6bda7eacfb63290305faf049c9a9a962dc6f9ebe69c36354ba760a97"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 134,
+          "end_line": 154,
+          "quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The supplied sections jointly contain archive construction, its returned path passed to send_email, file reading/MIME attachment, SMTP construction, login and sendmail. Credential literals are deliberately omitted from this public audit.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 313,
+          "end_line": 328,
+          "quote_sha256": "9942ce95c86a0b8ad7d6a2ce32743a0d1b6081890a580975cfe49e5bc011c52f"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 82,
+          "end_line": 113,
+          "quote_sha256": "90326a4a813eb2098f310dd40d95850af07090f9c0f71a7b7a4a73135f37b5b6"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 276,
+          "end_line": 286,
+          "quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The helper calls shutil.make_archive with zip format and the Browser directory, constructs Browser.zip in the temporary path and returns that path.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 313,
+          "end_line": 328,
+          "quote_sha256": "9942ce95c86a0b8ad7d6a2ce32743a0d1b6081890a580975cfe49e5bc011c52f"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 82,
+          "end_line": 113,
+          "quote_sha256": "90326a4a813eb2098f310dd40d95850af07090f9c0f71a7b7a4a73135f37b5b6"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 276,
+          "end_line": 286,
+          "quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The caller constructs from_email from get_computer_name(), and the linked helper returns socket.gethostname().",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 82,
+          "end_line": 93,
+          "quote_sha256": "da81b83a4d54912a1db36e704efef257aa9bb3410619eaacd8ccf288b9ffec0c"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 78,
+          "end_line": 79,
+          "quote_sha256": "61c605b058e8edf558f4adc2cf40a2b90f3966e9b091196a38f12a50ac8f9c1d"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The section only assigns SMTP host/port values and creates MIME headers. It does not contain the SMTP connection or sending operation asserted here.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 82,
+          "end_line": 93,
+          "quote_sha256": "da81b83a4d54912a1db36e704efef257aa9bb3410619eaacd8ccf288b9ffec0c"
+        },
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 78,
+          "end_line": 79,
+          "quote_sha256": "61c605b058e8edf558f4adc2cf40a2b90f3966e9b091196a38f12a50ac8f9c1d"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "shutil.copy(login_db, temporary_path) and sqlite3.connect(temporary_path) are both present; self-review wrongly rejects the database-copy claim.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 120,
+          "end_line": 151,
+          "quote_sha256": "035d8c7fc05051ae0c717d2df21c86544b7bce078447bb054c458805ffbdea72"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The citation copies login_db, connects to that copy and executes a SELECT on logins; self-review wrongly rejects the query claim.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 120,
+          "end_line": 151,
+          "quote_sha256": "035d8c7fc05051ae0c717d2df21c86544b7bce078447bb054c458805ffbdea72"
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The helper invocation and its arguments are visible, but the claimed decrypted return value needs the decrypt_password implementation, absent from this citation.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 156,
+          "end_line": 187,
+          "quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The actual SELECT includes credit-card fields from credit_cards, followed by fetching rows.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 156,
+          "end_line": 187,
+          "quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The range constructs an SMTP server object and explicitly calls its login method with credentials.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 98,
+          "end_line": 129,
+          "quote_sha256": "74c1b98c5886279257a8c11e5210f86944f6481d353f97b92f40beb71a6340a1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The range builds text with msg.as_string and passes it to server.sendmail with sender and recipient variables.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 98,
+          "end_line": 129,
+          "quote_sha256": "74c1b98c5886279257a8c11e5210f86944f6481d353f97b92f40beb71a6340a1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "total_browsers is the fourth positional argument to save_results, not a destination receiving Autofill data. The content is the third argument; the sentence invents a transfer to a counter.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 308,
+          "end_line": 338,
+          "quote_sha256": "c6e7a5eff64bea7d8c3c0ee8d22547c5d72f8386e74bc3fd325a590daff3134c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C16",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "Only the send_email call and recipient/zip_path variables are in this citation. Its own evidence lacks both archive construction and the MIME/SMTP implementation needed for a zipped attachment sending claim.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_0d6ed3dfedb14f9f",
+          "line": 308,
+          "end_line": 338,
+          "quote_sha256": "c6e7a5eff64bea7d8c3c0ee8d22547c5d72f8386e74bc3fd325a590daff3134c"
+        }
+      ]
+    }
+  ],
+  "reference_coverage_status": "Composite profile not yet normalized to complete fact units; recall/F1 remain null.",
+  "remaining_problems": [
+    "Missing transitive helper implementation for decryption claims",
+    "SLM conflates arguments, return values and destinations",
+    "Same-model review rejects supported copy/query and accepts semantic errors",
+    "Model prose can include embedded credentials; raw reports must remain private"
+  ]
+}

@@ -77,3 +77,9 @@ Cờ cấu hình `report_mode=evidence-cards-v1` vẫn giữ để tương thíc
 Bộ kiểm thử trước run mới có 112 ca đạt trên Windows, gồm mất mắt xích, ID không hợp lệ, import-only, giữ anchor và không tự nâng verdict. Đây là kiểm thử hợp đồng phần mềm, không phải 112 mẫu mã độc.
 
 Hai lượt v3 đã chạy end-to-end với Qwen3 trên cùng bản source: Python `20261127T171819_406f8937` (4 tool/458,6038 s) và Gomorrah `20261127T172625_ba003503` (3 tool/467,2824 s). Cả hai kết luận suspicious, chưa thỏa verdict100% trên mẫu độc. [Receipt](../deliverables/real-demo-evidence/cards-v3-platform-runs.json) giữ thông số, source hash, journal hash và số câu; [đối chiếu Python](CLAIM_AUDIT.md) nêu cụ thể lỗi còn lại. Sau bổ sung bộ chấm đủ câu thô, tổng kiểm thử phần mềm là 119 trên Windows. Model candidate và cấu hình này chưa thay baseline/Release.
+
+## Bản `/4`: nhiều khoảng chứng cứ có quan hệ cú pháp
+
+`search_evidence` có thêm worker parser trong VM, trả các đoạn caller/callee giữ nguyên số dòng. `context_cards.py` chọn tối đa bốn mục liên kết, mỗi mục 2–3 khoảng đã truy xuất; các mục còn lại vẫn dùng đoạn đơn. Mỗi khoảng kiểm quote/source riêng; không ghép qua khoảng thiếu như một đoạn liên tục. Nhận định có thể dẫn đồng thời lời gọi và phần triển khai, nhưng link chỉ là ứng viên cú pháp, không tự chứng minh luồng dữ liệu hay ngữ nghĩa hàm. [Thiết kế, dependency, cài đặt và kiểm chứng](SYNTAX_CONTEXT.md).
+
+Tất cả SECTION được đưa vào request sinh câu và request duyệt; context_links chỉ chứa tọa độ/nhãn quan hệ cố định, không có chỉ dẫn lấy từ source. Guard áp dụng cho dòng mới giống dòng tìm kiếm thường. Câu vượt quá tất cả SECTION vẫn là câu thiếu căn cứ dù các quote đều hợp lệ.

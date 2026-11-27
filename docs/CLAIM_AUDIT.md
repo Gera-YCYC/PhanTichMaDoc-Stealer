@@ -2,15 +2,16 @@
 
 Ngày cập nhật: 28/11/2026. Đây là kiểm chứng trên mẫu phát triển PythonStealer2024, không phải kết quả nghiệm thu toàn corpus. Các câu được so với **chính đoạn chúng dẫn**, sau đó đối chiếu profile source; không lấy kết quả tự duyệt của Qwen làm đáp án. Nhãn do source audit tự động lập, chưa có người thật hoặc giảng viên phê duyệt.
 
-## Ba phép thử và phạm vi
+## Các phép thử và phạm vi
 
 | Lượt | Cách chạy | Câu thô | Đúng / sai / thiếu căn cứ | Precision câu thô | Kết luận sau kiểm |
 |---|---|---:|---:|---:|---|
 | `20261127T164056_2bc4e796` | ReAct + VM, báo cáo đoạn v1 | 12 | 8 / 0 / 4 | 66,67% | malicious; căn cứ kết luận còn lỗi |
-| `20261127T170742_b4a898c6` | SLM thật, 3 đoạn lưu sẵn, v2 | 6 | 6 / 0 / 0 | 100% trên 6 câu này | malicious dù tập câu được giữ không có khâu gửi |
+| `20261127T170742_b4a898c6` | SLM thật, 3 đoạn lưu sẵn, v2 | 6 | 5 / 0 / 1 | 83,33% theo bản chấm sửa lần 2 | malicious dù tập câu được giữ không có khâu gửi |
 | `20261127T171819_406f8937` | ReAct + VM, báo cáo đoạn v3 | 10 | 7 / 1 / 2 | 70% | suspicious; chưa đạt yêu cầu verdict của mẫu độc |
+| `20261127T175019_6cbdf3e9` | ReAct + VM, ghép caller/callee v4 | 16 | 8 / 3 / 5 | 50% | suspicious; bộ tự duyệt giữ 14 câu nhưng có 8 câu sai/thiếu căn cứ |
 
-Số đoạn và hành vi được mô tả khác nhau giữa các lượt; bảng này không phải A/B thuần prompt/model. Phép thử v2 không gọi công cụ mới và không được dùng làm demo end-to-end. Không dùng 100% trên sáu câu được giới hạn trước để tuyên bố sản phẩm chính xác 100%.
+Số đoạn và hành vi được mô tả khác nhau giữa các lượt; bảng này không phải A/B thuần prompt/model. Phép thử v2 không gọi công cụ mới và không được dùng làm demo end-to-end. Bản chấm đầu từng ghi 6/6; khi áp dụng nhất quán điều kiện chứng cứ cho hàm tự định nghĩa, C4 phải chuyển sang thiếu căn cứ vì citation chỉ có lời gọi decrypt_password mà không có thân hàm. Bản chấm/score cũ được giữ, bản sửa lần 2 ghi hash và nhãn trước đó; report thô của model không bị sửa.
 
 ## Những lỗi cụ thể phải tiếp tục xử lý
 
@@ -32,12 +33,17 @@ Số đoạn và hành vi được mô tả khác nhau giữa các lượt; bả
 Lệnh cần journal/report riêng tư của đúng lần chạy. Thành viên clone repo sẽ có hồ sơ nhãn và receipt công khai, nhưng phải tự chạy để có report cục bộ; không có raw source/credential của mẫu trong Git.
 
 - [Chấm v1](../deliverables/real-demo-evidence/python2024-cards-v1-claim-score.json), [nhãn đủ 12 câu](../eval/adjudications/python2024-qwen3-cards-v1-full-audit.json).
-- [Chấm v2 trên đoạn đã thu](../deliverables/real-demo-evidence/python2024-cards-v2-replay-score.json), [nhãn đủ 6 câu](../eval/adjudications/python2024-qwen3-cards-v2-replay-audit.json).
+- [Chấm v2 sửa lần 2](../deliverables/real-demo-evidence/python2024-cards-v2-replay-score-revision2.json), [nhãn và lý do điều chỉnh](../eval/adjudications/python2024-qwen3-cards-v2-replay-audit-revision2.json). [Bản chấm đầu](../deliverables/real-demo-evidence/python2024-cards-v2-replay-score.json) chỉ để truy vết.
 - [Chấm v3](../deliverables/real-demo-evidence/python2024-cards-v3-claim-score.json), [nhãn đủ 10 câu](../eval/adjudications/python2024-qwen3-cards-v3-full-audit.json), [receipt chạy VM thật](../deliverables/real-demo-evidence/cards-v3-python-run.json).
+- [Chấm v4](../deliverables/real-demo-evidence/python2024-cards-v4-claim-score.json), [nhãn đủ 16 câu](../eval/adjudications/python2024-qwen3-cards-v4-full-audit.json), [receipt chạy VM thật](../deliverables/real-demo-evidence/cards-v4-python-run.json). Sau lọc chỉ 6/14 câu đúng (42,86%); hai câu đúng bị loại. Tỷ lệ thiếu căn cứ của tập thô 31,25%, grounding 50%; không đạt các ngưỡng tin cậy.
+
+V4 đã đưa thêm thân hàm tạo archive, gắn MIME và gọi SMTP vào cùng mục chứng cứ. Tuy nhiên, model vẫn gộp truy vấn với giải mã khi thiếu thân hàm giải mã; hiểu sai bộ đếm thành nơi ghi dữ liệu; tự duyệt không phân biệt tốt câu đúng và câu thiếu căn cứ. Số câu nhiều hơn hoặc thêm quan hệ cú pháp không tự làm chất lượng tốt hơn. Giới hạn lấy bốn mục liên kết còn khiến hai helper song song chiếm chỗ của helper giải mã cần thiết. Cần kiểm từng thao tác và quan hệ truyền dữ liệu thay vì tiếp tục chỉ kéo dài đoạn source.
 
 Recall/F1 hiện để `null`: profile có năm fact tổng hợp, còn câu model có độ chi tiết khác nhau và chưa có đối chiếu đầy đủ theo đơn vị nhất quán. Việc có nhiều câu đúng về ghi file không bù được thiếu luồng lấy mật khẩu/nén/gửi. Cần chốt các fact nguyên tử và phép ghép câu với fact trước khi chấm Recall; không đổi tập chuẩn theo các câu model tạo ra.
 
 ## Công việc kế tiếp
+
+Nhánh .NET còn có [chín phản ví dụ source/API](../eval/adjudications/gomorrah-qwen3-cards-v3-counterexamples.json). Ba câu nhầm byte trả về của UploadFile thành dữ liệu file gửi đi; một câu suy phản hồi/SMTP qua sai API; các câu khác thiếu thân hàm hoặc thao tác cuối. Theo [tài liệu Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0), UploadFile nhận đường dẫn file và trả thân phản hồi từ resource. Chuyển mảng trả về đó sang ASCII là xử lý phản hồi, không phải chuyển file thành ASCII trước khi gửi. Đây là kiểm một phần, không tính Precision/F1 cho đủ 20 câu từ chín phản ví dụ này.
 
 1. Ghép chứng cứ qua caller/callee với nguồn, đích và các phép biến đổi rõ; giữ cả khoảng dòng của hàm gọi lẫn hàm được gọi.
 2. Tách các thao tác SQL, giải mã, ghi file, nén và gửi thành fact riêng; chỉ ghép luồng khi có bằng chứng truyền cùng dữ liệu.

@@ -1,0 +1,132 @@
+{
+  "created_at": "2026-11-27T17:53:14.207387+00:00",
+  "run_id": "20261127T172625_ba003503",
+  "raw_report_sha256": "54453dfc5fd9c7197c50bb869cb6294a197509b3276420716c4e0a633c2ce7c2",
+  "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+  "human_reviewers": [],
+  "scope": "Nine explicit source/API counterexamples; not a full adjudication of all twenty raw claims.",
+  "api_sources": [
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0"
+  ],
+  "counterexamples": [
+    {
+      "claim_id": "C2",
+      "assessment": "incorrect",
+      "reason": "The byte array is the return value of UploadFile, i.e. the server response body. ASCII decoding happens after upload and does not prepare file contents for transmission.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 4240,
+          "end_line": 4267,
+          "quote_sha256": "a618ba84a99573a8cb57ed60e447f24d9fd2703791a3dbfd8a9580f95edd3756"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "assessment": "incorrect",
+      "reason": "The converted byte array is the response of UploadFile, not the contents of each MyDocuments file.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 4293,
+          "end_line": 4320,
+          "quote_sha256": "0799c6e285e4c149b925c05f5a6195785728d1f6c06501075bc9400f6f7b7614"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "assessment": "unsupported",
+      "reason": "The cited UploadFile call takes the file path held in Passwords. This excerpt does not establish that the file contains passwords; its construction/source is required.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 3562,
+          "end_line": 3593,
+          "quote_sha256": "c7590f3bbeab1bf7ffe660b7b27446a2f3664c212bee292399d3eb1165d1d090"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "assessment": "incorrect",
+      "reason": "UploadFile returns response bytes, then Encoding.ASCII.GetString stores that response in Fileuri. It is not the outgoing password data.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 3562,
+          "end_line": 3593,
+          "quote_sha256": "c7590f3bbeab1bf7ffe660b7b27446a2f3664c212bee292399d3eb1165d1d090"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "assessment": "unsupported",
+      "reason": "The second UploadFile argument is a file path held in emails_pass, not proof of an email password value. Its provenance is absent from this citation.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 3588,
+          "end_line": 3619,
+          "quote_sha256": "b552754fa42706cfa1d2e6b839b43683a55c1c822f9e91b9cdea6b05096c0b1e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "assessment": "incorrect",
+      "reason": "SMTP Server is read by RegistryKey.GetValue and cast to bytes. The nearby LateGet call concerns GetBytes for another value, not reflection on an SMTP Server property.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 4821,
+          "end_line": 4851,
+          "quote_sha256": "33704568322887de7ee69c4f311ab533edf2a4b246ab2c570c3eac548406761e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C17",
+      "assessment": "unsupported",
+      "reason": "The citation calls the local helper Functions.Send_GET, but the helper implementation is absent. The name does not alone establish an HTTP GET request.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 3542,
+          "end_line": 3573,
+          "quote_sha256": "6d27dedf4bd32ccac8d42f18b036c51d9064cdceadfdb02c22dedd46b25ce1f1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C18",
+      "assessment": "unsupported",
+      "reason": "The range ends while building the upload URL; it does not include the UploadFile call on the later line.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 3542,
+          "end_line": 3573,
+          "quote_sha256": "6d27dedf4bd32ccac8d42f18b036c51d9064cdceadfdb02c22dedd46b25ce1f1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C19",
+      "assessment": "correct",
+      "reason": "Controls.Add((Control)(object)PictureBox1) is explicitly present; the same-model reviewer rejected this supported UI operation.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_98a6889278f64c01",
+          "line": 3413,
+          "end_line": 3437,
+          "quote_sha256": "33d9f844ad0c3a4cfdb612e3a9ba053ec124d8a756c5f16f2d49b76919d6f361"
+        }
+      ]
+    }
+  ],
+  "aggregate_quality_metrics": null,
+  "next_work": "Pair caller/callee evidence and distinguish API input arguments from return values. Do not infer sensitive data from a variable or method name."
+}

@@ -31,6 +31,9 @@ def reconstruct(events):
         record.setdefault('line_metadata', {}).update({r['line']: {'source_line': r.get('source_line')}
                                                       for r in clean['lines']})
         record['latest_lines'] = [r['line'] for r in clean['lines']]
+        for link in clean.get('context_links', []):
+            if link not in record.setdefault('context_links', []):
+                record['context_links'].append(link)
         if 'search_groups' in clean:
             for group in clean['search_groups']:
                 anchor = group['anchor_line']

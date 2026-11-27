@@ -98,9 +98,9 @@ Agent chọn tool; controller giới hạn lựa chọn, kiểm tên mẫu, hash
 - `events.jsonl`: model request/evidence hash, response, action, observation, lỗi, hash chain.
 - `model-replies.json`: phản hồi SLM thật.
 - `report.private.json`, `report.model-raw.json`: báo cáo đầy đủ tại máy.
-- `report.redacted.json`, `report.md`: bản che token theo các mẫu regex đã hỗ trợ.
+- `report.redacted.json`, `report.md`: bản xem cục bộ che pattern/literal đã nhận diện, kể cả khi model nhắc lại literal trong prose; [giới hạn](docs/REPORT_REDACTION.md).
 
-Các tệp raw, mẫu, API key, VM và model bị loại khỏi Git. Luôn rà soát bản chia sẻ trước khi nộp vì regex không nhận biết mọi dạng bí mật.
+Các tệp raw, mẫu, API key, VM và model bị loại khỏi Git. Cả bản redacted vẫn ở cục bộ, không được mặc định coi là an toàn để đăng. Bản công khai dùng receipt metadata theo danh sách trường cho phép; giữ report/journal riêng để đối chiếu kết quả.
 
 ## Kiểm thử và đánh giá
 
@@ -146,6 +146,7 @@ ZIP source chỉ chứa source/tài liệu. Model/archive nghiên cứu ở Rele
 - [Giải mã tĩnh Python 3.11 và chuỗi hash](docs/PYTHON_STATIC_DECODING.md).
 - [Thí nghiệm báo cáo theo đoạn và giới hạn cache RAM](docs/EVIDENCE_CARDS.md).
 - [Đối chiếu đủ nhận định, gồm câu bị loại và các lỗi còn lại](docs/CLAIM_AUDIT.md).
+- [Lấy ngữ cảnh caller/callee bằng parser Python/C# trong VM](docs/SYNTAX_CONTEXT.md).
 - [Trạng thái nghiệm thu và kết quả chưa đạt](docs/STATUS.md).
 
 Tài liệu bàn giao ở dạng Markdown kỹ thuật; không cần thông tin sinh viên để chạy sản phẩm.

@@ -20,7 +20,8 @@ add('ilspy-linux.nupkg',receipt['ilspy_url'],receipt['ilspy_nupkg_sha256'])
 for item in json.loads((base/'extensions/receipt.json').read_text()):
     add('extensions/'+item['name'], item['url'], item['sha256'])
 needed = {'jsonschema','attrs','referencing','rpds_py','jsonschema_specifications',
-          'typing_extensions','pefile','yara_python','pyzipper','pycryptodomex'}
+          'typing_extensions','pefile','yara_python','pyzipper','pycryptodomex',
+          'tree_sitter','tree_sitter_python','tree_sitter_c_sharp'}
 for wheel in sorted((base/'wheels').glob('*.whl')):
     package, version = wheel.name.split('-')[:2]
     if package not in needed or wheel.name.startswith('pefile-2023'):

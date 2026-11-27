@@ -389,6 +389,9 @@ class Agent:
                     record.setdefault('line_metadata', {}).update({entry['line']: {'source_line': entry.get('source_line')}
                                                                   for entry in clean['lines']})
                     record['latest_lines'] = [entry['line'] for entry in clean['lines']]
+                    for link in clean.get('context_links', []):
+                        if link not in record.setdefault('context_links', []):
+                            record['context_links'].append(link)
                     if name == 'search_evidence':
                         # Keep inspected code before boilerplate when later tools run.
                         record['focus_lines'] = list(dict.fromkeys(record.get('focus_lines', []) + record['latest_lines']))
@@ -449,5 +452,6 @@ class Agent:
                   "run_directory": str(journal.directory.resolve())}
         journal.append("run_finished", result=result)
         dump_json(journal.directory / "model-replies.json", model_replies)
-        write_report(journal.directory, result)
+        write_report(journal.directory, result, redaction_context=(
+            text for record in evidence.values() for text in record.get('line_map', {}).values()))
         return result

@@ -1,0 +1,103 @@
+{
+  "kind": "real-VM-parser-check-on-captured-source-not-live-agent-demo",
+  "cases": [
+    {
+      "run": "20261127T171819_406f8937",
+      "evidence_id": "ev_c4486d845cd04f5b",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "output_sha256": "ea9ef6291d9d845a99c68c4c429708ed9366ee911ed3679a2dbdcf2879b86dfb",
+      "query": "sendmail",
+      "anchors": [
+        109
+      ],
+      "source_journal_sha256": "53bc1c71fe98af9545bf0edcec180bb027e1c68c6ae2272684a15b40bfd87c30",
+      "syntax_context": {
+        "backend": "tree-sitter-context/1",
+        "language": "python",
+        "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+        "has_parse_errors": false,
+        "function_count": 14,
+        "candidate_link_count": 19,
+        "scope": "Syntactic navigation only; no alias/type resolution, execution or dataflow proof"
+      },
+      "returned_lines": 61,
+      "context_links": [
+        {
+          "call_line": 323,
+          "ranges": [
+            {
+              "line": 313,
+              "end_line": 328
+            },
+            {
+              "line": 82,
+              "end_line": 113
+            },
+            {
+              "line": 276,
+              "end_line": 286
+            }
+          ],
+          "callee_complete": true,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        },
+        {
+          "call_line": 88,
+          "ranges": [
+            {
+              "line": 82,
+              "end_line": 93
+            },
+            {
+              "line": 78,
+              "end_line": 79
+            }
+          ],
+          "callee_complete": true,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        }
+      ],
+      "exact_source_rows_verified": true
+    },
+    {
+      "run": "20261127T172625_ba003503",
+      "evidence_id": "ev_98a6889278f64c01",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "query": "UploadFile",
+      "anchors": [
+        4253,
+        4306
+      ],
+      "source_journal_sha256": "daa75301de096e2bfa97b325772cd2420738cba4a6de6fa1f7a322d722484086",
+      "syntax_context": {
+        "backend": "tree-sitter-context/1",
+        "language": "csharp",
+        "source_sha256": "940fb88288554f8eb406f66976bf709c78e8e94c707a1ae15447b133ac3a352c",
+        "has_parse_errors": false,
+        "function_count": 130,
+        "candidate_link_count": 158,
+        "scope": "Syntactic navigation only; no alias/type resolution, execution or dataflow proof"
+      },
+      "returned_lines": 52,
+      "context_links": [
+        {
+          "call_line": 3540,
+          "ranges": [
+            {
+              "line": 3530,
+              "end_line": 3545
+            },
+            {
+              "line": 4284,
+              "end_line": 4319
+            }
+          ],
+          "callee_complete": false,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        }
+      ],
+      "exact_source_rows_verified": true
+    }
+  ]
+}

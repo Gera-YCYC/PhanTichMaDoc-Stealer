@@ -4,6 +4,15 @@
 
 ## Cập nhật hiện tại
 
+- **137 kiểm thử phần mềm đạt trên Windows** sau bổ sung ngữ cảnh cú pháp và sửa che literal trong báo cáo. 131 ca đã đạt trước hai run v4; 6 ca mới kiểm redaction. Đây không phải accuracy trên 137 malware.
+- Hai run mới dùng Qwen3 8B, cùng source phân tích `evidence-cards/4` đã khóa trước chạy: Python `20261127T175019_6cbdf3e9` hoàn tất 511,506 giây, 4 công cụ/17 tool call/43 model request; Gomorrah `20261127T180215_b3a8ccf4` hoàn tất 563,8431 giây, 3 công cụ/17 tool call/48 model request. Cả hai verdict **suspicious**. [Receipt hai nền tảng](../deliverables/real-demo-evidence/cards-v4-platform-runs.json) đã kiểm hash chain và ghép request/response.
+- [Ngữ cảnh hàm](SYNTAX_CONTEXT.md) được thêm bằng tree-sitter trong VM; source/excerpt vẫn được giữ nguyên. Đây là quan hệ cú pháp hỗ trợ tìm chứng cứ, chưa là bằng chứng luồng dữ liệu đầy đủ. Parser không được tính thêm distinct analysis tool.
+- Python v4: 16 câu thô, source audit chấm 8 đúng/3 sai/5 thiếu căn cứ; Precision 50%, hallucination 31,25%, grounding 50%. Sau tự duyệt còn 14 câu, chỉ 6 đúng (42,86%), hai câu đúng bị loại. **Chưa đạt chất lượng; Recall/F1 để null.** .NET v4 có 19 câu thô, giữ 9/loại 10 nhưng chưa chấm đủ nội dung nên không ghi Precision. [Đối chiếu](CLAIM_AUDIT.md).
+- Phát hiện credential hardcode bị model nhắc lại trong prose. Bản sửa redaction áp dụng sau hai run, không đổi log/source đã dùng để phân tích. Kiểm lại bản xem cục bộ trên báo cáo lưu sẵn: hai literal được nhận diện trong Python đều bị che ở cả source và prose; không còn literal đã nhận diện trong bản render. Đây không phải một lượt inference mới hoặc chứng nhận đã phát hiện mọi bí mật. [Receipt](../deliverables/real-demo-evidence/report-redaction-v1-check.json); [thiết kế và giới hạn](REPORT_REDACTION.md).
+- Đã tắt đúng server Ollama và VM dự án sau hai lượt: không còn PID/cổng/runner của dự án, VM không chạy; GPU toàn máy quan sát 0 MiB tại thời điểm kiểm. [Receipt](../deliverables/real-demo-evidence/runtime-stopped-after-cards-v4.json). Trọng số/đĩa VM giữ nguyên. Lần chạy tiếp cần sync source mới vì redaction được sửa sau đợt đo.
+
+Các mục ngay dưới là mốc trước v4, giữ riêng để so sánh và không viết đè số liệu lịch sử.
+
 - Repo chính đã chuyển sang **Gera-YCYC/PhanTichMaDoc-Stealer**; lịch sử nhóm và 27 tệp source gốc giữ nguyên. Release nhóm đủ 10 asset, đã kiểm hash/tải thử. [Biên bản công bố](PUBLISH_STATUS.md).
 - **119 kiểm thử phần mềm đạt trên Windows** ở bản bổ sung giữ anchor, chặn import-only, kiểm căn cứ verdict và chấm đủ câu thô. Không phải accuracy trên 119 mẫu mã độc.
 - Nhánh báo cáo hiện có `report_method=evidence-cards/3`, vẫn dùng cờ cấu hình `evidence-cards-v1` để tương thích. Kết luận malicious cần tham chiếu đủ thu dữ liệu nhạy cảm, gửi dữ liệu và liên kết giữa hai bước; các vai trò do SLM gán vẫn cần kiểm nghĩa.

@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import sys
 import time
@@ -63,7 +64,27 @@ class ToolService:
                 self.store.get(arguments["evidence_id"], digest)
                 return self.store.page(arguments["evidence_id"], arguments.get("page", 0))
             if action == "search_evidence":
-                return self.store.search(arguments['evidence_id'], digest, arguments['query'])
+                result = self.store.search(arguments['evidence_id'], digest, arguments['query'])
+                if result['tool'] in {'decompile_dotnet', 'decompile_python', 'decode_python_literals'} and result['search_groups']:
+                    try:
+                        folder = Path(self.config['evidence_dir']) / 'context-inputs'
+                        folder.mkdir(parents=True, exist_ok=True)
+                        snapshot = folder / (uuid.uuid4().hex + '.json')
+                        snapshot.write_text(json.dumps({'record': self.store.get(arguments['evidence_id'], digest),
+                            'anchors': [g['anchor_line'] for g in result['search_groups']]}), encoding='utf-8')
+                        context = json.loads(bounded_process([sys.executable, '-m', 'vm_tools.context_worker', str(snapshot.resolve())],
+                            Path(self.config['evidence_dir'])/'work', timeout=20, max_bytes=100_000,
+                            strict_stderr=True, memory_limit=True,
+                            env_overrides={'PYTHONPATH': str(Path(__file__).resolve().parents[1]) +
+                                os.pathsep + os.environ.get('PYTHONPATH', '')}))
+                        lines = {r['line']: r for r in result['lines']}
+                        lines.update({r['line']: r for r in context['lines']})
+                        result.update(lines=[lines[n] for n in sorted(lines)], context_links=context['context_links'],
+                                      syntax_context=context['syntax_context'])
+                    except Exception as exc:
+                        result['syntax_context'] = {'status': 'unavailable', 'error_class': type(exc).__name__,
+                                                   'scope': 'Literal search remains available; no syntax links claimed'}
+                return result
             if action == "identify":
                 text, backend, limits = analyzers.identify(data, sample)
             elif action == "unpack_pyinstaller":
