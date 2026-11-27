@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "sample": "public_python2024.bin",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "dataset_split": "development",
+  "reference_status": "static-source audit independent of agent reports; not human adjudication",
+  "human_reviewers": [],
+  "derived_from_agent_report": false,
+  "expected_verdict": "malicious",
+  "source": "https://bazaar.abuse.ch/sample/7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db/",
+  "static_evidence": {
+    "backend": "bounded-literal-decoder/1",
+    "evidence_id": "ev_04b9664d14b04778",
+    "output_sha256": "1af6e4f92dfb529eb85573e09e4d26d3b5211f3fab410278937f21210ff4b8e0",
+    "recovered_source_sha256": "8d36f208e5cf351faef62e5a06fe1a1ce0a9a578ccd27f8bcf62f1fbc5594ca4",
+    "normalized_source_sha256": "72efc6ebafd1b7157c14f9b4e68ff5c212ee7da9ff5d53fa40057d9fdd56476f",
+    "normalization": "332 original lines joined by LF without final newline; original bytes use CRLF",
+    "payload_lines": 332,
+    "payload_bytes": 11818
+  },
+  "facts": [
+    {
+      "id": "PY24-B01",
+      "text": "get_master_key reads Local State, decodes os_crypt.encrypted_key and passes the remaining bytes to CryptUnprotectData.",
+      "lines": [55, 57, 59, 60, 61],
+      "markers": ["Local State", "encrypted_key", "CryptUnprotectData"],
+      "technique_id": "T1555.003"
+    },
+    {
+      "id": "PY24-B02",
+      "text": "get_login_data copies Login Data, queries action_url/username_value/password_value from logins and passes password bytes to decrypt_password.",
+      "lines": [131, 135, 136, 138, 139, 140],
+      "markers": ["Login Data", "shutil.copy", "sqlite3.connect", "SELECT action_url, username_value, password_value FROM logins", "decrypt_password"],
+      "technique_id": "T1555.003"
+    },
+    {
+      "id": "PY24-B03",
+      "text": "get_credit_cards queries credit_cards and invokes decrypt_password on card_number_encrypted; this is static capability, not an observed recovered card.",
+      "lines": [160, 162, 163, 168],
+      "markers": ["sqlite3.connect", "credit_cards", "card_number_encrypted", "decrypt_password"],
+      "technique_id": ""
+    },
+    {
+      "id": "PY24-B04",
+      "text": "mainpass passes browser results to save_results and combines the output directory as Browser.zip.",
+      "lines": [274, 275, 282, 295, 304, 305, 311],
+      "markers": ["Browser.zip", "make_archive", "get_login_data", "Saved_Passwords", "combine_and_zip_files"],
+      "technique_id": "T1560.002",
+      "mapping_source": "https://attack.mitre.org/techniques/T1560/002/"
+    },
+    {
+      "id": "PY24-B05",
+      "text": "send_email creates an SMTP connection, enables STARTTLS, logs in and calls sendmail. mainpass supplies the zip path to this function; MIME attachment code needs to be included when claiming the complete attachment flow.",
+      "lines": [92, 94, 98, 102, 103, 104, 105, 311, 319],
+      "markers": ["open(", "set_payload", "msg.attach", "smtplib.SMTP", "starttls", "sendmail", "send_email(subject, message, to_email, zip_path)"],
+      "technique_id": "",
+      "scope": "SMTP sending capability with configured credentials; no outbound connection was performed in this project."
+    }
+  ],
+  "negative_controls": [
+    "requests import is not evidence of HTTP exfiltration; the inspected main data-sending path uses SMTP.",
+    "DPAPI use here concerns browser-key recovery, not evidence of Windows Credential Manager T1555.004.",
+    "Static transformation succeeds but full original Python module decompilation and runtime execution remain unproven."
+  ],
+  "coverage_limits": [
+    "Source audit for one recovered candidate; not a whole-sample dynamic behavior report",
+    "No operator credentials or recipient email are included in this public reference",
+    "No human or lecturer approval is asserted"
+  ]
+}

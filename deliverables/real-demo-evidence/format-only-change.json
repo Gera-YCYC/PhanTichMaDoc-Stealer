@@ -1,0 +1,7 @@
+{
+  "path": "vm_tools\\service.py",
+  "before_sha256": "1e241472f3dd1851e2f28c3514ca225890d38f5f9157ae275699817fe2937deb",
+  "after_sha256": "cb5b88a2f595461ce3ff37099979ca55ea0f8c9f26cdfb9f6c21ebfd1679341e",
+  "ast_unchanged": true,
+  "change": "remove spaces from one blank line after demo"
+}

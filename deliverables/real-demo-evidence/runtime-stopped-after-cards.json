@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-11-27T16:51:24.0035516+00:00",
+  "recorded_model_pid": 3888,
+  "recorded_process_alive": false,
+  "project_port_listening": false,
+  "vmrun_output": [
+    "Total running VMs: 0"
+  ],
+  "available_ram_bytes": 3191443456,
+  "gpu_memory_used_mib": 0,
+  "weights_deleted": false,
+  "vm_disks_deleted": false,
+  "scope": "Point-in-time check after graceful project shutdown; no continuous monitor"
+}

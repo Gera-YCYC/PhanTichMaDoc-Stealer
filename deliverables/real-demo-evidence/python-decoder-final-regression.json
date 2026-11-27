@@ -1,0 +1,351 @@
+{
+  "created_at": "2026-11-27T16:08:57.871474+00:00",
+  "kind": "actual-local-SLM-and-VM-run",
+  "run": {
+    "run_id": "20261127T160346_4685a56a",
+    "sample": "public_python2024.bin",
+    "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+    "status": "completed_with_rejected_claims",
+    "model": {
+      "tag": "qwen2.5-coder:7b",
+      "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364"
+    },
+    "successful_tools": [
+      "decode_python_literals",
+      "detect_it_easy",
+      "disassemble_python",
+      "identify",
+      "strings",
+      "unpack_pyinstaller"
+    ],
+    "verdict": "inconclusive",
+    "proposed_verdict": "malicious",
+    "accepted_claims": 2,
+    "rejected_claims": 2,
+    "metrics": {
+      "model_calls": 17,
+      "tool_calls": 15,
+      "tool_errors": 1,
+      "validation_errors": 0,
+      "guard_hits": 0,
+      "prompt_tokens": 55694,
+      "completion_tokens": 1785,
+      "api_cost_usd": 0,
+      "model_vram_bytes_after_run": 4270619360,
+      "host_rss_bytes": 11747328,
+      "minimum_observed_host_available_memory_bytes": 286461952,
+      "elapsed_s": 215.2034,
+      "host_peak_rss_bytes": 29683712
+    },
+    "acceptance": {
+      "two_distinct_tools": true,
+      "required_branch_tools": true,
+      "model_minimum_met": true,
+      "python_source_decompiled": false,
+      "python_candidate_source_decoded": true,
+      "teacher_dataset_verified": false,
+      "coursework_accepted": false
+    },
+    "journal_events_verified": 86,
+    "journal_sha256": "15cded2386f14641f68038c4d9b058542a1fbf75dce5f16a6d69a02eb22622c3",
+    "report_sha256": "9e24d1ee55366b8b7673da1e5c34ce3cbbaa6686a1f92e1a3fd60c1608167d3e",
+    "source_manifest_sha256": "199849a9c48e773f94c8998f07504a58fb3096daf8acb86a944b4a055271efd0",
+    "actions": [
+      {
+        "step": 1,
+        "action": "identify"
+      },
+      {
+        "step": 2,
+        "action": "strings"
+      },
+      {
+        "step": 3,
+        "action": "detect_it_easy"
+      },
+      {
+        "step": 4,
+        "action": "unpack_pyinstaller"
+      },
+      {
+        "step": 5,
+        "action": "decompile_python"
+      },
+      {
+        "step": 6,
+        "action": "disassemble_python"
+      },
+      {
+        "step": 7,
+        "action": "decode_python_literals"
+      },
+      {
+        "step": 8,
+        "action": "read_evidence"
+      },
+      {
+        "step": 9,
+        "action": "read_evidence"
+      },
+      {
+        "step": 10,
+        "action": "read_evidence"
+      },
+      {
+        "step": 11,
+        "action": "read_evidence"
+      },
+      {
+        "step": 12,
+        "action": "search_evidence"
+      },
+      {
+        "step": 13,
+        "action": "read_evidence"
+      },
+      {
+        "step": 14,
+        "action": "search_evidence"
+      },
+      {
+        "step": 15,
+        "action": "read_evidence"
+      }
+    ],
+    "observations": [
+      {
+        "tool": "identify",
+        "backend": "pefile/2024.8.26",
+        "status": "ok",
+        "evidence_id": "ev_6f03a3851b964e5e",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "c8b3460c867c80c9ccfbf0061917f815be2c5de5d62637774aedefcd7046f27c",
+        "total_lines": 39,
+        "duration_s": 0.9481
+      },
+      {
+        "tool": "strings",
+        "backend": "native-utf8-utf16le/2",
+        "status": "ok",
+        "evidence_id": "ev_959ee28fa7b946c5",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+        "total_lines": 1085,
+        "duration_s": 1.3248
+      },
+      {
+        "tool": "detect_it_easy",
+        "backend": "diec/4.0.0",
+        "status": "ok",
+        "evidence_id": "ev_e495bdddd0154eb4",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "30eeaca91495cede6900b65f35cbc3e55900b54d79e64777fc7e24699b3f8e8d",
+        "total_lines": 48,
+        "duration_s": 1.7129
+      },
+      {
+        "tool": "unpack_pyinstaller",
+        "backend": "pyinstxtractor/815d31cf+bounded-entry-adapter",
+        "status": "ok",
+        "evidence_id": "ev_a90f6e24593842c2",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "54dac2e5d4cf49ce6ebfbf8640681f200daed262e4063064a963a290983e9793",
+        "total_lines": 4,
+        "duration_s": 0.1942
+      },
+      {
+        "tool": "decompile_python",
+        "backend": "unavailable",
+        "status": "error",
+        "evidence_id": "ev_0f7faa9e086b4ca6",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "2e3f5658a391feec501e93411d7d7641e10789faef5cd4744a66ab3b0c3bb50c",
+        "total_lines": 1,
+        "duration_s": 0.0669
+      },
+      {
+        "tool": "disassemble_python",
+        "backend": "pycdas/b4289760",
+        "status": "ok",
+        "evidence_id": "ev_d6d25903e13b4080",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a6fb32dd8d6bcd0cfc76436f851be12373980a086a6a045a66018b07524173ed",
+        "total_lines": 5593,
+        "duration_s": 0.1891
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      },
+      {
+        "tool": "decode_python_literals",
+        "backend": "bounded-literal-decoder/1",
+        "status": "ok",
+        "evidence_id": "ev_85fc8611730b46ec",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "output_sha256": "a28dd299767a8bd6cd2635c35bef2301e312f76d99c9d9275aa78766f62f1dd6",
+        "total_lines": 338,
+        "duration_s": 0.3218
+      }
+    ],
+    "requests": [
+      {
+        "step": 1,
+        "messages_sha256": "bd9f786f67c0d7eab56f4fa41313dfb03881efde1901b59732fc38332cddf695",
+        "evidence_line_count": 0
+      },
+      {
+        "step": 2,
+        "messages_sha256": "90293880a93632d6a8056c80fe6b253b2a29a4523f3c3a9568f0469fd988ec14",
+        "evidence_line_count": 24
+      },
+      {
+        "step": 3,
+        "messages_sha256": "82b641a188cf64eeaa49af62ab7a5c344806db8318c071bf1fc5fca4e5b820d2",
+        "evidence_line_count": 41
+      },
+      {
+        "step": 4,
+        "messages_sha256": "4c1c920242b55402f1dc91e9babf8f46ac825e2be54896064b4d619d79e19da6",
+        "evidence_line_count": 62
+      },
+      {
+        "step": 5,
+        "messages_sha256": "a8bafcfc9fd7b0429d7b44dae5b6c2d90e384dcb641c4c1db76fa7ae395ac34a",
+        "evidence_line_count": 64
+      },
+      {
+        "step": 6,
+        "messages_sha256": "9ed79f72d48e6f8bdc4721041ddceb50ea37c15deab86c8cf181ec1845d7844e",
+        "evidence_line_count": 65
+      },
+      {
+        "step": 7,
+        "messages_sha256": "1a31bd7c02e29c1f0d3fcb6be280c9faa42dcb73a4f601db241a213bcbffcfcf",
+        "evidence_line_count": 103
+      },
+      {
+        "step": 8,
+        "messages_sha256": "9f330153d4f70c6135e2d275708382e0a32b94163b23ef01b13f4698ffbb147d",
+        "evidence_line_count": 120
+      },
+      {
+        "step": 9,
+        "messages_sha256": "65b4a2ee35ebd972793e05245721ba08e84ecdcc5fab31bfa22abd4277c015fc",
+        "evidence_line_count": 115
+      },
+      {
+        "step": 10,
+        "messages_sha256": "036beb4d76b113521ff6fef00107b0fedc3a6d3928753808105e1998e9c76c97",
+        "evidence_line_count": 106
+      },
+      {
+        "step": 11,
+        "messages_sha256": "0fd93f47d22e2fb76b038ab3d63ecc7013c96861d445409a251e5feb7a296b89",
+        "evidence_line_count": 128
+      },
+      {
+        "step": 12,
+        "messages_sha256": "59d08501fd34d6041e35488fc1f65da221ebdde92b68be301a47b2406d595787",
+        "evidence_line_count": 120
+      },
+      {
+        "step": 13,
+        "messages_sha256": "8a4118c1ee7ff35f7a65b58307236fd67a3522f492a5808389449f0ebb15ee8a",
+        "evidence_line_count": 108
+      },
+      {
+        "step": 14,
+        "messages_sha256": "fbddbf9eb967ca00989bd9fa205ca8f0e1e16bf05cc0cedbfa84b4d84458e226",
+        "evidence_line_count": 114
+      },
+      {
+        "step": 15,
+        "messages_sha256": "a094044c14e0fb9c05ad43260e44f7b8d52dfeef72d435f47b82444492e9bb07",
+        "evidence_line_count": 108
+      },
+      {
+        "step": 16,
+        "messages_sha256": "03926f31a7383a4c87df72bbf2e11f3d0918e5b5d8cb5b067c4cb9b166488d98",
+        "evidence_line_count": 105
+      }
+    ]
+  },
+  "coursework_complete": false
+}

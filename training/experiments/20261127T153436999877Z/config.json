@@ -1,0 +1,8 @@
+{
+  "epochs": 300,
+  "learning_rate": 0.3,
+  "l2": 0.01,
+  "threshold": 0.5,
+  "initialization": "zeros",
+  "optimizer": "full-batch gradient descent"
+}

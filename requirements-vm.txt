@@ -1,0 +1,3 @@
+-r requirements-host.txt
+pefile==2024.8.26
+yara-python==4.5.4

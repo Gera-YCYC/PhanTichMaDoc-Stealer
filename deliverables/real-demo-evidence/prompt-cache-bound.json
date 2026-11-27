@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-27T16:50:06.001167+00:00",
+  "scope": "Observed llama-server prompt-cache log entries, not whole-process peak RSS",
+  "upstream": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md",
+  "setting": "LLAMA_ARG_CACHE_RAM",
+  "configured_mib": 256,
+  "measurements": {
+    "before": {
+      "log_sha256": "3bb55c3bf498cc0f1f08c898f40f37e8a3a9166cf21aec343ee20b63c982c718",
+      "observations": 28,
+      "maximum_observed_cache_mib": 2679.6,
+      "limits_mib": [
+        8192.0
+      ]
+    },
+    "after": {
+      "log_sha256": "23b5acb5880cc22fe319bc98c52854bd48dec00110fc70986df181ce0c98caa6",
+      "observations": 85,
+      "maximum_observed_cache_mib": 252.769,
+      "limits_mib": [
+        256.0
+      ]
+    }
+  },
+  "limits": [
+    "Not a controlled whole-system A/B; model/context and other applications also affect memory.",
+    "A configured cache bound does not guarantee no transient allocation or OOM.",
+    "No model weights or user-wide environment settings were modified."
+  ]
+}

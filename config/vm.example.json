@@ -1,0 +1,20 @@
+{
+  "lab_id": "stealer-course-vm",
+  "bind_host": "192.168.56.101",
+  "allowed_client_ip": "192.168.56.1",
+  "port": 8765,
+  "sample_dir": "C:/StealerLab/samples",
+  "evidence_dir": "C:/StealerLab/private/tool-evidence",
+  "ilspycmd": "C:/StealerLab/.tools/ilspycmd.exe",
+  "token_env": "STEALER_LAB_TOKEN",
+  "max_sample_bytes": 16777216,
+  "tool_timeout_s": 90,
+  "page_chars": 5000,
+  "isolation_attestation": {
+    "host_only_network": false,
+    "no_default_gateway": false,
+    "shared_folders_disabled": false,
+    "clipboard_disabled": false,
+    "clean_snapshot_created": false
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "dataset_origin": "pending_team_review_mixed_fixture_and_public_separate_before_scoring",
+  "status": "worksheet_only_not_scored",
+  "claims": [
+    {
+      "run_id": "20261127T123109_24605780",
+      "sample": "LabFixture.dll",
+      "sample_sha256": "91b7d130613897dd322e1e837a90189550d64b4213d6d155ffff03b4194dbb06",
+      "claim_id": "C1",
+      "claim_key": "The file is a .NET PE.",
+      "kind": "observation",
+      "agent_claim": {
+        "id": "C1",
+        "kind": "observation",
+        "text": "The file is a .NET PE.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_c801cb76c6f94f61",
+            "line": 5,
+            "quote": "  \"format\": \"PE .NET\","
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T123155_3c461577",
+      "sample": "safe_bundle.bin",
+      "sample_sha256": "9bc3ec8de11b413065dafb616bad8a3235b99ccd204d1f9e8876dc6d1c9dc811",
+      "claim_id": "C1",
+      "claim_key": "The file is a PyInstaller bundle.",
+      "kind": "observation",
+      "agent_claim": {
+        "id": "C1",
+        "kind": "observation",
+        "text": "The file is a PyInstaller bundle.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_4cc5105fc75b42ef",
+            "line": 7,
+            "quote": "  \"pyinstaller_cookie_present\": true"
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T123155_3c461577",
+      "sample": "safe_bundle.bin",
+      "sample_sha256": "9bc3ec8de11b413065dafb616bad8a3235b99ccd204d1f9e8876dc6d1c9dc811",
+      "claim_id": "C2",
+      "claim_key": "The sample contains a URL that could be used for exfiltration.",
+      "kind": "ioc",
+      "agent_claim": {
+        "id": "C2",
+        "kind": "ioc",
+        "text": "The sample contains a URL that could be used for exfiltration.",
+        "value": "https://fixture.invalid/documentation",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_c523f3d4df774ddb",
+            "line": 1,
+            "quote": "{\"type\": \"url\", \"value\": \"https://fixture.invalid/documentation\", \"source_evidence_id\": \"ev_43bce5fd55794e31\", \"source_line\": 4, \"classification\": \"candidate_not_confirmed_exfiltration\"}"
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T123329_6da561af",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "claim_id": "C1",
+      "claim_key": "The file is a .NET PE.",
+      "kind": "observation",
+      "agent_claim": {
+        "id": "C1",
+        "kind": "observation",
+        "text": "The file is a .NET PE.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_3c2d132c67cb4e4f",
+            "line": 707,
+            "quote": "\t\t\tCRYPTPROTECT_PROMPT_ON_UNPROTECT = 1,"
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T123329_6da561af",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "claim_id": "C2",
+      "claim_key": "The sample contains multiple IP addresses and URLs that could indicate exfiltration.",
+      "kind": "ioc",
+      "agent_claim": {
+        "id": "C2",
+        "kind": "ioc",
+        "text": "The sample contains multiple IP addresses and URLs that could indicate exfiltration.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_ee6a5d09db124999",
+            "line": 1,
+            "quote": "{\"type\": \"ipv4\", \"value\": \"1.0.0.0\", \"source_evidence_id\": \"ev_3c2d132c67cb4e4f\", \"source_line\": 46, \"classification\": \"candidate_not_confirmed_exfiltration\"}"
+          },
+          {
+            "evidence_id": "ev_ee6a5d09db124999",
+            "line": 2,
+            "quote": "{\"type\": \"ipv4\", \"value\": \"11.0.0.0\", \"source_evidence_id\": \"ev_3c2d132c67cb4e4f\", \"source_line\": 53, \"classification\": \"candidate_not_confirmed_exfiltration\"}"
+          },
+          {
+            "evidence_id": "ev_ee6a5d09db124999",
+            "line": 3,
+            "quote": "{\"type\": \"url\", \"value\": \"https://t.me/th3darkly\", \"source_evidence_id\": \"ev_3c2d132c67cb4e4f\", \"source_line\": 3502, \"classification\": \"candidate_not_confirmed_exfiltration\"}"
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T125042_4ecdf290",
+      "sample": "LabFixture.dll",
+      "sample_sha256": "91b7d130613897dd322e1e837a90189550d64b4213d6d155ffff03b4194dbb06",
+      "claim_id": "C1",
+      "claim_key": "The file is a .NET PE.",
+      "kind": "observation",
+      "agent_claim": {
+        "id": "C1",
+        "kind": "observation",
+        "text": "The file is a .NET PE.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_2f6a77ed62b2423d",
+            "line": 5,
+            "quote": "  \"format\": \"PE .NET\","
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T125042_4ecdf290",
+      "sample": "LabFixture.dll",
+      "sample_sha256": "91b7d130613897dd322e1e837a90189550d64b4213d6d155ffff03b4194dbb06",
+      "claim_id": "C2",
+      "claim_key": "The assembly does not contain any network requests or credential access.",
+      "kind": "observation",
+      "agent_claim": {
+        "id": "C2",
+        "kind": "observation",
+        "text": "The assembly does not contain any network requests or credential access.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_85bf50486eb5412c",
+            "line": 11,
+            "quote": "\t\treturn new string[4] { \"SAFE_LAB_FIXTURE\", \"https://fixture.invalid/documentation\", \"Login Data is a documentation example, not accessed here.\", \"No network request or credential access is implemented.\" };"
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    },
+    {
+      "run_id": "20261127T125144_f8ae9159",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_id": "C1",
+      "claim_key": "The file is a Python script.",
+      "kind": "observation",
+      "agent_claim": {
+        "id": "C1",
+        "kind": "observation",
+        "text": "The file is a Python script.",
+        "value": "",
+        "technique_id": "",
+        "evidence": [
+          {
+            "evidence_id": "ev_1f85df6f9bff4295",
+            "line": 5,
+            "quote": "  \"format\": \"PE\","
+          }
+        ]
+      },
+      "label": null,
+      "grounded": null,
+      "reviewer": "",
+      "truth_reference": ""
+    }
+  ],
+  "missed_ground_truth_items": [],
+  "instructions": "Score raw claims including rejected claims. Separate fixtures from public malware. Add independently discovered missed items. Fill reviewer and truth_reference before scoring."
+}

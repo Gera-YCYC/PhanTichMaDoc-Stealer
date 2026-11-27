@@ -1,0 +1,76 @@
+{
+  "matching_records": [
+    {
+      "evidence_id": "ev_04b9664d14b04778",
+      "output_sha256": "1af6e4f92dfb529eb85573e09e4d26d3b5211f3fab410278937f21210ff4b8e0",
+      "normalized_source_sha256": "72efc6ebafd1b7157c14f9b4e68ff5c212ee7da9ff5d53fa40057d9fdd56476f",
+      "facts": [
+        {
+          "id": "PY24-B01",
+          "markers_verified": true,
+          "lines": [
+            55,
+            57,
+            59,
+            60,
+            61
+          ]
+        },
+        {
+          "id": "PY24-B02",
+          "markers_verified": true,
+          "lines": [
+            131,
+            135,
+            136,
+            138,
+            139,
+            140
+          ]
+        },
+        {
+          "id": "PY24-B03",
+          "markers_verified": true,
+          "lines": [
+            160,
+            162,
+            163,
+            168
+          ]
+        },
+        {
+          "id": "PY24-B04",
+          "markers_verified": true,
+          "lines": [
+            274,
+            275,
+            282,
+            295,
+            304,
+            305,
+            311
+          ]
+        },
+        {
+          "id": "PY24-B05",
+          "markers_verified": true,
+          "lines": [
+            92,
+            94,
+            98,
+            102,
+            103,
+            104,
+            105,
+            311,
+            319
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "created_at": "2026-11-27T16:02:38.270424+00:00",
+  "kind": "VM-source-marker-audit-not-human-adjudication",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db"
+}

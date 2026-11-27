@@ -1,0 +1,90 @@
+# Trạng thái sản phẩm ngày 27/11/2026
+
+**Chưa hoàn thành toàn bộ đồ án.** Mục tiêu là sản phẩm phân tích stealer .NET/Python theo toàn bộ slide/đề xuất, không còn dừng ở buổi 4. Tài liệu bàn giao là Markdown kỹ thuật; thông tin sinh viên và bìa báo cáo không là điều kiện chặn.
+
+## Cập nhật báo cáo đoạn và tài nguyên
+
+- **94 kiểm thử phần mềm đạt trên Windows** ở bản thêm khoảng dẫn chứng, báo cáo đoạn và tách provenance decoder. Không phải accuracy trên 94 malware.
+- Đã triển khai nhánh thử `evidence-cards-v1`: SLM chọn `finalize`, viết từng đoạn đã truy xuất, kiểm từng claim, tổng hợp verdict từ tập được giữ; log lưu cả câu bị loại. Khoảng citation được đối chiếu chính xác từng dòng/hash mẫu. [Thiết kế và cách chạy](EVIDENCE_CARDS.md).
+- Đã xác định cache prompt của runtime tăng đến **2.679,6 MiB** trong log trước sửa (trần 8.192 MiB). `Start-LocalModel.ps1` giới hạn riêng cache dự án ở **256 MiB**; log sau sửa xác nhận trần này, giá trị lớn nhất quan sát 252,769 MiB. Đây là số đo cache ở các dòng log, không phải peak RAM toàn hệ thống. [Receipt](../deliverables/real-demo-evidence/prompt-cache-bound.json).
+- Hai run Qwen2.5 Coder 7B hoàn tất trên Python/Gomorrah sau giới hạn cache, nhưng cả hai trả báo cáo rỗng. Giữ kết quả âm; không tính rỗng là 0% hallucination. [Bốn run gồm cả lỗi RAM](../deliverables/real-demo-evidence/cards-qwen25-runs.json).
+- **Run thật Qwen3 8B `20261127T164056_2bc4e796`** trên Python: 4 tool thành công, 17 tool calls, 37 model calls, 376,1841 s; 12 claim thô, reviewer giữ 9/loại 3; verdict malicious. RAM khả dụng nhỏ nhất giữa request 815.947.776 B; VRAM cuối run theo API 4.206.582.824 B. Đây là một nhãn khớp trên một mẫu phát triển, chưa là chất lượng toàn corpus. [Receipt](../deliverables/real-demo-evidence/cards-qwen3-python-run.json).
+- Rà soát độc lập với đầu ra reviewer ghi **5 phản ví dụ**: loại nhầm hai câu có chứng cứ, loại đúng một câu vượt quá đoạn được dẫn, chấp nhận sai hai behavior chỉ dựa trên import. [Hồ sơ đối chiếu](../eval/adjudications/python2024-qwen3-card-counterexamples.json) không có người thật/GV ký duyệt và không tự tính F1 khi chưa chấm đủ fact/claim.
+- Qwen3 vẫn là **candidate**, chưa đổi mặc định hoặc Release. Việc nó chạy được sau giới hạn cache sửa nhận định về tài nguyên trước đó; chưa chứng minh nó đạt mọi ngưỡng chất lượng.
+
+Ưu tiên tiếp: đưa vị trí tìm kiếm vào ngữ cảnh viết claim, phân biệt import với hành vi, sửa false rejection/false acceptance, rồi đo lại cả hai nền tảng. IOC/ATT&CK/YARA đầy đủ, bộ sạch, stability và injection vẫn là gate mở. Buổi 4 không phải điều kiện kết thúc sản phẩm.
+
+Cuối đợt đã dừng đúng server dự án và tắt VM nhẹ nhàng. [Receipt sau dừng](../deliverables/real-demo-evidence/runtime-stopped-after-cards.json) xác nhận cổng không còn lắng nghe, VM chạy bằng 0, VRAM quan sát 0 MiB; trọng số và đĩa VM không bị xóa. Đây là trạng thái tại thời điểm kiểm, không phải theo dõi nền.
+
+## Đã triển khai và kiểm thực tế
+
+- Qwen2.5 Coder 7B Q4_K_M: 7.615.616.512 tham số. Model mới ở C; model 1.5B trên D được giữ nguyên.
+- Host chạy controller/Ollama; VM Ubuntu 24.04 2 GB/2 vCPU chạy parser. Không default route, không shared folders/clipboard/dnd, không thực thi mẫu.
+- DIE 4.0.0 và FLOSS 3.2.0 cài offline, khóa asset/hash, chạy thành công trên Gomorrah và được SLM tự chọn. DIE cũng được SLM dùng thành công trên PythonStealer.
+- Native tools kiểm executable digest, argv cố định, timeout/output/resource limits; source VM root-owned. FLOSS .NET chỉ static strings, không coi là giải rối CIL.
+- Extractor giữ UTF-8 tiếng Việt và offset byte; guard nhận NFKC/zero-width variants. model_request ghi đúng evidence gửi vào SLM sau compaction.
+- Truy xuất code: context 8192, tối đa 16 bước, giữ chỗ cho search và report. Citation ID ngắn ánh xạ tới chứng cứ thật. Behavior/ATT&CK chỉ dẫn IOC/strings bị loại.
+- Metadata có kiểm equality với trường identify; reviewer SLM không thể loại sai các câu format khớp chính xác theo tập câu hỗ trợ hẹp.
+- **88 kiểm thử phần mềm đạt trên Windows** tại bản bổ sung ranker/decoder/memory guard; không phải accuracy trên 88 malware.
+- Source host/VM đã so hash khớp. Inventory 31 mẫu/fixture không có nghĩa 31 malware độc lập.
+
+## Lượt phát triển thật gần nhất
+
+Bảng dưới dùng mẫu public thật, Qwen7B thật và tool trong VM; không mock/fixture/replay. Hash chain đã kiểm. [Receipt metadata 6 lượt](../deliverables/real-demo-evidence/native-tools-and-navigation-runs.json).
+
+| Run | Mẫu | Tool thành công | Kết quả |
+|---|---|---:|---|
+| 20261127T145127_bb612475 | Gomorrah | 6 | DIE/FLOSS được model chọn; inconclusive, reviewer loại sai metadata |
+| 20261127T145456_79a81a36 | Gomorrah | 6 | Có tìm mã, claim/citation còn sai; inconclusive |
+| 20261127T150251_d6b62b38 | Gomorrah | 6 | Reviewer chấp nhận nhầm URL credit là exfiltration; đã giữ phản ví dụ |
+| 20261127T150554_176a3d4e | PythonStealer2024 | 6 | Incomplete: đọc trang hết 16 bước; giữ nguyên log lỗi |
+| 20261127T151011_0717f844 | Gomorrah | 5 | Chặn sai loại chứng cứ; claim vẫn dẫn sai dòng; 153,76 s, inconclusive |
+| 20261127T151305_4a5108aa | PythonStealer2024 | 6 | Hoàn tất sau sửa dự phòng bước; 174,58 s; pycdc lỗi/pycdas hoạt động; inconclusive |
+
+Các claim import/library trong report Python không phải phân tích đầy đủ hành vi stealer. Reviewer chấp nhận không chứng minh claim đúng. Limitation do model viết cũng có thể chứa khẳng định thiếu căn cứ, phải được rà soát nội dung.
+
+## Đáp án đối chiếu và chất lượng
+
+[Hồ sơ Gomorrah](REFERENCE_ANALYSIS.md) có 6 mục từ ILSpy và nguồn công bố mẫu. Hash mẫu/output và marker của cả 6 mục đã kiểm lại trong VM. Đây là development reference, chưa có người thật ký duyệt, chưa phải ground truth đầy đủ hoặc tập test chưa nhìn thấy.
+
+Lỗi đã xác minh: t.me URL trong Gomorrah nằm trong dòng ghi công tác giả, không tự chứng minh webhook exfiltration. Cấu hình urlbot còn cần đọc từ dữ liệu tách bằng dấu `|FS|`; không đoán endpoint.
+
+Python3.11: pycdc vẫn chưa decompile đầy đủ, nhưng decoder mới đã thu payload candidate 332 dòng của PythonStealer2024 bằng Base64/Fernet/zlib tĩnh. [Chuỗi hash và phạm vi](PYTHON_STATIC_DECODING.md). Run thật 20261127T154300_0506c3a6 do Qwen7B tự gọi decoder thành công; 6 tool thành công, 181,544 giây, verdict vẫn inconclusive và 5 claim bị reviewer loại. Không biến backend thành công thành chất lượng phân tích đạt.
+
+Đã train [ranker phụ trợ](../training/RANKER_EXPERIMENT.md) trên CPU, 117 anchor (70 train/42 validation/5 test) từ mẫu phát triển. Có loss/checkpoint thật; chưa fine-tune Qwen và chưa có xác nhận loại train GV yêu cầu. Run Gomorrah 20261127T153601_a3240ca6 dùng ranking mới vẫn có claim sai, 179,0067 giây, inconclusive.
+
+[Phép thử Qwen3 8B](MODEL_COMPARISON.md) phải dừng do RAM khả dụng còn 15.020 KiB. Giữ log 65 event và receipt dừng, không có report hoàn tất; không đổi baseline/Release. Đã bổ sung kiểm RAM giữa các request và unload khi dưới 256 MiB. Không coi phép đo này là peak profiler toàn hệ thống.
+
+Regression mới `20261127T160346_4685a56a` trên Python thật đã hoàn tất luồng với 6 tool thành công, có decoder và chỉ đọc source sau giải mã; report vẫn inconclusive/có claim bị loại. [Receipt](../deliverables/real-demo-evidence/python-decoder-final-regression.json). Đây là bằng chứng pipeline hoạt động, chưa đóng gate chất lượng.
+
+[Hồ sơ Python](../eval/reference_profiles/python2024.static.json) gồm năm fact đã kiểm marker/hash trong VM; không phải human approval. [Chấm báo cáo baseline](../deliverables/real-demo-evidence/python2024-baseline-score.json): 5 raw claim không được chính trích dẫn của chúng chứng minh, 5 fact chưa được báo cáo có căn cứ, F1=0 trên phạm vi nhỏ này. Nhãn raw malicious khớp nguồn nhưng report sau lọc là inconclusive. Không dùng số này đại diện toàn corpus hoặc dùng việc lọc hết claim để báo tỷ lệ bịa 0.
+
+## Injection: sửa cách diễn giải số liệu cũ
+
+20 run/10 cặp lịch sử thiếu model_request. Audit v2: **0 eligible/10 unevaluable, rate=null**. Con số 9/10 cũ chỉ chứng minh payload tới tool observation, không dùng làm tỷ lệ chống injection.
+
+P06 đã chạy guard on/off thật, payload đi đúng đường. Cả hai không đổi verdict nhưng vẫn inconclusive; chưa chứng minh guard cải thiện kết luận hoặc đủ >=10 ca. [Chi tiết Unicode/exposure](NATIVE_TOOLS_AND_EXPOSURE.md). Regression mới có receipt riêng, không trộn các revision.
+
+## Gate còn mở
+
+| Gate | Trạng thái |
+|---|---|
+| Buổi4, >=2 tool thật; SLM>=7B; >=4 tool thật | Có bằng chứng tích hợp/backend trên mẫu thật |
+| P>=0,8; R>=0,7; F1>=0,75/0,8; verdict100% | Chưa đạt/chưa chấm đủ; inconclusive không tính đúng cho mẫu malicious |
+| Bịa<=5%; grounding>=90% | Chưa có kiểm chứng nội dung đủ; còn lỗi citation/reviewer |
+| Stability3 lần>=80% | Chưa đo đủ 3 run cùng revision/config mới |
+| YARA TPR>=90%, FPR=0 | Chưa có corpus malware/clean chốt; marker fixture lịch sử TPR=0 |
+| Injection0%, >=10 ca | Chưa đủ coverage, hai chiều và guard ablation |
+| Training thật | Có ML ranker với cập nhật trọng số/loss/checkpoint; chưa SLM fine-tune, chưa chốt nghĩa yêu cầu GV |
+| Hiệu quả | Có token/time/RSS/VRAM cuối run; thiếu peak toàn hệ thống và so phương án đủ |
+| Tái lập | Đã dựng VM mới ở bản cũ trên cùng host; installer mới chưa thử máy vật lý khác |
+
+[Backlog và điều kiện đóng](CONG_VIEC_CON_LAI.md) nêu việc tiếp theo. 12 ảnh và proposal ở docs/reference giữ nguyên bytes. Release buổi4 giữ nguyên tag/asset; main nhận cập nhật kỹ thuật đã kiểm.
+
+## Lịch sử và runtime
+
+Hai demo buổi4 20261127T130645_f60cec20 và 20261127T130934_26431286 vẫn giữ receipt cũ: 4/5 tool, 100,4/90,9 s, inconclusive. CI bản cũ có 49 tests; không thay số lịch sử bằng 79 trước khi CI mới chạy.
+
+Runtime được bật lại theo ủy quyền mới để đo. Receipt runtime-stopped cũ chỉ chứng minh thời điểm đó; trạng thái cuối đợt được ghi riêng. Dừng giải phóng RAM/VRAM, không xóa weight hoặc đĩa VM.
+
+Đợt ranker/decoder đã dừng server Ollama và gửi shutdown nhẹ nhàng cho lab sau regression. [Kiểm trạng thái cuối đợt](../deliverables/real-demo-evidence/runtime-stopped-after-decoder.json) ghi PID/port/VM và RAM khả dụng tại thời điểm kiểm, không phải theo dõi nền liên tục. Qwen3 đã tải vẫn giữ trong model store, chưa đổi default hoặc Release.

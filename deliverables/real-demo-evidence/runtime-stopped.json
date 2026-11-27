@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-11-27T14:18:00.260511+00:00",
+  "project_ollama_port_11435_listening": false,
+  "running_vm_count": 0,
+  "gpu_used_total_mib": "0, 6144",
+  "model_and_vm_files_preserved": true,
+  "model_disk_files_deleted": false,
+  "runtime_restarted_after_stop": false,
+  "note": "GPU figure is a point-in-time device measurement, not measured memory freed by stopping."
+}

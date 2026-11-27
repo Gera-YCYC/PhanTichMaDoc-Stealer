@@ -1,0 +1,189 @@
+{
+  "created_at": "2026-11-27T16:07:08.276634+00:00",
+  "run_id": "20261127T154300_0506c3a6",
+  "dataset_origin": "public-development-subset-source-audit",
+  "teacher_dataset_complete": false,
+  "human_reviewers": [],
+  "report_scope": "raw model claims before filtering; missing facts relative to five-item static profile only",
+  "raw_report_sha256": "977e6c1f03d4e2cc5ab3dec16c93490e8b5947270e4d9e585ec9b0ad74c30121",
+  "reference_sha256": "e91277705e7a944f97738728574b850838c9a8a81250cd773c48a2a40fa1b997",
+  "claims": [
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "C1",
+      "text": "The code reads login data from browser databases.",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json",
+      "reason": "Cites the function heading/path/existence guard, ending before copy/connect/SELECT; does not substantiate database reading.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 133
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 134
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 135
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 136
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 137
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "C2",
+      "text": "The code decrypts passwords using a master key.",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json",
+      "reason": "Cites cursor.fetchall(), not the decrypt_password call or AES/DPAPI implementation.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 144
+        }
+      ]
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "C3",
+      "text": "The code writes the extracted data to a temporary directory.",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json",
+      "reason": "Cites directory checks/creation, not writing extracted results to a file.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 117
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 118
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 119
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 120
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 122
+        },
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "C4",
+      "text": "The code sends the extracted data to a remote server.",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json",
+      "reason": "Cites the closing string delimiter in a result-format block, not SMTP/sendmail or dataflow.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 152
+        }
+      ]
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "C5",
+      "text": "The code uses the `requests` library to send HTTP requests.",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json",
+      "reason": "Cites import os; the recovered source audit finds SMTP for the main sending path, not demonstrated requests HTTP transmission.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "missed-PY24-B01",
+      "text": "get_master_key reads Local State, decodes os_crypt.encrypted_key and passes the remaining bytes to CryptUnprotectData.",
+      "label": "missed",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json#PY24-B01"
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "missed-PY24-B02",
+      "text": "get_login_data copies Login Data, queries action_url/username_value/password_value from logins and passes password bytes to decrypt_password.",
+      "label": "missed",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json#PY24-B02"
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "missed-PY24-B03",
+      "text": "get_credit_cards queries credit_cards and invokes decrypt_password on card_number_encrypted; this is static capability, not an observed recovered card.",
+      "label": "missed",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json#PY24-B03"
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "missed-PY24-B04",
+      "text": "mainpass passes browser results to save_results and combines the output directory as Browser.zip.",
+      "label": "missed",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json#PY24-B04"
+    },
+    {
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "claim_key": "missed-PY24-B05",
+      "text": "send_email creates an SMTP connection, enables STARTTLS, logs in and calls sendmail. mainpass supplies the zip path to this function; MIME attachment code needs to be included when claiming the complete attachment flow.",
+      "label": "missed",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json#PY24-B05"
+    }
+  ],
+  "verdicts": [
+    {
+      "expected": "malicious",
+      "predicted": "malicious",
+      "truth_reference": "eval/reference_profiles/python2024.static.json"
+    }
+  ],
+  "limits": [
+    "Not a full-corpus grade or human adjudication",
+    "Unsupported means submitted evidence does not substantiate the claim; some text describes real capabilities but cites the wrong lines",
+    "Rejected claims remain in the raw score; filtering them does not make hallucination zero"
+  ]
+}

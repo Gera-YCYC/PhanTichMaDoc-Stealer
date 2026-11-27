@@ -1,0 +1,695 @@
+{
+  "created_at": "2026-11-27T15:56:01.735879+00:00",
+  "kind": "actual-local-SLM-and-VM-runs",
+  "runs": [
+    {
+      "run_id": "20261127T153601_a3240ca6",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "completed_with_rejected_claims",
+      "model": {
+        "tag": "qwen2.5-coder:7b",
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364"
+      },
+      "successful_tools": [
+        "decompile_dotnet",
+        "detect_it_easy",
+        "extract_ioc",
+        "identify",
+        "strings"
+      ],
+      "verdict": "inconclusive",
+      "proposed_verdict": "suspicious",
+      "accepted_claims": 4,
+      "rejected_claims": 2,
+      "metrics": {
+        "model_calls": 17,
+        "tool_calls": 15,
+        "tool_errors": 0,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 42963,
+        "completion_tokens": 2237,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4270619360,
+        "host_rss_bytes": 29720576,
+        "elapsed_s": 179.0067,
+        "host_peak_rss_bytes": 29720576
+      },
+      "acceptance": {
+        "two_distinct_tools": true,
+        "required_branch_tools": true,
+        "model_minimum_met": true,
+        "python_source_decompiled": null,
+        "teacher_dataset_verified": false,
+        "coursework_accepted": false
+      },
+      "journal_events_verified": 69,
+      "journal_sha256": "f431d77e9596f13ed29706ac059b8a8cfa3925f0be28cf25dd5e3163dd5adfed",
+      "report_sha256": "fb7206ea8fb21ad7f50930d3fea6bcb2bacac358d829da445cbe1f7646964205",
+      "source_manifest_sha256": "2367b9e1f535e23e8cdde1d1f7e7dd8db497879a365a9c774720c3e52e1fc09a",
+      "actions": [
+        {
+          "step": 1,
+          "action": "identify"
+        },
+        {
+          "step": 2,
+          "action": "decompile_dotnet"
+        },
+        {
+          "step": 3,
+          "action": "strings"
+        },
+        {
+          "step": 4,
+          "action": "detect_it_easy"
+        },
+        {
+          "step": 5,
+          "action": "search_evidence"
+        },
+        {
+          "step": 6,
+          "action": "extract_ioc"
+        },
+        {
+          "step": 7,
+          "action": "search_evidence"
+        },
+        {
+          "step": 8,
+          "action": "search_evidence"
+        },
+        {
+          "step": 9,
+          "action": "search_evidence"
+        },
+        {
+          "step": 10,
+          "action": "search_evidence"
+        },
+        {
+          "step": 11,
+          "action": "search_evidence"
+        },
+        {
+          "step": 12,
+          "action": "search_evidence"
+        },
+        {
+          "step": 13,
+          "action": "search_evidence"
+        },
+        {
+          "step": 14,
+          "action": "search_evidence"
+        },
+        {
+          "step": 15,
+          "action": "search_evidence"
+        }
+      ],
+      "observations": [
+        {
+          "tool": "identify",
+          "backend": "pefile/2024.8.26",
+          "status": "ok",
+          "evidence_id": "ev_0538093b1aa74852",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "4e930ad4da78a2b6a66ae5b1d92bf495a6cdf0246b4b0941ade64d5b5d20e785",
+          "total_lines": 26,
+          "duration_s": 0.0969
+        },
+        {
+          "tool": "decompile_dotnet",
+          "backend": "ilspycmd",
+          "status": "ok",
+          "evidence_id": "ev_d444c47aa2024cd7",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+          "total_lines": 5008,
+          "duration_s": 0.3763
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "detect_it_easy",
+          "backend": "diec/4.0.0",
+          "status": "ok",
+          "evidence_id": "ev_54d1d7b3765b40c7",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "07d25154f944cfb79f812d6889e6283e74ec1b9700cbbf4b2d8db63f0be3cd0f",
+          "total_lines": 48,
+          "duration_s": 0.7329
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "extract_ioc",
+          "backend": "ioc-regex/1",
+          "status": "ok",
+          "evidence_id": "ev_615148e8d9bd421f",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "03c2a378b07f538eaee5562bcef9c1ed7a5920cd6a58e3ab6e6478485957ac1b",
+          "total_lines": 3,
+          "duration_s": 0.0059
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_85a7feede06a4998",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "764545e0fe731aa9896dca0a3827601a1c760dbd7badce8fc78157c91408957a",
+          "total_lines": 900,
+          "duration_s": 0.0051
+        },
+        {
+          "tool": "decompile_dotnet",
+          "backend": "ilspycmd",
+          "status": "ok",
+          "evidence_id": "ev_d444c47aa2024cd7",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+          "total_lines": 5008,
+          "duration_s": 0.3763
+        },
+        {
+          "tool": "decompile_dotnet",
+          "backend": "ilspycmd",
+          "status": "ok",
+          "evidence_id": "ev_d444c47aa2024cd7",
+          "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+          "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+          "total_lines": 5008,
+          "duration_s": 0.3763
+        }
+      ],
+      "requests": [
+        {
+          "step": 1,
+          "messages_sha256": "a5e2c8814145787bac0ac800ab63f9737dcd95553a7df66c6cd21047513454a3",
+          "evidence_line_count": 0
+        },
+        {
+          "step": 2,
+          "messages_sha256": "12cdda0abae9d010941ed62e440cdff6f1b0f619cdf9d5675e6b4c74660ce65e",
+          "evidence_line_count": 24
+        },
+        {
+          "step": 3,
+          "messages_sha256": "faca75359d5f6f764a2dbd1ac8c9a1e834279f6f98c02998e9c2c5ea96d68ad3",
+          "evidence_line_count": 60
+        },
+        {
+          "step": 4,
+          "messages_sha256": "ea4f553318dee4b5ff499b25aaf9c48943fcef98eff7c3e5ddd74feaab834a01",
+          "evidence_line_count": 74
+        },
+        {
+          "step": 5,
+          "messages_sha256": "38c599ea56425e58fc9881b6373c7d029017cded91b7fe7e77162ee5ef7706b8",
+          "evidence_line_count": 96
+        },
+        {
+          "step": 6,
+          "messages_sha256": "4df2a37252f1a657d626bda9242a1407ea427bd8dc1396eba55f4f5e0ef506a5",
+          "evidence_line_count": 99
+        },
+        {
+          "step": 7,
+          "messages_sha256": "f14662cc82b06cc15fe16577e232fd9dca85f8d1f61a1475358a0abbcd18fca1",
+          "evidence_line_count": 102
+        },
+        {
+          "step": 8,
+          "messages_sha256": "fb8a6ed11cf99286001f390253160b894fa3e4117d3bf79e527d0e6d0363396c",
+          "evidence_line_count": 102
+        },
+        {
+          "step": 9,
+          "messages_sha256": "78ced7ee52cdf6592e62cd8db66c46b6a87e4674493a4ebc41ec66042fbbbb7f",
+          "evidence_line_count": 102
+        },
+        {
+          "step": 10,
+          "messages_sha256": "73bb388da8205ddbeddf7c7bb5638e9d42fc354b34aa4c21c6dfee7f9e0ad2d6",
+          "evidence_line_count": 102
+        },
+        {
+          "step": 11,
+          "messages_sha256": "1e17c942afba65583f3ad65b50a5d723be5fc0d41352658d525d585a2790cfbc",
+          "evidence_line_count": 99
+        },
+        {
+          "step": 12,
+          "messages_sha256": "92424c5e9202a8e9d022bf85acdd9eee697071547f86aef93020b9db6db77ef4",
+          "evidence_line_count": 100
+        },
+        {
+          "step": 13,
+          "messages_sha256": "2082841e83eddacd1341c959f7c2a26446d1023926726507c08b35a7cb04ae63",
+          "evidence_line_count": 100
+        },
+        {
+          "step": 14,
+          "messages_sha256": "2e8453b03942652841e8023c2c9a3ee20da7f599c1662efca5483c07ef12f0af",
+          "evidence_line_count": 100
+        },
+        {
+          "step": 15,
+          "messages_sha256": "6d2ee93ea2dd76789197df291c4dcfe97acbe2a641a00a5f197c4e391e4e5897",
+          "evidence_line_count": 114
+        },
+        {
+          "step": 16,
+          "messages_sha256": "6da2a61b2eab9ded9d4970baed5a106533b81831f4a966a33b4f5c72c843cf66",
+          "evidence_line_count": 111
+        }
+      ]
+    },
+    {
+      "run_id": "20261127T154300_0506c3a6",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "status": "completed_with_rejected_claims",
+      "model": {
+        "tag": "qwen2.5-coder:7b",
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364"
+      },
+      "successful_tools": [
+        "decode_python_literals",
+        "detect_it_easy",
+        "disassemble_python",
+        "identify",
+        "strings",
+        "unpack_pyinstaller"
+      ],
+      "verdict": "inconclusive",
+      "proposed_verdict": "malicious",
+      "accepted_claims": 0,
+      "rejected_claims": 5,
+      "metrics": {
+        "model_calls": 17,
+        "tool_calls": 15,
+        "tool_errors": 2,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 53297,
+        "completion_tokens": 1907,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4270619360,
+        "host_rss_bytes": 29708288,
+        "elapsed_s": 181.544,
+        "host_peak_rss_bytes": 29708288
+      },
+      "acceptance": {
+        "two_distinct_tools": true,
+        "required_branch_tools": true,
+        "model_minimum_met": true,
+        "python_source_decompiled": false,
+        "python_candidate_source_decoded": true,
+        "teacher_dataset_verified": false,
+        "coursework_accepted": false
+      },
+      "journal_events_verified": 70,
+      "journal_sha256": "c092064e24e5740b9943fb055c0da88668d1fbc8d78a78c11160ca39db837e04",
+      "report_sha256": "89fc0f7f463004026480a733d37afc91ecad8aeeffeaa5e9f2027a797a77cf44",
+      "source_manifest_sha256": "b22cdcc3175d308c836ca0672dc0e4ac052ed8d651f09cfbd6199f9400456bcc",
+      "actions": [
+        {
+          "step": 1,
+          "action": "identify"
+        },
+        {
+          "step": 2,
+          "action": "floss"
+        },
+        {
+          "step": 3,
+          "action": "strings"
+        },
+        {
+          "step": 4,
+          "action": "unpack_pyinstaller"
+        },
+        {
+          "step": 5,
+          "action": "decompile_python"
+        },
+        {
+          "step": 6,
+          "action": "detect_it_easy"
+        },
+        {
+          "step": 7,
+          "action": "disassemble_python"
+        },
+        {
+          "step": 8,
+          "action": "decode_python_literals"
+        },
+        {
+          "step": 9,
+          "action": "read_evidence"
+        },
+        {
+          "step": 10,
+          "action": "read_evidence"
+        },
+        {
+          "step": 11,
+          "action": "read_evidence"
+        },
+        {
+          "step": 12,
+          "action": "read_evidence"
+        },
+        {
+          "step": 13,
+          "action": "read_evidence"
+        },
+        {
+          "step": 14,
+          "action": "search_evidence"
+        },
+        {
+          "step": 15,
+          "action": "search_evidence"
+        }
+      ],
+      "observations": [
+        {
+          "tool": "identify",
+          "backend": "pefile/2024.8.26",
+          "status": "ok",
+          "evidence_id": "ev_b2b4999ae664497d",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "c8b3460c867c80c9ccfbf0061917f815be2c5de5d62637774aedefcd7046f27c",
+          "total_lines": 39,
+          "duration_s": 0.7758
+        },
+        {
+          "tool": "floss",
+          "backend": "floss/3.2.0",
+          "status": "error",
+          "evidence_id": "ev_24c1a5de5e534b24",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "76a5d420cd73f43d2daba63da57faa2cc83bdc39258a9fe2cc52cf1e2b50399c",
+          "total_lines": 2,
+          "duration_s": 5.9169
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_04285ddae7f8444a",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+          "total_lines": 1085,
+          "duration_s": 0.7078
+        },
+        {
+          "tool": "unpack_pyinstaller",
+          "backend": "pyinstxtractor/815d31cf+bounded-entry-adapter",
+          "status": "ok",
+          "evidence_id": "ev_3d91850eeeea41e6",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "54dac2e5d4cf49ce6ebfbf8640681f200daed262e4063064a963a290983e9793",
+          "total_lines": 4,
+          "duration_s": 0.1321
+        },
+        {
+          "tool": "decompile_python",
+          "backend": "unavailable",
+          "status": "error",
+          "evidence_id": "ev_f164cc49d4a14416",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "2e3f5658a391feec501e93411d7d7641e10789faef5cd4744a66ab3b0c3bb50c",
+          "total_lines": 1,
+          "duration_s": 0.0635
+        },
+        {
+          "tool": "detect_it_easy",
+          "backend": "diec/4.0.0",
+          "status": "ok",
+          "evidence_id": "ev_4d1d21c8f7c24cbb",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "30eeaca91495cede6900b65f35cbc3e55900b54d79e64777fc7e24699b3f8e8d",
+          "total_lines": 48,
+          "duration_s": 0.4429
+        },
+        {
+          "tool": "disassemble_python",
+          "backend": "pycdas/b4289760",
+          "status": "ok",
+          "evidence_id": "ev_c78b25449c1f4bee",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "a6fb32dd8d6bcd0cfc76436f851be12373980a086a6a045a66018b07524173ed",
+          "total_lines": 5593,
+          "duration_s": 0.064
+        },
+        {
+          "tool": "decode_python_literals",
+          "backend": "bounded-literal-decoder/1",
+          "status": "ok",
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "5cf918102664781c4511dee51d697d3ba3d561a7fe6a02af99adf34687a9297f",
+          "total_lines": 338,
+          "duration_s": 0.2066
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_04285ddae7f8444a",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+          "total_lines": 1085,
+          "duration_s": 0.7078
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_04285ddae7f8444a",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+          "total_lines": 1085,
+          "duration_s": 0.7078
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_04285ddae7f8444a",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+          "total_lines": 1085,
+          "duration_s": 0.7078
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_04285ddae7f8444a",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+          "total_lines": 1085,
+          "duration_s": 0.7078
+        },
+        {
+          "tool": "strings",
+          "backend": "native-utf8-utf16le/2",
+          "status": "ok",
+          "evidence_id": "ev_04285ddae7f8444a",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "d887ea6ff8d46413b8f5418d9c45942f97fa57bd5e438a356e054bbd4388880b",
+          "total_lines": 1085,
+          "duration_s": 0.7078
+        },
+        {
+          "tool": "decode_python_literals",
+          "backend": "bounded-literal-decoder/1",
+          "status": "ok",
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "5cf918102664781c4511dee51d697d3ba3d561a7fe6a02af99adf34687a9297f",
+          "total_lines": 338,
+          "duration_s": 0.2066
+        },
+        {
+          "tool": "decode_python_literals",
+          "backend": "bounded-literal-decoder/1",
+          "status": "ok",
+          "evidence_id": "ev_79ce7bfe54de4cf5",
+          "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+          "output_sha256": "5cf918102664781c4511dee51d697d3ba3d561a7fe6a02af99adf34687a9297f",
+          "total_lines": 338,
+          "duration_s": 0.2066
+        }
+      ],
+      "requests": [
+        {
+          "step": 1,
+          "messages_sha256": "bd9f786f67c0d7eab56f4fa41313dfb03881efde1901b59732fc38332cddf695",
+          "evidence_line_count": 0
+        },
+        {
+          "step": 2,
+          "messages_sha256": "a801571d39513c22b38ac9a8b28dcf14f197b293465ea2e23e0685bc5ac6d08a",
+          "evidence_line_count": 24
+        },
+        {
+          "step": 3,
+          "messages_sha256": "33da26539fc925391308ea49cfc0d5a30ac3e72d994a744884ebddacc3468544",
+          "evidence_line_count": 26
+        },
+        {
+          "step": 4,
+          "messages_sha256": "955f8f5d348f4eb0a98d9788a86717aab29c7880b0122dc40d4f936a36eeeeff",
+          "evidence_line_count": 43
+        },
+        {
+          "step": 5,
+          "messages_sha256": "b21fa09ac987673bbcce4ba38fce452e4e52ef24d739b8a5e0c954cdd9f122bd",
+          "evidence_line_count": 45
+        },
+        {
+          "step": 6,
+          "messages_sha256": "948dae3300a9fbee79da44a3bbe26620361224a93a174daaa0f1967c76783dc2",
+          "evidence_line_count": 46
+        },
+        {
+          "step": 7,
+          "messages_sha256": "b99c5ce51ea55fd79840734efe5927ccb53861242ae7ccd74a8dbee41aba9785",
+          "evidence_line_count": 67
+        },
+        {
+          "step": 8,
+          "messages_sha256": "ea1ad59c33eaf818acedd7f4704b56fdb618d0b8f7f8227acddc718e564eb31a",
+          "evidence_line_count": 105
+        },
+        {
+          "step": 9,
+          "messages_sha256": "9946f0e5709276eb21d3db19f07456e8a68ac017247ac5a13ac763e0bda29adf",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 10,
+          "messages_sha256": "662dcc58467dca363ac3f13bb9bb621d9bca4d428d55fe41122c6a7ceb098339",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 11,
+          "messages_sha256": "c49117bbc506e1542179c66eb38c9fcb0e1d81a47c28ec64a5ffc70ec4d60781",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 12,
+          "messages_sha256": "25b3189a0928ad603f2278c1a1b4978ba932579f145abca99cc35b44b970dae0",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 13,
+          "messages_sha256": "b46984cc1d76b52bc6660734f7c50b5f01d27fff568c9eff6c6fdcc729e809af",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 14,
+          "messages_sha256": "2fdd560043afaecd2c6c5b04de9139edf43a3818873819635a62bd4604ffdb1a",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 15,
+          "messages_sha256": "a94acdd726a5de52e7e1679c336adce2a3684c5d622e8bb86da5ec943df0e26a",
+          "evidence_line_count": 122
+        },
+        {
+          "step": 16,
+          "messages_sha256": "e12a25b9ba54ada34f0170dc57acb05a14dc8ecc58faf009b683e59826865a08",
+          "evidence_line_count": 121
+        }
+      ]
+    }
+  ],
+  "coursework_complete": false
+}

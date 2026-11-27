@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stealer-lab-agent"
+version = "0.1.0"
+description = "Coursework ReAct agent with VM-only static analysis and local Ollama"
+requires-python = ">=3.11"
+dependencies = ["jsonschema==4.23.0"]
+
+[project.optional-dependencies]
+vm = ["pefile==2024.8.26"]
+test = ["pytest==8.3.5"]
+
+[project.scripts]
+stealer-agent = "stealer_agent.cli:main"
+stealer-tool-server = "vm_tools.server:main"
+
+[tool.setuptools.packages.find]
+include = ["stealer_agent*", "vm_tools*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

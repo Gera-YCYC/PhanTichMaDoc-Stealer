@@ -1,0 +1,14 @@
+{
+  "ollama_url": "http://127.0.0.1:11435",
+  "model": "qwen2.5:1.5b",
+  "model_tier": "development-only-below-course-minimum",
+  "tool_server_url": "http://192.168.56.101:8765",
+  "token_env": "STEALER_LAB_TOKEN",
+  "max_steps": 12,
+  "num_ctx": 4096,
+  "num_predict": 900,
+  "timeout_s": 180,
+  "seed": 42,
+  "min_distinct_tools": 2,
+  "output_dir": "runs"
+}

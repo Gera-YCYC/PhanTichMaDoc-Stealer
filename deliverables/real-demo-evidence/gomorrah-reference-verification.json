@@ -1,0 +1,32 @@
+{
+  "sample_hash_matches": true,
+  "output_hash_matches": true,
+  "facts": [
+    {
+      "id": "GOM-B01",
+      "markers_match": true
+    },
+    {
+      "id": "GOM-B02",
+      "markers_match": true
+    },
+    {
+      "id": "GOM-B03",
+      "markers_match": true
+    },
+    {
+      "id": "GOM-B04",
+      "markers_match": true
+    },
+    {
+      "id": "GOM-O01",
+      "markers_match": true
+    },
+    {
+      "id": "GOM-N01",
+      "markers_match": true
+    }
+  ],
+  "created_at": "2026-11-27T15:16:40.820875+00:00",
+  "scope": "Exact static evidence/marker verification, not human semantic approval"
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "sample": "public_gomorrah.bin",
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "dataset_split": "development",
+  "reference_status": "source-and-static-tool-audit; not independent human adjudication",
+  "created_at": "2026-11-27",
+  "human_reviewers": [],
+  "derived_from_agent_report": false,
+  "expected_verdict": "malicious",
+  "external_references": [
+    {
+      "url": "https://raw.githubusercontent.com/jstrosch/malware-samples/1b3add9538fc40c0e59bd7488d267b1ec796a43d/binaries/gomorrah/2020/April/README.md",
+      "supports": "Publisher labels Gomorrah and reports HTTP exfiltration/C2 in its 2020 sandbox analysis. This project did not execute the sample."
+    },
+    {
+      "url": "https://attack.mitre.org/techniques/T1555/003/",
+      "supports": "Browser credential access mapping; not every DPAPI call is T1555.004."
+    }
+  ],
+  "static_evidence": {
+    "backend": "ilspycmd",
+    "evidence_id": "ev_646fe6aa96ec4c68",
+    "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+    "total_lines": 5008,
+    "reference_run": "20261127T150251_d6b62b38"
+  },
+  "facts": [
+    {
+      "id": "GOM-B01",
+      "kind": "behavior",
+      "text": "Code opens Opera/Chrome Login Data through SQLiteHandler, reads logins and retrieves username/password fields; the password value is passed to Decrypt.",
+      "lines": [
+        1055,
+        1056,
+        1068,
+        1069,
+        1070,
+        1103,
+        1104,
+        1117,
+        1118
+      ],
+      "markers": [
+        "SQLiteHandler",
+        "Login Data",
+        "ReadTable(\"logins\")",
+        "password_value",
+        "Decrypt("
+      ],
+      "technique_id": "T1555.003",
+      "scope": "Static capability; no successful credential recovery was observed in this project."
+    },
+    {
+      "id": "GOM-B02",
+      "kind": "behavior",
+      "text": "upload_passwords uses WebClient.UploadFile on the Passwords path with urlbot plus /logs.php?hwid= and HWID().",
+      "lines": [
+        3573,
+        3577
+      ],
+      "markers": [
+        "/logs.php?hwid=",
+        "val.UploadFile(urlbot + text, Passwords)"
+      ],
+      "technique_id": "",
+      "scope": "The upload operation is present. The variable name alone does not establish all upstream data flow."
+    },
+    {
+      "id": "GOM-B03",
+      "kind": "behavior",
+      "text": "Screenshot code calls CopyFromScreen and saves the image in PNG format to path_screenshot.",
+      "lines": [
+        4200,
+        4202
+      ],
+      "markers": [
+        "CopyFromScreen",
+        "Image.Save",
+        "ImageFormat.Png"
+      ],
+      "technique_id": "T1113",
+      "scope": "Static implemented capture capability; no screenshot was taken by the project."
+    },
+    {
+      "id": "GOM-B04",
+      "kind": "behavior",
+      "text": "upload_screenshot builds /screen.php?hwid= and passes path_screenshot to UploadFile.",
+      "lines": [
+        3677,
+        3681
+      ],
+      "markers": [
+        "/screen.php?hwid=",
+        "val.UploadFile(urlbot + text, path_screenshot)"
+      ],
+      "technique_id": "",
+      "scope": "Static outbound-file capability. Exact destination still requires configuration extraction."
+    },
+    {
+      "id": "GOM-O01",
+      "kind": "observation",
+      "text": "Configuration reads its own executable, splits content on |FS| and assigns element 1 to urlbot.",
+      "lines": [
+        3444,
+        3446,
+        3448,
+        3449
+      ],
+      "markers": [
+        "Application.ExecutablePath",
+        "FileSystem.FileGet",
+        "|FS|",
+        "urlbot = array[1]"
+      ],
+      "technique_id": "",
+      "scope": "Config recovery is incomplete until the corresponding data bytes are independently extracted."
+    },
+    {
+      "id": "GOM-N01",
+      "kind": "negative_control",
+      "text": "The t.me/th3darkly strings here occur in author-credit text, not in the UploadFile destination expressions.",
+      "lines": [
+        3502,
+        4756
+      ],
+      "markers": [
+        "Created By Lucifer",
+        "Dev By https://t.me/"
+      ],
+      "technique_id": "",
+      "scope": "Do not map these URL literals to webhook exfiltration. A t.me link is not automatically a Telegram bot API token or exfiltration channel."
+    }
+  ],
+  "exclusions": [
+    "No generic absence-of-behavior claims are justified by the selected excerpts.",
+    "This is a development reference subset, not complete ground truth or an unseen test set.",
+    "T1041 requires established C2 channel evidence; the mere UploadFile API is insufficient for that mapping."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-11-27T16:10:25.7292449+00:00",
+  "scope": "project Ollama and original lab only",
+  "project_ollama_pid": 13968,
+  "recorded_server_process_running": false,
+  "port_11435_listening": false,
+  "project_vm_running": false,
+  "available_physical_memory_kib": 3657052,
+  "total_visible_memory_kib": 12283768,
+  "weights_deleted": false,
+  "vm_files_deleted": false,
+  "model_candidate_kept": "qwen3:8b",
+  "default_model": "qwen2.5-coder:7b"
+}

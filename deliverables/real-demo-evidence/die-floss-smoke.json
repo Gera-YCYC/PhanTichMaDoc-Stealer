@@ -1,0 +1,115 @@
+{
+  "created_at": "2026-11-27T14:51:09.836159+00:00",
+  "kind": "direct-real-backend-not-agent-run",
+  "passed": true,
+  "health_tools": {
+    "detect_it_easy": {
+      "available": true,
+      "backend": "diec"
+    },
+    "floss": {
+      "available": true,
+      "backend": "floss"
+    },
+    "unpack_pyinstaller": {
+      "available": true,
+      "backend": "pyinstxtractor"
+    },
+    "decompile_python": {
+      "available": true,
+      "backend": "pycdc"
+    },
+    "disassemble_python": {
+      "available": true,
+      "backend": "pycdas"
+    },
+    "test_yara": {
+      "available": true,
+      "backend": "yara-python"
+    },
+    "identify": {
+      "available": true,
+      "backend": "pefile"
+    },
+    "decompile_dotnet": {
+      "available": true,
+      "backend": "ilspycmd"
+    },
+    "strings": {
+      "available": true,
+      "backend": "native-utf8-utf16le/2"
+    },
+    "python_ast": {
+      "available": true,
+      "backend": "python-ast/1"
+    },
+    "extract_ioc": {
+      "available": true,
+      "backend": "ioc-regex/1"
+    },
+    "read_evidence": {
+      "available": true,
+      "backend": "feature-store"
+    },
+    "search_evidence": {
+      "available": true,
+      "backend": "feature-store-literal-search"
+    }
+  },
+  "isolation": {
+    "identity": "VMware, Inc. VMware7,1",
+    "gateways": [],
+    "checks": {
+      "vm_hardware": true,
+      "no_default_gateway": true,
+      "operator_attestations": true
+    },
+    "attestations": {
+      "host_only_network": true,
+      "no_default_gateway": true,
+      "shared_folders_disabled": true,
+      "clipboard_disabled": true,
+      "clean_snapshot_created": true
+    },
+    "limits": "VM hardware and route checks do not independently prove all hypervisor settings"
+  },
+  "checks": [
+    {
+      "tool": "detect_it_easy",
+      "backend": "diec/4.0.0",
+      "status": "ok",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "07d25154f944cfb79f812d6889e6283e74ec1b9700cbbf4b2d8db63f0be3cd0f",
+      "evidence_id": "ev_6aece4bfa9494079",
+      "total_lines": 48,
+      "duration_s": 0.2737,
+      "limitations": [
+        "Static tool output is evidence of file properties/strings, not proof of executed behavior"
+      ],
+      "sample_hash_matches": true
+    },
+    {
+      "tool": "floss",
+      "backend": "floss/3.2.0",
+      "status": "ok",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "653a27b0465838263ba3339eb2f537224f5fa3c26cee2456b03e05ba7a3ceddb",
+      "evidence_id": "ev_ad088df65d394210",
+      "total_lines": 913,
+      "duration_s": 1.3503,
+      "limitations": [
+        "Static tool output is evidence of file properties/strings, not proof of executed behavior",
+        "Managed .NET uses FLOSS static strings only; native x86 emulation is not CIL string deobfuscation",
+        "Existing .viv workspaces are disabled; native decoded/stack analysis uses emulation, never launches the sample",
+        "Model evidence capped at 150 strings per category and 1500 characters per value; counts retain full tool totals"
+      ],
+      "sample_hash_matches": true
+    }
+  ],
+  "permissions": {
+    "source_files": 27,
+    "unsafe_source_permissions": []
+  },
+  "verifier_sha256": "529c6ea8417125ac9c186bb61d2efc2fa1b1f708a2ea9781207d7960c6410c15",
+  "scope": "Backend smoke only; raw feature lines excluded from public copy"
+}

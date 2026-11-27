@@ -1,0 +1,90 @@
+{
+  "checked_at": "2026-11-27T14:17:12.213591+00:00",
+  "repository": "duongthanhmong/PhanTichMaDoc_DoAn",
+  "source_commit": "13e6d62cf7009db3ce909c5d6a9f0cdbc6f1fdc6",
+  "remote_source_tree_exact_match": true,
+  "source_blob_count": 151,
+  "author": "duongthanhmong",
+  "committer": "duongthanhmong",
+  "release_url": "https://github.com/duongthanhmong/PhanTichMaDoc_DoAn/releases/tag/buoi4-real-demo-20261127",
+  "release_target_commit": "13e6d62cf7009db3ce909c5d6a9f0cdbc6f1fdc6",
+  "draft": false,
+  "asset_count": 10,
+  "total_asset_bytes": 4723303595,
+  "assets": [
+    {
+      "file": "model-assets.json",
+      "bytes": 2658,
+      "sha256": "37a7a6e71eec9723afcd070ccf8cbe886b1587c4284b14f7f648afffd961e8b9",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    },
+    {
+      "file": "ollama-model.tar.part01",
+      "bytes": 1572864000,
+      "sha256": "4e0e0cd49a58a0ee83e790cdae6e21286279f938bcaa429b452a4e3b2c545ca3",
+      "github_digest_verified": true,
+      "anonymous_probe": "1024-byte range matches local part; full part verified by GitHub SHA256"
+    },
+    {
+      "file": "ollama-model.tar.part02",
+      "bytes": 1572864000,
+      "sha256": "95bd385c0d75a8838870b5b1537bacee3b6516feee29db315258d4f624aba817",
+      "github_digest_verified": true,
+      "anonymous_probe": "1024-byte range matches local part; full part verified by GitHub SHA256"
+    },
+    {
+      "file": "ollama-model.tar.part03",
+      "bytes": 1537372160,
+      "sha256": "38329068dd6542d375a663f5134884909541a2e3cd44b528f2193b45bc2f37e1",
+      "github_digest_verified": true,
+      "anonymous_probe": "1024-byte range matches local part; full part verified by GitHub SHA256"
+    },
+    {
+      "file": "public_agenttesla.bin.research.zip",
+      "bytes": 435395,
+      "sha256": "ff30c58a6ca891602dc40406b638b9d9b547e93af6bfe1a4eee94f9895f75867",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    },
+    {
+      "file": "public_gomorrah.bin.research.zip",
+      "bytes": 29126,
+      "sha256": "214595a1ac57fc2e8b39fa616ccbcb4bcdb5027b3072700eb471f45a3a3389f7",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    },
+    {
+      "file": "public_luna.bin.research.zip",
+      "bytes": 17841201,
+      "sha256": "e113a1a9bdc54daa85c86a634c711cc6d122c027051fa813404f6f84a32a3d02",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    },
+    {
+      "file": "public_mercurial.bin.research.zip",
+      "bytes": 19023,
+      "sha256": "efd7d3f5a03bc7661768e861d93dcaedeb62ed9f31545e15b86ad6e8544a700c",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    },
+    {
+      "file": "public_python2024.bin.research.zip",
+      "bytes": 21873603,
+      "sha256": "ebf727d68ff5a4127396851c4b26bb28393a5a69d10c4e3db4038ce73ad05864",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    },
+    {
+      "file": "research-assets.json",
+      "bytes": 2429,
+      "sha256": "4f17b93505e2a43f13f031fecd4b9eb6373924f0802b6f5f916ba9fc69aaac76",
+      "github_digest_verified": true,
+      "anonymous_download_sha256_verified": true
+    }
+  ],
+  "model_vm_started": false,
+  "malware_executed_or_decrypted": false,
+  "full_model_redownload_performed": false,
+  "second_physical_machine_tested": false
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "Official Linux tool releases for offline VM installation",
+  "assets": [
+    {
+      "name": "floss",
+      "version": "3.2.0",
+      "path": "floss-v3.2.0-linux.zip",
+      "url": "https://github.com/mandiant/flare-floss/releases/download/v3.2.0/floss-v3.2.0-linux.zip",
+      "bytes": 44286277,
+      "sha256": "c449366960b688769b6510662cd6db6a3bf9edada4e8a8878056becd324df52c"
+    },
+    {
+      "name": "die",
+      "version": "4.0.0",
+      "path": "Detect_It_Easy-4.0.0-x86_64.AppImage",
+      "url": "https://github.com/horsicq/DIE-engine/releases/download/4.0.0/Detect_It_Easy-4.0.0-x86_64.AppImage",
+      "bytes": 48105976,
+      "sha256": "0191d4c5564dc6602130b9642e695abc0055c471a699d85b7bf03d3a63515a17"
+    },
+    {
+      "name": "diec",
+      "version": "4.0.0",
+      "path": "die_4.0.0_noble_amd64.deb",
+      "url": "https://github.com/horsicq/DIE-engine/releases/download/4.0.0/die_4.0.0_noble_amd64.deb",
+      "bytes": 29729010,
+      "sha256": "4cd107f2269c5ddcd3327272a279c5c9d7e726ff194a2d4c5fe46f9f90427480"
+    }
+  ]
+}

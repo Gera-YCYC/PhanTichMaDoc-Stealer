@@ -1,0 +1,64 @@
+{
+  "run_id": "20261127T153436999877Z",
+  "kind": "actual-cpu-auxiliary-model-training",
+  "dataset_sha256": "688a894a07060601925c7d9571d6f2672b372f22d811889400fda76349149905",
+  "trainer_sha256": "7c0c603897d243dbadde725615967e76ebd9d3d7f79d957aa7cfda85b920e8b1",
+  "feature_code_sha256": "df0aa8cd97f0e32d6946b57d681f6a68129bd2e8f18b7796b10911d1d796e274",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "elapsed_s": 0.0896,
+  "model_sha256": "030347e4b6d2662df8d68a5424918b835115d2738eb35e1ebb9575216a3d09fd",
+  "metrics": {
+    "train": {
+      "n": 70,
+      "tp": 37,
+      "fp": 0,
+      "tn": 31,
+      "fn": 2,
+      "precision": 1.0,
+      "recall": 0.9487179487179487,
+      "accuracy": 0.9714285714285714,
+      "query_groups": 17,
+      "first_occurrence_hit_at_1": 0.4117647058823529,
+      "learned_hit_at_1": 0.7058823529411765,
+      "scope": "structural relevance in frozen candidate subset; not behavior F1 or full-document retrieval"
+    },
+    "validation": {
+      "n": 42,
+      "tp": 35,
+      "fp": 1,
+      "tn": 4,
+      "fn": 2,
+      "precision": 0.9722222222222222,
+      "recall": 0.9459459459459459,
+      "accuracy": 0.9285714285714286,
+      "query_groups": 12,
+      "first_occurrence_hit_at_1": 0.9166666666666666,
+      "learned_hit_at_1": 1.0,
+      "scope": "structural relevance in frozen candidate subset; not behavior F1 or full-document retrieval"
+    },
+    "test": {
+      "n": 5,
+      "tp": 2,
+      "fp": 0,
+      "tn": 3,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "accuracy": 1.0,
+      "query_groups": 1,
+      "first_occurrence_hit_at_1": 0.0,
+      "learned_hit_at_1": 1.0,
+      "scope": "structural relevance in frozen candidate subset; not behavior F1 or full-document retrieval"
+    }
+  },
+  "human_reviewers": [],
+  "slm_finetuned": false,
+  "hyperparameters_tuned_on_test": false,
+  "limits": [
+    "117 structural anchors from 4 development samples; small and imbalanced",
+    "Labels are agent annotations, not human-reviewed malware ground truth",
+    "Test is sample-disjoint but NOT independent of prior project development",
+    "This does not establish lecturer acceptance of auxiliary training instead of SLM fine-tuning"
+  ]
+}

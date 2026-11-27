@@ -1,0 +1,168 @@
+{
+  "repository": "Gera-YCYC/PhanTichMaDoc-Stealer",
+  "original_commit": "9362d1c0c8455bb15ff089c4b7c0bbc5b0f356f4",
+  "files": [
+    {
+      "path": "legacy/initial-version/.gitignore",
+      "original_path": ".gitignore",
+      "bytes": 117,
+      "sha256": "7b7c62620f6551e9caffc97ae633e272b28bc1b90c9375576a42e741cfb3d93c"
+    },
+    {
+      "path": "legacy/initial-version/Dockerfile",
+      "original_path": "Dockerfile",
+      "bytes": 2743,
+      "sha256": "7bc7437dec25c94a05d4e0e78a094e2fcea6a154ec30a76557243d5e0f2a575d"
+    },
+    {
+      "path": "legacy/initial-version/HUONG_DAN_CHI_TIET.md",
+      "original_path": "HUONG_DAN_CHI_TIET.md",
+      "bytes": 15256,
+      "sha256": "1eb1d67fd1ea19410a7937de95da07c8d026c00a0542e8e97ab933e09c07f5d6"
+    },
+    {
+      "path": "legacy/initial-version/README.md",
+      "original_path": "README.md",
+      "bytes": 2577,
+      "sha256": "33306245518ffd764b9dc7b8de093658aab75c36809d8d7d1a1ea968a0b39f0b"
+    },
+    {
+      "path": "legacy/initial-version/agent/__init__.py",
+      "original_path": "agent/__init__.py",
+      "bytes": 593,
+      "sha256": "9acc70831227a5906c07179995d71f3110c274002aac7f1ec1e5fc73803111dc"
+    },
+    {
+      "path": "legacy/initial-version/agent/llm_client.py",
+      "original_path": "agent/llm_client.py",
+      "bytes": 15405,
+      "sha256": "73b7ce5ee1dd4b7565dafa25108927a1eab13949c89c7d901d930ede0415d665"
+    },
+    {
+      "path": "legacy/initial-version/agent/prompts.py",
+      "original_path": "agent/prompts.py",
+      "bytes": 6879,
+      "sha256": "8b5d5018b2b4ac45adcdc9a3c2a44e9e60204501a6a6914f3a153ad50303982d"
+    },
+    {
+      "path": "legacy/initial-version/agent/react_engine.py",
+      "original_path": "agent/react_engine.py",
+      "bytes": 28355,
+      "sha256": "0c829d2fbe78195536b80f7f720d91171e4aefc1f1445a3e1df4f105f1714842"
+    },
+    {
+      "path": "legacy/initial-version/config.py",
+      "original_path": "config.py",
+      "bytes": 1270,
+      "sha256": "dcf383cdd3777c4583e55550a02612f20837276fcfead095a10458f1bf727df3"
+    },
+    {
+      "path": "legacy/initial-version/docker-compose.yml",
+      "original_path": "docker-compose.yml",
+      "bytes": 1195,
+      "sha256": "bab0bb670c091e2f16ed8b5edb312151d64493d2ad06c93eb793d86e68f4a107"
+    },
+    {
+      "path": "legacy/initial-version/main.py",
+      "original_path": "main.py",
+      "bytes": 7602,
+      "sha256": "f568ee3d0e0de813ace8e1b85bca9bb565462af41eacc69c7be07b12722e5540"
+    },
+    {
+      "path": "legacy/initial-version/reporting/__init__.py",
+      "original_path": "reporting/__init__.py",
+      "bytes": 157,
+      "sha256": "7139baf581ebf4f9562d7257029afb284883543ce0a6bbf2d2187d76abac0a43"
+    },
+    {
+      "path": "legacy/initial-version/reporting/report_generator.py",
+      "original_path": "reporting/report_generator.py",
+      "bytes": 6438,
+      "sha256": "31d3001d3be9f631e428b6ead9681850abd79ad370fd009f77b3ee042166984a"
+    },
+    {
+      "path": "legacy/initial-version/reports/benign_stealer_sim_20261121_100226.json",
+      "original_path": "reports/benign_stealer_sim_20261121_100226.json",
+      "bytes": 15682,
+      "sha256": "a2ae41692d29bac9641c0d1108b34e605ab40c13ff51c5b94d2f9683caf756d7"
+    },
+    {
+      "path": "legacy/initial-version/reports/benign_stealer_sim_20261121_100226.md",
+      "original_path": "reports/benign_stealer_sim_20261121_100226.md",
+      "bytes": 13717,
+      "sha256": "630019c40e28fca8f7918264e4bed5dba5b3626484dcab598e330a9b715d0881"
+    },
+    {
+      "path": "legacy/initial-version/reports/benign_stealer_sim_20261121_100633.json",
+      "original_path": "reports/benign_stealer_sim_20261121_100633.json",
+      "bytes": 15681,
+      "sha256": "365230a0b9df2b782df0957037277318f2804a0084bc20000ab6704dede3c74f"
+    },
+    {
+      "path": "legacy/initial-version/reports/benign_stealer_sim_20261121_100633.md",
+      "original_path": "reports/benign_stealer_sim_20261121_100633.md",
+      "bytes": 13716,
+      "sha256": "f9703b116239750661ccf3617a179e924537b192c66d5d47455226bfaf31fd61"
+    },
+    {
+      "path": "legacy/initial-version/requirements.txt",
+      "original_path": "requirements.txt",
+      "bytes": 268,
+      "sha256": "b9a6b1cd266d358b3a755ab56fbccc2c13c7102451742c4ab747011aebac22ac"
+    },
+    {
+      "path": "legacy/initial-version/rules/infostealer_rules.yar",
+      "original_path": "rules/infostealer_rules.yar",
+      "bytes": 4007,
+      "sha256": "935e520375b508893a2a1acb70e9ceedeb549959aae66b17e230b26a1aabd0ab"
+    },
+    {
+      "path": "legacy/initial-version/samples/benign_stealer_sim.py",
+      "original_path": "samples/benign_stealer_sim.py",
+      "bytes": 4266,
+      "sha256": "52e8bf3faab7a6704df29458a806c73c25c824432ef4a9618afad3d35f6a2bd0"
+    },
+    {
+      "path": "legacy/initial-version/tools/__init__.py",
+      "original_path": "tools/__init__.py",
+      "bytes": 2438,
+      "sha256": "0e000e03e1046cbe43d43788f6045bf3988f2cedf5902878eeca50404ca27bf5"
+    },
+    {
+      "path": "legacy/initial-version/tools/dotnet_analyzer.py",
+      "original_path": "tools/dotnet_analyzer.py",
+      "bytes": 10461,
+      "sha256": "4baa5fd006bf19b7de65299e51bfb80567ddf278d75f97f869d88315becba531"
+    },
+    {
+      "path": "legacy/initial-version/tools/file_identifier.py",
+      "original_path": "tools/file_identifier.py",
+      "bytes": 8052,
+      "sha256": "2918d777ce0d8736c6c65e21607b14d18e59f6b71f07d3796877d1c19ceaf929"
+    },
+    {
+      "path": "legacy/initial-version/tools/ioc_yara_scanner.py",
+      "original_path": "tools/ioc_yara_scanner.py",
+      "bytes": 8574,
+      "sha256": "412446127bd93279677eb8a6efd8cc64aff2b5f7aaf26e0764190f225f7dabbe"
+    },
+    {
+      "path": "legacy/initial-version/tools/python_ast_scanner.py",
+      "original_path": "tools/python_ast_scanner.py",
+      "bytes": 11550,
+      "sha256": "583ca2353505d6fe99ad46a98b6ae8f7cb8df468f796a769b99a17d17900b956"
+    },
+    {
+      "path": "legacy/initial-version/tools/python_unpacker.py",
+      "original_path": "tools/python_unpacker.py",
+      "bytes": 10634,
+      "sha256": "87545131d732e389a11246887b12a220e81e3b772028f8dba513e5052ecd6559"
+    },
+    {
+      "path": "legacy/initial-version/tools/utils.py",
+      "original_path": "tools/utils.py",
+      "bytes": 6900,
+      "sha256": "a2d08bd47d676561432b25d68a59c1e145d4493b2e065b1a3c339c159402540e"
+    }
+  ]
+}

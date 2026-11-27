@@ -1,0 +1,35 @@
+{
+  "dataset_origin": "public_research_samples_not_teacher_I_J",
+  "samples": {
+    "public_gomorrah.bin": {
+      "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "size_bytes": 85041,
+      "branch": "dotnet",
+      "source": "https://github.com/jstrosch/malware-samples/tree/1b3add9538fc40c0e59bd7488d267b1ec796a43d/binaries/gomorrah/2020/April"
+    },
+    "public_agenttesla.bin": {
+      "sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+      "size_bytes": 608768,
+      "branch": "dotnet",
+      "source": "https://github.com/jstrosch/malware-samples/tree/1b3add9538fc40c0e59bd7488d267b1ec796a43d/binaries/agenttesla/2020/April"
+    },
+    "public_python2024.bin": {
+      "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "size_bytes": 22183360,
+      "branch": "pyinstaller",
+      "source": "https://bazaar.abuse.ch/sample/7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db/"
+    },
+    "public_luna.bin": {
+      "sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+      "size_bytes": 23250383,
+      "branch": "pyinstaller",
+      "source": "https://bazaar.abuse.ch/sample/d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324/"
+    },
+    "public_mercurial.bin": {
+      "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "size_bytes": 43008,
+      "branch": "dotnet_candidate",
+      "source": "https://bazaar.abuse.ch/sample/926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc/"
+    }
+  }
+}

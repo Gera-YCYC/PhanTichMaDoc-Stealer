@@ -1,0 +1,21 @@
+{
+  "stage": "full-coursework-auxiliary-ranker-trained",
+  "training_requirement": "lecturer_meaning_not_yet_clarified",
+  "team_weight_updates": true,
+  "completed_training_runs": 1,
+  "human_approved_training_records": 0,
+  "adapter_checkpoint": null,
+  "loss_curve": null,
+  "training_gpu_tested": false,
+  "dataset_validator_tests_are_training_evidence": false,
+  "candidate_training_code": "train_lora.py",
+  "candidate_config": "configs/qlora.example.json",
+  "next_gate": "Improve full-agent analysis, independently evaluate annotations and clarify whether lecturer requires SLM fine-tuning",
+  "slm_weight_updates": false,
+  "slm_finetuned": false,
+  "auxiliary_model": "logistic-code-reference-ranker",
+  "auxiliary_checkpoint": "experiments/20261127T153436999877Z/model.json",
+  "auxiliary_loss_curve": "experiments/20261127T153436999877Z/loss.json",
+  "auxiliary_dataset_records": 117,
+  "auxiliary_human_reviewers": []
+}

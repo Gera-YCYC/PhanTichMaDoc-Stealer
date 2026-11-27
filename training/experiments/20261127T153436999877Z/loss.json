@@ -1,0 +1,1206 @@
+[
+  {
+    "epoch": 0,
+    "train_binary_cross_entropy_plus_l2": 0.6931471805599454
+  },
+  {
+    "epoch": 1,
+    "train_binary_cross_entropy_plus_l2": 0.6439427306324128
+  },
+  {
+    "epoch": 2,
+    "train_binary_cross_entropy_plus_l2": 0.6040737694451834
+  },
+  {
+    "epoch": 3,
+    "train_binary_cross_entropy_plus_l2": 0.5708937724600625
+  },
+  {
+    "epoch": 4,
+    "train_binary_cross_entropy_plus_l2": 0.5426260318430883
+  },
+  {
+    "epoch": 5,
+    "train_binary_cross_entropy_plus_l2": 0.518080972911228
+  },
+  {
+    "epoch": 6,
+    "train_binary_cross_entropy_plus_l2": 0.4964498321907497
+  },
+  {
+    "epoch": 7,
+    "train_binary_cross_entropy_plus_l2": 0.47716817607599105
+  },
+  {
+    "epoch": 8,
+    "train_binary_cross_entropy_plus_l2": 0.45982936684075437
+  },
+  {
+    "epoch": 9,
+    "train_binary_cross_entropy_plus_l2": 0.44413049842593016
+  },
+  {
+    "epoch": 10,
+    "train_binary_cross_entropy_plus_l2": 0.42983858912855194
+  },
+  {
+    "epoch": 11,
+    "train_binary_cross_entropy_plus_l2": 0.4167692133159253
+  },
+  {
+    "epoch": 12,
+    "train_binary_cross_entropy_plus_l2": 0.4047727544693957
+  },
+  {
+    "epoch": 13,
+    "train_binary_cross_entropy_plus_l2": 0.3937253562895872
+  },
+  {
+    "epoch": 14,
+    "train_binary_cross_entropy_plus_l2": 0.38352280459495863
+  },
+  {
+    "epoch": 15,
+    "train_binary_cross_entropy_plus_l2": 0.37407626807323174
+  },
+  {
+    "epoch": 16,
+    "train_binary_cross_entropy_plus_l2": 0.36530924244129637
+  },
+  {
+    "epoch": 17,
+    "train_binary_cross_entropy_plus_l2": 0.35715529247736766
+  },
+  {
+    "epoch": 18,
+    "train_binary_cross_entropy_plus_l2": 0.34955633718203355
+  },
+  {
+    "epoch": 19,
+    "train_binary_cross_entropy_plus_l2": 0.3424613150954958
+  },
+  {
+    "epoch": 20,
+    "train_binary_cross_entropy_plus_l2": 0.33582512327832215
+  },
+  {
+    "epoch": 21,
+    "train_binary_cross_entropy_plus_l2": 0.329607758705509
+  },
+  {
+    "epoch": 22,
+    "train_binary_cross_entropy_plus_l2": 0.3237736131765297
+  },
+  {
+    "epoch": 23,
+    "train_binary_cross_entropy_plus_l2": 0.3182908872914558
+  },
+  {
+    "epoch": 24,
+    "train_binary_cross_entropy_plus_l2": 0.3131310985808648
+  },
+  {
+    "epoch": 25,
+    "train_binary_cross_entropy_plus_l2": 0.3082686653204355
+  },
+  {
+    "epoch": 26,
+    "train_binary_cross_entropy_plus_l2": 0.303680552020849
+  },
+  {
+    "epoch": 27,
+    "train_binary_cross_entropy_plus_l2": 0.29934596574749023
+  },
+  {
+    "epoch": 28,
+    "train_binary_cross_entropy_plus_l2": 0.29524609472392543
+  },
+  {
+    "epoch": 29,
+    "train_binary_cross_entropy_plus_l2": 0.2913638823829465
+  },
+  {
+    "epoch": 30,
+    "train_binary_cross_entropy_plus_l2": 0.28768383132719705
+  },
+  {
+    "epoch": 31,
+    "train_binary_cross_entropy_plus_l2": 0.2841918326655742
+  },
+  {
+    "epoch": 32,
+    "train_binary_cross_entropy_plus_l2": 0.28087501698098194
+  },
+  {
+    "epoch": 33,
+    "train_binary_cross_entropy_plus_l2": 0.2777216238141661
+  },
+  {
+    "epoch": 34,
+    "train_binary_cross_entropy_plus_l2": 0.2747208870556774
+  },
+  {
+    "epoch": 35,
+    "train_binary_cross_entropy_plus_l2": 0.2718629340511053
+  },
+  {
+    "epoch": 36,
+    "train_binary_cross_entropy_plus_l2": 0.26913869656389044
+  },
+  {
+    "epoch": 37,
+    "train_binary_cross_entropy_plus_l2": 0.26653983202040976
+  },
+  {
+    "epoch": 38,
+    "train_binary_cross_entropy_plus_l2": 0.26405865369520076
+  },
+  {
+    "epoch": 39,
+    "train_binary_cross_entropy_plus_l2": 0.26168806868910033
+  },
+  {
+    "epoch": 40,
+    "train_binary_cross_entropy_plus_l2": 0.2594215227166976
+  },
+  {
+    "epoch": 41,
+    "train_binary_cross_entropy_plus_l2": 0.25725295085742245
+  },
+  {
+    "epoch": 42,
+    "train_binary_cross_entropy_plus_l2": 0.2551767335412508
+  },
+  {
+    "epoch": 43,
+    "train_binary_cross_entropy_plus_l2": 0.253187657138987
+  },
+  {
+    "epoch": 44,
+    "train_binary_cross_entropy_plus_l2": 0.2512808786113396
+  },
+  {
+    "epoch": 45,
+    "train_binary_cross_entropy_plus_l2": 0.2494518937428921
+  },
+  {
+    "epoch": 46,
+    "train_binary_cross_entropy_plus_l2": 0.2476965085485953
+  },
+  {
+    "epoch": 47,
+    "train_binary_cross_entropy_plus_l2": 0.24601081349315643
+  },
+  {
+    "epoch": 48,
+    "train_binary_cross_entropy_plus_l2": 0.24439116020908144
+  },
+  {
+    "epoch": 49,
+    "train_binary_cross_entropy_plus_l2": 0.24283414043819923
+  },
+  {
+    "epoch": 50,
+    "train_binary_cross_entropy_plus_l2": 0.2413365669552626
+  },
+  {
+    "epoch": 51,
+    "train_binary_cross_entropy_plus_l2": 0.23989545626143233
+  },
+  {
+    "epoch": 52,
+    "train_binary_cross_entropy_plus_l2": 0.2385080128607741
+  },
+  {
+    "epoch": 53,
+    "train_binary_cross_entropy_plus_l2": 0.23717161495492553
+  },
+  {
+    "epoch": 54,
+    "train_binary_cross_entropy_plus_l2": 0.23588380141023474
+  },
+  {
+    "epoch": 55,
+    "train_binary_cross_entropy_plus_l2": 0.23464225986839723
+  },
+  {
+    "epoch": 56,
+    "train_binary_cross_entropy_plus_l2": 0.23344481588622484
+  },
+  {
+    "epoch": 57,
+    "train_binary_cross_entropy_plus_l2": 0.23228942300295113
+  },
+  {
+    "epoch": 58,
+    "train_binary_cross_entropy_plus_l2": 0.23117415364471341
+  },
+  {
+    "epoch": 59,
+    "train_binary_cross_entropy_plus_l2": 0.23009719078567678
+  },
+  {
+    "epoch": 60,
+    "train_binary_cross_entropy_plus_l2": 0.22905682029395175
+  },
+  {
+    "epoch": 61,
+    "train_binary_cross_entropy_plus_l2": 0.2280514238980841
+  },
+  {
+    "epoch": 62,
+    "train_binary_cross_entropy_plus_l2": 0.2270794727166477
+  },
+  {
+    "epoch": 63,
+    "train_binary_cross_entropy_plus_l2": 0.2261395212994245
+  },
+  {
+    "epoch": 64,
+    "train_binary_cross_entropy_plus_l2": 0.22523020213394496
+  },
+  {
+    "epoch": 65,
+    "train_binary_cross_entropy_plus_l2": 0.2243502205758416
+  },
+  {
+    "epoch": 66,
+    "train_binary_cross_entropy_plus_l2": 0.22349835016562225
+  },
+  {
+    "epoch": 67,
+    "train_binary_cross_entropy_plus_l2": 0.2226734282981809
+  },
+  {
+    "epoch": 68,
+    "train_binary_cross_entropy_plus_l2": 0.22187435221464635
+  },
+  {
+    "epoch": 69,
+    "train_binary_cross_entropy_plus_l2": 0.22110007528911563
+  },
+  {
+    "epoch": 70,
+    "train_binary_cross_entropy_plus_l2": 0.22034960358544298
+  },
+  {
+    "epoch": 71,
+    "train_binary_cross_entropy_plus_l2": 0.21962199266159949
+  },
+  {
+    "epoch": 72,
+    "train_binary_cross_entropy_plus_l2": 0.21891634460122367
+  },
+  {
+    "epoch": 73,
+    "train_binary_cross_entropy_plus_l2": 0.21823180525386665
+  },
+  {
+    "epoch": 74,
+    "train_binary_cross_entropy_plus_l2": 0.21756756166712665
+  },
+  {
+    "epoch": 75,
+    "train_binary_cross_entropy_plus_l2": 0.21692283969539233
+  },
+  {
+    "epoch": 76,
+    "train_binary_cross_entropy_plus_l2": 0.2162969017712715
+  },
+  {
+    "epoch": 77,
+    "train_binary_cross_entropy_plus_l2": 0.21568904482703388
+  },
+  {
+    "epoch": 78,
+    "train_binary_cross_entropy_plus_l2": 0.21509859835448567
+  },
+  {
+    "epoch": 79,
+    "train_binary_cross_entropy_plus_l2": 0.21452492259271616
+  },
+  {
+    "epoch": 80,
+    "train_binary_cross_entropy_plus_l2": 0.21396740683405152
+  },
+  {
+    "epoch": 81,
+    "train_binary_cross_entropy_plus_l2": 0.21342546783938124
+  },
+  {
+    "epoch": 82,
+    "train_binary_cross_entropy_plus_l2": 0.21289854835475855
+  },
+  {
+    "epoch": 83,
+    "train_binary_cross_entropy_plus_l2": 0.21238611572185473
+  },
+  {
+    "epoch": 84,
+    "train_binary_cross_entropy_plus_l2": 0.2118876605754597
+  },
+  {
+    "epoch": 85,
+    "train_binary_cross_entropy_plus_l2": 0.2114026956217749
+  },
+  {
+    "epoch": 86,
+    "train_binary_cross_entropy_plus_l2": 0.21093075449175172
+  },
+  {
+    "epoch": 87,
+    "train_binary_cross_entropy_plus_l2": 0.2104713906641892
+  },
+  {
+    "epoch": 88,
+    "train_binary_cross_entropy_plus_l2": 0.21002417645372354
+  },
+  {
+    "epoch": 89,
+    "train_binary_cross_entropy_plus_l2": 0.20958870205922484
+  },
+  {
+    "epoch": 90,
+    "train_binary_cross_entropy_plus_l2": 0.20916457466846458
+  },
+  {
+    "epoch": 91,
+    "train_binary_cross_entropy_plus_l2": 0.20875141761523985
+  },
+  {
+    "epoch": 92,
+    "train_binary_cross_entropy_plus_l2": 0.20834886958542598
+  },
+  {
+    "epoch": 93,
+    "train_binary_cross_entropy_plus_l2": 0.20795658386870258
+  },
+  {
+    "epoch": 94,
+    "train_binary_cross_entropy_plus_l2": 0.2075742276529382
+  },
+  {
+    "epoch": 95,
+    "train_binary_cross_entropy_plus_l2": 0.2072014813584442
+  },
+  {
+    "epoch": 96,
+    "train_binary_cross_entropy_plus_l2": 0.20683803800951503
+  },
+  {
+    "epoch": 97,
+    "train_binary_cross_entropy_plus_l2": 0.20648360264085835
+  },
+  {
+    "epoch": 98,
+    "train_binary_cross_entropy_plus_l2": 0.20613789173669594
+  },
+  {
+    "epoch": 99,
+    "train_binary_cross_entropy_plus_l2": 0.20580063270047008
+  },
+  {
+    "epoch": 100,
+    "train_binary_cross_entropy_plus_l2": 0.20547156335324346
+  },
+  {
+    "epoch": 101,
+    "train_binary_cross_entropy_plus_l2": 0.20515043145901046
+  },
+  {
+    "epoch": 102,
+    "train_binary_cross_entropy_plus_l2": 0.20483699427526428
+  },
+  {
+    "epoch": 103,
+    "train_binary_cross_entropy_plus_l2": 0.2045310181272801
+  },
+  {
+    "epoch": 104,
+    "train_binary_cross_entropy_plus_l2": 0.20423227800468013
+  },
+  {
+    "epoch": 105,
+    "train_binary_cross_entropy_plus_l2": 0.20394055717894094
+  },
+  {
+    "epoch": 106,
+    "train_binary_cross_entropy_plus_l2": 0.20365564684059997
+  },
+  {
+    "epoch": 107,
+    "train_binary_cross_entropy_plus_l2": 0.2033773457549971
+  },
+  {
+    "epoch": 108,
+    "train_binary_cross_entropy_plus_l2": 0.20310545993546564
+  },
+  {
+    "epoch": 109,
+    "train_binary_cross_entropy_plus_l2": 0.2028398023329603
+  },
+  {
+    "epoch": 110,
+    "train_binary_cross_entropy_plus_l2": 0.20258019254117374
+  },
+  {
+    "epoch": 111,
+    "train_binary_cross_entropy_plus_l2": 0.20232645651625755
+  },
+  {
+    "epoch": 112,
+    "train_binary_cross_entropy_plus_l2": 0.20207842631031733
+  },
+  {
+    "epoch": 113,
+    "train_binary_cross_entropy_plus_l2": 0.20183593981790898
+  },
+  {
+    "epoch": 114,
+    "train_binary_cross_entropy_plus_l2": 0.20159884053480687
+  },
+  {
+    "epoch": 115,
+    "train_binary_cross_entropy_plus_l2": 0.2013669773283666
+  },
+  {
+    "epoch": 116,
+    "train_binary_cross_entropy_plus_l2": 0.20114020421884193
+  },
+  {
+    "epoch": 117,
+    "train_binary_cross_entropy_plus_l2": 0.200918380171059
+  },
+  {
+    "epoch": 118,
+    "train_binary_cross_entropy_plus_l2": 0.200701368895887
+  },
+  {
+    "epoch": 119,
+    "train_binary_cross_entropy_plus_l2": 0.20048903866097492
+  },
+  {
+    "epoch": 120,
+    "train_binary_cross_entropy_plus_l2": 0.20028126211026492
+  },
+  {
+    "epoch": 121,
+    "train_binary_cross_entropy_plus_l2": 0.20007791609181017
+  },
+  {
+    "epoch": 122,
+    "train_binary_cross_entropy_plus_l2": 0.19987888149346653
+  },
+  {
+    "epoch": 123,
+    "train_binary_cross_entropy_plus_l2": 0.1996840430860412
+  },
+  {
+    "epoch": 124,
+    "train_binary_cross_entropy_plus_l2": 0.199493289373514
+  },
+  {
+    "epoch": 125,
+    "train_binary_cross_entropy_plus_l2": 0.1993065124499667
+  },
+  {
+    "epoch": 126,
+    "train_binary_cross_entropy_plus_l2": 0.19912360786287484
+  },
+  {
+    "epoch": 127,
+    "train_binary_cross_entropy_plus_l2": 0.19894447448244185
+  },
+  {
+    "epoch": 128,
+    "train_binary_cross_entropy_plus_l2": 0.19876901437666783
+  },
+  {
+    "epoch": 129,
+    "train_binary_cross_entropy_plus_l2": 0.19859713269186544
+  },
+  {
+    "epoch": 130,
+    "train_binary_cross_entropy_plus_l2": 0.19842873753835455
+  },
+  {
+    "epoch": 131,
+    "train_binary_cross_entropy_plus_l2": 0.19826373988107435
+  },
+  {
+    "epoch": 132,
+    "train_binary_cross_entropy_plus_l2": 0.1981020534348773
+  },
+  {
+    "epoch": 133,
+    "train_binary_cross_entropy_plus_l2": 0.19794359456427033
+  },
+  {
+    "epoch": 134,
+    "train_binary_cross_entropy_plus_l2": 0.19778828218739183
+  },
+  {
+    "epoch": 135,
+    "train_binary_cross_entropy_plus_l2": 0.1976360376840185
+  },
+  {
+    "epoch": 136,
+    "train_binary_cross_entropy_plus_l2": 0.19748678480740978
+  },
+  {
+    "epoch": 137,
+    "train_binary_cross_entropy_plus_l2": 0.19734044959980587
+  },
+  {
+    "epoch": 138,
+    "train_binary_cross_entropy_plus_l2": 0.19719696031140804
+  },
+  {
+    "epoch": 139,
+    "train_binary_cross_entropy_plus_l2": 0.19705624732267818
+  },
+  {
+    "epoch": 140,
+    "train_binary_cross_entropy_plus_l2": 0.19691824306979983
+  },
+  {
+    "epoch": 141,
+    "train_binary_cross_entropy_plus_l2": 0.19678288197315677
+  },
+  {
+    "epoch": 142,
+    "train_binary_cross_entropy_plus_l2": 0.19665010036868918
+  },
+  {
+    "epoch": 143,
+    "train_binary_cross_entropy_plus_l2": 0.19651983644199378
+  },
+  {
+    "epoch": 144,
+    "train_binary_cross_entropy_plus_l2": 0.19639203016504744
+  },
+  {
+    "epoch": 145,
+    "train_binary_cross_entropy_plus_l2": 0.1962666232354279
+  },
+  {
+    "epoch": 146,
+    "train_binary_cross_entropy_plus_l2": 0.1961435590179285
+  },
+  {
+    "epoch": 147,
+    "train_binary_cross_entropy_plus_l2": 0.19602278248845073
+  },
+  {
+    "epoch": 148,
+    "train_binary_cross_entropy_plus_l2": 0.19590424018008115
+  },
+  {
+    "epoch": 149,
+    "train_binary_cross_entropy_plus_l2": 0.19578788013124965
+  },
+  {
+    "epoch": 150,
+    "train_binary_cross_entropy_plus_l2": 0.19567365183588098
+  },
+  {
+    "epoch": 151,
+    "train_binary_cross_entropy_plus_l2": 0.19556150619545284
+  },
+  {
+    "epoch": 152,
+    "train_binary_cross_entropy_plus_l2": 0.19545139547287527
+  },
+  {
+    "epoch": 153,
+    "train_binary_cross_entropy_plus_l2": 0.19534327324811346
+  },
+  {
+    "epoch": 154,
+    "train_binary_cross_entropy_plus_l2": 0.19523709437548104
+  },
+  {
+    "epoch": 155,
+    "train_binary_cross_entropy_plus_l2": 0.19513281494252893
+  },
+  {
+    "epoch": 156,
+    "train_binary_cross_entropy_plus_l2": 0.19503039223046534
+  },
+  {
+    "epoch": 157,
+    "train_binary_cross_entropy_plus_l2": 0.19492978467603886
+  },
+  {
+    "epoch": 158,
+    "train_binary_cross_entropy_plus_l2": 0.1948309518348268
+  },
+  {
+    "epoch": 159,
+    "train_binary_cross_entropy_plus_l2": 0.19473385434586643
+  },
+  {
+    "epoch": 160,
+    "train_binary_cross_entropy_plus_l2": 0.19463845389757606
+  },
+  {
+    "epoch": 161,
+    "train_binary_cross_entropy_plus_l2": 0.1945447131949107
+  },
+  {
+    "epoch": 162,
+    "train_binary_cross_entropy_plus_l2": 0.19445259592770228
+  },
+  {
+    "epoch": 163,
+    "train_binary_cross_entropy_plus_l2": 0.1943620667401364
+  },
+  {
+    "epoch": 164,
+    "train_binary_cross_entropy_plus_l2": 0.19427309120131825
+  },
+  {
+    "epoch": 165,
+    "train_binary_cross_entropy_plus_l2": 0.1941856357768844
+  },
+  {
+    "epoch": 166,
+    "train_binary_cross_entropy_plus_l2": 0.19409966780161791
+  },
+  {
+    "epoch": 167,
+    "train_binary_cross_entropy_plus_l2": 0.19401515545302703
+  },
+  {
+    "epoch": 168,
+    "train_binary_cross_entropy_plus_l2": 0.1939320677258471
+  },
+  {
+    "epoch": 169,
+    "train_binary_cross_entropy_plus_l2": 0.19385037440743325
+  },
+  {
+    "epoch": 170,
+    "train_binary_cross_entropy_plus_l2": 0.19377004605400383
+  },
+  {
+    "epoch": 171,
+    "train_binary_cross_entropy_plus_l2": 0.19369105396770395
+  },
+  {
+    "epoch": 172,
+    "train_binary_cross_entropy_plus_l2": 0.19361337017445662
+  },
+  {
+    "epoch": 173,
+    "train_binary_cross_entropy_plus_l2": 0.1935369674025709
+  },
+  {
+    "epoch": 174,
+    "train_binary_cross_entropy_plus_l2": 0.19346181906207696
+  },
+  {
+    "epoch": 175,
+    "train_binary_cross_entropy_plus_l2": 0.19338789922476074
+  },
+  {
+    "epoch": 176,
+    "train_binary_cross_entropy_plus_l2": 0.1933151826048713
+  },
+  {
+    "epoch": 177,
+    "train_binary_cross_entropy_plus_l2": 0.1932436445404756
+  },
+  {
+    "epoch": 178,
+    "train_binary_cross_entropy_plus_l2": 0.19317326097543477
+  },
+  {
+    "epoch": 179,
+    "train_binary_cross_entropy_plus_l2": 0.19310400844197978
+  },
+  {
+    "epoch": 180,
+    "train_binary_cross_entropy_plus_l2": 0.19303586404386353
+  },
+  {
+    "epoch": 181,
+    "train_binary_cross_entropy_plus_l2": 0.192968805440067
+  },
+  {
+    "epoch": 182,
+    "train_binary_cross_entropy_plus_l2": 0.19290281082904004
+  },
+  {
+    "epoch": 183,
+    "train_binary_cross_entropy_plus_l2": 0.19283785893345706
+  },
+  {
+    "epoch": 184,
+    "train_binary_cross_entropy_plus_l2": 0.19277392898546608
+  },
+  {
+    "epoch": 185,
+    "train_binary_cross_entropy_plus_l2": 0.19271100071241626
+  },
+  {
+    "epoch": 186,
+    "train_binary_cross_entropy_plus_l2": 0.19264905432304485
+  },
+  {
+    "epoch": 187,
+    "train_binary_cross_entropy_plus_l2": 0.19258807049410684
+  },
+  {
+    "epoch": 188,
+    "train_binary_cross_entropy_plus_l2": 0.19252803035743105
+  },
+  {
+    "epoch": 189,
+    "train_binary_cross_entropy_plus_l2": 0.19246891548738768
+  },
+  {
+    "epoch": 190,
+    "train_binary_cross_entropy_plus_l2": 0.1924107078887532
+  },
+  {
+    "epoch": 191,
+    "train_binary_cross_entropy_plus_l2": 0.1923533899849564
+  },
+  {
+    "epoch": 192,
+    "train_binary_cross_entropy_plus_l2": 0.1922969446066937
+  },
+  {
+    "epoch": 193,
+    "train_binary_cross_entropy_plus_l2": 0.1922413549809013
+  },
+  {
+    "epoch": 194,
+    "train_binary_cross_entropy_plus_l2": 0.19218660472006766
+  },
+  {
+    "epoch": 195,
+    "train_binary_cross_entropy_plus_l2": 0.19213267781187984
+  },
+  {
+    "epoch": 196,
+    "train_binary_cross_entropy_plus_l2": 0.1920795586091878
+  },
+  {
+    "epoch": 197,
+    "train_binary_cross_entropy_plus_l2": 0.1920272318202771
+  },
+  {
+    "epoch": 198,
+    "train_binary_cross_entropy_plus_l2": 0.19197568249943964
+  },
+  {
+    "epoch": 199,
+    "train_binary_cross_entropy_plus_l2": 0.19192489603783086
+  },
+  {
+    "epoch": 200,
+    "train_binary_cross_entropy_plus_l2": 0.19187485815460592
+  },
+  {
+    "epoch": 201,
+    "train_binary_cross_entropy_plus_l2": 0.19182555488832137
+  },
+  {
+    "epoch": 202,
+    "train_binary_cross_entropy_plus_l2": 0.19177697258859777
+  },
+  {
+    "epoch": 203,
+    "train_binary_cross_entropy_plus_l2": 0.19172909790803122
+  },
+  {
+    "epoch": 204,
+    "train_binary_cross_entropy_plus_l2": 0.1916819177943465
+  },
+  {
+    "epoch": 205,
+    "train_binary_cross_entropy_plus_l2": 0.19163541948278284
+  },
+  {
+    "epoch": 206,
+    "train_binary_cross_entropy_plus_l2": 0.1915895904887071
+  },
+  {
+    "epoch": 207,
+    "train_binary_cross_entropy_plus_l2": 0.19154441860044238
+  },
+  {
+    "epoch": 208,
+    "train_binary_cross_entropy_plus_l2": 0.19149989187230915
+  },
+  {
+    "epoch": 209,
+    "train_binary_cross_entropy_plus_l2": 0.1914559986178691
+  },
+  {
+    "epoch": 210,
+    "train_binary_cross_entropy_plus_l2": 0.19141272740336648
+  },
+  {
+    "epoch": 211,
+    "train_binary_cross_entropy_plus_l2": 0.19137006704135945
+  },
+  {
+    "epoch": 212,
+    "train_binary_cross_entropy_plus_l2": 0.1913280065845359
+  },
+  {
+    "epoch": 213,
+    "train_binary_cross_entropy_plus_l2": 0.19128653531970718
+  },
+  {
+    "epoch": 214,
+    "train_binary_cross_entropy_plus_l2": 0.1912456427619745
+  },
+  {
+    "epoch": 215,
+    "train_binary_cross_entropy_plus_l2": 0.19120531864906193
+  },
+  {
+    "epoch": 216,
+    "train_binary_cross_entropy_plus_l2": 0.19116555293581083
+  },
+  {
+    "epoch": 217,
+    "train_binary_cross_entropy_plus_l2": 0.19112633578883054
+  },
+  {
+    "epoch": 218,
+    "train_binary_cross_entropy_plus_l2": 0.19108765758130022
+  },
+  {
+    "epoch": 219,
+    "train_binary_cross_entropy_plus_l2": 0.19104950888791666
+  },
+  {
+    "epoch": 220,
+    "train_binary_cross_entropy_plus_l2": 0.19101188047998552
+  },
+  {
+    "epoch": 221,
+    "train_binary_cross_entropy_plus_l2": 0.19097476332064642
+  },
+  {
+    "epoch": 222,
+    "train_binary_cross_entropy_plus_l2": 0.19093814856023433
+  },
+  {
+    "epoch": 223,
+    "train_binary_cross_entropy_plus_l2": 0.1909020275317685
+  },
+  {
+    "epoch": 224,
+    "train_binary_cross_entropy_plus_l2": 0.19086639174656472
+  },
+  {
+    "epoch": 225,
+    "train_binary_cross_entropy_plus_l2": 0.19083123288997023
+  },
+  {
+    "epoch": 226,
+    "train_binary_cross_entropy_plus_l2": 0.19079654281721511
+  },
+  {
+    "epoch": 227,
+    "train_binary_cross_entropy_plus_l2": 0.19076231354937642
+  },
+  {
+    "epoch": 228,
+    "train_binary_cross_entropy_plus_l2": 0.19072853726945233
+  },
+  {
+    "epoch": 229,
+    "train_binary_cross_entropy_plus_l2": 0.19069520631854414
+  },
+  {
+    "epoch": 230,
+    "train_binary_cross_entropy_plus_l2": 0.1906623131921397
+  },
+  {
+    "epoch": 231,
+    "train_binary_cross_entropy_plus_l2": 0.1906298505364976
+  },
+  {
+    "epoch": 232,
+    "train_binary_cross_entropy_plus_l2": 0.1905978111451296
+  },
+  {
+    "epoch": 233,
+    "train_binary_cross_entropy_plus_l2": 0.1905661879553747
+  },
+  {
+    "epoch": 234,
+    "train_binary_cross_entropy_plus_l2": 0.19053497404506675
+  },
+  {
+    "epoch": 235,
+    "train_binary_cross_entropy_plus_l2": 0.19050416262928951
+  },
+  {
+    "epoch": 236,
+    "train_binary_cross_entropy_plus_l2": 0.1904737470572177
+  },
+  {
+    "epoch": 237,
+    "train_binary_cross_entropy_plus_l2": 0.19044372080904104
+  },
+  {
+    "epoch": 238,
+    "train_binary_cross_entropy_plus_l2": 0.19041407749297007
+  },
+  {
+    "epoch": 239,
+    "train_binary_cross_entropy_plus_l2": 0.19038481084231912
+  },
+  {
+    "epoch": 240,
+    "train_binary_cross_entropy_plus_l2": 0.1903559147126662
+  },
+  {
+    "epoch": 241,
+    "train_binary_cross_entropy_plus_l2": 0.19032738307908684
+  },
+  {
+    "epoch": 242,
+    "train_binary_cross_entropy_plus_l2": 0.19029921003345845
+  },
+  {
+    "epoch": 243,
+    "train_binary_cross_entropy_plus_l2": 0.19027138978183614
+  },
+  {
+    "epoch": 244,
+    "train_binary_cross_entropy_plus_l2": 0.19024391664189394
+  },
+  {
+    "epoch": 245,
+    "train_binary_cross_entropy_plus_l2": 0.19021678504043338
+  },
+  {
+    "epoch": 246,
+    "train_binary_cross_entropy_plus_l2": 0.190189989510955
+  },
+  {
+    "epoch": 247,
+    "train_binary_cross_entropy_plus_l2": 0.1901635246912916
+  },
+  {
+    "epoch": 248,
+    "train_binary_cross_entropy_plus_l2": 0.19013738532130126
+  },
+  {
+    "epoch": 249,
+    "train_binary_cross_entropy_plus_l2": 0.19011156624062028
+  },
+  {
+    "epoch": 250,
+    "train_binary_cross_entropy_plus_l2": 0.1900860623864706
+  },
+  {
+    "epoch": 251,
+    "train_binary_cross_entropy_plus_l2": 0.1900608687915235
+  },
+  {
+    "epoch": 252,
+    "train_binary_cross_entropy_plus_l2": 0.1900359805818174
+  },
+  {
+    "epoch": 253,
+    "train_binary_cross_entropy_plus_l2": 0.19001139297472577
+  },
+  {
+    "epoch": 254,
+    "train_binary_cross_entropy_plus_l2": 0.18998710127697746
+  },
+  {
+    "epoch": 255,
+    "train_binary_cross_entropy_plus_l2": 0.18996310088272475
+  },
+  {
+    "epoch": 256,
+    "train_binary_cross_entropy_plus_l2": 0.18993938727166024
+  },
+  {
+    "epoch": 257,
+    "train_binary_cross_entropy_plus_l2": 0.18991595600717925
+  },
+  {
+    "epoch": 258,
+    "train_binary_cross_entropy_plus_l2": 0.1898928027345873
+  },
+  {
+    "epoch": 259,
+    "train_binary_cross_entropy_plus_l2": 0.18986992317935264
+  },
+  {
+    "epoch": 260,
+    "train_binary_cross_entropy_plus_l2": 0.1898473131453997
+  },
+  {
+    "epoch": 261,
+    "train_binary_cross_entropy_plus_l2": 0.18982496851344507
+  },
+  {
+    "epoch": 262,
+    "train_binary_cross_entropy_plus_l2": 0.1898028852393738
+  },
+  {
+    "epoch": 263,
+    "train_binary_cross_entropy_plus_l2": 0.18978105935265466
+  },
+  {
+    "epoch": 264,
+    "train_binary_cross_entropy_plus_l2": 0.18975948695479328
+  },
+  {
+    "epoch": 265,
+    "train_binary_cross_entropy_plus_l2": 0.18973816421782258
+  },
+  {
+    "epoch": 266,
+    "train_binary_cross_entropy_plus_l2": 0.1897170873828301
+  },
+  {
+    "epoch": 267,
+    "train_binary_cross_entropy_plus_l2": 0.18969625275851898
+  },
+  {
+    "epoch": 268,
+    "train_binary_cross_entropy_plus_l2": 0.18967565671980416
+  },
+  {
+    "epoch": 269,
+    "train_binary_cross_entropy_plus_l2": 0.18965529570644196
+  },
+  {
+    "epoch": 270,
+    "train_binary_cross_entropy_plus_l2": 0.1896351662216909
+  },
+  {
+    "epoch": 271,
+    "train_binary_cross_entropy_plus_l2": 0.18961526483100538
+  },
+  {
+    "epoch": 272,
+    "train_binary_cross_entropy_plus_l2": 0.18959558816075922
+  },
+  {
+    "epoch": 273,
+    "train_binary_cross_entropy_plus_l2": 0.18957613289699926
+  },
+  {
+    "epoch": 274,
+    "train_binary_cross_entropy_plus_l2": 0.18955689578422774
+  },
+  {
+    "epoch": 275,
+    "train_binary_cross_entropy_plus_l2": 0.18953787362421395
+  },
+  {
+    "epoch": 276,
+    "train_binary_cross_entropy_plus_l2": 0.1895190632748319
+  },
+  {
+    "epoch": 277,
+    "train_binary_cross_entropy_plus_l2": 0.18950046164892634
+  },
+  {
+    "epoch": 278,
+    "train_binary_cross_entropy_plus_l2": 0.18948206571320408
+  },
+  {
+    "epoch": 279,
+    "train_binary_cross_entropy_plus_l2": 0.18946387248715046
+  },
+  {
+    "epoch": 280,
+    "train_binary_cross_entropy_plus_l2": 0.18944587904197205
+  },
+  {
+    "epoch": 281,
+    "train_binary_cross_entropy_plus_l2": 0.18942808249956172
+  },
+  {
+    "epoch": 282,
+    "train_binary_cross_entropy_plus_l2": 0.18941048003148803
+  },
+  {
+    "epoch": 283,
+    "train_binary_cross_entropy_plus_l2": 0.1893930688580085
+  },
+  {
+    "epoch": 284,
+    "train_binary_cross_entropy_plus_l2": 0.18937584624710324
+  },
+  {
+    "epoch": 285,
+    "train_binary_cross_entropy_plus_l2": 0.1893588095135321
+  },
+  {
+    "epoch": 286,
+    "train_binary_cross_entropy_plus_l2": 0.18934195601791204
+  },
+  {
+    "epoch": 287,
+    "train_binary_cross_entropy_plus_l2": 0.18932528316581543
+  },
+  {
+    "epoch": 288,
+    "train_binary_cross_entropy_plus_l2": 0.18930878840688892
+  },
+  {
+    "epoch": 289,
+    "train_binary_cross_entropy_plus_l2": 0.18929246923399123
+  },
+  {
+    "epoch": 290,
+    "train_binary_cross_entropy_plus_l2": 0.18927632318235046
+  },
+  {
+    "epoch": 291,
+    "train_binary_cross_entropy_plus_l2": 0.1892603478287404
+  },
+  {
+    "epoch": 292,
+    "train_binary_cross_entropy_plus_l2": 0.18924454079067426
+  },
+  {
+    "epoch": 293,
+    "train_binary_cross_entropy_plus_l2": 0.18922889972561693
+  },
+  {
+    "epoch": 294,
+    "train_binary_cross_entropy_plus_l2": 0.1892134223302142
+  },
+  {
+    "epoch": 295,
+    "train_binary_cross_entropy_plus_l2": 0.18919810633953865
+  },
+  {
+    "epoch": 296,
+    "train_binary_cross_entropy_plus_l2": 0.18918294952635212
+  },
+  {
+    "epoch": 297,
+    "train_binary_cross_entropy_plus_l2": 0.18916794970038509
+  },
+  {
+    "epoch": 298,
+    "train_binary_cross_entropy_plus_l2": 0.1891531047076298
+  },
+  {
+    "epoch": 299,
+    "train_binary_cross_entropy_plus_l2": 0.18913841242965096
+  },
+  {
+    "epoch": 300,
+    "train_binary_cross_entropy_plus_l2": 0.18912387078290954
+  }
+]

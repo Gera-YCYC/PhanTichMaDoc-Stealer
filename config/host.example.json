@@ -1,0 +1,18 @@
+{
+  "ollama_url": "http://127.0.0.1:11435",
+  "model": "qwen2.5-coder:7b",
+  "model_tier": "coursework-7b",
+  "tool_server_url": "http://192.168.56.101:8765",
+  "token_env": "STEALER_LAB_TOKEN",
+  "max_steps": 16,
+  "num_ctx": 8192,
+  "num_predict": 2200,
+  "evidence_chars": 12000,
+  "code_evidence_chars": 8000,
+  "min_code_searches": 2,
+  "timeout_s": 180,
+  "seed": 42,
+  "min_distinct_tools": 2,
+  "semantic_review": true,
+  "output_dir": "runs"
+}

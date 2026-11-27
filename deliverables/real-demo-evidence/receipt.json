@@ -1,0 +1,323 @@
+{
+  "created_at": "2026-11-27T13:17:43.276787+00:00",
+  "scope": "real public samples, static VM tools, local SLM",
+  "quality_acceptance": false,
+  "runs": [
+    {
+      "run_id": "20261127T130645_f60cec20",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "completed_with_rejected_claims",
+      "successful_tools": [
+        "decompile_dotnet",
+        "extract_ioc",
+        "identify",
+        "strings"
+      ],
+      "metrics": {
+        "model_calls": 13,
+        "tool_calls": 11,
+        "tool_errors": 0,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 31873,
+        "completion_tokens": 1065,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4199263764,
+        "host_rss_bytes": 24240128,
+        "elapsed_s": 100.3992,
+        "host_peak_rss_bytes": 28246016
+      },
+      "acceptance": {
+        "two_distinct_tools": true,
+        "required_branch_tools": true,
+        "model_minimum_met": true,
+        "python_source_decompiled": null,
+        "teacher_dataset_verified": false,
+        "coursework_accepted": false
+      },
+      "file_facts": {
+        "origin": "identify tool output, not an SLM conclusion",
+        "evidence_id": "ev_04525efa625f4e94",
+        "backend": "pefile/2024.8.26",
+        "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+        "size_bytes": 85041,
+        "format": "PE .NET",
+        "is_dotnet": true
+      },
+      "evidence_kind": "real-public-malware-local-slm-vm",
+      "verdict": "inconclusive",
+      "accepted_claims": 0,
+      "rejected_claims": 1,
+      "model": {
+        "tag": "qwen2.5-coder:7b",
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M"
+        },
+        "ollama_version": "0.40.17"
+      },
+      "journal_events_verified": 41,
+      "tool_trace": [
+        {
+          "sequence": 6,
+          "timestamp": "2026-11-27T13:07:03.085388+00:00",
+          "step": 1,
+          "tool": "identify",
+          "status": "ok",
+          "backend": "pefile/2024.8.26"
+        },
+        {
+          "sequence": 9,
+          "timestamp": "2026-11-27T13:07:09.668011+00:00",
+          "step": 2,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        },
+        {
+          "sequence": 12,
+          "timestamp": "2026-11-27T13:07:14.758205+00:00",
+          "step": 3,
+          "tool": "strings",
+          "status": "ok",
+          "backend": "native-ascii-utf16/1"
+        },
+        {
+          "sequence": 15,
+          "timestamp": "2026-11-27T13:07:21.089246+00:00",
+          "step": 4,
+          "tool": "extract_ioc",
+          "status": "ok",
+          "backend": "ioc-regex/1"
+        },
+        {
+          "sequence": 18,
+          "timestamp": "2026-11-27T13:07:27.867063+00:00",
+          "step": 5,
+          "tool": "extract_ioc",
+          "status": "ok",
+          "backend": "ioc-regex/1"
+        },
+        {
+          "sequence": 21,
+          "timestamp": "2026-11-27T13:07:35.279626+00:00",
+          "step": 6,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        },
+        {
+          "sequence": 24,
+          "timestamp": "2026-11-27T13:07:42.715856+00:00",
+          "step": 7,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        },
+        {
+          "sequence": 27,
+          "timestamp": "2026-11-27T13:07:50.038364+00:00",
+          "step": 8,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        },
+        {
+          "sequence": 30,
+          "timestamp": "2026-11-27T13:07:57.031026+00:00",
+          "step": 9,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        },
+        {
+          "sequence": 33,
+          "timestamp": "2026-11-27T13:08:04.225424+00:00",
+          "step": 10,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        },
+        {
+          "sequence": 36,
+          "timestamp": "2026-11-27T13:08:11.166909+00:00",
+          "step": 11,
+          "tool": "decompile_dotnet",
+          "status": "ok",
+          "backend": "ilspycmd"
+        }
+      ],
+      "original_journal_sha256": "7bd2cb512f0be3252f15676e88ac090536f7950ac976ff03abb4d464f3198716",
+      "original_report_sha256": "de6a5374ba30cd8d2d0079b6bbf801c03a0324329a896d70f903c5a18145db70",
+      "source_manifest_sha256": "becd9b2af28b5256b595d4255cac366c657500f564bc6b1c05fa132fea06c121",
+      "export_note": "Selected fields only; not a replacement hash chain or full raw journal"
+    },
+    {
+      "run_id": "20261127T130934_26431286",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "status": "completed_with_rejected_claims",
+      "successful_tools": [
+        "disassemble_python",
+        "extract_ioc",
+        "identify",
+        "strings",
+        "unpack_pyinstaller"
+      ],
+      "metrics": {
+        "model_calls": 13,
+        "tool_calls": 11,
+        "tool_errors": 1,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 32958,
+        "completion_tokens": 1098,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4199263764,
+        "host_rss_bytes": 22884352,
+        "elapsed_s": 90.9349,
+        "host_peak_rss_bytes": 28209152
+      },
+      "acceptance": {
+        "two_distinct_tools": true,
+        "required_branch_tools": true,
+        "model_minimum_met": true,
+        "python_source_decompiled": false,
+        "teacher_dataset_verified": false,
+        "coursework_accepted": false
+      },
+      "file_facts": {
+        "origin": "identify tool output, not an SLM conclusion",
+        "evidence_id": "ev_b263ec85a0ec422f",
+        "backend": "pefile/2024.8.26",
+        "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "size_bytes": 22183360,
+        "format": "PE",
+        "is_dotnet": false,
+        "pyinstaller_cookie_present": true
+      },
+      "evidence_kind": "real-public-malware-local-slm-vm",
+      "verdict": "inconclusive",
+      "accepted_claims": 0,
+      "rejected_claims": 1,
+      "model": {
+        "tag": "qwen2.5-coder:7b",
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M"
+        },
+        "ollama_version": "0.40.17"
+      },
+      "journal_events_verified": 42,
+      "tool_trace": [
+        {
+          "sequence": 6,
+          "timestamp": "2026-11-27T13:09:38.874279+00:00",
+          "step": 1,
+          "tool": "identify",
+          "status": "ok",
+          "backend": "pefile/2024.8.26"
+        },
+        {
+          "sequence": 9,
+          "timestamp": "2026-11-27T13:09:44.514908+00:00",
+          "step": 2,
+          "tool": "unpack_pyinstaller",
+          "status": "ok",
+          "backend": "pyinstxtractor/815d31cf+bounded-entry-adapter"
+        },
+        {
+          "sequence": 13,
+          "timestamp": "2026-11-27T13:09:50.842609+00:00",
+          "step": 3,
+          "tool": "decompile_python",
+          "status": "error",
+          "backend": "unavailable"
+        },
+        {
+          "sequence": 16,
+          "timestamp": "2026-11-27T13:09:56.682667+00:00",
+          "step": 4,
+          "tool": "strings",
+          "status": "ok",
+          "backend": "native-ascii-utf16/1"
+        },
+        {
+          "sequence": 19,
+          "timestamp": "2026-11-27T13:10:03.662265+00:00",
+          "step": 5,
+          "tool": "extract_ioc",
+          "status": "ok",
+          "backend": "ioc-regex/1"
+        },
+        {
+          "sequence": 22,
+          "timestamp": "2026-11-27T13:10:10.985551+00:00",
+          "step": 6,
+          "tool": "disassemble_python",
+          "status": "ok",
+          "backend": "pycdas/b4289760"
+        },
+        {
+          "sequence": 25,
+          "timestamp": "2026-11-27T13:10:19.651558+00:00",
+          "step": 7,
+          "tool": "extract_ioc",
+          "status": "ok",
+          "backend": "ioc-regex/1"
+        },
+        {
+          "sequence": 28,
+          "timestamp": "2026-11-27T13:10:27.676631+00:00",
+          "step": 8,
+          "tool": "strings",
+          "status": "ok",
+          "backend": "native-ascii-utf16/1"
+        },
+        {
+          "sequence": 31,
+          "timestamp": "2026-11-27T13:10:35.449260+00:00",
+          "step": 9,
+          "tool": "strings",
+          "status": "ok",
+          "backend": "native-ascii-utf16/1"
+        },
+        {
+          "sequence": 34,
+          "timestamp": "2026-11-27T13:10:42.997802+00:00",
+          "step": 10,
+          "tool": "strings",
+          "status": "ok",
+          "backend": "native-ascii-utf16/1"
+        },
+        {
+          "sequence": 37,
+          "timestamp": "2026-11-27T13:10:50.720651+00:00",
+          "step": 11,
+          "tool": "strings",
+          "status": "ok",
+          "backend": "native-ascii-utf16/1"
+        }
+      ],
+      "original_journal_sha256": "2add27271d3550e656c2b0e297a672e7eb8a4f839dd74ec7585b31a70a964090",
+      "original_report_sha256": "5604dee675598d30fe3af50df0fd28488559a0d857fe38f83ebc884ad6bc80ed",
+      "source_manifest_sha256": "becd9b2af28b5256b595d4255cac366c657500f564bc6b1c05fa132fea06c121",
+      "export_note": "Selected fields only; not a replacement hash chain or full raw journal"
+    }
+  ]
+}

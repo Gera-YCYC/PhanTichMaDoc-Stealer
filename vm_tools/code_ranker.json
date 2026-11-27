@@ -1,0 +1,39 @@
+{
+  "kind": "logistic-code-reference-ranker",
+  "feature_version": "code-reference-features/1",
+  "features": [
+    "query_in_code",
+    "query_in_literal",
+    "call_on_line",
+    "assignment_on_line",
+    "opcode_use",
+    "opcode_import",
+    "table_entry",
+    "declaration",
+    "comment",
+    "calls_nearby",
+    "opcodes_nearby",
+    "query_count_nearby",
+    "import_context"
+  ],
+  "weights": [
+    -0.2948264955987288,
+    -0.20938395812256577,
+    2.2910676628867916,
+    1.2468895489660208,
+    0.1252257056163543,
+    -0.33558157147457623,
+    -1.1143123439020215,
+    -1.2119818059651453,
+    0.0,
+    1.34373529103533,
+    -0.4631557741829933,
+    0.08828020209407023,
+    -0.9911323877688378
+  ],
+  "bias": -0.9278907316263081,
+  "dataset_sha256": "688a894a07060601925c7d9571d6f2672b372f22d811889400fda76349149905",
+  "run_id": "20261127T153436999877Z",
+  "not_a_malware_classifier": true,
+  "slm_weights_updated": false
+}
