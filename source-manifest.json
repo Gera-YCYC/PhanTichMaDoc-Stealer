@@ -125,6 +125,11 @@
     "sha256": "e6cd2ba91bc3745d612c9bbc7f8defeae42b5f349233e4b5d9b382b5f77c57a5"
   },
   {
+    "path": "deliverables/real-demo-evidence/gomorrah-cards-v4-claim-score.json",
+    "bytes": 1552,
+    "sha256": "f3181772bb46b8cd24f87134fd036ce6afcd563818a6bb6ae58114f38e21c6b5"
+  },
+  {
     "path": "deliverables/real-demo-evidence/gomorrah-reference-verification.json",
     "bytes": 635,
     "sha256": "ccf393a7530149ad141c6f921b222ae331615292a7e33a3c4eb54e2848f0f226"
@@ -276,13 +281,13 @@
   },
   {
     "path": "docs/CLAIM_AUDIT.md",
-    "bytes": 8289,
-    "sha256": "b9fe71d21d7764ffe7584500082a279676a1260acc1c30623a274020e4842392"
+    "bytes": 10920,
+    "sha256": "b5d2441d9e07e63dd2e0f19e5848b83e0fb9c324f987f47cd5d0f1e9dd979af1"
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 7844,
-    "sha256": "be187f1d435c0e7e7ebbe560fa5a58ff73a43f14abed4647ea2731516fc89caa"
+    "bytes": 7878,
+    "sha256": "de2cbe9dc8041b2531a7cc1c68f452b2810808bdac2bf653311b88a9b64a36f6"
   },
   {
     "path": "docs/DATASET.md",
@@ -336,8 +341,8 @@
   },
   {
     "path": "docs/PUBLISH_STATUS.md",
-    "bytes": 5927,
-    "sha256": "31bf6271880303cc01403088239d22aa29d5fe1e89863e60cdb9bcd4d702ff6c"
+    "bytes": 6480,
+    "sha256": "dca49d6bba888f943b0d864ecdbd33c2cecc69ebad0f381f471801a3dbb25ec4"
   },
   {
     "path": "docs/PYTHON_STATIC_DECODING.md",
@@ -441,8 +446,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 17218,
-    "sha256": "3c4de198d004b5b87e6ddd0c658eeeb370f075c210109356ae1eb5769b5fa079"
+    "bytes": 17328,
+    "sha256": "52d4cead20121b8d3462419288adddcf880eab072462ba0e2488611d60b49817"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -473,6 +478,11 @@
     "path": "eval/adjudications/gomorrah-qwen3-cards-v3-counterexamples.json",
     "bytes": 5232,
     "sha256": "345b1ff2e5ba6f14c2f13b5e48fd86a8bc883b664e63f33d676012188fbe2731"
+  },
+  {
+    "path": "eval/adjudications/gomorrah-qwen3-cards-v4-full-audit.json",
+    "bytes": 17938,
+    "sha256": "9deb6e3589d45285e8cec15badaa50918ca338def56e31c4a2f0ca86f8de02f7"
   },
   {
     "path": "eval/adjudications/python2024-qwen25-baseline.json",

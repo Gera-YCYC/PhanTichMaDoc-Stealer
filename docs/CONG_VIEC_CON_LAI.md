@@ -19,7 +19,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
 | TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
-| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python v1/v2/v3/v4; v4 Precision 50% trên 16 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
+| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python v1/v2/v3/v4 và .NET v4; v4 Precision Python 50%/16 câu, .NET 36,84%/19 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
 | E02 | Stability | Thử lịch sử chưa đạt | 3 run cùng sample/model/source/config; intersection/union>=80% |
 | E03 | Tài nguyên và so phương án | Cache 256 MiB giúp 8B chạy lại; Python v3 hoàn tất 458,6 s, min free RAM 534 MB giữa request | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở là hoàn tất |
 | R01 | Tài liệu kỹ thuật | Đang cập nhật theo sản phẩm | Thiết kế, cài/chạy, luồng, dataset, training, đánh giá, giới hạn |

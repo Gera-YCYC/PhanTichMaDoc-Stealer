@@ -1,6 +1,6 @@
 # Đối chiếu nhận định với mã nguồn đã thu
 
-Ngày cập nhật: 28/11/2026. Đây là kiểm chứng trên mẫu phát triển PythonStealer2024, không phải kết quả nghiệm thu toàn corpus. Các câu được so với **chính đoạn chúng dẫn**, sau đó đối chiếu profile source; không lấy kết quả tự duyệt của Qwen làm đáp án. Nhãn do source audit tự động lập, chưa có người thật hoặc giảng viên phê duyệt.
+Ngày cập nhật: 28/11/2026. Đây là kiểm chứng trên các mẫu phát triển PythonStealer2024 và Gomorrah, không phải kết quả nghiệm thu toàn corpus. Các câu được so với **chính đoạn chúng dẫn**, sau đó đối chiếu profile source/API; không lấy kết quả tự duyệt của Qwen làm đáp án. Nhãn do source audit tự động lập, chưa có người thật hoặc giảng viên phê duyệt.
 
 ## Các phép thử và phạm vi
 
@@ -41,7 +41,19 @@ V4 đã đưa thêm thân hàm tạo archive, gắn MIME và gọi SMTP vào cù
 
 Recall/F1 hiện để `null`: profile có năm fact tổng hợp, còn câu model có độ chi tiết khác nhau và chưa có đối chiếu đầy đủ theo đơn vị nhất quán. Việc có nhiều câu đúng về ghi file không bù được thiếu luồng lấy mật khẩu/nén/gửi. Cần chốt các fact nguyên tử và phép ghép câu với fact trước khi chấm Recall; không đổi tập chuẩn theo các câu model tạo ra.
 
-## Công việc kế tiếp
+## Đối chiếu đầy đủ .NET v4
+
+Run `20261127T180215_b3a8ccf4` đã chấm đủ **19 câu thô: 7 đúng, 4 sai, 8 thiếu căn cứ**. Precision 36,84%, hallucination 42,11%, grounding 36,84%. Sau bộ tự duyệt chỉ 2/9 câu được giữ là đúng (22,22%); 5 câu đúng bị loại. Recall/F1 vẫn để null vì chưa chốt đầy đủ đơn vị fact tham chiếu. [Nhãn và lý do từng câu](../eval/adjudications/gomorrah-qwen3-cards-v4-full-audit.json), [kết quả tính](../deliverables/real-demo-evidence/gomorrah-cards-v4-claim-score.json).
+
+Tất cả khoảng quote trong hồ sơ này đã so khớp với observation lưu trong journal của đúng run. Phép chấm phân biệt quan sát hẹp như constructor nhận đường dẫn cụ thể với khẳng định về tác dụng của hàm tự định nghĩa: muốn xác nhận hàm giải mã phải có thân hàm chứa thao tác tương ứng. Một tên Decrypt hoặc khai báo DATA_BLOB chưa đủ; việc lấy 36 dòng đầu helper dài gặp nhiều boilerplate ILSpy khiến thao tác cần chứng minh vẫn nằm ngoài citation.
+
+- C1/C2/C9/C10 có căn cứ upload nhưng bị tự duyệt loại: source xác định instance WebClient, tên member và mảng đối số truyền vào LateGet. Tài liệu [NewLateBinding.LateGet](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.newlatebinding.lateget?view=net-10.0) xác định Instance, MemberName và Arguments. Đây là phân tích khả năng tĩnh, không khẳng định đã gửi thành công lúc chạy.
+- C11/C13 nhầm mảng byte trả về với dữ liệu file gửi đi. Theo [WebClient.UploadFile](https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0), hai tham số là địa chỉ và tên/đường dẫn file; giá trị trả về là thân phản hồi. Tên biến Passwords/CC/emails_pass chưa chứng minh nội dung của file đó.
+- C11/C15 mô tả ASCII GetString như giải mã mật mã. [ASCIIEncoding.GetString](https://learn.microsoft.com/en-us/dotnet/api/system.text.asciiencoding.getstring?view=net-10.0) chuyển byte thành ký tự theo encoding; đoạn được dẫn không có thao tác giải mã mật mã.
+
+Kết quả này xác nhận cần sửa cách biểu diễn thao tác/đầu vào/đầu ra và chọn phần hữu ích trong helper. Không thể dùng việc reviewer giữ một câu hoặc đủ ID cho các vai trò verdict làm bằng chứng ngữ nghĩa đúng.
+
+## Công việc kế tiếp sau khi chấm hai nền tảng
 
 Nhánh .NET còn có [chín phản ví dụ source/API](../eval/adjudications/gomorrah-qwen3-cards-v3-counterexamples.json). Ba câu nhầm byte trả về của UploadFile thành dữ liệu file gửi đi; một câu suy phản hồi/SMTP qua sai API; các câu khác thiếu thân hàm hoặc thao tác cuối. Theo [tài liệu Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0), UploadFile nhận đường dẫn file và trả thân phản hồi từ resource. Chuyển mảng trả về đó sang ASCII là xử lý phản hồi, không phải chuyển file thành ASCII trước khi gửi. Đây là kiểm một phần, không tính Precision/F1 cho đủ 20 câu từ chín phản ví dụ này.
 

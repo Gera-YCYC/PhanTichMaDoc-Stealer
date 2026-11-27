@@ -1,0 +1,380 @@
+{
+  "created_at": "2026-11-27T18:18:58.345136+00:00",
+  "run_id": "20261127T180215_b3a8ccf4",
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "dataset_origin": "public-development-sample-source-audit",
+  "human_reviewers": [],
+  "raw_report_sha256": "8887cf48cca113a0a7d653aa6b7d41019823849029d8b8299e7e6840e5faba2f",
+  "scope": "All nineteen raw claims, including rejected ones. Exact citation text verified against saved VM observations. Custom helper effects require implementation; literal constructor/call arguments may establish a narrow structural observation. No runtime execution or full-corpus acceptance.",
+  "external_references": [
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.text.asciiencoding.getstring?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.compilerservices.newlatebinding.lateget?view=net-10.0"
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The caller builds the address and invokes the helper. Its supplied body enumerates image-extension files in MyDocuments, creates WebClient and late-binds UploadFile with the address parameter and enumerated file path. Static capability only.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3530,
+          "end_line": 3545,
+          "quote_sha256": "cfaeaa944c12c49d9c411dc9864db414658dcebd9303cf576fcb41570f21f92e"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 4284,
+          "end_line": 4319,
+          "quote_sha256": "48c20a2ad662afea6ec2801c4b0e834035e0dc11f782ce01f5f34f74eec444ff"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The supplied range shows the WebClient instance, image-file enumeration, address/file argument array and the UploadFile member passed to LateGet. The API contract identifies the second argument as a file path.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3530,
+          "end_line": 3545,
+          "quote_sha256": "cfaeaa944c12c49d9c411dc9864db414658dcebd9303cf576fcb41570f21f92e"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 4284,
+          "end_line": 4319,
+          "quote_sha256": "48c20a2ad662afea6ec2801c4b0e834035e0dc11f782ce01f5f34f74eec444ff"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "UploadFile and a write of TextBox1.Text into the file represented by CC are shown. The cited source does not establish that the written content is credit card data; CC and upload_cc names are insufficient.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3518,
+          "end_line": 3533,
+          "quote_sha256": "c8a1b4811efbd1d3b48783bff8ee161f9f8c16191c0f4d969131d059286d5ff7"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3593,
+          "end_line": 3617,
+          "quote_sha256": "82eff11fa7db3a2de00cbbc7966d02f3b234645b93aa28b09c5efa17f22e89f7"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3645,
+          "end_line": 3669,
+          "quote_sha256": "a2dcad2d56cfad8ca46403c8f55fcf55442f547dbca09998b5412ef5c611184c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The upload implementation uses emails_pass as the fileName argument. Its contents and provenance are absent from these ranges; the variable/helper name alone does not establish email data.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3518,
+          "end_line": 3533,
+          "quote_sha256": "c8a1b4811efbd1d3b48783bff8ee161f9f8c16191c0f4d969131d059286d5ff7"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3593,
+          "end_line": 3617,
+          "quote_sha256": "82eff11fa7db3a2de00cbbc7966d02f3b234645b93aa28b09c5efa17f22e89f7"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3645,
+          "end_line": 3669,
+          "quote_sha256": "a2dcad2d56cfad8ca46403c8f55fcf55442f547dbca09998b5412ef5c611184c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The caller and string-array return signature are visible, but the truncated helper only contains declarations/control-flow boilerplate. The claimed application-data-folder contents are not established by the cited helper body.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1041,
+          "end_line": 1053,
+          "quote_sha256": "e10a20be3b6a3e74338c34b6b3b4392f0d9dcd6d752da78814508ca1fd33a708"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1965,
+          "end_line": 2000,
+          "quote_sha256": "0d74dfb7b9137b192b99d412b9552d6ff3607af5531c7ed689ef013963817374"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The foreach over the returned string array and File.Exists for a fixed path suffix are directly visible. This narrow claim does not require proving what directories the helper returns.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1041,
+          "end_line": 1053,
+          "quote_sha256": "e10a20be3b6a3e74338c34b6b3b4392f0d9dcd6d752da78814508ca1fd33a708"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1965,
+          "end_line": 2000,
+          "quote_sha256": "0d74dfb7b9137b192b99d412b9552d6ff3607af5531c7ed689ef013963817374"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The literal password_value and num2 arguments are visible in the call. The quoted ranges do not include the custom SQLiteHandler.GetValue implementation or database setup, so the claimed database retrieval semantics go beyond the demonstrated call.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1060,
+          "end_line": 1075,
+          "quote_sha256": "324b78ec8a8f41191938bed081b1c91f64c53c1ccf299a569fdd0edf16bdda7c"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 793,
+          "end_line": 828,
+          "quote_sha256": "673704684c4bb468f8f4379724dbf37af5b1eb3af9f212ac39383e2933e5f814"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The call result is converted and used by the Account constructor, but the supplied Decrypt body is truncated before a cryptographic operation. Its name and DATA_BLOB declarations alone do not establish decryption.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1060,
+          "end_line": 1075,
+          "quote_sha256": "324b78ec8a8f41191938bed081b1c91f64c53c1ccf299a569fdd0edf16bdda7c"
+        },
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 793,
+          "end_line": 828,
+          "quote_sha256": "673704684c4bb468f8f4379724dbf37af5b1eb3af9f212ac39383e2933e5f814"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The range directly shows Desktop image-file enumeration, current from its enumerator, a new WebClient, and LateGet selecting UploadFile with URL_CC1/current as its two arguments.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 4240,
+          "end_line": 4267,
+          "quote_sha256": "a618ba84a99573a8cb57ed60e447f24d9fd2703791a3dbfd8a9580f95edd3756"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The code shows a WebClient and the UploadFile member selected through LateGet with an address argument and an enumerated file path. This claim makes no unsupported assertion about sensitive file contents.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 4289,
+          "end_line": 4320,
+          "quote_sha256": "e967bd2d218a627bde83d0c4b011d42acf86f7fc946cac14e5e3d476348b9103"
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The byte array is the return from UploadFile, whose API contract defines it as the response body. ASCII GetString decodes bytes into text; it neither decrypts ciphertext nor reads the uploaded file content.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 4289,
+          "end_line": 4320,
+          "quote_sha256": "e967bd2d218a627bde83d0c4b011d42acf86f7fc946cac14e5e3d476348b9103"
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The upload call and URL construction are shown, but Passwords is a fileName argument. The file contents are not established in this citation; its name does not prove that passwords are uploaded.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3562,
+          "end_line": 3593,
+          "quote_sha256": "c7590f3bbeab1bf7ffe660b7b27446a2f3664c212bee292399d3eb1165d1d090"
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The byte array is assigned from the return value of UploadFile after sending a file path argument. It is response data, not a supplied outgoing password byte array. The password contents are also unproved here.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3562,
+          "end_line": 3593,
+          "quote_sha256": "c7590f3bbeab1bf7ffe660b7b27446a2f3664c212bee292399d3eb1165d1d090"
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The second UploadFile argument is a file path according to the API contract, not an email password supplied as data. The cited excerpt does not establish the file contents.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3588,
+          "end_line": 3619,
+          "quote_sha256": "b552754fa42706cfa1d2e6b839b43683a55c1c822f9e91b9cdea6b05096c0b1e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The code decodes the UploadFile response bytes with ASCII GetString. Describing character decoding as cryptographic decryption is incorrect.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 3588,
+          "end_line": 3619,
+          "quote_sha256": "b552754fa42706cfa1d2e6b839b43683a55c1c822f9e91b9cdea6b05096c0b1e"
+        }
+      ]
+    },
+    {
+      "claim_id": "C16",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The source directly constructs SQLiteHandler with the explicit Opera Stable Login Data path. This is a constructor/path observation, without claiming the custom handler successfully reads or decrypts records.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1040,
+          "end_line": 1071,
+          "quote_sha256": "d7f4de43669055e5326f52f27e07d1bf37a51edb0e44af7309e09d0c08c0bee7"
+        }
+      ]
+    },
+    {
+      "claim_id": "C17",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The excerpt invokes Decrypt and names the logins table/password_value field, but omits the custom helper implementation. A decryption operation cannot be established from its name alone.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1040,
+          "end_line": 1071,
+          "quote_sha256": "d7f4de43669055e5326f52f27e07d1bf37a51edb0e44af7309e09d0c08c0bee7"
+        }
+      ]
+    },
+    {
+      "claim_id": "C18",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The source directly constructs SQLiteHandler with an explicit Google Chrome Default Login Data path. The claim describes the constructor target; no runtime access success is inferred.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1088,
+          "end_line": 1119,
+          "quote_sha256": "cbe750551dda5f925f23d2225e88e4d2b1d4add9c3eace61b716824c8e472f98"
+        }
+      ]
+    },
+    {
+      "claim_id": "C19",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "Submitted immutable ILSpy ranges, journal observations and official API contracts",
+      "reason": "The excerpt invokes the custom Decrypt method with bytes from a variable obtained by GetValue. It does not show the helper implementation needed to establish cryptographic decryption.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_7acdc15575a74db2",
+          "line": 1088,
+          "end_line": 1119,
+          "quote_sha256": "cbe750551dda5f925f23d2225e88e4d2b1d4add9c3eace61b716824c8e472f98"
+        }
+      ]
+    }
+  ]
+}
