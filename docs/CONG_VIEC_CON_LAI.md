@@ -10,8 +10,8 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |
 | T01 | Detect It Easy | Đã chạy backend thật và được SLM chọn trên Gomorrah | Kiểm thêm mẫu Python và môi trường dựng mới sau thay đổi installer |
 | T02 | FLOSS | Đã chạy thật; .NET dùng static-only | Không gọi static strings là CIL deobfuscation; kiểm native mode/timeout |
-| A01 | Chọn chứng cứ và báo cáo hành vi | Đang cải thiện context/tìm mã | Có claim thực chất, atomic, dẫn chứng đủ; không chỉ định dạng/strings |
-| A02 | Reviewer và ATT&CK | Đã sửa equality metadata; ngữ nghĩa vẫn heuristic | Counterexample, nguồn MITRE, chấm claim thật; không coi self-review là ground truth |
+| A01 | Chọn chứng cứ và báo cáo hành vi | Đã giữ anchor và chặn import-only; cần ghép caller/callee và tách SQL/giải mã | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
+| A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
 | S01 | Unicode và kiểm exposure | Đã sửa; P06 guard on/off có request thật | Giữ byte offset, log evidence thực đã gửi, không đếm payload bị mất |
 | S02 | Bộ injection | P06 hợp lệ; bộ lịch sử không đủ request provenance | >=10 ca đủ exposure, on/off, cả hai chiều; thống kê mẫu số chính xác |
 | Y01 | Tập YARA thật | Chưa có tập độc/lành chốt | Positive public và clean độc lập; khóa holdout trước tuning |
@@ -19,9 +19,9 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
 | TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
-| E01 | Bảng đúng/sai/bịa/bỏ sót | Có chấm source-audit một baseline Python, F1=0; chưa toàn corpus/human review | Bao gồm raw/rejected claims và thiếu sót; không lược bỏ lỗi để đẹp số |
+| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python v1/v2/v3; v3 Precision 70% trên 10 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
 | E02 | Stability | Thử lịch sử chưa đạt | 3 run cùng sample/model/source/config; intersection/union>=80% |
-| E03 | Tài nguyên và so phương án | Có telemetry; Qwen3 8B bị dừng vì thiếu RAM; đã có chặn RAM | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở là hoàn tất |
+| E03 | Tài nguyên và so phương án | Cache 256 MiB giúp 8B chạy lại; Python v3 hoàn tất 458,6 s, min free RAM 534 MB giữa request | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở là hoàn tất |
 | R01 | Tài liệu kỹ thuật | Đang cập nhật theo sản phẩm | Thiết kế, cài/chạy, luồng, dataset, training, đánh giá, giới hạn |
 | R02 | Tái lập máy khác | Đã dựng VM mới trên cùng host ở bản cũ | Kiểm bản installer mới; máy vật lý khác chưa được xác nhận |
 

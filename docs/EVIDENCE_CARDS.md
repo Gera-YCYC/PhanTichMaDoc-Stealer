@@ -64,3 +64,16 @@ Phép thử thành phần Qwen3 8B trên 3 đoạn Python đã lưu (`20261127T1
 Run end-to-end sau sửa `20261127T164056_2bc4e796` dùng Qwen3 8B/context4096, tự gọi bốn backend thành công trên Python thật và tạo 12 claim trong 6 đoạn. Reviewer giữ 9 câu; verdict malicious, tổng thời gian 376,1841 s. Nhánh dùng `config/host.cards-qwen3-candidate.example.json`; đây vẫn là cấu hình thử, model Qwen3 chưa nằm trong Release mặc định. [Receipt](../deliverables/real-demo-evidence/cards-qwen3-python-run.json) và [phản ví dụ reviewer](../eval/adjudications/python2024-qwen3-card-counterexamples.json) phải đọc cùng nhau. Các claim về import HTTP/SMTP vẫn bị gán thành behavior; không coi một verdict trùng nhãn là chứng minh lập luận đúng.
 
 File counterexamples chỉ rà năm nhận định cụ thể, không phải bảng chấm đủ 12 câu và năm fact đối chiếu. Không đưa nó vào `eval/score.py` như một benchmark đầy đủ hoặc tính các dòng chưa được chấm là đúng/bỏ sót. Cần hoàn thành đối chiếu toàn bộ trước khi công bố Precision/Recall/F1.
+
+## Cập nhật ngày 28/11: vị trí trọng tâm và căn cứ kết luận
+
+Cờ cấu hình `report_mode=evidence-cards-v1` vẫn giữ để tương thích; trường `report_method` trong kết quả ghi phiên bản thuật toán thực sự. Không gán phương pháp mới cho log cũ.
+
+- `evidence-cards/2` giữ tất cả vị trí tìm kiếm nằm trong cùng đoạn và gửi số dòng trọng tâm cho SLM. Bộ chọn vẫn thu thêm anchor trong các đoạn đã chọn khi hết ngân sách tạo đoạn. Các đoạn chỉ có import/using được ghi `card_skipped`; không suy ra HTTP/SMTP hoặc benign từ import. Bộ kiểm citation cũng từ chối behavior/ATT&CK chỉ dẫn khối import.
+- Phép thử thành phần `20261127T170742_b4a898c6` dùng Qwen3 thật trên 3 đoạn đã thu: 10 request, 99,0227 giây, 6 câu thô/4 câu được giữ/2 câu bị loại. Các câu về truy vấn login/credit_cards đã xuất hiện, nhưng reviewer còn loại sai câu SMTP và ghi file. Model vẫn kết luận malicious dù tập được giữ thiếu bước gửi. Đây là kết quả chưa đạt, không phải demo VM mới.
+- `evidence-cards/3` bổ sung ba nhóm ID khi tổng hợp verdict: thu dữ liệu nhạy cảm, truyền dữ liệu ra ngoài, và liên kết dữ liệu được thu với khâu truyền. Nếu model đề xuất malicious nhưng thiếu một nhóm hoặc nhóm trỏ tới câu không được giữ/không được dẫn/không phải behavior, bộ điều phối hạ xuống suspicious hoặc inconclusive. Nó không tự nâng một verdict thấp lên malicious.
+- Các nhóm ID do SLM gán vẫn có thể sai nghĩa. Gate mới kiểm tính đầy đủ và tham chiếu, **không phải** chứng minh ác ý, ground truth, hay tỷ lệ chống bịa đạt chuẩn. Tập câu thô, verdict model đề xuất và lý do hạ đều được giữ để chấm độc lập.
+
+Bộ kiểm thử trước run mới có 112 ca đạt trên Windows, gồm mất mắt xích, ID không hợp lệ, import-only, giữ anchor và không tự nâng verdict. Đây là kiểm thử hợp đồng phần mềm, không phải 112 mẫu mã độc.
+
+Hai lượt v3 đã chạy end-to-end với Qwen3 trên cùng bản source: Python `20261127T171819_406f8937` (4 tool/458,6038 s) và Gomorrah `20261127T172625_ba003503` (3 tool/467,2824 s). Cả hai kết luận suspicious, chưa thỏa verdict100% trên mẫu độc. [Receipt](../deliverables/real-demo-evidence/cards-v3-platform-runs.json) giữ thông số, source hash, journal hash và số câu; [đối chiếu Python](CLAIM_AUDIT.md) nêu cụ thể lỗi còn lại. Sau bổ sung bộ chấm đủ câu thô, tổng kiểm thử phần mềm là 119 trên Windows. Model candidate và cấu hình này chưa thay baseline/Release.

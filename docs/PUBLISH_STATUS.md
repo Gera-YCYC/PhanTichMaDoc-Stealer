@@ -4,6 +4,10 @@ Repo chính từ cập nhật quyền nhóm: [Gera-YCYC/PhanTichMaDoc-Stealer](h
 
 Tài nguyên dùng [Release tai-nguyen-lab-20261127 của repo nhóm](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer/releases/tag/tai-nguyen-lab-20261127): cùng 10 asset/4.723.303.595 byte và hash đã khóa, gồm 3 phần model, 5 archive nghiên cứu mã hóa và 2 manifest. Đây là chuyển nơi phân phối, không phải tuyên bố hoàn tất các chỉ tiêu chất lượng đồ án. Script chỉ công bố Release sau khi kích thước/digest của toàn bộ asset khớp.
 
+Đã kiểm công bố commit `0e3e06781072a55c70eaa448ee5c678c6e45c967`: 246 Git blob phía remote khớp checkout, 27 tệp gốc còn nguyên byte. Author và committer là `duongthanhmong`; không thêm co-author hoặc tài khoản trợ lý. Commit tiếng Việt: **Cập nhật bản phân tích trong VM và tài liệu kỹ thuật cho nhóm**. [GitHub Actions của commit chuyển repo](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer/actions/runs/46038648881) đạt 94 kiểm thử trên Ubuntu. Các kiểm thử mới hơn có receipt/CI riêng, không thay số của mốc lịch sử này.
+
+[Biên bản kiểm repo nhóm](../deliverables/real-demo-evidence/group-publication-verification.json) ghi kiểm SHA256 toàn bộ asset qua GitHub, tải 7 tệp nhỏ không đăng nhập và thử HTTP range 1.024 byte của từng phần model. Không tải lại toàn bộ model để kiểm. Release giữ target commit trên dù main tiếp tục nhận sửa lỗi.
+
 Các mục bên dưới là **lịch sử kho tạm**, giữ liên kết cũ để truy vết các lần kiểm chứng; không phải repo nhận push tiếp theo.
 
 **Release đã công bố:** [buoi4-real-demo-20261127](https://github.com/duongthanhmong/PhanTichMaDoc_DoAn/releases/tag/buoi4-real-demo-20261127).

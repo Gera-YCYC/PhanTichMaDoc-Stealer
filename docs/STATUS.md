@@ -1,8 +1,20 @@
-# Trạng thái sản phẩm ngày 27/11/2026
+# Trạng thái sản phẩm ngày 28/11/2026
 
 **Chưa hoàn thành toàn bộ đồ án.** Mục tiêu là sản phẩm phân tích stealer .NET/Python theo toàn bộ slide/đề xuất, không còn dừng ở buổi 4. Tài liệu bàn giao là Markdown kỹ thuật; thông tin sinh viên và bìa báo cáo không là điều kiện chặn.
 
-## Cập nhật báo cáo đoạn và tài nguyên
+## Cập nhật hiện tại
+
+- Repo chính đã chuyển sang **Gera-YCYC/PhanTichMaDoc-Stealer**; lịch sử nhóm và 27 tệp source gốc giữ nguyên. Release nhóm đủ 10 asset, đã kiểm hash/tải thử. [Biên bản công bố](PUBLISH_STATUS.md).
+- **119 kiểm thử phần mềm đạt trên Windows** ở bản bổ sung giữ anchor, chặn import-only, kiểm căn cứ verdict và chấm đủ câu thô. Không phải accuracy trên 119 mẫu mã độc.
+- Nhánh báo cáo hiện có `report_method=evidence-cards/3`, vẫn dùng cờ cấu hình `evidence-cards-v1` để tương thích. Kết luận malicious cần tham chiếu đủ thu dữ liệu nhạy cảm, gửi dữ liệu và liên kết giữa hai bước; các vai trò do SLM gán vẫn cần kiểm nghĩa.
+- Run Python thật `20261127T171819_406f8937` hoàn tất 458,6038 giây, 4 công cụ thành công/17 tool call/35 model request. Có 10 câu thô, giữ 7/loại 3; verdict **suspicious**. RAM khả dụng nhỏ nhất đo giữa request 534.048.768 byte; pycdc vẫn lỗi, decoder chỉ phục hồi candidate source. [Receipt](../deliverables/real-demo-evidence/cards-v3-python-run.json).
+- Đã đối chiếu đủ câu của ba lượt v1/v2/v3, có kiểm hash và giữ mẫu số gồm các câu bị loại. V3 có 7 câu đúng, 1 câu sai cách mô tả truy vấn/giải mã, 2 câu thiếu dẫn chứng theo source audit; Precision 70%, chưa đạt ngưỡng 80%. Recall/F1 chưa có đơn vị đối chiếu đầy đủ nên để null. [Phân tích và giới hạn](CLAIM_AUDIT.md).
+- Run Gomorrah .NET thật `20261127T172625_ba003503` dùng cùng source/model/config, hoàn tất 467,2824 giây với pefile, ILSpy và DIE; 17 tool call, 49 model request, không lỗi tool/schema. Có 20 câu thô, reviewer giữ 16/loại 4, verdict **suspicious**. Đây chưa phải 16 câu được đối chiếu độc lập. [Receipt hai nền tảng](../deliverables/real-demo-evidence/cards-v3-platform-runs.json).
+- Đã dừng server Ollama/runner của dự án và tắt VM sau hai lượt; [receipt cuối đợt](../deliverables/real-demo-evidence/runtime-stopped-after-cards-v3.json) ghi kiểm PID, cổng và VM. Weight và đĩa VM được giữ nguyên.
+
+Các mục bên dưới giữ kết quả lịch sử tại từng revision. Kết quả mới không thay đổi số liệu cũ hoặc biến model candidate thành mặc định. Mục tiêu toàn đồ án vẫn chưa hoàn thành.
+
+## Lịch sử báo cáo đoạn và tài nguyên ngày 27/11
 
 - **94 kiểm thử phần mềm đạt trên Windows** ở bản thêm khoảng dẫn chứng, báo cáo đoạn và tách provenance decoder. Không phải accuracy trên 94 malware.
 - Đã triển khai nhánh thử `evidence-cards-v1`: SLM chọn `finalize`, viết từng đoạn đã truy xuất, kiểm từng claim, tổng hợp verdict từ tập được giữ; log lưu cả câu bị loại. Khoảng citation được đối chiếu chính xác từng dòng/hash mẫu. [Thiết kế và cách chạy](EVIDENCE_CARDS.md).

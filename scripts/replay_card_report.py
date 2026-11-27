@@ -63,9 +63,12 @@ def main():
     run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '_' + uuid.uuid4().hex[:8]
     journal = Journal(ROOT / 'private/report-experiments' / run_id)
     metrics = {'model_calls': 0, 'prompt_tokens': 0, 'completion_tokens': 0, 'minimum_free_ram_bytes': None}
+    source_files = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in sorted((ROOT / 'stealer_agent').glob('*.py'))}
     journal.append('replay_started', evidence_kind='real-slm-on-captured-vm-features-not-end-to-end-demo',
                    source_run=args.run, source_journal_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                    model=model, config={k:v for k,v in cfg.items() if 'token' not in k},
+                   source_files=source_files, source_manifest_sha256=hashlib.sha256(canonical(source_files)).hexdigest(),
                    reporter_source_sha256=hashlib.sha256((ROOT/'stealer_agent/evidence_cards.py').read_bytes()).hexdigest())
 
     def invoke(messages, schema, phase, request_evidence):

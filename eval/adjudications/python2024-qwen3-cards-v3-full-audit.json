@@ -1,0 +1,174 @@
+{
+  "created_at": "2026-11-27T17:27:40.117702+00:00",
+  "run_id": "20261127T171819_406f8937",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "dataset_origin": "public-development-sample-source-audit",
+  "human_reviewers": [],
+  "raw_report_sha256": "ca1bd602f3fed086d2b620e4dbf3af217c2984a035967dbb4dd50b97880e9acb",
+  "reference_sha256": "e91277705e7a944f97738728574b850838c9a8a81250cd773c48a2a40fa1b997",
+  "scope": "All ten raw claims, not full-corpus grading. Atomic operation and complete submitted evidence required.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The cited open and f.write(content) implement the temporary browser/data_type text-file write.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 120,
+          "end_line": 151,
+          "quote_sha256": "035d8c7fc05051ae0c717d2df21c86544b7bce078447bb054c458805ffbdea72"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The sentence attributes decrypted-password retrieval to the SQLite query. The query selects password_value; a separate decrypt_password(row[2], master_key) call decrypts it afterward. Those two operations must not be conflated.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 120,
+          "end_line": 151,
+          "quote_sha256": "035d8c7fc05051ae0c717d2df21c86544b7bce078447bb054c458805ffbdea72"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "shutil.copy(cards_db, temporary_path) and sqlite3.connect(temporary_path) substantiate the copied SQLite database.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 156,
+          "end_line": 187,
+          "quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The SELECT explicitly includes card_number_encrypted from credit_cards in the copied database. Encrypted information is present; this does not mean every selected column is encrypted.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 156,
+          "end_line": 187,
+          "quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "SMTP construction, login and sendmail(text) are in the cited range.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 98,
+          "end_line": 129,
+          "quote_sha256": "74c1b98c5886279257a8c11e5210f86944f6481d353f97b92f40beb71a6340a1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The cited path includes AppData/Local/Temp/Browser and the open/write calls are present; the self-review reason wrongly denies this.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 98,
+          "end_line": 129,
+          "quote_sha256": "74c1b98c5886279257a8c11e5210f86944f6481d353f97b92f40beb71a6340a1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The call and literal arguments are present, but the attachment role of the fourth positional argument requires the send_email signature/body, which this citation does not include. The variable name and message are not enough to establish that role.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 308,
+          "end_line": 338,
+          "quote_sha256": "c6e7a5eff64bea7d8c3c0ee8d22547c5d72f8386e74bc3fd325a590daff3134c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The exact save_results call includes browser, Autofill_Data, newline-joined Autofill and total_browsers.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 308,
+          "end_line": 338,
+          "quote_sha256": "c6e7a5eff64bea7d8c3c0ee8d22547c5d72f8386e74bc3fd325a590daff3134c"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "AES.new uses MODE_GCM, master_key and IV before cipher.decrypt(payload).",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 70,
+          "end_line": 101,
+          "quote_sha256": "0f983536342cbcc4e0669a7d2f188f36dfd4f334a798363800170a93d9191770"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The range prepares and Base64-encodes a MIME part but ends at add_header. Attaching that part to the message occurs at msg.attach(part) on the next line outside this citation. The self-review outcome is correct but its reason about Base64 is not.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_c4486d845cd04f5b",
+          "line": 70,
+          "end_line": 101,
+          "quote_sha256": "0f983536342cbcc4e0669a7d2f188f36dfd4f334a798363800170a93d9191770"
+        }
+      ]
+    }
+  ],
+  "verdict_assessment": "suspicious is conservative but is not a correct malicious verdict under the course label requirement. SLM-assigned role IDs still need semantic review; C7 does not alone establish a collected-data transfer link.",
+  "reference_coverage_status": "Composite five-fact profile not yet fully adjudicated; recall/F1 remain null."
+}

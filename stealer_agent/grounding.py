@@ -2,9 +2,28 @@
 from __future__ import annotations
 
 import copy
+import re
 from jsonschema import Draft202012Validator
 
 from .contracts import ATTACK, REPORT_SCHEMA
+
+
+def imports_only(text: str) -> bool:
+    """A narrow textual evidence check, not a parser or proof of benignness.
+
+    Reject behavior inferred from a block containing ONLY plain import/using
+    declarations. Semicolons with calls, dynamic imports and executable using
+    statements deliberately do not match this simple grammar.
+    """
+    names = r'[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*'
+    alias = names + r'(?:\s+as\s+[A-Za-z_]\w*)?'
+    patterns = (rf'import\s+{alias}(?:\s*,\s*{alias})*',
+                rf'from\s+\.*(?:{names})?\s+import\s+(?:\*|{alias}(?:\s*,\s*{alias})*)',
+                rf'using\s+(?:static\s+)?{names}\s*;',
+                rf'using\s+[A-Za-z_]\w*\s*=\s*{names}\s*;')
+    rows = [line.strip() for line in text.splitlines() if line.strip() and
+            not line.lstrip().startswith(('#', '//'))]
+    return bool(rows) and all(any(re.fullmatch(p, row) for p in patterns) for row in rows)
 
 
 def validate_report(raw: dict, evidence: dict, sample_sha256: str) -> dict:
@@ -46,6 +65,8 @@ def validate_report(raw: dict, evidence: dict, sample_sha256: str) -> dict:
             code_tools={'decompile_dotnet','decompile_python','disassemble_python','python_ast','decode_python_literals'}
             if not any(evidence.get(ref['evidence_id'],{}).get('tool') in code_tools for ref in claim['evidence']):
                 errors.append('behavior_or_attack_requires_code_evidence_not_only_strings_or_ioc')
+            if all(imports_only(ref['quote']) for ref in claim['evidence']):
+                errors.append('import_declarations_do_not_establish_behavior')
         if claim['kind']!='ioc' and claim['value']:
             errors.append('value_is_reserved_for_literal_ioc')
         if claim['kind']!='attack' and claim['technique_id']:
@@ -65,7 +86,7 @@ def validate_report(raw: dict, evidence: dict, sample_sha256: str) -> dict:
         # A rejected claim may affect the conclusion; never silently keep it.
         verdict = "inconclusive"
         reasons.append("one_or_more_claims_rejected")
-    if verdict != "inconclusive" and not any(c["kind"] == "behavior" for c in accepted):
+    if verdict != "inconclusive" and not any(c["kind"] == "behavior" and c['id'] in refs for c in accepted):
         verdict = "inconclusive"
         reasons.append("metadata_and_ioc_candidates_do_not_establish_a_verdict")
     result = copy.deepcopy(raw)

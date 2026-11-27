@@ -8,7 +8,7 @@ from jsonschema.exceptions import ValidationError
 
 from stealer_agent.contracts import decision_schema, validate_action
 from stealer_agent.evidence_cards import create_card_report, select_cards
-from stealer_agent.grounding import validate_report
+from stealer_agent.grounding import imports_only, validate_report
 from stealer_agent.journal import Journal, verify_journal
 
 EID = 'ev_' + 'a' * 16
@@ -80,7 +80,8 @@ def test_rejected_candidates_survive_and_are_excluded_from_verdict_input(tmp_pat
                     {'kind': 'behavior', 'text': 'The code uploads passwords.'}]},
         {'supported': True, 'reason': 'File write call is visible.'},
         {'supported': False, 'reason': 'No upload or password source shown.'},
-        {'verdict': 'inconclusive', 'verdict_claim_ids': []},
+        {'verdict': 'inconclusive', 'verdict_claim_ids': [], 'sensitive_collection_claim_ids': [],
+         'outbound_transfer_claim_ids': [], 'data_link_claim_ids': []},
     ])
     calls = []
 
@@ -124,3 +125,54 @@ def test_decoder_provenance_fragments_are_not_sample_code_and_replace_bytecode()
     # Fail closed if provenance boundary metadata was not retained.
     ev[EID].pop('line_metadata')
     assert select_cards(ev) == []
+
+
+@pytest.mark.parametrize('text', ['import requests\nimport smtplib',
+                                  'from os.path import join as path_join\n# metadata',
+                                  'using System.Net;\nusing IO = System.IO;'])
+def test_import_blocks_cannot_prove_behavior(text):
+    assert imports_only(text)
+    ev = source(dict(enumerate(text.splitlines(), 1)))
+    ref = select_cards(ev)[0]['reference']
+    checked = validate_report(report(ref), ev, DIGEST)
+    assert checked['rejected_claims'][0]['reasons'] == ['import_declarations_do_not_establish_behavior']
+    raw = report(ref)
+    raw['claims'][0]['kind'] = 'observation'
+    assert validate_report(raw, ev, DIGEST)['claims']
+
+
+@pytest.mark.parametrize('text', ['import os; open("fixture", "w")',
+                                  'from os import path\npath.exists("fixture")',
+                                  'using (var stream = File.OpenRead("fixture")) {}',
+                                  '# comment only', 'importlib.import_module("fixture")'])
+def test_import_filter_does_not_erase_operations_or_unknown_syntax(text):
+    assert not imports_only(text)
+
+
+def test_multiple_search_anchors_survive_inside_one_bounded_card():
+    ev = source({i: f'fixture_call_{i}();' for i in range(1, 41)})
+    ev[EID]['focus_groups'] = [[15], [18], [20]]
+    cards = select_cards(ev, max_cards=1)
+    assert len(cards) == 1
+    assert cards[0]['focus_lines'] == [15, 18, 20]
+    assert cards[0]['focus_origin'] == 'retrieved_search_hit'
+    assert validate_report(report(cards[0]['reference']), ev, DIGEST)['claims']
+
+
+def test_import_card_is_logged_and_skipped_without_claim_or_verdict(tmp_path):
+    ev = source({1: 'import requests', 2: 'import smtplib'})
+    journal = Journal(tmp_path / 'run')
+    raw, checked = create_card_report(ev, DIGEST, None, journal)
+    assert raw['claims'] == [] and checked['verdict'] == 'inconclusive'
+    assert checked['skipped_import_cards'] == 1
+    assert 'card_skipped' in journal.path.read_text()
+
+
+def test_verdict_must_cite_behavior_not_just_have_behavior_elsewhere():
+    ev = source({1: 'File.WriteAllText("fixture", "test");'})
+    ref = select_cards(ev)[0]['reference']
+    raw = report(ref)
+    raw['claims'].append({**claim(ref), 'id': 'C2', 'kind': 'observation'})
+    raw.update(verdict='malicious', verdict_claim_ids=['C2'])
+    checked = validate_report(raw, ev, DIGEST)
+    assert len(checked['claims']) == 2 and checked['verdict'] == 'inconclusive'

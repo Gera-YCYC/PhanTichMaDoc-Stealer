@@ -1,0 +1,110 @@
+{
+  "created_at": "2026-11-27T17:22:44.459262+00:00",
+  "run_id": "20261127T170742_b4a898c6",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "dataset_origin": "public-development-sample-source-audit",
+  "human_reviewers": [],
+  "raw_report_sha256": "e6a2de99b14da0b6e480f0eaea0fbb1084344f3caae9a596f2fc64eb70533818",
+  "reference_sha256": "e91277705e7a944f97738728574b850838c9a8a81250cd773c48a2a40fa1b997",
+  "scope": "All raw claims, including rejected candidates. Only the submitted excerpt may establish a claim. No full-corpus grade.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "open and f.write(content) establish the browser-specific data_type file write.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_64a8b3090c3643b9",
+          "line": 120,
+          "end_line": 151,
+          "quote_sha256": "035d8c7fc05051ae0c717d2df21c86544b7bce078447bb054c458805ffbdea72"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "sqlite3.connect opens the temporary login_db copy and cursor.execute selects the named login columns.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_64a8b3090c3643b9",
+          "line": 120,
+          "end_line": 151,
+          "quote_sha256": "035d8c7fc05051ae0c717d2df21c86544b7bce078447bb054c458805ffbdea72"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The SQL statement explicitly selects card fields from credit_cards.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_64a8b3090c3643b9",
+          "line": 151,
+          "end_line": 182,
+          "quote_sha256": "d970afee7b3ad0bc867ca30380c5af7c03b08ab529f0ba0781930c36c0f5f621"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "card_number is assigned from decrypt_password(row[3], master_key) after selecting card_number_encrypted.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_64a8b3090c3643b9",
+          "line": 151,
+          "end_line": 182,
+          "quote_sha256": "d970afee7b3ad0bc867ca30380c5af7c03b08ab529f0ba0781930c36c0f5f621"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "MIME payload/header setup, msg.as_string, SMTP login and sendmail are all in the submitted range; the self-review rejection contradicts that code.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_64a8b3090c3643b9",
+          "line": 98,
+          "end_line": 129,
+          "quote_sha256": "74c1b98c5886279257a8c11e5210f86944f6481d353f97b92f40beb71a6340a1"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "automated-source-audit; not human approval, not Qwen self-review",
+      "truth_reference": "eval/reference_profiles/python2024.static.json; submitted code ranges and API/dataflow inspection",
+      "reason": "The path construction and both f.write(content) and combined_autofill_file.write(content) appear in the range; the self-review rejection contradicts them.",
+      "submitted_citations": [
+        {
+          "evidence_id": "ev_64a8b3090c3643b9",
+          "line": 98,
+          "end_line": 129,
+          "quote_sha256": "74c1b98c5886279257a8c11e5210f86944f6481d353f97b92f40beb71a6340a1"
+        }
+      ]
+    }
+  ],
+  "reference_coverage_status": "Composite five-fact profile not yet atomized and fully scored; recall and F1 must remain null.",
+  "note": "Endpoints, credential literals and raw source are omitted from this public audit. Hashes bind the private originals."
+}

@@ -145,6 +145,7 @@ ZIP source chỉ chứa source/tài liệu. Model/archive nghiên cứu ở Rele
 - [Train ranker thực, loss/checkpoint và giới hạn](training/RANKER_EXPERIMENT.md).
 - [Giải mã tĩnh Python 3.11 và chuỗi hash](docs/PYTHON_STATIC_DECODING.md).
 - [Thí nghiệm báo cáo theo đoạn và giới hạn cache RAM](docs/EVIDENCE_CARDS.md).
+- [Đối chiếu đủ nhận định, gồm câu bị loại và các lỗi còn lại](docs/CLAIM_AUDIT.md).
 - [Trạng thái nghiệm thu và kết quả chưa đạt](docs/STATUS.md).
 
 Tài liệu bàn giao ở dạng Markdown kỹ thuật; không cần thông tin sinh viên để chạy sản phẩm.

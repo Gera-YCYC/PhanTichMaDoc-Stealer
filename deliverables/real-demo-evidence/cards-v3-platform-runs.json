@@ -1,0 +1,181 @@
+{
+  "created_at": "2026-11-27T17:34:26.782499+00:00",
+  "kind": "real-local-model-vm-experiment-metadata",
+  "runs": [
+    {
+      "run_id": "20261127T171819_406f8937",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "evidence_kind": "real-public-malware-local-slm-vm",
+      "status": "completed_with_rejected_claims",
+      "source_manifest_sha256": "c31a80d3d783b8bb2fa8f8b80801b46f494776221c516d19c9889dc8410d73b5",
+      "model": {
+        "tag": "qwen3:8b",
+        "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "size_bytes": 5225388164,
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "8.2B",
+          "quantization_level": "Q4_K_M"
+        }
+      },
+      "settings": {
+        "max_steps": 18,
+        "num_ctx": 4096,
+        "num_predict": 1800,
+        "seed": 42,
+        "report_mode": "evidence-cards-v1",
+        "max_report_cards": 10,
+        "min_code_searches": 4,
+        "evidence_chars": 6000,
+        "code_evidence_chars": 4000
+      },
+      "successful_tools": [
+        "decode_python_literals",
+        "disassemble_python",
+        "identify",
+        "unpack_pyinstaller"
+      ],
+      "metrics": {
+        "model_calls": 35,
+        "tool_calls": 17,
+        "tool_errors": 1,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 57722,
+        "completion_tokens": 2558,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4206582824,
+        "host_rss_bytes": 20656128,
+        "minimum_observed_host_available_memory_bytes": 534048768,
+        "elapsed_s": 458.6038,
+        "host_peak_rss_bytes": 29261824
+      },
+      "journal": {
+        "events": 166,
+        "sha256": "53bc1c71fe98af9545bf0edcec180bb027e1c68c6ae2272684a15b40bfd87c30",
+        "chain_verified": true,
+        "every_response_has_request": true
+      },
+      "model_responses_by_phase": {
+        "react": 18,
+        "card_generate": 6,
+        "card_review": 10,
+        "card_verdict": 1
+      },
+      "report_method": "evidence-cards/3",
+      "raw_report_available": true,
+      "raw_report_sha256": "ca1bd602f3fed086d2b620e4dbf3af217c2984a035967dbb4dd50b97880e9acb",
+      "proposed_claims": 10,
+      "accepted_claims": 7,
+      "rejected_claims": 3,
+      "card_count": 6,
+      "skipped_import_cards": 0,
+      "verdict": "suspicious",
+      "proposed_verdict": "suspicious",
+      "verdict_support_missing": [],
+      "verdict_support_invalid": [],
+      "error_classes": [],
+      "quality_metrics": null,
+      "limits": [
+        "Tool success and valid hash chain do not prove semantic accuracy.",
+        "Raw source, endpoints, credentials and model prose are intentionally excluded.",
+        "This receipt is not an independent grade or a full-coursework acceptance."
+      ]
+    },
+    {
+      "run_id": "20261127T172625_ba003503",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "evidence_kind": "real-public-malware-local-slm-vm",
+      "status": "completed_with_rejected_claims",
+      "source_manifest_sha256": "c31a80d3d783b8bb2fa8f8b80801b46f494776221c516d19c9889dc8410d73b5",
+      "model": {
+        "tag": "qwen3:8b",
+        "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "size_bytes": 5225388164,
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "8.2B",
+          "quantization_level": "Q4_K_M"
+        }
+      },
+      "settings": {
+        "max_steps": 18,
+        "num_ctx": 4096,
+        "num_predict": 1800,
+        "seed": 42,
+        "report_mode": "evidence-cards-v1",
+        "max_report_cards": 10,
+        "min_code_searches": 4,
+        "evidence_chars": 6000,
+        "code_evidence_chars": 4000
+      },
+      "successful_tools": [
+        "decompile_dotnet",
+        "detect_it_easy",
+        "identify"
+      ],
+      "metrics": {
+        "model_calls": 49,
+        "tool_calls": 17,
+        "tool_errors": 0,
+        "validation_errors": 0,
+        "guard_hits": 0,
+        "prompt_tokens": 66695,
+        "completion_tokens": 3664,
+        "api_cost_usd": 0,
+        "model_vram_bytes_after_run": 4206582824,
+        "host_rss_bytes": 19193856,
+        "minimum_observed_host_available_memory_bytes": 652681216,
+        "elapsed_s": 467.2824,
+        "host_peak_rss_bytes": 29659136
+      },
+      "journal": {
+        "events": 227,
+        "sha256": "daa75301de096e2bfa97b325772cd2420738cba4a6de6fa1f7a322d722484086",
+        "chain_verified": true,
+        "every_response_has_request": true
+      },
+      "model_responses_by_phase": {
+        "react": 18,
+        "card_generate": 10,
+        "card_review": 20,
+        "card_verdict": 1
+      },
+      "report_method": "evidence-cards/3",
+      "raw_report_available": true,
+      "raw_report_sha256": "54453dfc5fd9c7197c50bb869cb6294a197509b3276420716c4e0a633c2ce7c2",
+      "proposed_claims": 20,
+      "accepted_claims": 16,
+      "rejected_claims": 4,
+      "card_count": 10,
+      "skipped_import_cards": 0,
+      "verdict": "suspicious",
+      "proposed_verdict": "suspicious",
+      "verdict_support_missing": [],
+      "verdict_support_invalid": [
+        "sensitive_collection_claim_ids",
+        "outbound_transfer_claim_ids",
+        "data_link_claim_ids"
+      ],
+      "error_classes": [],
+      "quality_metrics": null,
+      "limits": [
+        "Tool success and valid hash chain do not prove semantic accuracy.",
+        "Raw source, endpoints, credentials and model prose are intentionally excluded.",
+        "This receipt is not an independent grade or a full-coursework acceptance."
+      ]
+    }
+  ]
+}
