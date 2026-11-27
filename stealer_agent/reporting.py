@@ -24,8 +24,12 @@ def write_report(directory: Path, result: dict, *, redaction_context=()) -> None
     if shared.get('file_facts'):
         lines.extend(['## Quan sát trực tiếp từ công cụ', '',
                       'Đây là metadata do identify trả về, tách khỏi các nhận định của model.', '',
-                      '```json', json.dumps(shared['file_facts'],ensure_ascii=False,indent=2), '```', '',
-                      '## Nhận định của SLM', ''])
+                      '```json', json.dumps(shared['file_facts'],ensure_ascii=False,indent=2), '```', ''])
+    if shared.get('typed_operations'):
+        lines.extend(['## Thao tác API do parser trích xuất', '',
+                      'Các mục có kiểu dưới đây tách khỏi nhận định SLM và điểm chất lượng của agent. Chúng mô tả lời gọi tĩnh theo phạm vi binding được hỗ trợ; chưa chứng minh nội dung file, thực thi thành công hoặc kết luận mã độc.', '',
+                      '```json', json.dumps(shared['typed_operations'],ensure_ascii=False,indent=2), '```', ''])
+    lines.extend(['## Nhận định của SLM', ''])
     if not report.get('claims'):
         lines.extend(['Chưa giữ lại nhận định nào sau kiểm tra. Xem claim thô và lý do loại trong log.', ''])
     for claim in report.get("claims", []):

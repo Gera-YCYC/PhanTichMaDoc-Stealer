@@ -1,0 +1,47 @@
+{
+  "run_id": "20261127T184945_91217ab1",
+  "raw_report_sha256": "871780c52033f0c78066f238d3deeeeda80b25886c731099634fb2794f7b86db",
+  "dataset_origin": "public-development-sample-source-audit",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "raw": {
+    "claim_count": 16,
+    "counts": {
+      "correct": 10,
+      "incorrect": 1,
+      "unsupported": 5
+    },
+    "precision": 0.625,
+    "hallucination_rate": 0.3125,
+    "grounding_rate": 0.625,
+    "recall": null,
+    "f1": null
+  },
+  "after_filter": {
+    "claim_count": 15,
+    "counts": {
+      "correct": 9,
+      "incorrect": 1,
+      "unsupported": 5
+    },
+    "precision": 0.6,
+    "hallucination_rate": 0.3333333333333333,
+    "grounding_rate": 0.6,
+    "recall": null,
+    "f1": null
+  },
+  "review_filter": {
+    "accepted_correct": 9,
+    "accepted_not_supported": 6,
+    "rejected_correct": 1,
+    "rejected_not_supported": 0
+  },
+  "proposed_verdict": "suspicious",
+  "checked_verdict": "suspicious",
+  "quality_gate_passed": false,
+  "limits": [
+    "Complete prediction audit for one development run, not a full-corpus evaluation.",
+    "No human or lecturer approval is asserted; source-audit labels may need correction.",
+    "Recall/F1 remain null until independently declared reference units are fully adjudicated.",
+    "Raw/rejected candidates remain in the primary denominator; filtered scores are secondary."
+  ]
+}

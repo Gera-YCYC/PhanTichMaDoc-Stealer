@@ -10,7 +10,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |
 | T01 | Detect It Easy | Đã chạy backend thật và được SLM chọn trên Gomorrah | Kiểm thêm mẫu Python và môi trường dựng mới sau thay đổi installer |
 | T02 | FLOSS | Đã chạy thật; .NET dùng static-only | Không gọi static strings là CIL deobfuscation; kiểm native mode/timeout |
-| A01 | Chọn chứng cứ và báo cáo hành vi | Đã ghép caller/callee bằng parser trong VM; còn thiếu dependency sâu, lẫn SQL/giải mã và ý nghĩa đối số | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
+| A01 | Chọn chứng cứ và báo cáo hành vi | Có parser dữ kiện API v2, kiểm source thật và HTTP/guard; chưa hỗ trợ LateGet/luồng liên hàm, typed facts chưa điều khiển báo cáo SLM | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
 | A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
 | S01 | Unicode và kiểm exposure | Đã sửa; P06 guard on/off có request thật | Giữ byte offset, log evidence thực đã gửi, không đếm payload bị mất |
 | S02 | Bộ injection | P06 hợp lệ; bộ lịch sử không đủ request provenance | >=10 ca đủ exposure, on/off, cả hai chiều; thống kê mẫu số chính xác |
@@ -19,7 +19,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
 | TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
-| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python v1/v2/v3/v4 và .NET v4; v4 Precision Python 50%/16 câu, .NET 36,84%/19 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
+| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm đủ câu thô Python tới v5 và .NET v4; Python v5 Precision 62,5%/16 câu, sau lọc 60%/15 câu; chưa đủ recall/toàn corpus | Chốt đơn vị fact và ghép đầy đủ; giữ raw/rejected; nhãn source-audit chưa human review |
 | E02 | Stability | Thử lịch sử chưa đạt | 3 run cùng sample/model/source/config; intersection/union>=80% |
 | E03 | Tài nguyên và so phương án | Cache 256 MiB giúp 8B chạy lại; Python v3 hoàn tất 458,6 s, min free RAM 534 MB giữa request | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở là hoàn tất |
 | R01 | Tài liệu kỹ thuật | Đang cập nhật theo sản phẩm | Thiết kế, cài/chạy, luồng, dataset, training, đánh giá, giới hạn |

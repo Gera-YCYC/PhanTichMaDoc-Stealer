@@ -1,0 +1,136 @@
+{
+  "created_at": "2026-11-27T19:27:36.853651+00:00",
+  "kind": "live-VM-HTTP-parser-guard-check-not-SLM-demo",
+  "backend": "static-operation-facts/2",
+  "source_matches_vm": true,
+  "source_manifest_sha256": "c75be0b04c746329ce01057d1bb8320726e45cb90491a3848550eb8efce29c2e",
+  "cases": [
+    {
+      "source_run": "20261127T180215_b3a8ccf4",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "evidence_id": "ev_bf96eb3471744a57",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "fresh_static_tools": [
+        {
+          "action": "decompile_dotnet",
+          "backend": "ilspycmd",
+          "evidence_id": "ev_bf96eb3471744a57",
+          "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+        }
+      ],
+      "same_source_output_as_captured": true,
+      "calls": [
+        {
+          "query": "UploadFile",
+          "elapsed_s": 1.8052,
+          "fact_count": 0,
+          "operations": [],
+          "response_sha256": "aca6dc9cbd2fd747d62957392c152b0066dba36a1d2950547b822d0bab785af3",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": true
+        },
+        {
+          "query": ".UploadFile(",
+          "elapsed_s": 1.4413,
+          "fact_count": 4,
+          "operations": [
+            "file_upload",
+            "response_text_decode"
+          ],
+          "response_sha256": "c4dc9289f309222285706032342e0811ab69ba3dc5ce5cf28ce218cf92c74f57",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "Encoding.ASCII.GetString",
+          "elapsed_s": 1.7942,
+          "fact_count": 4,
+          "operations": [
+            "file_upload",
+            "response_text_decode"
+          ],
+          "response_sha256": "96708898a3f7fc440f95b7ca66c56550e3e508275f83e4668b7f96c0e3209bd7",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        }
+      ],
+      "expected_operations_observed": true
+    },
+    {
+      "source_run": "20261127T175019_6cbdf3e9",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "evidence_id": "ev_f4422983f05b4c1e",
+      "output_sha256": "1995988f4e3d4491928c5fb6b4aaa2604d4db14e25ec242339b1d09281a8f172",
+      "fresh_static_tools": [
+        {
+          "action": "unpack_pyinstaller",
+          "backend": "pyinstxtractor/815d31cf+bounded-entry-adapter",
+          "evidence_id": "ev_1a592e6ed2e44f6b",
+          "output_sha256": "54dac2e5d4cf49ce6ebfbf8640681f200daed262e4063064a963a290983e9793"
+        },
+        {
+          "action": "disassemble_python",
+          "backend": "pycdas/b4289760",
+          "evidence_id": "ev_7cfdc07bb4a24351",
+          "output_sha256": "a6fb32dd8d6bcd0cfc76436f851be12373980a086a6a045a66018b07524173ed"
+        },
+        {
+          "action": "decode_python_literals",
+          "backend": "bounded-literal-decoder/1",
+          "evidence_id": "ev_f4422983f05b4c1e",
+          "output_sha256": "1995988f4e3d4491928c5fb6b4aaa2604d4db14e25ec242339b1d09281a8f172"
+        }
+      ],
+      "same_source_output_as_captured": false,
+      "calls": [
+        {
+          "query": "cursor.execute",
+          "elapsed_s": 0.4022,
+          "fact_count": 4,
+          "operations": [
+            "database_open",
+            "sql_select"
+          ],
+          "response_sha256": "f124190c3057a47441b9bdd23d2ca2705fe1012bbcb011b5f7ba5f8377e63765",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "sendmail",
+          "elapsed_s": 0.3831,
+          "fact_count": 2,
+          "operations": [
+            "archive_create",
+            "smtp_send"
+          ],
+          "response_sha256": "db83dbbd989793f1a0f0ecb92a22a397e4e890c9e8ccc0c8a2dea43ba3e413a6",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        },
+        {
+          "query": "make_archive",
+          "elapsed_s": 0.3817,
+          "fact_count": 1,
+          "operations": [
+            "archive_create"
+          ],
+          "response_sha256": "ab8daede324e7c817d6ed249dc0a7b62f4d5de1a766d9e4c04c94935550eb8f2",
+          "all_fact_hashes_and_ranges_verified": true,
+          "guard_hits": 0,
+          "empty_fact_set": false
+        }
+      ],
+      "expected_operations_observed": true
+    }
+  ],
+  "limits": [
+    "Re-runs static tools on development samples with actions captured from earlier runs; not a new holdout.",
+    "No model inference or malware execution; no precision, recall or verdict score.",
+    "Argument values, source, credentials and endpoint text are excluded from the public receipt."
+  ]
+}

@@ -81,6 +81,7 @@ class ToolService:
                         lines.update({r['line']: r for r in context['lines']})
                         result.update(lines=[lines[n] for n in sorted(lines)], context_links=context['context_links'],
                                       syntax_context=context['syntax_context'])
+                        result.update({k:context[k] for k in ('operation_facts','operation_backend','operation_status') if k in context})
                     except Exception as exc:
                         result['syntax_context'] = {'status': 'unavailable', 'error_class': type(exc).__name__,
                                                    'scope': 'Literal search remains available; no syntax links claimed'}

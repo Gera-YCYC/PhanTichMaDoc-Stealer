@@ -53,6 +53,14 @@ Tất cả khoảng quote trong hồ sơ này đã so khớp với observation l
 
 Kết quả này xác nhận cần sửa cách biểu diễn thao tác/đầu vào/đầu ra và chọn phần hữu ích trong helper. Không thể dùng việc reviewer giữ một câu hoặc đủ ID cho các vai trò verdict làm bằng chứng ngữ nghĩa đúng.
 
+## Python v5: đã chấm đủ câu, vẫn chưa đạt
+
+Run `20261127T184945_91217ab1` có 16 câu thô: 10 đúng, 1 sai, 5 thiếu căn cứ. Precision/grounding 62,5%, hallucination 31,25%; Recall/F1 vẫn null. Reviewer giữ 15 câu, trong đó 9 câu đúng; bỏ nhầm C9 mô tả việc copy Login Data có trong chính citation. [Hồ sơ đầy đủ](../eval/adjudications/python2024-qwen3-cards-v5-full-audit.json), [score tái tính được](../deliverables/real-demo-evidence/python2024-cards-v5-claim-audit-score.json).
+
+C8 chỉ dẫn phần cấu hình/header nhưng khẳng định gửi attachment; C10/C12 thiếu thân helper giải mã; C14 thiếu dòng mở đường dẫn attachment; C15 hiểu total_browsers thành nơi nhận dữ liệu; C16 chỉ dẫn lời gọi helper mà thiếu implementation. Chấm theo chính chứng cứ câu đã nộp, không lấy đoạn khác của file để hợp thức hóa citation thiếu. Nhãn là source audit, chưa có người thật ký duyệt.
+
+Lượt này có sáu typed operations nhưng chúng chưa được dùng trong prompt/card nên không quy thay đổi Precision cho parser. Prompt, thứ tự review schema và ngữ cảnh đã đổi so với v4; chưa phải thí nghiệm kiểm soát để xác định tác động riêng từng thành phần. Bộ suy luận reviewer thử ba câu cũng chưa loại đúng câu thiếu căn cứ, xem [thực nghiệm API/reference](API_REFERENCE.md).
+
 ## Công việc kế tiếp sau khi chấm hai nền tảng
 
 Nhánh .NET còn có [chín phản ví dụ source/API](../eval/adjudications/gomorrah-qwen3-cards-v3-counterexamples.json). Ba câu nhầm byte trả về của UploadFile thành dữ liệu file gửi đi; một câu suy phản hồi/SMTP qua sai API; các câu khác thiếu thân hàm hoặc thao tác cuối. Theo [tài liệu Microsoft](https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.uploadfile?view=net-10.0), UploadFile nhận đường dẫn file và trả thân phản hồi từ resource. Chuyển mảng trả về đó sang ASCII là xử lý phản hồi, không phải chuyển file thành ASCII trước khi gửi. Đây là kiểm một phần, không tính Precision/F1 cho đủ 20 câu từ chín phản ví dụ này.

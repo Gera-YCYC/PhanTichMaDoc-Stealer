@@ -4,6 +4,8 @@ AI Agent ReAct dùng SLM cục bộ để phân tích tĩnh stealer .NET/Python.
 
 **Sản phẩm đang phát triển, chưa đạt toàn bộ tiêu chí chất lượng.** Repo chính: [Gera-YCYC/PhanTichMaDoc-Stealer](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer). Source ở root; model và mẫu public mã hóa ở Release có khóa hash. Tài liệu bàn giao là Markdown kỹ thuật, không cần thông tin sinh viên.
 
+Cập nhật kỹ thuật: đã có run thực Qwen3 8B trên Python2024 và parser dữ kiện API cho cả .NET/Python, 168 kiểm thử phần mềm đạt trên Windows. Source audit đầy đủ của run Python v5 có 10/16 câu đúng (62,5%), chưa đạt Precision 80%; không coi test phần mềm hoặc việc model tự duyệt là điểm môn học. Xem [trạng thái và bằng chứng mới nhất](docs/STATUS.md), [dữ kiện API](docs/TYPED_OPERATIONS.md) và [đối chiếu từng nhận định](docs/CLAIM_AUDIT.md). Qwen3 vẫn là cấu hình thử; model mặc định/Release giữ Qwen2.5 Coder 7B.
+
 Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-version](legacy/initial-version/), kèm hash tại [manifest bảo toàn](docs/legacy-source-manifest.json). Khi chạy bản hiện tại, dùng `agent_react.py` và `scripts/Run-Demo.ps1` ở thư mục gốc; các báo cáo mô phỏng trong legacy chỉ là lịch sử phát triển.
 
 ## Giảng viên và thành viên nhóm bắt đầu tại đây
@@ -39,7 +41,7 @@ Chạy một mẫu có sẵn **bên trong VM**:
 
 Demo chính dùng **mẫu public thật + SLM thật + công cụ thật trong VM**. `Run-Demo.ps1` chỉ nhận tên mẫu trong manifest public, kiểm SHA256 và yêu cầu model ít nhất 7B; không có chế độ mock. Đây là phân tích tĩnh mã độc thật, không thực thi mã độc.
 
-CLI không nhận đường dẫn file host. Mỗi lần chạy tạo thư mục mới trong `runs/`. `completed_with_rejected_claims` nghĩa là vòng công cụ hoàn tất nhưng có nhận định bị loại. Hai lượt chạy lại ngày 27/11/2026 đều còn verdict `inconclusive`; không được trình bày thành kết luận độc/lành đã đúng.
+CLI không nhận đường dẫn file host. Mỗi lần chạy tạo thư mục mới trong `runs/`. `completed_with_rejected_claims` nghĩa là vòng công cụ hoàn tất nhưng có nhận định bị loại. Hai lượt buổi 4 trong bảng lịch sử dưới đây đều còn verdict `inconclusive`; không được trình bày thành kết luận độc/lành đã đúng. Các run phát triển sau đó có model/revision/receipt riêng trong STATUS.
 
 | Demo public đã chạy lại | Công cụ thành công | Thời gian toàn vòng | Kết quả |
 |---|---:|---:|---|

@@ -110,9 +110,24 @@
     "sha256": "59e50fb8030d85b5025d5c9a8ed6e95a2a67a71584954c967d284bd4243d3a93"
   },
   {
+    "path": "deliverables/real-demo-evidence/cards-v5-python-run.json",
+    "bytes": 3717,
+    "sha256": "1da48fe5bc393c0f81fee6acc0e154daa42ca354308926bc85b3bd850f1ffed7"
+  },
+  {
     "path": "deliverables/real-demo-evidence/clean-vm-rehearsal.json",
     "bytes": 11231,
     "sha256": "9b5d30e4068fd0e761fea75908b9bce39eca7ee91b1241c5e9fbb689d9c143ff"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/critic-v5-assessment-first.json",
+    "bytes": 3289,
+    "sha256": "309dd17615d41eba831086abadbb135c9410096c1e5d1b2c54134827ae7b1a4d"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/critic-v5-thinking-smoke.json",
+    "bytes": 1896,
+    "sha256": "864de6464c4e844eb92471a93a06eb3e7865b89ce8da079e107929415dd3e690"
   },
   {
     "path": "deliverables/real-demo-evidence/die-floss-smoke.json",
@@ -215,6 +230,11 @@
     "sha256": "0320323958267b95573de0291c988bdd7ced31a3befe37b1eb88e7f066d50b2e"
   },
   {
+    "path": "deliverables/real-demo-evidence/python2024-cards-v5-claim-audit-score.json",
+    "bytes": 1485,
+    "sha256": "6ebc8cc8714eb379ba61b5dc8343b268ed32b7c045af2aa91f5406cd366d81db"
+  },
+  {
     "path": "deliverables/real-demo-evidence/qwen3-8b-aborted.json",
     "bytes": 2035,
     "sha256": "2e17c5a77d5d02dce2826834a17f22f425f0932bb4e7fd7e47cb249ec08a3ef4"
@@ -245,6 +265,11 @@
     "sha256": "7b338813cc7a423f0a6f2875199e2c56a1a77610a5375e11d6a2fa2537dedbdb"
   },
   {
+    "path": "deliverables/real-demo-evidence/runtime-stopped-after-cards-v5.json",
+    "bytes": 604,
+    "sha256": "b28a68d7c1fb3c2839a59267c6c693661d179f60f70da05698eb20eb5b91e8fa"
+  },
+  {
     "path": "deliverables/real-demo-evidence/runtime-stopped-after-cards.json",
     "bytes": 433,
     "sha256": "cdaf7c8a0cddef4b75ddf2877ccf678ebc6f5e2c7fdaa8d973f57883d029bfd4"
@@ -265,9 +290,29 @@
     "sha256": "9e2e7cf7efe035da05ae41282ca19bebe05d52b7541f7ee5707e2bc59888b100"
   },
   {
+    "path": "deliverables/real-demo-evidence/typed-operations-real-source-check.json",
+    "bytes": 15530,
+    "sha256": "359730ea9a11743c28897c2b7b91eb373a25a5429668fe18b0926ff8538e723e"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/typed-operations-v2-delivery-check.json",
+    "bytes": 5095,
+    "sha256": "91275067fa49f7d505e61c55c00d9fb8e69218d2991afaca36e0b3266ba52db9"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/typed-operations-v2-real-source-check.json",
+    "bytes": 16895,
+    "sha256": "9c2029de9ade06aa3ef9d33a1e5888eea3c4e3acf799187778a142491e0e6f5c"
+  },
+  {
     "path": "deliverables/StealerLab_Buoi4.pptx",
     "bytes": 44244,
     "sha256": "1851ec8da9a6a0c160240593ffab92086f61b9885754f969e2a2b0216d7e5540"
+  },
+  {
+    "path": "docs/API_REFERENCE.md",
+    "bytes": 5226,
+    "sha256": "c428f7a32e2819619bf8917fefdadac57c14f318c4c8530d776c313ae7646acb"
   },
   {
     "path": "docs/BAO_CAO_TIEN_DO.md",
@@ -281,13 +326,13 @@
   },
   {
     "path": "docs/CLAIM_AUDIT.md",
-    "bytes": 10920,
-    "sha256": "b5d2441d9e07e63dd2e0f19e5848b83e0fb9c324f987f47cd5d0f1e9dd979af1"
+    "bytes": 12411,
+    "sha256": "b174889f35651ec15cdbeab0ea7ba47a9850202bcbfb0e6eea4744ed851ce62f"
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 7878,
-    "sha256": "de2cbe9dc8041b2531a7cc1c68f452b2810808bdac2bf653311b88a9b64a36f6"
+    "bytes": 7914,
+    "sha256": "2bc731f90236c83d5148d5cd066496b22af978df310edb3bb3372604bc9991b3"
   },
   {
     "path": "docs/DATASET.md",
@@ -446,8 +491,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 17328,
-    "sha256": "52d4cead20121b8d3462419288adddcf880eab072462ba0e2488611d60b49817"
+    "bytes": 20458,
+    "sha256": "bd201c8d517b5dc03ff5bb2e90a2ce54130f62b22e26f8bc4b17723d3f076ce4"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -468,6 +513,11 @@
     "path": "docs/THUYET_MINH_DU_AN.md",
     "bytes": 17442,
     "sha256": "6df3a2d1c757b736bbe0274646cc131187f6e441e57423fa57dcef1a01ee917b"
+  },
+  {
+    "path": "docs/TYPED_OPERATIONS.md",
+    "bytes": 5875,
+    "sha256": "61a0d19a640df7a2d8c9f2a158cef5b81928ae88f99cc42fe0ca722f0f60b61e"
   },
   {
     "path": "docs/YEU_CAU_GIANG_VIEN.md",
@@ -518,6 +568,11 @@
     "path": "eval/adjudications/python2024-qwen3-cards-v4-full-audit.json",
     "bytes": 15943,
     "sha256": "00bdc15bed6026c0ee130bbb57849765dddf64037466ea8c3a429e09de5ac9c0"
+  },
+  {
+    "path": "eval/adjudications/python2024-qwen3-cards-v5-full-audit.json",
+    "bytes": 15973,
+    "sha256": "199171a46734ffdb34c2c3ec211d70bc2f42d148addbe945b90cf5eeb77ee933"
   },
   {
     "path": "eval/adjudications.example.json",
@@ -596,8 +651,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 11735,
-    "sha256": "d45a76df86cf60f8725fd0f28552f65151e0e9d7d418cefb2d00e9436dc2b3d5"
+    "bytes": 12466,
+    "sha256": "dbc0eccedf6385246c6f02e1d563251d2598e42b44f58cbea31211b627da65be"
   },
   {
     "path": "requirements-dev.lock.txt",
@@ -816,13 +871,18 @@
   },
   {
     "path": "scripts/replay_card_report.py",
-    "bytes": 5698,
-    "sha256": "801bb33868f5bdd752da8f0f8ded94813355e0f98fc290fb5a03b292e58cff5b"
+    "bytes": 6191,
+    "sha256": "ba172d45cac0757914df25ed08d5039a28bc5c8a8d0def9b0596e0ee59c7de83"
+  },
+  {
+    "path": "scripts/replay_claim_review.py",
+    "bytes": 7194,
+    "sha256": "c6525e78f1b6435afab2284acf821e60773afbeabed046a1f1e801c2052a841b"
   },
   {
     "path": "scripts/report_experiment_receipt.py",
-    "bytes": 4181,
-    "sha256": "70d86484c1cb12076df8e9e444e6bf620b7e71b5175fb4298530b4d05578a4ea"
+    "bytes": 5652,
+    "sha256": "8a2d056bbc58ba18fa11bbc93d5b9a822820d91b67af0f2624393df3907906ac"
   },
   {
     "path": "scripts/restore_release_model.py",
@@ -885,6 +945,16 @@
     "sha256": "529c6ea8417125ac9c186bb61d2efc2fa1b1f708a2ea9781207d7960c6410c15"
   },
   {
+    "path": "scripts/verify_operation_delivery.py",
+    "bytes": 6794,
+    "sha256": "03cb7fe7a9569f7ca714f8b296f867fbb74947161cf7975f4f311a6594b0b4ea"
+  },
+  {
+    "path": "scripts/verify_operation_facts.py",
+    "bytes": 3517,
+    "sha256": "129c6acf28f343ab43897eda9ffa935c71ce4bac24463911a6ae34762bbc7e0f"
+  },
+  {
     "path": "scripts/verify_python_reference.py",
     "bytes": 2100,
     "sha256": "c64f33dadc158aa2dad6d137c2e109b7c2ec2876321e3b389835e96e39c12940"
@@ -920,6 +990,11 @@
     "sha256": "fccee36f12fcdc482ed65b7c9d223e123c35208a2ee04c20a51109511e8296fa"
   },
   {
+    "path": "stealer_agent/api_reference.py",
+    "bytes": 3562,
+    "sha256": "bbbad1e547a869a5826516161e7758096f9cdb3501ad139eeda1f779f68d837e"
+  },
+  {
     "path": "stealer_agent/cli.py",
     "bytes": 2082,
     "sha256": "357166b2508242b1b868f910f34ddfbd04e47d487b5f94537b3d622aadf81b3d"
@@ -936,13 +1011,13 @@
   },
   {
     "path": "stealer_agent/engine.py",
-    "bytes": 33292,
-    "sha256": "8092675aa5ad191d91d5bd0e8af78955ae696b45ca2aabf21e9499862e9e4cc5"
+    "bytes": 33630,
+    "sha256": "0cba1887c0e56694f44bc72d16018242644e19a9ee2b0915f396f626f16dbfcf"
   },
   {
     "path": "stealer_agent/evidence_cards.py",
-    "bytes": 15922,
-    "sha256": "d32f0a0c022c177f15b0b0360337c9f67cc6005e5e5f2c29871be66f56d605ef"
+    "bytes": 17209,
+    "sha256": "f1800865b2cb083d7dec48fae145f46f1b5388feefc8a17264b9f183b8a43639"
   },
   {
     "path": "stealer_agent/grounding.py",
@@ -966,8 +1041,8 @@
   },
   {
     "path": "stealer_agent/reporting.py",
-    "bytes": 3397,
-    "sha256": "2b9ea1c51d14444f0c4810a7a7df3c817e7ee39b205ceef75e84a35cd175b358"
+    "bytes": 3924,
+    "sha256": "fde7acec243330fe8672c85e8066ebcce5db737f58af9e2e6fff1aa9c481b7b5"
   },
   {
     "path": "stealer_agent/reviewer.py",
@@ -976,8 +1051,8 @@
   },
   {
     "path": "stealer_agent/security.py",
-    "bytes": 3791,
-    "sha256": "81bea068f8aef591353c354bde14f3e48d021b6e8000e7dc581ec772835804e1"
+    "bytes": 4144,
+    "sha256": "6778ed1f93ab7bbb0b7132a45bbc90ac48f4eb4da1885a91f4cec4e55262d2c7"
   },
   {
     "path": "stealer_agent/telemetry.py",
@@ -998,6 +1073,11 @@
     "path": "stealer_agent/yara_agent.py",
     "bytes": 5881,
     "sha256": "8f25b0d64ec99ed90447ea55e3e4c99b4cea68ee315a5634b0ba6baa7e52f7a0"
+  },
+  {
+    "path": "tests/test_api_reference.py",
+    "bytes": 3116,
+    "sha256": "763c18b647c20a7b4089a154e511a02b2e1b6150c48055ecf28bf064dfa3c9ac"
   },
   {
     "path": "tests/test_claim_audit.py",
@@ -1060,6 +1140,11 @@
     "sha256": "b989e59219b569fa67e9b9c461b14724112f2d261a2f525f63897c7870d9a646"
   },
   {
+    "path": "tests/test_operation_facts.py",
+    "bytes": 7718,
+    "sha256": "e78a71e773f4b8489f93fda81b0c6bbe61ccf990f542e1550e96066fdddb0f2c"
+  },
+  {
     "path": "tests/test_report_redaction.py",
     "bytes": 3504,
     "sha256": "a66504895d4a40660f6953c5730c56b9dfc62c69a3bdccb9dd8f905b23296829"
@@ -1072,7 +1157,7 @@
   {
     "path": "tests/test_syntax_context.py",
     "bytes": 7124,
-    "sha256": "c9f99d6ea58bfc2bf283f10397a19348665cccf84c2e4ad5a97a4ac2b64a7c00"
+    "sha256": "03ede8e6dfbf2755f7f591b99170a47bb368d9254d95476dad969cc8d1924ca8"
   },
   {
     "path": "tests/test_training_contract.py",
@@ -1211,8 +1296,8 @@
   },
   {
     "path": "vm_tools/context_worker.py",
-    "bytes": 537,
-    "sha256": "bade4a11fbf484b4e179625a40078c9d4cf7fa82b2f54334f5393004a5c71391"
+    "bytes": 1647,
+    "sha256": "7b6c1f248bccbeca4a43ad0798873cf5383127ced69e72cc959e095206a9985b"
   },
   {
     "path": "vm_tools/decode_worker.py",
@@ -1240,6 +1325,21 @@
     "sha256": "613f9adf20b35a7371f2c2dcb37f35351d934d03e605cbc8530a2af900ed3787"
   },
   {
+    "path": "vm_tools/operation_dotnet.py",
+    "bytes": 8192,
+    "sha256": "eb5f9c4dc4f491acda785b0cc4ebdbd00ff4e5bb0308dec1bf334ea076022474"
+  },
+  {
+    "path": "vm_tools/operation_facts.py",
+    "bytes": 2260,
+    "sha256": "08338a822fb50c79aa10e107f8bd2854d8900d8e7940d807023150efd629c9f0"
+  },
+  {
+    "path": "vm_tools/operation_python.py",
+    "bytes": 7973,
+    "sha256": "f0feae183ac20039795c9e5bd0c9a8529bfaf9484a225b8207b29163e93a34dd"
+  },
+  {
     "path": "vm_tools/python_tools.py",
     "bytes": 3087,
     "sha256": "4928465189d0d1f966bf84282e60e0bd03b180e69216c33f02a8c2cd7b39bb62"
@@ -1256,8 +1356,8 @@
   },
   {
     "path": "vm_tools/service.py",
-    "bytes": 10777,
-    "sha256": "a4d46a159f995f5e44404a87cb9a5367ba2001c69d9752062bfb4a1aa415cc86"
+    "bytes": 10915,
+    "sha256": "a8f9fc2d9b1a9c7939b5bac9e9dc2fb73e9ef4a8814dba89e6e1ac393122263a"
   },
   {
     "path": "vm_tools/string_extractor.py",

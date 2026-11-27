@@ -1,0 +1,60 @@
+{
+  "run_id": "20261127T183425_0e5b3cd9",
+  "source_run": "20261127T180215_b3a8ccf4",
+  "kind": "fixed-real-claim-critic-experiment-not-live-demo",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41"
+  },
+  "settings": {
+    "decision_first": false,
+    "api_guidance": true,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1800,
+    "think": true,
+    "claim_limit": 3,
+    "config_sha256": "66dcf53b3734baf3e624c08f981d785f9cd29d360be57e6a3d3edac92ec5d0bd"
+  },
+  "raw_report_sha256": "8887cf48cca113a0a7d653aa6b7d41019823849029d8b8299e7e6840e5faba2f",
+  "audit_sha256": "9deb6e3589d45285e8cec15badaa50918ca338def56e31c4a2f0ca86f8de02f7",
+  "source_manifest_sha256": "9f8ef4b0ed74a7b4c23b25e6631c17ff23cd314cb71482231e8d9edb88509d01",
+  "claim_count": 3,
+  "source_claim_count": 19,
+  "full_report_reviewed": false,
+  "decisions": [
+    {
+      "claim_id": "C1",
+      "supported": true,
+      "schema_valid": true
+    },
+    {
+      "claim_id": "C2",
+      "supported": true,
+      "schema_valid": true
+    },
+    {
+      "claim_id": "C3",
+      "supported": true,
+      "schema_valid": true
+    }
+  ],
+  "confusion_counts": {
+    "accepted_correct": 2,
+    "accepted_not_supported": 1
+  },
+  "metrics": {
+    "model_calls": 3,
+    "prompt_tokens": 4880,
+    "completion_tokens": 2146,
+    "minimum_free_ram_bytes": 940687360,
+    "elapsed_s": 237.299
+  },
+  "limits": [
+    "Reference labels are a development source audit, not lecturer/human approval.",
+    "This measures critic decisions on fixed claims, not full-agent precision, recall or verdict.",
+    "No new malware/tool execution occurred; audit labels were not sent to the model."
+  ],
+  "journal_events": 8,
+  "journal_sha256": "1efd1d16bedb9ea6a700f3f2c1c05d2b68987ea9e137d709228d06af506ba017"
+}

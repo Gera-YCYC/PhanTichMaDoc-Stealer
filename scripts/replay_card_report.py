@@ -34,6 +34,9 @@ def reconstruct(events):
         for link in clean.get('context_links', []):
             if link not in record.setdefault('context_links', []):
                 record['context_links'].append(link)
+        for fact in clean.get('operation_facts', []):
+            if fact not in record.setdefault('operation_facts', []):
+                record['operation_facts'].append(fact)
         if 'search_groups' in clean:
             for group in clean['search_groups']:
                 anchor = group['anchor_line']
@@ -47,6 +50,7 @@ def main():
     parser.add_argument('--config', type=Path, required=True)
     parser.add_argument('--model')
     parser.add_argument('--cards', type=int, default=3)
+    parser.add_argument('--no-api-guidance', action='store_true', help='Controlled ablation; same v5 prompts without API reference notes')
     args = parser.parse_args()
     directory = (ROOT / 'runs' / args.run).resolve(strict=True)
     if directory.parent != (ROOT / 'runs').resolve():
@@ -73,6 +77,7 @@ def main():
                    model=model, config={k:v for k,v in cfg.items() if 'token' not in k},
                    source_files=source_files, source_manifest_sha256=hashlib.sha256(canonical(source_files)).hexdigest(),
                    reporter_source_sha256=hashlib.sha256((ROOT/'stealer_agent/evidence_cards.py').read_bytes()).hexdigest())
+    journal.append('replay_settings', max_cards=args.cards, api_guidance=not args.no_api_guidance)
 
     def invoke(messages, schema, phase, request_evidence):
         free = available_memory_bytes()
@@ -95,7 +100,8 @@ def main():
         return response
 
     start = time.perf_counter()
-    raw, checked = create_card_report(evidence, source_result['sample_sha256'], invoke, journal, max_cards=args.cards)
+    raw, checked = create_card_report(evidence, source_result['sample_sha256'], invoke, journal,
+                                      max_cards=args.cards, api_guidance=not args.no_api_guidance)
     metrics['elapsed_s'] = round(time.perf_counter() - start, 4)
     dump_json(journal.directory / 'report.model-raw.json', raw)
     dump_json(journal.directory / 'report.checked.json', checked)

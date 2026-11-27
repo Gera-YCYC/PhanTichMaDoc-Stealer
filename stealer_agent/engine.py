@@ -392,6 +392,9 @@ class Agent:
                     for link in clean.get('context_links', []):
                         if link not in record.setdefault('context_links', []):
                             record['context_links'].append(link)
+                    for fact in clean.get('operation_facts', []):
+                        if fact not in record.setdefault('operation_facts', []):
+                            record['operation_facts'].append(fact)
                     if name == 'search_evidence':
                         # Keep inspected code before boilerplate when later tools run.
                         record['focus_lines'] = list(dict.fromkeys(record.get('focus_lines', []) + record['latest_lines']))
@@ -443,6 +446,7 @@ class Agent:
                   "model": metadata, "successful_tools": sorted(successful), "analysis": report,
                   "metrics": metrics, "evidence_kind": self.config.get("evidence_kind", "real-model-vm-run"),
                   "file_facts": file_facts,
+                  "typed_operations": [fact for record in evidence.values() for fact in record.get('operation_facts', [])],
                   "acceptance": {"two_distinct_tools": len(successful) >= 2,
                                  "required_branch_tools": required_tools <= successful,
                                  "model_minimum_met": model_meets_minimum(metadata),

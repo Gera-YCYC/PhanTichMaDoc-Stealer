@@ -111,7 +111,7 @@ def test_linked_report_preserves_both_excerpts_and_journals_the_same_exposure(tm
         return next(replies)
     raw, checked = create_card_report({r['evidence_id']:r}, 'a'*64, invoke, Journal(tmp_path/'run'), max_cards=1)
     assert len(raw['claims'][0]['evidence']) == 2
-    assert checked['claims'] and checked['report_method'] == 'evidence-cards/4'
+    assert checked['claims'] and checked['report_method'] == 'evidence-cards/5'
     assert 'SECTION 1' in calls[0][0][-1]['content'] and 'SECTION 2' in calls[0][0][-1]['content']
     assert calls[0][2] == calls[1][2]
 

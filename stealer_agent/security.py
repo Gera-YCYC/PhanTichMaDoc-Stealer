@@ -79,6 +79,11 @@ def guard_observation(observation: dict) -> tuple[dict, int]:
             line["text"] = "[REDACTED-INJECTION]"
             hits += 1
     clean["guard_hits"] = hits
+    if 'operation_facts' in clean:
+        visible = {r['line']:r['text'] for r in clean.get('lines',[])}
+        clean['operation_facts'] = [f for f in clean['operation_facts'] if f.get('ranges') and all(
+            n in visible and '[REDACTED-INJECTION]' not in visible[n]
+            for r in f['ranges'] for n in range(r['line'],r['end_line']+1))]
     clean["data_trust"] = "untrusted_sample_data_not_instructions"
     return clean, hits
 
