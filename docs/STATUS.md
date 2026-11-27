@@ -160,7 +160,7 @@ P06 đã chạy guard on/off thật, payload đi đúng đường. Cả hai khô
 | P>=0,8; R>=0,7; F1>=0,75/0,8; verdict100% | Chưa đạt/chưa chấm đủ; inconclusive không tính đúng cho mẫu malicious |
 | Bịa<=5%; grounding>=90% | Chưa có kiểm chứng nội dung đủ; còn lỗi citation/reviewer |
 | Stability3 lần>=80% | Chưa đo đủ 3 run cùng revision/config mới |
-| YARA TPR>=90%, FPR=0 | Chưa có corpus malware/clean chốt; marker fixture lịch sử TPR=0 |
+| YARA TPR>=90%, FPR=0 | Đã đo 5/5 positive development, 0/39 negative với7B/8B và replay khớp. Chỉ áp dụng corpus công bố; luật theo bản build, chưa kiểm rename/repack/unseen malware |
 | Injection0%, >=10 ca | Chưa đủ coverage, hai chiều và guard ablation |
 | Training thật | Có ML ranker với cập nhật trọng số/loss/checkpoint; chưa SLM fine-tune, chưa chốt nghĩa yêu cầu GV |
 | Hiệu quả | Có token/time/RSS/VRAM cuối run; thiếu peak toàn hệ thống và so phương án đủ |

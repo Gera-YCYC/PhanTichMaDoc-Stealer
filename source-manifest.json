@@ -591,8 +591,8 @@
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 9752,
-    "sha256": "9e96cf4adbd5f1136f16b4fc6dacb481f7e26692df923bd6a45bee778c596db7"
+    "bytes": 9933,
+    "sha256": "4a4ee1d8796ec5a56ffc44529276fdfc3cc53de6dc7a1f91e9403e8bc0c3dc25"
   },
   {
     "path": "docs/DATASET.md",
@@ -761,8 +761,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 32642,
-    "sha256": "32ab1b6b5d54b866cc4b83dcf24ae6fb172d3e67cf7d707c5b98c323b8136f30"
+    "bytes": 32752,
+    "sha256": "2a2ed410912d241f188b7543ad4408965992d0f6e3cad89e81c0abfc5ca3ff77"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -991,8 +991,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 13162,
-    "sha256": "be575472b5c0db3e85d43f161c8df70a056122dccee0a091e3ce55310768848e"
+    "bytes": 13049,
+    "sha256": "5bcfa08486f9b641fca04b2bcc67a2b64aff1d31e6e125d931428851b581d4de"
   },
   {
     "path": "requirements-dev.lock.txt",
