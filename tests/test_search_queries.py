@@ -30,3 +30,10 @@ def test_choices_bounded_and_do_not_parse_or_execute_source():
     assert 'function_0' not in choices
     with pytest.raises(ValueError):
         query_options({},[],limit=100)
+def test_member_queries_come_from_visible_calls_not_quoted_payloads():
+    from stealer_agent.search_queries import query_options
+    record={'line_map':{1:'cursor.fetchall()',2:'part.set_payload(data)',3:'text="other.inject_me()"'},'latest_lines':[1,2,3]}
+    choices=query_options(record,[])
+    assert 'fetchall(' in choices and 'set_payload(' in choices
+    assert 'inject_me(' not in choices
+    assert 'fetchall(' not in query_options(record,['fetchall('])

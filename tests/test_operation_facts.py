@@ -36,7 +36,7 @@ def test_upload_path_response_and_character_decode_are_distinct(tmp_path):
     assert {'line':1,'end_line':1} in upload['ranges']
     assert {'line':1,'end_line':1} in decode['ranges']
     assert {'line':2,'end_line':2} in decode['ranges']
-    assert upload['backend'] == out['backend'] == 'static-operation-facts/3'
+    assert upload['backend'] == out['backend'] == 'static-operation-facts/4'
 
 
 @pytest.mark.parametrize('mutation',[
@@ -84,10 +84,11 @@ def inspect(path, host):
 
 def test_python_query_is_stored_data_and_smtp_requires_receiver_binding(tmp_path):
     _,out=extract(tmp_path,PY,'decompile_python')
-    assert [f['operation'] for f in out['facts']]==['database_open','sql_select','smtp_send','archive_create']
+    assert [f['operation'] for f in out['facts']]==['database_open','sql_select','smtp_connect','smtp_send','archive_create']
     assert out['facts'][1]['result']['meaning']=='sqlite_cursor_for_query_not_fetched_or_decrypted_values'
-    assert out['facts'][2]['inputs']['message_expression']=='message'
-    assert out['facts'][3]['result']['meaning']=='archive_path'
+    assert out['facts'][2]['result']['meaning']=='smtp_client_not_message_delivery'
+    assert out['facts'][3]['inputs']['message_expression']=='message'
+    assert out['facts'][4]['result']['meaning']=='archive_path'
 
 
 @pytest.mark.parametrize('mutation,absent',[

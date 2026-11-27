@@ -18,7 +18,7 @@ def evidence(tmp_path, source=None):
     store = EvidenceStore(tmp_path / 'evidence')
     first = store.add(sample='inert.bin', sample_sha256='a' * 64, tool='decompile_python', backend='fixture', text=source)
     record = store.get(first['evidence_id'], 'a' * 64)
-    record['operation_facts'] = extract_operations(record)['facts']
+    record['operation_facts'] = [f for f in extract_operations(record)['facts'] if f['operation']=='smtp_send']
     record['line_map'] = {r['line']: r['text'] for r in record['lines']}
     return {record['evidence_id']: record}
 

@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-11-27T23:26:54.7388696Z",
+  "project_ollama_pid": 27356,
+  "project_ollama_process_present": false,
+  "port_11435_listeners": 0,
+  "vmware_vmx_process_count": 0,
+  "gpu_memory_mib_observed": "0",
+  "scope": "Observed after the v9/v10 reporting batch; unrelated application processes not stopped",
+  "weights_and_vm_disk_preserved": true
+}

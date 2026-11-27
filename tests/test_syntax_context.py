@@ -101,7 +101,7 @@ def test_linked_report_preserves_both_excerpts_and_journals_the_same_exposure(tm
     context = related_contexts(r, [2])
     r.update(context)
     r['line_map'] = {row['line']:row['text'] for row in r['lines']}
-    replies = iter([{'claims':[{'kind':'behavior','text':'The code passes an inert literal to leaf.'}]},
+    replies = iter([{'supplemental_claims': [], 'claims':[{'kind':'behavior','text':'The code passes an inert literal to leaf.'}]},
                     {'supported':True,'reason':'Caller and callee visible.'},
                     {'verdict':'inconclusive','verdict_claim_ids':[], 'sensitive_collection_claim_ids':[],
                      'outbound_transfer_claim_ids':[], 'data_link_claim_ids':[]}])
@@ -111,7 +111,7 @@ def test_linked_report_preserves_both_excerpts_and_journals_the_same_exposure(tm
         return next(replies)
     raw, checked = create_card_report({r['evidence_id']:r}, 'a'*64, invoke, Journal(tmp_path/'run'), max_cards=1)
     assert len(raw['claims'][0]['evidence']) == 2
-    assert checked['claims'] and checked['report_method'] == 'evidence-cards/8'
+    assert checked['claims'] and checked['report_method'] == 'evidence-cards/10'
     assert 'SECTION 1' in calls[0][0][-1]['content'] and 'SECTION 2' in calls[0][0][-1]['content']
     assert calls[0][2] == calls[1][2]
 

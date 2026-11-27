@@ -24,7 +24,8 @@ def test_reference_hits_in_comments_are_only_guidance_and_never_a_finding():
 def test_reference_digest_and_sources_are_stable_across_unrelated_sample_text():
     assert reference_for('UploadFile one')['sha256'] == reference_for('UploadFile two')['sha256']
     assert reference_for('UploadFile')['sha256'] != reference_for('UploadFile GetString')['sha256']
-    assert all(r['source'].startswith(('https://learn.microsoft.com/', 'https://docs.python.org/')) for r in REFERENCES)
+    assert all(r['source'].startswith(('https://learn.microsoft.com/', 'https://docs.python.org/',
+                                     'https://timgolden.me.uk/pywin32-docs/')) for r in REFERENCES)
 
 
 def test_python_query_and_send_notes_distinguish_setup_from_effect():
@@ -43,7 +44,7 @@ def test_generation_and_review_receive_identical_reference_but_unchanged_source(
     def invoke(messages, schema, phase, exposure):
         calls.append((messages, phase, exposure))
         if phase == 'card_generate':
-            return {'claims': [{'kind': 'behavior', 'text': 'The code uploads a file.'}]}
+            return {'supplemental_claims': [], 'claims': [{'kind': 'behavior', 'text': 'The code uploads a file.'}]}
         if phase == 'card_review':
             return {'supported': True, 'reason': 'Upload call is present.'}
         return {'verdict':'suspicious', 'verdict_claim_ids':['C1'],

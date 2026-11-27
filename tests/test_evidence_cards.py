@@ -76,7 +76,7 @@ def test_finalize_is_controller_action_and_decoding_preserves_legacy_finish():
 def test_rejected_candidates_survive_and_are_excluded_from_verdict_input(tmp_path):
     ev = source({1: 'File.WriteAllText("fixture", "test");'})
     answers = iter([
-        {'claims': [{'kind': 'behavior', 'text': 'The code writes test to a file.'},
+        {'supplemental_claims': [], 'claims': [{'kind': 'behavior', 'text': 'The code writes test to a file.'},
                     {'kind': 'behavior', 'text': 'The code uploads passwords.'}]},
         {'supported': True, 'reason': 'File write call is visible.'},
         {'supported': False, 'reason': 'No upload or password source shown.'},

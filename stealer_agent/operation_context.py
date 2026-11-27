@@ -8,14 +8,17 @@ import hashlib
 from .journal import canonical
 
 OPERATIONS = {'database_open','sql_select','smtp_send','archive_create',
-              'file_upload','response_text_decode','aes_gcm_decrypt'}
+              'file_upload','response_text_decode','aes_gcm_decrypt', 'file_copy', 'file_read',
+              'file_write', 'base64_decode', 'dpapi_unprotect', 'smtp_connect', 'smtp_login',
+              'smtp_starttls', 'mime_set_payload', 'mime_attach', 'mime_serialize',
+              'mime_base64_encode', 'sql_fetchall'}
 BLOCKED = ('[REDACTED-INJECTION]', '[REDACTED-PRIVATE-FRAGMENT]')
 
 
 def valid_operations(record):
     facts=[]
     for fact in record.get('operation_facts',[])[:100]:
-        if fact.get('operation') not in OPERATIONS or fact.get('backend') not in {'static-operation-facts/2','static-operation-facts/3'}:
+        if fact.get('operation') not in OPERATIONS or fact.get('backend') not in {'static-operation-facts/2','static-operation-facts/3','static-operation-facts/4'}:
             continue
         if any(fact.get(key)!=record.get(key) for key in ('evidence_id','sample_sha256','output_sha256')):
             continue
@@ -77,5 +80,10 @@ def enrich_card(card, evidence, *, max_chars=4600, max_facts=3):
 def model_operations(card):
     # The original hashes/binding details stay in the journal. Keep the prompt
     # compact enough that source statements are not displaced by metadata.
-    return [{k:fact[k] for k in ('fact_id','operation','api','inputs','result','ranges')}
-            for fact in card.get('operations',[])]
+    result = []
+    for fact in card.get('operations', []):
+        item = {k: fact[k] for k in ('fact_id', 'operation', 'inputs', 'result', 'ranges')}
+        item['api_semantics'] = ('read/write on the object returned by builtin open; concrete class not asserted'
+                                 if fact['operation'] in {'file_read', 'file_write'} else fact['api'])
+        result.append(item)
+    return result

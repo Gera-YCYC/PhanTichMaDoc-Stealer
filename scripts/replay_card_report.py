@@ -30,13 +30,20 @@ def select_reporter(method, measured_revision=False):
         folder = ROOT / 'eval/reproductions/operation-assertions-v1'
         manifest = json.loads((folder / 'manifest.json').read_text(encoding='utf-8'))
         for name, expected in manifest.items():
-            path = folder / 'reporter.py' if name == 'stealer_agent/operation_assertions.py' else ROOT / name
+            path = folder / 'source' / name
             if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
                 raise ValueError('Measured-revision dependency changed: ' + name)
-        spec = importlib.util.spec_from_file_location('stealer_agent.operation_assertions_reproduction', folder / 'reporter.py')
+        package = '_stealer_report_measured_v1'
+        source = folder / 'source/stealer_agent'
+        package_spec = importlib.util.spec_from_file_location(package, source / '__init__.py',
+                                                             submodule_search_locations=[str(source)])
+        package_module = importlib.util.module_from_spec(package_spec)
+        sys.modules[package] = package_module
+        package_spec.loader.exec_module(package_module)
+        spec = importlib.util.spec_from_file_location(package + '.operation_assertions', source / 'operation_assertions.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        return module.create_operation_report, manifest, 'eval/reproductions/operation-assertions-v1/reporter.py'
+        return module.create_operation_report, manifest, 'eval/reproductions/operation-assertions-v1/source/stealer_agent/operation_assertions.py'
     if method == 'operations':
         from stealer_agent.operation_assertions import create_operation_report
         return create_operation_report, source_files, 'stealer_agent/operation_assertions.py'

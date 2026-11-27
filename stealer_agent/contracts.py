@@ -50,7 +50,7 @@ REPORT_SCHEMA = {
     "properties": {
         "verdict": {"enum": ["inconclusive", "benign", "malicious", "suspicious"]},
         "verdict_claim_ids": {"type": "array", "items": {"type": "string", "pattern":"^C[1-9][0-9]{0,2}$"}, "maxItems": 10},
-        "claims": {"type": "array", "items": CLAIM_SCHEMA, "maxItems": 25},
+        "claims": {"type": "array", "items": CLAIM_SCHEMA, "maxItems": 50},
         "limitations": {"type": "array", "items": {"type": "string", "maxLength": 300}, "maxItems": 10},
     }, "required": ["verdict", "verdict_claim_ids", "claims", "limitations"],
 }

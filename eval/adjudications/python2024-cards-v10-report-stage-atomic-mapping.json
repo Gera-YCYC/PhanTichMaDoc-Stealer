@@ -1,0 +1,527 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "profile_sha256": "8290d24942da6c123640d92156ccc7593cc977b54fa7a96ea5faea75201d358d",
+  "raw_report_sha256": "9e0164dc1e998979de887f9d7e5e5aed699cf40e2d187a4466758b07d6ad8f45",
+  "checked_report_sha256": "621dac315253d3530c6379d7df346d23973a2d8cde0926c9b563a6b15d5f6759",
+  "reviewer": "automated source audit; no human or lecturer approval",
+  "method": "Exhaustive explicit spans, same atomic-v2 reference as v9, all rejected claims retained.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 104,
+          "label": "correct",
+          "unit_key": "PY24-A18",
+          "reference_id": "PY24-A18",
+          "reason": "make_archive uses zip format and the temporary Browser directory; its returned archive path is Browser.zip. No contents or runtime success asserted.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 313,
+              "end_line": 328,
+              "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 82,
+              "end_line": 113,
+              "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 276,
+              "end_line": 286,
+              "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 14,
+              "end_line": 14,
+              "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 23,
+          "label": "correct",
+          "unit_key": "PY24-A25",
+          "reference_id": "PY24-A25",
+          "reason": "Archive body, return value, caller and complete send_email body are supplied. The archive path is read, attached, serialized and passed to sendmail after login. Static capability, not successful delivery.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 313,
+              "end_line": 328,
+              "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 82,
+              "end_line": 113,
+              "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 276,
+              "end_line": 286,
+              "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 14,
+              "end_line": 14,
+              "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+            }
+          ]
+        },
+        {
+          "start": 23,
+          "end": 73,
+          "label": "correct",
+          "unit_key": "PY24-A26",
+          "reference_id": "PY24-A26",
+          "reason": "Archive body, return value, caller and complete send_email body are supplied. The archive path is read, attached, serialized and passed to sendmail after login. Static capability, not successful delivery.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 313,
+              "end_line": 328,
+              "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 82,
+              "end_line": 113,
+              "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 276,
+              "end_line": 286,
+              "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 14,
+              "end_line": 14,
+              "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+            }
+          ]
+        },
+        {
+          "start": 73,
+          "end": 125,
+          "label": "correct",
+          "unit_key": "PY24-A24",
+          "reference_id": "PY24-A24",
+          "reason": "Archive body, return value, caller and complete send_email body are supplied. The archive path is read, attached, serialized and passed to sendmail after login. Static capability, not successful delivery.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 313,
+              "end_line": 328,
+              "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 82,
+              "end_line": 113,
+              "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 276,
+              "end_line": 286,
+              "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 14,
+              "end_line": 14,
+              "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 16,
+          "label": "correct",
+          "unit_key": "PY24-A27",
+          "reference_id": "PY24-A27",
+          "reason": "The exact SMTP hostname literal is assigned and used by the SMTP constructor. This is a configured destination candidate, not confirmed malicious infrastructure or observed traffic.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 313,
+              "end_line": 328,
+              "projected_quote_sha256": "9e9c8533b05fda9d4166b1b456010320e13c75d784822b523af61977322860e0"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 82,
+              "end_line": 113,
+              "projected_quote_sha256": "fcbb753936891e99e76c83f59254957c6decf27c35b33107c1d6f68f13d50a8d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 276,
+              "end_line": 286,
+              "projected_quote_sha256": "817d54f54f698bf282c173526571a496e65efac118a724c2ab863a71e8366c31"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 14,
+              "end_line": 14,
+              "projected_quote_sha256": "ecb7a0e6485546d7d0ab4d6f36581e353d38e8e98d3efc374a7d32d72eb0708c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 116,
+          "label": "correct",
+          "unit_key": "PY24-A05",
+          "reference_id": "PY24-A05",
+          "reason": "The helper builds the Login Data path, copies it into the temporary login_db path and opens that copy with sqlite3.connect.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 289,
+              "end_line": 304,
+              "projected_quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 134,
+              "end_line": 154,
+              "projected_quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 69,
+              "end_line": 75,
+              "projected_quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 9,
+              "end_line": 9,
+              "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 91,
+          "label": "correct",
+          "unit_key": "PY24-A06",
+          "reference_id": "PY24-A06",
+          "reason": "The complete helper copies Login Data into the temporary path then opens it with sqlite3.connect. No query result or runtime success is inferred.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 289,
+              "end_line": 304,
+              "projected_quote_sha256": "522aaad821b170d8784f6241aec4b5f0b47b63c33072bff3b1cd517f9f0f9a3d"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 134,
+              "end_line": 154,
+              "projected_quote_sha256": "58b94d7628c269d965e2dd24b6ad782bea0672b780039a7e640661a8a166f032"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 69,
+              "end_line": 75,
+              "projected_quote_sha256": "38d2006633cfec874553d32a442bde5128c34067d816628ace3cae7cf67298a6"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 10,
+              "end_line": 10,
+              "projected_quote_sha256": "582f9ff727d7496ab22b435e59b0f09b8ec415b0c8e8482ad2547f28cb6beb37"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 9,
+              "end_line": 9,
+              "projected_quote_sha256": "cc7487a3355899f953a3226e58b5045e147345842f2058c2c71266a27d7aa44e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 144,
+          "label": "correct",
+          "unit_key": "PY24-A01",
+          "reference_id": "PY24-A01",
+          "reason": "Both open/read operations on the Local State path are supplied; the prose uses the source path expression and does not invent a concrete IO class.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 288,
+              "end_line": 301,
+              "projected_quote_sha256": "c5950adfdaa1b39fbcdfdb3292969fa96ebff8773c60cbca1ffc73ee1d6356e8"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 52,
+              "end_line": 66,
+              "projected_quote_sha256": "c370afc1ec4eacedeb3035fb8f3c94c2448796ef70e69727a8822aeecfae2b6f"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 11,
+              "end_line": 11,
+              "projected_quote_sha256": "50cde8d5a2619fd9c4767bedbbb081accdf4eb2154b2926a1c943dd49eee3455"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 8,
+              "end_line": 8,
+              "projected_quote_sha256": "f30aabd4a95e13b98c9537425bb02f63ac9631f1e6311b7f0ab80d85f88f61b8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 146,
+          "label": "correct",
+          "unit_key": "PY24-A03",
+          "reference_id": "PY24-A03",
+          "reason": "The complete helper selects encrypted_key from parsed Local State, Base64-decodes it, removes the prefix, calls imported CryptUnprotectData and selects the unprotected data. Source supports the static key-decryption operation despite same-model rejection.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 288,
+              "end_line": 301,
+              "projected_quote_sha256": "c5950adfdaa1b39fbcdfdb3292969fa96ebff8773c60cbca1ffc73ee1d6356e8"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 52,
+              "end_line": 66,
+              "projected_quote_sha256": "c370afc1ec4eacedeb3035fb8f3c94c2448796ef70e69727a8822aeecfae2b6f"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 11,
+              "end_line": 11,
+              "projected_quote_sha256": "50cde8d5a2619fd9c4767bedbbb081accdf4eb2154b2926a1c943dd49eee3455"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 8,
+              "end_line": 8,
+              "projected_quote_sha256": "f30aabd4a95e13b98c9537425bb02f63ac9631f1e6311b7f0ab80d85f88f61b8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 115,
+          "label": "correct",
+          "unit_key": "PY24-A15",
+          "reference_id": "PY24-A15",
+          "reason": "The complete save_results helper opens the interpolated browser/data_type path in write mode and writes content. Braces in this behavior description identify the template, not a literal IOC.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 298,
+              "end_line": 313,
+              "projected_quote_sha256": "1df798ef2958c061e9482cdcaa3ee913f12534358cbf76c83266bc20798e0d77"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 116,
+              "end_line": 131,
+              "projected_quote_sha256": "c471f484f2cfcc7c8198c141de84b7e2ad4b91cd7b5a0f6934ebb0aa39e53b1c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 105,
+          "label": "correct",
+          "unit_key": "PY24-A30",
+          "reference_id": "PY24-A30",
+          "reason": "The helper conditionally opens Combined_Autofill.txt in append mode and writes content. The claim describes implemented capability, not unconditional execution.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 298,
+              "end_line": 313,
+              "projected_quote_sha256": "1df798ef2958c061e9482cdcaa3ee913f12534358cbf76c83266bc20798e0d77"
+            },
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 116,
+              "end_line": 131,
+              "projected_quote_sha256": "c471f484f2cfcc7c8198c141de84b7e2ad4b91cd7b5a0f6934ebb0aa39e53b1c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 103,
+          "label": "correct",
+          "unit_key": "PY24-A10",
+          "reference_id": "PY24-A10",
+          "reason": "Visible shutil.copy takes cards_db and the temporary destination; adjacent sqlite3.connect establishes the copied database use. No plaintext card contents are asserted.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 156,
+              "end_line": 187,
+              "projected_quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 91,
+          "label": "correct",
+          "unit_key": "PY24-A11",
+          "reference_id": "PY24-A11",
+          "reason": "The credit-card helper includes sqlite3.connect, conn.cursor and the SELECT from credit_cards. This describes connection/query only, not decryption or actual rows.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 156,
+              "end_line": 187,
+              "projected_quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+            }
+          ]
+        },
+        {
+          "start": 91,
+          "end": 149,
+          "label": "correct",
+          "unit_key": "PY24-A12",
+          "reference_id": "PY24-A12",
+          "reason": "The credit-card helper includes sqlite3.connect, conn.cursor and the SELECT from credit_cards. This describes connection/query only, not decryption or actual rows.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 156,
+              "end_line": 187,
+              "projected_quote_sha256": "60078cdaaf5a2c8db6febddbb524119275d8853b671c9b4e1ec0b92c84a1023a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 95,
+          "label": "correct",
+          "unit_key": "PY24-A31",
+          "reference_id": "PY24-A31",
+          "reason": "The visible cursor.execute call receives the literal SELECT of tab_url and target_path from downloads, followed by fetchall. This is a narrow static query description, not a claim about actual rows or exfiltration.",
+          "source_references": [
+            {
+              "evidence_id": "ev_a789dcd941044224",
+              "line": 218,
+              "end_line": 249,
+              "projected_quote_sha256": "f0cfa4381900a2932b48b37c509dd0f31d513e1f9bd427deb35c13b8603f5c3c"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

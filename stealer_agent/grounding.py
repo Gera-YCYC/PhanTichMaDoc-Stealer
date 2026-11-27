@@ -6,6 +6,7 @@ import re
 from jsonschema import Draft202012Validator
 
 from .contracts import ATTACK, REPORT_SCHEMA
+from .indicator_candidates import source_expression
 
 
 def imports_only(text: str) -> bool:
@@ -57,10 +58,16 @@ def validate_report(raw: dict, evidence: dict, sample_sha256: str) -> dict:
             if any(marker in line for marker in ('[REDACTED-INJECTION]', '[REDACTED-PRIVATE-FRAGMENT]')) or not matches:
                 errors.append("quote_not_found_at_cited_line")
         if claim["kind"] == "ioc":
+            if source_expression(claim['value']):
+                errors.append('ioc_is_source_expression_not_literal')
+            if any(marker in claim['value'] for marker in ('[REDACTED','__PRIVATE_LITERAL_','[PRIVATE_')):
+                errors.append('ioc_is_redacted_placeholder_not_indicator')
             if not claim["value"] or not any(claim["value"] in e["quote"] for e in claim["evidence"]):
                 errors.append("ioc_value_not_in_quote")
         if claim["kind"] == "attack" and claim["technique_id"] not in ATTACK:
             errors.append("unknown_attack_technique")
+        if claim['kind']=='ioc' and claim['technique_id']:
+            errors.append('ioc_cannot_double_as_attack_claim')
         if claim['kind'] in ('behavior','attack'):
             code_tools={'decompile_dotnet','decompile_python','disassemble_python','python_ast','decode_python_literals'}
             if not any(evidence.get(ref['evidence_id'],{}).get('tool') in code_tools for ref in claim['evidence']):

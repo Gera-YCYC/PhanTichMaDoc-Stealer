@@ -1,0 +1,74 @@
+{
+  "run_id": "20261127T230331_8bd30a1f",
+  "sample": "public_python2024.bin",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "status": "completed_with_rejected_claims",
+  "successful_tools": [
+    "decode_python_literals",
+    "disassemble_python",
+    "identify",
+    "unpack_pyinstaller"
+  ],
+  "metrics": {
+    "model_calls": 43,
+    "tool_calls": 17,
+    "tool_errors": 1,
+    "validation_errors": 0,
+    "guard_hits": 0,
+    "prompt_tokens": 85822,
+    "completion_tokens": 3524,
+    "api_cost_usd": 0,
+    "model_vram_bytes_after_run": 4206582824,
+    "host_rss_bytes": 20017152,
+    "minimum_observed_host_available_memory_bytes": 844115968,
+    "elapsed_s": 495.9169,
+    "host_peak_rss_bytes": 29261824
+  },
+  "acceptance": {
+    "two_distinct_tools": true,
+    "required_branch_tools": true,
+    "model_minimum_met": true,
+    "has_model_findings": true,
+    "python_source_decompiled": false,
+    "python_candidate_source_decoded": true,
+    "teacher_dataset_verified": false,
+    "coursework_accepted": false
+  },
+  "kind": "real-local-model-vm-experiment-metadata",
+  "report_method": "evidence-cards/9",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "size_bytes": 5225388164,
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "8.2B",
+      "quantization_level": "Q4_K_M"
+    }
+  },
+  "source_manifest_sha256": "abaf6951f44aa910f02a7a6a9c90105fa20c2f7b70801d63a563219cec37bb08",
+  "journal_sha256": "7245b9f9534bcbdc341589ddefd81cf1b9fa64ecc1fe43f99df073e744479ea1",
+  "journal_chain_verified": true,
+  "raw_report_sha256": "79335444bbf2cbf2912658accf389db4c782723f1e733610b8789f0e7a912390",
+  "raw_claims_by_kind": {
+    "behavior": 12,
+    "ioc": 6
+  },
+  "raw_claims": 18,
+  "accepted_claims": 14,
+  "rejected_claims": 4,
+  "verdict": "suspicious",
+  "course_quality_gate_passed": false,
+  "no_sample_execution": true,
+  "limits": [
+    "One development sample; not a full-corpus acceptance test.",
+    "API-label and expression-as-IOC errors retained, including those accepted by same-model review.",
+    "No ATT&CK assertion was returned; recall/F1 not inferred from claim precision.",
+    "Raw journals and excerpts remain local; this metadata does not approve them for publication."
+  ]
+}

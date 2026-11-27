@@ -1,0 +1,80 @@
+{
+  "run_id": "20261127T232149_05950420",
+  "source_run": "20261127T230331_8bd30a1f",
+  "kind": "real-slm-on-captured-vm-features-not-end-to-end-demo",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "source_journal_sha256": "7245b9f9534bcbdc341589ddefd81cf1b9fa64ecc1fe43f99df073e744479ea1",
+  "report_method": "evidence-cards/10",
+  "source_manifest_sha256": "4fd36edf00111e2eb8687ac26b87a9f7a7b43593899716bc9e7c576d4995fa17",
+  "source_files": {
+    "stealer_agent/__init__.py": "fccee36f12fcdc482ed65b7c9d223e123c35208a2ee04c20a51109511e8296fa",
+    "stealer_agent/api_reference.py": "b2221306cde59f8ff28e3768f07d01d2d034748f5e9b06833956c90787c327c6",
+    "stealer_agent/cli.py": "357166b2508242b1b868f910f34ddfbd04e47d487b5f94537b3d622aadf81b3d",
+    "stealer_agent/context_cards.py": "7e36e6daa14c73432ea68fa9c761544711029203ce8d5477f9a5d9c2c0ed6484",
+    "stealer_agent/contracts.py": "80d4ec92cb59160e9eb7216b588ae2cca2541915156086f2c598b6662092ee33",
+    "stealer_agent/engine.py": "668048f5b0484e47f5dd7ce70b675d23887b950bf2b66a1a7a5dac3d1418a27f",
+    "stealer_agent/evidence_cards.py": "3f8b9d94d3b9872246160b4e574ce861a4367cda99fb12be5319641dbe806295",
+    "stealer_agent/grounding.py": "eb566e7b090827a74a2c6d3df2850efe5bfe7c008354aef77a7babdd7e26e139",
+    "stealer_agent/indicator_candidates.py": "d558e29cbf396d29382ac4153ace0d9afb1ce49580f51c4ca94a873e8604f7b6",
+    "stealer_agent/journal.py": "8026e19a94f48f837d2ffee90772a2ad12a07930ddbdda58c950cf6698abfc26",
+    "stealer_agent/model_projection.py": "dc0dbc011d359db4d604e14e48b276578982cc94341ba07e09cce6cd90195345",
+    "stealer_agent/operation_assertions.py": "b0eb0298051edae5e536b8cbe466242b89a2c4429fe26e191c40a21084f94320",
+    "stealer_agent/operation_context.py": "a0c41e973b6cd564f62f186b0407f527e7390041ebacd1662535ee62b95bcfda",
+    "stealer_agent/prompts.py": "a141195f9d021d5006c37add6a109d053c8f5bb6f1f32a63e0df1672d3f198dc",
+    "stealer_agent/redaction.py": "0a1ed7e2f12a4c60fde8f26808702ddc5071f8441fbb8c297b9440ec651c36e9",
+    "stealer_agent/reporting.py": "fde7acec243330fe8672c85e8066ebcce5db737f58af9e2e6fff1aa9c481b7b5",
+    "stealer_agent/reviewer.py": "0fd3353eeef6cd61b31dad70ba2ae09ad474d7b99d37fc7531aebb8c27a62c34",
+    "stealer_agent/search_queries.py": "5af906d6fe0afd9a082b2226ac3bdabab35ff32589fbb0f52b6350fedfb9d6a1",
+    "stealer_agent/security.py": "6778ed1f93ab7bbb0b7132a45bbc90ac48f4eb4da1885a91f4cec4e55262d2c7",
+    "stealer_agent/telemetry.py": "9369682c58c5c04b4615b65041891197fff6bcf2c0b62f9aa949e180bf8e23cf",
+    "stealer_agent/transport.py": "174730459752cd683c3cb26c9a073d44bf53ce35362a7afdb34651b481894dd6",
+    "stealer_agent/verdict_support.py": "3132c38a3266a0d8534e3f4a0fab9f17460ee619ec5a5c72277366cf67de178e",
+    "stealer_agent/yara_agent.py": "8f25b0d64ec99ed90447ea55e3e4c99b4cea68ee315a5634b0ba6baa7e52f7a0",
+    "stealer_agent/yara_corpus.py": "428d8be68cd840fdcfd9db093ac6c597bb30c05308e4040e567a2ec87bea02fb"
+  },
+  "reporter_source_sha256": "3f8b9d94d3b9872246160b4e574ce861a4367cda99fb12be5319641dbe806295",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "size_bytes": 5225388164,
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "8.2B",
+      "quantization_level": "Q4_K_M"
+    }
+  },
+  "journal_sha256": "5fe1df711e6e1862125ce1b92f7960579c123396fc5e4c493ec57827d0553852",
+  "journal_chain_verified": true,
+  "raw_report_sha256": "9e0164dc1e998979de887f9d7e5e5aed699cf40e2d187a4466758b07d6ad8f45",
+  "checked_report_sha256": "621dac315253d3530c6379d7df346d23973a2d8cde0926c9b563a6b15d5f6759",
+  "raw_claim_count": 12,
+  "accepted_claim_count": 10,
+  "rejected_claim_count": 2,
+  "raw_claims_by_kind": {
+    "behavior": 11,
+    "ioc": 1
+  },
+  "metrics": {
+    "model_calls": 19,
+    "prompt_tokens": 30692,
+    "completion_tokens": 1353,
+    "minimum_free_ram_bytes": 1318670336,
+    "elapsed_s": 202.5253
+  },
+  "verdict": "suspicious",
+  "same_source_card_ranges_and_quotes_as_v9": true,
+  "source_card_references_sha256": "908f60ac7091b86f1aec8de4ef939dd68370553da4a557504ccef1a5ef5996f0",
+  "course_quality_gate_passed": false,
+  "limits": [
+    "One development report experiment, not a fresh VM run or a full-corpus grade.",
+    "Changed vocabulary constraint plus API descriptors; not a single-factor causal experiment.",
+    "All 12 narrow claims source-supported, but only 15 of 34 declared units covered; no ATT&CK.",
+    "Same-model review wrongly removes attachment/SMTP and DPAPI claims; verdict remains suspicious.",
+    "Raw excerpts/private credentials not exported; labels are not human or lecturer approval."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "method": "recognized-literal-exposure-audit/3",
+  "exposure_evaluation_status": "evaluated",
+  "eligible_detected_literal_count": 3,
+  "excluded_short_literal_count": 0,
+  "detector_scan_truncated": false,
+  "model_requests_checked": 43,
+  "model_responses_checked": 43,
+  "full_request_messages_available": 43,
+  "full_request_schemas_available": 43,
+  "requests_with_only_evidence_and_message_hash": 0,
+  "requests_with_detected_literal": 0,
+  "schemas_with_detected_literal": 0,
+  "request_evidence_with_detected_literal": 0,
+  "responses_with_detected_literal": 0,
+  "raw_report_available": true,
+  "raw_claim_prose_with_detected_literal": 0,
+  "raw_report_including_citations_contains_detected_literal": false,
+  "observations_with_projection_changes": 5,
+  "projection_changed_rows_total_with_repeats": 17,
+  "available_request_hashes_verified": true,
+  "recognized_literal_evidence_gate_passed": true,
+  "recognized_literal_request_gate_passed": true,
+  "limits": [
+    "Same declared pattern family as the projection, not an independent measurement of detector recall.",
+    "No claim that unknown, encoded, short or obfuscated secrets are absent.",
+    "Full-request gate needs all messages and schemas; older incomplete journals remain unevaluable.",
+    "No detected eligible literal or a truncated detector scan means exposure gates are null, not passed.",
+    "Private raw observations intentionally retain originals; this receipt does not approve raw logs for publication."
+  ]
+}

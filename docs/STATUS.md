@@ -4,6 +4,18 @@
 
 ## Cập nhật hiện tại
 
+### Python: mở rộng thao tác, đo phần bỏ sót và sửa IOC biểu thức
+
+Parser v4 nhận diện thêm copy/read/write/fetchall/DPAPI/MIME/TLS; kiểm riêng source thật có39 fact Python và10 .NET, kiểm HTTP dùng phiên mới đạt. **Đó là kiểm công cụ, không là accuracy của SLM.** Run ReAct v9 mới mất495,9s,4 backend thành công,18 câu raw có13 đúng/5 thiếu căn cứ; sau lọc11/14 đúng. Có hostname SMTP thật trong source nhưng không có ATT&CK. [Nguồn và phân tích lỗi](OPERATIONS_CONTEXT_V9.md).
+
+Đã đo cả Recall/F1 cho báo cáo đầy đủ trong phạm vi34 đơn vị development:22 đơn vị prediction,17 đúng/5 thiếu căn cứ; **P 77,27%, R 50%, F1 60,71%; sau lọc F1 52%**. Không dùng Precision theo18 câu ghép với Recall theo34 đơn vị. Profile mới giữ29 đơn vị cũ, thêm5 đơn vị source download/autofill sau lượt chạy; không giả test mù hoặc nhãn GV.
+
+Bản v10 chặn IOC kiểu biểu thức bằng schema lựa chọn literal và tách tên API tham chiếu khỏi cú pháp gọi thật. **318 kiểm thử Windows đạt.** Lượt v10 từ đầu bị guard RAM dừng trước báo cáo (189,6s,255.528.960B trống), nên chưa có kiểm chứng đầu-cuối hoàn tất cho v10. Không hạ ngưỡng RAM và không gán điểm chất lượng cho lượt dở. Giữ nhánh candidate; model/Release mặc định vẫn7B. Các số đo report v10 trên chứng cứ đã thu phải được ghi riêng với lượt chạy VM mới.
+
+Phép thử report v10 thật trên đúng các đoạn source v9 đã hoàn tất:12/12 câu raw đúng,15/34 đơn vị nguồn được phủ (P 100%, R 44,12%, F1 61,22%). Reviewer loại nhầm2 câu đúng; sau lọc F1 48,89%, không có ATT&CK, verdict vẫn suspicious. R giảm so v9, nên không coi hết lỗi IOC là đạt toàn phân tích. **Đây là report-stage trên chứng cứ thật đã thu, không thay lượt đầu-cuối bị dừng.** Model và VM đã tắt; [receipt](../deliverables/real-demo-evidence/runtime-stopped-after-cards-v10.json) ghi GPU0MiB tại lúc kiểm.
+
+Các phần chưa đóng: nối thu thập–xử lý–gửi và verdict, Recall/F1 toàn tập .NET/Python, >=3 mẫu trên bản chốt, stability3lượt, >=10 cặp injection đủ exposure, so trước/sau train trong agent và tái lập bản chốt. YARA đã đạt trên corpus hữu hạn ở mục dưới; không ghép điểm khác phiên bản thành nghiệm thu.
+
 ### Báo cáo theo thao tác: đã có số đo phần đúng và phần bỏ sót
 
 [Thử nghiệm riêng phần báo cáo](ATOMIC_REPORT_STAGE.md) đã chạy model thật trên bằng chứng VM của mẫu thật: Python8B6/6 câu hẹp đúng, .NET8B10/10, Python7B4/4 nhưng loại nhầm2 thao tác đúng. Tập đáp án Python được tách thành29 đơn vị gồm26 hành vi,1 IOC,2 ATT&CK; bộ chấm mới dùng cùng đơn vị cho P/R/F1 và giữ cả raw/rejected. Python8B chỉ bao phủ6/29 (R20,69%, F134,29%);7B4/29 (R13,79%, F124,24%). Đây là development/source audit, không có người thật/GV duyệt. .NET chưa có normalized reference, R/F1null.

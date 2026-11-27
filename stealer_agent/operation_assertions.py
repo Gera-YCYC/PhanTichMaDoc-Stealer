@@ -14,7 +14,7 @@ from .grounding import validate_report
 from .journal import dump_json
 from .operation_context import valid_operations
 
-VERSION = 'operation-assertions/1'
+VERSION = 'operation-assertions/2'
 TEMPLATES = {
     'database_open': ('sqlite_connection', ('path_expression',),
         'The code calls SQLite connect with path expression {path_expression}.'),
@@ -37,6 +37,32 @@ TEMPLATES = {
     'response_text_decode': ('ASCII_text_not_cryptographic_decryption', ('response_bytes_expression',),
         'The code decodes UploadFile response bytes from expression {response_bytes_expression} '
         'using Encoding.ASCII.GetString.'),
+    'file_copy': ('destination_path', ('source_path_expression','destination_path_expression'),
+        'The code copies the file at source expression {source_path_expression} to destination expression {destination_path_expression} using shutil.'),
+    'file_read': ('file_contents_without_data_type_inference', ('path_expression',),
+        'The code calls read() on a file opened with path expression {path_expression}.'),
+    'file_write': ('written_count_not_sensitive_content_proof', ('path_expression','data_expression'),
+        'The code writes data expression {data_expression} into a file opened with path expression {path_expression}.'),
+    'base64_decode': ('decoded_bytes_not_cryptographic_decryption', ('encoded_data_expression',),
+        'The code calls base64.b64decode on expression {encoded_data_expression}.'),
+    'dpapi_unprotect': ('description_and_unprotected_bytes_tuple', ('protected_data_expression',),
+        'The code calls win32crypt.CryptUnprotectData with protected-data expression {protected_data_expression}.'),
+    'smtp_connect': ('smtp_client_not_message_delivery', ('host_expression','port_expression'),
+        'The code constructs an SMTP client with host expression {host_expression} and port argument {port_expression}.'),
+    'smtp_starttls': ('starttls_request_not_observed_tls_success', ('client_expression',),
+        'The code calls starttls() on SMTP client expression {client_expression}.'),
+    'smtp_login': ('authentication_attempt_not_observed_success', ('username_expression','password_expression'),
+        'The code calls SMTP login with username expression {username_expression} and password expression {password_expression}.'),
+    'mime_set_payload': ('payload_assignment_not_network_send', ('part_expression','payload_expression'),
+        'The code calls set_payload on MIME part expression {part_expression} with payload expression {payload_expression}.'),
+    'mime_attach': ('append_payload_not_network_send', ('message_expression','part_expression'),
+        'The code calls attach on multipart message expression {message_expression} with part expression {part_expression}.'),
+    'mime_serialize': ('message_text_not_network_send', ('message_expression',),
+        'The code calls as_string() on MIME message expression {message_expression}.'),
+    'mime_base64_encode': ('mime_content_transfer_encoding_not_encryption', ('part_expression',),
+        'The code calls email.encoders.encode_base64 on MIME part expression {part_expression}.'),
+    'sql_fetchall': ('remaining_rows_not_decrypted_values', ('query_expression',),
+        'The code calls fetchall() on the SQLite cursor after SELECT query expression {query_expression}.'),
 }
 APIS = {
     'database_open': 'sqlite3.connect', 'sql_select': 'sqlite3.execute',
@@ -44,6 +70,14 @@ APIS = {
     'aes_gcm_decrypt': 'PyCryptodome.AES.GCM.decrypt',
     'file_upload': 'System.Net.WebClient.UploadFile(String,String)',
     'response_text_decode': 'System.Text.Encoding.ASCII.GetString',
+    'file_copy': {'shutil.copy','shutil.copy2'},
+    'file_read': {'io.TextIOBase.read','io.BufferedIOBase.read'},
+    'file_write': {'io.TextIOBase.write','io.BufferedIOBase.write'},
+    'base64_decode': 'base64.b64decode', 'dpapi_unprotect': 'win32crypt.CryptUnprotectData',
+    'smtp_connect': {'smtplib.SMTP','smtplib.SMTP_SSL'}, 'smtp_starttls': 'smtplib.SMTP.starttls',
+    'smtp_login': 'smtplib.SMTP.login', 'mime_set_payload': 'email.message.Message.set_payload',
+    'mime_attach': 'email.message.Message.attach', 'mime_serialize': 'email.message.Message.as_string',
+    'mime_base64_encode': 'email.encoders.encode_base64', 'sql_fetchall': 'sqlite3.Cursor.fetchall',
 }
 PENDING = ['sensitive-data meaning and helper-body/dataflow analysis',
            'IOC and destination/token/webhook classification', 'MITRE ATT&CK mapping',
@@ -53,7 +87,9 @@ PENDING = ['sensitive-data meaning and helper-body/dataflow analysis',
 def render(fact):
     """Reject malformed/oversized facts instead of truncating a proposition."""
     operation = fact.get('operation')
-    if operation not in TEMPLATES or fact.get('api') != APIS[operation]:
+    allowed = APIS.get(operation, set())
+    allowed = {allowed} if isinstance(allowed,str) else allowed
+    if operation not in TEMPLATES or fact.get('api') not in allowed:
         raise ValueError('Unsupported operation/API pairing')
     meaning, keys, template = TEMPLATES[operation]
     if fact.get('result', {}).get('meaning') != meaning or set(fact.get('inputs', {})) != set(keys):
@@ -61,7 +97,7 @@ def render(fact):
     values = {}
     for key in keys:
         value = fact['inputs'][key]
-        if value is None and key == 'root_directory_expression':
+        if value is None and key in {'root_directory_expression','port_expression'}:
             values[key] = 'omitted (API default)'
         elif isinstance(value, str) and 1 <= len(value) <= 240 and not any(
                 s in value for s in ('[REDACTED', '[PRIVATE_', '__PRIVATE_LITERAL_', '\x00')):

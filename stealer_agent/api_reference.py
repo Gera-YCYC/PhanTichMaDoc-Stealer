@@ -8,7 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 
-REFERENCE_VERSION = 'static-api-reference/1'
+REFERENCE_VERSION = 'static-api-reference/2'
 REFERENCES = (
     {'id': 'dotnet.webclient.uploadfile', 'needles': ('UploadFile',),
      'semantics': 'System.Net.WebClient.UploadFile(address, fileName) sends the local file named by fileName; '
@@ -35,6 +35,20 @@ REFERENCES = (
                   'submits the message. Mere host/port assignments are not a connection or send. To claim an '
                   'attachment, require payload construction plus message attachment and the send call, not a filename alone.',
      'source': 'https://docs.python.org/3/library/smtplib.html'},
+    {'id':'python.fileio', 'needles':('shutil.copy','open(','.write(','.read('),
+     'semantics':'open(path, mode) creates a file object; read returns its contents, write receives data. '
+                 'shutil.copy(src,dst) copies a file to a destination path. A path variable is not its contents; '
+                 'custom wrappers require their body and argument binding before claiming the same effect.',
+     'source':'https://docs.python.org/3/library/shutil.html'},
+    {'id':'python.mime','needles':('MIMEMultipart','MIMEBase','set_payload','as_string','msg.attach'),
+     'semantics':'set_payload stores a MIME payload; attach appends a part; as_string serializes the message. '
+                 'Content-transfer Base64 is not cryptographic encryption. Follow the read, payload and attach '
+                 'values before asserting which file a sent message contains.',
+     'source':'https://docs.python.org/3/library/email.mime.html'},
+    {'id':'python.dpapi','needles':('CryptUnprotectData',),
+     'semantics':'win32crypt.CryptUnprotectData returns (description, unprotected bytes). Selecting [1] takes the bytes. '
+                 'Prove the imported binding; a declaration or helper name alone proves neither a call nor decrypted passwords.',
+     'source':'https://timgolden.me.uk/pywin32-docs/win32crypt__CryptUnprotectData_meth.html'},
 )
 
 

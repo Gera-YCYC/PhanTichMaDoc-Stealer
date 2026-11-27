@@ -4,6 +4,12 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 
 Ưu tiên hiện tại: tiếp tục A01/A02 về chất lượng nhận định, chuẩn hóa đáp án/prediction để tính Recall/F1, chạy >=3 mẫu cùng bản chốt, rồi đo ổn định ba lần và injection đủ điều kiện. Phần YARA đã có hai lượt 7B/8B đạt 5/5 positive và 0/39 negative trên corpus công bố; xem YARA_REAL_CORPUS để biết giới hạn theo bản build và kết quả âm trước sửa.
 
+**Cập nhật parser v4 / card v10:** đã mở rộng copy/read/write/fetchall/DPAPI/MIME/TLS và có kiểm source/HTTP thật. V9 vẫn sai ở IOC biểu thức, nhãn lớp API thành tên hàm và tự duyệt loại câu đúng. Đã có profile34 đơn vị và mapping22 đơn vị prediction cho v9: raw P 77,27%, R 50%, F1 60,71%, sau lọc F1 52%. V10 giới hạn IOC literal và tách nhãn API,318 test đạt; chạy đầu-cuối bị guard RAM dừng, nên còn phải đo chất lượng/độ ổn định trên bản này. Xem [chi tiết và kết quả âm](OPERATIONS_CONTEXT_V9.md).
+
+Ưu tiên thực hiện tiếp: (1) giữ nguyên chất lượng câu khi tăng độ phủ thao tác và nối luồng lấy dữ liệu → file → archive → gửi; (2) kiểm IOC/ATT&CK/verdict trên cả .NET và Python, lập normalized reference .NET; (3) chạy bản chốt trên ít nhất3 mẫu và3 lần lặp, sau đó10 cặp injection đủ exposure; (4) so ranker trước/sau train trong toàn agent, kiểm tái lập và chốt tài liệu. Các kiểm parser hay report trên chứng cứ đã thu không thay các lần chạy đầu-cuối này.
+
+Report-stage v10 đã chấm đủ12 câu đúng nhưng chỉ15/34 đơn vị được phủ; sau reviewer còn11/34 vì loại nhầm SMTP/DPAPI. A01 cần nâng độ phủ ngoài giới hạn hai câu/đoạn mà không suy diễn; A02 cần xử lý false rejection và ATT&CK đang rỗng. Tránh chỉ tiếp tục sửa prompt để tăng số câu được model tự nhận là đúng. Kết quả này chưa đóng E01/E02/S02 và chưa đủ thay profile mặc định.
+
 Đã có bước chấm cùng đơn vị: `eval/atomic_units.py` và29 đơn vị development Python. [Thử nghiệm thao tác](ATOMIC_REPORT_STAGE.md) cho thấy6/29 với8B,4/29 với7B; câu xuất ra đúng nhưng bỏ sót nhiều. Chưa đổi luồng demo. Phải mở rộng helper/dataflow, đọc/copy/fetch/write/MIME/TLS; thêm IOC/ATT&CK có bằng chứng và verdict; chuẩn hóa baseline v8 và .NET rồi mới so toàn hệ thống.
 
 Báo cáo hành vi sau run `20261127T211223_9602dfdd` vẫn chỉ có Python 8/11 câu đủ căn cứ, tự duyệt còn4/6; .NET14/20. Cần tách nhãn thao tác nội bộ khỏi tên hàm source, hạn chế câu lặp từ card thiếu helper và xử lý false rejection đối với AES/SELECT/DPAPI có chứng cứ. 7B từng trả rỗng trên9card; việc chọn7B cho YARA không chứng minh profile báo cáo này đã đạt. Xem STATUS và OPERATIONS_CONTEXT_V8.

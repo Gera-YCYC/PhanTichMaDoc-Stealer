@@ -12,6 +12,7 @@ SEEDS = ('Login Data','password_value','cookie','token','UploadFile','urlbot',
          'smtp','execute(','decrypt_password')
 STRINGS = re.compile(r'''"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*' ''', re.VERBOSE)
 CALL = re.compile(r'(?<![\w.])([A-Za-z_][A-Za-z_0-9]{2,79})\s*\(')
+MEMBER_CALL = re.compile(r'\.([A-Za-z_][A-Za-z_0-9]{2,77})\s*\(')
 DEFINITION = re.compile(r'\bdef\s+([A-Za-z_][A-Za-z_0-9]{2,79})\s*\(')
 SKIP = {'print','range','enumerate','isinstance','len','str','int','bytes','list',
         'dict','set','tuple','super','except','while','for','with','if','switch',
@@ -22,7 +23,7 @@ def query_options(record, previous, *, limit=40):
     if not 1 <= limit <= 40:
         raise ValueError('Invalid query-choice budget')
     used = {query.strip().casefold() for query in previous}
-    found, declared = {}, set()
+    found, declared, methods = {}, set(), {}
     # Recent returned rows first; then earlier bounded observations. No reads
     # from the private full source store and no raw pre-projection strings.
     rows=record.get('line_map',{})
@@ -36,11 +37,15 @@ def query_options(record, previous, *, limit=40):
         for name in CALL.findall(code):
             if name not in SKIP and not name.startswith('__'):
                 found.setdefault(name,number)
+        for name in MEMBER_CALL.findall(code):
+            if not name.startswith('__'):
+                methods.setdefault(name+'(',number)
     names=sorted(found,key=lambda name:(name in declared,-found[name],name))[:24]
     # Keep a small stable set of first-search hints; source-derived names can
     # replace them as evidence arrives, without an unbounded decoding grammar.
     candidates=[]
-    for value in [*names,*SEEDS]:
+    method_queries=sorted(methods,key=lambda name:(-methods[name],name))[:8]
+    for value in [*names[:20],*method_queries,*SEEDS]:
         if value.casefold() not in used and value.casefold() not in {s.casefold() for s in candidates}:
             candidates.append(value)
         if len(candidates)>=limit:

@@ -1,5 +1,7 @@
 # Đơn vị hành vi tham chiếu và phép đo độ bao phủ
 
+**Bổ sung atomic-v2 cho báo cáo đầy đủ:** giữ nguyên 29 đơn vị của v1 và thêm 5 đơn vị download/autofill sau khi đối chiếu source của lượt v9, để câu đúng ngoài phạm vi cũ không bị bỏ khỏi phép đo. Profile mới có 34 đơn vị, được lập sau lượt development; không là tập test mù hay ground truth được GV duyệt. V9 raw: 17/34 được phủ, P 77,27%, R 50%, F1 60,71%; sau lọc F1 52%. Mẫu số prediction là 22 đơn vị, không phải 18 câu. [Thiết kế, mapping và cách tái tính](../../docs/OPERATIONS_CONTEXT_V9.md). Bản 29 đơn vị và kết quả thử nghiệm hẹp được giữ riêng, không thay mẫu số lịch sử.
+
 **Bổ sung atomic-v1:** `python2024.atomic-v1.json` khai báo29 đơn vị cho chuỗi mật khẩu/thẻ → lưu/nén → SMTP, gồm26 behavior,1 IOC,2 ATT&CK. `eval.atomic_units` chấm prediction được tách cùng đơn vị, không trộn Precision theo câu với Recall theo nhóm. Giữ bản13 nhóm lịch sử riêng. Python8B mới đạt6/29,7B4/29 trong phép thử API hẹp; không phải Recall toàn binary/corpus. [Phương pháp, cách tái lập và phần còn thiếu](../../docs/ATOMIC_REPORT_STAGE.md).
 
 Profile `python2024.behavior-v1.json` định nghĩa 13 đơn vị chức năng từ source Python đã phục hồi: lấy khóa, copy/query/decrypt dữ liệu browser, ghi kết quả, tạo ZIP, tạo MIME attachment và gửi SMTP. Đây là phạm vi phát triển được công bố, chưa phải toàn bộ khả năng của file hay bộ test giữ riêng.

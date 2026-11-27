@@ -81,7 +81,7 @@ def test_card_model_requests_and_quotes_use_projection(tmp_path):
     source = ModelEvidenceView().observation(raw)
     source['line_map'] = {r['line']:r['text'] for r in source['lines']}
     source['latest_lines'] = [1,2]
-    replies = iter([{'claims':[{'kind':'observation','text':'The source has a redacted password literal.'}]},
+    replies = iter([{'supplemental_claims': [], 'claims':[{'kind':'observation','text':'The source has a redacted password literal.'}]},
                     {'supported':True,'reason':'The projected literal assignment is visible.'}])
     def invoke(messages, schema, phase, exposure):
         assert secret not in json.dumps([messages, schema, exposure])

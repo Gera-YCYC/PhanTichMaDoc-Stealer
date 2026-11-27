@@ -1,0 +1,1231 @@
+{
+  "kind": "typed-parser-check-on-real-VM-source-not-live-agent-demo",
+  "extractor_source": {
+    "operation_facts.py": "b74e62ec35210e804be32583581660c0b7cbac023fc590742cb09f4a77423d67",
+    "operation_dotnet.py": "eb5f9c4dc4f491acda785b0cc4ebdbd00ff4e5bb0308dec1bf334ea076022474",
+    "operation_python.py": "f29b93def8143c4ecb6460ede53e5f188f79020a3bb742c818e00ab9ec95a8a1",
+    "syntax_context.py": "52ff1c776de19f79b3f8f200a23f3e845a84d1290c09bb7928b48bee96bb6918",
+    "context_worker.py": "0bacaa85486a837832fc133b2e56f4512a5eb42310b602f7dc47fa4ffc3789c0"
+  },
+  "cases": [
+    {
+      "source_run": "20261127T180215_b3a8ccf4",
+      "evidence_id": "ev_7acdc15575a74db2",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "journal_sha256": "28a1b7b4d3c675bd4f7662cb448c6a0d3964a79e70d511cac045e3151accb234",
+      "backend": "static-operation-facts/4",
+      "fact_count": 10,
+      "operation_counts": {
+        "file_upload": 5,
+        "response_text_decode": 5
+      },
+      "facts": [
+        {
+          "fact_id": "op_75d2e24e52a7dc7c",
+          "operation": "file_upload",
+          "api": "System.Net.WebClient.UploadFile(String,String)",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3574,
+              "end_line": 3574
+            },
+            {
+              "line": 3577,
+              "end_line": 3577
+            }
+          ],
+          "input_roles": [
+            "address_expression",
+            "file_path_expression"
+          ],
+          "result_meaning": "response_body_bytes"
+        },
+        {
+          "fact_id": "op_4e2084fceeba1147",
+          "operation": "response_text_decode",
+          "api": "System.Text.Encoding.ASCII.GetString",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3574,
+              "end_line": 3574
+            },
+            {
+              "line": 3577,
+              "end_line": 3577
+            },
+            {
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "line": 3578,
+              "end_line": 3578
+            }
+          ],
+          "input_roles": [
+            "response_bytes_expression"
+          ],
+          "result_meaning": "ASCII_text_not_cryptographic_decryption"
+        },
+        {
+          "fact_id": "op_6472fa907d9743c2",
+          "operation": "file_upload",
+          "api": "System.Net.WebClient.UploadFile(String,String)",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3600,
+              "end_line": 3600
+            },
+            {
+              "line": 3603,
+              "end_line": 3603
+            }
+          ],
+          "input_roles": [
+            "address_expression",
+            "file_path_expression"
+          ],
+          "result_meaning": "response_body_bytes"
+        },
+        {
+          "fact_id": "op_f432bd0c69f942d3",
+          "operation": "response_text_decode",
+          "api": "System.Text.Encoding.ASCII.GetString",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3600,
+              "end_line": 3600
+            },
+            {
+              "line": 3603,
+              "end_line": 3603
+            },
+            {
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "line": 3604,
+              "end_line": 3604
+            }
+          ],
+          "input_roles": [
+            "response_bytes_expression"
+          ],
+          "result_meaning": "ASCII_text_not_cryptographic_decryption"
+        },
+        {
+          "fact_id": "op_b95fd7f03aef889d",
+          "operation": "file_upload",
+          "api": "System.Net.WebClient.UploadFile(String,String)",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3626,
+              "end_line": 3626
+            },
+            {
+              "line": 3629,
+              "end_line": 3629
+            }
+          ],
+          "input_roles": [
+            "address_expression",
+            "file_path_expression"
+          ],
+          "result_meaning": "response_body_bytes"
+        },
+        {
+          "fact_id": "op_94bf350944739cad",
+          "operation": "response_text_decode",
+          "api": "System.Text.Encoding.ASCII.GetString",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3626,
+              "end_line": 3626
+            },
+            {
+              "line": 3629,
+              "end_line": 3629
+            },
+            {
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "line": 3630,
+              "end_line": 3630
+            }
+          ],
+          "input_roles": [
+            "response_bytes_expression"
+          ],
+          "result_meaning": "ASCII_text_not_cryptographic_decryption"
+        },
+        {
+          "fact_id": "op_547d66f5afd0594e",
+          "operation": "file_upload",
+          "api": "System.Net.WebClient.UploadFile(String,String)",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3652,
+              "end_line": 3652
+            },
+            {
+              "line": 3655,
+              "end_line": 3655
+            }
+          ],
+          "input_roles": [
+            "address_expression",
+            "file_path_expression"
+          ],
+          "result_meaning": "response_body_bytes"
+        },
+        {
+          "fact_id": "op_dd4c4032e46cffad",
+          "operation": "response_text_decode",
+          "api": "System.Text.Encoding.ASCII.GetString",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3652,
+              "end_line": 3652
+            },
+            {
+              "line": 3655,
+              "end_line": 3655
+            },
+            {
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "line": 3656,
+              "end_line": 3656
+            }
+          ],
+          "input_roles": [
+            "response_bytes_expression"
+          ],
+          "result_meaning": "ASCII_text_not_cryptographic_decryption"
+        },
+        {
+          "fact_id": "op_faf36eb102af38ab",
+          "operation": "file_upload",
+          "api": "System.Net.WebClient.UploadFile(String,String)",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3678,
+              "end_line": 3678
+            },
+            {
+              "line": 3681,
+              "end_line": 3681
+            }
+          ],
+          "input_roles": [
+            "address_expression",
+            "file_path_expression"
+          ],
+          "result_meaning": "response_body_bytes"
+        },
+        {
+          "fact_id": "op_ca1a8198aa4a6594",
+          "operation": "response_text_decode",
+          "api": "System.Text.Encoding.ASCII.GetString",
+          "ranges": [
+            {
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "line": 3678,
+              "end_line": 3678
+            },
+            {
+              "line": 3681,
+              "end_line": 3681
+            },
+            {
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "line": 3682,
+              "end_line": 3682
+            }
+          ],
+          "input_roles": [
+            "response_bytes_expression"
+          ],
+          "result_meaning": "ASCII_text_not_cryptographic_decryption"
+        }
+      ],
+      "artifact_sha256": "2dae3fbfc94a0f5ea67bc65c6b194bcd9f975a335ef77175b266c3b2f615e806",
+      "source_rows_hash_verified": true,
+      "source_sha256": "940fb88288554f8eb406f66976bf709c78e8e94c707a1ae15447b133ac3a352c"
+    },
+    {
+      "source_run": "20261127T175019_6cbdf3e9",
+      "evidence_id": "ev_0d6ed3dfedb14f9f",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "output_sha256": "e129fc7b195417d233c6b64aa3d8b3f3b1ef3278e9e305718d0ca369ba1702b3",
+      "journal_sha256": "206fdd6544fc4aee25404642959f7b1ee889c7c691b3aa4524a1835a4442eed2",
+      "backend": "static-operation-facts/4",
+      "fact_count": 39,
+      "operation_counts": {
+        "file_read": 3,
+        "base64_decode": 1,
+        "dpapi_unprotect": 1,
+        "aes_gcm_decrypt": 1,
+        "mime_attach": 2,
+        "mime_set_payload": 1,
+        "mime_base64_encode": 1,
+        "mime_serialize": 1,
+        "smtp_connect": 1,
+        "smtp_starttls": 1,
+        "smtp_login": 1,
+        "smtp_send": 1,
+        "file_write": 3,
+        "file_copy": 5,
+        "database_open": 5,
+        "sql_select": 5,
+        "sql_fetchall": 5,
+        "archive_create": 1
+      },
+      "facts": [
+        {
+          "fact_id": "op_17612d948f62f7a1",
+          "operation": "file_read",
+          "api": "io.TextIOBase.read",
+          "ranges": [
+            {
+              "line": 56,
+              "end_line": 56
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "file_contents_without_data_type_inference"
+        },
+        {
+          "fact_id": "op_d80d4f65135fefbf",
+          "operation": "file_read",
+          "api": "io.TextIOBase.read",
+          "ranges": [
+            {
+              "line": 59,
+              "end_line": 59
+            },
+            {
+              "line": 60,
+              "end_line": 60
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "file_contents_without_data_type_inference"
+        },
+        {
+          "fact_id": "op_09ff4e4f9339de7e",
+          "operation": "base64_decode",
+          "api": "base64.b64decode",
+          "ranges": [
+            {
+              "line": 8,
+              "end_line": 8
+            },
+            {
+              "line": 63,
+              "end_line": 63
+            }
+          ],
+          "input_roles": [
+            "encoded_data_expression"
+          ],
+          "result_meaning": "decoded_bytes_not_cryptographic_decryption"
+        },
+        {
+          "fact_id": "op_6ac2ed0433d9d876",
+          "operation": "dpapi_unprotect",
+          "api": "win32crypt.CryptUnprotectData",
+          "ranges": [
+            {
+              "line": 11,
+              "end_line": 11
+            },
+            {
+              "line": 65,
+              "end_line": 65
+            }
+          ],
+          "input_roles": [
+            "protected_data_expression"
+          ],
+          "result_meaning": "description_and_unprotected_bytes_tuple"
+        },
+        {
+          "fact_id": "op_693726241389b0cf",
+          "operation": "aes_gcm_decrypt",
+          "api": "PyCryptodome.AES.GCM.decrypt",
+          "ranges": [
+            {
+              "line": 12,
+              "end_line": 12
+            },
+            {
+              "line": 72,
+              "end_line": 72
+            },
+            {
+              "line": 73,
+              "end_line": 73
+            }
+          ],
+          "input_roles": [
+            "ciphertext_expression",
+            "key_expression",
+            "nonce_expression"
+          ],
+          "result_meaning": "plaintext_bytes_not_authentication_or_text_decoding"
+        },
+        {
+          "fact_id": "op_46273846d06a1845",
+          "operation": "mime_attach",
+          "api": "email.message.Message.attach",
+          "ranges": [
+            {
+              "line": 16,
+              "end_line": 16
+            },
+            {
+              "line": 90,
+              "end_line": 90
+            },
+            {
+              "line": 94,
+              "end_line": 94
+            }
+          ],
+          "input_roles": [
+            "message_expression",
+            "part_expression"
+          ],
+          "result_meaning": "append_payload_not_network_send"
+        },
+        {
+          "fact_id": "op_43c060281b4d973e",
+          "operation": "mime_set_payload",
+          "api": "email.message.Message.set_payload",
+          "ranges": [
+            {
+              "line": 17,
+              "end_line": 17
+            },
+            {
+              "line": 97,
+              "end_line": 97
+            },
+            {
+              "line": 98,
+              "end_line": 98
+            }
+          ],
+          "input_roles": [
+            "part_expression",
+            "payload_expression"
+          ],
+          "result_meaning": "payload_assignment_not_network_send"
+        },
+        {
+          "fact_id": "op_6b173cbe614e744f",
+          "operation": "file_read",
+          "api": "io.BufferedIOBase.read",
+          "ranges": [
+            {
+              "line": 96,
+              "end_line": 96
+            },
+            {
+              "line": 98,
+              "end_line": 98
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "file_contents_without_data_type_inference"
+        },
+        {
+          "fact_id": "op_e0a3abd599c81541",
+          "operation": "mime_base64_encode",
+          "api": "email.encoders.encode_base64",
+          "ranges": [
+            {
+              "line": 18,
+              "end_line": 18
+            },
+            {
+              "line": 100,
+              "end_line": 100
+            }
+          ],
+          "input_roles": [
+            "part_expression"
+          ],
+          "result_meaning": "mime_content_transfer_encoding_not_encryption"
+        },
+        {
+          "fact_id": "op_46c107b7804edfcd",
+          "operation": "mime_attach",
+          "api": "email.message.Message.attach",
+          "ranges": [
+            {
+              "line": 16,
+              "end_line": 16
+            },
+            {
+              "line": 90,
+              "end_line": 90
+            },
+            {
+              "line": 102,
+              "end_line": 102
+            }
+          ],
+          "input_roles": [
+            "message_expression",
+            "part_expression"
+          ],
+          "result_meaning": "append_payload_not_network_send"
+        },
+        {
+          "fact_id": "op_ddc4a4c1af06922c",
+          "operation": "mime_serialize",
+          "api": "email.message.Message.as_string",
+          "ranges": [
+            {
+              "line": 16,
+              "end_line": 16
+            },
+            {
+              "line": 90,
+              "end_line": 90
+            },
+            {
+              "line": 103,
+              "end_line": 103
+            }
+          ],
+          "input_roles": [
+            "message_expression"
+          ],
+          "result_meaning": "message_text_not_network_send"
+        },
+        {
+          "fact_id": "op_e3524afdf512992c",
+          "operation": "smtp_connect",
+          "api": "smtplib.SMTP",
+          "ranges": [
+            {
+              "line": 14,
+              "end_line": 14
+            },
+            {
+              "line": 106,
+              "end_line": 106
+            }
+          ],
+          "input_roles": [
+            "host_expression",
+            "port_expression"
+          ],
+          "result_meaning": "smtp_client_not_message_delivery"
+        },
+        {
+          "fact_id": "op_0d11d450f8c2b952",
+          "operation": "smtp_starttls",
+          "api": "smtplib.SMTP.starttls",
+          "ranges": [
+            {
+              "line": 14,
+              "end_line": 14
+            },
+            {
+              "line": 106,
+              "end_line": 106
+            },
+            {
+              "line": 107,
+              "end_line": 107
+            }
+          ],
+          "input_roles": [
+            "client_expression"
+          ],
+          "result_meaning": "starttls_request_not_observed_tls_success"
+        },
+        {
+          "fact_id": "op_1e4895a474a03978",
+          "operation": "smtp_login",
+          "api": "smtplib.SMTP.login",
+          "ranges": [
+            {
+              "line": 14,
+              "end_line": 14
+            },
+            {
+              "line": 106,
+              "end_line": 106
+            },
+            {
+              "line": 108,
+              "end_line": 108
+            }
+          ],
+          "input_roles": [
+            "username_expression",
+            "password_expression"
+          ],
+          "result_meaning": "authentication_attempt_not_observed_success"
+        },
+        {
+          "fact_id": "op_7653793ed7c43bd8",
+          "operation": "smtp_send",
+          "api": "smtplib.SMTP.sendmail",
+          "ranges": [
+            {
+              "line": 14,
+              "end_line": 14
+            },
+            {
+              "line": 106,
+              "end_line": 106
+            },
+            {
+              "line": 109,
+              "end_line": 109
+            }
+          ],
+          "input_roles": [
+            "sender_expression",
+            "recipient_expression",
+            "message_expression"
+          ],
+          "result_meaning": "recipient_refusal_mapping_not_message_bytes"
+        },
+        {
+          "fact_id": "op_b0f5bee896a84ee7",
+          "operation": "file_write",
+          "api": "io.TextIOBase.write",
+          "ranges": [
+            {
+              "line": 123,
+              "end_line": 123
+            },
+            {
+              "line": 124,
+              "end_line": 124
+            }
+          ],
+          "input_roles": [
+            "path_expression",
+            "data_expression"
+          ],
+          "result_meaning": "written_count_not_sensitive_content_proof"
+        },
+        {
+          "fact_id": "op_d25293413185a0b0",
+          "operation": "file_write",
+          "api": "io.TextIOBase.write",
+          "ranges": [
+            {
+              "line": 128,
+              "end_line": 128
+            },
+            {
+              "line": 129,
+              "end_line": 129
+            }
+          ],
+          "input_roles": [
+            "path_expression",
+            "data_expression"
+          ],
+          "result_meaning": "written_count_not_sensitive_content_proof"
+        },
+        {
+          "fact_id": "op_4ddc881ee93c3e70",
+          "operation": "file_copy",
+          "api": "shutil.copy",
+          "ranges": [
+            {
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "line": 139,
+              "end_line": 139
+            }
+          ],
+          "input_roles": [
+            "source_path_expression",
+            "destination_path_expression"
+          ],
+          "result_meaning": "destination_path"
+        },
+        {
+          "fact_id": "op_a23afdcbfee2d67b",
+          "operation": "database_open",
+          "api": "sqlite3.connect",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 140,
+              "end_line": 140
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "sqlite_connection"
+        },
+        {
+          "fact_id": "op_751b6fadefd29d6a",
+          "operation": "sql_select",
+          "api": "sqlite3.execute",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 140,
+              "end_line": 140
+            },
+            {
+              "line": 141,
+              "end_line": 141
+            },
+            {
+              "line": 142,
+              "end_line": 142
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "sqlite_cursor_for_query_not_fetched_or_decrypted_values"
+        },
+        {
+          "fact_id": "op_3d9e2c1d226e4480",
+          "operation": "sql_fetchall",
+          "api": "sqlite3.Cursor.fetchall",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 140,
+              "end_line": 140
+            },
+            {
+              "line": 141,
+              "end_line": 141
+            },
+            {
+              "line": 142,
+              "end_line": 142
+            },
+            {
+              "line": 143,
+              "end_line": 143
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "remaining_rows_not_decrypted_values"
+        },
+        {
+          "fact_id": "op_b7aa9f8afa7b5a71",
+          "operation": "file_copy",
+          "api": "shutil.copy",
+          "ranges": [
+            {
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "line": 163,
+              "end_line": 163
+            }
+          ],
+          "input_roles": [
+            "source_path_expression",
+            "destination_path_expression"
+          ],
+          "result_meaning": "destination_path"
+        },
+        {
+          "fact_id": "op_18ceb195f70d3158",
+          "operation": "database_open",
+          "api": "sqlite3.connect",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 164,
+              "end_line": 164
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "sqlite_connection"
+        },
+        {
+          "fact_id": "op_09a7172ddf30048b",
+          "operation": "sql_select",
+          "api": "sqlite3.execute",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 164,
+              "end_line": 164
+            },
+            {
+              "line": 165,
+              "end_line": 165
+            },
+            {
+              "line": 166,
+              "end_line": 167
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "sqlite_cursor_for_query_not_fetched_or_decrypted_values"
+        },
+        {
+          "fact_id": "op_a024749d1b21c35f",
+          "operation": "sql_fetchall",
+          "api": "sqlite3.Cursor.fetchall",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 164,
+              "end_line": 164
+            },
+            {
+              "line": 165,
+              "end_line": 165
+            },
+            {
+              "line": 166,
+              "end_line": 167
+            },
+            {
+              "line": 168,
+              "end_line": 168
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "remaining_rows_not_decrypted_values"
+        },
+        {
+          "fact_id": "op_ab8c7097541e871d",
+          "operation": "file_copy",
+          "api": "shutil.copy",
+          "ranges": [
+            {
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "line": 192,
+              "end_line": 192
+            }
+          ],
+          "input_roles": [
+            "source_path_expression",
+            "destination_path_expression"
+          ],
+          "result_meaning": "destination_path"
+        },
+        {
+          "fact_id": "op_55d8b514d2f016a5",
+          "operation": "database_open",
+          "api": "sqlite3.connect",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 193,
+              "end_line": 193
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "sqlite_connection"
+        },
+        {
+          "fact_id": "op_b5dfe8cd774a6ac2",
+          "operation": "sql_select",
+          "api": "sqlite3.execute",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 193,
+              "end_line": 193
+            },
+            {
+              "line": 194,
+              "end_line": 194
+            },
+            {
+              "line": 195,
+              "end_line": 195
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "sqlite_cursor_for_query_not_fetched_or_decrypted_values"
+        },
+        {
+          "fact_id": "op_162c2c15ad94248b",
+          "operation": "sql_fetchall",
+          "api": "sqlite3.Cursor.fetchall",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 193,
+              "end_line": 193
+            },
+            {
+              "line": 194,
+              "end_line": 194
+            },
+            {
+              "line": 195,
+              "end_line": 195
+            },
+            {
+              "line": 196,
+              "end_line": 196
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "remaining_rows_not_decrypted_values"
+        },
+        {
+          "fact_id": "op_6a805b93096500ba",
+          "operation": "file_copy",
+          "api": "shutil.copy",
+          "ranges": [
+            {
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "line": 215,
+              "end_line": 215
+            }
+          ],
+          "input_roles": [
+            "source_path_expression",
+            "destination_path_expression"
+          ],
+          "result_meaning": "destination_path"
+        },
+        {
+          "fact_id": "op_236cd3d87be840ec",
+          "operation": "database_open",
+          "api": "sqlite3.connect",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 216,
+              "end_line": 216
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "sqlite_connection"
+        },
+        {
+          "fact_id": "op_e4f7a44e7239cb3e",
+          "operation": "sql_select",
+          "api": "sqlite3.execute",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 216,
+              "end_line": 216
+            },
+            {
+              "line": 217,
+              "end_line": 217
+            },
+            {
+              "line": 218,
+              "end_line": 218
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "sqlite_cursor_for_query_not_fetched_or_decrypted_values"
+        },
+        {
+          "fact_id": "op_3acafc1600936829",
+          "operation": "sql_fetchall",
+          "api": "sqlite3.Cursor.fetchall",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 216,
+              "end_line": 216
+            },
+            {
+              "line": 217,
+              "end_line": 217
+            },
+            {
+              "line": 218,
+              "end_line": 218
+            },
+            {
+              "line": 219,
+              "end_line": 219
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "remaining_rows_not_decrypted_values"
+        },
+        {
+          "fact_id": "op_b939269ae7fcb3dc",
+          "operation": "file_copy",
+          "api": "shutil.copy2",
+          "ranges": [
+            {
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "line": 244,
+              "end_line": 244
+            }
+          ],
+          "input_roles": [
+            "source_path_expression",
+            "destination_path_expression"
+          ],
+          "result_meaning": "destination_path"
+        },
+        {
+          "fact_id": "op_84c392ab8a53cdf6",
+          "operation": "database_open",
+          "api": "sqlite3.connect",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 245,
+              "end_line": 245
+            }
+          ],
+          "input_roles": [
+            "path_expression"
+          ],
+          "result_meaning": "sqlite_connection"
+        },
+        {
+          "fact_id": "op_59272088fd13ac16",
+          "operation": "sql_select",
+          "api": "sqlite3.execute",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 245,
+              "end_line": 245
+            },
+            {
+              "line": 246,
+              "end_line": 246
+            },
+            {
+              "line": 247,
+              "end_line": 247
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "sqlite_cursor_for_query_not_fetched_or_decrypted_values"
+        },
+        {
+          "fact_id": "op_f6e04283ff45eeb5",
+          "operation": "sql_fetchall",
+          "api": "sqlite3.Cursor.fetchall",
+          "ranges": [
+            {
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "line": 245,
+              "end_line": 245
+            },
+            {
+              "line": 246,
+              "end_line": 246
+            },
+            {
+              "line": 247,
+              "end_line": 247
+            },
+            {
+              "line": 248,
+              "end_line": 248
+            }
+          ],
+          "input_roles": [
+            "query_expression"
+          ],
+          "result_meaning": "remaining_rows_not_decrypted_values"
+        },
+        {
+          "fact_id": "op_f21222307d823988",
+          "operation": "file_write",
+          "api": "io.TextIOBase.write",
+          "ranges": [
+            {
+              "line": 271,
+              "end_line": 271
+            },
+            {
+              "line": 273,
+              "end_line": 273
+            }
+          ],
+          "input_roles": [
+            "path_expression",
+            "data_expression"
+          ],
+          "result_meaning": "written_count_not_sensitive_content_proof"
+        },
+        {
+          "fact_id": "op_833024af58a9cccd",
+          "operation": "archive_create",
+          "api": "shutil.make_archive",
+          "ranges": [
+            {
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "line": 279,
+              "end_line": 279
+            }
+          ],
+          "input_roles": [
+            "base_name_expression",
+            "format_expression",
+            "root_directory_expression"
+          ],
+          "result_meaning": "archive_path"
+        }
+      ],
+      "artifact_sha256": "4d6e758db248607eb29811259d6345c9b7eb77fe06798c0481f0362ccacc4dca",
+      "source_rows_hash_verified": true,
+      "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100"
+    }
+  ],
+  "limits": [
+    "API call facts only; no runtime success, sensitive-content proof or verdict.",
+    "Source, argument expression values and credentials excluded from this receipt."
+  ]
+}

@@ -13,7 +13,7 @@ def data(tmp_path):
     store=EvidenceStore(tmp_path/'ev')
     page=store.add(sample='inert.bin',sample_sha256='b'*64,tool='decompile_python',backend='inert-fixture',text=text)
     record=store.get(page['evidence_id'],'b'*64)
-    record['operation_facts']=extract_operations(record)['facts']
+    record['operation_facts']=[f for f in extract_operations(record)['facts'] if f['operation']=='smtp_send']
     record['line_map']={r['line']:r['text'] for r in record['lines']}
     ref={'evidence_id':record['evidence_id'],'line':3,'end_line':5,'quote':'\n'.join(record['line_map'][n] for n in range(3,6))}
     card={'reference':ref,'tool':'decompile_python','focus_lines':[5],'focus_origin':'inert-fixture'}
@@ -68,7 +68,7 @@ def test_generator_and_reviewer_receive_same_bounded_operations_and_binding_sour
     evidence,_=data(tmp_path)
     record=next(iter(evidence.values()))
     record['latest_lines']=[4,5]
-    replies=iter([{'claims':[{'kind':'observation','text':'The code has an SMTP sendmail call.'}]},
+    replies=iter([{'supplemental_claims': [], 'claims':[{'kind':'observation','text':'The code has an SMTP sendmail call.'}]},
                   {'reason':'The call is visible.','supported':True}])
     calls=[]
     def invoke(messages,schema,phase,exposure):
@@ -80,4 +80,4 @@ def test_generator_and_reviewer_receive_same_bounded_operations_and_binding_sour
     assert calls[0][0]['parser_operations'][0]['operation']=='smtp_send'
     assert 'import smtplib' in calls[0][0]['code']
     assert calls[0][1]==calls[1][1]
-    assert checked['report_method']=='evidence-cards/8'
+    assert checked['report_method']=='evidence-cards/10'

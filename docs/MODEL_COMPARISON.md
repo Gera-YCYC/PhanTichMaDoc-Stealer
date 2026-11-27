@@ -6,6 +6,8 @@ Model 1.5B ban đầu trên D không đủ ngưỡng hướng 6, được giữ 
 
 ## Phép thử Qwen3 8B
 
+Lượt Python v9 đầu-cuối mới mất495,9s và còn5/18 câu raw thiếu căn cứ; score nguyên tử trên34 đơn vị là P 77,27%, R 50%, F1 60,71%. Bản v10 giới hạn IOC và sửa nhãn API; lượt đầu-cuối dừng do RAM trước report. Khi tắt VM để kiểm riêng report trên đúng đoạn source v9,8B sinh12/12 câu có căn cứ nhưng Recall44,12%, F1 61,22%, không có ATT&CK, reviewer loại nhầm2 câu. Chưa đủ để đổi mặc định hoặc kết luận8B tốt hơn toàn hệ thống. 202,5s report-stage không được so với495,9s đầu-cuối như cùng khối lượng công việc. [Bằng chứng và giới hạn](OPERATIONS_CONTEXT_V9.md).
+
 Thử nghiệm hẹp mới có messages/schema Python giống hệt, cùng manifest23file host: 8B chọn6/6 thao tác đúng trong39,5081s,7B chọn4/6 trong33,8093s và loại nhầm hai. Trên29 đơn vị nguồn đã công bố, Recall chỉ20,69%/13,79%, F134,29%/24,24%. Không đủ để thay model mặc định hoặc coi8B giải được toàn bài. .NET8B10/10 câu upload/response đúng nhưng chưa có Recall/F1. [Chi tiết, snapshot và giới hạn](ATOMIC_REPORT_STAGE.md). Đây là reporting replay, không phải chạy mới toàn bộ ReAct/VM.
 
 Luồng YARA corpus đã có phép so riêng cùng core/corpus/context4096/seed42/num_predict1800: 7B hoàn tất trong42,5242s (6247/394token), 8B73,0389s (6287/485token), cả hai5modelcall, 5/5positive và0/39negative báo nhầm, replay khớp. Chọn7B có sẵn làm mặc định **chỉ cho luồng YARA này**, chưa kết luận hơn/kém ở báo cáo hành vi. Một lượt mỗi model, chưa đo độ lệch tốc độ. [Receipt và thiết kế](YARA_REAL_CORPUS.md).
