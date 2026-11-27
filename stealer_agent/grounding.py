@@ -54,7 +54,7 @@ def validate_report(raw: dict, evidence: dict, sample_sha256: str) -> dict:
             else:
                 line = line_map.get(ref['line'], '')
                 matches = len(ref['quote']) <= 600 and ref['quote'] in line
-            if "[REDACTED-INJECTION]" in line or not matches:
+            if any(marker in line for marker in ('[REDACTED-INJECTION]', '[REDACTED-PRIVATE-FRAGMENT]')) or not matches:
                 errors.append("quote_not_found_at_cited_line")
         if claim["kind"] == "ioc":
             if not claim["value"] or not any(claim["value"] in e["quote"] for e in claim["evidence"]):
@@ -94,4 +94,7 @@ def validate_report(raw: dict, evidence: dict, sample_sha256: str) -> dict:
                   validation_notes=reasons, requires_semantic_review=True,
                   citation_coverage=(len(accepted) / len(raw["claims"]) if raw["claims"] else None),
                   validation_scope="quote/line/source verification only; not semantic truth or measured hallucination")
+    if any(source.get('model_projection') for source in evidence.values()):
+        result['citation_view'] = 'credential-reduced model projection at original VM line coordinates; not byte-identical raw source'
+        result['validation_scope'] = 'quote/line verification against the model projection; original evidence remains private; not semantic truth'
     return result

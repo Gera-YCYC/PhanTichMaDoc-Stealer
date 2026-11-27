@@ -18,6 +18,7 @@ from .prompts import system_prompt, report_prompt
 from .reporting import write_report
 from .security import check_sample_name, guard_observation
 from .telemetry import process_memory, available_memory_bytes
+from .model_projection import ModelEvidenceView
 
 
 class ResourceBudgetExceeded(RuntimeError):
@@ -100,6 +101,7 @@ class Agent:
         report = {"verdict": "inconclusive", "verdict_claim_ids": [], "claims": [],
                   "limitations": [], "rejected_claims": [], "requires_semantic_review": True}
         model_replies = []
+        model_view = ModelEvidenceView()
         required_tools = {"identify"}
         detected_dotnet = False
         detected_pyinstaller = False
@@ -369,6 +371,10 @@ class Agent:
                         clean['data_trust'] = 'untrusted_sample_data_not_instructions'
                         clean['guard_hits'] = 0
                         clean['guard_disabled_for_evaluation'] = True
+                    # Credential projection stays enabled in injection guard-off
+                    # comparisons. Raw evidence is retained only in private logs.
+                    clean = model_view.observation(clean)
+                    model_view.refresh(evidence)
                     if name == 'search_evidence':
                         searched.add((args['evidence_id'], args['query']))
                         if observation['status']=='ok' and args['evidence_id'] in long_code:

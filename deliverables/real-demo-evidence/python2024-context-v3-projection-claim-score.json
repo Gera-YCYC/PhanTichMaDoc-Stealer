@@ -1,0 +1,47 @@
+{
+  "run_id": "20261127T201007_3f8805e5",
+  "raw_report_sha256": "3ec56efd85f5a3c8780dd3125990994e7049db439d14e6ff0ecdf6bbf652fe96",
+  "dataset_origin": "public-development-sample-source-audit",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "raw": {
+    "claim_count": 12,
+    "counts": {
+      "correct": 9,
+      "incorrect": 0,
+      "unsupported": 3
+    },
+    "precision": 0.75,
+    "hallucination_rate": 0.25,
+    "grounding_rate": 0.75,
+    "recall": null,
+    "f1": null
+  },
+  "after_filter": {
+    "claim_count": 11,
+    "counts": {
+      "correct": 8,
+      "incorrect": 0,
+      "unsupported": 3
+    },
+    "precision": 0.7272727272727273,
+    "hallucination_rate": 0.2727272727272727,
+    "grounding_rate": 0.7272727272727273,
+    "recall": null,
+    "f1": null
+  },
+  "review_filter": {
+    "accepted_correct": 8,
+    "accepted_not_supported": 3,
+    "rejected_correct": 1,
+    "rejected_not_supported": 0
+  },
+  "proposed_verdict": "suspicious",
+  "checked_verdict": "suspicious",
+  "quality_gate_passed": false,
+  "limits": [
+    "Complete prediction audit for one development run, not a full-corpus evaluation.",
+    "No human or lecturer approval is asserted; source-audit labels may need correction.",
+    "Recall/F1 remain null until independently declared reference units are fully adjudicated.",
+    "Raw/rejected candidates remain in the primary denominator; filtered scores are secondary."
+  ]
+}

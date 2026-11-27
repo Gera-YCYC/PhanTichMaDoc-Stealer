@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-27T20:19:31.9205061+00:00",
+  "kind": "observed-runtime-stop-after-real-model-run",
+  "run_id": "20261127T201007_3f8805e5",
+  "recorded_model_pid": 11472,
+  "recorded_process_present": false,
+  "port_11435_listening": false,
+  "vmrun_output": [
+    "Total running VMs: 0"
+  ],
+  "gpu_memory_used_mib": [
+    "0"
+  ],
+  "available_host_ram_bytes": 3776884736,
+  "weights_and_vm_disks_preserved": true,
+  "scope": "Point-in-time checks; GPU and RAM are whole-machine observations. No unrelated process stopped."
+}

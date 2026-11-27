@@ -2,6 +2,8 @@
 
 Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất gốc; buổi 4 chỉ là mốc đã có bằng chứng tích hợp. Không dùng số tool hay unit test để suy ra chất lượng phân tích. Tài liệu bàn giao là Markdown kỹ thuật, không yêu cầu thông tin sinh viên.
 
+Ưu tiên sau run `20261127T201007_3f8805e5`: lỗi thiếu helper ở truy vấn nhiều hàm đã có fix và kiểm thật; lớp che literal trước model đã có audit. Điểm còn chặn là ngữ nghĩa: 9/12 câu đủ căn cứ, reviewer loại nhầm C2; các câu về gửi mail/nội dung archive còn thiếu đoạn triển khai tương ứng. Cần chọn card dựa trên giá trị chứng cứ, đưa dữ kiện API vào nhận định có cấu trúc, và bổ sung provenance đủ message/schema. Các gate chất lượng cuối môn vẫn mở. Xem STATUS và MODEL_INPUT_PROJECTION để đọc giới hạn số đo.
+
 | ID | Phần việc | Trạng thái thực tế | Điều kiện đóng |
 |---|---|---|---|
 | D01 | Chốt tập .NET/Python và file sạch | Có 5 mẫu public với hash; đều đã dùng phát triển | Manifest phân vai development/validation/test rõ; không đổi dữ liệu đã xem thành holdout |
@@ -10,7 +12,7 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 | D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |
 | T01 | Detect It Easy | Đã chạy backend thật và được SLM chọn trên Gomorrah | Kiểm thêm mẫu Python và môi trường dựng mới sau thay đổi installer |
 | T02 | FLOSS | Đã chạy thật; .NET dùng static-only | Không gọi static strings là CIL deobfuscation; kiểm native mode/timeout |
-| A01 | Chọn chứng cứ và báo cáo hành vi | Có parser API v2 và context dependency v2; run mới chứng minh helper giải mã vào citation C2. Một số card khác vẫn thiếu helper; đang sửa lặp/thiếu context. LateGet/luồng liên hàm còn mở | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
+| A01 | Chọn chứng cứ và báo cáo hành vi | Parser API v2, context v3, card v7; nhánh login/thẻ cùng nhận helper. Còn card cấu hình mail và lời gọi archive thiếu chứng cứ tác dụng. LateGet/luồng liên hàm còn mở | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
 | A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
 | S01 | Unicode và kiểm exposure | Đã sửa; P06 guard on/off có request thật | Giữ byte offset, log evidence thực đã gửi, không đếm payload bị mất |
 | S02 | Bộ injection | P06 hợp lệ; bộ lịch sử không đủ request provenance | >=10 ca đủ exposure, on/off, cả hai chiều; thống kê mẫu số chính xác |

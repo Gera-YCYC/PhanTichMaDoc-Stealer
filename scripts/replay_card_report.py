@@ -17,14 +17,19 @@ from stealer_agent.evidence_cards import create_card_report
 from stealer_agent.journal import Journal, canonical, dump_json, verify_journal
 from stealer_agent.telemetry import available_memory_bytes
 from stealer_agent.transport import OllamaClient
+from stealer_agent.model_projection import ModelEvidenceView
 
 
 def reconstruct(events):
     evidence = {}
+    view = ModelEvidenceView()
+    for event in events:
+        if event['event'] == 'observation':
+            view.learn(event['model_visible'])
     for event in events:
         if event['event'] != 'observation':
             continue
-        clean = event['model_visible']
+        clean = view.observation(event['model_visible'])
         eid = clean['evidence_id']
         record = evidence.setdefault(eid, {**copy.deepcopy(clean), 'line_map': {}})
         record['line_map'].update({r['line']: r['text'] for r in clean['lines']})

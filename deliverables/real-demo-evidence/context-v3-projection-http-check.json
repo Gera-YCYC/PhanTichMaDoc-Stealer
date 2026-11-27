@@ -1,0 +1,227 @@
+{
+  "created_at": "2026-11-27T20:09:50.424055+00:00",
+  "kind": "fresh-static-tools-and-real-HTTP-check-not-model-demo",
+  "source_run_for_comparison": "20261127T193524_b2342ecf",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "same_reconstructed_source_as_reference": true,
+  "full_output_hash_matches_old_run": false,
+  "output_sha256": "a499b4acd8650f098ed83f355bd44ac099f5f395b69df5ed0c75f6e14dbbefff",
+  "evidence_id": "ev_7f8360e2d2e043df",
+  "preparation": [
+    {
+      "action": "unpack_pyinstaller",
+      "evidence_id": "ev_0fb02b0b4065444c",
+      "output_sha256": "54dac2e5d4cf49ce6ebfbf8640681f200daed262e4063064a963a290983e9793"
+    },
+    {
+      "action": "disassemble_python",
+      "evidence_id": "ev_bfab299a40224ad9",
+      "output_sha256": "a6fb32dd8d6bcd0cfc76436f851be12373980a086a6a045a66018b07524173ed"
+    },
+    {
+      "action": "decode_python_literals",
+      "evidence_id": "ev_7f8360e2d2e043df",
+      "output_sha256": "a499b4acd8650f098ed83f355bd44ac099f5f395b69df5ed0c75f6e14dbbefff"
+    }
+  ],
+  "checks": [
+    {
+      "query": "execute(",
+      "anchors": [
+        142,
+        166
+      ],
+      "links": [
+        {
+          "call_line": 144,
+          "ranges": [
+            {
+              "line": 134,
+              "end_line": 149
+            },
+            {
+              "line": 69,
+              "end_line": 75
+            }
+          ],
+          "callee_complete": true,
+          "related_context_kind": null,
+          "related_call_line": null,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        },
+        {
+          "call_line": 172,
+          "ranges": [
+            {
+              "line": 162,
+              "end_line": 177
+            },
+            {
+              "line": 69,
+              "end_line": 75
+            }
+          ],
+          "callee_complete": true,
+          "related_context_kind": null,
+          "related_call_line": null,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        }
+      ],
+      "source_rows_returned": 63,
+      "projection_changed_lines": [],
+      "raw_response_sha256": "d320a9682067611c4d68f0e66c92381218b15f8597746c6876d7334520cc2b2a",
+      "view_lines_sha256": "5ad0f270ac7711deb4ce900b0ab58a101882e190ccd02608e663d63d924282c4",
+      "syntax_context": {
+        "backend": "tree-sitter-context/3",
+        "language": "python",
+        "anchor_owner_count": 2,
+        "reserved_owner_count": 2,
+        "context_chars_used": 3498,
+        "context_chars_limit": 5800,
+        "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+        "has_parse_errors": false,
+        "function_count": 14,
+        "candidate_link_count": 19,
+        "scope": "Syntactic navigation only; no alias/type resolution, execution or dataflow proof"
+      },
+      "guard_hits": 0
+    },
+    {
+      "query": "decrypt_password",
+      "anchors": [
+        144,
+        172
+      ],
+      "links": [
+        {
+          "call_line": 144,
+          "ranges": [
+            {
+              "line": 134,
+              "end_line": 149
+            },
+            {
+              "line": 69,
+              "end_line": 75
+            }
+          ],
+          "callee_complete": true,
+          "related_context_kind": null,
+          "related_call_line": null,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        },
+        {
+          "call_line": 172,
+          "ranges": [
+            {
+              "line": 162,
+              "end_line": 177
+            },
+            {
+              "line": 69,
+              "end_line": 75
+            }
+          ],
+          "callee_complete": true,
+          "related_context_kind": null,
+          "related_call_line": null,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        }
+      ],
+      "source_rows_returned": 67,
+      "projection_changed_lines": [],
+      "raw_response_sha256": "64b786d0d059e2532cd13ac83892f9a09010898ec58aa780127841e8dfcffaab",
+      "view_lines_sha256": "7c7b9527dd197ec31ef2cd86792380920ff6b51ebfab371983490c63dd6719f2",
+      "syntax_context": {
+        "backend": "tree-sitter-context/3",
+        "language": "python",
+        "anchor_owner_count": 2,
+        "reserved_owner_count": 2,
+        "context_chars_used": 3498,
+        "context_chars_limit": 5800,
+        "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+        "has_parse_errors": false,
+        "function_count": 14,
+        "candidate_link_count": 19,
+        "scope": "Syntactic navigation only; no alias/type resolution, execution or dataflow proof"
+      },
+      "guard_hits": 0
+    },
+    {
+      "query": "sendmail",
+      "anchors": [
+        109
+      ],
+      "links": [
+        {
+          "call_line": 323,
+          "ranges": [
+            {
+              "line": 313,
+              "end_line": 328
+            },
+            {
+              "line": 82,
+              "end_line": 113
+            },
+            {
+              "line": 276,
+              "end_line": 286
+            }
+          ],
+          "callee_complete": true,
+          "related_context_kind": "caller_neighbor_candidate_not_dataflow_proof",
+          "related_call_line": 315,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        },
+        {
+          "call_line": 88,
+          "ranges": [
+            {
+              "line": 82,
+              "end_line": 93
+            },
+            {
+              "line": 78,
+              "end_line": 79
+            }
+          ],
+          "callee_complete": true,
+          "related_context_kind": null,
+          "related_call_line": null,
+          "relation": "unique_name_local_call_candidate_not_semantic_binding"
+        }
+      ],
+      "source_rows_returned": 77,
+      "projection_changed_lines": [
+        85,
+        86,
+        88,
+        320
+      ],
+      "raw_response_sha256": "9232e32d064259b71fe96ac2f8f71728ef802049951c6286269747e739a4f26d",
+      "view_lines_sha256": "6507bc8a29bae9ea2a83172df45e2fab5b9e7d08b2828659cd136cc2dc800f6f",
+      "syntax_context": {
+        "backend": "tree-sitter-context/3",
+        "language": "python",
+        "anchor_owner_count": 1,
+        "reserved_owner_count": 1,
+        "context_chars_used": 5117,
+        "context_chars_limit": 5800,
+        "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+        "has_parse_errors": false,
+        "function_count": 14,
+        "candidate_link_count": 19,
+        "scope": "Syntactic navigation only; no alias/type resolution, execution or dataflow proof"
+      },
+      "guard_hits": 0
+    }
+  ],
+  "source_manifest_sha256": "d884a9e7b1d2887c48fc2c1f38184461041532f62d6d69e7f4362a9472c278c2",
+  "both_query_owners_keep_helper_in_cards": true,
+  "limits": [
+    "Development source, not independent holdout or semantic grading.",
+    "Credential projection is pattern-based; original private evidence is unchanged.",
+    "No malware execution, model inference, source text or credential values in this receipt."
+  ]
+}

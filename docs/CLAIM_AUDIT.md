@@ -1,5 +1,7 @@
 # Đối chiếu nhận định với mã nguồn đã thu
 
+Lượt mới `20261127T201007_3f8805e5` dùng context v3/card v7 và bản chiếu đã che literal: [12 nhãn source audit](../eval/adjudications/python2024-context-v3-projection-full-audit.json), [score](../deliverables/real-demo-evidence/python2024-context-v3-projection-claim-score.json). Có 9 câu đúng/3 thiếu căn cứ; Precision 75%, sau reviewer 72,73%. C2 có body giải mã nhưng bị loại. C6 chỉ dẫn cấu hình mà khẳng định dùng để gửi; C7 chưa chứng minh nội dung browser đã được ghi vào thư mục archive; C12 chỉ dẫn lời gọi helper mà suy tác dụng. Nhãn này có thể cần người khác chỉnh lại; không phải xác nhận của GV. Quote được kiểm với projection đã ghi, không giả là byte source gốc. Script `scripts/record_context_v3_audit.py` khóa đúng hash report và lưu các nhận xét đã đối chiếu; nó không tự suy nhãn mới.
+
 Ngày cập nhật: 28/11/2026. Đây là kiểm chứng trên các mẫu phát triển PythonStealer2024 và Gomorrah, không phải kết quả nghiệm thu toàn corpus. Các câu được so với **chính đoạn chúng dẫn**, sau đó đối chiếu profile source/API; không lấy kết quả tự duyệt của Qwen làm đáp án. Nhãn do source audit tự động lập, chưa có người thật hoặc giảng viên phê duyệt.
 
 ## Các phép thử và phạm vi

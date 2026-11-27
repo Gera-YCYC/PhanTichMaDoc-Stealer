@@ -111,7 +111,7 @@ def test_linked_report_preserves_both_excerpts_and_journals_the_same_exposure(tm
         return next(replies)
     raw, checked = create_card_report({r['evidence_id']:r}, 'a'*64, invoke, Journal(tmp_path/'run'), max_cards=1)
     assert len(raw['claims'][0]['evidence']) == 2
-    assert checked['claims'] and checked['report_method'] == 'evidence-cards/6'
+    assert checked['claims'] and checked['report_method'] == 'evidence-cards/7'
     assert 'SECTION 1' in calls[0][0][-1]['content'] and 'SECTION 2' in calls[0][0][-1]['content']
     assert calls[0][2] == calls[1][2]
 
@@ -128,7 +128,7 @@ def test_search_dispatcher_runs_bounded_parser_and_keeps_original_tool(tmp_path)
         backend='inert-fixture', text='def leaf(x):\n    print(x)\ndef main():\n    leaf("inert")\n')
     result = service.call('search_evidence', {'sample':'fixture.bin', 'evidence_id':first['evidence_id'], 'query':'print'})
     assert result['tool'] == 'decompile_python' and result['status'] == 'ok'
-    assert result['context_links'] and result['syntax_context']['backend'] == 'tree-sitter-context/2'
+    assert result['context_links'] and result['syntax_context']['backend'] == 'tree-sitter-context/3'
 
 
 def test_callee_dependency_precedes_unrelated_sibling(tmp_path):
@@ -165,3 +165,32 @@ def test_dependency_longer_than_bound_is_not_marked_complete(tmp_path):
     result=related_contexts(r,[44])
     link=next(item for item in result['context_links'] if item['call_line']==46)
     assert len(link['ranges'])==2 and link['related_context_kind'] is None
+
+
+def test_two_search_owners_get_helper_context_under_shared_budget(tmp_path):
+    source = 'def transform(x):\n    return x.upper()\n'
+    anchors = []
+    for name in ('first', 'second'):
+        source += f'def {name}(x):\n'
+        source += ''.join('    value = "' + 'inert-data-'*5 + '"\n' for _ in range(12))
+        source += '    value = transform(x)\n    return value\n'
+        anchors.append(len(source.splitlines())-1)
+    source += 'def main():\n    first("inert")\n    second("inert")\n'
+    r = record(tmp_path, source)
+    out = related_contexts(r, anchors, max_chars=3200)
+    links = out['context_links']
+    assert {link['call_line'] for link in links} == set(anchors)
+    assert all(link['ranges'][1] == {'line':1,'end_line':2} for link in links)
+    assert out['syntax_context']['anchor_owner_count'] == 2
+    assert out['syntax_context']['context_chars_used'] <= 3200
+    assert all(row == r['lines'][row['line']-1] for row in out['lines'])
+    r.update(out)
+    r['line_map'] = {row['line']:row['text'] for row in out['lines']}
+    assert len(linked_cards({r['evidence_id']:r})) == 2
+
+
+def test_nested_anchor_uses_innermost_owner_and_empty_anchors_are_valid(tmp_path):
+    r = record(tmp_path, 'def outer():\n    def inner():\n        print("inert")\n    inner()\n')
+    result = related_contexts(r, [3, 3])
+    assert result['syntax_context']['anchor_owner_count'] == 1
+    assert related_contexts(r, [])['context_links'] == []

@@ -1,0 +1,31 @@
+{
+  "method": "recognized-literal-exposure-audit/1",
+  "eligible_detected_literal_count": 3,
+  "excluded_short_literal_count": 0,
+  "detector_scan_truncated": false,
+  "model_requests_checked": 38,
+  "model_responses_checked": 38,
+  "full_request_messages_available": 20,
+  "requests_with_only_evidence_and_message_hash": 18,
+  "requests_with_detected_literal": 0,
+  "request_evidence_with_detected_literal": 0,
+  "responses_with_detected_literal": 0,
+  "raw_claim_prose_with_detected_literal": 0,
+  "raw_report_including_citations_contains_detected_literal": false,
+  "observations_with_projection_changes": 3,
+  "projection_changed_rows_total_with_repeats": 12,
+  "available_request_hashes_verified": true,
+  "recognized_literal_evidence_gate_passed": true,
+  "recognized_literal_request_gate_passed": null,
+  "limits": [
+    "Same declared pattern family as the projection, not an independent measurement of detector recall.",
+    "No claim that unknown, encoded, short or obfuscated secrets are absent.",
+    "Audits recorded messages/evidence/responses. Schemas are hash-only in this journal.",
+    "Private raw observations intentionally retain originals; this receipt does not approve raw logs for publication."
+  ],
+  "projected_observations_reproduced_from_raw": 17,
+  "run_id": "20261127T201007_3f8805e5",
+  "journal_events_verified": 186,
+  "journal_sha256": "303e4475312e96650639c50d29d98ec6035bda74ad0bdf6a8b285ae6a8e42d64",
+  "raw_report_sha256": "3ec56efd85f5a3c8780dd3125990994e7049db439d14e6ff0ecdf6bbf652fe96"
+}

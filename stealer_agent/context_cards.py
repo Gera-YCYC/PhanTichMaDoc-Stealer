@@ -16,7 +16,8 @@ def linked_cards(evidence, max_cards=4, max_chars=6500):
                     refs = []
                     break
                 numbers = range(r['line'], r['end_line']+1)
-                if any(n not in record['line_map'] or '[REDACTED-INJECTION]' in record['line_map'][n] for n in numbers):
+                if any(n not in record['line_map'] or any(marker in record['line_map'][n] for marker in
+                       ('[REDACTED-INJECTION]', '[REDACTED-PRIVATE-FRAGMENT]')) for n in numbers):
                     refs = []
                     break
                 quote = '\n'.join(record['line_map'][n] for n in numbers)
@@ -25,7 +26,9 @@ def linked_cards(evidence, max_cards=4, max_chars=6500):
                     break
                 refs.append({'evidence_id': eid, **r, 'quote': quote})
             key = hashlib.sha256(json.dumps(refs, sort_keys=True).encode()).hexdigest()
-            target = (eid, refs[1]['line'], refs[1]['end_line']) if len(refs) >= 2 else None
+            # Different callers of one helper carry different input context.
+            # Deduplicating by callee alone silently dropped the second caller.
+            target = (eid, refs[0]['line'], refs[0]['end_line'], refs[1]['line'], refs[1]['end_line']) if len(refs) >= 2 else None
             if not 2 <= len(refs) <= 3 or sum(len(r['quote']) for r in refs) > max_chars or key in seen or target in targets:
                 continue
             # A callee-only link can be entirely contained in a caller/callee/

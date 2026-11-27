@@ -1,5 +1,11 @@
 # Báo cáo theo từng đoạn chứng cứ
 
+## Bản v7 hiện tại
+
+V7 giữ hai caller khác nhau dù gọi cùng helper. Kết hợp với syntax backend v3, điều này sửa trường hợp một truy vấn nhiều anchor có nhánh thẻ thanh toán nhưng card cuối bị mất helper giải mã. Không thêm source ngoài các đoạn VM đã trả.
+
+Input của generator/reviewer/controller dùng [bản chứng cứ đã che literal nhận diện được](MODEL_INPUT_PROJECTION.md). Citation giữ tọa độ nhưng đánh dấu là projection, không giả là nguyên văn nguồn. Dữ kiện typed operation chưa được dùng làm nhãn đúng/sai tự động cho câu SLM. Cấu hình vẫn dùng tên `evidence-cards-v1` để tương thích; report ghi `evidence-cards/7`. Số đo nằm trong STATUS, không lấy test phần mềm làm chỉ số phân tích malware.
+
 ## Vấn đề cần giải quyết
 
 Ở các run phát triển trước, Qwen 7B có thể diễn tả một hành vi có thật nhưng chọn dòng trích dẫn chưa chứa lời gọi chứng minh hành vi đó. Ví dụ, tên hàm nén và dòng khai báo đường dẫn chưa chứng minh thao tác tạo ZIP. Bộ kiểm tra quote chỉ chứng minh chuỗi tồn tại; reviewer dùng cùng SLM cũng có thể chấp nhận sai. Không thể dùng tỷ lệ quote hợp lệ làm tỷ lệ grounding ngữ nghĩa.

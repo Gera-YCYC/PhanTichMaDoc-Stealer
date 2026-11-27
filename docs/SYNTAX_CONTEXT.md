@@ -1,5 +1,17 @@
 # Ngữ cảnh hàm và lời gọi trong phân tích tĩnh
 
+## Bản v3: chia ngữ cảnh theo hàm chứa kết quả tìm kiếm
+
+Đã tìm được lỗi chỉ xuất hiện khi dùng luồng thật: `execute(` và `decrypt_password` trả hai anchor thuộc hai hàm, nhưng v2 gộp mọi link vào một danh sách. Hai slot có thể đều dành cho hàm đầu; hàm còn lại chỉ có đoạn từ khóa, thiếu helper. Kiểm riêng từng anchor không bắt được lỗi này.
+
+`tree-sitter-context/3` xác định hàm bao trong cùng của mỗi anchor, dành ngân sách cho từng owner trước, rồi dùng phần còn lại. Nếu gói caller/callee/helper quá lớn, thử cặp lời gọi trực tiếp/helper trước khi bỏ phần thân helper. Không tăng trần 5.800 ký tự hoặc số link mặc định là hai. Trả số owner và ngân sách thực dùng trong metadata.
+
+Ở host, `evidence-cards/7` phân biệt hai caller gọi cùng helper; không loại caller thứ hai chỉ vì đích gọi trùng. Quote vẫn phải xuất phát từ dòng đã nhận. Sau [lớp che dữ liệu](MODEL_INPUT_PROJECTION.md), quote của model là bản chiếu tại tọa độ gốc; nội dung VM nguyên bản được giữ riêng.
+
+[Kiểm HTTP thật](../deliverables/real-demo-evidence/context-v3-projection-http-check.json) chạy lại công cụ trên mẫu Python public rồi kiểm cả hai truy vấn nhiều anchor. Hai lời gọi ở dòng 144/172 cùng có body helper 69–75 và đều còn trong card. Source hash khớp reference; full output hash có thể đổi vì decoder ghi evidence ID mới trong provenance. Đây chưa phải điểm accuracy của SLM. Kết quả ReAct mới được ghi riêng trong STATUS.
+
+Các mô tả v1/v2 bên dưới được giữ để giải thích lịch sử thiết kế, không thay thế hành vi v3 ở trên.
+
 ## Mục đích
 
 Một đoạn quanh từ khóa có thể chỉ chứa lời gọi `send_email(...)`, trong khi phần tạo attachment và SMTP nằm ở hàm khác. Báo cáo không được biến tên hàm hoặc tên biến thành bằng chứng đã gửi dữ liệu. Bản mới bổ sung các đoạn liên quan để SLM có thể đối chiếu tham số, phép gán, giá trị trả về và API thực sự được gọi.

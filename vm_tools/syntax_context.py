@@ -12,7 +12,7 @@ from tree_sitter import Language, Parser
 import tree_sitter_c_sharp
 import tree_sitter_python
 
-BACKEND = 'tree-sitter-context/2'
+BACKEND = 'tree-sitter-context/3'
 CODE_TOOLS = {'decompile_dotnet', 'decompile_python', 'decode_python_literals'}
 
 
@@ -125,11 +125,31 @@ def related_contexts(record, anchors, *, max_links=2, max_chars=5800):
     index = index_source(record)
     rows = {r['line']: r for r in record['lines']}
     source_anchors = [rows[n]['source_line'] for n in anchors if n in rows]
-    owners = [f for f in index['functions'] if any(f['start'] <= a <= f['end'] for a in source_anchors)]
+    owners = []
+    for anchor in source_anchors:
+        enclosing = [f for f in index['functions'] if f['start'] <= anchor <= f['end']]
+        if enclosing:
+            owner = min(enclosing, key=lambda f: f['end']-f['start'])
+            if owner not in owners:
+                owners.append(owner)
     candidates = [link for link in index['links'] if link['caller'] in owners or link['callee'] in owners]
     candidates.sort(key=lambda link: (link['callee'] not in owners,
                                       min(abs(link['call_line']-a) for a in source_anchors), link['call_line']))
     selected, result, used = {}, [], 0
+    # A pooled sort let one owner consume both slots, even when the query had
+    # hits in two functions. Reserve one bounded attempt per distinct owner.
+    # A large inbound caller pack can fall back to a smaller outgoing pair.
+    # Then release unused budget; no source is invented to fill a reservation.
+    reserved = owners[:max_links]
+    attempts = []
+    if len(reserved) > 1:
+        for number, owner in enumerate(reserved):
+            local = [link for link in candidates if link['caller'] is owner or link['callee'] is owner]
+            local.sort(key=lambda link: (link['callee'] is not owner,
+                min(abs(link['call_line']-a) for a in source_anchors), link['call_line']))
+            attempts.extend((link, max_chars//len(reserved), number) for link in local)
+    attempts.extend((link, max_chars, None) for link in candidates)
+    served, chosen = set(), set()
 
     def excerpt(start, end):
         numbers = [n for s in range(start, end+1) for n in index['mapping'].get(s, [])]
@@ -140,7 +160,9 @@ def related_contexts(record, anchors, *, max_links=2, max_chars=5800):
             return None
         return {'line': numbers[0], 'end_line': numbers[-1]}, numbers
 
-    for link in candidates:
+    for link, allowance, owner_number in attempts:
+        if id(link) in chosen or owner_number in served:
+            continue
         target, caller, call_line = link['callee'], link['caller'], link['call_line']
         # A full small callee is substantially more useful than its signature.
         # Large functions stay explicitly partial; never imply complete coverage.
@@ -180,17 +202,24 @@ def related_contexts(record, anchors, *, max_links=2, max_chars=5800):
                 related_call_line = index['mapping'][other['call_line']][0]
         numbers = sorted({n for _, ns in pieces for n in ns})
         cost = sum(len(rows[n]['text'])+50 for n in numbers if n not in selected)
-        if used+cost > max_chars:
+        if used+cost > max_chars or cost > allowance:
+            if owner_number is not None and related_kind == 'callee_dependency_candidate_not_dataflow_proof':
+                # Try the direct call/helper pair before dropping the very
+                # implementation the reserved owner needs to inspect.
+                continue
             # The optional neighbor can be omitted, never the caller/callee pair.
             pieces = pieces[:2]
             related_kind = None
             related_call_line = None
             numbers = sorted({n for _, ns in pieces for n in ns})
             cost = sum(len(rows[n]['text'])+50 for n in numbers if n not in selected)
-        if used+cost > max_chars:
+        if used+cost > max_chars or cost > allowance:
             continue
         selected.update({n: rows[n] for n in numbers})
         used += cost
+        chosen.add(id(link))
+        if owner_number is not None:
+            served.add(owner_number)
         result.append({'call_line': index['mapping'][call_line][0],
                        'ranges': [r for r, _ in pieces], 'callee_complete': target_end == target['end'],
                        'related_context_kind': related_kind, 'related_call_line': related_call_line,
@@ -199,6 +228,8 @@ def related_contexts(record, anchors, *, max_links=2, max_chars=5800):
             break
     return {'lines': [selected[n] for n in sorted(selected)], 'context_links': result,
             'syntax_context': {'backend': BACKEND, 'language': index['language'],
+                               'anchor_owner_count': len(owners), 'reserved_owner_count': len(reserved),
+                               'context_chars_used': used, 'context_chars_limit': max_chars,
                                'source_sha256': index['source_sha256'], 'has_parse_errors': index['has_parse_errors'],
                                'function_count': len(index['functions']), 'candidate_link_count': len(index['links']),
                                'scope': 'Syntactic navigation only; no alias/type resolution, execution or dataflow proof'}}
