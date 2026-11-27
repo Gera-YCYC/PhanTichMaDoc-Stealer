@@ -4,6 +4,14 @@
 
 ## Cập nhật hiện tại
 
+### YARA thật đã đo trên 5 mẫu độc và 39 file sạch
+
+Đã tích hợp profile corpus thật, chọn chuỗi có offset trong byte gốc, đọc TOC PyInstaller và vòng SLM sinh/kiểm luật tối đa bốn lượt. Đã tìm ra báo nhầm yt-dlp ở luật ban đầu (**1/38**), giữ kết quả âm rồi sửa; không lấy số đo fixture để nghiệm thu.
+
+Hai lượt cuối trên cùng source/corpus: **Qwen7B 5/5 positive, 0/39 negative báo nhầm trong 42,5s; Qwen3 8B 5/5 và 0/39 trong 73,0s.** Mỗi lượt có 5 model call, 14 tool call không tính đọc trang, replay độc lập khớp. [Toàn bộ cách đo, log và hạn chế](YARA_REAL_CORPUS.md). **236 kiểm thử phần mềm đạt trên Windows** ở bản này; không phải 236 mẫu độc.
+
+Ngưỡng YARA đạt trên corpus công bố, gồm các mẫu development/đã xem; không chứng minh khả năng phát hiện mọi biến thể mới. Hai luật Python phụ thuộc tên entry bản build; AgentTesla còn phụ thuộc tên executable. Corpus có 37 tiện ích Microsoft và hai ứng dụng PyInstaller chính thức. Các gate ANALYSIS/TRUST/GUARD và đánh giá train vẫn chưa đạt; không dùng kết quả YARA thay điểm của báo cáo hành vi.
+
 ### Báo cáo v8, truy vấn theo hàm và provenance đầy đủ
 
 **Chất lượng vẫn chưa đạt.** [Thiết kế v8](OPERATIONS_CONTEXT_V8.md) gồm AES-GCM fact hẹp, chọn đoạn đầy đủ theo thao tác, đưa cùng source/fact vào generator và reviewer, truy vấn literal từ tên hàm đã quan sát và log nguyên messages/schema. **223 kiểm thử phần mềm đạt trên Windows.** Đây là kiểm hợp đồng, không phải 223 mẫu độc.
@@ -20,7 +28,7 @@ Lượt Python cuối có Precision/grounding **72,73%**, hallucination **27,27%
 
 Audit privacy kiểm đủ 36 messages và 36 schema của lượt Python 8B; ba literal detector đã nhận diện không xuất hiện trong request/schema/response. [Receipt](../deliverables/real-demo-evidence/model-projection-v8-source-query-8b-python.json). Chỉ kết luận trong phạm vi detector, không bảo đảm mọi bí mật đều được tìm thấy.
 
-Đã nhập và khóa **8 file sạch thật có chữ ký Microsoft** cùng 5 mẫu độc development trong manifest YARA riêng. [Corpus và cách tái lập](CLEAN_CORPUS.md). Chưa đo luật trên bộ mới, chưa có positive holdout hoặc ứng dụng PyInstaller sạch. Không dùng receipt nhập file để đóng YARA/FPR.
+Lịch sử v8 đã nhập và khóa **8 file sạch thật có chữ ký Microsoft** cùng 5 mẫu độc development trong manifest riêng. Sau đó bộ YARA mở rộng lên39negative và được đo như phần cập nhật phía trên. [Corpus và cách tái lập](CLEAN_CORPUS.md). Chưa có positive holdout; không dùng receipt nhập file thay kết quả quét.
 
 Nhánh .NET đã phân biệt đúng file upload với response ASCII trong các câu C1–C8, nhưng còn suy tác dụng `Decrypt` khi thiếu thân hàm, nhầm tên biến với tên field/filename, và suy lời gọi từ khai báo P/Invoke. [Audit đủ 20 câu](../eval/adjudications/gomorrah-operations-v8-full-audit.json), [score](../deliverables/real-demo-evidence/gomorrah-operations-v8-claim-score.json), [receipt](../deliverables/real-demo-evidence/operations-v8-source-query-8b-dotnet-run.json). Precision 70%, hallucination 25%. Riêng lượt .NET dùng 2 công cụ; hợp hai lượt có 5 công cụ thật khác nhau, đáp ứng phần số lượng >=4 của tiêu chí kỹ thuật. Slide không yêu cầu mỗi mẫu gọi đủ 4; phần luật YARA trong cùng tiêu chí còn mở. Hai lượt 8B dùng cùng manifest 44 file core, hash `11c3e88b9f4d9e280548a022f4a89a771cabb5996dc46924981b200856e8fea6`.
 

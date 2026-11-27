@@ -1,0 +1,187 @@
+{
+  "status": "evaluated",
+  "profile": "real-v1",
+  "corpora_sha256": "6c0e019ca4e9bc5f3d741f3c6964c1abc50992fecbaa73b2386300ac324f7a66",
+  "model": "qwen3:8b",
+  "rule_count": 5,
+  "development": {
+    "rule_sha256": "6c414464a868b0b7dd7018f495cf386e1f379983e919d9d69ecd4c2d24687600",
+    "yara_version": "4.5.4",
+    "manifest_sha256": "4e2fecff1a2714c1fd0ddae975eae34fdf5ba4f318e99fceddf471b076ac5a3b",
+    "corpora_sha256": "6c0e019ca4e9bc5f3d741f3c6964c1abc50992fecbaa73b2386300ac324f7a66",
+    "target_representation": "original_file_bytes",
+    "corpus": "training",
+    "dataset_origin": "public-malware-development-and-signed-clean-holdout/1",
+    "results": [
+      {
+        "sample": "public_gomorrah.bin",
+        "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+        "positive": true,
+        "matched": true,
+        "rules": [
+          "LabCorpus_01"
+        ]
+      },
+      {
+        "sample": "public_agenttesla.bin",
+        "sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+        "positive": true,
+        "matched": true,
+        "rules": [
+          "LabCorpus_02"
+        ]
+      },
+      {
+        "sample": "public_python2024.bin",
+        "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "positive": true,
+        "matched": true,
+        "rules": [
+          "LabCorpus_03",
+          "LabCorpus_04"
+        ]
+      },
+      {
+        "sample": "public_luna.bin",
+        "sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+        "positive": true,
+        "matched": true,
+        "rules": [
+          "LabCorpus_03",
+          "LabCorpus_04"
+        ]
+      },
+      {
+        "sample": "public_mercurial.bin",
+        "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+        "positive": true,
+        "matched": true,
+        "rules": [
+          "LabCorpus_05"
+        ]
+      }
+    ],
+    "tpr": 1.0,
+    "fpr": null,
+    "positive_count": 5,
+    "negative_count": 0
+  },
+  "holdout": {
+    "rule_sha256": "6c414464a868b0b7dd7018f495cf386e1f379983e919d9d69ecd4c2d24687600",
+    "yara_version": "4.5.4",
+    "manifest_sha256": "4e2fecff1a2714c1fd0ddae975eae34fdf5ba4f318e99fceddf471b076ac5a3b",
+    "corpora_sha256": "6c0e019ca4e9bc5f3d741f3c6964c1abc50992fecbaa73b2386300ac324f7a66",
+    "target_representation": "original_file_bytes",
+    "corpus": "holdout",
+    "dataset_origin": "public-malware-development-and-signed-clean-holdout/1",
+    "results": [
+      {
+        "sample": "clean_ms_where.bin",
+        "sha256": "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_whoami.bin",
+        "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ipconfig.bin",
+        "sha256": "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_findstr.bin",
+        "sha256": "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_sort.bin",
+        "sha256": "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ping.bin",
+        "sha256": "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_msbuild.bin",
+        "sha256": "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_csc.bin",
+        "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      }
+    ],
+    "tpr": null,
+    "fpr": 0.0,
+    "positive_count": 0,
+    "negative_count": 8
+  },
+  "independent_replay_equal": true,
+  "measured_thresholds_met": true,
+  "telemetry": {
+    "elapsed_s": 65.8233,
+    "model_calls": 5,
+    "tool_calls_excluding_pages": 14,
+    "tool_errors": 0,
+    "prompt_tokens": 6088,
+    "completion_tokens": 447,
+    "api_cost_usd": 0,
+    "host_process_memory": {
+      "host_rss_bytes": 29282304,
+      "host_peak_rss_bytes": 29282304
+    },
+    "memory_scope": "Host orchestrator only; per-call model VRAM/RAM snapshots in journal"
+  },
+  "coursework_accepted": false,
+  "run_id": "yara_real_14243d3cbc98",
+  "source_snapshot": "92add170d97df6a3950d20372fecec14e948c8be053a5bb8a74009bbca228e19",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "model_config": {
+    "num_ctx": 4096,
+    "num_predict": 1800,
+    "seed": 42,
+    "think": false
+  },
+  "journal_sha256": "a43861f33222b08e5318293e09ec883e143630c62a508acdb34d9a743356c9de",
+  "journal_events": 35,
+  "full_model_requests": 5,
+  "model_calls_after_freeze": 0,
+  "all_declared_clean": {
+    "count": 8,
+    "false_positives": 0,
+    "scope": "Includes development negatives and previously seen validation negatives; not all blind holdout"
+  },
+  "limitations": [
+    "Five malware specimens are development, not independent positive holdout.",
+    "Eight clean files were locked before new rule tuning; holdout TPR is null without positives.",
+    "Native Windows and managed tools only; no benign PyInstaller coverage yet.",
+    "Signature verification occurred on Windows, VM independently verifies exact hashes.",
+    "No source sample execution; these labels describe expected software identity, not all possible uses.",
+    "Development TPR is in-sample; no unseen-malware sensitivity is claimed.",
+    "Literal selection does not prove specificity or correct behavioral analysis.",
+    "Clean holdout results are never used to revise this frozen ruleset.",
+    "No human/GV approval; no unseen malware sensitivity measured."
+  ],
+  "public_log_scope": "Allowlisted metadata projection; sha256 fields identify original private events, not hashes of these projected rows"
+}

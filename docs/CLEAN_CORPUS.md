@@ -22,11 +22,16 @@ Script đầu lưu bản sao và metadata ở `private/clean-corpus/`. Import d�
 
 Manifest có hai phần: `training` chứa năm mẫu độc public đã dùng phát triển, `holdout` chứa tám file sạch vừa khóa trước khi tinh chỉnh luật mới. Vì holdout chưa có mẫu độc độc lập, **TPR holdout phải để null**. Có thể đo FPR trên tám file sạch, nhưng không lấy TPR development ghép thành kết quả tổng quát hóa trên holdout.
 
-## Còn phải làm
+## Bộ mở rộng và lần phát hiện báo nhầm
 
-Đợt nhập thực tế ngày 28/11/2026 đã kiểm đủ tám hash trong VM và khóa cùng năm mẫu độc development. [Receipt nhập](../deliverables/real-demo-evidence/real-clean-corpus-import.json) và [manifest có nhãn/phiên bản](../eval/corpora/real-yara-v1.json) công bố metadata; chưa có số đo YARA trên bộ này. Tool server vẫn dùng corpus fixture cũ cho đến khi tích hợp profile riêng.
+Bộ 8 file là phiên bản v1 được giữ nguyên. Bộ v2 có 37 tiện ích Microsoft có chữ ký hợp lệ và yt-dlp 2024.08.06 từ Release chính thức: tổng 38 file. Quét nguyên bộ luật v1 đã chỉ ra **1/38 báo nhầm** ở yt-dlp, hai luật Python cùng trúng. [Receipt kiểm lại độc lập](../deliverables/real-demo-evidence/yara-challenge-yara_real_14243d3cbc98.json).
 
-- Đo luật thật bằng YARA compile/match trong VM trên manifest riêng, ghi hash luật, từng file khớp/không khớp và mẫu số. Receipt nhập file không phải kết quả phát hiện.
-- Thêm mẫu độc giữ riêng và ứng dụng Python/PyInstaller sạch; giữ riêng tập development khỏi dữ liệu dùng chốt ngưỡng cuối.
-- Tích hợp lựa chọn corpus thực vào luồng sinh/kiểm luật của agent có cấu hình rõ. Manifest fixture lịch sử được giữ để không đổi nghĩa số đo cũ.
+Bộ v3 chuyển yt-dlp thành negative development, bổ sung gallery-dl 1.27.5: tổng **39 file sạch** khác hash, gồm hai ứng dụng PyInstaller hợp lệ. Mỗi manifest giữ nhãn, nguồn, kích thước và hash. Tên partition holdout không bảo đảm chưa từng xem; manifest ghi rõ tập nào đã dùng để sửa luật. [Luồng chuẩn bị và chạy](YARA_REAL_CORPUS.md).
+
+## Lịch sử v1 và việc còn lại
+
+Đợt nhập v1 ngày 28/11/2026 đã kiểm đủ tám hash trong VM và khóa cùng năm mẫu độc development. [Receipt nhập](../deliverables/real-demo-evidence/real-clean-corpus-import.json) và [manifest](../eval/corpora/real-yara-v1.json) giữ nguyên. Đã có profile `real-v1`/`real-v3` riêng; fixture vẫn giữ nguyên lịch sử.
+
+- Đã chạy YARA thật với hash luật, từng kết quả và replay. Giữ số đo phiên bản riêng, không viết đè kết quả cũ.
+- Đã bổ sung hai ứng dụng PyInstaller sạch. Để nói về khả năng tổng quát hóa, còn cần thêm họ/phần mềm độc lập và mẫu độc chưa dùng phát triển; đây không phải kết quả đã đo.
 - Khi thử luật dựa trên kết quả holdout, coi dữ liệu đã nhìn thấy là development cho đợt sau hoặc công bố đúng hạn chế. Không đổi nhãn để đạt FPR=0.

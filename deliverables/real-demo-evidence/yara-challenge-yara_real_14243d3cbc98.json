@@ -1,0 +1,302 @@
+{
+  "recorded_at": "2026-11-27T22:00:10.282747+00:00",
+  "source_run": "yara_real_14243d3cbc98",
+  "rule_sha256": "6c414464a868b0b7dd7018f495cf386e1f379983e919d9d69ecd4c2d24687600",
+  "rules_modified": false,
+  "new_model_calls": 0,
+  "sample_execution": false,
+  "result": {
+    "rule_sha256": "6c414464a868b0b7dd7018f495cf386e1f379983e919d9d69ecd4c2d24687600",
+    "yara_version": "4.5.4",
+    "manifest_sha256": "734adf4b0c55e484e33ed8a1f7301f0749e8ffe5ef75e9f0c196c51680a9b367",
+    "corpora_sha256": "2ee069f89d451a913ab8d7232894e95b8cc6868283d15d733ab16e9a6bb85205",
+    "target_representation": "original_file_bytes",
+    "corpus": "holdout",
+    "dataset_origin": "real-clean-challenge-38/2",
+    "results": [
+      {
+        "sample": "clean_ms_where.bin",
+        "sha256": "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_whoami.bin",
+        "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ipconfig.bin",
+        "sha256": "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_findstr.bin",
+        "sha256": "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_sort.bin",
+        "sha256": "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ping.bin",
+        "sha256": "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_addinprocess.bin",
+        "sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_addinprocess32.bin",
+        "sha256": "6fcafc5befae962ae7df6e16798ac802b30f33df9072e9153b4fe47154263e25",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_addinutil.bin",
+        "sha256": "bf165737e216ac7bfc7f5b49113d26ca9c770a2fef8b1fdf19dbbbee19bf37bc",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_applaunch.bin",
+        "sha256": "1128d27961c249d325ff1ed3f389fa564933f469d65f45cca631dade2a789313",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_aspnet_compiler.bin",
+        "sha256": "bcb6a8883c6066a943302d00489d3bb5a5a2419d00f5db7defea9fedadae2270",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_aspnet_regbrowsers.bin",
+        "sha256": "a40dbc0d0d134a0095142008ad8d28d77b6491a14a737ed4d1baa856db4fdae8",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_aspnet_regiis.bin",
+        "sha256": "b3af9ff8082088353b82baa92734f74c10671005a0b30fde764e6cd588912577",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_aspnet_regsql.bin",
+        "sha256": "0d1138352c917109a9b656dcbea0f86190123ed10de4a98daaa91b498b52274f",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_aspnet_state.bin",
+        "sha256": "506c05c226609b388a5dfd2cbf1962d2d9e595769452eca84e4c14b36b4f32d7",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_aspnet_wp.bin",
+        "sha256": "3829b32c2460d9eb6ec0caf4983081738feaf9964522d82f505d89076c3e3da4",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_caspol.bin",
+        "sha256": "eaad044d7fa14b66ad1469ceca58d916be6303573080d71d6033510a7c369f66",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_comsvcconfig.bin",
+        "sha256": "4a36c5165fd69700bb1be531ff6868fb69be6e807baee81d0282180734f7d174",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_csc.bin",
+        "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_cvtres.bin",
+        "sha256": "1502b95d0203ffdd269fc0880fb9dd1ff56166d0a9b06abc3502a2fd3ca40e41",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_datasvcutil.bin",
+        "sha256": "0a6c72945337e51085b5fca38b39fbdbb67fd473b1003ffa34a51ec66dfd824f",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_dfsvc.bin",
+        "sha256": "28f62cab2512a4ad30ebb621b234b6f87f0362b2ef436cd48a06c6adbb96ea1a",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_edmgen.bin",
+        "sha256": "9cd177167ecf389587ac1d6af8a14f34ccaaed45280258dc4192ca1cab7027fb",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ilasm.bin",
+        "sha256": "5aed52d2d24d2f8391bd217e76b189e4ddba90e9f361e8345fb0d9f8cdd7803e",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_installutil.bin",
+        "sha256": "24810d7b6b1f76cbe54305fc2ed5d5dd46bd729af486f9b63de82e453dcf14ed",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_jsc.bin",
+        "sha256": "e3e8a8ea86992f4cbf0b0f152def0536214dcbea4377bf4d976c5413a82274e3",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_microsoft.workflow.compiler.bin",
+        "sha256": "e24bde2248286cfdbe71b55992d8bfce796c996ac08e4cf7e33f65fbe1baf5d0",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_msbuild.bin",
+        "sha256": "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_mscorsvw.bin",
+        "sha256": "02438642f8f343e6f31bd21581825302a5367cb83709b02bf5548a15c20db309",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ngen.bin",
+        "sha256": "d63b8bffb8c60f5eb3554be9462839d37d002d107d05935cdca67cba8537208e",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_ngentask.bin",
+        "sha256": "c83e2cb16fdf26d54963d6001203c0d9f9c8fa4c8310aed9161d3ceb35227f50",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_regasm.bin",
+        "sha256": "3e26a8ba9db5d89b5732dbc47ec4f08f4e7375b425cba857d788668ce1cd9fc3",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_regsvcs.bin",
+        "sha256": "06d91978047a6555ac66d902d1ada5a5acd801d29fc51c65c6f1455fd6753f6c",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_servicemodelreg.bin",
+        "sha256": "dd6bd29fc237174ac94701dca9329427ee1ee12c4b701d16b00d96125d8fdf15",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_smsvchost.bin",
+        "sha256": "d4049183b485b44da95a359cf9dae14934aa95cfb542ee4721e7038e3f38c5b5",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_vbc.bin",
+        "sha256": "730cb5f9d0705310ee73adc1e897775d1312e7f14f5fb51152df2ab862ba4a7a",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ms_wsatconfig.bin",
+        "sha256": "d26bd36ce967f802faffe49da945ae9ad2140ac24c14066832bcb5c765c66bc7",
+        "positive": false,
+        "matched": false,
+        "rules": []
+      },
+      {
+        "sample": "clean_ytdlp_20240806.bin",
+        "sha256": "468a6f8bf1d156ad173e000a40f696d4fbd69c5aa7360229329b9063a388e7d0",
+        "positive": false,
+        "matched": true,
+        "rules": [
+          "LabCorpus_03",
+          "LabCorpus_04"
+        ]
+      }
+    ],
+    "tpr": null,
+    "fpr": 0.02631578947368421,
+    "positive_count": 0,
+    "negative_count": 38
+  },
+  "independent_replay_equal": true,
+  "fresh_negative_count": 30,
+  "fresh_false_positives": 1,
+  "coursework_accepted": false,
+  "limitations": [
+    "Includes eight previously tested negatives plus 30 new challenge negatives.",
+    "Five malware specimens remain development; no unseen positive sensitivity.",
+    "One clean PyInstaller app is a hard negative, not complete Python ecosystem coverage.",
+    "Do not use challenge outcome to tune and still call the same set unseen holdout."
+  ]
+}

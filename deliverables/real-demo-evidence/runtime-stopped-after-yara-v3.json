@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-11-27T22:14:08.8215938+00:00",
+  "project_pid": 15604,
+  "project_process_present": false,
+  "port11435_listeners": 0,
+  "vmrun": [
+    "Total running VMs: 0"
+  ],
+  "gpu_used_total_mib": "0, 6144",
+  "weights_deleted": false,
+  "vm_disks_deleted": false
+}

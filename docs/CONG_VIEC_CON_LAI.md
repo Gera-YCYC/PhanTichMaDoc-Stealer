@@ -18,8 +18,8 @@ Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ kh�
 | A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
 | S01 | Unicode và kiểm exposure | Đã sửa; P06 guard on/off có request thật | Giữ byte offset, log evidence thực đã gửi, không đếm payload bị mất |
 | S02 | Bộ injection | P06 hợp lệ; bộ lịch sử không đủ request provenance | >=10 ca đủ exposure, on/off, cả hai chiều; thống kê mẫu số chính xác |
-| Y01 | Tập YARA thật | Manifest real-yara-v1: 5 độc development và 8 sạch holdout, đã kiểm hash VM; chưa đo rule | Bổ sung positive holdout/PyInstaller sạch và tích hợp profile corpus; không ghép TPR development với FPR holdout thành score chung |
-| Y02 | Sinh và đo YARA | Compile/test thật có; marker holdout lịch sử TPR=0 | Agent sinh đặc tả, replay độc lập; TPR>=90%, FPR=0 trên corpus công bố |
+| Y01 | Tập YARA thật | V3: 5 độc development, 39 sạch gồm 37 Microsoft và 2 PyInstaller; hash/nguồn/nhãn có lock | Đã đủ số file sạch dự kiến30–50; nếu muốn nói khả năng tổng quát hóa cần positive mới và thêm ứng dụng/họ độc lập |
+| Y02 | Sinh và đo YARA | 7B/8B cùng bản: 5/5 độc, 0/39 sạch; replay độc lập khớp. Ngưỡng đạt trên corpus công bố | Giữ phạm vi development và luật theo bản build; kiểm rename/repack và tích hợp với báo cáo cuối. Kết quả âm v1 1/38 vẫn giữ |
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
 | TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |

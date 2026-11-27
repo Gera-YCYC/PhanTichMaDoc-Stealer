@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "dataset_origin": "real-clean-challenge-38/2",
+  "corpora": {
+    "training": [
+      {
+        "sample": "public_gomorrah.bin",
+        "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+        "positive": true
+      },
+      {
+        "sample": "public_agenttesla.bin",
+        "sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+        "positive": true
+      },
+      {
+        "sample": "public_python2024.bin",
+        "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "positive": true
+      },
+      {
+        "sample": "public_luna.bin",
+        "sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+        "positive": true
+      },
+      {
+        "sample": "public_mercurial.bin",
+        "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+        "positive": true
+      }
+    ],
+    "holdout": [
+      {
+        "sample": "clean_ms_where.bin",
+        "sha256": "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_whoami.bin",
+        "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ipconfig.bin",
+        "sha256": "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_findstr.bin",
+        "sha256": "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_sort.bin",
+        "sha256": "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ping.bin",
+        "sha256": "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_addinprocess.bin",
+        "sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_addinprocess32.bin",
+        "sha256": "6fcafc5befae962ae7df6e16798ac802b30f33df9072e9153b4fe47154263e25",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_addinutil.bin",
+        "sha256": "bf165737e216ac7bfc7f5b49113d26ca9c770a2fef8b1fdf19dbbbee19bf37bc",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_applaunch.bin",
+        "sha256": "1128d27961c249d325ff1ed3f389fa564933f469d65f45cca631dade2a789313",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_aspnet_compiler.bin",
+        "sha256": "bcb6a8883c6066a943302d00489d3bb5a5a2419d00f5db7defea9fedadae2270",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_aspnet_regbrowsers.bin",
+        "sha256": "a40dbc0d0d134a0095142008ad8d28d77b6491a14a737ed4d1baa856db4fdae8",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_aspnet_regiis.bin",
+        "sha256": "b3af9ff8082088353b82baa92734f74c10671005a0b30fde764e6cd588912577",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_aspnet_regsql.bin",
+        "sha256": "0d1138352c917109a9b656dcbea0f86190123ed10de4a98daaa91b498b52274f",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_aspnet_state.bin",
+        "sha256": "506c05c226609b388a5dfd2cbf1962d2d9e595769452eca84e4c14b36b4f32d7",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_aspnet_wp.bin",
+        "sha256": "3829b32c2460d9eb6ec0caf4983081738feaf9964522d82f505d89076c3e3da4",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_caspol.bin",
+        "sha256": "eaad044d7fa14b66ad1469ceca58d916be6303573080d71d6033510a7c369f66",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_comsvcconfig.bin",
+        "sha256": "4a36c5165fd69700bb1be531ff6868fb69be6e807baee81d0282180734f7d174",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_csc.bin",
+        "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_cvtres.bin",
+        "sha256": "1502b95d0203ffdd269fc0880fb9dd1ff56166d0a9b06abc3502a2fd3ca40e41",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_datasvcutil.bin",
+        "sha256": "0a6c72945337e51085b5fca38b39fbdbb67fd473b1003ffa34a51ec66dfd824f",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_dfsvc.bin",
+        "sha256": "28f62cab2512a4ad30ebb621b234b6f87f0362b2ef436cd48a06c6adbb96ea1a",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_edmgen.bin",
+        "sha256": "9cd177167ecf389587ac1d6af8a14f34ccaaed45280258dc4192ca1cab7027fb",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ilasm.bin",
+        "sha256": "5aed52d2d24d2f8391bd217e76b189e4ddba90e9f361e8345fb0d9f8cdd7803e",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_installutil.bin",
+        "sha256": "24810d7b6b1f76cbe54305fc2ed5d5dd46bd729af486f9b63de82e453dcf14ed",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_jsc.bin",
+        "sha256": "e3e8a8ea86992f4cbf0b0f152def0536214dcbea4377bf4d976c5413a82274e3",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_microsoft.workflow.compiler.bin",
+        "sha256": "e24bde2248286cfdbe71b55992d8bfce796c996ac08e4cf7e33f65fbe1baf5d0",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_msbuild.bin",
+        "sha256": "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_mscorsvw.bin",
+        "sha256": "02438642f8f343e6f31bd21581825302a5367cb83709b02bf5548a15c20db309",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ngen.bin",
+        "sha256": "d63b8bffb8c60f5eb3554be9462839d37d002d107d05935cdca67cba8537208e",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_ngentask.bin",
+        "sha256": "c83e2cb16fdf26d54963d6001203c0d9f9c8fa4c8310aed9161d3ceb35227f50",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_regasm.bin",
+        "sha256": "3e26a8ba9db5d89b5732dbc47ec4f08f4e7375b425cba857d788668ce1cd9fc3",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_regsvcs.bin",
+        "sha256": "06d91978047a6555ac66d902d1ada5a5acd801d29fc51c65c6f1455fd6753f6c",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_servicemodelreg.bin",
+        "sha256": "dd6bd29fc237174ac94701dca9329427ee1ee12c4b701d16b00d96125d8fdf15",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_smsvchost.bin",
+        "sha256": "d4049183b485b44da95a359cf9dae14934aa95cfb542ee4721e7038e3f38c5b5",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_vbc.bin",
+        "sha256": "730cb5f9d0705310ee73adc1e897775d1312e7f14f5fb51152df2ab862ba4a7a",
+        "positive": false
+      },
+      {
+        "sample": "clean_ms_wsatconfig.bin",
+        "sha256": "d26bd36ce967f802faffe49da945ae9ad2140ac24c14066832bcb5c765c66bc7",
+        "positive": false
+      },
+      {
+        "sample": "clean_ytdlp_20240806.bin",
+        "sha256": "468a6f8bf1d156ad173e000a40f696d4fbd69c5aa7360229329b9063a388e7d0",
+        "positive": false
+      }
+    ]
+  },
+  "source_manifest": {
+    "rows": [
+      {
+        "sample": "clean_ms_where.bin",
+        "sha256": "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+        "bytes": 65536,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\System32\\where.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_whoami.bin",
+        "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+        "bytes": 98304,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\System32\\whoami.exe",
+        "file_version": "10.0.26100.8115 (WinBuild.160101.0800)",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_ipconfig.bin",
+        "sha256": "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+        "bytes": 61440,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\System32\\ipconfig.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_findstr.bin",
+        "sha256": "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+        "bytes": 65536,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\System32\\findstr.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_sort.bin",
+        "sha256": "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+        "bytes": 49152,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\System32\\sort.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_ping.bin",
+        "sha256": "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+        "bytes": 45056,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\System32\\ping.exe",
+        "file_version": "10.0.26100.1 (WinBuild.160101.0800)",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_addinprocess.bin",
+        "sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+        "bytes": 36424,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\AddInProcess.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_addinprocess32.bin",
+        "sha256": "6fcafc5befae962ae7df6e16798ac802b30f33df9072e9153b4fe47154263e25",
+        "bytes": 36392,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\AddInProcess32.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_addinutil.bin",
+        "sha256": "bf165737e216ac7bfc7f5b49113d26ca9c770a2fef8b1fdf19dbbbee19bf37bc",
+        "bytes": 36904,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\AddInUtil.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_applaunch.bin",
+        "sha256": "1128d27961c249d325ff1ed3f389fa564933f469d65f45cca631dade2a789313",
+        "bytes": 109144,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\AppLaunch.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_aspnet_compiler.bin",
+        "sha256": "bcb6a8883c6066a943302d00489d3bb5a5a2419d00f5db7defea9fedadae2270",
+        "bytes": 49200,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_compiler.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_aspnet_regbrowsers.bin",
+        "sha256": "a40dbc0d0d134a0095142008ad8d28d77b6491a14a737ed4d1baa856db4fdae8",
+        "bytes": 38968,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regbrowsers.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_aspnet_regiis.bin",
+        "sha256": "b3af9ff8082088353b82baa92734f74c10671005a0b30fde764e6cd588912577",
+        "bytes": 42544,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_aspnet_regsql.bin",
+        "sha256": "0d1138352c917109a9b656dcbea0f86190123ed10de4a98daaa91b498b52274f",
+        "bytes": 120880,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regsql.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_aspnet_state.bin",
+        "sha256": "506c05c226609b388a5dfd2cbf1962d2d9e595769452eca84e4c14b36b4f32d7",
+        "bytes": 48736,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_state.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_aspnet_wp.bin",
+        "sha256": "3829b32c2460d9eb6ec0caf4983081738feaf9964522d82f505d89076c3e3da4",
+        "bytes": 46952,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_wp.exe",
+        "file_version": "4.8.9344.0 built by: NET481REL1LAST_25H2_B",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_caspol.bin",
+        "sha256": "eaad044d7fa14b66ad1469ceca58d916be6303573080d71d6033510a7c369f66",
+        "bytes": 101504,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\CasPol.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_comsvcconfig.bin",
+        "sha256": "4a36c5165fd69700bb1be531ff6868fb69be6e807baee81d0282180734f7d174",
+        "bytes": 168008,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\ComSvcConfig.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_csc.bin",
+        "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+        "bytes": 2569832,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_cvtres.bin",
+        "sha256": "1502b95d0203ffdd269fc0880fb9dd1ff56166d0a9b06abc3502a2fd3ca40e41",
+        "bytes": 47752,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\cvtres.exe",
+        "file_version": "14.29.30154.0 built by: cloudtest",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_datasvcutil.bin",
+        "sha256": "0a6c72945337e51085b5fca38b39fbdbb67fd473b1003ffa34a51ec66dfd824f",
+        "bytes": 66112,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\DataSvcUtil.exe",
+        "file_version": "4.8.9221.0",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_dfsvc.bin",
+        "sha256": "28f62cab2512a4ad30ebb621b234b6f87f0362b2ef436cd48a06c6adbb96ea1a",
+        "bytes": 18488,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\dfsvc.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_edmgen.bin",
+        "sha256": "9cd177167ecf389587ac1d6af8a14f34ccaaed45280258dc4192ca1cab7027fb",
+        "bytes": 91168,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\EdmGen.exe",
+        "file_version": "4.8.9221.0",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_ilasm.bin",
+        "sha256": "5aed52d2d24d2f8391bd217e76b189e4ddba90e9f361e8345fb0d9f8cdd7803e",
+        "bytes": 348760,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\ilasm.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_installutil.bin",
+        "sha256": "24810d7b6b1f76cbe54305fc2ed5d5dd46bd729af486f9b63de82e453dcf14ed",
+        "bytes": 34896,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\InstallUtil.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_jsc.bin",
+        "sha256": "e3e8a8ea86992f4cbf0b0f152def0536214dcbea4377bf4d976c5413a82274e3",
+        "bytes": 41008,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\jsc.exe",
+        "file_version": "14.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_microsoft.workflow.compiler.bin",
+        "sha256": "e24bde2248286cfdbe71b55992d8bfce796c996ac08e4cf7e33f65fbe1baf5d0",
+        "bytes": 27208,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\Microsoft.Workflow.Compiler.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_msbuild.bin",
+        "sha256": "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+        "bytes": 252448,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\MSBuild.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_mscorsvw.bin",
+        "sha256": "02438642f8f343e6f31bd21581825302a5367cb83709b02bf5548a15c20db309",
+        "bytes": 139712,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvw.exe",
+        "file_version": "4.8.9344.0 built by: NET481REL1LAST_25H2_B",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_ngen.bin",
+        "sha256": "d63b8bffb8c60f5eb3554be9462839d37d002d107d05935cdca67cba8537208e",
+        "bytes": 174992,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\ngen.exe",
+        "file_version": "4.8.9344.0 built by: NET481REL1LAST_25H2_B",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_ngentask.bin",
+        "sha256": "c83e2cb16fdf26d54963d6001203c0d9f9c8fa4c8310aed9161d3ceb35227f50",
+        "bytes": 80256,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\ngentask.exe",
+        "file_version": "4.8.9344.0 built by: NET481REL1LAST_25H2_B",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_regasm.bin",
+        "sha256": "3e26a8ba9db5d89b5732dbc47ec4f08f4e7375b425cba857d788668ce1cd9fc3",
+        "bytes": 57976,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\RegAsm.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_regsvcs.bin",
+        "sha256": "06d91978047a6555ac66d902d1ada5a5acd801d29fc51c65c6f1455fd6753f6c",
+        "bytes": 39040,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\RegSvcs.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_servicemodelreg.bin",
+        "sha256": "dd6bd29fc237174ac94701dca9329427ee1ee12c4b701d16b00d96125d8fdf15",
+        "bytes": 290384,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\ServiceModelReg.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_smsvchost.bin",
+        "sha256": "d4049183b485b44da95a359cf9dae14934aa95cfb542ee4721e7038e3f38c5b5",
+        "bytes": 132672,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\SMSvcHost.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_vbc.bin",
+        "sha256": "730cb5f9d0705310ee73adc1e897775d1312e7f14f5fb51152df2ab862ba4a7a",
+        "bytes": 3280976,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\vbc.exe",
+        "file_version": "14.8.9221.0",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ms_wsatconfig.bin",
+        "sha256": "d26bd36ce967f802faffe49da945ae9ad2140ac24c14066832bcb5c765c66bc7",
+        "bytes": 147024,
+        "positive": false,
+        "source_path": "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319\\WsatConfig.exe",
+        "file_version": "4.8.9221.0 built by: NET481REL1LAST_25H2",
+        "signature_status": "Valid",
+        "publisher": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "label_basis": "Known signed Microsoft utility, expected non-stealer"
+      },
+      {
+        "sample": "clean_ytdlp_20240806.bin",
+        "sha256": "468a6f8bf1d156ad173e000a40f696d4fbd69c5aa7360229329b9063a388e7d0",
+        "bytes": 19170563,
+        "positive": false,
+        "source": "https://github.com/yt-dlp/yt-dlp/releases/download/2024.08.06/yt-dlp.exe",
+        "checksum_source": "https://github.com/yt-dlp/yt-dlp/releases/download/2024.08.06/SHA2-256SUMS",
+        "build_source": "https://github.com/yt-dlp/yt-dlp/blob/2024.08.06/.github/workflows/build.yml",
+        "version": "2024.08.06",
+        "packaging": "PyInstaller 6.7.0 / Python 3.8 per official build workflow",
+        "label_basis": "Official open-source media downloader, expected non-stealer; not a claim every use is harmless",
+        "signature_verification": "Pinned SHA256 equals HTTPS official checksum; GPG signature not verified"
+      }
+    ],
+    "sample_execution": false
+  },
+  "prior_clean_hashes": [
+    "f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29",
+    "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+    "378162d36d350678b830fce4cfafafee3d84aca6f6241b30970ef82237f03fbc",
+    "867816f8a714a87f5f573ebbe3a526931fbe787cc03b4ec7ac8a970c9d8c0264",
+    "c887e1dab6255d334254817c5b2f51c4aed2d67816c7e55d69c7759acb951c9e",
+    "e4224d18c3c96826e6f4240893fac02c8a1ff335ce92614fc8744369594dd468",
+    "78a7ec4f772769d45eb6a7f705da705e5a8981a53b056521cbfc63c3a15244cd",
+    "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00"
+  ],
+  "selection_basis": "All 31 explicitly named Framework64 utilities plus six OS tools and one historical official PyInstaller app; selected before frozen-rule scan",
+  "limits": [
+    "Includes eight previously tested negatives plus 30 new challenge negatives.",
+    "Five malware specimens remain development; no unseen positive sensitivity.",
+    "One clean PyInstaller app is a hard negative, not complete Python ecosystem coverage.",
+    "Do not use challenge outcome to tune and still call the same set unseen holdout."
+  ]
+}

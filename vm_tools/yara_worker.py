@@ -8,7 +8,8 @@ from stealer_agent.security import contained_file
 
 
 def evaluate(rule_file, manifest_file, corpus, sample_root):
-    manifest = json.loads(manifest_file.read_text(encoding='utf-8'))
+    manifest_bytes = manifest_file.read_bytes()
+    manifest = json.loads(manifest_bytes)
     cases = manifest['corpora'][corpus]
     if not cases or len(cases) > 200:
         raise ValueError('Corpus must have 1-200 explicit samples')
@@ -28,6 +29,10 @@ def evaluate(rule_file, manifest_file, corpus, sample_root):
     positives = sum(r['positive'] for r in rows)
     negatives = len(rows) - positives
     return {'rule_sha256': hashlib.sha256(rule_text.encode()).hexdigest(), 'yara_version': yara.__version__,
+            'manifest_sha256': hashlib.sha256(manifest_bytes).hexdigest(),
+            'corpora_sha256': hashlib.sha256(json.dumps(manifest['corpora'], sort_keys=True,
+                separators=(',', ':')).encode()).hexdigest(),
+            'target_representation': 'original_file_bytes',
             'corpus': corpus, 'dataset_origin': manifest['dataset_origin'], 'results': rows,
             'tpr': sum(r['positive'] and r['matched'] for r in rows) / positives if positives else None,
             'fpr': sum(not r['positive'] and r['matched'] for r in rows) / negatives if negatives else None,

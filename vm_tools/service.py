@@ -30,13 +30,15 @@ class ToolService:
         self.native = NativeTools(config)
 
     def capabilities(self) -> dict:
+        from .yara_tools import profile_info
         return {"detect_it_easy": {"available": self.native.available('diec'), "backend": "diec"},
                 "floss": {"available": self.native.available('floss'), "backend": "floss"},
                 "unpack_pyinstaller": {"available": Path(self.config.get("pyinstxtractor", "")).is_file(), "backend": "pyinstxtractor"},
                 "decompile_python": {"available": Path(self.config.get("pycdc", "")).is_file(), "backend": "pycdc"},
                 "disassemble_python": {"available": Path(self.config.get("pycdas", "")).is_file(), "backend": "pycdas"},
                 "decode_python_literals": {"available": importlib.util.find_spec('cryptography') is not None, "backend": "bounded-literal-decoder/1"},
-                "test_yara": {"available": importlib.util.find_spec("yara") is not None, "backend": "yara-python"},
+                "test_yara": {"available": importlib.util.find_spec("yara") is not None, "backend": "yara-python", "profiles": profile_info(self.config)},
+                "yara_candidates": {"available": True, "backend": "raw-yara-candidates/2"},
                 "identify": {"available": importlib.util.find_spec("pefile") is not None, "backend": "pefile"},
                 "decompile_dotnet": {"available": Path(self.config["ilspycmd"]).is_file(), "backend": "ilspycmd"},
                 "strings": {"available": True, "backend": STRINGS_BACKEND},
@@ -110,7 +112,13 @@ class ToolService:
                         'No sample import/eval/exec; recovered candidate source does not prove runtime reachability.']
             elif action == "test_yara":
                 from .yara_tools import test_rule
-                text, backend, limits = test_rule(self.config, arguments['rule'], arguments['corpus'])
+                text, backend, limits = test_rule(self.config, arguments['rule'], arguments['corpus'], arguments.get('profile', 'fixture'))
+            elif action == 'yara_candidates':
+                from .yara_candidates import extract
+                text = json.dumps(extract(data))
+                backend = 'raw-yara-candidates/2'
+                limits = ['Candidate literals occur in original bytes; presence alone does not prove malicious behavior.',
+                          'Bounded ASCII and ASCII-range UTF-16LE only; compressed payload strings may be unavailable.']
             elif action == "strings":
                 text, backend, limits = analyzers.strings(data)
             elif action == 'detect_it_easy':

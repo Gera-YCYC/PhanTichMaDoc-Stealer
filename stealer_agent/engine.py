@@ -143,7 +143,7 @@ class Agent:
             if self.config.get('require_course_model') and not model_meets_minimum(metadata):
                 raise RuntimeError('Public demo requires a verified local model with at least 7B parameters')
             health = self.tool_client.inspect()
-            available = [name for name, spec in health["tools"].items() if spec.get("available") is True and name != "test_yara"]
+            available = [name for name, spec in health["tools"].items() if spec.get("available") is True and name not in {"test_yara", "yara_candidates"}]
             journal.append("preflight", model=metadata, vm=health)
             if "identify" not in available or len(set(available) & set(ANALYSIS_TOOLS)) < 2:
                 raise RuntimeError("VM has fewer than two usable analysis tools")

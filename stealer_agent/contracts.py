@@ -5,7 +5,7 @@ from jsonschema import Draft202012Validator
 
 PROTOCOL = "stealer-lab/1"
 ANALYSIS_TOOLS = ("identify", "detect_it_easy", "floss", "decompile_dotnet", "strings", "python_ast", "extract_ioc", "unpack_pyinstaller", "decompile_python", "disassemble_python", "decode_python_literals")
-TOOLS = (*ANALYSIS_TOOLS, "read_evidence", "search_evidence", "test_yara")
+TOOLS = (*ANALYSIS_TOOLS, "read_evidence", "search_evidence", "test_yara", "yara_candidates")
 ATTACK = {
     "T1555.003": "Credentials from Web Browsers",
     "T1555.004": "Windows Credential Manager",
@@ -69,6 +69,7 @@ ACTION_SCHEMA = {
                 "entry_index": {"type": "integer", "minimum": 0, "maximum": 31},
                 "rule": {"type": "string", "minLength": 10, "maxLength": 6000},
                 "corpus": {"enum": ["training", "holdout"]},
+                "profile": {"enum": ["fixture", "real-v1", "real-v3"]},
                 "query": {"type": "string", "minLength": 3, "maxLength": 80},
             },
         },
@@ -103,7 +104,8 @@ def validate_action(value: dict) -> dict:
         "read_evidence": {"sample", "evidence_id", "page"}, "finish": set(), "finalize": set(),
         "unpack_pyinstaller": {"sample"}, "decompile_python": {"sample", "entry_index"},
         "disassemble_python": {"sample", "entry_index"},
-        "test_yara": {"sample", "rule", "corpus"},
+        "test_yara": {"sample", "rule", "corpus", "profile"},
+        "yara_candidates": {"sample"},
         "search_evidence": {"sample", "evidence_id", "query"},
     }[action]
     required = {"sample"} if action not in {"finish", "finalize"} else set()

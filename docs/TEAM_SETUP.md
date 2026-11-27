@@ -4,6 +4,8 @@ Các cập nhật sau mốc 4 dùng Qwen7B mặc định và Release `tai-nguyen
 
 Mục tiêu: chạy lại hai mẫu public .NET/PyInstaller bằng Qwen2.5 Coder 7B và công cụ thật trong VM. Không dùng mock, không dùng fixture làm demo chính. Mẫu public thay thế I/J vì nhóm xác nhận GV không cấp mẫu; nguồn và hash trong DATASET.md và config/public-samples.json.
 
+Sau demo phân tích, có thể chạy giai đoạn [sinh/kiểm YARA trên bộ mẫu thật](YARA_REAL_CORPUS.md). Đã đo5mẫu độc và39file sạch, có kết quả âm trước sửa và hai lượt7B/8B sau sửa. Luồng này dùng7B có sẵn; không bắt buộc tải8B. Phải chuẩn bị corpus và đăng ký profile theo tài liệu trước khi chạy `scripts/Run-YaraCorpus.ps1`.
+
 ## 1. Chuẩn bị
 
 - Windows 10/11 x64, Python **3.11 trở lên** có Python Launcher (`py`), Git, VMware Workstation và Ollama cho Windows. OpenSSH Client phải có lệnh `ssh`, `scp`, `ssh-keygen`. Python host đã kiểm là 3.11; guest Ubuntu dùng Python 3.12 và có bộ wheel riêng.

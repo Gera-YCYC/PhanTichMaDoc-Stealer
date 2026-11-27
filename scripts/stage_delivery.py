@@ -21,6 +21,7 @@ for folder in ('stealer_agent','vm_tools','tests','scripts','eval','training','.
 files.extend(p for p in (ROOT/'docs').rglob('*') if p.is_file() and p.suffix.lower() in ('.md','.jpg','.png','.txt','.json'))
 files.extend(p for p in (ROOT/'fixtures/safe').rglob('*') if p.is_file() and p.suffix in ('.py','.cs','.md'))
 files.extend((ROOT/'config').glob('*.example.json'))
+files.extend(p for p in (ROOT/'rules').rglob('*') if p.is_file() and p.suffix in ('.yar','.md'))
 files.extend(ROOT/'config'/n for n in ('public-samples.json','setup-assets.lock.json','release-assets.lock.json','analysis-tools.lock.json'))
 files.extend(ROOT/n for n in ('README.md','.gitignore','.gitattributes','SECURITY.md','agent_react.py',
                              'pyproject.toml','audit/AUDIT_REPORT.md','audit/review_checks.py'))

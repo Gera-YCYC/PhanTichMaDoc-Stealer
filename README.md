@@ -112,7 +112,13 @@ Các tệp raw, mẫu, API key, VM và model bị loại khỏi Git. Cả bản 
 .\.venv\Scripts\python.exe -m stealer_agent.yara_agent runs/<run-id>
 ```
 
-Ví dụ đánh giá trống cho ra `null`, không tạo điểm giả. Bộ YARA mặc định là marker fixture lành tính, **không đo TPR trên malware**. Xem `eval/README.md` để chấm đúng/sai/bịa/bỏ sót và ổn định 3 lần.
+Ví dụ đánh giá trống cho ra `null`, không tạo điểm giả. Lệnh `yara_agent` cũ dùng marker fixture lành tính, **không đo TPR trên malware**. Luồng mới dùng model và YARA thật trên 5 mẫu độc + bộ 39 file sạch: xem [cài/chạy YARA corpus](docs/YARA_REAL_CORPUS.md), gồm cả lần phát hiện báo nhầm yt-dlp và cách sửa. Sau khi chuẩn bị corpus v3, chạy:
+
+```powershell
+.\scripts\Run-YaraCorpus.ps1 -Profile baseline -CorpusProfile real-v3
+```
+
+Xem `eval/README.md` để chấm đúng/sai/bịa/bỏ sót và ổn định 3 lần; kết quả YARA không thay thế điểm chất lượng báo cáo hành vi.
 
 ## Tài liệu để trình bày
 
