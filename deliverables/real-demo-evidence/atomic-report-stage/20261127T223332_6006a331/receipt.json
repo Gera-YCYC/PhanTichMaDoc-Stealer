@@ -1,0 +1,143 @@
+{
+  "run_id": "20261127T223332_6006a331",
+  "kind": "real-slm-on-captured-vm-features-not-end-to-end-demo",
+  "source_run": "20261127T212209_478cc179",
+  "source_journal_sha256": "1c720cc642663cc7f594d6c50aa070a3a2f4bccbf5b6b4e97f8b4d2280a32e8d",
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "size_bytes": 5225388164,
+    "ollama_version": "0.40.17"
+  },
+  "source_manifest_sha256": "c182e61e6c6c614d52ba79b0279f9505916c51136b84e3a7fdc3c3a08719c9fb",
+  "actual_reporter_source_sha256": "9c46159e2462eaadc89c116cab21a445182fd81c2c3acd432ebd73f9ce481a8f",
+  "legacy_reporter_field_note": "These three historical journals name evidence_cards.py in reporter_source_sha256. The actual operations reporter is independently identified by source_files and preserved in eval/reproductions/operation-assertions-v1/reporter.py. Private journals are unchanged; later runner versions identify the selected reporter directly.",
+  "source_files": {
+    "stealer_agent/__init__.py": "fccee36f12fcdc482ed65b7c9d223e123c35208a2ee04c20a51109511e8296fa",
+    "stealer_agent/api_reference.py": "bbbad1e547a869a5826516161e7758096f9cdb3501ad139eeda1f779f68d837e",
+    "stealer_agent/cli.py": "357166b2508242b1b868f910f34ddfbd04e47d487b5f94537b3d622aadf81b3d",
+    "stealer_agent/context_cards.py": "7e36e6daa14c73432ea68fa9c761544711029203ce8d5477f9a5d9c2c0ed6484",
+    "stealer_agent/contracts.py": "21a428513a63c763b41f4fe8c37f61940537a38b2c973e0379700fd2513de5c9",
+    "stealer_agent/engine.py": "668048f5b0484e47f5dd7ce70b675d23887b950bf2b66a1a7a5dac3d1418a27f",
+    "stealer_agent/evidence_cards.py": "799b21fbe0ac9a90a62224b5812e47d9df470c581afc13241b9b9164fdf96fd8",
+    "stealer_agent/grounding.py": "a77e76dbff0146846c0373b8d93577945594b4d1d2d603f567addc70c699223c",
+    "stealer_agent/journal.py": "8026e19a94f48f837d2ffee90772a2ad12a07930ddbdda58c950cf6698abfc26",
+    "stealer_agent/model_projection.py": "dc0dbc011d359db4d604e14e48b276578982cc94341ba07e09cce6cd90195345",
+    "stealer_agent/operation_assertions.py": "9c46159e2462eaadc89c116cab21a445182fd81c2c3acd432ebd73f9ce481a8f",
+    "stealer_agent/operation_context.py": "2098cf07e1f1f8c38ee1890865813801a4f98c9c4e25783b54556c7aad07f5d5",
+    "stealer_agent/prompts.py": "a141195f9d021d5006c37add6a109d053c8f5bb6f1f32a63e0df1672d3f198dc",
+    "stealer_agent/redaction.py": "0a1ed7e2f12a4c60fde8f26808702ddc5071f8441fbb8c297b9440ec651c36e9",
+    "stealer_agent/reporting.py": "fde7acec243330fe8672c85e8066ebcce5db737f58af9e2e6fff1aa9c481b7b5",
+    "stealer_agent/reviewer.py": "0fd3353eeef6cd61b31dad70ba2ae09ad474d7b99d37fc7531aebb8c27a62c34",
+    "stealer_agent/search_queries.py": "7b6c172c19d287184461d0440a5a72a80417f1b5e2e1ffe057b88dbfc7e82e49",
+    "stealer_agent/security.py": "6778ed1f93ab7bbb0b7132a45bbc90ac48f4eb4da1885a91f4cec4e55262d2c7",
+    "stealer_agent/telemetry.py": "9369682c58c5c04b4615b65041891197fff6bcf2c0b62f9aa949e180bf8e23cf",
+    "stealer_agent/transport.py": "174730459752cd683c3cb26c9a073d44bf53ce35362a7afdb34651b481894dd6",
+    "stealer_agent/verdict_support.py": "3132c38a3266a0d8534e3f4a0fab9f17460ee619ec5a5c72277366cf67de178e",
+    "stealer_agent/yara_agent.py": "8f25b0d64ec99ed90447ea55e3e4c99b4cea68ee315a5634b0ba6baa7e52f7a0",
+    "stealer_agent/yara_corpus.py": "428d8be68cd840fdcfd9db093ac6c597bb30c05308e4040e567a2ec87bea02fb"
+  },
+  "raw_report_sha256": "dc97559842131eefcfe35383dbc1681b93f4ab8a8444b3e69fffc7c6b4be44bd",
+  "private_journal_sha256": "b4725b4b7d867522a21a58d24b520dac23f59ce673722b1ccafb53e4441e33ae",
+  "checked_report_sha256": "7d8ecb77f22eea9cd5f0f2a59e056b69abd22ea9cfe7ef0ae3132d2d14a894d1",
+  "config": {
+    "num_ctx": 4096,
+    "num_predict": 1800,
+    "seed": 42,
+    "think": false
+  },
+  "metrics": {
+    "model_calls": 10,
+    "prompt_tokens": 4215,
+    "completion_tokens": 450,
+    "minimum_free_ram_bytes": 988233728,
+    "elapsed_s": 42.6311
+  },
+  "catalog_audited_correct": 10,
+  "selected": 10,
+  "abstained_on_supported_operations": 0,
+  "decisions": [
+    {
+      "fact_id": "op_83eff2ae2facb4df",
+      "include": true
+    },
+    {
+      "fact_id": "op_eb3a3d7bf55a506f",
+      "include": true
+    },
+    {
+      "fact_id": "op_43f61026e6f9ee9e",
+      "include": true
+    },
+    {
+      "fact_id": "op_1e986d7265952e43",
+      "include": true
+    },
+    {
+      "fact_id": "op_f64022eb9ad5bd17",
+      "include": true
+    },
+    {
+      "fact_id": "op_3cca56c66a1a7c16",
+      "include": true
+    },
+    {
+      "fact_id": "op_31d130294317db15",
+      "include": true
+    },
+    {
+      "fact_id": "op_35ebe2a651b044f1",
+      "include": true
+    },
+    {
+      "fact_id": "op_bc575cc83560fec2",
+      "include": true
+    },
+    {
+      "fact_id": "op_6613e3852c0a83da",
+      "include": true
+    }
+  ],
+  "request_message_schema_sha256": [
+    "bb91627d67dc1c96124832cca1e1e91203a5d6946f312b1bc849d8af48e3a4dd",
+    "109b7e528957e16a6017fece1d1aa236a7035e4632cc3ea748441a3a70b8fd5f",
+    "8dfbf7a791227deb0bad3c4fcf1a9e2a7d11712c7b62189c99465c5dfb090727",
+    "671f7ae27a4cb5ed8e4f26daf460733fd1f6015ebe1fe9d109e911f48efad97b",
+    "9b5c2f8dfad5ed6303401c19e392b405bb3dd756c517afcebb1d82edf0d2c225",
+    "d88281e5b1d715ae9d7a50849245858a14a28aebee068067d25a89ec9b362d24",
+    "625c31956648826b73de77389a6c0bc3a20449e6d3178f8dcc27183847dab1f6",
+    "ec71521f4da1ec9c651ba2632c91f6bb45cf72e90cc5cc1aeb256bf0105a2180",
+    "3cb04127bdc4568e4231757bb13d12a9a3fcd4b8bb214d608791e3060c5544d9",
+    "5c899d24faef2b41d45beb7124d62f1d43a8347a940a1bf8955f0eb3e048b553"
+  ],
+  "raw_source_audit": {
+    "claim_count": 10,
+    "counts": {
+      "correct": 10,
+      "incorrect": 0,
+      "unsupported": 0
+    },
+    "precision": 1.0,
+    "hallucination_rate": 0.0,
+    "grounding_rate": 1.0,
+    "recall": null,
+    "f1": null
+  },
+  "atomic_score": null,
+  "verdict": "inconclusive",
+  "full_analysis_completed": false,
+  "limits": [
+    "Experimental bound-API reporting stage, not a complete malware analysis.",
+    "Templates preserve argument roles; their parser and semantic correctness still require source audit.",
+    "No runtime execution or whole-module reachability is established.",
+    "IOC, ATT&CK, helper effects, dataflow and verdict are not established by this stage."
+  ],
+  "pending_analysis": [
+    "sensitive-data meaning and helper-body/dataflow analysis",
+    "IOC and destination/token/webhook classification",
+    "MITRE ATT&CK mapping",
+    "whole-sample verdict",
+    "coverage outside the supported API catalog"
+  ]
+}

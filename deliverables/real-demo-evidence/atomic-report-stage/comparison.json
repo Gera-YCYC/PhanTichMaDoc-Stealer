@@ -1,0 +1,12 @@
+{
+  "python_request_messages_and_schemas_identical": true,
+  "source_snapshots_identical": true,
+  "source_archive": "private/report-source-snapshots/<manifest>/source.tar",
+  "archive_note": "Archive assembled after runs, with every file verified against the hash recorded at run start.",
+  "experiments": [
+    "20261127T223237_eb2876a8",
+    "20261127T223332_6006a331",
+    "20261127T223527_d5fb791e"
+  ],
+  "full_coursework_quality_gate_passed": false
+}

@@ -1,0 +1,169 @@
+{
+  "run_id": "20261127T223237_eb2876a8",
+  "kind": "real-slm-on-captured-vm-features-not-end-to-end-demo",
+  "source_run": "20261127T211223_9602dfdd",
+  "source_journal_sha256": "7385c0c47821a77964a356a0355af1280d3ea146149cc61edb211fbf153bde0c",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model": {
+    "tag": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "size_bytes": 5225388164,
+    "ollama_version": "0.40.17"
+  },
+  "source_manifest_sha256": "c182e61e6c6c614d52ba79b0279f9505916c51136b84e3a7fdc3c3a08719c9fb",
+  "actual_reporter_source_sha256": "9c46159e2462eaadc89c116cab21a445182fd81c2c3acd432ebd73f9ce481a8f",
+  "legacy_reporter_field_note": "These three historical journals name evidence_cards.py in reporter_source_sha256. The actual operations reporter is independently identified by source_files and preserved in eval/reproductions/operation-assertions-v1/reporter.py. Private journals are unchanged; later runner versions identify the selected reporter directly.",
+  "source_files": {
+    "stealer_agent/__init__.py": "fccee36f12fcdc482ed65b7c9d223e123c35208a2ee04c20a51109511e8296fa",
+    "stealer_agent/api_reference.py": "bbbad1e547a869a5826516161e7758096f9cdb3501ad139eeda1f779f68d837e",
+    "stealer_agent/cli.py": "357166b2508242b1b868f910f34ddfbd04e47d487b5f94537b3d622aadf81b3d",
+    "stealer_agent/context_cards.py": "7e36e6daa14c73432ea68fa9c761544711029203ce8d5477f9a5d9c2c0ed6484",
+    "stealer_agent/contracts.py": "21a428513a63c763b41f4fe8c37f61940537a38b2c973e0379700fd2513de5c9",
+    "stealer_agent/engine.py": "668048f5b0484e47f5dd7ce70b675d23887b950bf2b66a1a7a5dac3d1418a27f",
+    "stealer_agent/evidence_cards.py": "799b21fbe0ac9a90a62224b5812e47d9df470c581afc13241b9b9164fdf96fd8",
+    "stealer_agent/grounding.py": "a77e76dbff0146846c0373b8d93577945594b4d1d2d603f567addc70c699223c",
+    "stealer_agent/journal.py": "8026e19a94f48f837d2ffee90772a2ad12a07930ddbdda58c950cf6698abfc26",
+    "stealer_agent/model_projection.py": "dc0dbc011d359db4d604e14e48b276578982cc94341ba07e09cce6cd90195345",
+    "stealer_agent/operation_assertions.py": "9c46159e2462eaadc89c116cab21a445182fd81c2c3acd432ebd73f9ce481a8f",
+    "stealer_agent/operation_context.py": "2098cf07e1f1f8c38ee1890865813801a4f98c9c4e25783b54556c7aad07f5d5",
+    "stealer_agent/prompts.py": "a141195f9d021d5006c37add6a109d053c8f5bb6f1f32a63e0df1672d3f198dc",
+    "stealer_agent/redaction.py": "0a1ed7e2f12a4c60fde8f26808702ddc5071f8441fbb8c297b9440ec651c36e9",
+    "stealer_agent/reporting.py": "fde7acec243330fe8672c85e8066ebcce5db737f58af9e2e6fff1aa9c481b7b5",
+    "stealer_agent/reviewer.py": "0fd3353eeef6cd61b31dad70ba2ae09ad474d7b99d37fc7531aebb8c27a62c34",
+    "stealer_agent/search_queries.py": "7b6c172c19d287184461d0440a5a72a80417f1b5e2e1ffe057b88dbfc7e82e49",
+    "stealer_agent/security.py": "6778ed1f93ab7bbb0b7132a45bbc90ac48f4eb4da1885a91f4cec4e55262d2c7",
+    "stealer_agent/telemetry.py": "9369682c58c5c04b4615b65041891197fff6bcf2c0b62f9aa949e180bf8e23cf",
+    "stealer_agent/transport.py": "174730459752cd683c3cb26c9a073d44bf53ce35362a7afdb34651b481894dd6",
+    "stealer_agent/verdict_support.py": "3132c38a3266a0d8534e3f4a0fab9f17460ee619ec5a5c72277366cf67de178e",
+    "stealer_agent/yara_agent.py": "8f25b0d64ec99ed90447ea55e3e4c99b4cea68ee315a5634b0ba6baa7e52f7a0",
+    "stealer_agent/yara_corpus.py": "428d8be68cd840fdcfd9db093ac6c597bb30c05308e4040e567a2ec87bea02fb"
+  },
+  "raw_report_sha256": "af09791219dd082f164fbebe588d9d0351195108b8f370965dc59aaf79788cb7",
+  "private_journal_sha256": "11ca9a7a364b216b3ec739ec3b4337c404436b3d2a6930a195bafb19c3db9a22",
+  "checked_report_sha256": "00b7a7320cdbf18d7d76280767bf0cc5087e3988084a05d94a476c9b4a2ed971",
+  "config": {
+    "num_ctx": 4096,
+    "num_predict": 1800,
+    "seed": 42,
+    "think": false
+  },
+  "metrics": {
+    "model_calls": 6,
+    "prompt_tokens": 2153,
+    "completion_tokens": 284,
+    "minimum_free_ram_bytes": 936214528,
+    "elapsed_s": 39.5081
+  },
+  "catalog_audited_correct": 6,
+  "selected": 6,
+  "abstained_on_supported_operations": 0,
+  "decisions": [
+    {
+      "fact_id": "op_5841fdfd1dd0fe8a",
+      "include": true
+    },
+    {
+      "fact_id": "op_eff756d3906f7aac",
+      "include": true
+    },
+    {
+      "fact_id": "op_1142bfa57bc5e633",
+      "include": true
+    },
+    {
+      "fact_id": "op_c87f61e1babf267c",
+      "include": true
+    },
+    {
+      "fact_id": "op_797d60ee810f241e",
+      "include": true
+    },
+    {
+      "fact_id": "op_2d2517ecddb76544",
+      "include": true
+    }
+  ],
+  "request_message_schema_sha256": [
+    "2cfe705ba37de360ce456c9009caec5eab0745c0f1d9109ac6a26729eb9fcbca",
+    "cef7729bfd143261e9d624031b5f1a48e029a856f99c13de2b31bf12a419dc8b",
+    "c6f586a4a7e9a84799119857a62e7d7f351ce9634071edde5870effe3ac88a80",
+    "634de4d0d65fe0a5fa96e7a3adaef42dcf2b5eb7b30a0757a773b33771750814",
+    "5f229212f6032974b598f8d8f5b1b6f0bcac5fff01bd2bc1c7f86ed6243f27e3",
+    "1018574ca643ba60191ac570f5cabaad94b011433aa3d631b215d2a3c52ceeca"
+  ],
+  "raw_source_audit": {
+    "claim_count": 6,
+    "counts": {
+      "correct": 6,
+      "incorrect": 0,
+      "unsupported": 0
+    },
+    "precision": 1.0,
+    "hallucination_rate": 0.0,
+    "grounding_rate": 1.0,
+    "recall": null,
+    "f1": null
+  },
+  "atomic_score": {
+    "prediction_atoms": 6,
+    "unique_prediction_units": 6,
+    "duplicate_atoms": 0,
+    "reference_units": 29,
+    "correct": 6,
+    "incorrect": 0,
+    "unsupported": 0,
+    "missed": 23,
+    "precision": 1.0,
+    "recall": 0.20689655172413793,
+    "f1": 0.34285714285714286,
+    "hallucination_rate": 0.0,
+    "matched_reference_ids": [
+      "PY24-A04",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A12",
+      "PY24-A18",
+      "PY24-A25"
+    ],
+    "missed_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A03",
+      "PY24-A05",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A15",
+      "PY24-A16",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A28",
+      "PY24-A29"
+    ]
+  },
+  "verdict": "inconclusive",
+  "full_analysis_completed": false,
+  "limits": [
+    "Experimental bound-API reporting stage, not a complete malware analysis.",
+    "Templates preserve argument roles; their parser and semantic correctness still require source audit.",
+    "No runtime execution or whole-module reachability is established.",
+    "IOC, ATT&CK, helper effects, dataflow and verdict are not established by this stage."
+  ],
+  "pending_analysis": [
+    "sensitive-data meaning and helper-body/dataflow analysis",
+    "IOC and destination/token/webhook classification",
+    "MITRE ATT&CK mapping",
+    "whole-sample verdict",
+    "coverage outside the supported API catalog"
+  ]
+}

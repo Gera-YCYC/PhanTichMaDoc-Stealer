@@ -1,5 +1,7 @@
 # Đơn vị hành vi tham chiếu và phép đo độ bao phủ
 
+**Bổ sung atomic-v1:** `python2024.atomic-v1.json` khai báo29 đơn vị cho chuỗi mật khẩu/thẻ → lưu/nén → SMTP, gồm26 behavior,1 IOC,2 ATT&CK. `eval.atomic_units` chấm prediction được tách cùng đơn vị, không trộn Precision theo câu với Recall theo nhóm. Giữ bản13 nhóm lịch sử riêng. Python8B mới đạt6/29,7B4/29 trong phép thử API hẹp; không phải Recall toàn binary/corpus. [Phương pháp, cách tái lập và phần còn thiếu](../../docs/ATOMIC_REPORT_STAGE.md).
+
 Profile `python2024.behavior-v1.json` định nghĩa 13 đơn vị chức năng từ source Python đã phục hồi: lấy khóa, copy/query/decrypt dữ liệu browser, ghi kết quả, tạo ZIP, tạo MIME attachment và gửi SMTP. Đây là phạm vi phát triển được công bố, chưa phải toàn bộ khả năng của file hay bộ test giữ riêng.
 
 Các đơn vị do đối chiếu source định nghĩa; thiết kế đã biết lỗi của các run phát triển trước. Không dùng quyết định của bộ tự duyệt Qwen làm nhãn thật, không giả người thật/GV ký duyệt, không coi đây là một thử nghiệm mù. Không đưa file reference vào prompt của agent. Source/secret vẫn ở VM/private; Git chứa mô tả, tọa độ evidence và hash.

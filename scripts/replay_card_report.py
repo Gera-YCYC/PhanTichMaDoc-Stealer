@@ -5,6 +5,7 @@ import argparse
 import copy
 from datetime import datetime, timezone
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import sys
@@ -18,6 +19,28 @@ from stealer_agent.journal import Journal, canonical, dump_json, verify_journal,
 from stealer_agent.telemetry import available_memory_bytes
 from stealer_agent.transport import OllamaClient
 from stealer_agent.model_projection import ModelEvidenceView
+
+
+def select_reporter(method, measured_revision=False):
+    source_files = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in sorted((ROOT / 'stealer_agent').glob('*.py'))}
+    if measured_revision:
+        if method != 'operations':
+            raise ValueError('Measured revision is only defined for the operations ablation')
+        folder = ROOT / 'eval/reproductions/operation-assertions-v1'
+        manifest = json.loads((folder / 'manifest.json').read_text(encoding='utf-8'))
+        for name, expected in manifest.items():
+            path = folder / 'reporter.py' if name == 'stealer_agent/operation_assertions.py' else ROOT / name
+            if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                raise ValueError('Measured-revision dependency changed: ' + name)
+        spec = importlib.util.spec_from_file_location('stealer_agent.operation_assertions_reproduction', folder / 'reporter.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module.create_operation_report, manifest, 'eval/reproductions/operation-assertions-v1/reporter.py'
+    if method == 'operations':
+        from stealer_agent.operation_assertions import create_operation_report
+        return create_operation_report, source_files, 'stealer_agent/operation_assertions.py'
+    return create_card_report, source_files, 'stealer_agent/evidence_cards.py'
 
 
 def reconstruct(events):
@@ -55,8 +78,13 @@ def main():
     parser.add_argument('--config', type=Path, required=True)
     parser.add_argument('--model')
     parser.add_argument('--cards', type=int, default=3)
+    parser.add_argument('--method', choices=['cards', 'operations'], default='cards',
+                        help='operations is a narrow reporting ablation, not a full analysis profile')
+    parser.add_argument('--measured-revision', action='store_true',
+                        help='Replay the archived operation reporter; verify every dependency hash first')
     parser.add_argument('--no-api-guidance', action='store_true', help='Controlled ablation; same v5 prompts without API reference notes')
     args = parser.parse_args()
+    reporter, source_files, reporter_path = select_reporter(args.method, args.measured_revision)
     directory = (ROOT / 'runs' / args.run).resolve(strict=True)
     if directory.parent != (ROOT / 'runs').resolve():
         raise ValueError('Source must be a run ID under runs/')
@@ -73,15 +101,14 @@ def main():
     run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '_' + uuid.uuid4().hex[:8]
     journal = Journal(ROOT / 'private/report-experiments' / run_id)
     metrics = {'model_calls': 0, 'prompt_tokens': 0, 'completion_tokens': 0, 'minimum_free_ram_bytes': None}
-    source_files = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-                    for p in sorted((ROOT / 'stealer_agent').glob('*.py'))}
     journal.append('replay_started', evidence_kind='real-slm-on-captured-vm-features-not-end-to-end-demo',
                    source_run=args.run, source_journal_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                    model=model, config={k:v for k,v in cfg.items() if 'token' not in k},
                    config_file_sha256=hashlib.sha256(args.config.read_bytes()).hexdigest(),
                    source_files=source_files, source_manifest_sha256=hashlib.sha256(canonical(source_files)).hexdigest(),
-                   reporter_source_sha256=hashlib.sha256((ROOT/'stealer_agent/evidence_cards.py').read_bytes()).hexdigest())
-    journal.append('replay_settings', max_cards=args.cards, api_guidance=not args.no_api_guidance)
+                   reporter_implementation_path=reporter_path,
+                   reporter_source_sha256=hashlib.sha256((ROOT / reporter_path).read_bytes()).hexdigest())
+    journal.append('replay_settings', max_cards=args.cards, api_guidance=not args.no_api_guidance, method=args.method)
 
     def invoke(messages, schema, phase, request_evidence):
         free = available_memory_bytes()
@@ -103,7 +130,7 @@ def main():
         return response
 
     start = time.perf_counter()
-    raw, checked = create_card_report(evidence, source_result['sample_sha256'], invoke, journal,
+    raw, checked = reporter(evidence, source_result['sample_sha256'], invoke, journal,
                                       max_cards=args.cards, api_guidance=not args.no_api_guidance)
     metrics['elapsed_s'] = round(time.perf_counter() - start, 4)
     dump_json(journal.directory / 'report.model-raw.json', raw)

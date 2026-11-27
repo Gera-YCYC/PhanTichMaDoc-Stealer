@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "profile_sha256": "4c2bcd775e6b282c53e86aef59409200d8863be06963e3c8a1aeea2c9f1f2bf6",
+  "raw_report_sha256": "af09791219dd082f164fbebe588d9d0351195108b8f370965dc59aaf79788cb7",
+  "checked_report_sha256": "00b7a7320cdbf18d7d76280767bf0cc5087e3988084a05d94a476c9b4a2ed971",
+  "reviewer": "source-audit; no human/lecturer approval",
+  "method": "Explicit one-operation-to-one-reference mapping after source inspection",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 101,
+          "unit_key": "PY24-A06",
+          "reference_id": "PY24-A06",
+          "label": "correct",
+          "reason": "SQLite import and connect at row 140 establish a database path expression, not decrypted contents.",
+          "source_references": [
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 140,
+              "end_line": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 115,
+          "unit_key": "PY24-A07",
+          "reference_id": "PY24-A07",
+          "label": "correct",
+          "reason": "Bound cursor execute at row 142 contains the exact login SELECT; no fetch or decryption asserted.",
+          "source_references": [
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 140,
+              "end_line": 140
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 141,
+              "end_line": 141
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 142,
+              "end_line": 142
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 129,
+          "unit_key": "PY24-A04",
+          "reference_id": "PY24-A04",
+          "label": "correct",
+          "reason": "AES import and GCM construction at row 72 bind decrypt at row 73; input expressions retained.",
+          "source_references": [
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 12,
+              "end_line": 12
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 72,
+              "end_line": 72
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 73,
+              "end_line": 73
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 164,
+          "unit_key": "PY24-A12",
+          "reference_id": "PY24-A12",
+          "label": "correct",
+          "reason": "Connection/cursor rows 164-165 bind the credit_cards SELECT at 166-167; no plaintext claimed.",
+          "source_references": [
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 9,
+              "end_line": 9
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 164,
+              "end_line": 164
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 165,
+              "end_line": 165
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 166,
+              "end_line": 167
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 219,
+          "unit_key": "PY24-A18",
+          "reference_id": "PY24-A18",
+          "label": "correct",
+          "reason": "shutil import and make_archive call at row 279 prove argument roles and zip format.",
+          "source_references": [
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 10,
+              "end_line": 10
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 279,
+              "end_line": 279
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 129,
+          "unit_key": "PY24-A25",
+          "reference_id": "PY24-A25",
+          "label": "correct",
+          "reason": "smtplib import, SMTP instance at 106 and sendmail at 109 prove the narrow send call, not attachment contents.",
+          "source_references": [
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 14,
+              "end_line": 14
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 106,
+              "end_line": 106
+            },
+            {
+              "evidence_id": "ev_c862ffaf2b5f4de5",
+              "line": 109,
+              "end_line": 109
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

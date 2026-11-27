@@ -4,13 +4,15 @@ Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất
 
 Ưu tiên hiện tại: tiếp tục A01/A02 về chất lượng nhận định, chuẩn hóa đáp án/prediction để tính Recall/F1, chạy >=3 mẫu cùng bản chốt, rồi đo ổn định ba lần và injection đủ điều kiện. Phần YARA đã có hai lượt 7B/8B đạt 5/5 positive và 0/39 negative trên corpus công bố; xem YARA_REAL_CORPUS để biết giới hạn theo bản build và kết quả âm trước sửa.
 
+Đã có bước chấm cùng đơn vị: `eval/atomic_units.py` và29 đơn vị development Python. [Thử nghiệm thao tác](ATOMIC_REPORT_STAGE.md) cho thấy6/29 với8B,4/29 với7B; câu xuất ra đúng nhưng bỏ sót nhiều. Chưa đổi luồng demo. Phải mở rộng helper/dataflow, đọc/copy/fetch/write/MIME/TLS; thêm IOC/ATT&CK có bằng chứng và verdict; chuẩn hóa baseline v8 và .NET rồi mới so toàn hệ thống.
+
 Báo cáo hành vi sau run `20261127T211223_9602dfdd` vẫn chỉ có Python 8/11 câu đủ căn cứ, tự duyệt còn4/6; .NET14/20. Cần tách nhãn thao tác nội bộ khỏi tên hàm source, hạn chế câu lặp từ card thiếu helper và xử lý false rejection đối với AES/SELECT/DPAPI có chứng cứ. 7B từng trả rỗng trên9card; việc chọn7B cho YARA không chứng minh profile báo cáo này đã đạt. Xem STATUS và OPERATIONS_CONTEXT_V8.
 
 Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ khác nhau; hợp hai nhánh có 5 công cụ thật, đã đủ phần số lượng >=4 trong rubric. Không đặt thêm ngưỡng 4 công cụ cho từng mẫu. Vòng điều phối còn dùng 15 lượt tìm kiếm, có từ khóa không hợp nhánh; cần phản hồi hit/no-hit rõ hơn, giữ ngân sách tổng hợp và gọi thêm metadata/IOC/DIE khi có ích cho chứng cứ. Read/search không được tính như backend phân tích độc lập. Chưa có ba mẫu trên revision này, chưa đo stability ba lượt, chưa có đủ mười cặp injection hợp lệ.
 
 | ID | Phần việc | Trạng thái thực tế | Điều kiện đóng |
 |---|---|---|---|
-| D01 | Chốt tập .NET/Python và file sạch | 5 mẫu độc public development; đã khóa 8 file sạch có chữ ký, chưa có positive holdout/PyInstaller sạch | Manifest phân vai development/validation/test rõ; không đổi dữ liệu đã xem thành holdout |
+| D01 | Chốt tập .NET/Python và file sạch | 5 mẫu độc public development;39 file sạch gồm37 Microsoft và2 PyInstaller; chưa có positive holdout | Manifest phân vai development/validation/test rõ; không đổi dữ liệu đã xem thành holdout |
 | D02 | Đáp án .NET độc lập với agent | Đang đối chiếu ILSpy và phân tích nguồn | Liên kết luồng lấy dữ liệu → lưu/xử lý → gửi; source hash/dòng; nhãn có provenance |
 | D03 | Phân tích Python3.11 | Đã giải mã payload candidate 332 dòng PythonStealer; pycdc vẫn lỗi | Đối chiếu luồng dữ liệu và claim cuối; tiếp tục Luna; không coi literal decode là đầy đủ mọi mẫu |
 | D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |

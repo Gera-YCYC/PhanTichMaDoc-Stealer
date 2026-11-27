@@ -4,6 +4,12 @@
 
 ## Cập nhật hiện tại
 
+### Báo cáo theo thao tác: đã có số đo phần đúng và phần bỏ sót
+
+[Thử nghiệm riêng phần báo cáo](ATOMIC_REPORT_STAGE.md) đã chạy model thật trên bằng chứng VM của mẫu thật: Python8B6/6 câu hẹp đúng, .NET8B10/10, Python7B4/4 nhưng loại nhầm2 thao tác đúng. Tập đáp án Python được tách thành29 đơn vị gồm26 hành vi,1 IOC,2 ATT&CK; bộ chấm mới dùng cùng đơn vị cho P/R/F1 và giữ cả raw/rejected. Python8B chỉ bao phủ6/29 (R20,69%, F134,29%);7B4/29 (R13,79%, F124,24%). Đây là development/source audit, không có người thật/GV duyệt. .NET chưa có normalized reference, R/F1null.
+
+**Không thay demo chính bằng catalog API hẹp.** Phần mới chỉ có trong runner thử nghiệm, chưa xác lập IOC/ATT&CK/luồng dữ liệu/verdict. Snapshot23file host được giữ để tái lập; không gán số đo này cho các sửa guard sau đó. Model đã dừng: [receipt](../deliverables/real-demo-evidence/runtime-stopped-after-atomic-stage.json). Ưu tiên tiếp theo là mở rộng bằng chứng và gắn các thao tác vào đầy đủ chuỗi phân tích, không thu hẹp đề tài để tăng Precision.
+
 ### YARA thật đã đo trên 5 mẫu độc và 39 file sạch
 
 Đã tích hợp profile corpus thật, chọn chuỗi có offset trong byte gốc, đọc TOC PyInstaller và vòng SLM sinh/kiểm luật tối đa bốn lượt. Đã tìm ra báo nhầm yt-dlp ở luật ban đầu (**1/38**), giữ kết quả âm rồi sửa; không lấy số đo fixture để nghiệm thu.

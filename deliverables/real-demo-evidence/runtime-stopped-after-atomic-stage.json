@@ -1,0 +1,9 @@
+{
+  "project_pid": 2600,
+  "weights_and_disks_preserved": true,
+  "project_process_absent": true,
+  "port11435_listeners": 0,
+  "gpu_mib": "0, 6144",
+  "observed_at": "2026-11-27T22:39:48.2199932+00:00",
+  "vm_inventory": "Total running VMs: 0"
+}
