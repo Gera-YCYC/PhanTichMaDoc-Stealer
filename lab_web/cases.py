@@ -164,6 +164,7 @@ def source(run, fingerprint):
     r = trusted_report(run)
     records, timeline, anchors = {}, [], {}
     attempts = {}
+    reviewable = set()
     last = {}
     with log.open(encoding="utf8") as stream:
         for line in stream:
@@ -171,6 +172,8 @@ def source(run, fingerprint):
             trace_search(attempts, e)
             last = e
             kind = e["event"]
+            if kind == "card_claim_review" and not e["check"]["supported"]:
+                reviewable.add(e["claim_id"])
             desc = None
             if kind == "observation":
                 o = e["model_visible"]
@@ -228,6 +231,7 @@ def source(run, fingerprint):
         list(anchors.values()),
         frozen_graph,
         list(attempts.values()),
+        reviewable,
     )
 
 
@@ -278,10 +282,76 @@ def cited_windows(records, graph, claims):
     return windows
 
 
+def display_claim(c, records, *, rejected=False):
+    refs = []
+    for ref in c.get("evidence", []):
+        eid, line = ref["evidence_id"], ref["line"]
+        end = ref.get("end_line", line)
+        quote = ref["quote"]
+        if rejected:
+            # An invalid quote can itself be the reason for rejection. Only
+            # offer a source viewer when the displayed quote matches the log.
+            rows = records.get(eid, {}).get("line_map", {})
+            if not 0 <= end - line < 40 or any(
+                n not in rows for n in range(line, end + 1)
+            ):
+                continue
+            actual = "\n".join(rows[n] for n in range(line, end + 1))
+            if not quote or (
+                quote != actual if "end_line" in ref else quote not in actual
+            ):
+                continue
+        refs.append(
+            {
+                "eid": eid,
+                "line": line,
+                "end": end,
+                "text": excerpt(quote.split("\n")[0]),
+            }
+        )
+    return {"id": c["id"], "text": c.get("statement", c.get("text", "")), "refs": refs}
+
+
+def recent_reviews(folder, run, sample_digest, model_digest):
+    result = {}
+    source_digest = None
+    for path in sorted(
+        folder.glob("claim-reviews/review_*/events.jsonl"),
+        key=lambda p: p.stat().st_mtime_ns,
+    ):
+        # The UI can read the case while a review is appending. Only terminal
+        # snapshots are displayed, and their full chain must verify.
+        content = path.read_bytes()
+        if not content.endswith(b"\n"):
+            continue
+        entries = content.splitlines()
+        first, last = json.loads(entries[0]), json.loads(entries[-1])
+        if (
+            first["event"] == "review_started"
+            and first["run"] == run
+            and first["sample_sha256"] == sample_digest
+            and first["model_digest"] == model_digest
+            and last["event"] == "review_finished"
+        ):
+            verify_journal(path)
+            if source_digest is None:
+                source_digest = sha256(
+                    (folder / "events.jsonl").read_bytes()
+                ).hexdigest()
+            if (
+                first["source_journal_sha256"] != source_digest
+                or last["display"]["claim"] != first["parent"]
+                or last["display"]["id"] != path.parent.name
+            ):
+                raise ValueError("Lần đọc bổ sung không khớp nhật ký nguồn.")
+            result[first["parent"]] = last["display"]
+    return result
+
+
 def case(run):
     r = trusted_report(run)
     log = directory(run) / "events.jsonl"
-    records, timeline, anchors, frozen_graph, attempts = source(
+    records, timeline, anchors, frozen_graph, attempts, reviewable = source(
         run, (log.stat().st_size, log.stat().st_mtime_ns)
     )
     graph = (
@@ -290,22 +360,25 @@ def case(run):
         else ledger(records, r["sample_sha256"])
     )
     analysis = r["analysis"]
-    claims = [
-        {
-            "id": c["id"],
-            "text": c.get("statement", c.get("text", "")),
-            "refs": [
-                {
-                    "eid": x["evidence_id"],
-                    "line": x["line"],
-                    "end": x.get("end_line", x["line"]),
-                    "text": excerpt(x["quote"].splitlines()[0]),
-                }
-                for x in c.get("evidence", [])
-            ],
-        }
-        for c in analysis["claims"]
-    ]
+    claims = [display_claim(c, records) for c in analysis["claims"]]
+    rejected = []
+    prior_reviews = recent_reviews(
+        directory(run), run, r["sample_sha256"], r["model"]["digest"]
+    )
+    for entry in analysis.get("rejected_claims", []):
+        c = display_claim(entry["claim"], records, rejected=True)
+        rejected.append(
+            {
+                **c,
+                "can_revisit": c["id"] in reviewable
+                and entry["claim"]["kind"] == "behavior",
+                "revisit": prior_reviews.get(c["id"]),
+                "reasons": entry.get("reasons", []),
+                "review_note": entry.get("review_note"),
+                "unverified_refs": len(entry["claim"].get("evidence", []))
+                - len(c["refs"]),
+            }
+        )
     yara = []
     for p in sorted(directory(run).glob("yara/scan_*/result.json")):
         y = read(p)
@@ -361,9 +434,10 @@ def case(run):
         "timeline": timeline,
         "search_attempts": attempts,
         "graph": graph,
-        "cited_windows": cited_windows(records, graph, claims),
+        "cited_windows": cited_windows(records, graph, claims + rejected),
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
+        "rejected_claims": rejected,
         "yara": yara,
         "anchors": anchors,
         "questions": questions,

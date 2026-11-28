@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Web phải cho người phân tích truy ngược câu bị loại tới mã nguồn, yêu cầu đọc lại và kiểm tra lỗi của chính bộ duyệt. Chức năng này có hai lần bấm thật và bảng chấm hai phương án trên 13 câu. Mục tiêu chất lượng cuối vẫn tính trên báo cáo toàn mẫu. [Bằng chứng và phạm vi đo](DOC_LAI_NHAN_DINH.md)
+
 Điều kiện nghiệm thu phần điều tra gồm theo dõi từng giả thuyết từ truy vấn tới trạng thái sau khi công cụ trả lời, mở được vị trí trích dẫn và phân biệt các câu đúng bị bộ duyệt loại. Hiện giao diện đã hiển thị các bước này. Chất lượng cuối vẫn chấm theo đáp án, verdict và ngưỡng trên slide. [Phép thử trên ba mẫu](THU_CHON_DOAN_CHUNG_CU.md)
 
 Giữ nguyên tên đề tài và các ngưỡng giảng viên. Ưu tiên agent chủ động xác định phần bằng chứng còn thiếu, điều tra bằng công cụ thật trong VM và lập bản đồ để người phân tích kiểm từng liên kết. Sản phẩm bàn giao gồm giao diện web cục bộ nối agent, Qwen và VM, nhật ký thật, hỏi đáp có dẫn nguồn, tạo–kiểm–sửa luật YARA, nhãn có phiên bản cho ranker và thí nghiệm đối chứng với quy trình cố định. Đích xuất bản là repo nhóm Gera-YCYC/PhanTichMaDoc-Stealer. Khi bàn giao sản phẩm, dùng demo web trực tiếp. Quay video mới nằm ngoài phần việc người dùng giao. Các yêu cầu nộp bài trên slide vẫn được lưu nguyên trong tài liệu nguồn. [Cách chạy và phạm vi kiểm chứng](WEB_DIEU_TRA.md)

@@ -4,6 +4,8 @@ Trên ba mẫu phát triển, đọc thêm hai đoạn mỗi mẫu giúp bốn m
 
 ## Cách đo
 
+Nhóm còn thử thu hẹp từng câu bị loại trên chính phần mã đã dẫn. Thí nghiệm đó đo độ đúng của câu hẹp và quyết định của bộ duyệt. [Kết quả 13 câu và biên bản web](DOC_LAI_NHAN_DINH.md)
+
 Nhóm dùng lại quan sát mà VM trả cho ba lượt web đã chấm. Bộ chọn chỉ đọc các dòng đã quan sát, kết quả tìm và thao tác do parser xác định. Sau khi chọn xong mới đối chiếu với 97 mục đã chốt. Một mục được tính vào bảng dưới khi tất cả dòng tham chiếu của nó xuất hiện cùng nhau trong ít nhất một đoạn gửi ở bước tạo câu. Ở bước tái lập, chương trình so cả số dòng lẫn nội dung đánh số với yêu cầu Qwen thực sự nhận. Ba nguyên mẫu giữ cùng digest mô hình. [Biên bản ba mẫu](CHAM_BA_MAU_WEB.md) · [Các vùng dòng đã chọn](../deliverables/real-demo-evidence/web-card-coverage.json)
 
 | Mục có đủ dòng trong một đoạn | Python · 36 mục | Gomorrah · 40 | Mercurial · 21 | Tổng trên 97 |

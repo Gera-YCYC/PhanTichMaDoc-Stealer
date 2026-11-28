@@ -1,0 +1,25 @@
+{
+  "ranges": {
+    "gomorrah/C5": ["correct", "Cách ghép đích của lời gọi gửi tệp.", "3677 tạo phần đuôi, 3678 tạo đối tượng, 3681 dùng biểu thức đã ghép. Câu giới hạn ở điểm gọi."],
+    "mercurial/C7": ["unsupported", "Gọi API để giải mã khóa chính.", "700 có lời gọi, nhưng các dòng đã chọn thiếu phép chuyển dữ liệu vào đối số ở 700. Vai trò khóa chính chưa được nối với đầu vào đó."],
+    "mercurial/C8": ["unsupported", "Gọi phương thức của lớp AES-GCM với năm đối số.", "668 cho thấy năm đối số trên một biến. Dòng 667 xác định kiểu của biến lại vắng trong trích dẫn mới."],
+    "gomorrah-extra/C1": ["unsupported", "Nối bản ghi tài khoản vào tệp có tên cụ thể.", "3490–3492 dùng một biến làm đường dẫn. Tên của biến chưa xác định được tên tệp trên đĩa."],
+    "mercurial-extra/C1": ["correct", "Gọi API giải mã trong ngữ cảnh đã chọn thuật toán và chế độ.", "380–381 và 385 nối phần cấu hình với khóa dùng ở lời gọi. Câu này chỉ nêu thao tác tĩnh."],
+    "agenttesla/C4": ["unsupported", "Gọi một phương thức được nêu tên trên kiểu lấy từ assembly đã nạp.", "275 và 283 thể hiện hai thao tác. Dòng 282 dùng để xác định phương thức theo tên bị bỏ khỏi phần dẫn."]
+  },
+  "lines": {
+    "python/C7": ["unsupported", "Truyền trường của bản ghi vào hàm phụ và thu được mật khẩu bản rõ.", "144 hỗ trợ lời gọi. Các dòng 144–149 thiếu thân hàm và thiếu phần ánh xạ cột để xác nhận kiểu dữ liệu và kết quả bản rõ."],
+    "gomorrah/C3": ["unsupported", "Hàm mở một khối xử lý lỗi rồi gọi API tải tệp lên.", "3593–3598 chỉ chứa khai báo và đầu khối. Dòng gọi API ở 3603 chưa được chọn."],
+    "gomorrah/C5": ["unsupported", "Ghép đích và gửi tệp ảnh chụp màn hình.", "3677, 3678 và 3681 hỗ trợ ghép đích và gọi gửi tệp theo đường dẫn. Nội dung ảnh còn là suy diễn từ tên biến."],
+    "gomorrah/C14": ["correct", "Giải mã một phần bộ đệm theo Unicode rồi gán vào trường tên.", "2764 cho đủ bộ mã, biểu thức vị trí, độ dài và trường đích. 2760 dùng bộ mã mặc định ở một nhánh khác."],
+    "mercurial/C6": ["unsupported", "Ghi dữ liệu đã giải mã vào tệp tạm.", "797–802 mở bộ ghi và đọc trường. Các dòng này chưa cho thấy dữ liệu nào được ghi."],
+    "mercurial/C7": ["unsupported", "Lấy khóa từ tệp cấu hình trình duyệt rồi gọi API giải mã.", "Một dòng 700 chỉ thể hiện lời gọi. Phần đọc tệp và đường truyền dữ liệu tới đối số đều ở ngoài trích dẫn."],
+    "mercurial/C8": ["correct", "Tạo đối tượng AES-GCM rồi gọi phương thức với năm đối số.", "667 xác định kiểu và khởi tạo, 668 cho thấy đủ năm đối số, kể cả giá trị null ở vị trí thứ ba."],
+    "gomorrah-extra/C1": ["unsupported", "Ghi các trường tài khoản và khẳng định tên tệp thực tế.", "3490–3493 dùng biến đường dẫn. Đoạn dẫn thiếu phép gán để suy ra tên tệp thực tế."],
+    "gomorrah-extra/C2": ["unsupported", "Bộ ghi được khai báo nhưng không được dùng để ghi thông tin hệ thống.", "Có hai bộ ghi khác nhau. 3492 sử dụng bộ ghi thứ nhất. Trích dẫn dừng tại lúc tạo bộ ghi thứ hai ở 3501 nên chưa chứng minh được khẳng định phủ định."],
+    "gomorrah-extra/C3": ["unsupported", "Lấy trường mật khẩu từ cơ sở dữ liệu rồi truyền qua hàm phụ.", "1070 hỗ trợ lời gọi hàm trên dữ liệu đã chuyển đổi. Dòng 1069 để xác định trường và nguồn giá trị vắng mặt."],
+    "gomorrah-extra/C4": ["unsupported", "Tạo bản ghi tài khoản có mật khẩu đã giải mã.", "1067–1072 cho thấy đọc trường, gọi hàm phụ và tạo bản ghi. Chưa chứng minh tác dụng của hàm phụ."],
+    "mercurial-extra/C1": ["correct", "Chọn AES-GCM và gọi giải mã với thông tin xác thực.", "380–382 cho thấy cấu hình và cấu trúc chứa thẻ, 385 và 391 cho thấy đối số sử dụng cấu trúc đó trong lời gọi."],
+    "agenttesla/C4": ["unsupported", "Tìm phương thức theo tên và gọi với hai đối số được mô tả cụ thể.", "282–285 hỗ trợ tra cứu và phần đầu danh sách đối số. Giá trị hằng của đối số thứ hai nằm ở 286, ngoài các dòng đã chọn."]
+  }
+}

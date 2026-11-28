@@ -256,6 +256,7 @@ class Handler(BaseHTTPRequestHandler):
                 "/api/analyze",
                 "/api/yara",
                 "/api/question",
+                "/api/claim-review",
             ):
                 return self.reply(
                     409, {"error": "Chế độ xem lịch sử. Mở Start-Web.ps1 để dùng lab."}
@@ -263,6 +264,14 @@ class Handler(BaseHTTPRequestHandler):
             if p in ("/api/analyze", "/api/yara"):
                 start(p.rsplit("/", 1)[1], data.get("sample"))
                 return self.reply(202, {"accepted": True})
+            if p == "/api/claim-review":
+                from .claim_review import revisit
+                reserve("claim-review")
+                try:
+                    return self.reply(200, revisit(data, read(ROOT / CFG)))
+                finally:
+                    with LOCK:
+                        JOB.update(active=False)
             if p == "/api/question":
                 from .review import answer
 
@@ -347,6 +356,7 @@ class Handler(BaseHTTPRequestHandler):
                         "current_batch": current_batch(),
                         "card_supplements": read(base / "web-card-supplements.json"),
                         "cng_trial": read(base / "web-cng-review.json"),
+                        "narrow_trials":read(base / "web-narrow-review.json"),
                     },
                 )
             if p == "/api/yara/regression":

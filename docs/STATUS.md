@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Đã kiểm tra trực tiếp chức năng đọc lại câu bị loại trên Mercurial và Gomorrah. Cùng được Qwen giữ nhưng chỉ câu Mercurial có đủ chứng cứ. Phần Đánh giá công bố cả nhãn đối chiếu, số lần gọi và thời gian của hai cách chọn dòng trên 13 câu. [Cách mở hai ví dụ và tái lập](DOC_LAI_NHAN_DINH.md)
+
 Nhóm đã chạy lại demo web thật trên mẫu Python trong 495,58 giây, kiểm tra hai câu hỏi điều tra, kết quả YARA và tắt lab. Cả 30 câu trước lọc trùng với lượt Python đầu tiên, bộ duyệt thay hai quyết định. Lượt lặp đạt F1 70,18% trên hồ sơ 36 mục. [Mã lượt, tọa độ, số liệu và cách trình diễn](WEB_DIEU_TRA.md)
 
 Trên bản đồ web, mỗi liên kết có lịch sử các truy vấn thực sự được ghi cho nó. Bấm vào trích dẫn để xem đoạn mã có đánh số dòng, các giá trị chuỗi đã che và hash nguồn. Trang Đánh giá đã có bảng đối chiếu cho sáu đoạn bổ sung và phép duyệt có/không có tài liệu Windows CNG. Các phép thử bổ sung chưa cải thiện điểm cuối. [Chi tiết và lệnh kiểm lại](THU_CHON_DOAN_CHUNG_CU.md)

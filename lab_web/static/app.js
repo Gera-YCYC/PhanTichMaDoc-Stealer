@@ -169,6 +169,25 @@ function refs(where, rows, canLabel = false) {
     where.append(d);
   }
 }
+function showClaimReview(panel, review) {
+  panel.replaceChildren();
+  if (!review) return;
+  const outcomes = {
+    accepted: "Qwen giữ câu viết lại trong lần đọc này.",
+    rejected: "Qwen loại câu viết lại trong lần đọc này.",
+    unchanged: "Câu đề xuất và phạm vi dẫn không có thay đổi.",
+    abstained: "Qwen chưa đưa ra được câu hẹp hơn.",
+    invalid_citation: "Dòng được chọn nằm ngoài phạm vi cho phép.",
+    invalid_proposal: "Đề xuất sai cấu trúc.",
+    invalid_review: "Phản hồi duyệt sai cấu trúc.",
+    private_placeholder: "Câu chứa thông tin đã được che.",
+  };
+  panel.append(el("p", outcomes[review.decision] || review.decision));
+  if (review.text) panel.append(el("p", review.text));
+  refs(panel, review.refs);
+  panel.append(el("small", review.model_calls + " lượt Qwen · " + review.id));
+}
+
 function map(panel) {
   const split = el("div", undefined, "split"),
     list = el("div", undefined, "chain"),
@@ -469,6 +488,24 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
         r.reference.supported ? "Giữ" : "Loại"]), review);
   }
   panel.append(review);
+  const narrowing = el("details", undefined, "card");
+  narrowing.append(el("summary", "Đọc lại phần có chứng cứ trong câu bị loại"));
+  narrowing.append(el("p", "Cùng 13 nhận định hành vi từ bốn mẫu. Qwen thử viết lại một ý và dẫn nguồn, sau đó duyệt ý mới bằng các dòng vừa chọn. Bảng đếm số câu theo nhãn đối chiếu của dự án."));
+  const modes = {ranges:"Chọn khoảng dòng", lines:"Chọn từng dòng"};
+  table(["Cách dẫn", "Đủ điều kiện", "Đã duyệt lại", "Qwen giữ", "Giữ và đúng", "Giữ dù thiếu căn cứ", "Đúng nhưng bị loại"],
+    Object.entries(data.narrow_trials).map(([key, value]) => { const s = value.summary;
+      return [modes[key], s.eligible, s.reviewed, s.accepted, s.accepted_correct, s.accepted_unsupported, s.correct_rejected];
+    }), narrowing);
+  narrowing.append(el("h3", "Các câu có đối chiếu nguồn trên " + names[sample]));
+  const tested = [];
+  for (const [key, value] of Object.entries(data.narrow_trials)) {
+    for (const r of value.rows.filter(r => (r.sample === sample || r.sample === sample + "-extra") && r.label)) {
+      tested.push([modes[key], r.parent + (r.sample.endsWith("-extra") ? " · bổ sung" : " · gốc"),
+        r.summary, r.reason, labelName[r.label], r.decision === "accepted" ? "Giữ" : "Loại"]);
+    }
+  }
+  table(["Cách dẫn", "Câu nguồn", "Câu viết lại", "Thực tế", "Nhãn", "Qwen"], tested, narrowing);
+  panel.append(narrowing);
   const batch = data.current_batch;
   panel.append(
     el("h2", "Kết quả gộp trên " + batch.total_attempts + " mẫu của bản web"),
@@ -836,6 +873,45 @@ async function render() {
       panel.append(d);
     }
     if (!record.claims.length) panel.append("Không có nhận định được giữ.");
+    if (record.rejected_claims?.length) {
+      const group = el("details", undefined, "card");
+      group.append(el("summary", "Nhận định bị loại (" + record.rejected_claims.length + ")"));
+      for (const c of record.rejected_claims) {
+        const d = el("details", undefined, "card");
+        d.append(el("summary", c.id + " · " + c.text));
+        if (c.reasons.length) d.append(el("small", "Mã lý do · " + c.reasons.join(", ")));
+        if (c.review_note) d.append(el("p", "Nhận xét của bộ duyệt · " + c.review_note));
+        if (c.unverified_refs) d.append(el("p", c.unverified_refs +
+          " trích dẫn chưa đối chiếu được với các dòng đã lưu."));
+        refs(d, c.refs);
+        if (c.can_revisit) {
+          const result = el("div");
+          const focusRun = record.run;
+          const retry = button("Đọc lại phần có chứng cứ", async () => {
+            retry.disabled = true;
+            retry.dataset.pending = "1";
+            result.textContent = "Qwen đang đối chiếu các dòng đã lưu…";
+            try {
+              const response = await api("claim-review", {run:focusRun, claim:c.id});
+              c.revisit = response;
+              if (record?.run === focusRun) showClaimReview(result, response);
+            } catch (err) {
+              result.textContent = err.message;
+            } finally {
+              delete retry.dataset.pending;
+              retry.disabled = init.history_only;
+            }
+          });
+          retry.disabled = init.history_only || job.active;
+          retry.dataset.claimReview = "";
+          d.append(el("p", "Lần đọc bổ sung dùng các dòng VM đã trả cho câu này. Người phân tích đối chiếu kết quả trước khi dùng. Báo cáo đã chấm giữ verdict gốc."),
+            retry, result);
+          showClaimReview(result, c.revisit);
+        }
+        group.append(d);
+      }
+      panel.append(group);
+    }
   }
   if (view === "log") {
     const m = record.metrics;
@@ -968,13 +1044,16 @@ async function poll() {
     job = await api("job");
     $("#close-lab").disabled = job.active;
     $("#start").disabled = job.active || init.history_only;
+    for (const control of document.querySelectorAll("button[data-claim-review]")) {
+      control.disabled = job.active || init.history_only || control.dataset.pending === "1";
+    }
     $("#live").textContent = job.active
       ? "Đang chạy · " +
         (job.sample || job.kind) +
         " · " +
         (job.lines.at(-1) || job.kind)
       : job.error || (job.yara_run ? "Đã ghi lượt YARA " + job.yara_run : "");
-    if (!job.active && old.active) {
+    if (!job.active && old.active && old.kind !== "claim-review") {
       await bootstrap();
       if (job.run) await load(job.run);
       else await render();

@@ -10,6 +10,8 @@ Mở **http://127.0.0.1:4180**. Script bật VM và Ollama, đồng bộ mã cô
 
 ## Một lượt trình bày
 
+Để minh họa cách kiểm tra một câu bị loại, mở Mercurial C8 rồi Gomorrah C5 ở mục **Nhận định**. Cả hai có nhật ký bấm thật và câu đọc lại, còn nguồn chỉ xác nhận đầy đủ trường hợp đầu. [Các bước, số dòng và hai kết quả](DOC_LAI_NHAN_DINH.md)
+
 Nhóm đã chạy lại từ nút **Chạy điều tra** với mẫu PythonStealer trên web và Qwen3 8B. Lượt `20261128T035912_e9d2b879` mất 495,58 giây, có 17 lượt công cụ, 38 lượt model và 232 sự kiện. Bốn backend phân tích thành công. Một lần dịch ngược lỗi, agent tiếp tục qua bytecode. Bản đồ kết thúc và bản đồ trên web cùng xác nhận ba liên kết tĩnh. Hỏi về dữ liệu từ truy vấn tới giải mã đã kích hoạt một lượt VM, được tám kết quả và còn thiếu chứng cứ. Hỏi về bản nén trong thông điệp dẫn lại 11 vị trí. YARA khớp trên mẫu phát triển. [Biên bản lượt trực tiếp](../deliverables/real-demo-evidence/web-20261128T035912_e9d2b879.json)
 
 Cả 30 câu đề xuất của lượt này trùng lượt Python đầu tiên khi đối chiếu văn bản, loại, giá trị, tọa độ và trích dẫn, sau khi chuẩn hóa mã chứng cứ theo nguồn. Bộ duyệt đổi hai quyết định, giữ C7 và loại C6. Dùng lại nhãn đã chấm cho đúng các câu trùng, kết quả sau lọc là 20/36 mục, precision 95,24%, recall 55,56% và F1 70,18%. Đây là một lượt lặp Python. Bảng gộp ba mẫu vẫn dùng ba lượt đã chọn ban đầu. Trên máy lab có thể chạy `python -m eval.web_demo_repeat` để tính lại. [Phiếu đối chiếu lượt lặp](../deliverables/real-demo-evidence/web-live-repeat-quality.json)

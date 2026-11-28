@@ -1,0 +1,45 @@
+{
+  "sessions": [
+    {
+      "run": "20261128T031606_ca91de35",
+      "claim": "C8",
+      "review": "review_431e66b7d81f",
+      "decision": "accepted",
+      "model_calls": 2,
+      "lines": [
+        667,
+        668
+      ],
+      "parent_report_sha256_before": "b9c53805f3f9e03ddf1aeecc191433ed9cd47b4c751461390c6a3e1edbbf3b76",
+      "parent_report_sha256_after": "b9c53805f3f9e03ddf1aeecc191433ed9cd47b4c751461390c6a3e1edbbf3b76",
+      "journal_sha256": "65ceb7b58e0118c220b67d0f32ac5ad37426da3815b96d93e1b5fa7707c602cb",
+      "reopened": true,
+      "viewport_width": 390,
+      "external_requests": 0,
+      "page_errors": 0,
+      "candidate_matches_stage": true,
+      "stage_label": "correct"
+    },
+    {
+      "run": "20261128T030521_c76fc69a",
+      "claim": "C5",
+      "review": "review_4698c898e505",
+      "decision": "accepted",
+      "model_calls": 2,
+      "lines": [
+        3677,
+        3678,
+        3681
+      ],
+      "parent_report_sha256_before": "5c77d9616595c50151686f9c33bfe1d3f6301358e478c3fe6f52985071f69371",
+      "parent_report_sha256_after": "5c77d9616595c50151686f9c33bfe1d3f6301358e478c3fe6f52985071f69371",
+      "journal_sha256": "a74c7b5e24ab79e165e0efe3837cac7ece74ef9a80dfd140294fabcc9178860a",
+      "reopened": true,
+      "viewport_width": 390,
+      "external_requests": 0,
+      "page_errors": 0,
+      "candidate_matches_stage": true,
+      "stage_label": "unsupported"
+    }
+  ]
+}

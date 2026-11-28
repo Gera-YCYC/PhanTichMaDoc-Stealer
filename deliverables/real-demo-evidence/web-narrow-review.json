@@ -1,0 +1,665 @@
+{
+  "ranges": {
+    "trial": "20261128T041624713463Z",
+    "journal_sha256": "cebfca245a3f78fe56dbb44c6c7168dd4d37527f892f567a7ff2ff6b6c103536",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "measured_source_sha256": "66bb2086de1320245f45b22a58b5a84a184958800a86b97efe9ceb7c09b50ce7",
+    "config_sha256": "2db707bd3b44bf0511fdd4f7e7227055e3d2834e144269334feb9bac8c78de5c",
+    "source_journals": {
+      "20261128T021511_bec5b2e5": "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+      "20261128T030521_c76fc69a": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+      "20261128T031606_ca91de35": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+      "20261128T034933_343e6946": "bc942d37e4c6e040fa4265fd8b02a42a21dc2395f68d9f4e6564c93fb10842db",
+      "20261128T035027_852cfb9f": "54dacbd6bac92bf325d942bf1f38dd8d0aebb07737e32a971b28773fa7b555ca",
+      "20261128T003743_f8acf7f0": "7036fbf69267b5dbe7bf926a1c93036383a2ac425e0b16caa2515f2ae75ca72e"
+    },
+    "calls": {
+      "narrow_propose": 13,
+      "narrow_review": 6
+    },
+    "tokens": {
+      "prompt_tokens": 17383,
+      "completion_tokens": 1568
+    },
+    "elapsed_s": 186.645,
+    "rows": [
+      {
+        "sample": "python",
+        "run": "20261128T021511_bec5b2e5",
+        "parent": "C7",
+        "decision": "invalid_citation",
+        "parent_request_sha256": "be38af193666b15306714f8cdd8745a47b6ed038a66a938e1ec4fce93b986c38",
+        "ranges": []
+      },
+      {
+        "sample": "gomorrah",
+        "run": "20261128T030521_c76fc69a",
+        "parent": "C3",
+        "decision": "unchanged",
+        "parent_request_sha256": "2dba31c09ddf46f2808abdb994bf335ea9befd912e9e4390e26b143682fd70e8",
+        "ranges": []
+      },
+      {
+        "sample": "gomorrah",
+        "run": "20261128T030521_c76fc69a",
+        "parent": "C5",
+        "decision": "accepted",
+        "parent_request_sha256": "0cb7f88fac8f7c3466e8e5b585b75c2f32a5c6e4594f9f92d7b264727376b122",
+        "ranges": [
+          [
+            3671,
+            3675
+          ],
+          [
+            3677,
+            3679
+          ],
+          [
+            3681,
+            3683
+          ]
+        ],
+        "label": "correct",
+        "summary": "Cách ghép đích của lời gọi gửi tệp.",
+        "reason": "3677 tạo phần đuôi, 3678 tạo đối tượng, 3681 dùng biểu thức đã ghép. Câu giới hạn ở điểm gọi.",
+        "claim_sha256": "4f84c44b580ee0c71a1ea74deef3226c3c7eba22172dda56afe36e3a565293f1"
+      },
+      {
+        "sample": "gomorrah",
+        "run": "20261128T030521_c76fc69a",
+        "parent": "C14",
+        "decision": "invalid_citation",
+        "parent_request_sha256": "0c4ca187562961f329a205da190e0c3ab02e7800725eb9e2c40e15dd2d0edcd6",
+        "ranges": []
+      },
+      {
+        "sample": "mercurial",
+        "run": "20261128T031606_ca91de35",
+        "parent": "C6",
+        "decision": "invalid_citation",
+        "parent_request_sha256": "7c8fa351ca7e70066b434e74d9d0d302b3f7da615c0bf1dd217bf73b1261f7b8",
+        "ranges": []
+      },
+      {
+        "sample": "mercurial",
+        "run": "20261128T031606_ca91de35",
+        "parent": "C7",
+        "decision": "accepted",
+        "parent_request_sha256": "be5dabd7ad15759b3ccc4949368c76a568a123e9aba8f8fa6f079cb1460ce9b6",
+        "ranges": [
+          [
+            700,
+            701
+          ],
+          [
+            693,
+            694
+          ],
+          [
+            687,
+            688
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Gọi API để giải mã khóa chính.",
+        "reason": "700 có lời gọi, nhưng các dòng đã chọn thiếu phép chuyển dữ liệu vào đối số ở 700. Vai trò khóa chính chưa được nối với đầu vào đó.",
+        "claim_sha256": "94d6acec44b49866bdbb72079acd8ad5f41f037b4f2370820381baafc84b1506"
+      },
+      {
+        "sample": "mercurial",
+        "run": "20261128T031606_ca91de35",
+        "parent": "C8",
+        "decision": "rejected",
+        "parent_request_sha256": "85b1be5a85b8a7f8f828aa6f689a417e19160319b84a5d6f8ad400e4700b4fa0",
+        "ranges": [
+          [
+            668,
+            668
+          ],
+          [
+            665,
+            665
+          ],
+          [
+            666,
+            666
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Gọi phương thức của lớp AES-GCM với năm đối số.",
+        "reason": "668 cho thấy năm đối số trên một biến. Dòng 667 xác định kiểu của biến lại vắng trong trích dẫn mới.",
+        "claim_sha256": "7c56d39b007595dc44629868fe0535ca19202827a0fea42d3f3dd55d304e998e"
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C1",
+        "decision": "rejected",
+        "parent_request_sha256": "9af9c9c901764e73d44dcb5ef0ecb055631c2b5aa82324e83013e4a2539952e7",
+        "ranges": [
+          [
+            3490,
+            3490
+          ],
+          [
+            3491,
+            3491
+          ],
+          [
+            3492,
+            3492
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Nối bản ghi tài khoản vào tệp có tên cụ thể.",
+        "reason": "3490–3492 dùng một biến làm đường dẫn. Tên của biến chưa xác định được tên tệp trên đĩa.",
+        "claim_sha256": "a82cf21f2d35e827b5a098765553a17888669c9fb3c52559ac464e3f3756f7b6"
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C2",
+        "decision": "invalid_citation",
+        "parent_request_sha256": "4e5f815fc3a5115e39baf38616e57ae7bb2b4cca53835e2f21ac9201ef43ee08",
+        "ranges": []
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C3",
+        "decision": "invalid_citation",
+        "parent_request_sha256": "38ef433076038812a397614e7b0975511c85589539648fb0c03faaf8dfa0804d",
+        "ranges": []
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C4",
+        "decision": "invalid_citation",
+        "parent_request_sha256": "dc24e1b3c00daa38c7f5a1e1bfa6aa7cbe0e864c7b9de11ebb4150001b9d3c7a",
+        "ranges": []
+      },
+      {
+        "sample": "mercurial-extra",
+        "run": "20261128T035027_852cfb9f",
+        "parent": "C1",
+        "decision": "rejected",
+        "parent_request_sha256": "70f728b6da33998f71e03c26d09f099afea26d23d62cc40f9cb7ce5d3f7cd726",
+        "ranges": [
+          [
+            380,
+            380
+          ],
+          [
+            381,
+            381
+          ],
+          [
+            385,
+            385
+          ]
+        ],
+        "label": "correct",
+        "summary": "Gọi API giải mã trong ngữ cảnh đã chọn thuật toán và chế độ.",
+        "reason": "380–381 và 385 nối phần cấu hình với khóa dùng ở lời gọi. Câu này chỉ nêu thao tác tĩnh.",
+        "claim_sha256": "d4876d03fddb42acdd6b6c5bcec0c02ddcedc27b29fc98816973acca2f741f8c"
+      },
+      {
+        "sample": "agenttesla",
+        "run": "20261128T003743_f8acf7f0",
+        "parent": "C4",
+        "decision": "rejected",
+        "parent_request_sha256": "e4aadaae3b32450c983c3581a27ac86999ccc500f92c954a5c28d853aa89d085",
+        "ranges": [
+          [
+            275,
+            275
+          ],
+          [
+            283,
+            283
+          ],
+          [
+            285,
+            286
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Gọi một phương thức được nêu tên trên kiểu lấy từ assembly đã nạp.",
+        "reason": "275 và 283 thể hiện hai thao tác. Dòng 282 dùng để xác định phương thức theo tên bị bỏ khỏi phần dẫn.",
+        "claim_sha256": "2224e65670f45387548fa3a657d0e2ae09f75a56708c72d722ed55c548dd71ab"
+      }
+    ],
+    "summary": {
+      "eligible": 13,
+      "reviewed": 6,
+      "accepted": 2,
+      "accepted_correct": 1,
+      "accepted_unsupported": 1,
+      "correct_rejected": 1
+    }
+  },
+  "lines": {
+    "trial": "20261128T042002566101Z",
+    "journal_sha256": "a31731930c1271cae8be4b488c14d822ef2e61a2781df41d1df87f56f27e36e9",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "measured_source_sha256": "4fc3141582e20e8697e6d80cc1ca56de162568e4bf816bacc654cc5e9a9241ed",
+    "config_sha256": "2db707bd3b44bf0511fdd4f7e7227055e3d2834e144269334feb9bac8c78de5c",
+    "source_journals": {
+      "20261128T021511_bec5b2e5": "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+      "20261128T030521_c76fc69a": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+      "20261128T031606_ca91de35": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+      "20261128T034933_343e6946": "bc942d37e4c6e040fa4265fd8b02a42a21dc2395f68d9f4e6564c93fb10842db",
+      "20261128T035027_852cfb9f": "54dacbd6bac92bf325d942bf1f38dd8d0aebb07737e32a971b28773fa7b555ca",
+      "20261128T003743_f8acf7f0": "7036fbf69267b5dbe7bf926a1c93036383a2ac425e0b16caa2515f2ae75ca72e"
+    },
+    "calls": {
+      "narrow_propose": 13,
+      "narrow_review": 13
+    },
+    "tokens": {
+      "prompt_tokens": 22812,
+      "completion_tokens": 1813
+    },
+    "elapsed_s": 213.375,
+    "rows": [
+      {
+        "sample": "python",
+        "run": "20261128T021511_bec5b2e5",
+        "parent": "C7",
+        "decision": "accepted",
+        "parent_request_sha256": "be38af193666b15306714f8cdd8745a47b6ed038a66a938e1ec4fce93b986c38",
+        "ranges": [
+          [
+            144,
+            144
+          ],
+          [
+            145,
+            145
+          ],
+          [
+            146,
+            146
+          ],
+          [
+            147,
+            147
+          ],
+          [
+            148,
+            148
+          ],
+          [
+            149,
+            149
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Truyền trường của bản ghi vào hàm phụ và thu được mật khẩu bản rõ.",
+        "reason": "144 hỗ trợ lời gọi. Các dòng 144–149 thiếu thân hàm và thiếu phần ánh xạ cột để xác nhận kiểu dữ liệu và kết quả bản rõ.",
+        "claim_sha256": "0ad2c92ceef25a73baa179d57846cdb71286707207a2bd408404c7debd2d7cd6"
+      },
+      {
+        "sample": "gomorrah",
+        "run": "20261128T030521_c76fc69a",
+        "parent": "C3",
+        "decision": "rejected",
+        "parent_request_sha256": "2dba31c09ddf46f2808abdb994bf335ea9befd912e9e4390e26b143682fd70e8",
+        "ranges": [
+          [
+            3593,
+            3593
+          ],
+          [
+            3594,
+            3594
+          ],
+          [
+            3595,
+            3595
+          ],
+          [
+            3596,
+            3596
+          ],
+          [
+            3597,
+            3597
+          ],
+          [
+            3598,
+            3598
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Hàm mở một khối xử lý lỗi rồi gọi API tải tệp lên.",
+        "reason": "3593–3598 chỉ chứa khai báo và đầu khối. Dòng gọi API ở 3603 chưa được chọn.",
+        "claim_sha256": "a5778d907a8bd070159f8c88849a5ef75fa55725786c978e07d58a82e20fcf40"
+      },
+      {
+        "sample": "gomorrah",
+        "run": "20261128T030521_c76fc69a",
+        "parent": "C5",
+        "decision": "accepted",
+        "parent_request_sha256": "0cb7f88fac8f7c3466e8e5b585b75c2f32a5c6e4594f9f92d7b264727376b122",
+        "ranges": [
+          [
+            3677,
+            3677
+          ],
+          [
+            3678,
+            3678
+          ],
+          [
+            3681,
+            3681
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Ghép đích và gửi tệp ảnh chụp màn hình.",
+        "reason": "3677, 3678 và 3681 hỗ trợ ghép đích và gọi gửi tệp theo đường dẫn. Nội dung ảnh còn là suy diễn từ tên biến.",
+        "claim_sha256": "e803ccee95e7e83f7515dd0d9829a65973a336e8d3b305bc41b74f2e9650cde8"
+      },
+      {
+        "sample": "gomorrah",
+        "run": "20261128T030521_c76fc69a",
+        "parent": "C14",
+        "decision": "accepted",
+        "parent_request_sha256": "0c4ca187562961f329a205da190e0c3ab02e7800725eb9e2c40e15dd2d0edcd6",
+        "ranges": [
+          [
+            2760,
+            2760
+          ],
+          [
+            2764,
+            2764
+          ]
+        ],
+        "label": "correct",
+        "summary": "Giải mã một phần bộ đệm theo Unicode rồi gán vào trường tên.",
+        "reason": "2764 cho đủ bộ mã, biểu thức vị trí, độ dài và trường đích. 2760 dùng bộ mã mặc định ở một nhánh khác.",
+        "claim_sha256": "9eac125fa815ce68995759dd2383cd39c24939e11ba492d5511bff5aa829bc1b"
+      },
+      {
+        "sample": "mercurial",
+        "run": "20261128T031606_ca91de35",
+        "parent": "C6",
+        "decision": "rejected",
+        "parent_request_sha256": "7c8fa351ca7e70066b434e74d9d0d302b3f7da615c0bf1dd217bf73b1261f7b8",
+        "ranges": [
+          [
+            797,
+            797
+          ],
+          [
+            798,
+            798
+          ],
+          [
+            799,
+            799
+          ],
+          [
+            800,
+            800
+          ],
+          [
+            801,
+            801
+          ],
+          [
+            802,
+            802
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Ghi dữ liệu đã giải mã vào tệp tạm.",
+        "reason": "797–802 mở bộ ghi và đọc trường. Các dòng này chưa cho thấy dữ liệu nào được ghi.",
+        "claim_sha256": "d6c7afc027e77bcae881a4d8d8feb269ad2c18d775ba672a891823ad3f18203a"
+      },
+      {
+        "sample": "mercurial",
+        "run": "20261128T031606_ca91de35",
+        "parent": "C7",
+        "decision": "rejected",
+        "parent_request_sha256": "be5dabd7ad15759b3ccc4949368c76a568a123e9aba8f8fa6f079cb1460ce9b6",
+        "ranges": [
+          [
+            700,
+            700
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Lấy khóa từ tệp cấu hình trình duyệt rồi gọi API giải mã.",
+        "reason": "Một dòng 700 chỉ thể hiện lời gọi. Phần đọc tệp và đường truyền dữ liệu tới đối số đều ở ngoài trích dẫn.",
+        "claim_sha256": "5b20db8aca26e0dba231e9181085cd3d0a75305f6254b007399d4381a5ec85ba"
+      },
+      {
+        "sample": "mercurial",
+        "run": "20261128T031606_ca91de35",
+        "parent": "C8",
+        "decision": "accepted",
+        "parent_request_sha256": "85b1be5a85b8a7f8f828aa6f689a417e19160319b84a5d6f8ad400e4700b4fa0",
+        "ranges": [
+          [
+            667,
+            667
+          ],
+          [
+            668,
+            668
+          ]
+        ],
+        "label": "correct",
+        "summary": "Tạo đối tượng AES-GCM rồi gọi phương thức với năm đối số.",
+        "reason": "667 xác định kiểu và khởi tạo, 668 cho thấy đủ năm đối số, kể cả giá trị null ở vị trí thứ ba.",
+        "claim_sha256": "db8affd05392e361051890f3762e1e2d4f6e5231e94799eb9649dd3b2c913eba"
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C1",
+        "decision": "rejected",
+        "parent_request_sha256": "9af9c9c901764e73d44dcb5ef0ecb055631c2b5aa82324e83013e4a2539952e7",
+        "ranges": [
+          [
+            3490,
+            3490
+          ],
+          [
+            3491,
+            3491
+          ],
+          [
+            3492,
+            3492
+          ],
+          [
+            3493,
+            3493
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Ghi các trường tài khoản và khẳng định tên tệp thực tế.",
+        "reason": "3490–3493 dùng biến đường dẫn. Đoạn dẫn thiếu phép gán để suy ra tên tệp thực tế.",
+        "claim_sha256": "d53067dc241622627648caa0e6bae074cbcf84c07a8b34613baa017b2c412aa7"
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C2",
+        "decision": "accepted",
+        "parent_request_sha256": "4e5f815fc3a5115e39baf38616e57ae7bb2b4cca53835e2f21ac9201ef43ee08",
+        "ranges": [
+          [
+            3490,
+            3490
+          ],
+          [
+            3491,
+            3491
+          ],
+          [
+            3492,
+            3492
+          ],
+          [
+            3493,
+            3493
+          ],
+          [
+            3500,
+            3500
+          ],
+          [
+            3501,
+            3501
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Bộ ghi được khai báo nhưng không được dùng để ghi thông tin hệ thống.",
+        "reason": "Có hai bộ ghi khác nhau. 3492 sử dụng bộ ghi thứ nhất. Trích dẫn dừng tại lúc tạo bộ ghi thứ hai ở 3501 nên chưa chứng minh được khẳng định phủ định.",
+        "claim_sha256": "9abf8cab3a0095b51884c1dcec720808486dc87e90aa7b4e76d8317279a2c6bc"
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C3",
+        "decision": "rejected",
+        "parent_request_sha256": "38ef433076038812a397614e7b0975511c85589539648fb0c03faaf8dfa0804d",
+        "ranges": [
+          [
+            1070,
+            1070
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Lấy trường mật khẩu từ cơ sở dữ liệu rồi truyền qua hàm phụ.",
+        "reason": "1070 hỗ trợ lời gọi hàm trên dữ liệu đã chuyển đổi. Dòng 1069 để xác định trường và nguồn giá trị vắng mặt.",
+        "claim_sha256": "02cea4741bf5f3d9388800539c21d613d3ff19b18f87ac30749847191777869c"
+      },
+      {
+        "sample": "gomorrah-extra",
+        "run": "20261128T034933_343e6946",
+        "parent": "C4",
+        "decision": "accepted",
+        "parent_request_sha256": "dc24e1b3c00daa38c7f5a1e1bfa6aa7cbe0e864c7b9de11ebb4150001b9d3c7a",
+        "ranges": [
+          [
+            1067,
+            1067
+          ],
+          [
+            1068,
+            1068
+          ],
+          [
+            1069,
+            1069
+          ],
+          [
+            1070,
+            1070
+          ],
+          [
+            1071,
+            1071
+          ],
+          [
+            1072,
+            1072
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Tạo bản ghi tài khoản có mật khẩu đã giải mã.",
+        "reason": "1067–1072 cho thấy đọc trường, gọi hàm phụ và tạo bản ghi. Chưa chứng minh tác dụng của hàm phụ.",
+        "claim_sha256": "896029429eac04014007568524dbd760bc4f857b76e83e4c68b494f8be46f570"
+      },
+      {
+        "sample": "mercurial-extra",
+        "run": "20261128T035027_852cfb9f",
+        "parent": "C1",
+        "decision": "rejected",
+        "parent_request_sha256": "70f728b6da33998f71e03c26d09f099afea26d23d62cc40f9cb7ce5d3f7cd726",
+        "ranges": [
+          [
+            380,
+            380
+          ],
+          [
+            381,
+            381
+          ],
+          [
+            382,
+            382
+          ],
+          [
+            385,
+            385
+          ],
+          [
+            386,
+            386
+          ],
+          [
+            391,
+            391
+          ]
+        ],
+        "label": "correct",
+        "summary": "Chọn AES-GCM và gọi giải mã với thông tin xác thực.",
+        "reason": "380–382 cho thấy cấu hình và cấu trúc chứa thẻ, 385 và 391 cho thấy đối số sử dụng cấu trúc đó trong lời gọi.",
+        "claim_sha256": "07f00fb10a1786895b386906222bb3645c7ef4ebb122bcfef0ea4eb4ab15790c"
+      },
+      {
+        "sample": "agenttesla",
+        "run": "20261128T003743_f8acf7f0",
+        "parent": "C4",
+        "decision": "accepted",
+        "parent_request_sha256": "e4aadaae3b32450c983c3581a27ac86999ccc500f92c954a5c28d853aa89d085",
+        "ranges": [
+          [
+            275,
+            275
+          ],
+          [
+            280,
+            280
+          ],
+          [
+            282,
+            282
+          ],
+          [
+            283,
+            283
+          ],
+          [
+            284,
+            284
+          ],
+          [
+            285,
+            285
+          ]
+        ],
+        "label": "unsupported",
+        "summary": "Tìm phương thức theo tên và gọi với hai đối số được mô tả cụ thể.",
+        "reason": "282–285 hỗ trợ tra cứu và phần đầu danh sách đối số. Giá trị hằng của đối số thứ hai nằm ở 286, ngoài các dòng đã chọn.",
+        "claim_sha256": "197e444447f79542219ec7d1210a8a4efae9ec2d594e4255a1f6f33922e23ac6"
+      }
+    ],
+    "summary": {
+      "eligible": 13,
+      "reviewed": 13,
+      "accepted": 7,
+      "accepted_correct": 2,
+      "accepted_unsupported": 5,
+      "correct_rejected": 1
+    }
+  }
+}
