@@ -120,6 +120,7 @@
       "journal_sha256": "6dbfbe4397aea33aeca0cd5aac71235b6638bd8bdf2f2a07e15c964744913ed5",
       "topic": "verdict",
       "search_calls": 0,
+      "search_errors": 0,
       "search_hits": [],
       "source_refs": 0,
       "related_locations": 0,

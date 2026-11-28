@@ -16,9 +16,9 @@ try {
         & .\.venv\Scripts\python.exe scripts/verify_lab.py --config $config
         if ($LASTEXITCODE) { throw 'VM verification failed.' }
     }
-    Write-Host "StealerLab: http://127.0.0.1:$Port  (Ctrl+C to close)"
+    Write-Host "StealerLab: http://127.0.0.1:$Port"
     $webArgs=@('--port',$Port)
-    if ($HistoryOnly) { $webArgs+='--history-only' }
+    if ($HistoryOnly) { $webArgs+='--history-only' } else { $webArgs+='--managed-lab' }
     & .\.venv\Scripts\python.exe -m lab_web.server @webArgs
 } finally {
     try {

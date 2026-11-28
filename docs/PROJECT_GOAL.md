@@ -5,6 +5,8 @@
 Giữ nguyên tên đề tài và các ngưỡng giảng viên. Ưu tiên agent chủ động xác định phần bằng chứng còn thiếu, điều tra bằng công cụ thật trong VM và lập bản đồ để người phân tích kiểm từng liên kết. Sản phẩm bàn giao gồm giao diện web cục bộ nối agent, Qwen và VM, nhật ký thật, hỏi đáp có dẫn nguồn, tạo–kiểm–sửa luật YARA, nhãn có phiên bản cho ranker và thí nghiệm đối chứng với quy trình cố định. Đích xuất bản là repo nhóm Gera-YCYC/PhanTichMaDoc-Stealer. Khi bàn giao sản phẩm, dùng demo web trực tiếp. Quay video mới nằm ngoài phần việc người dùng giao. Các yêu cầu nộp bài trên slide vẫn được lưu nguyên trong tài liệu nguồn. [Cách chạy và phạm vi kiểm chứng](WEB_DIEU_TRA.md)
 
 Nguồn có thẩm quyền: 12 ảnh slide và đề xuất gốc trong `docs/reference/`.
+
+Mốc kiểm chứng web ngày 28/11 đã có demo đầu-cuối, bản đồ và hỏi đáp có nhật ký, thí nghiệm YARA và phép đối chứng tìm liên kết. Trên ba lượt cùng cấu hình Python, độ ổn định nhận định đạt 71,05% so với ngưỡng 80%. Các bước nghiệm thu còn lại gồm chấm chất lượng bản hiện hành, đo trên mẫu giữ riêng, mở rộng phép thử injection và kiểm cài đặt trên máy thành viên. [Bảng tiến độ](STATUS.md) · [Phân công kỹ thuật còn lại](CONG_VIEC_CON_LAI.md)
 Đề tài: **Xây dựng AI Agent phân tích mã độc đánh cắp thông tin (Stealer) .NET/Python theo mô hình ReAct sử dụng SLM cục bộ** — Hướng 6.
 
 ## Mục tiêu hiện tại — hoàn thành toàn bộ đồ án

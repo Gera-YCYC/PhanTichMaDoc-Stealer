@@ -21,6 +21,7 @@ let init,
   item = null,
   job = {},
   busy = false,
+  closing = false,
   request = 0,
   answerResult = null;
 const fail = (e) => {
@@ -51,6 +52,7 @@ function updateMeta() {
 }
 async function bootstrap() {
   init = await api("init");
+  $("#close-lab").hidden = !init.managed_lab;
   const sel = $("#sample");
   if (!sel.options.length)
     for (const s of Object.keys(init.samples)) sel.add(new Option(s, s));
@@ -651,11 +653,12 @@ async function launch(kind) {
   await poll();
 }
 async function poll() {
-  if (busy) return;
+  if (busy || closing) return;
   busy = true;
   try {
     const old = job;
     job = await api("job");
+    $("#close-lab").disabled = job.active;
     $("#start").disabled = job.active || init.history_only;
     $("#live").textContent = job.active
       ? "Đang chạy · " +
@@ -678,6 +681,21 @@ async function poll() {
   }
 }
 $("#health").onclick = () => check().catch(fail);
+$("#close-lab").onclick = async () => {
+  if (closing) return;
+  closing = true;
+  try {
+    await api("close", {});
+    $("#start").disabled = true;
+    $("#close-lab").disabled = true;
+    $("#health").textContent = "Đang tắt lab";
+    $("#banner").textContent =
+      "Đã gửi yêu cầu tắt. PowerShell sẽ xác nhận khi VM và Ollama đã dừng.";
+  } catch (error) {
+    closing = false;
+    fail(error);
+  }
+};
 $("#start").onclick = () => launch("analyze").catch(fail);
 document.querySelectorAll("nav button").forEach(
   (b) =>

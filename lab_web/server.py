@@ -220,6 +220,19 @@ class Handler(BaseHTTPRequestHandler):
             data = json.loads(self.rfile.read(n))
             if not isinstance(data, dict):
                 raise ValueError("Yêu cầu phải là đối tượng JSON.")
+            if p == "/api/close":
+                if not getattr(self.server, "managed_lab", False):
+                    return self.reply(
+                        409,
+                        {
+                            "error": "Phiên này chỉ xem lịch sử hoặc do một tiến trình khác quản lý."
+                        },
+                    )
+                reserve("close")
+                try:
+                    return self.reply(202, {"accepted": True})
+                finally:
+                    self.server.shutdown()
             if getattr(self.server, "history_only", False) and p in (
                 "/api/analyze",
                 "/api/yara",
@@ -259,6 +272,7 @@ class Handler(BaseHTTPRequestHandler):
                     {
                         "key": KEY,
                         "history_only": getattr(self.server, "history_only", False),
+                        "managed_lab": getattr(self.server, "managed_lab", False),
                         "samples": {
                             k: {"branch": v["branch"], "bytes": v["size_bytes"]}
                             for k, v in samples().items()
@@ -341,9 +355,15 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--port", type=int, default=4180)
     p.add_argument("--history-only", action="store_true")
+    p.add_argument(
+        "--managed-lab",
+        action="store_true",
+        help="Launcher will stop its lab after normal server exit",
+    )
     args = p.parse_args()
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     server.history_only = args.history_only
+    server.managed_lab = args.managed_lab and not args.history_only
     print(f"StealerLab · http://127.0.0.1:{server.server_port}", flush=True)
     try:
         server.serve_forever()

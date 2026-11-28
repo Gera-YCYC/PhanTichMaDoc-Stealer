@@ -1,0 +1,102 @@
+{
+  "runs": [
+    "20261128T021511_bec5b2e5",
+    "20261128T022955_4014e541",
+    "20261128T023637_4ad0f5f6"
+  ],
+  "sample": "public_python2024.bin",
+  "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "786ba586484d8b09975bbde9a8156d1e008fe6c81616d67a59888ce86cb3aa9f",
+  "configuration_sha256": "10c5d71454b81daf85b4b1b7b937abd13ae51b424d2e5440bde6e0a426587c83",
+  "journal_sha256": [
+    "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+    "4950ca4f4a756c91b4221469f9186b8766fce4ac606049ae3335fecee19706b7",
+    "905b7294395ffcdf80d87db03839be5117f5c03f709f078d2ab53f9728ef3528"
+  ],
+  "claim_stability": {
+    "stable_claims": 27,
+    "union_claims": 38,
+    "stability": 0.7105263157894737,
+    "verdict_agreement": true,
+    "method": "exact canonical values; wording differences count as unstable; empty set is undefined"
+  },
+  "verdicts": [
+    "suspicious",
+    "suspicious",
+    "suspicious"
+  ],
+  "web_graph": {
+    "statuses_by_edge": {
+      "archive-message": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "message-send": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "process-write": [
+        "partial",
+        "partial",
+        "partial"
+      ],
+      "query-rows": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "rows-process": [
+        "partial",
+        "partial",
+        "partial"
+      ],
+      "send-response": [
+        "partial",
+        "partial",
+        "partial"
+      ],
+      "write-archive": [
+        "partial",
+        "partial",
+        "partial"
+      ]
+    },
+    "same_state_all_three": 7,
+    "edge_count": 7,
+    "supported_all_three": [
+      "archive-message",
+      "message-send",
+      "query-rows"
+    ],
+    "supported_at_least_once": [
+      "archive-message",
+      "message-send",
+      "query-rows"
+    ],
+    "supported_intersection_over_union": 1.0
+  },
+  "accepted_claim_counts": [
+    29,
+    30,
+    36
+  ],
+  "duration_seconds": [
+    376.7699,
+    399.0684,
+    495.9322
+  ],
+  "tool_calls": [
+    17,
+    17,
+    17
+  ],
+  "model_calls": [
+    38,
+    38,
+    49
+  ],
+  "scope": "One development sample, three terminal runs. Repeated edge status and exact accepted claim agreement are distinct measures. Neither measures correctness."
+}

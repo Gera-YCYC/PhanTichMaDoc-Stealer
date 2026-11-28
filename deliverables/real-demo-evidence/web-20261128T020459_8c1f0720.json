@@ -128,6 +128,7 @@
       "journal_sha256": "5674355542b2ee4b17993b8acc4b3604c68f99272fc08718ad11118e4b548ffa",
       "topic": "archive-message",
       "search_calls": 1,
+      "search_errors": 0,
       "search_hits": [
         0
       ],

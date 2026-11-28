@@ -15,7 +15,7 @@ Mở **http://127.0.0.1:4180**. Script bật VM và Ollama, đồng bộ mã cô
 3. Mở **Bản đồ chứng cứ** sau khi hoàn tất. Chọn một nút để xem thao tác và tọa độ công cụ. Chọn đường nối bên dưới nút để xem quan hệ giữa hai thao tác. Màu xanh biểu thị có bằng chứng cho mệnh đề tĩnh đó. Màu vàng biểu thị còn thiếu bằng chứng. Màu xám biểu thị chưa tìm thấy trong phạm vi đã đọc. Với quan hệ còn thiếu, giao diện chỉ ra phần đã thấy ở hai đầu.
 4. Đối chiếu một câu ở **Nhận định** với bản đồ. Nhận định là kết quả sau lọc của agent. Bản đồ kiểm tra các lời gọi và liên kết mà bộ phân tích hỗ trợ. Một câu có trích dẫn vẫn có thể sai ngữ nghĩa. Mở **Hỏi đáp**, hỏi về một quan hệ cụ thể. Khi đủ căn cứ, câu trả lời dẫn lại chứng cứ. Khi còn thiếu, Qwen chọn một truy vấn giới hạn, VM tìm trong đúng nguồn của lượt đó. Sau khi VM khởi động lại, một số mã chứng cứ cũ sẽ hết hiệu lực. Lượt hỏi vẫn ghi lỗi và phần chưa xác minh.
 5. Mở **YARA** để xem kết quả quét tệp gốc sau verdict hoặc chạy lại quá trình tạo luật trên bộ phát triển. Mở từng lượt để xem các lần thử, số báo nhầm và nội dung bộ luật đã cố định. Chỉ số TPR dùng mẫu phát triển. Tập sạch giữ riêng dùng đánh giá FPR sau khi đã cố định luật.
-6. Mở **Gán nhãn** để đánh giá những điểm tìm kiếm có đủ ngữ cảnh. Chỉ chọn nhãn khi đã đọc dòng nguồn. Kết thúc demo, đợi tác vụ hiện hành hoàn tất rồi nhấn **Ctrl+C** trong PowerShell chạy web. Launcher tắt model và VM của dự án.
+6. Mở **Gán nhãn** để đánh giá những điểm tìm kiếm có đủ ngữ cảnh. Chỉ chọn nhãn khi đã đọc dòng nguồn. Kết thúc demo, đợi tác vụ hiện hành hoàn tất rồi bấm **Tắt lab** ở đầu trang. Chờ PowerShell xác nhận VM và model đã dừng. Nếu đã ngắt cửa sổ bằng Ctrl+C, mở PowerShell ở thư mục dự án và chạy `.\scripts\Stop-Lab.ps1` để dừng và kiểm lại cả hai.
 
 ### Máy nào làm gì?
 
@@ -88,6 +88,20 @@ Bản đồ cuối có 3/7 quan hệ được hỗ trợ, 4/7 cần kiểm tra t
 
 Hồ sơ có bản đồ đã lưu sẽ hiển thị bản đồ tại thời điểm kết thúc lượt chạy. Với các lượt cũ hơn tính năng này, giao diện ghi rõ khi phải dựng lại sơ đồ từ nhật ký. Khi xem lịch sử, chỉ các nút cần chạy lab bị khóa. Nhóm vẫn có thể đọc nguồn và ghi nhận xét trên máy.
 
+Đã thử tắt hẳn lab rồi khởi động lại bằng `Start-Web.ps1`. Hai dịch vụ đều sẵn sàng. Khi hỏi lại quan hệ đọc bản ghi và giải mã trên một hồ sơ của phiên VM trước, VM trả lỗi truy xuất nguồn. Web hiển thị hai vị trí liên quan đã lưu, ghi lỗi vào nhật ký câu hỏi và giữ kết luận chưa đủ căn cứ. Để demo tìm thêm bằng công cụ, hãy tạo lượt phân tích trong cùng phiên VM rồi hỏi trên lượt đó. [Biên bản sau khi mở lại lab](../deliverables/real-demo-evidence/web-20261128T023637_4ad0f5f6.json)
+
+## Độ ổn định của ba lượt Python
+
+Ba lượt liên tiếp dùng cùng SHA-256 của mẫu, model, mã phân tích và cấu hình. Các lượt lần lượt giữ 29, 30 và 36 nhận định, mất 376,77, 399,07 và 495,93 giây. Cả ba gọi công cụ 17 lần và cùng đưa verdict `suspicious`. Số lượt gọi model lần lượt là 38, 38 và 49.
+
+Theo phép chấm của dự án, 27/38 nhận định xuất hiện trong cả ba lượt, đạt **71,05%** so với ngưỡng **80%**. Đối với hành vi, cách diễn đạt khác nhau được tính riêng. Trên bản đồ, cùng ba quan hệ có bằng chứng ở cả ba lượt, bốn quan hệ còn lại đều cần kiểm tra thêm. Nhóm còn phải đo trên mẫu giữ riêng và chấm ý nghĩa từng nhận định. [Biên bản ba lượt](../deliverables/real-demo-evidence/web-stability-python.json)
+
+Trên máy có đủ ba nhật ký, tái lập phép tính bằng lệnh sau. Trên máy khác, thay ba mã bằng ba lượt đã hoàn tất trên cùng một mẫu và phiên bản.
+
+```powershell
+.\.venv\Scripts\python.exe -m eval.web_stability 20261128T021511_bec5b2e5 20261128T022955_4014e541 20261128T023637_4ad0f5f6
+```
+
 ## Kết quả YARA từ web
 
 Để trình bày một báo nhầm thật, mở **YARA → Báo nhầm đã ghi trên tệp sạch**. Bộ luật đầu đánh dấu nhầm yt-dlp trong 1/38 tệp sạch. Nhóm đưa đúng tệp đó vào tập phát triển, sửa quy trình chọn dấu hiệu và sinh lại luật. Giao diện đối chiếu SHA-256 để xác nhận cùng tệp ở hai phép thử. Sau lần sửa, yt-dlp hết khớp và 38 tệp sạch giữ riêng đều qua. Đây là lịch sử hai phiên bản. Nút tạo luật phía trên chạy một thí nghiệm mới trong VM. [Bộ dữ liệu, biên bản và lịch sử sửa luật](YARA_REAL_CORPUS.md)
@@ -97,6 +111,8 @@ Nút **Tạo và kiểm thử luật trong VM** đã chạy trên tệp gốc. M
 Luật và từng lần thử xuất hiện trong thẻ YARA sau khi bấm mở mã lượt. Nhóm có thể so số lần biên dịch, lượt bị loại, khớp và báo nhầm theo từng mẫu. Trong lần kiểm lại bằng trình duyệt, cả năm luật đều đạt yêu cầu ngay từ lần thử đầu. [Lượt kiểm lại trên web](../deliverables/real-demo-evidence/yara-runs/yara_real_a2f8ca844220/receipt.json)
 
 ## Tệp cục bộ sau khi chạy
+
+Đã kiểm tra nút **Tắt lab** sau khi dùng đúng lệnh mở web trên máy Windows. Launcher thoát bình thường, cổng web và Ollama đóng, VMware xác nhận VM đã tắt. [Biên bản dừng máy](../deliverables/real-demo-evidence/runtime-stopped-after-web.json)
 
 - `runs/<run_id>/events.jsonl` lưu nhật ký agent theo chuỗi hash. `report.md` và `report.redacted.json` lưu kết quả, verdict và các giới hạn.
 - `runs/<run_id>/questions/` lưu câu hỏi, chủ đề được chọn, lần tìm thêm, đáp án và trích dẫn.

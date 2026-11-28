@@ -57,6 +57,7 @@ def export(run):
                     (e["topic"] for e in qs if e["event"] == "topic_selected"), None
                 ),
                 "search_calls": sum(e["event"] == "action_dispatched" for e in qs),
+                "search_errors": sum(e["event"] == "tool_error" for e in qs),
                 "search_hits": [
                     e["hit_count"] for e in qs if e["event"] == "observation"
                 ],

@@ -301,6 +301,7 @@
       "journal_sha256": "e952ee7457f851a8f3c4e7626fadd2a18500bf3c9a9fe8ed6a9b7dd54a65ee9d",
       "topic": "archive-message",
       "search_calls": 0,
+      "search_errors": 0,
       "search_hits": [],
       "source_refs": 11,
       "related_locations": 0,
@@ -312,6 +313,7 @@
       "journal_sha256": "cef6494a53fbb89944191a7da63272583d7faa311c6f2aa99a12f9ff24ebc0c5",
       "topic": "rows-process",
       "search_calls": 1,
+      "search_errors": 0,
       "search_hits": [
         8
       ],
