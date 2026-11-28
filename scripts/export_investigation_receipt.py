@@ -34,6 +34,21 @@ def export(run):
             {
                 "id": e["id"],
                 "status": e["status"],
+                **(
+                    {
+                        "path_check": {
+                            "relation": e["path_check"]["relation"],
+                            "possible_names": e["path_check"]["component_count"],
+                            "unresolved": e["path_check"]["unresolved"],
+                            "spans": [
+                                [r["line"], r["end"], r["output_sha256"]]
+                                for r in e["path_check"]["refs"]
+                            ],
+                        }
+                    }
+                    if e.get("path_check")
+                    else {}
+                ),
                 "coordinates": [
                     {"eid": r["eid"], "line": r["line"], "end": r["end"]}
                     for r in e.get("trail") or e["refs"]
@@ -66,15 +81,76 @@ def export(run):
                     qs[-1].get("answer", {}).get("related_locations", [])
                 ),
                 "status": qs[-1]["event"],
+                **(
+                    {
+                        "opened_anchors": [
+                            e["opened_anchors"] for e in qs if "opened_anchors" in e
+                        ]
+                    }
+                    if any("opened_anchors" in e for e in qs)
+                    else {}
+                ),
             }
         )
+    browser = {}
+    clicks_file = ROOT / "evidence/local" / f"staging-{run}.json"
+    if clicks_file.exists():
+        clicks = read(clicks_file)
+        if clicks.get("opened"):
+            qid = clicks["question_journal"]
+            (receipt,) = [
+                q for q in questions if q["id"] == qid and q["status"] == "answered"
+            ]
+            trace = folder / "questions" / qid / "events.jsonl"
+            answer = json.loads(trace.read_bytes().splitlines()[-1])["answer"]
+            (edge,) = [e for e in stored["edges"] if e["id"] == "write-archive"]
+            spans = [
+                [r["line"], r["end"], r["output_sha256"]]
+                for r in edge["path_check"]["refs"]
+            ]
+            found = [
+                [r["line"], r["end"], r["output_sha256"]]
+                for r in answer["search"]["refs"]
+            ]
+            if not (
+                clicks["run"] == run
+                and clicks["topic"] == answer["topic"] == "write-archive"
+                and clicks["width"] == 390
+                and not clicks["errors"]
+                and not clicks["external"]
+                and spans == clicks["spans"]
+                and found == clicks["opened"]
+                and answer["refs"] == edge["path_check"]["refs"]
+                and clicks["answer_refs"] == len(spans)
+                and receipt["opened_anchors"] == [[n for n, _, _ in found]]
+                and receipt["search_hits"] == [clicks["search_hits"]]
+                and receipt["search_errors"] == 0
+            ):
+                raise ValueError(
+                    "Browser excerpts differ from the VM, question or graph"
+                )
+            browser = {
+                "staging_browser": {
+                    "question": qid,
+                    "question_journal_sha256": receipt["journal_sha256"],
+                    "width": clicks["width"],
+                    "graph_spans_opened": len(spans),
+                    "search_spans_opened": found,
+                }
+            }
     return {
+        **browser,
         "run": run,
         "sample": view["sample"],
         "sha256": view["sha"],
         "model": view["model"],
         "model_digest": pre["model"]["digest"],
         "source_manifest_sha256": src["manifest_sha256"],
+        **(
+            {"staging_parser_sha256": src["files"]["vm_tools/staging_link.py"]}
+            if "vm_tools/staging_link.py" in src["files"]
+            else {}
+        ),
         "current_logic_matches_run": all(
             (ROOT / k).is_file() and sha256((ROOT / k).read_bytes()).hexdigest() == v
             for k, v in src["files"].items()

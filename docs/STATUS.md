@@ -4,6 +4,10 @@
 
 ## Cập nhật hiện tại
 
+Bản công cụ cuối đã chạy lại từ trình duyệt trong 408,65 giây. Python đạt 20/36, F1 71,43% và giữ verdict `suspicious`. Đã mở 13 khoảng nguồn trên bản đồ và cả hai vị trí mà VM trả về cho câu hỏi tiếp theo. [Biên bản có tọa độ và hash](../deliverables/real-demo-evidence/web-20261128T073934_730537f9.json)
+
+Web đã kiểm trên mẫu Python thật quan hệ giữa đích ghi và thư mục nén, có 38 dòng dẫn chứng. Khi hỏi tiếp, VM tìm được 8 vị trí cần đối chiếu. Báo cáo mới đúng 19/36 mục, F1 69,09%, verdict `suspicious`. Hai mục bị mất so với lượt 21/36 trước đó đã được xác định. [Số liệu và cách chạy lại](DUONG_DAN_GHI_VA_NEN.md)
+
 Đã tích hợp việc đối chiếu đường truyền vào báo cáo trước bước ra verdict. Trong thí nghiệm cố định dữ liệu của ba mẫu, bốn câu mới có căn cứ và hai mục đáp án được bổ sung. Precision 90,24%, recall 38,14%, F1 53,62%, verdict đúng 0/3. Lượt Python bấm mới trên giao diện đạt 21/36 mục. [Phương pháp, mẫu số và cách mở bằng chứng](DOI_CHIEU_DUONG_TRUYEN.md)
 
 Web đã đối chiếu thân hàm trên hai mẫu .NET thật. Ở Mercurial, Qwen dẫn được dòng đọc tệp và dòng lấy phản hồi mạng trên hai thân hàm khác nhau. Ở Gomorrah, cả ba lần chọn lời gọi vẫn thiếu nguồn. Bảng điểm báo cáo toàn mẫu hiện giữ mức 39/97 mục cho cấu hình có phụ lục. [Các dòng nguồn, phép đối chứng và thao tác demo](DOI_CHIEU_THAN_HAM.md)

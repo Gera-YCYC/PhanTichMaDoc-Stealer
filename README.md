@@ -1,5 +1,7 @@
 # StealerLab — Đồ án Phân tích mã độc
 
+**Demo mới trên mẫu Python.** Mở đường nối **Ghi ra tệp → Tạo bản nén** để xem 13 đoạn nguồn. Hỏi agent về phần còn thiếu rồi bấm **Vị trí VM vừa tìm** để kiểm tra hai kết quả mới. Bản chạy cuối xác minh được đích ghi dưới thư mục nén và đạt 20/36 mục trên toàn báo cáo, F1 71,43%. [Chạy trên web, kiểm từng dẫn chứng và đọc bảng điểm](docs/DUONG_DAN_GHI_VA_NEN.md)
+
 **Demo đường truyền.** Từ bản đồ, bấm một đường nối rồi mở nhận định trích cùng vị trí để xem dòng mã và hash nguồn. Lượt Python chạy từ trình duyệt đạt 21/36 mục. Phép đối chứng báo cáo trên ba hồ sơ phát triển đạt 37/97 mục và verdict đúng 0/3. [Các bước demo và cách đọc điểm](docs/DOI_CHIEU_DUONG_TRUYEN.md)
 
 **Demo bằng trình duyệt trên máy đã dựng lab.** Mở PowerShell tại thư mục dự án, chạy `.\scripts\Start-Web.ps1`, rồi mở http://127.0.0.1:4180. Chọn mẫu, bấm **Chạy điều tra** và mở **Nhật ký**. Khi có báo cáo, bấm từng nút hoặc đường nối để kiểm tra bằng chứng. [Hướng dẫn demo web](docs/WEB_DIEU_TRA.md) · [Cài trên máy nhóm](docs/TEAM_SETUP.md)

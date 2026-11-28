@@ -371,6 +371,11 @@ class Agent:
                         args['query'] = query.strip()
                         if self.config.get('occurrence_order'):
                             args['occurrence_order'] = True
+                        target = evidence[args['evidence_id']]
+                        if (gap_by_evidence.get(args['evidence_id']) == 'write-archive'
+                                and target['tool'] in {'decode_python_literals', 'decompile_python', 'python_ast'}
+                                and not target.get('staging_link')):
+                            args['verify_staging'] = True
                     call_key = hashlib.sha256(canonical({"action": name, "arguments": args})).hexdigest()
                     if call_key in seen_calls:
                         raise ValueError("Duplicate tool call; use a different tool or evidence page")
@@ -441,6 +446,8 @@ class Agent:
                     record["line_map"].update({entry["line"]: entry["text"] for entry in clean["lines"]})
                     if 'archive_link' in clean:
                         record['archive_link']=clean['archive_link']
+                    if 'staging_link' in clean:
+                        record['staging_link']=clean['staging_link']
                     record.setdefault('line_metadata', {}).update({entry['line']: {'source_line': entry.get('source_line')}
                                                                   for entry in clean['lines']})
                     record['latest_lines'] = [entry['line'] for entry in clean['lines']]

@@ -83,6 +83,8 @@ def absorb(records, obs):
     facts = rec.setdefault("operation_facts", [])
     if "archive_link" in obs:
         rec["archive_link"] = obs["archive_link"]
+    if "staging_link" in obs:
+        rec["staging_link"] = obs["staging_link"]
     for f in obs.get("operation_facts", []):
         if f not in facts:
             facts.append(f)
@@ -249,6 +251,7 @@ def cited_windows(records, graph, claims):
             *item.get("refs", []),
             *item.get("leads", []),
             *item.get("trail", []),
+            *item.get("path_check", {}).get("refs", []),
         ]
         if item.get("lead"):
             references.append(item["lead"])

@@ -103,6 +103,19 @@ def upload_prefix(record, fact):
 def candidates(evidence, digest):
     proposals = []
     graph = ledger(evidence, digest)
+    for edge in graph["edges"]:
+        check = edge.get("path_check")
+        if not check:
+            continue
+        rec = evidence[check["refs"][0]["eid"]]
+        sites = check["roles"]
+        refs = [reference(rec, sites[k], sites[k]) for k in ("source_call", "writer_call", "writer", "open", "write")]
+        if all(refs):
+            proposals.append({
+                "route": "result_to_writer", "kind": "behavior", "value": "",
+                "text": "The value returned by a local function is passed to the writer helper. The corresponding parameter supplies the data argument to a write on the file opened by that helper. The cited calls do not establish the contents of the value.",
+                "evidence": refs,
+            })
     edges = {
         edge["id"]: edge for edge in graph["edges"] if edge["status"] == "supported"
     }

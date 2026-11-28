@@ -58,4 +58,14 @@ else:
             result.update(lines=[rows[n] for n in sorted(rows)],archive_link=witness)
     except (KeyError, ValueError, TypeError, SyntaxError, RecursionError):
         result['archive_link_status']='unavailable'
+    if request.get('verify_staging'):
+        from .staging_link import find_witness as staging_path
+        try:
+            proof = staging_path(request['record'], operations['facts'], visible)
+            if proof:
+                for n in proof['lines']:
+                    rows[n] = request['record']['lines'][n-1]
+                result.update(lines=[rows[n] for n in sorted(rows)], staging_link=proof)
+        except (KeyError, ValueError, TypeError, SyntaxError, RecursionError):
+            result['staging_status'] = 'unavailable'
 print(json.dumps(result, ensure_ascii=False))

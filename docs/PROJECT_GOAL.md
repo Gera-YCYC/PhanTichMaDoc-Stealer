@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Nhóm ưu tiên hai chức năng đi cùng nhau. Khi một liên kết còn thiếu, agent phải chọn phép kiểm dựa trên kết quả vừa đọc. Người dùng bấm được vào chính đường nối đó để mở bằng chứng và hỏi tiếp. Đích ghi dưới thư mục nén đã được kiểm trong một ca Python thật. Điều kiện nghiệm thu tiếp theo là xác minh dữ liệu còn nguyên đến điểm sử dụng và lặp lại phép đo trên tập giữ riêng. Số liệu đầy đủ vẫn gồm cả chất lượng toàn báo cáo, tuyên bố thiếu căn cứ và chi phí gọi công cụ. [Lượt thử và những mắt xích còn mở](DUONG_DAN_GHI_VA_NEN.md)
+
 Mục tiêu nghiệm thu là người dùng có thể đi từ giả thuyết còn thiếu, qua hành động của agent trong VM, đến từng nhận định có nguồn và verdict đủ căn cứ. Bản web đã đưa liên kết vào báo cáo chính và đo tác động trên ba hồ sơ cố định. Mốc tiếp theo là chứng minh nguồn dữ liệu nhạy cảm đi tới bên gửi, đo lại độ phủ và verdict trên tập giữ riêng, rồi tái lập trên máy thành viên. [Bằng chứng và giới hạn hiện tại](DOI_CHIEU_DUONG_TRUYEN.md)
 
 Khi agent gặp một lời gọi .NET còn thiếu phần thân, người dùng có thể để Qwen tự chọn vị trí để VM kiểm tra. Bản đồ cần mở được kết quả từng lượt và giữ trạng thái thiếu bằng chứng nếu chưa chứng minh được dữ liệu đi qua các bước. Đã đo phần đối chiếu hai thân hàm trên tập phát triển. Mục tiêu tiếp theo là xác minh luồng dữ liệu trên tập giữ riêng, sau đó chấm lại toàn báo cáo theo ngưỡng gốc. [Cách thử và giới hạn](DOI_CHIEU_THAN_HAM.md)

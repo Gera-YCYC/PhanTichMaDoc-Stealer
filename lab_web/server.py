@@ -352,6 +352,16 @@ class Handler(BaseHTTPRequestHandler):
                 rubric = read(base / "coverage-v11-rubric.json")
                 paired = read(base / "web-comparison.json")
                 repeats = base / "web-stability-python.json"
+                staging = read(base / "staging-path-python.json")
+                path_trials = []
+                for run in [r["run"] for r in staging["runs"]] + [staging["repeat_run"]]:
+                    grade = read(base / f"transfer-live-{run}.json")["graded_score"]
+                    live = read(base / f"web-{run}.json")
+                    edge = next(e for e in live["terminal_edges"] if e["id"] == "write-archive")
+                    path_trials.append({
+                        "run": run, "verified": bool(edge.get("path_check")), "score": grade,
+                        "tools": live["metrics"]["tool_calls"], "seconds": live["metrics"]["elapsed_s"],
+                    })
                 return self.reply(
                     200,
                     {
@@ -382,6 +392,7 @@ class Handler(BaseHTTPRequestHandler):
                         "dotnet_quality": {key: reports(sample=key) for key in dotnet_profiles()},
                         "current_batch": current_batch(),
                         "transfer_comparison": read(base / "transfer-report-comparison.json")["scores"],
+                        "staging_trials": path_trials,
                         "card_supplements": read(base / "web-card-supplements.json"),
                         "cng_trial": read(base / "web-cng-review.json"),
                         "narrow_trials": read(base / "web-narrow-review.json"),

@@ -80,6 +80,9 @@ def reconstruct(events):
         for link in clean.get('context_links', []):
             if link not in record.setdefault('context_links', []):
                 record['context_links'].append(link)
+        for key in ('archive_link', 'staging_link'):
+            if key in clean:
+                record[key] = clean[key]
         for fact in clean.get('operation_facts', []):
             if fact not in record.setdefault('operation_facts', []):
                 record['operation_facts'].append(fact)

@@ -1,0 +1,24 @@
+{
+  "run": "20261128T071542_c577c28e",
+  "scope": "Source review of three retained propositions with changed signatures. Development profile, no blind human adjudication.",
+  "claims": {
+    "C1": {
+      "signature": "09d74204f987ad1e064e79bc36b8414d38ea22a0418a98609fa3f00a75d7ed50",
+      "lines": [10, 276, 277, 278, 279],
+      "atoms": [["PY24-A18", "correct"]],
+      "reason": "The cited library import, archive arguments and local output path support the ZIP operation in the temporary directory."
+    },
+    "C3": {
+      "signature": "20b123a340b5dccd1ade0e727e5ae3e2515ac9087c75d84774613e7ddb351468",
+      "lines": [83, 84, 106],
+      "atoms": [["PY24-A27", "correct"]],
+      "reason": "The configured hostname is the host argument at the cited SMTP constructor. This is a static destination."
+    },
+    "C31": {
+      "signature": "1c22ed3663476860f6255ea0226ed8d4c0b80e1032ba827b8d94823942df679d",
+      "lines": [116, 123, 124, 299, 308],
+      "atoms": [["returned-value-to-writer-308", "correct"]],
+      "reason": "The local result becomes the matching formal parameter used by the cited write. The claim does not identify the kind of data or claim a credential was written, as A16 would require."
+    }
+  }
+}

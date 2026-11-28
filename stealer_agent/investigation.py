@@ -7,6 +7,7 @@ from .journal import canonical
 from .operation_assertions import APIS
 from .operation_context import valid_operations
 from .search_queries import query_options
+from .staging_evidence import checked_path
 
 # Each node describes a static operation. Its presence does not classify a sample.
 STAGES = {
@@ -278,6 +279,12 @@ def ledger(evidence, digest):
             if not nodes[stage]["refs"]:
                 nodes[stage].update(status="supported", refs=[ref])
         break
+    for record in evidence.values():
+        check = checked_path(record, digest)
+        if check:
+            edge = next(e for e in edges if e["id"] == "write-archive")
+            edge.update(status="partial", path_check=check)
+            break
     return {
         "method": "static-link-ledger/2",
         "nodes": list(nodes.values()),

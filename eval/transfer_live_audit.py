@@ -34,7 +34,7 @@ def signature(claim, records, profile_eid):
     return sha256(canonical({**content, "evidence": refs})).hexdigest()
 
 
-def check(run, interaction):
+def check(run, interaction, *, include_coverage=False):
     view = trusted_report(run)
     folder = ROOT / "runs" / run
     log = folder / "events.jsonl"
@@ -193,7 +193,7 @@ def check(run, interaction):
         if not unmatched
         else None
     )
-    return {
+    result = {
         "run": run,
         "donor": donor,
         "journal_sha256": meta["journal_sha256"],
@@ -204,6 +204,10 @@ def check(run, interaction):
         "verdict": report["verdict"],
         "interaction": interaction,
     }
+    if include_coverage:
+        require(not unmatched, "Ungraded claims in coverage comparison")
+        result["covered_units"] = sorted(uid for uid in units if grades.get(uid) == "correct")
+    return result
 
 
 if __name__ == "__main__":

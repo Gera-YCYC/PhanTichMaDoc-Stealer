@@ -73,6 +73,7 @@ ACTION_SCHEMA = {
                 "profile": {"enum": ["fixture", "real-v1", "real-v3"]},
                 "query": {"type": "string", "minLength": 3, "maxLength": 80},
                 "occurrence_order": {"type":"boolean"},
+                "verify_staging": {"type":"boolean"},
             },
         },
         "report": {"anyOf": [REPORT_SCHEMA, {"type": "null"}]},
@@ -108,7 +109,7 @@ def validate_action(value: dict) -> dict:
         "disassemble_python": {"sample", "entry_index"},
         "test_yara": {"sample", "rule", "corpus", "profile"},
         "yara_candidates": {"sample"},
-        "search_evidence": {"sample", "evidence_id", "query", "occurrence_order"},
+        "search_evidence": {"sample", "evidence_id", "query", "occurrence_order", "verify_staging"},
     }[action]
     required = {"sample"} if action not in {"finish", "finalize"} else set()
     if action in {"extract_ioc", "read_evidence", "search_evidence", "decode_python_literals"}:

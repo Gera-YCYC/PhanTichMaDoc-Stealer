@@ -1,5 +1,7 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+**Ưu tiên sau lượt Python có đối chiếu đường dẫn.** Người làm phần phân tích kiểm sự tồn tại và biến đổi nội dung tệp giữa điểm ghi và điểm nén. Người làm phần đánh giá điều tra mục A09 còn thiếu và vì sao A26 bị mất rồi xuất hiện lại qua hai lượt. Dùng cùng đáp án 36 mục trước khi đổi thuật toán. Mục tiêu là tăng recall mà vẫn giữ khả năng từ chối kết luận thiếu căn cứ. [Dẫn chứng và kết quả trước/sau](DUONG_DAN_GHI_VA_NEN.md)
+
 | Phụ trách | Việc kế tiếp | Bằng chứng để đóng |
 |---|---|---|
 | Phân tích .NET/Python | Truy tiếp quan hệ giữa dữ liệu nguồn, bước ghi và tệp đi vào kênh gửi. Ưu tiên vị trí còn thiếu trong báo cáo. | Dẫn được cả điểm tạo và điểm dùng của cùng dữ liệu. Đối chứng tệp khác, gán lại biến và nhánh rẽ. |

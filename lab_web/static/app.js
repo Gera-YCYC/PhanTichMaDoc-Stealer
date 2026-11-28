@@ -129,8 +129,8 @@ function refs(where, rows, canLabel = false, windows = record?.cited_windows) {
           a.line +
           (a.end !== a.line ? "–" + a.end : ""),
       ),
-      el("pre", a.text),
     );
+    if (a.text) d.append(el("pre", a.text));
     const source = windows?.[[a.eid, a.line, a.end].join(":")];
     if (source) {
       const expand = el("details");
@@ -312,6 +312,19 @@ function map(panel) {
     );
   if (item) {
     detail.append(el("small", states[item.status]), el("h2", item.label));
+    const path = item.path_check;
+    if (path?.relation === "writer_path_beneath_archive_input") {
+      const proof = el("details", undefined, "card");
+      proof.append(el("summary", "Đối chiếu đích ghi với thư mục nén"),
+        el("p", "VM kiểm tra biểu thức đường dẫn với cả " + path.component_count +
+          " tên có thể lấy từ tập giá trị trong mã. Đích ghi nằm dưới thư mục đầu vào của lệnh nén ở các trường hợp đã kiểm."),
+        el("p", "Còn thiếu bằng chứng rằng tệp vẫn tồn tại với cùng nội dung khi lệnh nén chạy."));
+      const s = path.roles;
+      proof.append(el("p", "Kết quả ở dòng " + s.source_call + " đi vào lời gọi hàm ghi ở dòng " + s.writer_call +
+        ". Đối chiếu các dòng " + s.open + "–" + s.write + " với lệnh nén ở dòng " + s.archive + "."));
+      refs(proof, path.refs);
+      detail.append(proof);
+    }
     if (item.refs.length) {
       detail.append(
         el(
@@ -520,6 +533,19 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     table(["Báo cáo", "Mục khớp", "Precision", "Recall", "F1", "F1 IOC và ATT&CK", "Câu thiếu căn cứ"], rows, block);
     block.append(el("p", "Verdict đúng sau đối chiếu: " + comparison.strict_correct_verdicts + "/" +
       comparison.sample_count + ". Nhãn chuẩn của cả ba mẫu phát triển là độc."));
+    panel.append(block);
+  }
+  if (sample === "python" && data.staging_trials?.length) {
+    const block = el("details", undefined, "card");
+    block.append(el("summary", "Đích ghi và thư mục nén · các lượt Python"),
+      el("p", "Các lượt chạy từ trình duyệt dùng cùng mẫu và cùng hồ sơ đáp án. Cột đích ghi cho biết agent có chứng minh được quan hệ đường dẫn trong mã hay chưa."));
+    table(["Lượt chạy", "Đích ghi", "Mục khớp", "Precision", "Recall", "F1", "Gọi công cụ", "Giây"],
+      data.staging_trials.map(({run, verified, score, tools, seconds}) => [
+        run, verified ? "Dưới thư mục nén" : "Chưa xác định",
+        score.correct + "/" + (score.correct + score.missed),
+        percent(score.precision), percent(score.recall), percent(score.f1), tools, seconds.toFixed(1),
+      ]), block);
+    block.append(el("p", "Các báo cáo còn thiếu chứng cứ về nội dung tệp tại thời điểm nén. Số mục khớp tính trên toàn báo cáo."));
     panel.append(block);
   }
   const labelName = {
@@ -1208,6 +1234,14 @@ async function render() {
         el("small", answerResult.note),
       );
       refs(d, answerResult.refs);
+        if (answerResult.search?.refs?.length) {
+          const results = el("details", undefined, "card");
+          results.append(el("summary", "Vị trí VM vừa tìm"),
+            el("p", "Công cụ trả về " + answerResult.search.refs.length + " vị trí có trích dẫn trong " +
+              answerResult.search.hit_count + " kết quả khớp. Mỗi vị trí là một đầu mối để kiểm tra câu hỏi."));
+          refs(results, answerResult.search.refs, false, answerResult.search.windows);
+          d.append(results);
+        }
       if (answerResult.related_locations?.length) {
         d.append(
           el(
