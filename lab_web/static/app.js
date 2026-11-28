@@ -22,6 +22,7 @@ let init,
   job = {},
   busy = false,
   closing = false,
+  renderVersion = 0,
   request = 0,
   answerResult = null;
 const fail = (e) => {
@@ -245,7 +246,7 @@ function renderEvaluation(panel, data) {
     n == null
       ? "Chưa đo"
       : n.toLocaleString("vi", { style: "percent", maximumFractionDigits: 2 });
-  function table(headings, rows) {
+  function table(headings, rows, parent = panel) {
     const grid = el("table");
     const header = grid.createTHead().insertRow();
     for (const name of headings) header.append(el("th", name));
@@ -256,7 +257,133 @@ function renderEvaluation(panel, data) {
     }
     const frame = el("div", undefined, "table-wrap");
     frame.append(grid);
-    panel.append(frame);
+    parent.append(frame);
+  }
+  panel.append(
+    el("h2", "Bảng chấm ba lượt web trên cùng mẫu Python"),
+    el(
+      "p",
+      "Mỗi lượt đối chiếu với cùng 36 mục tham chiếu đã chốt. Nhãn do dự án đối chiếu nguồn tĩnh trên mẫu phát triển. Một mục xuất hiện nhiều lần chỉ được tính một lần trong precision, recall và F1.",
+    ),
+  );
+  const reportRows = [];
+  for (const result of data.web_report_quality) {
+    for (const [label, stage] of [
+      ["Trước lọc", result.raw],
+      ["Sau lọc", result.after_filter],
+    ]) {
+      reportRows.push([
+        result.run,
+        label,
+        stage.claims,
+        stage.correct + "/" + result.reference_count,
+        stage.missed,
+        percent(stage.precision),
+        percent(stage.recall),
+        percent(stage.f1),
+        percent(stage.ioc_attack_f1),
+      ]);
+    }
+  }
+  table(
+    [
+      "Mã lượt",
+      "Báo cáo",
+      "Số câu",
+      "Mục khớp",
+      "Bỏ sót",
+      "Precision",
+      "Recall",
+      "F1",
+      "F1 IOC và ATT&CK",
+    ],
+    reportRows,
+  );
+  const labelName = {
+    correct: "Đúng",
+    incorrect: "Sai",
+    unsupported: "Thiếu căn cứ",
+  };
+  for (const result of data.web_report_quality) {
+    const detail = el("details", undefined, "card");
+    detail.append(
+      el("summary", "Đối chiếu từng câu · " + result.run),
+      el(
+        "p",
+        "Verdict " +
+          result.verdict +
+          ". Nhãn của mẫu là độc. Hàng bị loại vẫn được giữ trong bảng để kiểm tra quyết định tự duyệt.",
+      ),
+    );
+    const trust = result.after_filter;
+    const counts = trust.sentence_counts;
+    detail.append(
+      el(
+        "p",
+        "Sau tự duyệt còn " +
+          trust.claims +
+          " câu. Có " +
+          trust.cited +
+          " câu dẫn nguồn, " +
+          (counts.correct || 0) +
+          " câu đúng, " +
+          (counts.incorrect || 0) +
+          " câu sai và " +
+          (counts.unsupported || 0) +
+          " câu thiếu căn cứ (" +
+          percent(
+            trust.claims ? (counts.unsupported || 0) / trust.claims : null,
+          ) +
+          ").",
+      ),
+    );
+    table(
+      [
+        "ID",
+        "Agent nói (diễn ý)",
+        "Thực tế đối chiếu",
+        "Dòng nguồn",
+        "Nhãn",
+        "Tự duyệt",
+      ],
+      result.rows.map((row) => [
+        row.id,
+        row.summary,
+        row.reason,
+        row.lines.map(([a, b]) => (a === b ? a : a + "–" + b)).join(", "),
+        labelName[row.label],
+        row.retained ? "Giữ" : "Loại",
+      ]),
+      detail,
+    );
+    panel.append(detail);
+    const omissions = el("details", undefined, "card");
+    omissions.append(
+      el("summary", "Mục còn thiếu · " + result.run),
+      el(
+        "p",
+        "Đối chiếu các dòng tham chiếu với kết quả công cụ và nội dung yêu cầu tạo nhận định. Dòng đã xuất hiện vẫn có thể thiếu ngữ cảnh để chứng minh hành vi.",
+      ),
+    );
+    const causes = {
+      missing_from_retrieval: "Công cụ chưa trả đủ dòng",
+      retrieved_but_not_in_requests:
+        "Đã lấy đủ dòng, yêu cầu tạo nhận định còn thiếu",
+      split_across_requests: "Các dòng nằm ở nhiều yêu cầu khác nhau",
+      in_one_request:
+        "Đủ dòng trong một yêu cầu, báo cáo đầu chưa nêu đúng mục",
+      lost_at_review: "Báo cáo đầu có mục đúng, tự duyệt đã loại",
+    };
+    table(
+      ["Mục", "Đáp án trong hồ sơ tham chiếu", "Đối chiếu với nhật ký"],
+      result.missed.map((row) => [
+        row.id,
+        row.proposition,
+        causes[row.category],
+      ]),
+      omissions,
+    );
+    panel.append(omissions);
   }
   const r = data.rubric,
     after = r.after_filter,
@@ -380,6 +507,7 @@ function renderEvaluation(panel, data) {
   }
 }
 async function render() {
+  const version = ++renderVersion;
   const panel = $("#panel");
   panel.replaceChildren();
   document
@@ -387,7 +515,7 @@ async function render() {
     .forEach((b) => b.classList.toggle("selected", b.dataset.view === view));
   if (view === "evaluation") {
     const result = await api("evaluation");
-    if (view === "evaluation") renderEvaluation(panel, result);
+    if (version === renderVersion) renderEvaluation(panel, result);
     return;
   }
   if (view === "yara") {
@@ -414,7 +542,7 @@ async function render() {
       api("yara"),
       api("yara/regression"),
     ]);
-    if (view !== "yara") return;
+    if (version !== renderVersion) return;
     const reference = el("details", undefined, "card");
     reference.append(el("summary", "Báo nhầm đã ghi trên tệp sạch"));
     reference.append(

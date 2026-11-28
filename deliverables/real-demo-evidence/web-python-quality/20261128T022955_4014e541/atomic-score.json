@@ -1,0 +1,501 @@
+{
+  "contract": "frozen-reference-plus-separate-source-findings/1",
+  "run_id": "20261128T022955_4014e541",
+  "profile_id": "python2024.atomic-development/3",
+  "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "raw_report_sha256": "cd0327fde8432c6d07f8ef1ecb61a1196d501339614c41ab9c10cce151a8ba52",
+  "method": "P and F1 on declared units charge all incorrect or unsupported predictions. Supported extra findings are listed separately. All-prediction precision includes them. Recall uses the frozen denominator.",
+  "additional_findings": [
+    {
+      "id": "autofill-fetch",
+      "kind": "behavior",
+      "proposition": "Đọc các hàng kết quả của truy vấn tự động điền.",
+      "source_references": [
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 247,
+          "end_line": 247
+        },
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 248,
+          "end_line": 248
+        }
+      ]
+    },
+    {
+      "id": "autofill-connect-expr",
+      "kind": "behavior",
+      "proposition": "Mở cơ sở dữ liệu tại đường dẫn biểu thức tạm.",
+      "source_references": [
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 245,
+          "end_line": 245
+        }
+      ]
+    },
+    {
+      "id": "autofill-copy-expr",
+      "kind": "behavior",
+      "proposition": "Sao chép sang đường dẫn tạm. Đoạn dẫn chỉ cho thấy hai toán hạng.",
+      "source_references": [
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 244,
+          "end_line": 244
+        }
+      ]
+    },
+    {
+      "id": "browser-write-expr",
+      "kind": "behavior",
+      "proposition": "Ghi vào đường dẫn của hồ sơ trình duyệt. Hai dòng này chưa bao gồm điều kiện ghi.",
+      "source_references": [
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 123,
+          "end_line": 123
+        },
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 124,
+          "end_line": 124
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-expr",
+      "kind": "behavior",
+      "proposition": "Ghi vào tệp tổng hợp. Câu chỉ xác định thao tác ghi và đường dẫn.",
+      "source_references": [
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 128,
+          "end_line": 128
+        },
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 129,
+          "end_line": 129
+        }
+      ]
+    },
+    {
+      "id": "mime-encode",
+      "kind": "behavior",
+      "proposition": "Mã hóa phần MIME trước bước đính kèm.",
+      "source_references": [
+        {
+          "evidence_id": "ev_cad70a8464194ca3",
+          "line": 100,
+          "end_line": 100
+        }
+      ]
+    }
+  ],
+  "human_reviewers": [],
+  "full_coursework_quality_gate_passed": false,
+  "raw": {
+    "reference_units": 36,
+    "correct": 20,
+    "missed": 16,
+    "supported_outside_scope": [
+      "autofill-connect-expr",
+      "autofill-copy-expr",
+      "autofill-fetch",
+      "autofill-write-expr",
+      "browser-write-expr",
+      "mime-encode"
+    ],
+    "incorrect": 1,
+    "unsupported": 0,
+    "prediction_atoms": 35,
+    "duplicate_atoms": 8,
+    "unique_prediction_units": 27,
+    "all_prediction_precision": 0.9629629629629629,
+    "all_prediction_hallucination_rate": 0.0,
+    "precision": 0.9523809523809523,
+    "recall": 0.5555555555555556,
+    "f1": 0.7017543859649122,
+    "matched_reference_ids": [
+      "PY24-A04",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A15",
+      "PY24-A18",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A28",
+      "PY24-A30",
+      "PY24-A33",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "missed_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A03",
+      "PY24-A05",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A16",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A29",
+      "PY24-A31",
+      "PY24-A32",
+      "PY24-A34"
+    ]
+  },
+  "after_filter": {
+    "reference_units": 36,
+    "correct": 20,
+    "missed": 16,
+    "supported_outside_scope": [
+      "autofill-connect-expr",
+      "autofill-copy-expr",
+      "autofill-fetch",
+      "autofill-write-expr",
+      "browser-write-expr",
+      "mime-encode"
+    ],
+    "incorrect": 1,
+    "unsupported": 0,
+    "prediction_atoms": 35,
+    "duplicate_atoms": 8,
+    "unique_prediction_units": 27,
+    "all_prediction_precision": 0.9629629629629629,
+    "all_prediction_hallucination_rate": 0.0,
+    "precision": 0.9523809523809523,
+    "recall": 0.5555555555555556,
+    "f1": 0.7017543859649122,
+    "matched_reference_ids": [
+      "PY24-A04",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A15",
+      "PY24-A18",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A28",
+      "PY24-A30",
+      "PY24-A33",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "missed_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A03",
+      "PY24-A05",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A16",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A29",
+      "PY24-A31",
+      "PY24-A32",
+      "PY24-A34"
+    ]
+  },
+  "by_kind": {
+    "attack": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A28"
+        ],
+        "missed_reference_ids": [
+          "PY24-A29"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A28"
+        ],
+        "missed_reference_ids": [
+          "PY24-A29"
+        ]
+      }
+    },
+    "behavior": {
+      "raw": {
+        "reference_units": 32,
+        "correct": 18,
+        "missed": 14,
+        "supported_outside_scope": [
+          "autofill-connect-expr",
+          "autofill-copy-expr",
+          "autofill-fetch",
+          "autofill-write-expr",
+          "browser-write-expr",
+          "mime-encode"
+        ],
+        "incorrect": 1,
+        "unsupported": 0,
+        "prediction_atoms": 33,
+        "duplicate_atoms": 8,
+        "unique_prediction_units": 25,
+        "all_prediction_precision": 0.96,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 0.9473684210526315,
+        "recall": 0.5625,
+        "f1": 0.7058823529411765,
+        "matched_reference_ids": [
+          "PY24-A04",
+          "PY24-A06",
+          "PY24-A07",
+          "PY24-A08",
+          "PY24-A09",
+          "PY24-A15",
+          "PY24-A18",
+          "PY24-A20",
+          "PY24-A21",
+          "PY24-A22",
+          "PY24-A23",
+          "PY24-A24",
+          "PY24-A25",
+          "PY24-A26",
+          "PY24-A30",
+          "PY24-A33",
+          "PY24-A35",
+          "PY24-A36"
+        ],
+        "missed_reference_ids": [
+          "PY24-A01",
+          "PY24-A02",
+          "PY24-A03",
+          "PY24-A05",
+          "PY24-A10",
+          "PY24-A11",
+          "PY24-A12",
+          "PY24-A13",
+          "PY24-A14",
+          "PY24-A16",
+          "PY24-A17",
+          "PY24-A19",
+          "PY24-A31",
+          "PY24-A32"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 32,
+        "correct": 18,
+        "missed": 14,
+        "supported_outside_scope": [
+          "autofill-connect-expr",
+          "autofill-copy-expr",
+          "autofill-fetch",
+          "autofill-write-expr",
+          "browser-write-expr",
+          "mime-encode"
+        ],
+        "incorrect": 1,
+        "unsupported": 0,
+        "prediction_atoms": 33,
+        "duplicate_atoms": 8,
+        "unique_prediction_units": 25,
+        "all_prediction_precision": 0.96,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 0.9473684210526315,
+        "recall": 0.5625,
+        "f1": 0.7058823529411765,
+        "matched_reference_ids": [
+          "PY24-A04",
+          "PY24-A06",
+          "PY24-A07",
+          "PY24-A08",
+          "PY24-A09",
+          "PY24-A15",
+          "PY24-A18",
+          "PY24-A20",
+          "PY24-A21",
+          "PY24-A22",
+          "PY24-A23",
+          "PY24-A24",
+          "PY24-A25",
+          "PY24-A26",
+          "PY24-A30",
+          "PY24-A33",
+          "PY24-A35",
+          "PY24-A36"
+        ],
+        "missed_reference_ids": [
+          "PY24-A01",
+          "PY24-A02",
+          "PY24-A03",
+          "PY24-A05",
+          "PY24-A10",
+          "PY24-A11",
+          "PY24-A12",
+          "PY24-A13",
+          "PY24-A14",
+          "PY24-A16",
+          "PY24-A17",
+          "PY24-A19",
+          "PY24-A31",
+          "PY24-A32"
+        ]
+      }
+    },
+    "ioc": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A27"
+        ],
+        "missed_reference_ids": [
+          "PY24-A34"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A27"
+        ],
+        "missed_reference_ids": [
+          "PY24-A34"
+        ]
+      }
+    },
+    "observation": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    }
+  },
+  "rubric_ioc_attack": {
+    "raw": {
+      "correct": 2,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 2,
+      "reference_units": 4,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "supported_outside_scope_count": 0
+    },
+    "after_filter": {
+      "correct": 2,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 2,
+      "reference_units": 4,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "supported_outside_scope_count": 0
+    }
+  }
+}

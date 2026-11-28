@@ -1,0 +1,785 @@
+{
+  "run_id": "20261128T023637_4ad0f5f6",
+  "raw_report_sha256": "f100bf6fce558e1265b753a642641f69efb4891fcb24b25107051ddbf3c828a7",
+  "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "checked_report_sha256": "c1b7a1c18fe854da65ccce44f49f63bebade56196216829fe131eb2f2e71a3d6",
+  "retained_ids": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C14",
+    "C15",
+    "C17",
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31",
+    "C32",
+    "C33",
+    "C34",
+    "C35",
+    "C36",
+    "C37",
+    "C38",
+    "C39"
+  ],
+  "claims": {
+    "C1": {
+      "public_summary": "Tạo bản nén trong thư mục tạm.",
+      "reason": "Tên, định dạng và thư mục nguồn khớp đối số ở dòng 279.",
+      "atoms": [
+        {
+          "key": "PY24-A18",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C2": {
+      "public_summary": "Đưa bản nén vào thông điệp MIME rồi gọi gửi.",
+      "reason": "Đối chiếu tệp trả về, đối số tệp đính kèm, mã hóa phần MIME và lời gọi gửi trong các trích dẫn của câu.",
+      "atoms": [
+        {
+          "key": "PY24-A26",
+          "label": "correct",
+          "until": " to an email message"
+        },
+        {
+          "key": "PY24-A20",
+          "label": "correct",
+          "until": " using MIME encoding"
+        },
+        {
+          "key": "mime-encode",
+          "label": "correct",
+          "until": " and sends"
+        },
+        {
+          "key": "PY24-A25",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C3": {
+      "public_summary": "Nêu tên máy chủ được cấu hình.",
+      "reason": "Giá trị khớp mục IOC đã chốt và biến được dùng trong lời gọi tạo kết nối.",
+      "atoms": [
+        {
+          "key": "PY24-A27",
+          "label": "correct"
+        }
+      ],
+      "kind": "ioc"
+    },
+    "C4": {
+      "public_summary": "Lọc các bản ghi tự động điền có giá trị.",
+      "reason": "Biểu thức điều kiện của truy vấn hiện ở dòng 247.",
+      "atoms": [
+        {
+          "key": "PY24-A33",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C5": {
+      "public_summary": "Đọc kết quả truy vấn tự động điền vào biến.",
+      "reason": "Dòng 248 dùng cùng con trỏ với dòng 247. Bộ 36 mục chỉ chấm truy vấn ở vị trí này.",
+      "atoms": [
+        {
+          "key": "autofill-fetch",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C6": {
+      "public_summary": "Truy vấn ba trường dữ liệu đăng nhập.",
+      "reason": "Dòng 142 có đủ ba trường tương ứng mục tham chiếu.",
+      "atoms": [
+        {
+          "key": "PY24-A07",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C7": {
+      "public_summary": "Xử lý trường mật khẩu rồi trả về bytes.",
+      "reason": "Tham số và phép xử lý có căn cứ. Dòng 74 gán lại giá trị sau giải mã văn bản, dòng 75 trả về giá trị đó. Kiểu trả về nêu trong câu là sai.",
+      "atoms": [
+        {
+          "key": "PY24-A09",
+          "label": "correct",
+          "until": " using AES-GCM"
+        },
+        {
+          "key": "PY24-A04",
+          "label": "correct",
+          "until": ", returning"
+        },
+        {
+          "key": "returns-bytes",
+          "label": "incorrect"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C8": {
+      "public_summary": "Ghi nội dung vào tệp của hồ sơ trình duyệt.",
+      "reason": "Đoạn 116–131 bao gồm điều kiện, đường dẫn và thao tác ghi.",
+      "atoms": [
+        {
+          "key": "PY24-A15",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C9": {
+      "public_summary": "Ghi nối vào tệp tự động điền tổng hợp.",
+      "reason": "Điều kiện và chế độ mở để ghi nối xuất hiện trong cùng đoạn dẫn.",
+      "atoms": [
+        {
+          "key": "PY24-A30",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C10": {
+      "public_summary": "Nêu import Windows và gán mục đích sử dụng.",
+      "reason": "Phần trích xác nhận import. Theo quy ước chấm, mục đích sử dụng cần chứng cứ ngoài danh sách khai báo.",
+      "atoms": [
+        {
+          "key": "import-win",
+          "label": "correct",
+          "until": " to access"
+        },
+        {
+          "key": "win-purpose-at-import",
+          "label": "unsupported"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C11": {
+      "public_summary": "Nêu import mật mã và gán mục đích mã hóa.",
+      "reason": "Import có thật. Phần trích chưa chứng minh phép mã hóa được dùng trong chương trình.",
+      "atoms": [
+        {
+          "key": "import-cipher",
+          "label": "correct",
+          "until": " to handle"
+        },
+        {
+          "key": "encryption-at-import",
+          "label": "unsupported"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C12": {
+      "public_summary": "Nêu phép giải mã và cho rằng không có bước giải mã văn bản.",
+      "reason": "Phép xử lý có trong thân hàm. Thân hàm không kiểm thẻ xác thực, nhưng có bước đổi kết quả sang văn bản tại dòng 74.",
+      "atoms": [
+        {
+          "key": "PY24-A04",
+          "label": "correct",
+          "until": " without authentication"
+        },
+        {
+          "key": "no-auth-in-helper",
+          "label": "correct",
+          "until": " or text decoding"
+        },
+        {
+          "key": "no-text-decode",
+          "label": "incorrect"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C13": {
+      "public_summary": "Suy ra việc gửi thư từ đoạn cấu hình.",
+      "reason": "Các trường cấu hình xuất hiện, nhưng trích dẫn kết thúc ở dòng 89, trước lời gọi gửi.",
+      "atoms": [
+        {
+          "key": "send-from-settings",
+          "label": "unsupported",
+          "until": " using an SMTP server"
+        },
+        {
+          "key": "mail-host-config",
+          "label": "correct",
+          "until": " with a configured"
+        },
+        {
+          "key": "mail-user-config",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C14": {
+      "public_summary": "Nêu một tên máy chủ làm IOC tĩnh.",
+      "reason": "Tên máy chủ khớp giá trị khai báo và đáp án A27. Câu chỉ nêu chỉ dấu.",
+      "atoms": [
+        {
+          "key": "PY24-A27",
+          "label": "correct"
+        }
+      ],
+      "kind": "ioc"
+    },
+    "C15": {
+      "public_summary": "Truy vấn dữ liệu tự động điền và gán kết quả.",
+      "reason": "Dòng 247 chứa điều kiện, dòng 248 đọc từ đúng con trỏ.",
+      "atoms": [
+        {
+          "key": "PY24-A33",
+          "label": "correct",
+          "until": ", and stores"
+        },
+        {
+          "key": "autofill-fetch",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C16": {
+      "public_summary": "Ghi kết quả tự động điền vào tệp được đặt tên.",
+      "reason": "Dòng 257 truyền tên và dữ liệu cho hàm ghi, các dòng 270–273 hiện thực đường dẫn và thao tác ghi. Đọc cả hai đoạn thì nhận định có căn cứ.",
+      "atoms": [
+        {
+          "key": "autofill-write-result",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C17": {
+      "public_summary": "Gán T1555.003 cho việc truy cập kho đăng nhập trình duyệt.",
+      "reason": "Nguồn riêng của câu có đường dẫn kho đăng nhập, truy vấn trường mật khẩu và đọc hàng kết quả. Kết luận giới hạn ở khả năng truy cập tĩnh.",
+      "atoms": [
+        {
+          "key": "PY24-A28",
+          "label": "correct"
+        }
+      ],
+      "kind": "attack"
+    },
+    "C18": {
+      "public_summary": "Đọc hàng sau truy vấn đăng nhập.",
+      "reason": "Dòng 142–143 dùng cùng con trỏ.",
+      "atoms": [
+        {
+          "key": "PY24-A08",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C19": {
+      "public_summary": "Đọc hàng sau truy vấn tự động điền.",
+      "reason": "Cùng thao tác đã chấm cho câu đọc kết quả tại dòng 248.",
+      "atoms": [
+        {
+          "key": "autofill-fetch",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C20": {
+      "public_summary": "Thực hiện truy vấn đăng nhập.",
+      "reason": "Trùng truy vấn tại dòng 142.",
+      "atoms": [
+        {
+          "key": "PY24-A07",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C21": {
+      "public_summary": "Thực hiện truy vấn tự động điền.",
+      "reason": "Trùng truy vấn tại dòng 247.",
+      "atoms": [
+        {
+          "key": "PY24-A33",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C22": {
+      "public_summary": "Mở cơ sở dữ liệu theo biểu thức đường dẫn tạm.",
+      "reason": "Có lời gọi ở dòng 245. Đây là một mục ngoài đáp án chốt.",
+      "atoms": [
+        {
+          "key": "autofill-connect-expr",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C23": {
+      "public_summary": "Sao chép giữa hai biểu thức đường dẫn.",
+      "reason": "Dòng 244 xác nhận thao tác. Câu và trích dẫn thiếu nguồn gốc đường dẫn cần để tính A32.",
+      "atoms": [
+        {
+          "key": "autofill-copy-expr",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C24": {
+      "public_summary": "Ghi vào tệp văn bản của hồ sơ.",
+      "reason": "Dòng 123–124 xác nhận thao tác ghi hẹp. Thiếu điều kiện và ngữ cảnh của A15.",
+      "atoms": [
+        {
+          "key": "browser-write-expr",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C25": {
+      "public_summary": "Ghi từng mục đã định dạng vào tệp tạm theo tên tham số.",
+      "reason": "Đường dẫn và biểu thức ghi tương ứng A36 ở dòng 271 và 273.",
+      "atoms": [
+        {
+          "key": "PY24-A36",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C26": {
+      "public_summary": "Ghi nội dung vào tệp tổng hợp.",
+      "reason": "Câu chỉ khẳng định thao tác ghi. Áp dụng cùng cách chấm giới hạn đã dùng ở v11.",
+      "atoms": [
+        {
+          "key": "autofill-write-expr",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C27": {
+      "public_summary": "Tạo bản nén ZIP.",
+      "reason": "Dòng 279 xác nhận cùng thao tác đã chấm ở đầu báo cáo.",
+      "atoms": [
+        {
+          "key": "PY24-A18",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C28": {
+      "public_summary": "Gọi phép giải mã trong hàm xử lý.",
+      "reason": "Hai dòng 72–73 và import tương ứng xác nhận chế độ và vai trò đối số. Câu không khẳng định kiểu trả về.",
+      "atoms": [
+        {
+          "key": "PY24-A04",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C29": {
+      "public_summary": "Thêm nội dung văn bản vào thông điệp.",
+      "reason": "Dòng 94 gắn phần văn bản vào thông điệp nhiều phần.",
+      "atoms": [
+        {
+          "key": "PY24-A35",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C30": {
+      "public_summary": "Gọi API gửi thông điệp.",
+      "reason": "Dòng 109 xác nhận đối số gửi và đối tượng đã tạo ở 106.",
+      "atoms": [
+        {
+          "key": "PY24-A25",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C31": {
+      "public_summary": "Gọi phương thức xác thực trên đối tượng thư.",
+      "reason": "Dòng 108 cho thấy lời gọi và hai vị trí đối số.",
+      "atoms": [
+        {
+          "key": "PY24-A24",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C32": {
+      "public_summary": "Yêu cầu nâng cấp kết nối TLS.",
+      "reason": "Đối tượng tạo ở 106 nhận lời gọi tại 107.",
+      "atoms": [
+        {
+          "key": "PY24-A23",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C33": {
+      "public_summary": "Tạo đối tượng SMTP theo cấu hình.",
+      "reason": "Dòng 106 có các đối số máy chủ và cổng.",
+      "atoms": [
+        {
+          "key": "PY24-A22",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C34": {
+      "public_summary": "Đặt payload theo biểu thức đọc.",
+      "reason": "Dòng 98 có biểu thức đọc làm đối số. Câu không dẫn dòng 96 để xác định nguồn đường dẫn của A19.",
+      "atoms": [
+        {
+          "key": "mime-payload-expr",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C35": {
+      "public_summary": "Đọc tệp được chỉ định bởi tham số đường dẫn.",
+      "reason": "Các dòng 96 và 98 chứng minh thao tác đọc. Câu chỉ khẳng định việc đọc, chưa khẳng định việc đặt dữ liệu vào payload theo A19.",
+      "atoms": [
+        {
+          "key": "read-attachment-expr",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C36": {
+      "public_summary": "Mã hóa thành phần MIME.",
+      "reason": "Dòng 100 xác nhận lời gọi này, ngoài các mục đã chốt.",
+      "atoms": [
+        {
+          "key": "mime-encode",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C37": {
+      "public_summary": "Tuần tự hóa thông điệp.",
+      "reason": "Đối tượng được tạo ở 90, tuần tự hóa ở 103.",
+      "atoms": [
+        {
+          "key": "PY24-A21",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C38": {
+      "public_summary": "Gắn thành phần MIME vào thông điệp.",
+      "reason": "Dòng 102 xác nhận lời gọi trên đúng đối tượng.",
+      "atoms": [
+        {
+          "key": "PY24-A20",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C39": {
+      "public_summary": "Mở bản sao cơ sở dữ liệu đăng nhập.",
+      "reason": "Dòng 140 có lời gọi mở cơ sở dữ liệu với đường dẫn tạm tương ứng.",
+      "atoms": [
+        {
+          "key": "PY24-A06",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "autofill-fetch",
+      "kind": "behavior",
+      "proposition": "Đọc các hàng kết quả của truy vấn tự động điền.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 247,
+          "end_line": 247
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 248,
+          "end_line": 248
+        }
+      ]
+    },
+    {
+      "id": "autofill-connect-expr",
+      "kind": "behavior",
+      "proposition": "Mở cơ sở dữ liệu tại đường dẫn biểu thức tạm.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 245,
+          "end_line": 245
+        }
+      ]
+    },
+    {
+      "id": "autofill-copy-expr",
+      "kind": "behavior",
+      "proposition": "Sao chép sang đường dẫn tạm. Đoạn dẫn chỉ cho thấy hai toán hạng.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 244,
+          "end_line": 244
+        }
+      ]
+    },
+    {
+      "id": "browser-write-expr",
+      "kind": "behavior",
+      "proposition": "Ghi vào đường dẫn của hồ sơ trình duyệt. Hai dòng này chưa bao gồm điều kiện ghi.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 123,
+          "end_line": 123
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 124,
+          "end_line": 124
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-expr",
+      "kind": "behavior",
+      "proposition": "Ghi vào tệp tổng hợp. Câu chỉ xác định thao tác ghi và đường dẫn.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 128,
+          "end_line": 128
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 129,
+          "end_line": 129
+        }
+      ]
+    },
+    {
+      "id": "mime-encode",
+      "kind": "behavior",
+      "proposition": "Mã hóa phần MIME trước bước đính kèm.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 100,
+          "end_line": 100
+        }
+      ]
+    },
+    {
+      "id": "import-win",
+      "kind": "behavior",
+      "proposition": "Nhập hàm từ thư viện Windows.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 11,
+          "end_line": 11
+        }
+      ]
+    },
+    {
+      "id": "import-cipher",
+      "kind": "behavior",
+      "proposition": "Nhập lớp xử lý mật mã.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 12,
+          "end_line": 12
+        }
+      ]
+    },
+    {
+      "id": "no-auth-in-helper",
+      "kind": "behavior",
+      "proposition": "Thân hàm đã trích không có bước kiểm thẻ xác thực.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 69,
+          "end_line": 69
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 72,
+          "end_line": 72
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 73,
+          "end_line": 73
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 74,
+          "end_line": 74
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 75,
+          "end_line": 75
+        }
+      ]
+    },
+    {
+      "id": "mail-host-config",
+      "kind": "behavior",
+      "proposition": "Có cấu hình tên máy chủ ở vị trí được trích.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 83,
+          "end_line": 83
+        }
+      ]
+    },
+    {
+      "id": "mail-user-config",
+      "kind": "behavior",
+      "proposition": "Có các trường cấu hình xác thực ở vị trí được trích.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 85,
+          "end_line": 85
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 86,
+          "end_line": 86
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-result",
+      "kind": "behavior",
+      "proposition": "Kết quả có điều kiện được chuyển sang hàm ghi với tên tệp cụ thể.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 253,
+          "end_line": 253
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 254,
+          "end_line": 254
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 255,
+          "end_line": 255
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 257,
+          "end_line": 257
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 270,
+          "end_line": 270
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 271,
+          "end_line": 271
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 273,
+          "end_line": 273
+        }
+      ]
+    },
+    {
+      "id": "mime-payload-expr",
+      "kind": "behavior",
+      "proposition": "Đặt payload bằng biểu thức đọc. Phần trích thiếu dòng mở tệp theo đường dẫn.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 97,
+          "end_line": 97
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 98,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "read-attachment-expr",
+      "kind": "behavior",
+      "proposition": "Đọc tệp từ tham số đường dẫn. Câu chỉ khẳng định thao tác đọc.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 96,
+          "end_line": 96
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 98,
+          "end_line": 98
+        }
+      ]
+    }
+  ]
+}

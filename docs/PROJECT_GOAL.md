@@ -6,6 +6,8 @@ Giữ nguyên tên đề tài và các ngưỡng giảng viên. Ưu tiên agent 
 
 Nguồn có thẩm quyền: 12 ảnh slide và đề xuất gốc trong `docs/reference/`.
 
+Ba lượt web trên mẫu phát triển Python đã được đối chiếu từng câu và từng mục bỏ sót. Đích chất lượng kế tiếp là tăng recall có dẫn chứng, giảm lỗi tự duyệt, đo lại theo cùng điều kiện ở cả hai định dạng và kiểm trên tập giữ riêng. [Bảng chấm bản web](CHAM_BAO_CAO_WEB.md)
+
 Mốc kiểm chứng web ngày 28/11 đã có demo đầu-cuối, bản đồ và hỏi đáp có nhật ký, thí nghiệm YARA và phép đối chứng tìm liên kết. Trên ba lượt cùng cấu hình Python, độ ổn định nhận định đạt 71,05% so với ngưỡng 80%. Các bước nghiệm thu còn lại gồm chấm chất lượng bản hiện hành, đo trên mẫu giữ riêng, mở rộng phép thử injection và kiểm cài đặt trên máy thành viên. [Bảng tiến độ](STATUS.md) · [Phân công kỹ thuật còn lại](CONG_VIEC_CON_LAI.md)
 Đề tài: **Xây dựng AI Agent phân tích mã độc đánh cắp thông tin (Stealer) .NET/Python theo mô hình ReAct sử dụng SLM cục bộ** — Hướng 6.
 

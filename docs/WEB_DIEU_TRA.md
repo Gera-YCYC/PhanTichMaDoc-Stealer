@@ -92,9 +92,11 @@ Hồ sơ có bản đồ đã lưu sẽ hiển thị bản đồ tại thời đ
 
 ## Độ ổn định của ba lượt Python
 
+Để trình bày phần chấm chất lượng, mở **Đánh giá → Đối chiếu từng câu** ở lượt kết thúc bằng `4ad0f5f6`. So C12 với C16 để thấy hai loại lỗi của bộ tự duyệt. Mở **Mục còn thiếu** ngay bên dưới để xem từng mục bị mất ở khâu nào. Phần này đọc được cả khi mở web bằng `-HistoryOnly`. [Kết quả và cách tái lập](CHAM_BAO_CAO_WEB.md)
+
 Ba lượt liên tiếp dùng cùng SHA-256 của mẫu, model, mã phân tích và cấu hình. Các lượt lần lượt giữ 29, 30 và 36 nhận định, mất 376,77, 399,07 và 495,93 giây. Cả ba gọi công cụ 17 lần và cùng đưa verdict `suspicious`. Số lượt gọi model lần lượt là 38, 38 và 49.
 
-Theo phép chấm của dự án, 27/38 nhận định xuất hiện trong cả ba lượt, đạt **71,05%** so với ngưỡng **80%**. Đối với hành vi, cách diễn đạt khác nhau được tính riêng. Trên bản đồ, cùng ba quan hệ có bằng chứng ở cả ba lượt, bốn quan hệ còn lại đều cần kiểm tra thêm. Nhóm còn phải đo trên mẫu giữ riêng và chấm ý nghĩa từng nhận định. [Biên bản ba lượt](../deliverables/real-demo-evidence/web-stability-python.json)
+Theo phép chấm của dự án, 27/38 nhận định xuất hiện trong cả ba lượt, đạt **71,05%** so với ngưỡng **80%**. Đối với hành vi, cách diễn đạt khác nhau được tính riêng. Trên bản đồ, cùng ba quan hệ có bằng chứng ở cả ba lượt, bốn quan hệ còn lại đều cần kiểm tra thêm. Cần lặp lại phép đo trên mẫu giữ riêng. [Biên bản ba lượt](../deliverables/real-demo-evidence/web-stability-python.json)
 
 Trên máy có đủ ba nhật ký, tái lập phép tính bằng lệnh sau. Trên máy khác, thay ba mã bằng ba lượt đã hoàn tất trên cùng một mẫu và phiên bản.
 

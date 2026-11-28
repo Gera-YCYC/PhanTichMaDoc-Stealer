@@ -1,0 +1,688 @@
+{
+  "contract": "frozen-reference-plus-separate-source-findings/1",
+  "run_id": "20261128T023637_4ad0f5f6",
+  "profile_id": "python2024.atomic-development/3",
+  "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "raw_report_sha256": "f100bf6fce558e1265b753a642641f69efb4891fcb24b25107051ddbf3c828a7",
+  "method": "P and F1 on declared units charge all incorrect or unsupported predictions. Supported extra findings are listed separately. All-prediction precision includes them. Recall uses the frozen denominator.",
+  "additional_findings": [
+    {
+      "id": "autofill-fetch",
+      "kind": "behavior",
+      "proposition": "Đọc các hàng kết quả của truy vấn tự động điền.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 247,
+          "end_line": 247
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 248,
+          "end_line": 248
+        }
+      ]
+    },
+    {
+      "id": "autofill-connect-expr",
+      "kind": "behavior",
+      "proposition": "Mở cơ sở dữ liệu tại đường dẫn biểu thức tạm.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 245,
+          "end_line": 245
+        }
+      ]
+    },
+    {
+      "id": "autofill-copy-expr",
+      "kind": "behavior",
+      "proposition": "Sao chép sang đường dẫn tạm. Đoạn dẫn chỉ cho thấy hai toán hạng.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 244,
+          "end_line": 244
+        }
+      ]
+    },
+    {
+      "id": "browser-write-expr",
+      "kind": "behavior",
+      "proposition": "Ghi vào đường dẫn của hồ sơ trình duyệt. Hai dòng này chưa bao gồm điều kiện ghi.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 123,
+          "end_line": 123
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 124,
+          "end_line": 124
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-expr",
+      "kind": "behavior",
+      "proposition": "Ghi vào tệp tổng hợp. Câu chỉ xác định thao tác ghi và đường dẫn.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 128,
+          "end_line": 128
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 129,
+          "end_line": 129
+        }
+      ]
+    },
+    {
+      "id": "mime-encode",
+      "kind": "behavior",
+      "proposition": "Mã hóa phần MIME trước bước đính kèm.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 100,
+          "end_line": 100
+        }
+      ]
+    },
+    {
+      "id": "import-win",
+      "kind": "behavior",
+      "proposition": "Nhập hàm từ thư viện Windows.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 11,
+          "end_line": 11
+        }
+      ]
+    },
+    {
+      "id": "import-cipher",
+      "kind": "behavior",
+      "proposition": "Nhập lớp xử lý mật mã.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 12,
+          "end_line": 12
+        }
+      ]
+    },
+    {
+      "id": "no-auth-in-helper",
+      "kind": "behavior",
+      "proposition": "Thân hàm đã trích không có bước kiểm thẻ xác thực.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 69,
+          "end_line": 69
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 72,
+          "end_line": 72
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 73,
+          "end_line": 73
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 74,
+          "end_line": 74
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 75,
+          "end_line": 75
+        }
+      ]
+    },
+    {
+      "id": "mail-host-config",
+      "kind": "behavior",
+      "proposition": "Có cấu hình tên máy chủ ở vị trí được trích.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 83,
+          "end_line": 83
+        }
+      ]
+    },
+    {
+      "id": "mail-user-config",
+      "kind": "behavior",
+      "proposition": "Có các trường cấu hình xác thực ở vị trí được trích.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 85,
+          "end_line": 85
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 86,
+          "end_line": 86
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-result",
+      "kind": "behavior",
+      "proposition": "Kết quả có điều kiện được chuyển sang hàm ghi với tên tệp cụ thể.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 253,
+          "end_line": 253
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 254,
+          "end_line": 254
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 255,
+          "end_line": 255
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 257,
+          "end_line": 257
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 270,
+          "end_line": 270
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 271,
+          "end_line": 271
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 273,
+          "end_line": 273
+        }
+      ]
+    },
+    {
+      "id": "mime-payload-expr",
+      "kind": "behavior",
+      "proposition": "Đặt payload bằng biểu thức đọc. Phần trích thiếu dòng mở tệp theo đường dẫn.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 97,
+          "end_line": 97
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 98,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "read-attachment-expr",
+      "kind": "behavior",
+      "proposition": "Đọc tệp từ tham số đường dẫn. Câu chỉ khẳng định thao tác đọc.",
+      "source_references": [
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 96,
+          "end_line": 96
+        },
+        {
+          "evidence_id": "ev_8f8b078421be440d",
+          "line": 98,
+          "end_line": 98
+        }
+      ]
+    }
+  ],
+  "human_reviewers": [],
+  "full_coursework_quality_gate_passed": false,
+  "raw": {
+    "reference_units": 36,
+    "correct": 20,
+    "missed": 16,
+    "supported_outside_scope": [
+      "autofill-connect-expr",
+      "autofill-copy-expr",
+      "autofill-fetch",
+      "autofill-write-expr",
+      "autofill-write-result",
+      "browser-write-expr",
+      "import-cipher",
+      "import-win",
+      "mail-host-config",
+      "mail-user-config",
+      "mime-encode",
+      "mime-payload-expr",
+      "no-auth-in-helper",
+      "read-attachment-expr"
+    ],
+    "incorrect": 2,
+    "unsupported": 3,
+    "prediction_atoms": 51,
+    "duplicate_atoms": 12,
+    "unique_prediction_units": 39,
+    "all_prediction_precision": 0.8717948717948718,
+    "all_prediction_hallucination_rate": 0.07692307692307693,
+    "precision": 0.8,
+    "recall": 0.5555555555555556,
+    "f1": 0.6557377049180327,
+    "matched_reference_ids": [
+      "PY24-A04",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A15",
+      "PY24-A18",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A28",
+      "PY24-A30",
+      "PY24-A33",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "missed_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A03",
+      "PY24-A05",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A16",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A29",
+      "PY24-A31",
+      "PY24-A32",
+      "PY24-A34"
+    ]
+  },
+  "after_filter": {
+    "reference_units": 36,
+    "correct": 19,
+    "missed": 17,
+    "supported_outside_scope": [
+      "autofill-connect-expr",
+      "autofill-copy-expr",
+      "autofill-fetch",
+      "autofill-write-expr",
+      "browser-write-expr",
+      "import-cipher",
+      "import-win",
+      "mime-encode",
+      "mime-payload-expr",
+      "no-auth-in-helper",
+      "read-attachment-expr"
+    ],
+    "incorrect": 1,
+    "unsupported": 2,
+    "prediction_atoms": 44,
+    "duplicate_atoms": 11,
+    "unique_prediction_units": 33,
+    "all_prediction_precision": 0.9090909090909091,
+    "all_prediction_hallucination_rate": 0.06060606060606061,
+    "precision": 0.8636363636363636,
+    "recall": 0.5277777777777778,
+    "f1": 0.6551724137931034,
+    "matched_reference_ids": [
+      "PY24-A04",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A15",
+      "PY24-A18",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A28",
+      "PY24-A30",
+      "PY24-A33",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "missed_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A03",
+      "PY24-A05",
+      "PY24-A09",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A16",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A29",
+      "PY24-A31",
+      "PY24-A32",
+      "PY24-A34"
+    ]
+  },
+  "by_kind": {
+    "attack": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A28"
+        ],
+        "missed_reference_ids": [
+          "PY24-A29"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A28"
+        ],
+        "missed_reference_ids": [
+          "PY24-A29"
+        ]
+      }
+    },
+    "behavior": {
+      "raw": {
+        "reference_units": 32,
+        "correct": 18,
+        "missed": 14,
+        "supported_outside_scope": [
+          "autofill-connect-expr",
+          "autofill-copy-expr",
+          "autofill-fetch",
+          "autofill-write-expr",
+          "autofill-write-result",
+          "browser-write-expr",
+          "import-cipher",
+          "import-win",
+          "mail-host-config",
+          "mail-user-config",
+          "mime-encode",
+          "mime-payload-expr",
+          "no-auth-in-helper",
+          "read-attachment-expr"
+        ],
+        "incorrect": 2,
+        "unsupported": 3,
+        "prediction_atoms": 48,
+        "duplicate_atoms": 11,
+        "unique_prediction_units": 37,
+        "all_prediction_precision": 0.8648648648648649,
+        "all_prediction_hallucination_rate": 0.08108108108108109,
+        "precision": 0.782608695652174,
+        "recall": 0.5625,
+        "f1": 0.6545454545454545,
+        "matched_reference_ids": [
+          "PY24-A04",
+          "PY24-A06",
+          "PY24-A07",
+          "PY24-A08",
+          "PY24-A09",
+          "PY24-A15",
+          "PY24-A18",
+          "PY24-A20",
+          "PY24-A21",
+          "PY24-A22",
+          "PY24-A23",
+          "PY24-A24",
+          "PY24-A25",
+          "PY24-A26",
+          "PY24-A30",
+          "PY24-A33",
+          "PY24-A35",
+          "PY24-A36"
+        ],
+        "missed_reference_ids": [
+          "PY24-A01",
+          "PY24-A02",
+          "PY24-A03",
+          "PY24-A05",
+          "PY24-A10",
+          "PY24-A11",
+          "PY24-A12",
+          "PY24-A13",
+          "PY24-A14",
+          "PY24-A16",
+          "PY24-A17",
+          "PY24-A19",
+          "PY24-A31",
+          "PY24-A32"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 32,
+        "correct": 17,
+        "missed": 15,
+        "supported_outside_scope": [
+          "autofill-connect-expr",
+          "autofill-copy-expr",
+          "autofill-fetch",
+          "autofill-write-expr",
+          "browser-write-expr",
+          "import-cipher",
+          "import-win",
+          "mime-encode",
+          "mime-payload-expr",
+          "no-auth-in-helper",
+          "read-attachment-expr"
+        ],
+        "incorrect": 1,
+        "unsupported": 2,
+        "prediction_atoms": 41,
+        "duplicate_atoms": 10,
+        "unique_prediction_units": 31,
+        "all_prediction_precision": 0.9032258064516129,
+        "all_prediction_hallucination_rate": 0.06451612903225806,
+        "precision": 0.85,
+        "recall": 0.53125,
+        "f1": 0.6538461538461539,
+        "matched_reference_ids": [
+          "PY24-A04",
+          "PY24-A06",
+          "PY24-A07",
+          "PY24-A08",
+          "PY24-A15",
+          "PY24-A18",
+          "PY24-A20",
+          "PY24-A21",
+          "PY24-A22",
+          "PY24-A23",
+          "PY24-A24",
+          "PY24-A25",
+          "PY24-A26",
+          "PY24-A30",
+          "PY24-A33",
+          "PY24-A35",
+          "PY24-A36"
+        ],
+        "missed_reference_ids": [
+          "PY24-A01",
+          "PY24-A02",
+          "PY24-A03",
+          "PY24-A05",
+          "PY24-A09",
+          "PY24-A10",
+          "PY24-A11",
+          "PY24-A12",
+          "PY24-A13",
+          "PY24-A14",
+          "PY24-A16",
+          "PY24-A17",
+          "PY24-A19",
+          "PY24-A31",
+          "PY24-A32"
+        ]
+      }
+    },
+    "ioc": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 2,
+        "duplicate_atoms": 1,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A27"
+        ],
+        "missed_reference_ids": [
+          "PY24-A34"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 2,
+        "duplicate_atoms": 1,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A27"
+        ],
+        "missed_reference_ids": [
+          "PY24-A34"
+        ]
+      }
+    },
+    "observation": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    }
+  },
+  "rubric_ioc_attack": {
+    "raw": {
+      "correct": 2,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 2,
+      "reference_units": 4,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "supported_outside_scope_count": 0
+    },
+    "after_filter": {
+      "correct": 2,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 2,
+      "reference_units": 4,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "supported_outside_scope_count": 0
+    }
+  }
+}

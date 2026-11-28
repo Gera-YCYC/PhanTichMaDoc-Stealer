@@ -20,4 +20,6 @@ jobs:
         run: python training/verify_ranker_reproduction.py --portable
       - name: Tính lại điểm bốn mẫu từ bằng chứng trong Git
         run: python -m eval.score_public_batch
+      - name: Đối chiếu ba báo cáo Python trước và sau tự duyệt
+        run: python -m eval.web_report_quality
       - run: python -m compileall -q stealer_agent vm_tools training

@@ -289,6 +289,8 @@ class Handler(BaseHTTPRequestHandler):
             if p == "/api/yara":
                 return self.reply(200, yara_history())
             if p == "/api/evaluation":
+                from eval.web_report_quality import reports
+
                 base = ROOT / "deliverables/real-demo-evidence"
                 rubric = read(base / "coverage-v11-rubric.json")
                 paired = read(base / "web-comparison.json")
@@ -319,6 +321,7 @@ class Handler(BaseHTTPRequestHandler):
                             for row in paired["results"]
                         ],
                         "stability": read(repeats) if repeats.exists() else None,
+                        "web_report_quality": reports(),
                     },
                 )
             if p == "/api/yara/regression":

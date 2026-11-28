@@ -2,6 +2,8 @@
 
 ## Ưu tiên của nhóm
 
+Ba báo cáo Python hiện đã đối chiếu đủ 99 lượt nhận định với nguồn. Sau tự duyệt còn bỏ sót 16–17/36 mục mỗi lượt. Trong từng lượt, 7 mục thiếu dòng từ công cụ, 5–6 mục đã có đủ dòng tham chiếu trong cùng một yêu cầu nhưng báo cáo đầu chưa nêu đúng. Nhóm phụ trách truy xuất cần đo lại phần lấy dòng. Nhóm phụ trách báo cáo cần kiểm riêng phần ý nghĩa và số câu đúng bị tự duyệt loại. Giữ tập chấm độc lập cho lần nghiệm thu. [Đối chiếu theo từng giai đoạn](CHAM_BAO_CAO_WEB.md)
+
 Ba lượt cùng cấu hình web trên mẫu Python đã đo được 71,05% nhận định lặp lại. Việc tiếp theo là đối chiếu các nhận định thay đổi, kiểm xem khác cách diễn đạt hay khác nội dung, rồi chạy lại phép đo trên mẫu giữ riêng cho cả hai định dạng. Giữ cách tính hiện tại để so sánh qua phiên bản. [Kết quả và ba mã lượt](WEB_DIEU_TRA.md#độ-ổn-định-của-ba-lượt-python)
 
 Dùng demo web cục bộ trong buổi bảo vệ. Việc kỹ thuật tiếp theo là đo độ chính xác và bỏ sót của từng liên kết trên mẫu giữ riêng, xử lý thêm liên kết qua helper và xác minh verdict. Tiếp tục đo ổn định cùng bản agent ba lần, mở rộng kiểm thử injection trên cả hai định dạng và kiểm cài đặt trên máy thành viên khác. Nhóm có thể nhập nhận xét đã đối chiếu nguồn trong web, train ứng viên và so lại báo cáo đầu-cuối. Yêu cầu fine-tune chính Qwen vẫn chờ giảng viên làm rõ. [Hướng dẫn điều tra](WEB_DIEU_TRA.md)

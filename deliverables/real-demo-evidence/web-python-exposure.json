@@ -1,0 +1,486 @@
+{
+  "runs": [
+    {
+      "run": "20261128T021511_bec5b2e5",
+      "journal_sha256": "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+      "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+      "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+      "report_requests": 10,
+      "counts": {
+        "missing_from_retrieval": 7,
+        "retrieved_but_not_in_requests": 2,
+        "retained": 19,
+        "split_across_requests": 2,
+        "lost_at_review": 1,
+        "in_one_request": 5
+      },
+      "units": [
+        {
+          "unit": "PY24-A01",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A02",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "PY24-A03",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "PY24-A04",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A05",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A06",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A07",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A08",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A09",
+          "category": "lost_at_review"
+        },
+        {
+          "unit": "PY24-A10",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A11",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A12",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A13",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A14",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A15",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A16",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A17",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A18",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A19",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A20",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A21",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A22",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A23",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A24",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A25",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A26",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A27",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A28",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A29",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A30",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A31",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A32",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A33",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A34",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A35",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A36",
+          "category": "retained"
+        }
+      ]
+    },
+    {
+      "run": "20261128T022955_4014e541",
+      "journal_sha256": "4950ca4f4a756c91b4221469f9186b8766fce4ac606049ae3335fecee19706b7",
+      "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+      "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+      "report_requests": 10,
+      "counts": {
+        "missing_from_retrieval": 7,
+        "retrieved_but_not_in_requests": 2,
+        "retained": 20,
+        "split_across_requests": 2,
+        "in_one_request": 5
+      },
+      "units": [
+        {
+          "unit": "PY24-A01",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A02",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "PY24-A03",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "PY24-A04",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A05",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A06",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A07",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A08",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A09",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A10",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A11",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A12",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A13",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A14",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A15",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A16",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A17",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A18",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A19",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A20",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A21",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A22",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A23",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A24",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A25",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A26",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A27",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A28",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A29",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A30",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A31",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A32",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A33",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A34",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A35",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A36",
+          "category": "retained"
+        }
+      ]
+    },
+    {
+      "run": "20261128T023637_4ad0f5f6",
+      "journal_sha256": "905b7294395ffcdf80d87db03839be5117f5c03f709f078d2ab53f9728ef3528",
+      "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+      "source_sha256": "f2d6246d769fe363ca08bafef3cbe5217e2e8f5ed05561faa842f61ea0e17100",
+      "report_requests": 14,
+      "counts": {
+        "missing_from_retrieval": 7,
+        "in_one_request": 6,
+        "split_across_requests": 3,
+        "retained": 19,
+        "lost_at_review": 1
+      },
+      "units": [
+        {
+          "unit": "PY24-A01",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A02",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A03",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A04",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A05",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A06",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A07",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A08",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A09",
+          "category": "lost_at_review"
+        },
+        {
+          "unit": "PY24-A10",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A11",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A12",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A13",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A14",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A15",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A16",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A17",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A18",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A19",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A20",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A21",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A22",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A23",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A24",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A25",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A26",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A27",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A28",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A29",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "PY24-A30",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A31",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "PY24-A32",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A33",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A34",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "PY24-A35",
+          "category": "retained"
+        },
+        {
+          "unit": "PY24-A36",
+          "category": "retained"
+        }
+      ]
+    }
+  ],
+  "scope": "Declared reference rows in tool results and three candidate-generation phases. Row presence does not prove sufficient context, model attention or causality."
+}
