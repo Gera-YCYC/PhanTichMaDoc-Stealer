@@ -1,0 +1,264 @@
+{
+  "run": "20261128T110548_0cb9678e",
+  "sample": "public_mercurial.bin",
+  "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "3c52dcd5ce4ee1b1d55ff8e576b4f973f55d5f28ff534599fc685126ffd54116",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 677.7102,
+    "model_calls": 50,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 92721,
+    "completion_tokens": 3942,
+    "host_peak_rss_bytes": 29044736,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 531693568,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 294,
+  "journal_sha256": "2140fc6556d08aa4b0f40d7605fb8de8f8864c4a330c4bef67a2b5ce8e198b23",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 4,
+      "edge": "process-write"
+    },
+    {
+      "step": 4,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 5,
+      "edge": "query-rows"
+    },
+    {
+      "step": 5,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 6,
+      "edge": "archive-message"
+    },
+    {
+      "step": 6,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 7,
+      "edge": "process-write"
+    },
+    {
+      "step": 7,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 9,
+      "edge": "send-response"
+    },
+    {
+      "step": 9,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 10,
+      "edge": "query-rows"
+    },
+    {
+      "step": 10,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 11,
+      "edge": "query-rows"
+    },
+    {
+      "step": 11,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 12,
+      "edge": "archive-message"
+    },
+    {
+      "step": 12,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 9
+    },
+    {
+      "step": 13,
+      "edge": "send-response"
+    },
+    {
+      "step": 13,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 15,
+      "edge": "process-write"
+    },
+    {
+      "step": 15,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 12
+    },
+    {
+      "step": 16,
+      "edge": "process-write"
+    },
+    {
+      "step": 16,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 5
+    }
+  ],
+  "accepted_claims": 22,
+  "accepted_claim_keys_sha256": "b5296c809a0dc469fdcdabcfe7163527a5d3153fdee46b021570507b465c619f",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_05"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_38d9b4ff3e1e",
+      "events": 3,
+      "journal_sha256": "acd6b92fb064f0467dc3dd44ed975f23b8215a24cb26f45a23336158ad8b3c4a",
+      "topic": "outside",
+      "search_calls": 0,
+      "search_errors": 0,
+      "search_hits": [],
+      "source_refs": 0,
+      "related_locations": 0,
+      "status": "answered"
+    },
+    {
+      "id": "q_73c77b27b5f6",
+      "events": 3,
+      "journal_sha256": "bf2c7f2544fa6f314ddb26a3f010f7b3d910203d74972c403d196c588491cf4a",
+      "topic": "verdict",
+      "search_calls": 0,
+      "search_errors": 0,
+      "search_hits": [],
+      "source_refs": 0,
+      "related_locations": 0,
+      "status": "answered"
+    },
+    {
+      "id": "q_923ac579a4cd",
+      "events": 3,
+      "journal_sha256": "4f732001377c186996abf0131d25624a2c004c00f667a7de3ea0d726dc756876",
+      "topic": "reader_columns",
+      "search_calls": 0,
+      "search_errors": 0,
+      "search_hits": [],
+      "source_refs": 3,
+      "related_locations": 0,
+      "status": "answered"
+    }
+  ],
+  "ranking_anchors_for_review": 20,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

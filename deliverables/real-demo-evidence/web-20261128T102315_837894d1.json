@@ -1,0 +1,298 @@
+{
+  "run": "20261128T102315_837894d1",
+  "sample": "public_gomorrah.bin",
+  "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "a6e4705c29597433e7b6b0a75bcdb53e1334fa88c267a302c9c3321ea3c9fd9d",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 602.7866,
+    "model_calls": 55,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 100290,
+    "completion_tokens": 3844,
+    "host_peak_rss_bytes": 29147136,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 768684032,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 324,
+  "journal_sha256": "44ccb0cb850e5c3f1104cdc1ebb4440e521d53ad7947c6a9c85fdab340a9fecb",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 13
+    },
+    {
+      "step": 4,
+      "edge": "send-response"
+    },
+    {
+      "step": 4,
+      "edge": "send-response",
+      "status": "supported",
+      "hit_count": 2
+    },
+    {
+      "step": 5,
+      "edge": "process-write"
+    },
+    {
+      "step": 5,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 5
+    },
+    {
+      "step": 6,
+      "edge": "write-archive"
+    },
+    {
+      "step": 6,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 4
+    },
+    {
+      "step": 7,
+      "edge": "archive-message"
+    },
+    {
+      "step": 7,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 8,
+      "edge": "rows-process"
+    },
+    {
+      "step": 8,
+      "edge": "rows-process",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 9,
+      "edge": "rows-process"
+    },
+    {
+      "step": 9,
+      "edge": "rows-process",
+      "status": "partial",
+      "hit_count": 22
+    },
+    {
+      "step": 10,
+      "edge": "query-rows"
+    },
+    {
+      "step": 10,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 12
+    },
+    {
+      "step": 11,
+      "edge": "archive-message"
+    },
+    {
+      "step": 11,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 12,
+      "edge": "archive-message"
+    },
+    {
+      "step": 12,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 13
+    },
+    {
+      "step": 13,
+      "edge": "process-write"
+    },
+    {
+      "step": 13,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 18
+    },
+    {
+      "step": 14,
+      "edge": "write-archive"
+    },
+    {
+      "step": 14,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 4
+    },
+    {
+      "step": 15,
+      "edge": "message-send"
+    },
+    {
+      "step": 15,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 16,
+      "edge": "message-send"
+    },
+    {
+      "step": 16,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 17,
+      "edge": "message-send"
+    },
+    {
+      "step": 17,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    }
+  ],
+  "accepted_claims": 37,
+  "accepted_claim_keys_sha256": "bac6812270523989fc15cc9bbee460f5d866433a6f96452d0d89c83e0c95024b",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3681,
+          "end": 3681
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3682,
+          "end": 3682
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3655,
+          "end": 3655
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3656,
+          "end": 3656
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3603,
+          "end": 3603
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3604,
+          "end": 3604
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3577,
+          "end": 3577
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3578,
+          "end": 3578
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3629,
+          "end": 3629
+        },
+        {
+          "eid": "ev_e86c2379ad3c4cdf",
+          "line": 3630,
+          "end": 3630
+        }
+      ]
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_01"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [],
+  "ranking_anchors_for_review": 28,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

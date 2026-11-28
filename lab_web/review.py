@@ -123,6 +123,12 @@ def answer(data, cfg, key):
     if focus is not None:
         topic = focus
         j.append("topic_selected", topic=topic, origin="map_edge", metrics={})
+    elif (r.get("reader_fields") and "rows" in question_choices(q, topics)
+          and any(word in q.casefold() for word in ("tên cột", "chỉ số cột", "tên trường", "column index", "column name"))):
+        # This lookup can answer from recorded field forms and source spans. Never
+        # let words in the question set the table, column, result or a VM command.
+        topic = "reader_columns"
+        j.append("topic_selected", topic=topic, origin="recorded_column_lookup", metrics={})
     else:
         choices = question_choices(q, topics)
         topic, usage = choose(
@@ -170,6 +176,25 @@ def answer(data, cfg, key):
         )
         text += "Cần lần theo đối số đích để chứng minh địa chỉ cụ thể được dùng. Một URL trong mã chưa đủ."
         refs += calls
+    elif topic == "reader_columns":
+        fields = r["reader_fields"]
+        ordinal_count = sum(f["ordinal"] for f in fields)
+        text = (f"Trong {len(fields)} vị trí đọc cột đã kiểm, có {ordinal_count} vị trí truyền chỉ số "
+                f"và {len(fields) - ordinal_count} vị trí truyền tên. ")
+        if ordinal_count:
+            text += "Với chỉ số, cần lược đồ của bảng để xác định tên cột. "
+        # Show one example of each form when both were actually observed.
+        for ordinal in (False, True):
+            field = next((f for f in fields if f["ordinal"] == ordinal), None)
+            if not field:
+                continue
+            label = "chỉ số" if ordinal else "tên trường"
+            text += f"Dòng {field['refs'][-1]['line']} truyền {label}"
+            text += f" {field['column']}. " if field['column'] is not None else ". "
+            for ref in field["refs"]:
+                if ref not in refs:
+                    refs.append(ref)
+        text = text.strip()
     elif topic == "verdict":
         gaps = [e["label"] for e in graph["edges"] if e["status"] != "supported"]
         text = (

@@ -36,4 +36,5 @@ jobs:
           python -m eval.parts_audit
           python -m eval.argument_review
           python -m eval.verdict_trial --portable
+          python -m eval.table_access_study
       - run: python -m compileall -q stealer_agent vm_tools training

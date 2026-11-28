@@ -8,6 +8,8 @@ from hashlib import sha256
 from vm_tools.code_search import structural_features
 from stealer_agent.investigation import CODE, excerpt, ledger
 from stealer_agent.journal import verify_journal
+from stealer_agent.operation_context import valid_operations
+from stealer_agent.operation_assertions import render
 from stealer_agent.redaction import redact_document
 from .verdict import trace as verdict_trace
 
@@ -169,6 +171,7 @@ def source(run, fingerprint):
     r = trusted_report(run)
     records, timeline, anchors = {}, [], {}
     attempts = {}
+    operation_reviews = {}
     reviewable = set()
     last = {}
     termination = {"last_model_phase": None, "error_class": None, "model_unloaded": False}
@@ -178,6 +181,8 @@ def source(run, fingerprint):
             trace_search(attempts, e)
             last = e
             kind = e["event"]
+            if kind == "operation_review_decision":
+                operation_reviews[e["fact_id"]] = e["claim_id"] if e["selected"] else None
             if kind == "card_claim_review" and not e["check"]["supported"]:
                 reviewable.add(e["claim_id"])
             desc = None
@@ -248,6 +253,9 @@ def source(run, fingerprint):
     if verdict_trace(last["result"].get("analysis") or {}) != verdict_trace(r.get("analysis") or {}):
         raise ValueError("Các nguồn dẫn cho verdict khác với nhật ký gốc.")
     frozen_graph = redact_document(saved)[0] if saved is not None else None
+    kept = {c["id"]: c for c in last["result"]["analysis"]["claims"]}
+    for record in records.values():
+        record["reader_fields"] = reader_fields(record, operation_reviews, kept)
     return (
         records,
         timeline,
@@ -257,6 +265,37 @@ def source(run, fingerprint):
         reviewable,
         termination if last["result"]["status"] == "incomplete" else None,
     )
+
+
+def reader_fields(record, reviews, kept):
+    """A static call site can be shown even if the final report did not use it."""
+    result = []
+    for fact in valid_operations(record):
+        kind = fact["operation"]
+        if kind not in {"reader_named_field", "reader_ordinal_field"}:
+            continue
+        try:
+            statement = render(fact)
+        except ValueError:
+            continue
+        eid = record["evidence_id"]
+        spans = fact["ranges"]
+        refs = [{"eid": eid, "line": r["line"], "end": r["end_line"],
+                 "output_sha256": record["output_sha256"]} for r in spans]
+        claim = kept.get(reviews.get(fact["fact_id"]))
+        expected = [{"evidence_id": eid, **r, "quote": "\n".join(
+            record["line_map"][n] for n in range(r["line"], r["end_line"] + 1))} for r in spans]
+        linked = claim and claim["text"] == statement and claim["evidence"] == expected
+        column = fact["inputs"]["column"]
+        # Limit this label to familiar schema identifiers. The source viewer masks literals.
+        known = {"origin_url", "action_url", "username_value", "password_value",
+                 "host_key", "name", "value", "encrypted_value", "username", "password"}
+        ordinal = kind == "reader_ordinal_field"
+        show_column = column.isascii() and column.isdecimal() if ordinal else column in known
+        result.append({"id": fact["fact_id"], "ordinal": ordinal,
+                       "column": column if show_column else None,
+                       "refs": refs, "claim": claim["id"] if linked else None})
+    return result
 
 
 def cited_windows(records, graph, claims):
@@ -424,6 +463,7 @@ def case(run):
                     )
                 }
             )
+    fields = [f for rec in records.values() for f in rec["reader_fields"]]
     from .dotnet_supplement import latest
     dotnet = any(rec["tool"] == "decompile_dotnet" for rec in records.values())
     supplement = latest(directory(run), run, r["sample_sha256"], r["model"]["digest"]) if dotnet else None
@@ -472,7 +512,8 @@ def case(run):
         "timeline": timeline,
         "search_attempts": attempts,
         "graph": graph,
-        "cited_windows": cited_windows(records, graph, claims + rejected),
+        "reader_fields": fields,
+        "cited_windows": cited_windows(records, graph, claims + rejected + fields),
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,

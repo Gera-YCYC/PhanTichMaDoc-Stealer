@@ -75,7 +75,7 @@ def main():
             assert response['status']=='ok'
             assert response['sample_sha256']==original['sample_sha256']
             assert response['output_sha256']==original['output_sha256']
-            assert response.get('operation_backend')=='static-operation-facts/4'
+            assert response.get('operation_backend')=='static-operation-facts/6'
             assert 'operation_status' not in response
             clean,hits = guard_observation(response)
             assert hits==0
@@ -102,12 +102,12 @@ def main():
                          'same_source_output_as_captured':original['output_sha256']==captured['output_sha256'],
                          'calls':calls,'expected_operations_observed':True})
     receipt={'created_at':utc_now(),'kind':'live-VM-HTTP-parser-guard-check-not-SLM-demo',
-             'backend':'static-operation-facts/4','source_matches_vm':True,
+             'backend':'static-operation-facts/6','source_matches_vm':True,
              'source_manifest_sha256':hashlib.sha256(canonical(source['host_source'])).hexdigest(),
              'cases':receipts,'limits':['Re-runs static tools on development samples with actions captured from earlier runs; not a new holdout.',
              'No model inference or malware execution; no precision, recall or verdict score.',
              'Argument values, source, credentials and endpoint text are excluded from the public receipt.']}
-    output=ROOT/'deliverables/real-demo-evidence/typed-operations-v4-delivery-check.json'
+    output=ROOT/'deliverables/real-demo-evidence/typed-operations-v6-delivery-check.json'
     dump_json(output,receipt)
     print(json.dumps({'receipt':str(output),'cases':len(receipts),
                       'calls':sum(len(r['calls']) for r in receipts),'all_checks_passed':True}))

@@ -1,0 +1,598 @@
+{
+  "plan_sha256": "2d6254ec52a3ef44f5cf5f88ecd6a4b0b8855e9f4a4402801be6130333c4067b",
+  "cases": [
+    {
+      "before": {
+        "run": "20261128T093604_7feb877d",
+        "journal_sha256": "b5fe3a60a78b99cd0ca4f6bb8088bbba3ef1f5af2aa664729617de1f20eb40f7",
+        "states": {
+          "opera-open": "missing_source",
+          "opera-table": "missing_source",
+          "opera-origin_url": "not_presented",
+          "opera-username_value": "not_presented",
+          "opera-password_value": "not_presented",
+          "opera-decrypt-call": "not_presented",
+          "opera-account": "not_presented",
+          "chrome-open": "missing_source",
+          "chrome-table": "missing_source",
+          "chrome-origin_url": "not_presented",
+          "chrome-username_value": "not_presented",
+          "chrome-password_value": "not_presented",
+          "chrome-decrypt-call": "not_presented",
+          "chrome-account": "not_presented",
+          "passwords-upload": "retained",
+          "passwords-ascii": "retained",
+          "emails-upload": "retained",
+          "emails-ascii": "retained",
+          "info-upload": "retained",
+          "info-ascii": "retained",
+          "cc-upload": "retained",
+          "cc-ascii": "retained",
+          "screen-upload": "retained",
+          "screen-ascii": "retained",
+          "late-one-upload": "visible_in_one_request",
+          "late-one-ascii": "retained",
+          "late-two-upload": "visible_in_one_request",
+          "late-two-ascii": "visible_in_one_request",
+          "dpapi": "missing_source",
+          "utf8": "missing_source",
+          "decrypt-declaration": "not_presented",
+          "capture": "missing_source",
+          "save-capture": "missing_source",
+          "self-read": "missing_source",
+          "config-split": "missing_source",
+          "config-field": "missing_source",
+          "logs-fragment": "missing_source",
+          "screen-fragment": "retained",
+          "browser-attack": "missing_source",
+          "screen-attack": "missing_source"
+        },
+        "facts": []
+      },
+      "after": {
+        "run": "20261128T102315_837894d1",
+        "journal_sha256": "44ccb0cb850e5c3f1104cdc1ebb4440e521d53ad7947c6a9c85fdab340a9fecb",
+        "states": {
+          "opera-open": "visible_in_one_request",
+          "opera-table": "visible_in_one_request",
+          "opera-origin_url": "visible_in_one_request",
+          "opera-username_value": "visible_in_one_request",
+          "opera-password_value": "retained",
+          "opera-decrypt-call": "visible_in_one_request",
+          "opera-account": "visible_in_one_request",
+          "chrome-open": "visible_in_one_request",
+          "chrome-table": "visible_in_one_request",
+          "chrome-origin_url": "visible_in_one_request",
+          "chrome-username_value": "visible_in_one_request",
+          "chrome-password_value": "retained",
+          "chrome-decrypt-call": "visible_in_one_request",
+          "chrome-account": "visible_in_one_request",
+          "passwords-upload": "retained",
+          "passwords-ascii": "retained",
+          "emails-upload": "retained",
+          "emails-ascii": "retained",
+          "info-upload": "retained",
+          "info-ascii": "retained",
+          "cc-upload": "retained",
+          "cc-ascii": "retained",
+          "screen-upload": "retained",
+          "screen-ascii": "retained",
+          "late-one-upload": "visible_in_one_request",
+          "late-one-ascii": "retained",
+          "late-two-upload": "visible_in_one_request",
+          "late-two-ascii": "visible_in_one_request",
+          "dpapi": "missing_source",
+          "utf8": "missing_source",
+          "decrypt-declaration": "visible_in_one_request",
+          "capture": "missing_source",
+          "save-capture": "missing_source",
+          "self-read": "missing_source",
+          "config-split": "missing_source",
+          "config-field": "missing_source",
+          "logs-fragment": "retained",
+          "screen-fragment": "retained",
+          "browser-attack": "visible_in_one_request",
+          "screen-attack": "missing_source"
+        },
+        "facts": [
+          {
+            "kind": "reader_named_field",
+            "fact": "op_8905dd8ec0a3e1ea",
+            "ranges": [
+              [
+                3710,
+                3710
+              ],
+              [
+                3711,
+                3711
+              ],
+              [
+                3723,
+                3723
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C24"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_cfe1ac723685741d",
+            "ranges": [
+              [
+                3759,
+                3759
+              ],
+              [
+                3760,
+                3760
+              ],
+              [
+                3772,
+                3772
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C25"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_34aacf80a81526be",
+            "ranges": [
+              [
+                3710,
+                3710
+              ],
+              [
+                3711,
+                3711
+              ],
+              [
+                3724,
+                3724
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C26"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_06cb27296cadf450",
+            "ranges": [
+              [
+                3759,
+                3759
+              ],
+              [
+                3760,
+                3760
+              ],
+              [
+                3773,
+                3773
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C27"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_f83ff316a0d8ed70",
+            "ranges": [
+              [
+                1055,
+                1055
+              ],
+              [
+                1056,
+                1056
+              ],
+              [
+                1069,
+                1069
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C32"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_0f04b3a4729363af",
+            "ranges": [
+              [
+                1103,
+                1103
+              ],
+              [
+                1104,
+                1104
+              ],
+              [
+                1117,
+                1117
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C33"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_ce9b0081dec7de2d",
+            "ranges": [
+              [
+                1055,
+                1055
+              ],
+              [
+                1056,
+                1056
+              ],
+              [
+                1068,
+                1068
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C34"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_b07f3df684754d10",
+            "ranges": [
+              [
+                1103,
+                1103
+              ],
+              [
+                1104,
+                1104
+              ],
+              [
+                1116,
+                1116
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C35"
+          }
+        ]
+      }
+    },
+    {
+      "before": {
+        "run": "20261128T094444_607b0b2d",
+        "journal_sha256": "3ce5dd2a530f1baaf1f0c29ad1dc9343703bb9f47e6d5994190c67e8912e85a7",
+        "states": {
+          "cookie-helper": "visible_in_one_request",
+          "cookie-copy": "retained",
+          "cookie-table": "retained",
+          "login-copy": "retained",
+          "login-table": "retained",
+          "cookie-key-call": "visible_in_one_request",
+          "login-key-call": "visible_in_one_request",
+          "native-decrypt": "visible_in_one_request",
+          "tag-length": "missing_source",
+          "aes-provider": "not_presented",
+          "key-import": "not_presented",
+          "cookie-handoff": "not_presented",
+          "password-handoff": "not_presented",
+          "cookie-error-call": "not_presented",
+          "password-error-call": "missing_source",
+          "ip-message": "missing_source",
+          "hardware-message": "missing_source",
+          "post-body": "missing_source",
+          "webhook-config": "missing_source",
+          "browser-technique": "split_source",
+          "cookie-technique": "retained"
+        },
+        "facts": []
+      },
+      "after": {
+        "run": "20261128T103325_b84970a2",
+        "journal_sha256": "9b35e4285bb2fd3150d526866140108a13ff6b7d74b1cea1b4906e7e0a275443",
+        "states": {
+          "cookie-helper": "visible_in_one_request",
+          "cookie-copy": "retained",
+          "cookie-table": "retained",
+          "login-copy": "retained",
+          "login-table": "retained",
+          "cookie-key-call": "visible_in_one_request",
+          "login-key-call": "visible_in_one_request",
+          "native-decrypt": "not_presented",
+          "tag-length": "missing_source",
+          "aes-provider": "not_presented",
+          "key-import": "visible_in_one_request",
+          "cookie-handoff": "not_presented",
+          "password-handoff": "not_presented",
+          "cookie-error-call": "not_presented",
+          "password-error-call": "missing_source",
+          "ip-message": "missing_source",
+          "hardware-message": "missing_source",
+          "post-body": "missing_source",
+          "webhook-config": "missing_source",
+          "browser-technique": "split_source",
+          "cookie-technique": "retained"
+        },
+        "facts": []
+      }
+    }
+  ],
+  "results": [
+    {
+      "sample": "public_gomorrah.bin",
+      "before": {
+        "run": "20261128T093604_7feb877d",
+        "status": "completed_with_rejected_claims",
+        "score": {
+          "correct": 12,
+          "incorrect": 0,
+          "unsupported": 3,
+          "missed": 28,
+          "precision": 0.8,
+          "recall": 0.3,
+          "f1": 0.43636363636363634
+        },
+        "verdict": "suspicious",
+        "states": {
+          "missing_source": 14,
+          "not_presented": 11,
+          "retained": 12,
+          "visible_in_one_request": 3
+        },
+        "facts": [],
+        "tool_calls": 17,
+        "model_calls": 51,
+        "seconds": 512.7986,
+        "core": "eb067519599a03b3f7b1207863c6bba42be0576548e51bef339a3cc265a832e6"
+      },
+      "after": {
+        "run": "20261128T102315_837894d1",
+        "status": "completed_with_rejected_claims",
+        "score": {
+          "correct": 15,
+          "incorrect": 2,
+          "unsupported": 2,
+          "missed": 25,
+          "precision": 0.7894736842105263,
+          "recall": 0.375,
+          "f1": 0.5084745762711864
+        },
+        "verdict": "suspicious",
+        "states": {
+          "visible_in_one_request": 17,
+          "retained": 15,
+          "missing_source": 8
+        },
+        "facts": [
+          {
+            "kind": "reader_named_field",
+            "fact": "op_8905dd8ec0a3e1ea",
+            "ranges": [
+              [
+                3710,
+                3710
+              ],
+              [
+                3711,
+                3711
+              ],
+              [
+                3723,
+                3723
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C24"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_cfe1ac723685741d",
+            "ranges": [
+              [
+                3759,
+                3759
+              ],
+              [
+                3760,
+                3760
+              ],
+              [
+                3772,
+                3772
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C25"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_34aacf80a81526be",
+            "ranges": [
+              [
+                3710,
+                3710
+              ],
+              [
+                3711,
+                3711
+              ],
+              [
+                3724,
+                3724
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C26"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_06cb27296cadf450",
+            "ranges": [
+              [
+                3759,
+                3759
+              ],
+              [
+                3760,
+                3760
+              ],
+              [
+                3773,
+                3773
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C27"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_f83ff316a0d8ed70",
+            "ranges": [
+              [
+                1055,
+                1055
+              ],
+              [
+                1056,
+                1056
+              ],
+              [
+                1069,
+                1069
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C32"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_0f04b3a4729363af",
+            "ranges": [
+              [
+                1103,
+                1103
+              ],
+              [
+                1104,
+                1104
+              ],
+              [
+                1117,
+                1117
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C33"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_ce9b0081dec7de2d",
+            "ranges": [
+              [
+                1055,
+                1055
+              ],
+              [
+                1056,
+                1056
+              ],
+              [
+                1068,
+                1068
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C34"
+          },
+          {
+            "kind": "reader_named_field",
+            "fact": "op_b07f3df684754d10",
+            "ranges": [
+              [
+                1103,
+                1103
+              ],
+              [
+                1104,
+                1104
+              ],
+              [
+                1116,
+                1116
+              ]
+            ],
+            "reviewed": true,
+            "claim": "C35"
+          }
+        ],
+        "tool_calls": 17,
+        "model_calls": 55,
+        "seconds": 602.7866,
+        "core": "a6e4705c29597433e7b6b0a75bcdb53e1334fa88c267a302c9c3321ea3c9fd9d"
+      },
+      "gained": [
+        "chrome-password_value",
+        "logs-fragment",
+        "opera-password_value"
+      ],
+      "lost": []
+    },
+    {
+      "sample": "public_mercurial.bin",
+      "before": {
+        "run": "20261128T094444_607b0b2d",
+        "status": "completed_with_rejected_claims",
+        "score": {
+          "correct": 5,
+          "incorrect": 0,
+          "unsupported": 1,
+          "missed": 16,
+          "precision": 0.8333333333333334,
+          "recall": 0.23809523809523808,
+          "f1": 0.37037037037037035
+        },
+        "verdict": "suspicious",
+        "states": {
+          "visible_in_one_request": 4,
+          "retained": 5,
+          "missing_source": 6,
+          "not_presented": 5,
+          "split_source": 1
+        },
+        "facts": [],
+        "tool_calls": 17,
+        "model_calls": 46,
+        "seconds": 460.4645,
+        "core": "eb067519599a03b3f7b1207863c6bba42be0576548e51bef339a3cc265a832e6"
+      },
+      "after": {
+        "run": "20261128T103325_b84970a2",
+        "status": "completed_with_rejected_claims",
+        "score": {
+          "correct": 5,
+          "incorrect": 1,
+          "unsupported": 1,
+          "missed": 16,
+          "precision": 0.7142857142857143,
+          "recall": 0.23809523809523808,
+          "f1": 0.35714285714285715
+        },
+        "verdict": "suspicious",
+        "states": {
+          "visible_in_one_request": 4,
+          "retained": 5,
+          "not_presented": 5,
+          "missing_source": 6,
+          "split_source": 1
+        },
+        "facts": [],
+        "tool_calls": 17,
+        "model_calls": 48,
+        "seconds": 571.3661,
+        "core": "a6e4705c29597433e7b6b0a75bcdb53e1334fa88c267a302c9c3321ea3c9fd9d"
+      },
+      "gained": [],
+      "lost": []
+    }
+  ]
+}

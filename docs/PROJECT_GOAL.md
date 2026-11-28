@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Nhóm trình diễn trực tiếp trên web cục bộ. Bằng chứng nghiệm thu là mã lượt, phiên bản model, quan sát từ VM và vị trí nguồn mở được. Với .NET, phải phân biệt đối số tên trường và chỉ số cột. Chỉ kết luận tên cột từ chỉ số khi có lược đồ ràng buộc đúng bảng. So sánh agent và luồng cố định trên cùng dữ liệu, lưu cả báo nhầm YARA, và đo ranker sau khi có nhãn độc lập. [Đo trên các lượt .NET thật](DOC_COT_NET.md)
+
 Điều kiện nghiệm thu bổ sung là người xem mở được nguồn của từng vai trò trong verdict, đối chiếu các lượt cùng phiên bản và truy được nguyên nhân của lượt ngắt. Đạt ngưỡng ổn định cần đủ ba báo cáo liên tiếp. Phép thử thay cách dẫn chứng phải được kiểm riêng trên mẫu độc và lành trước khi đưa vào luồng kết luận. [Kết quả và cách demo](DOI_CHIEU_KET_LUAN.md)
 
 Sản phẩm bàn giao là web chạy trên máy thật, một agent ReAct dùng Qwen cục bộ và các công cụ đọc tĩnh trong VM. Điều kiện nghiệm thu cho từng quan hệ là có bằng chứng tại nơi tạo, nơi dùng và cách dữ liệu đi giữa hai vị trí. Khi thiếu một phần, agent tìm thêm trong ngân sách đã đặt, lưu kết quả từng lần, rồi giữ trạng thái còn thiếu nếu chưa xác minh được. Mục A09 trên Python hiện có phép kiểm hai phía và bản đồ mở được đúng nguồn. Các chỉ tiêu chấm trên toàn mẫu, hai định dạng và dữ liệu giữ riêng vẫn là mục tiêu chung. [Kết quả A09 và phép đo toàn báo cáo](KIEM_TRA_DOI_SO.md)

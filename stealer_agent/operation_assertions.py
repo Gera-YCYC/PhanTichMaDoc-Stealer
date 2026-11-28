@@ -16,6 +16,10 @@ from .operation_context import valid_operations
 
 VERSION = 'operation-assertions/2'
 TEMPLATES = {
+    'reader_named_field': ('static_named_argument', ('table', 'column'),
+        'In this C# scope the local reader calls ReadTable with {table} and GetValue with the field-name argument {column}.'),
+    'reader_ordinal_field': ('static_ordinal_only', ('table', 'column'),
+        'In this C# scope the local reader calls ReadTable with {table} and GetValue with column index {column}. The field name is unresolved.'),
     'database_open': ('sqlite_connection', ('path_expression',),
         'The code calls SQLite connect with path expression {path_expression}.'),
     'sql_select': ('sqlite_cursor_for_query_not_fetched_or_decrypted_values', ('query_expression',),
@@ -65,6 +69,7 @@ TEMPLATES = {
         'The code calls fetchall() on the SQLite cursor after SELECT query expression {query_expression}.'),
 }
 APIS = {
+    'reader_named_field': 'local.ReadTable/GetValue', 'reader_ordinal_field': 'local.ReadTable/GetValue',
     'database_open': 'sqlite3.connect', 'sql_select': 'sqlite3.execute',
     'smtp_send': 'smtplib.SMTP.sendmail', 'archive_create': 'shutil.make_archive',
     'aes_gcm_decrypt': 'PyCryptodome.AES.GCM.decrypt',

@@ -61,12 +61,15 @@ async function bootstrap() {
     for (const s of Object.keys(init.samples)) sel.add(new Option(s, s));
   updateMeta();
   sel.onchange = updateMeta;
+  $("#history-filter").oninput = historyView;
   historyView();
 }
 function historyView() {
   const h = $("#history");
+  const query = $("#history-filter").value.trim().toLowerCase();
   h.replaceChildren();
   for (const r of init.history) {
+    if (query && ![r.run, r.sample].some(value => value.toLowerCase().includes(query))) continue;
     const b = button(
       r.sample,
       () => load(r.run),
@@ -77,6 +80,7 @@ function historyView() {
   }
   if (!init.history.length)
     h.append("Chưa có lượt phân tích mẫu thật trên máy.");
+  else if (!h.childElementCount) h.append("Chưa tìm thấy lượt phù hợp.");
 }
 async function load(id, initial = false) {
   const n = ++request;
@@ -357,6 +361,25 @@ function map(panel) {
     );
   if (item) {
     detail.append(el("small", states[item.status]), el("h2", item.label));
+    if (item.id === "rows" && record.reader_fields?.length) {
+      const section = el("section", undefined, "reader-fields");
+      section.append(el("h3", "Đối số đọc cột trong mã .NET"),
+        el("p", record.reader_fields.length + " vị trí có bằng chứng về lời gọi. Mở từng vị trí để đối chiếu khai báo biến, thao tác chọn bảng và đọc cột. Việc theo dõi dữ liệu đi tiếp được đánh giá ở đường nối."));
+      for (const field of record.reader_fields) {
+        const box = el("details", undefined, "card");
+        box.dataset.fact = field.id;
+        const call = field.refs.at(-1);
+        const name = field.ordinal ? "Chỉ số " + (field.column ?? "đã ẩn") + " · chưa xác định tên cột"
+          : "Đối số là tên cột" + (field.column ? " · " + field.column : " · đã ẩn tên riêng");
+        box.append(el("summary", "Dòng " + call.line + " · " + name));
+        refs(box, field.refs);
+        if (field.claim) box.append(button("Mở " + field.claim + " trong báo cáo",
+          () => openReportClaim(record.run, field.claim)));
+        else box.append(el("small", "Báo cáo cuối chưa giữ nhận định riêng cho vị trí này."));
+        section.append(box);
+      }
+      detail.append(section);
+    }
     const path = item.path_check;
     if (item.argument_check) {
       const a = item.argument_check;
@@ -419,7 +442,7 @@ function map(panel) {
         ),
       );
       refs(detail, [item.lead]);
-    } else
+    } else if (!(item.id === "rows" && record.reader_fields?.length))
       detail.append(
         el(
           "p",
@@ -629,6 +652,32 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   };
   selector.className = "evaluation-sample";
   label.append(selector);
+  panel.append(label);
+  const reader = data.reader_comparison?.find(r => r.sample === "public_" + sample + ".bin");
+  if (reader) {
+    const group = el("details", undefined, "card");
+    group.append(el("summary", "Đối chiếu cách đọc cột trên " + names[sample]));
+    const arms = [["Trước", reader.before], ["Kiểm đối số", reader.after]];
+    if (sample === "mercurial" && data.intact_methods) arms.push(["Kiểm riêng hàm nguyên vẹn", data.intact_methods]);
+    const rows = arms.map(([title, arm]) => {
+      const link = init.history.some(row => row.run === arm.run) ? button(arm.run, async () => {
+        view = "map";
+        await load(arm.run);
+        if (record?.run === arm.run) {
+          item = record.graph.nodes.find(node => node.id === "rows");
+          await render();
+        }
+      }) : arm.run;
+      return [title, link, arm.facts.length, arm.facts.filter(f => f.claim).length,
+        arm.score ? arm.score.correct + "/" + (arm.score.correct + arm.score.missed) : "Chưa chấm",
+        percent(arm.score?.precision), percent(arm.score?.recall), percent(arm.score?.f1),
+        arm.verdict, arm.tool_calls, Math.round(arm.seconds)];
+    });
+    table(["Phiên bản", "Lượt", "Vị trí đọc cột", "Có trong báo cáo", "Mục đúng", "Precision", "Recall", "F1",
+      "Verdict", "Gọi công cụ", "Giây"], rows, group);
+    group.append(el("small", "Cùng mẫu phát triển và cấu hình Qwen. Điểm chấm toàn bộ báo cáo. Bấm mã lượt trên máy đã chạy để mở chứng cứ."));
+    panel.append(group);
+  }
   const verdictTrial = data.verdict_format_trial?.find(r =>
     r.sample === ({python:"public_python2024.bin", gomorrah:"public_gomorrah.bin", mercurial:"public_mercurial.bin"})[sample]);
   if (verdictTrial) {
@@ -684,7 +733,6 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   if (sample === "python" && data.current_stability)
     showCurrentStability(panel, data.current_stability, table, percent);
   panel.append(
-    label,
     el(
       "h2",
       sample === "python"

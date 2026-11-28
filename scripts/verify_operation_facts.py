@@ -9,7 +9,7 @@ from sync_vm import SSH, DEST
 
 ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--output',type=Path,default=ROOT/'deliverables/real-demo-evidence/typed-operations-v4-real-source-check.json')
+parser.add_argument('--output',type=Path,default=ROOT/'deliverables/real-demo-evidence/typed-operations-v6-real-source-check.json')
 args=parser.parse_args()
 cases=[]
 for run,tool in [('20261127T180215_b3a8ccf4','decompile_dotnet'),('20261127T175019_6cbdf3e9','decode_python_literals')]:
@@ -29,7 +29,7 @@ cases=CASES
 results=[]
 root=Path('/opt/stealer-lab/private/tool-evidence')
 modules={name:hashlib.sha256((Path('/opt/stealer-lab/vm_tools')/name).read_bytes()).hexdigest()
-         for name in ('operation_facts.py','operation_dotnet.py','operation_python.py','syntax_context.py','context_worker.py')}
+         for name in ('operation_facts.py','operation_dotnet.py','table_access.py','operation_python.py','syntax_context.py','context_worker.py')}
 for case in cases:
     record=json.loads((root/(case['evidence_id']+'.json')).read_text())
     assert record['sample_sha256']==case['sample_sha256']

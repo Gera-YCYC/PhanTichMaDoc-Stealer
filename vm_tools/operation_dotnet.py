@@ -2,6 +2,7 @@
 from tree_sitter import Language, Parser
 import tree_sitter_c_sharp
 from .syntax_context import walk
+from .table_access import table_fields
 
 
 def text(node):
@@ -21,10 +22,36 @@ def span(node):
     return node.start_point.row+1, node.end_point.row+1
 
 
+def intact_method_fields(root):
+    """Recover only local reader pairs in complete methods of a partially parsed unit."""
+    results = []
+    for method in walk(root):
+        if method.type != "method_declaration" or method.has_error:
+            continue
+        members = method.parent
+        if members.type != "declaration_list" or members.parent.type not in {"class_declaration", "struct_declaration"}:
+            continue
+        body = method.child_by_field_name("body")
+        if body is None or body.type != "block":
+            continue
+        if any(node.children[0].type != "{" or node.children[-1].type != "}"
+               or node.children[0].is_missing or node.children[-1].is_missing for node in (body, members)):
+            continue
+        allowed = {"declaration_list", "class_declaration", "struct_declaration", "namespace_declaration",
+                   "file_scoped_namespace_declaration", "compilation_unit"}
+        owner = members
+        while owner and owner.type in allowed:
+            owner = owner.parent
+        if owner is None:
+            calls = [n for n in walk(body) if n.type == "invocation_expression"]
+            results.extend(table_fields(calls))
+    return results
+
+
 def candidates(source):
     tree = Parser(Language(tree_sitter_c_sharp.language())).parse(source)
     if tree.root_node.has_error:
-        return []
+        return intact_method_fields(tree.root_node)
     nodes = list(walk(tree.root_node))
     methods = {'method_declaration','constructor_declaration','local_function_statement'}
     def visible_import(call, directive):
@@ -153,4 +180,5 @@ def candidates(source):
                             'binding':'same_block_unreassigned_UploadFile_return',
                             'source_ranges':[*upload['source_ranges'],
                                              *([span(text_import)] if api == 'Encoding.ASCII.GetString' else []),span(call)]})
+    results.extend(table_fields(calls))
     return results

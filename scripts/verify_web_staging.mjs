@@ -12,7 +12,10 @@ const reportOnly = args.includes("--report");
 const argumentOnly = args.includes("--argument");
 const askArgument = args.includes("--ask-argument");
 const scoreOnly = args.includes("--score");
-const [run, port = "4180"] = args.filter(arg => !["--report", "--argument", "--ask-argument", "--score"].includes(arg));
+const fieldsOnly = args.includes("--fields");
+const askColumns = args.includes("--ask-columns");
+const fieldScore = args.includes("--field-score");
+const [run, port = "4180"] = args.filter(arg => !["--report", "--argument", "--ask-argument", "--score", "--fields", "--ask-columns", "--field-score"].includes(arg));
 assert.match(run ?? "", /^\d{8}T\d{6}_[a-f0-9]{8}$/, "Cần mã lượt chạy Python vừa hoàn tất.");
 assert.match(port, /^\d{1,5}$/);
 const origin = "http://127.0.0.1:" + port;
@@ -43,11 +46,90 @@ try {
     return route.abort();
   });
   await page.goto(origin);
+  if (fieldsOnly || askColumns) {
+    await page.locator("#history-filter").fill("absent-run-0000");
+    await page.getByText("Chưa tìm thấy lượt phù hợp.", {exact: true}).waitFor();
+    await page.locator("#history-filter").fill(run);
+    assert.equal(await page.locator("#history button").count(), 1);
+  }
   await page.locator("#history button").filter({hasText: run}).click();
   await page.waitForFunction(id => document.querySelector("#run").textContent === id, run);
   const directory = fileURLToPath(new URL("../evidence/local/", import.meta.url));
   await mkdir(directory, {recursive: true});
-  if (scoreOnly) {
+  if (fieldScore) {
+    const response = await page.request.get(origin + "/api/evaluation");
+    assert.equal(response.status(), 200);
+    const study = (await response.json()).intact_methods;
+    assert.equal(study.run, run);
+    for (const width of [390, 1360]) {
+      await page.setViewportSize({width, height: 850});
+      await page.locator('[data-view="evaluation"]').click();
+      await page.getByLabel("Mẫu dùng để đối chiếu").selectOption("mercurial");
+      const box = page.getByText("Đối chiếu cách đọc cột trên Mercurial", {exact:true}).locator("..");
+      await box.locator("summary").click();
+      const row = box.locator("tr").filter({hasText:run});
+      assert.match(await row.innerText(), new RegExp(study.score.correct + "/" + (study.score.correct + study.score.missed)));
+      await row.getByRole("button", {name:run}).click();
+      await page.locator(".reader-fields").waitFor();
+      assert.equal(await page.locator(".reader-fields details[data-fact]").count(), study.facts.length);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+    }
+    assert.deepEqual(errors, []);
+    assert.deepEqual(external, []);
+    console.log(JSON.stringify({run, evaluation_to_source:[390,1360]}));
+  } else if (askColumns) {
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    assert.ok(data.reader_fields.length);
+    await page.locator('[data-view="qa"]').click();
+    await page.fill("textarea", "VM thấy tên cột hay chỉ số cột khi mẫu đọc bản ghi?");
+    const pending = page.waitForResponse(r => r.url() === origin + "/api/question", {timeout: 160000});
+    await page.getByText("Tra cứu chứng cứ", {exact: true}).click();
+    const response = await pending;
+    assert.equal(response.status(), 200);
+    const answer = await response.json();
+    assert.equal(answer.topic, "reader_columns");
+    const fields = [false, true].map(k => data.reader_fields.find(f => f.ordinal === k)).filter(Boolean);
+    const refs = [...new Map(fields.flatMap(f => f.refs.map(r => [r.eid + ":" + r.line + ":" + r.end, r]))).values()];
+    const box = page.getByText(answer.text, {exact:true}).locator("..");
+    assert.deepEqual(await openReferences(box), refs.map(r => [r.line, r.end, r.output_sha256]));
+    assert.deepEqual(errors, []);
+    assert.deepEqual(external, []);
+    console.log(JSON.stringify({run, question:answer.journal, opened:refs.length, topic:answer.topic}));
+  } else if (fieldsOnly) {
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    assert.ok(Array.isArray(data.reader_fields));
+    const screens = [];
+    for (const width of [390, 1360]) {
+      await page.setViewportSize({width, height: 850});
+      await page.locator('[data-view="map"]').click();
+      await page.getByRole("button", {name: "Đọc kết quả truy vấn", exact: true}).click();
+      const boxes = page.locator(".reader-fields details[data-fact]");
+      assert.equal(await boxes.count(), data.reader_fields.length);
+      let count = 0;
+      for (const field of data.reader_fields) {
+        const box = boxes.locator("xpath=self::*[@data-fact='" + field.id + "']");
+        const title = box.locator(":scope > summary");
+        await title.click();
+        assert.equal((await title.innerText()).includes("chưa xác định tên cột"), field.ordinal);
+        assert.deepEqual(await openReferences(box), field.refs.map(r => [r.line, r.end, r.output_sha256]));
+        count += field.refs.length;
+        if (field.claim) {
+          await box.getByRole("button", {name: "Mở " + field.claim + " trong báo cáo", exact: true}).click();
+          await page.locator("#report-" + field.claim + "[open]").waitFor();
+          await page.locator('[data-view="map"]').click();
+          await page.getByRole("button", {name: "Đọc kết quả truy vấn", exact: true}).click();
+        }
+      }
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+      screens.push({width, sites: data.reader_fields.length, references: count});
+    }
+    assert.deepEqual(errors, []);
+    assert.deepEqual(external, []);
+    const evidence = {run, screens, sites: data.reader_fields.map(f => ({id:f.id, ordinal:f.ordinal, claim:f.claim,
+      spans:f.refs.map(r => [r.line, r.end, r.output_sha256])})), errors, external};
+    await writeFile(resolve(directory, "reader-web-" + run + ".json"), JSON.stringify(evidence, null, 2));
+    console.log(JSON.stringify({run, screens}));
+  } else if (scoreOnly) {
     const result = await (await page.request.get(origin + "/api/evaluation")).json();
     const trial = result.argument_review.runs.find(r => r.run === run);
     assert.ok(trial);

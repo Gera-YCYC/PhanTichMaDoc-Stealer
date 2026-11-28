@@ -1,0 +1,243 @@
+{
+  "run": "20261128T110548_0cb9678e",
+  "inherit": "20261128T103325_b84970a2",
+  "claims": {
+    "C2": {
+      "signature": "c56e755a17a98c4beec96e64f56567ebaad6c963f843b3d5db4c2ae7c88e1cec",
+      "lines": [
+        796,
+        800,
+        801,
+        802
+      ],
+      "atoms": [
+        [
+          "login-table",
+          "correct"
+        ],
+        [
+          "login-ordinal-0",
+          "correct"
+        ],
+        [
+          "login-ordinal-3",
+          "correct"
+        ],
+        [
+          "login-ordinal-5",
+          "correct"
+        ],
+        [
+          "login-schema-ordinal-0",
+          "unsupported"
+        ],
+        [
+          "login-schema-ordinal-3",
+          "unsupported"
+        ],
+        [
+          "login-schema-ordinal-5",
+          "unsupported"
+        ]
+      ],
+      "reason": "The table and three numeric calls are present. No schema in the cited spans binds these three positions to the three separate semantic labels proposed by the model."
+    },
+    "C6": {
+      "signature": "309073039505ec8ca92f2d914ffe817b7b04a957d9e34fd30ae084dd85f50080",
+      "lines": [
+        795,
+        796,
+        800
+      ],
+      "atoms": [
+        [
+          "login-table",
+          "correct"
+        ],
+        [
+          "login-ordinal-0",
+          "correct"
+        ]
+      ],
+      "reason": "The calls and the string assignment at the specified numeric position are explicit."
+    },
+    "C7": {
+      "signature": "8afe78d2a192521dbfd47f10e1f6263def273ce654e117ef2282a9f7c79ba7fd",
+      "lines": [
+        795,
+        796,
+        801
+      ],
+      "atoms": [
+        [
+          "login-table",
+          "correct"
+        ],
+        [
+          "login-ordinal-3",
+          "correct"
+        ]
+      ],
+      "reason": "The calls and the string assignment at the specified numeric position are explicit."
+    },
+    "C9": {
+      "signature": "5bb850cf4779d254af7e09775c95e1e62ae5bb0cc3fb9b8dcf513f956934aafe",
+      "lines": [
+        727,
+        728,
+        732,
+        739
+      ],
+      "atoms": [
+        [
+          "cookie-table",
+          "correct"
+        ],
+        [
+          "cookies-ordinal-12",
+          "correct"
+        ],
+        [
+          "cookies-ordinal-5",
+          "correct"
+        ]
+      ],
+      "reason": "The selected local reader is used at these two positions. The model assigns no column names."
+    },
+    "C13": {
+      "signature": "40b0f3919b14afe4819c328ffea6422076c2fcc8b8399ca0761aa61554d426a9",
+      "lines": [
+        1505,
+        1507
+      ],
+      "atoms": [
+        [
+          "master-item-default-1507",
+          "correct"
+        ]
+      ],
+      "reason": "The specified array supplies bytes to the decoder and its result is assigned to the stated member."
+    },
+    "C20": {
+      "signature": "75b7d511a554ab182866c93f0f9988ebbf88c4358c0779ae5882547c00fc014e",
+      "lines": [
+        727,
+        728,
+        739
+      ],
+      "atoms": [
+        [
+          "cookies-ordinal-5",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C21": {
+      "signature": "3973910b169d35489bb1c546762b21cf28ae92e4f9f77fb15920db1341a8c7d7",
+      "lines": [
+        795,
+        796,
+        800
+      ],
+      "atoms": [
+        [
+          "login-ordinal-0",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C22": {
+      "signature": "a31a0944de4ae035e1818a32421801db0ddbca95819f7f3fa32a5e2bb9c7aa93",
+      "lines": [
+        795,
+        796,
+        801
+      ],
+      "atoms": [
+        [
+          "login-ordinal-3",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C23": {
+      "signature": "681a04126c5edb32099ee68101bd817fe743e457180f1723861db8643dd5deaa",
+      "lines": [
+        795,
+        796,
+        802
+      ],
+      "atoms": [
+        [
+          "login-ordinal-5",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C24": {
+      "signature": "995c1167ea1e6cafaf859b94b54a31605a62ea6b5e47741dfe89598286ddcdab",
+      "lines": [
+        727,
+        728,
+        732
+      ],
+      "atoms": [
+        [
+          "cookies-ordinal-12",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C25": {
+      "signature": "c2862f13915bf277a39afc91df3ef9376f6d6c4de505ada16668c3a7399b2cd9",
+      "lines": [
+        727,
+        728,
+        735
+      ],
+      "atoms": [
+        [
+          "cookies-ordinal-4",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C26": {
+      "signature": "5dcba0ed71a46262abea3f97c0c979bdc51facc89fbd8292110c04d5993ce524",
+      "lines": [
+        727,
+        728,
+        734
+      ],
+      "atoms": [
+        [
+          "cookies-ordinal-2",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    },
+    "C27": {
+      "signature": "2d7f0a8e1ee535787923a03048b26c727a87285b94a41f59caad085793980a7b",
+      "lines": [
+        727,
+        728,
+        733
+      ],
+      "atoms": [
+        [
+          "cookies-ordinal-1",
+          "correct"
+        ]
+      ],
+      "reason": "The declared receiver supplies a named table and a numeric field argument at the bound call. Its semantic column name remains unresolved."
+    }
+  },
+  "scope": "Source audit on the preregistered Mercurial error-recovery run. Column numbers do not establish the names of fields."
+}

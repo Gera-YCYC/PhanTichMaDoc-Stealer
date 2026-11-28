@@ -1,0 +1,307 @@
+{
+  "run": "20261128T102315_837894d1",
+  "inherit": "20261128T093604_7feb877d",
+  "claims": {
+    "C1": {
+      "signature": "bc51ba74143f8f2c4f2bbd03f6caca04c1a9ed18c1f4fb1778cc8b876c8e25e0",
+      "lines": [
+        1055,
+        1056,
+        1069
+      ],
+      "atoms": [
+        [
+          "opera-password_value",
+          "correct"
+        ]
+      ],
+      "reason": "The claim explicitly describes reading the password field. The constructor in its citations binds this reader to the Opera store."
+    },
+    "C3": {
+      "signature": "a52ffbed8ea6dada06a31eddf012593ae4abf3e4df8a0ea0733c1fc994692f4e",
+      "lines": [
+        1103,
+        1104,
+        1117
+      ],
+      "atoms": [
+        [
+          "chrome-password_value",
+          "correct"
+        ]
+      ],
+      "reason": "Both the provenance of the store and the field being read are supported at this call site."
+    },
+    "C6": {
+      "signature": "62f43587da420b0eeca558bbb122371b10ced9e5f4408bc5956da5fadb3138fb",
+      "lines": [
+        3655,
+        3656
+      ],
+      "atoms": [
+        [
+          "cc-ascii",
+          "correct"
+        ]
+      ],
+      "reason": "The adjacent statements assign the response and decode it as ASCII to the field in the claim."
+    },
+    "C7": {
+      "signature": "84bc1587486dcbf8bcefe3a08b2cc675c70037c79dd495b8c33ba127c4af0dda",
+      "lines": [
+        3603
+      ],
+      "atoms": [
+        [
+          "emails-upload",
+          "correct"
+        ]
+      ],
+      "reason": "The address expression and file argument match the call."
+    },
+    "C13": {
+      "signature": "ca6d3cd5e55b925b5928d921df2f1da5b4b242a36d7a7b22deca1e1064eedbae",
+      "lines": [
+        3681
+      ],
+      "atoms": [
+        [
+          "screen-upload",
+          "correct"
+        ],
+        [
+          "screen-response-assignment",
+          "correct"
+        ]
+      ],
+      "reason": "Both arguments and the local assignment of the return value are explicit."
+    },
+    "C14": {
+      "signature": "b595bf3d5f15d8db77325accb6807f2cbe5ab083387f50751b73d17cdadd2d6a",
+      "lines": [
+        3681,
+        3682
+      ],
+      "atoms": [
+        [
+          "screen-ascii",
+          "correct"
+        ]
+      ],
+      "reason": "The decoder receives the same local variable on the next line."
+    },
+    "C15": {
+      "signature": "8e28f6ac827140970762829e40dacfca65203fa1e4e939a666fc6d057e138fe3",
+      "lines": [
+        4099
+      ],
+      "atoms": [
+        [
+          "local-unprotect-call-4099",
+          "correct"
+        ],
+        [
+          "invalid-dpapi-scope-name-4099",
+          "incorrect"
+        ]
+      ],
+      "reason": "The call exists. Numeric scope zero resolves to CurrentUser in the .NET enum."
+    },
+    "C16": {
+      "signature": "3fb0d20d7d006881bb1b8924f60639592a46afd8c07ebaa3db89675250eacb4e",
+      "lines": [
+        4890
+      ],
+      "atoms": [
+        [
+          "other-unprotect",
+          "correct"
+        ],
+        [
+          "invalid-machine-scope-4890",
+          "incorrect"
+        ]
+      ],
+      "reason": "The call is present and uses scope zero, not the LocalMachine enum value."
+    },
+    "C17": {
+      "signature": "aaae3fb3bd7eb62071caed4f72289c6a179666680cd4bf128117d556fa175c6d",
+      "lines": [
+        3514,
+        3515
+      ],
+      "atoms": [
+        [
+          "write-control-one-3515",
+          "correct"
+        ]
+      ],
+      "reason": "The local writer for this path is passed the first control text."
+    },
+    "C18": {
+      "signature": "b893abcdc9d90a3c122b203d9eb399475b823abd0ba574c0267483abd63d88ee",
+      "lines": [
+        3518,
+        3519
+      ],
+      "atoms": [
+        [
+          "write-control-two-3519",
+          "correct"
+        ]
+      ],
+      "reason": "The local writer for the second path is passed the second control text."
+    },
+    "C19": {
+      "signature": "05b6f64a23d1695e3f61300daf8b3504371e0c52b227a38ffcdd1688f0b6abab",
+      "lines": [
+        1055,
+        1056,
+        1068,
+        1069
+      ],
+      "atoms": [
+        [
+          "opera-browser-technique",
+          "correct"
+        ]
+      ],
+      "reason": "The cited Opera store and two reads support this technique in a different browser than the frozen technique reference site."
+    },
+    "C38": {
+      "signature": "c16fc8a36186b5f3973acf6b631af1121ccc94688bf4947354a76407a47a89f9",
+      "lines": [
+        3573,
+        3577
+      ],
+      "atoms": [
+        [
+          "logs-fragment",
+          "correct"
+        ]
+      ],
+      "reason": "The partial address is defined and used in the address argument. Its host is unresolved."
+    },
+    "C24": {
+      "signature": "bc85691aa88be7ed2e758f018a39936b5f8dc89d45f1347d6b197964a9c364b4",
+      "lines": [
+        3710,
+        3711,
+        3723
+      ],
+      "atoms": [
+        [
+          "reader-literal-3723",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C25": {
+      "signature": "afed3d56189258550ebcdf2c3bad1c6806569a4e55a105c562ca79646b387b45",
+      "lines": [
+        3759,
+        3760,
+        3772
+      ],
+      "atoms": [
+        [
+          "reader-literal-3772",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C26": {
+      "signature": "db4379964629611c7b34ff67fb9882082206c17ded51f9605578368a0f55ad0e",
+      "lines": [
+        3710,
+        3711,
+        3724
+      ],
+      "atoms": [
+        [
+          "reader-literal-3724",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C27": {
+      "signature": "066e54ebbc7983655af14b275dab4f8a86eabd331382979bcb51d018d29edb70",
+      "lines": [
+        3759,
+        3760,
+        3773
+      ],
+      "atoms": [
+        [
+          "reader-literal-3773",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C32": {
+      "signature": "89816c46885b45c56c3a8ad6c03cdcd7d968037dc7ffdb782c13e94a1bf28230",
+      "lines": [
+        1055,
+        1056,
+        1069
+      ],
+      "atoms": [
+        [
+          "reader-literal-1069",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C33": {
+      "signature": "5379367dc8d6c573f7ac424e8002c99a5f77a5858d38778a7b8897f3be84bd8b",
+      "lines": [
+        1103,
+        1104,
+        1117
+      ],
+      "atoms": [
+        [
+          "reader-literal-1117",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C34": {
+      "signature": "7887de938f26caa30351c9842648a80e0dc8e7c62cee2d55c843312b89532fc1",
+      "lines": [
+        1055,
+        1056,
+        1068
+      ],
+      "atoms": [
+        [
+          "reader-literal-1068",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    },
+    "C35": {
+      "signature": "25693f81085834c936444da87327bfce96a7d9ed83e58eb36a536ac9b3311b2c",
+      "lines": [
+        1103,
+        1104,
+        1116
+      ],
+      "atoms": [
+        [
+          "reader-literal-1116",
+          "correct"
+        ]
+      ],
+      "reason": "The three sites establish construction and calls on the same reader with the stated literal. The assertion describes arguments only and does not assert retrieval or use of a credential."
+    }
+  },
+  "scope": "Source audit on development data. Browser-specific units require a claim about browser data and source attribution. Literal-only parser assertions receive credit for the narrower static fact."
+}

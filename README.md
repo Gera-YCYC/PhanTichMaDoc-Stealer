@@ -4,6 +4,8 @@ StealerLab là đồ án phân tích tĩnh stealer .NET/Python bằng agent ReAc
 
 ## Demo trực tiếp
 
+Khi cần trình bày phát hiện trên .NET, chọn **Đọc kết quả truy vấn** trong bản đồ để mở từng vị trí. Có thể tìm lại hồ sơ bằng tên mẫu hoặc mã lượt ở thanh bên. Tab **Đánh giá** cho biết những phát hiện nào cải thiện điểm của cả báo cáo. [Kịch bản .NET và số liệu đối chứng](docs/DOC_COT_NET.md)
+
 Web dùng Qwen3 8B trên Windows và công cụ phân tích tĩnh trong VM Ubuntu. Nhóm có thể trình bày bằng chứng của từng mắt xích, hỏi tiếp về phần còn thiếu và kiểm vì sao Qwen đưa ra verdict. [Đối chiếu kết luận và nhật ký thật](docs/DOI_CHIEU_KET_LUAN.md)
 
 Trên máy đã dựng lab, mở PowerShell trong thư mục dự án và chạy lệnh dưới đây. Trên máy thành viên mới, hoàn thành bước cài VM, model và bộ công cụ trước. [Hướng dẫn cài đặt](docs/TEAM_SETUP.md)

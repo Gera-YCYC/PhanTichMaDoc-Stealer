@@ -4,6 +4,10 @@
 
 ## Cập nhật hiện tại
 
+Lượt Mercurial kiểm riêng các hàm còn nguyên đã trả 8 vị trí dùng chỉ số cột, mở được 24 trích dẫn. Báo cáo chỉ đúng 4/21 mục, F1 27,59%. Câu C2 tự gán ba tên cho ba chỉ số khi chưa có nguồn lược đồ. Mục hỏi đáp về kiểu đối số giờ tra cứu lại đúng các sự kiện của lượt. [Mã lượt và thao tác tái kiểm](DOC_COT_NET.md#lần-kiểm-riêng-trên-mercurial)
+
+Ở hai lượt đã đăng ký trước trên bản đọc cột .NET, Gomorrah tăng từ 12 lên 15 trong 40 mục, Mercurial giữ 5/21. Cả hai verdict đều là `suspicious`. Đã kiểm thao tác mở từng vị trí trên giao diện 390 px và 1360 px. [Lượt chạy, tiêu chí chấm và phạm vi của lần sửa tiếp theo](DOC_COT_NET.md)
+
 Trên bản kiểm tra đối số, hai trong ba lượt Python liên tiếp có báo cáo hoàn tất. Cùng đạt 21/36 mục đúng, F1 lần lượt 73,68% và 72,41%. Lượt cuối dừng ở ngưỡng RAM. Bản web có thể mở nguồn của verdict và nhật ký lượt ngắt. [Bảng chấm và thí nghiệm về cách Qwen chọn dẫn chứng](DOI_CHIEU_KET_LUAN.md)
 
 Web đã có lượt điều tra thực theo dõi một trường từ kết quả truy vấn tới hàm xử lý. Các trích dẫn ở bản đồ và báo cáo đã được mở trong trình duyệt ở hai kích thước. Khi đọc các số liệu lịch sử bên dưới, dùng bảng theo mã lượt để so cùng phiên bản. [Kết quả, các mốc còn thiếu và cách tái kiểm](KIEM_TRA_DOI_SO.md)

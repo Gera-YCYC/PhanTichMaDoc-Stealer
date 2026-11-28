@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Với mẫu .NET, nhóm có thể đi từ dòng đọc cột trong bản đồ sang câu tương ứng của báo cáo. Hỏi “VM thấy tên cột hay chỉ số cột khi mẫu đọc bản ghi?” để đối chiếu kiểu đối số với các vị trí đã thu. [Cách demo và phép đo toàn báo cáo](DOC_COT_NET.md)
+
 **Bản đồ chứng cứ** có mục **Mắt xích nào còn thiếu trước thao tác gửi?**. Chọn một mắt xích để đọc trạng thái, dấu hiệu và lịch sử tìm kiếm trên mẫu đang mở. **Gán nhãn** có phép đối chiếu hai báo cáo AgentTesla trước/sau train bộ xếp hạng. Hai lượt đều tìm được 2/7 mục, F1 từ 33,33% lên 36,36%. [Hai lượt dùng chung điều kiện](../training/RANKER_EXPERIMENT.md)
 
 Để trả lời câu hỏi “vì sao kết luận như vậy?”, vào **Nhận định**, mở các vai trò làm căn cứ cho verdict, rồi bấm mã câu. Trong **Đánh giá**, có thể mở bằng chứng của từng lượt hoặc nhật ký một lượt bị ngắt. [Trình tự bấm và số liệu thực](DOI_CHIEU_KET_LUAN.md)

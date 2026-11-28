@@ -176,6 +176,10 @@ article {
   display: grid;
   gap: 6px;
 }
+#history-filter {
+  width: 100%;
+  margin: 4px 0 10px;
+}
 #history button {
   background: transparent;
   border: 1px solid transparent;

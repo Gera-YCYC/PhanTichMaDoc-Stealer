@@ -36,7 +36,7 @@ def test_upload_path_response_and_character_decode_are_distinct(tmp_path):
     assert {'line':1,'end_line':1} in upload['ranges']
     assert {'line':1,'end_line':1} in decode['ranges']
     assert {'line':2,'end_line':2} in decode['ranges']
-    assert upload['backend'] == out['backend'] == 'static-operation-facts/4'
+    assert upload['backend'] == out['backend'] == 'static-operation-facts/6'
 
 
 @pytest.mark.parametrize('mutation',[

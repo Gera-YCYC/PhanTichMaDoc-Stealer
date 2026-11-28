@@ -1,0 +1,36 @@
+{
+  "run": "20261128T103325_b84970a2",
+  "inherit": "20261128T094444_607b0b2d",
+  "claims": {
+    "C1": {
+      "signature": "d1560d4476f417ad8c8c22c8c17f5c522d12b508dc919ee4742f3c76a7f99762",
+      "lines": [
+        779,
+        787
+      ],
+      "atoms": [
+        [
+          "login-copy",
+          "correct"
+        ]
+      ],
+      "reason": "The declared source path is copied to the temporary destination."
+    },
+    "C2": {
+      "signature": "a190208e223709ae153da20e7bde8b48e3059c5f5cffeb5292540955e230841b",
+      "lines": [
+        787,
+        795,
+        796
+      ],
+      "atoms": [
+        [
+          "login-table",
+          "correct"
+        ]
+      ],
+      "reason": "The SQLite reader uses the copied path and selects the declared table."
+    }
+  },
+  "scope": "Source audit on development data. Browser-specific units require a claim about browser data and source attribution. Literal-only parser assertions receive credit for the narrower static fact."
+}

@@ -9,7 +9,7 @@ import hashlib
 from .syntax_context import reconstruct
 from stealer_agent.journal import canonical
 
-VERSION = 'static-operation-facts/4'
+VERSION = 'static-operation-facts/6'
 
 
 def extract_operations(record, *, max_facts=60):

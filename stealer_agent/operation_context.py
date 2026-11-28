@@ -7,7 +7,7 @@ import copy
 import hashlib
 from .journal import canonical
 
-OPERATIONS = {'database_open','sql_select','smtp_send','archive_create',
+OPERATIONS = {'reader_named_field', 'reader_ordinal_field', 'database_open','sql_select','smtp_send','archive_create',
               'file_upload','response_text_decode','aes_gcm_decrypt', 'file_copy', 'file_read',
               'file_write', 'base64_decode', 'dpapi_unprotect', 'smtp_connect', 'smtp_login',
               'smtp_starttls', 'mime_set_payload', 'mime_attach', 'mime_serialize',
@@ -18,7 +18,7 @@ BLOCKED = ('[REDACTED-INJECTION]', '[REDACTED-PRIVATE-FRAGMENT]')
 def valid_operations(record):
     facts=[]
     for fact in record.get('operation_facts',[])[:100]:
-        if fact.get('operation') not in OPERATIONS or fact.get('backend') not in {'static-operation-facts/2','static-operation-facts/3','static-operation-facts/4'}:
+        if fact.get('operation') not in OPERATIONS or fact.get('backend') not in {'static-operation-facts/2','static-operation-facts/3','static-operation-facts/4','static-operation-facts/5','static-operation-facts/6'}:
             continue
         if any(fact.get(key)!=record.get(key) for key in ('evidence_id','sample_sha256','output_sha256')):
             continue

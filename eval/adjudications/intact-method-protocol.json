@@ -1,0 +1,14 @@
+{
+  "registered_at": "2026-11-28T11:03:32.258034+00:00",
+  "sample": "public_mercurial.bin",
+  "baseline": "20261128T103325_b84970a2",
+  "selection": "First subsequent browser investigation of this development sample. Keep failures.",
+  "purpose": "Check whether the local reader parser delivers ordinal facts from complete methods despite an error in a sibling. Field names remain unresolved.",
+  "configuration": "config/host.investigation.example.json",
+  "config_sha256": "9ec2b1314da1ec45e610f1a65537d1ff2eca024e5b108841b50c3a64aa8050ee",
+  "source_sha256": {
+    "vm_tools/operation_dotnet.py": "9068a3ad1086148937e8f1f8a53fc2a839b84788abf6719b350745dc060a8394",
+    "vm_tools/table_access.py": "ed9d6976476a371806fd13b89ae51bffd4deb644a479704baf211729f089596e",
+    "vm_tools/operation_facts.py": "79956a50cab6478d858fbb50cde38431d9bf0422beb250ddbb78b065f5c64f57"
+  }
+}
