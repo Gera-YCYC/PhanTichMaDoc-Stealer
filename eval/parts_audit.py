@@ -6,7 +6,8 @@ import json
 
 from eval.parts_trial import COHORT, TRIALS, replay, require
 from eval.narrow_trial import source
-from eval.web_report_quality import EVIDENCE, ROOT, read
+from eval.web_report_quality import EVIDENCE, PROFILE, ROOT, read
+from eval.web_report_exposure import events as run_events, reconstruct as source_records, required_rows, source_id
 from stealer_agent.journal import canonical, dump_json, verify_journal
 from stealer_agent.slice_review import slice_discrepancy
 from stealer_agent.claim_parts import split_review
@@ -69,6 +70,14 @@ def score(receipt):
                     total["correct_rejected"] += 1
     require(parents == set(baseline) and observed == set(grades["grades"])
             and set(flags) <= observed, "Different graded cohort")
+    focus = receipt["a09_source"]
+    unit = next(u for u in read(PROFILE)["units"] if u["id"] == "PY24-A09")
+    required = {n for ref in unit["source_references"] for n in range(ref["line"], ref["end_line"] + 1)}
+    row = next(r for r in receipt["parents"] if (r["run"], r["parent"]) == (COHORT["python"], "C7"))
+    used = {n for p in row["parts"] for a, b in p["ranges"] for n in range(a, b + 1)}
+    require(focus == {"unit": unit["id"], "run": row["run"], "parent": row["parent"],
+                      "reference_rows_in_prompt": sorted(required), "reference_rows_selected": sorted(used & required)},
+            "Displayed A09 coordinates differ from the profile or selected references")
     return results
 
 
@@ -110,8 +119,36 @@ def reconstruct(trial):
     receipt["single_cost"] = {"calls": len(metrics), "input_tokens": sum(m["prompt_tokens"] for m in metrics),
                               "output_tokens": sum(m["completion_tokens"] for m in metrics),
                               "inference_s": round(sum(m["latency_s"] for m in metrics), 3)}
+    profile = read(PROFILE)
+    unit = next(u for u in profile["units"] if u["id"] == "PY24-A09")
+    originals = {}
+    for run in ("20261127T211223_9602dfdd", "20261127T230331_8bd30a1f"):
+        originals.update(source_records(run_events(run)))
+    primary = COHORT["python"]
+    original = run_events(primary)
+    record = source_records(original)[source_id(profile, original)]
+    needed = required_rows(unit, record, profile, originals)
+    _, _, cases = source("python", primary)
+    parent, _, request = next(t for t in cases if t[0]["id"] == "C7")
+    numbered_code = json.loads(request["messages"][-1]["content"])["code"].splitlines()
+    require(all(f"{n} | {record['line_map'][n]}" in numbered_code for n in needed),
+            "Expected A09 lines not all present in the parent request")
+    row = next(r for r in receipt["parents"] if (r["run"], r["parent"]) == (primary, parent["id"]))
+    chosen = {n for part in row["parts"] for a, b in part["ranges"] for n in range(a, b + 1)}
+    receipt["a09_source"] = {"unit": unit["id"], "run": primary, "parent": parent["id"],
+                             "reference_rows_in_prompt": sorted(needed),
+                             "reference_rows_selected": sorted(needed & chosen)}
     receipt["scores"] = score(receipt)
     return receipt
+
+
+def web_details(data):
+    grades = read(GRADES)["grades"]
+    names = {run: sample for sample, run in COHORT.items()}
+    return [{"sample": names[r["run"]], "run": r["run"], "parent": r["parent"],
+             "number": index, "kept": part["kept"], "ranges": part["ranges"],
+             "flagged": part["fingerprint"] in data["slice_flags"], **grades[part["fingerprint"]]}
+            for r in data["parents"] for index, part in enumerate(r["parts"], 1)]
 
 
 def check_click(review_id, receipt):

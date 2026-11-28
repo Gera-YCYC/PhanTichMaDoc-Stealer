@@ -921,8 +921,8 @@
   },
   {
     "path": "deliverables/real-demo-evidence/split-review.json",
-    "bytes": 11102,
-    "sha256": "bc062cd9db994b89b3da80e44d0687bae39b7cfa82bab43bc09212a4b346c3e1"
+    "bytes": 11476,
+    "sha256": "dc52b8ba9f9e76722bd096765627b730cffdee0203a290f04ce0d83d975d26e0"
   },
   {
     "path": "deliverables/real-demo-evidence/staging-path-python.json",
@@ -1501,8 +1501,8 @@
   },
   {
     "path": "docs/KIEM_TUNG_Y.md",
-    "bytes": 6716,
-    "sha256": "8fc90db35d993891448e3a6edc294f54df6c009cc7ecb2a386dc2427545b5fdf"
+    "bytes": 7329,
+    "sha256": "1521b110ff67f9d45115cf41ec913d947765eb15fdbf62bcad0ea76aba67c1f9"
   },
   {
     "path": "docs/KIEN_TRUC.md",
@@ -1826,8 +1826,8 @@
   },
   {
     "path": "eval/adjudications/parts-review.json",
-    "bytes": 5429,
-    "sha256": "de1c7cae93cf22551c9456b8b9c02ca727eb7155e891dc00a59b884385a449b3"
+    "bytes": 7658,
+    "sha256": "51bdff2a4327c7b1da0904c2190f56e0ddde965808032da81d965a0db460a4db"
   },
   {
     "path": "eval/adjudications/python2024-cards-v10-report-stage-atomic-mapping.json",
@@ -2041,8 +2041,8 @@
   },
   {
     "path": "eval/parts_audit.py",
-    "bytes": 9333,
-    "sha256": "5e594966822d85545a6d08ad8aa334bc28b1485cecba2445636ed3549ed1c472"
+    "bytes": 11852,
+    "sha256": "03c5101ffa4319fa750a259e5d737acd7080b79254528c9e655a4f8704fa75cd"
   },
   {
     "path": "eval/parts_trial.py",
@@ -2366,13 +2366,13 @@
   },
   {
     "path": "lab_web/server.py",
-    "bytes": 18919,
-    "sha256": "b5b332978fcd14866b0b389354e6e14734ec701f699d03bda3a8bebf9ef3e0f6"
+    "bytes": 19081,
+    "sha256": "68ac9a179358d94fab0aa650aa5bc62be8f25eebb1ebf74e1bd5d0ebf2444a6b"
   },
   {
     "path": "lab_web/static/app.js",
-    "bytes": 58610,
-    "sha256": "edc9ddca229e7a4dd67b4c55f5a69dfd1512fcd917ca069fac3709839cf8693a"
+    "bytes": 59769,
+    "sha256": "997874fc392938cb733a6be9756ec29ae863033e96fff519acb12bcd0f1f1f1a"
   },
   {
     "path": "lab_web/static/index.html",
@@ -3141,8 +3141,8 @@
   },
   {
     "path": "tests/test_claim_parts.py",
-    "bytes": 2887,
-    "sha256": "02b0991d42434b511a0551ce474fd785c7ea84894213ecf5f9e9f656d3e62e6d"
+    "bytes": 3186,
+    "sha256": "39113eef5fa1a3d098b3790bc1b464eb64532396cfaa84066edfa0c833683355"
   },
   {
     "path": "tests/test_code_ranker.py",

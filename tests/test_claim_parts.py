@@ -1,6 +1,7 @@
 """Only rows supporting the individual assertion may reach its model reviewer."""
 
 import json
+import pytest
 
 from stealer_agent.claim_parts import split_review
 from stealer_agent.slice_review import slice_discrepancy
@@ -58,3 +59,12 @@ def test_prefix_discrepancy_requires_same_subject_and_one_literal_python_slice()
                   "tag = data[2:10:2]", "tag = data[2:10]; tag = another"):
         claim["evidence"][0]["quote"] = quote
         assert slice_discrepancy(claim, "python_ast") is None
+
+
+def test_published_coverage_cannot_count_unselected_caller_lines():
+    from eval.parts_audit import PUBLIC, read, score
+
+    result = read(PUBLIC)
+    result["a09_source"]["reference_rows_selected"].append(144)
+    with pytest.raises(ValueError, match="A09"):
+        score(result)

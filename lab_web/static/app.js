@@ -760,6 +760,22 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     Object.entries(data.split_scores).map(([key, s]) => [methods[key], s.reviewed,
       s.kept, s.kept_correct, s.kept_incorrect, s.kept_unsupported, s.parents_with_correct_kept + "/7"]), split);
   split.append(el("p", "Kết quả đọc lại dùng để người phân tích kiểm tra. Verdict của ba báo cáo gốc được chấm riêng."));
+  const details = el("details");
+  details.append(el("summary", "Xem từng nhận định · " + names[sample]));
+  const gradeNames = {correct: "Đúng", incorrect: "Sai", unsupported: "Thiếu căn cứ"};
+  table(["Câu gốc", "Ý", "Agent nói (tóm tắt)", "Dòng được dẫn", "Qwen", "Đối chiếu nguồn", "Vì sao"],
+    data.split_details.filter(row => row.sample === sample).map(row => [
+      init.history.some(entry => entry.run === row.run)
+        ? button(row.parent, () => openReportClaim(row.run, row.parent)) : row.parent,
+      row.number, row.summary_vi, row.ranges.map(([a,b]) => a === b ? String(a) : a + "–" + b).join(", "),
+      row.kept ? "Giữ" : "Loại", gradeNames[row.label], row.reason]), details);
+  if (sample === "python") {
+    const evidence = data.split_a09;
+    details.append(el("p", "A09 · Câu gốc đã có đủ " + evidence.reference_rows_in_prompt.length +
+      " dòng tham chiếu. Ba ý chỉ chọn các dòng " + evidence.reference_rows_selected.join(", ") +
+      ". Còn thiếu chứng cứ phía gọi trong các ý được viết lại."));
+  }
+  split.append(details);
   panel.append(split);
   const followup = data.dotnet_followup[sample];
   if (followup) {

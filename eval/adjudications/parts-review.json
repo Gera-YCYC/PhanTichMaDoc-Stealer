@@ -3,87 +3,108 @@
   "grades": {
     "bc16817e2f59fd2d94408ad8406bc074f82097a42cc001e822d67d72db77fd0d": {
       "label": "correct",
-      "reason": "Khai báo có hai tham số với chú thích kiểu bytes. Chỉ xác nhận chữ ký tĩnh."
+      "reason": "Khai báo có hai tham số với chú thích kiểu bytes. Chỉ xác nhận chữ ký tĩnh.",
+      "summary_vi": "Chữ ký hàm nhận bộ đệm và khóa, cả hai có chú thích kiểu byte."
     },
     "5eda268c6e367533f9bbe2a37226a63cc6cb90890db7cf77cc653239b47eead4": {
       "label": "incorrect",
-      "reason": "Khoảng bắt đầu ở chỉ số 3, trong khi nhận định nói 12 byte đầu."
+      "reason": "Khoảng bắt đầu ở chỉ số 3, trong khi nhận định nói 12 byte đầu.",
+      "summary_vi": "Hàm lấy giá trị IV từ 12 byte đầu của bộ đệm."
     },
     "be16a66d090b33d5520cf97f69e46e5f3553bde4dc7f3bdd83206d5f0fc4bf7f": {
       "label": "unsupported",
-      "reason": "Dòng được trích khởi tạo đối tượng. Dòng gọi giải mã thiếu trong trích dẫn."
+      "reason": "Dòng được trích khởi tạo đối tượng. Dòng gọi giải mã thiếu trong trích dẫn.",
+      "summary_vi": "Dùng đối tượng AES-GCM với khóa và IV để giải mã dữ liệu."
     },
     "b91adc6400db6e84588fa57cc38d246487d47c4a5891e6cfe0ba26a673c6f90e": {
       "label": "unsupported",
-      "reason": "Sáu dòng chỉ cho thấy khai báo và mở khối. Thiếu cả phép ghép đích lẫn chỗ dùng."
+      "reason": "Sáu dòng chỉ cho thấy khai báo và mở khối. Thiếu cả phép ghép đích lẫn chỗ dùng.",
+      "summary_vi": "Ghép địa chỉ từ phần cơ sở, đường dẫn tương đối và kết quả hàm."
     },
     "eb07edc58da6d728910524fe6d8210e21fee02710a5c0a31637b10a4248870a1": {
       "label": "correct",
-      "reason": "Có khởi tạo đối tượng và lời gọi trên cùng biến. Hai đối số thể hiện biểu thức ghép đích và biến đường dẫn."
+      "reason": "Có khởi tạo đối tượng và lời gọi trên cùng biến. Hai đối số thể hiện biểu thức ghép đích và biến đường dẫn.",
+      "summary_vi": "Tạo đối tượng WebClient và gọi phương thức gửi với biểu thức đích và đường dẫn tệp."
     },
     "4cf73109faf2060769ef63a3d8d9403c2133aedc87220cb2febbb11f79b71786": {
       "label": "unsupported",
-      "reason": "Có bước đọc mảng bằng ASCII nhưng thiếu dòng gán kết quả UploadFile vào mảng đó."
+      "reason": "Có bước đọc mảng bằng ASCII nhưng thiếu dòng gán kết quả UploadFile vào mảng đó.",
+      "summary_vi": "Lấy mảng kết quả của lời gọi gửi, chuyển sang ASCII rồi gán vào biến."
     },
     "b50df1a2ff394ce30a86bbc3f9fafb53640dac73cffdc6001dba87753d7eb438": {
       "label": "unsupported",
-      "reason": "Dòng trích chỉ ghép phần tương đối với kết quả hàm. Thành phần cơ sở không có ở dòng này."
+      "reason": "Dòng trích chỉ ghép phần tương đối với kết quả hàm. Thành phần cơ sở không có ở dòng này.",
+      "summary_vi": "Ghép địa chỉ cơ sở với chuỗi đường dẫn và kết quả hàm."
     },
     "df9b5044e36e6dbe38275872566171aa4867ed83d4f8ce3bc0e46553005bbfae": {
       "label": "unsupported",
-      "reason": "Một tên biến ở lời gọi gửi tệp chưa xác định nội dung tệp là ảnh chụp."
+      "reason": "Một tên biến ở lời gọi gửi tệp chưa xác định nội dung tệp là ảnh chụp.",
+      "summary_vi": "Gửi tệp được nhận diện là ảnh chụp màn hình."
     },
     "f08a6969e43614c533fa44b1ba986aa43780f4df951ff9791e53ee5c1734fc64": {
       "label": "correct",
-      "reason": "Có cả phép ghép phần tương đối với kết quả hàm và chỗ nối vào đối số của lời gọi gửi."
+      "reason": "Có cả phép ghép phần tương đối với kết quả hàm và chỗ nối vào đối số của lời gọi gửi.",
+      "summary_vi": "Phần cơ sở và kết quả hàm cùng tham gia hình thành đích dùng ở lời gọi gửi."
     },
     "18a7d7230cb1fc0b8887812d1ffdfbd9775c55bd7fb1ea971e21080686d5f6a8": {
       "label": "correct",
-      "reason": "Vế trái và phép gán kết quả giải mã Unicode đều hiện diện."
+      "reason": "Vế trái và phép gán kết quả giải mã Unicode đều hiện diện.",
+      "summary_vi": "Gán kết quả giải mã Unicode vào trường tên của phần tử."
     },
     "fe500d81227d008c43b882d4db4bcb2f15c595ee31b61240dd3661dc9c1757e8": {
       "label": "correct",
-      "reason": "Biểu thức offset chọn phần bộ đệm đưa vào GetString dùng đủ ba thành phần được nêu. Chấm theo nghĩa phần dữ liệu được chọn."
+      "reason": "Biểu thức offset chọn phần bộ đệm đưa vào GetString dùng đủ ba thành phần được nêu. Chấm theo nghĩa phần dữ liệu được chọn.",
+      "summary_vi": "Dùng ba thành phần số học để chọn phần dữ liệu đem giải mã."
     },
     "1906bfb2532084cbbca2ab9dfbefc172d0275bacf958057371b1a9181d7f5cd1": {
       "label": "correct",
-      "reason": "Đối số độ dài của GetString nhận phần tử thứ hai của mảng sau ép kiểu. Đây là độ dài phần bộ đệm."
+      "reason": "Đối số độ dài của GetString nhận phần tử thứ hai của mảng sau ép kiểu. Đây là độ dài phần bộ đệm.",
+      "summary_vi": "Lấy độ dài phần dữ liệu từ phần tử thứ hai của mảng."
     },
     "b23a1aa1b61835bebf940b2985ed78582ebecf305a21f9f395f70729b9ee9502": {
       "label": "unsupported",
-      "reason": "Có khởi tạo writer và hậu tố tên tệp. Dòng được dẫn không xác lập thư mục cơ sở thực sự là thư mục tạm của người dùng."
+      "reason": "Có khởi tạo writer và hậu tố tên tệp. Dòng được dẫn không xác lập thư mục cơ sở thực sự là thư mục tạm của người dùng.",
+      "summary_vi": "Tạo writer cho tệp ở thư mục tạm của người dùng."
     },
     "d4f0b13e90eb19ab6bce8f7585d00c670c8a518525f5b068b0503ad387359942": {
       "label": "incorrect",
-      "reason": "Biến nhận dữ liệu từ cột và biến truyền vào hàm khác nhau. Hai dòng không nối được hai giá trị."
+      "reason": "Biến nhận dữ liệu từ cột và biến truyền vào hàm khác nhau. Hai dòng không nối được hai giá trị.",
+      "summary_vi": "Lấy giá trị từ cột ở chỉ số 3 và đưa chính giá trị đó vào hàm giải mã."
     },
     "61b0503e5bc1a6ee6529c6d1076b5a848e2cf7c2f3b42fdf250431ce7bf9a7e1": {
       "label": "unsupported",
-      "reason": "Dòng chỉ gán biểu thức đường dẫn. Thiếu lời gọi đọc tệp và xử lý dữ liệu được mô tả."
+      "reason": "Dòng chỉ gán biểu thức đường dẫn. Thiếu lời gọi đọc tệp và xử lý dữ liệu được mô tả.",
+      "summary_vi": "Đọc tệp tại đường dẫn được nêu để lấy khóa."
     },
     "78df023bd75e3359331298afb4eb18ee33c236097a18bd0e16087ab29a3544bf": {
       "label": "unsupported",
-      "reason": "Các dòng chứa tên hàm và đường dẫn, thiếu lời gọi tìm trường bằng biểu thức chính quy."
+      "reason": "Các dòng chứa tên hàm và đường dẫn, thiếu lời gọi tìm trường bằng biểu thức chính quy.",
+      "summary_vi": "Tìm trường chứa khóa bằng biểu thức chính quy trong tệp cấu hình."
     },
     "18d6ea2bf59afd0104416ff9b1a15a3313e5243a1cb72b7a0fb0310e01a8eca4": {
       "label": "unsupported",
-      "reason": "Nhìn thấy regex và vòng lặp. Thiếu thao tác giải mã Base64 trong sáu dòng đã chọn."
+      "reason": "Nhìn thấy regex và vòng lặp. Thiếu thao tác giải mã Base64 trong sáu dòng đã chọn.",
+      "summary_vi": "Trích chuỗi khớp rồi giải mã Base64 thành mảng byte."
     },
     "432fe703eb08eaa6776c9ed6f70918ab537fbed1016af5786848d676b177f1b9": {
       "label": "unsupported",
-      "reason": "Nhìn thấy lời gọi xử lý mảng. Nguồn của mảng được gọi là đã trích xuất chưa được dẫn."
+      "reason": "Nhìn thấy lời gọi xử lý mảng. Nguồn của mảng được gọi là đã trích xuất chưa được dẫn.",
+      "summary_vi": "Truyền chính mảng vừa trích xuất cho lời gọi xử lý dữ liệu."
     },
     "446888416df83708841c76cb9399a8175fcaa2cfd95a9be00f319e5f45ae0d42": {
       "label": "unsupported",
-      "reason": "Chứng minh sao chép 16 phần tử ở cuối mảng. Kiểu byte của phần tử chưa được xác lập trong dòng trích."
+      "reason": "Chứng minh sao chép 16 phần tử ở cuối mảng. Kiểu byte của phần tử chưa được xác lập trong dòng trích.",
+      "summary_vi": "Sao chép 16 byte ở cuối mảng nguồn vào đầu mảng đích."
     },
     "d50b7c7b8b95a1635c8ba4af865ed7b6109a839cdd1b3247226ce5a8f9c0d3e7": {
       "label": "unsupported",
-      "reason": "Độ dài sao chép phụ thuộc độ dài mảng khác. Dòng trích không xác lập độ dài cố định là 16 hoặc đơn vị byte."
+      "reason": "Độ dài sao chép phụ thuộc độ dài mảng khác. Dòng trích không xác lập độ dài cố định là 16 hoặc đơn vị byte.",
+      "summary_vi": "Sao chép phần mảng còn lại sau khi bỏ 16 byte cuối."
     },
     "794020d1ba0ea3e9315d406074e4ef1e9e0fc045fc7613fe857dab98a7c36f4c": {
       "label": "unsupported",
-      "reason": "Đủ tên biến, thứ tự đối số và lời gọi UTF-8. Thiếu dòng xác lập kiểu của đối tượng gọi Decrypt."
+      "reason": "Đủ tên biến, thứ tự đối số và lời gọi UTF-8. Thiếu dòng xác lập kiểu của đối tượng gọi Decrypt.",
+      "summary_vi": "Lời gọi trên đối tượng AES-GCM nhận năm đối số rồi kết quả được đọc theo UTF-8."
     }
   }
 }

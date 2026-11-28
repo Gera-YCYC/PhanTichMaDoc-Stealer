@@ -34,6 +34,8 @@ Mục **A09** vẫn thiếu trong lần đọc này. Chữ ký và các dòng tr
 
 ## Tái lập
 
+Trong **Đánh giá**, chọn mẫu rồi mở **Đối chiếu từng ý trong bảy câu bị loại → Xem từng nhận định**. Bảng đặt câu agent nói, trích dẫn, quyết định của Qwen và lý do chấm cạnh nhau. Với A09, nhật ký xác nhận yêu cầu duyệt gốc có đủ 13 dòng tham chiếu. Ba ý tách ra chỉ chọn dòng 69, 70 và 72. Các dòng 140–144 ở phía gọi đã có sẵn khi duyệt câu gốc nhưng bị bỏ qua lúc chọn dẫn chứng. Biên bản tái lập kiểm cả văn bản lẫn tọa độ của 13 dòng đó trước khi tính số.
+
 - Từ bản Git, chạy `python -m eval.parts_audit` để tính lại ba hàng từ biên bản và nhãn.
 - Trên máy có các nhật ký gốc, chạy `python -m eval.parts_audit --replay` để dựng lại từng yêu cầu và trích dẫn, cả ở thí nghiệm và hai lượt web. Bộ kiểm còn đối chiếu các dòng đã mở trong trình duyệt.
 - Để chạy suy luận mới trên cùng bộ đầu vào, bật Ollama dự án bằng `.\scripts\Start-LocalModel.ps1 -PromptCacheMiB 0`, chạy `python -m eval.parts_trial` rồi dừng bằng `.\scripts\Stop-LocalModel.ps1`. Mỗi thí nghiệm có thư mục thời gian riêng. Đối chiếu nguồn trước khi gán nhãn cho kết quả mới.
