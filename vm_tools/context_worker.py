@@ -14,7 +14,8 @@ request = json.loads(path.read_text(encoding='utf-8'))
 result = related_contexts(request['record'], request['anchors'])
 try:
     operations = extract_operations(request['record'])
-    present = {r['line'] for r in result['lines']} | set(request['anchors'])
+    visible=set(request.get('visible_lines', request['anchors']))
+    present = {r['line'] for r in result['lines']} | visible
     chosen, rows, used = [], {}, 0
     # Prefer a call at the actual search anchor, then dependencies visible in
     # linked context. Imports alone must not use the bounded fact slots first.
@@ -24,10 +25,12 @@ try:
         callee = any(link['ranges'][1]['line'] <= call['line'] and call['end_line'] <= link['ranges'][1]['end_line']
                      for link in result.get('context_links',[]) if len(link['ranges'])>=2)
         distance = min((abs(call['line']-n) for n in request['anchors']), default=0)
-        return (not hit, not callee, distance, call['line'])
+        shown=any(n in visible for n in range(call['line'],call['end_line']+1))
+        return (not hit, not shown, not callee, distance, call['line'])
     for fact in sorted(operations['facts'], key=priority):
         numbers = {n for r in fact['ranges'] for n in range(r['line'],r['end_line']+1)}
-        if not present & numbers:
+        site=fact['ranges'][-1]
+        if not present.intersection(range(site['line'], site['end_line']+1)):
             continue
         extra = [request['record']['lines'][n-1] for n in sorted(numbers)]
         cost = sum(len(r['text'])+50 for r in extra if r['line'] not in rows)
@@ -44,4 +47,15 @@ try:
 except Exception as exc:
     result['operation_facts'] = []
     result['operation_status'] = {'status':'unavailable','error_class':type(exc).__name__}
+else:
+    from .archive_link import find_witness
+    try:
+        witness=find_witness(request['record'],operations['facts'],visible)
+        if witness:
+            for role in witness['roles']:
+                n=role['line']
+                rows[n]=request['record']['lines'][n-1]
+            result.update(lines=[rows[n] for n in sorted(rows)],archive_link=witness)
+    except (KeyError, ValueError, TypeError, SyntaxError, RecursionError):
+        result['archive_link_status']='unavailable'
 print(json.dumps(result, ensure_ascii=False))

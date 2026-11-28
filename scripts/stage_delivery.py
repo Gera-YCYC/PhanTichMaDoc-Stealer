@@ -14,6 +14,7 @@ remote=subprocess.check_output(['git','remote','get-url','origin'],cwd=repo,text
 if remote.removesuffix('.git')!='https://github.com/'+expected:
     raise ValueError('Delivery remote is not the configured user-selected repository')
 files=[]
+files.extend(p for p in (ROOT/'lab_web').rglob('*') if p.is_file() and p.suffix in ('.py','.js','.css','.html'))
 for folder in ('stealer_agent','vm_tools','tests','scripts','eval','training','.github'):
     files.extend(p for p in (ROOT/folder).rglob('*') if p.is_file() and not any(n in p.relative_to(ROOT).parts for n in ('__pycache__','data','runs','experiments'))
                  and p.name != 'stage_for_repository.py'

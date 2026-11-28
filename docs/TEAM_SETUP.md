@@ -1,5 +1,7 @@
 # Cài và demo thật trên máy của từng thành viên
 
+Sau bước dựng và kiểm lab, thành viên có thể chạy demo bằng trình duyệt qua `.\scripts\Start-Web.ps1` ở thư mục gốc trên Windows. [Hướng dẫn giao diện và điều tra](WEB_DIEU_TRA.md)
+
 Các cập nhật sau mốc 4 dùng Qwen7B mặc định và Release `tai-nguyen-lab-20261127` ngay trong repo nhóm. Có thêm ranker đã train (checkpoint JSON nhỏ nằm trong source), decoder Python literal và kiểm RAM khả dụng giữa các request. Không chạy đồng thời hai lab cùng IP. Qwen3 8B đã chạy được sau khi giới hạn cache, nhưng vẫn là candidate vì chất lượng chưa được chấm đủ; thành viên không cần tải nó để chạy mặc định. Xem [MODEL_COMPARISON](MODEL_COMPARISON.md), [PYTHON_STATIC_DECODING](PYTHON_STATIC_DECODING.md), [hồ sơ train](../training/RANKER_EXPERIMENT.md).
 
 Mục tiêu: chạy lại hai mẫu public .NET/PyInstaller bằng Qwen2.5 Coder 7B và công cụ thật trong VM. Không dùng mock, không dùng fixture làm demo chính. Mẫu public thay thế I/J vì nhóm xác nhận GV không cấp mẫu; nguồn và hash trong DATASET.md và config/public-samples.json.

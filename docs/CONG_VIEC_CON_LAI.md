@@ -1,5 +1,9 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+## Ưu tiên của nhóm
+
+Dùng demo web cục bộ trong buổi bảo vệ. Việc kỹ thuật tiếp theo là đo độ chính xác và bỏ sót của từng liên kết trên mẫu giữ riêng, xử lý thêm liên kết qua helper và xác minh verdict. Tiếp tục đo ổn định cùng bản agent ba lần, mở rộng kiểm thử injection trên cả hai định dạng và kiểm cài đặt trên máy thành viên khác. Nhóm có thể nhập nhận xét đã đối chiếu nguồn trong web, train ứng viên và so lại báo cáo đầu-cuối. Yêu cầu fine-tune chính Qwen vẫn chờ giảng viên làm rõ. [Hướng dẫn điều tra](WEB_DIEU_TRA.md)
+
 Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất gốc; buổi 4 chỉ là mốc đã có bằng chứng tích hợp. Không dùng số tool hay unit test để suy ra chất lượng phân tích. Tài liệu bàn giao là Markdown kỹ thuật, không yêu cầu thông tin sinh viên.
 
 Ưu tiên hiện tại là nâng độ phủ hành vi, kiểm ATT&CK và kiểm quan hệ giữa dữ liệu được thu và dữ liệu được gửi. Trên Python, bản v11 đạt F1 72,13% trên 36 mục. Ba câu có phần diễn giải tác dụng helper vượt quá trích dẫn. Đã có 40 mục .NET cho Gomorrah và 7 mục cho AgentTesla. Xem [điểm từng mẫu và cách chạy](DEMO_COVERAGE.md). Phép đo ổn định cần ba lượt trên **cùng mẫu**. Ba mẫu khác nhau phục vụ mốc buổi 6.

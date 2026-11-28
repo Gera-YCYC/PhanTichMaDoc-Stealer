@@ -1,5 +1,7 @@
 # StealerLab — Đồ án Phân tích mã độc
 
+**Demo bằng trình duyệt trên máy đã dựng lab.** Mở PowerShell tại thư mục dự án, chạy `.\scripts\Start-Web.ps1`, rồi mở http://127.0.0.1:4180. Chọn mẫu, bấm **Chạy điều tra** và mở **Nhật ký**. Khi có báo cáo, bấm từng nút hoặc đường nối để kiểm tra bằng chứng. [Hướng dẫn demo web](docs/WEB_DIEU_TRA.md) · [Cài trên máy nhóm](docs/TEAM_SETUP.md)
+
 AI Agent ReAct dùng SLM cục bộ để phân tích tĩnh stealer .NET/Python. Mục tiêu hiện tại là **hoàn thành toàn bộ sản phẩm theo slide và đề xuất gốc**; mốc buổi 4 đã có bằng chứng tích hợp.
 
 **Sản phẩm đang phát triển, chưa đạt toàn bộ tiêu chí chất lượng.** Repo chính: [Gera-YCYC/PhanTichMaDoc-Stealer](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer). Source ở root; model và mẫu public mã hóa ở Release có khóa hash. Tài liệu bàn giao là Markdown kỹ thuật, không cần thông tin sinh viên.

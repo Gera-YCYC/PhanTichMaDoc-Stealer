@@ -13,6 +13,9 @@ from urllib.parse import urlsplit
 DOMAIN = re.compile(r'(?=.{4,253}\Z)(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}\Z')
 NETWORK = re.compile(r'(?:\b(?:[A-Za-z_]\w*[_])?(?:host|hostname|server|endpoint|url)\s*=\s*|\b(?:SMTP|SMTP_SSL|SmtpClient)\s*\(\s*)$', re.I)
 PRIVATE = re.compile(r'password|passwd|secret|token|credential|username|api_key|sender|recipient|email', re.I)
+DECORATIVE_FIELD = re.compile(
+    r'''(?:["'](?:avatar_url|icon_url|thumbnail_url|image_url)["']\s*[,=:]|\b(?:avatar_?url|icon_?url|thumbnail_?url|image_?url)\s*=)\s*(?:\((?:object|string)\)\s*)?$''',
+    re.I)
 
 
 def source_expression(value):
@@ -62,7 +65,7 @@ not mean benign. A returned value is still only a static candidate.
             continue
         for offset, line in enumerate(text.splitlines()):
             for value, prefix in quoted_literals(line):
-                if '__PRIVATE_LITERAL_' in value or PRIVATE.search(prefix):
+                if '__PRIVATE_LITERAL_' in value or PRIVATE.search(prefix) or DECORATIVE_FIELD.search(prefix):
                     continue
                 kind = None
                 if value.lower().startswith(('http://', 'https://')):

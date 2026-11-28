@@ -74,7 +74,8 @@ class ToolService:
                         folder.mkdir(parents=True, exist_ok=True)
                         snapshot = folder / (uuid.uuid4().hex + '.json')
                         snapshot.write_text(json.dumps({'record': self.store.get(arguments['evidence_id'], digest),
-                            'anchors': [g['anchor_line'] for g in result['search_groups']]}), encoding='utf-8')
+                            'anchors': [g['anchor_line'] for g in result['search_groups']],
+                            'visible_lines': [r['line'] for r in result['lines']]}), encoding='utf-8')
                         context = json.loads(bounded_process([sys.executable, '-m', 'vm_tools.context_worker', str(snapshot.resolve())],
                             Path(self.config['evidence_dir'])/'work', timeout=20, max_bytes=100_000,
                             strict_stderr=True, memory_limit=True,
@@ -85,6 +86,8 @@ class ToolService:
                         result.update(lines=[lines[n] for n in sorted(lines)], context_links=context['context_links'],
                                       syntax_context=context['syntax_context'])
                         result.update({k:context[k] for k in ('operation_facts','operation_backend','operation_status') if k in context})
+                        if 'archive_link' in context:
+                            result['archive_link']=context['archive_link']
                     except Exception as exc:
                         result['syntax_context'] = {'status': 'unavailable', 'error_class': type(exc).__name__,
                                                    'scope': 'Literal search remains available; no syntax links claimed'}

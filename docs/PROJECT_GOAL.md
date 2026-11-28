@@ -1,5 +1,9 @@
 # Goal và điều kiện nghiệm thu
 
+## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
+
+Giữ nguyên tên đề tài và các ngưỡng giảng viên. Ưu tiên agent chủ động xác định phần bằng chứng còn thiếu, điều tra bằng công cụ thật trong VM và lập bản đồ để người phân tích kiểm từng liên kết. Sản phẩm bàn giao gồm giao diện web cục bộ nối agent, Qwen và VM, nhật ký thật, hỏi đáp có dẫn nguồn, tạo–kiểm–sửa luật YARA, nhãn có phiên bản cho ranker và thí nghiệm đối chứng với quy trình cố định. Đích xuất bản là repo nhóm Gera-YCYC/PhanTichMaDoc-Stealer. Khi bàn giao sản phẩm, dùng demo web trực tiếp. Quay video mới nằm ngoài phần việc người dùng giao. Các yêu cầu nộp bài trên slide vẫn được lưu nguyên trong tài liệu nguồn. [Cách chạy và phạm vi kiểm chứng](WEB_DIEU_TRA.md)
+
 Nguồn có thẩm quyền: 12 ảnh slide và đề xuất gốc trong `docs/reference/`.
 Đề tài: **Xây dựng AI Agent phân tích mã độc đánh cắp thông tin (Stealer) .NET/Python theo mô hình ReAct sử dụng SLM cục bộ** — Hướng 6.
 

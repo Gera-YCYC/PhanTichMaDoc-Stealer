@@ -1,0 +1,242 @@
+{
+  "run": "link_compare_29399f893397",
+  "time": "2026-11-28T02:04:29.011263+00:00",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "same_seed_per_pair": true,
+  "search_budget_per_arm": 4,
+  "fixed_queries": [
+    "SELECT",
+    "sendmail",
+    "UploadFile",
+    "GetString"
+  ],
+  "scope": "Search stage only. Development samples and ten annotated source links. Other sites ungraded. Time excludes shared preparation. Warm cache/order effects possible.",
+  "source_sha256": {
+    "stealer_agent/investigation.py": "94322d5fb4c3ae5989fdf447f0802887598da9929f6fb3c32bddc8499c3cfb87",
+    "eval/compare_link_search.py": "938aa490a9f056a4e40aff690064c74dd7c5eb444217509ff7f3df7d1b3d7190"
+  },
+  "results": [
+    {
+      "mode": "fixed",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "elapsed_s": 3.294,
+      "tool_calls": 4,
+      "model_calls": 0,
+      "actions": [
+        {
+          "gap": null,
+          "query": "SELECT",
+          "hits": 12,
+          "model_usage": null
+        },
+        {
+          "gap": null,
+          "query": "sendmail",
+          "hits": 0,
+          "model_usage": null
+        },
+        {
+          "gap": null,
+          "query": "UploadFile",
+          "hits": 13,
+          "model_usage": null
+        },
+        {
+          "gap": null,
+          "query": "GetString",
+          "hits": 34,
+          "model_usage": null
+        }
+      ],
+      "covered": [],
+      "missed": [
+        "cc-ascii",
+        "emails-ascii",
+        "info-ascii",
+        "late-one-ascii",
+        "late-two-ascii",
+        "passwords-ascii",
+        "screen-ascii"
+      ],
+      "wrong_producer_at_graded_site": 0,
+      "ungraded_other_sites": 0,
+      "site_precision": null,
+      "site_recall": 0.0
+    },
+    {
+      "mode": "adaptive",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "elapsed_s": 7.124,
+      "tool_calls": 4,
+      "model_calls": 4,
+      "actions": [
+        {
+          "gap": "send-response",
+          "query": "sendmail",
+          "hits": 0,
+          "model_usage": {
+            "latency_s": 1.1842,
+            "prompt_tokens": 59,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "gap": "process-write",
+          "query": "WriteAll",
+          "hits": 4,
+          "model_usage": {
+            "latency_s": 0.7717,
+            "prompt_tokens": 64,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "gap": "process-write",
+          "query": "WriteAllText(",
+          "hits": 4,
+          "model_usage": {
+            "latency_s": 0.9244,
+            "prompt_tokens": 76,
+            "completion_tokens": 10
+          }
+        },
+        {
+          "gap": "process-write",
+          "query": "Write(",
+          "hits": 4,
+          "model_usage": {
+            "latency_s": 0.7834,
+            "prompt_tokens": 77,
+            "completion_tokens": 8
+          }
+        }
+      ],
+      "covered": [],
+      "missed": [
+        "cc-ascii",
+        "emails-ascii",
+        "info-ascii",
+        "late-one-ascii",
+        "late-two-ascii",
+        "passwords-ascii",
+        "screen-ascii"
+      ],
+      "wrong_producer_at_graded_site": 0,
+      "ungraded_other_sites": 0,
+      "site_precision": null,
+      "site_recall": 0.0
+    },
+    {
+      "mode": "adaptive",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "output_sha256": "f133d5465fe259fccaa8070af7bc038a345a25ffa354dba5af95a5423bf93993",
+      "elapsed_s": 4.399,
+      "tool_calls": 4,
+      "model_calls": 4,
+      "actions": [
+        {
+          "gap": "rows-process",
+          "query": "ReadTable",
+          "hits": 0,
+          "model_usage": {
+            "latency_s": 0.9147,
+            "prompt_tokens": 69,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "gap": "process-write",
+          "query": "WriteAll",
+          "hits": 0,
+          "model_usage": {
+            "latency_s": 0.7181,
+            "prompt_tokens": 70,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "gap": "rows-process",
+          "query": "CryptUnprotectData",
+          "hits": 2,
+          "model_usage": {
+            "latency_s": 0.9127,
+            "prompt_tokens": 71,
+            "completion_tokens": 10
+          }
+        },
+        {
+          "gap": "query-rows",
+          "query": "fetchall(",
+          "hits": 5,
+          "model_usage": {
+            "latency_s": 0.9076,
+            "prompt_tokens": 76,
+            "completion_tokens": 9
+          }
+        }
+      ],
+      "covered": [],
+      "missed": [
+        "PY24-U03",
+        "PY24-U06",
+        "PY24-U12"
+      ],
+      "wrong_producer_at_graded_site": 0,
+      "ungraded_other_sites": 0,
+      "site_precision": null,
+      "site_recall": 0.0
+    },
+    {
+      "mode": "fixed",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "output_sha256": "f133d5465fe259fccaa8070af7bc038a345a25ffa354dba5af95a5423bf93993",
+      "elapsed_s": 0.807,
+      "tool_calls": 4,
+      "model_calls": 0,
+      "actions": [
+        {
+          "gap": null,
+          "query": "SELECT",
+          "hits": 5,
+          "model_usage": null
+        },
+        {
+          "gap": null,
+          "query": "sendmail",
+          "hits": 1,
+          "model_usage": null
+        },
+        {
+          "gap": null,
+          "query": "UploadFile",
+          "hits": 0,
+          "model_usage": null
+        },
+        {
+          "gap": null,
+          "query": "GetString",
+          "hits": 0,
+          "model_usage": null
+        }
+      ],
+      "covered": [
+        "PY24-U03"
+      ],
+      "missed": [
+        "PY24-U06",
+        "PY24-U12"
+      ],
+      "wrong_producer_at_graded_site": 0,
+      "ungraded_other_sites": 0,
+      "site_precision": 1.0,
+      "site_recall": 0.3333333333333333
+    }
+  ]
+}

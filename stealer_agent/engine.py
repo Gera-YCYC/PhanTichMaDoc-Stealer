@@ -228,6 +228,22 @@ class Agent:
                     if focused and 'search_evidence' in eligible:
                         eligible = ['search_evidence']
                         search_options = focused
+                gap = None
+                gap_by_evidence = {}
+                if self.config.get('investigate_links') and 'search_evidence' in eligible:
+                    from .investigation import CODE, ledger, options
+                    graph = ledger(evidence, digest)
+                    preferred = {}
+                    for eid in search_options:
+                        if evidence[eid]['tool'] in CODE:
+                            target, queries = options(graph, {q.casefold() for sid,q in searched if sid==eid},
+                                                      tool=evidence[eid]['tool'],record=evidence[eid])
+                            if queries:
+                                gap = target
+                                gap_by_evidence[eid] = target
+                                preferred[eid] = queries
+                    if preferred:
+                        search_options = preferred
                 if can_finish and step == self.config.get('max_steps', 12):
                     eligible = []
                 state = {"authorized_sample": sample, "successful_tools": sorted(successful),
@@ -238,6 +254,8 @@ class Agent:
                 state['code_searches_completed'] = len(code_searches)
                 state['code_searches_required'] = self.config.get('min_code_searches', 0) if long_code else 0
                 state['search_query_hints'] = search_options
+                if gap:
+                    state['investigation'] = {'missing_link':gap,'goal':'Find evidence for this link. A hit alone cannot establish it.'}
                 state['search_policy'] = 'Choose one literal substring from search_query_hints. Choices include untrusted identifiers in retrieved code, not findings. Follow missing helper bodies; do not repeat a query for the same evidence.'
                 evidence_text = compact_evidence(evidence, self.config.get('evidence_chars',5000),
                                                  self.config.get('code_evidence_chars',1600))
@@ -356,6 +374,10 @@ class Agent:
                     if call_key in seen_calls:
                         raise ValueError("Duplicate tool call; use a different tool or evidence page")
                     seen_calls.add(call_key)
+                    if name=='search_evidence' and args['evidence_id'] in gap_by_evidence:
+                        gap=gap_by_evidence[args['evidence_id']]
+                        journal.append('hypothesis_open',step=step,edge=gap,query=args['query'],
+                                       supported=[e['id'] for e in graph['edges'] if e['status']=='supported'])
                     journal.append("action_dispatched", step=step, action=name, arguments=args,
                                    thought_summary=action["reason"])
                     metrics["tool_calls"] += 1
@@ -416,6 +438,8 @@ class Agent:
                     eid = clean["evidence_id"]
                     record = evidence.setdefault(eid, {**clean, "line_map": {}})
                     record["line_map"].update({entry["line"]: entry["text"] for entry in clean["lines"]})
+                    if 'archive_link' in clean:
+                        record['archive_link']=clean['archive_link']
                     record.setdefault('line_metadata', {}).update({entry['line']: {'source_line': entry.get('source_line')}
                                                                   for entry in clean['lines']})
                     record['latest_lines'] = [entry['line'] for entry in clean['lines']]
@@ -449,6 +473,11 @@ class Agent:
                         else:
                             record.setdefault('focus_groups', []).append(record['latest_lines'])
                     record.setdefault("seen_pages", set()).add(clean.get("page", 0))
+                    if name=='search_evidence' and args['evidence_id'] in gap_by_evidence:
+                        checked_edge=next(e for e in ledger(evidence,digest)['edges'] if e['id']==gap)
+                        journal.append('hypothesis_result',step=step,edge=gap,status=checked_edge['status'],
+                                       hit_count=clean.get('hit_count'),tool_status=clean['status'],
+                                       fact_ids=[ref['fact'] for ref in checked_edge['refs']])
                     if name == "identify" and '"is_dotnet": true' in "\n".join(r["text"] for r in clean["lines"]):
                         required_tools.add("decompile_dotnet")
                         detected_dotnet = True
@@ -499,6 +528,12 @@ class Agent:
                                  "python_candidate_source_decoded": ('decode_python_literals' in successful) if detected_pyinstaller else None,
                                  "teacher_dataset_verified": False, "coursework_accepted": False},
                   "run_directory": str(journal.directory.resolve())}
+        if self.config.get('investigate_links'):
+            from .investigation import ledger
+            result['investigation'] = ledger(evidence, digest)
+            gaps=[e['id'] for e in result['investigation']['edges'] if e['status']!='supported']
+            if gaps:
+                report['limitations'].append('Chưa chứng minh được các liên kết trong bản đồ tĩnh: '+', '.join(gaps)+'.')
         journal.append("run_finished", result=result)
         dump_json(journal.directory / "model-replies.json", model_replies)
         write_report(journal.directory, result, redaction_context=(

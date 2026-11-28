@@ -8,6 +8,7 @@ from datetime import datetime,timezone
 root=Path(__file__).resolve().parents[1]
 stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
 files=[]
+files.extend(p for p in (root/'lab_web').rglob('*') if p.is_file() and p.suffix in ('.py','.js','.css','.html'))
 for folder in ('stealer_agent','vm_tools','tests','scripts','eval','training','.github'):
     files += [p for p in (root/folder).rglob('*') if p.is_file()
               and not any(n in p.relative_to(root).parts for n in ('__pycache__','data','runs','experiments'))

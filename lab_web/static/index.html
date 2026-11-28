@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>StealerLab · Phòng phân tích</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <b class="brand"><i>⌬</i> StealerLab</b
+      ><span class="context">Phòng phân tích tĩnh</span
+      ><button id="health" title="Kiểm tra lại kết nối">
+        Đang kiểm tra lab…
+      </button>
+    </header>
+    <main>
+      <aside>
+        <h2>Ca phân tích</h2>
+        <label for="sample">Mẫu trong VM</label
+        ><select id="sample"></select
+        ><small id="filemeta"></small
+        ><button id="start" class="primary">▷　Chạy điều tra</button>
+        <p id="live" role="status"></p>
+        <h2>Lịch sử</h2>
+        <div id="history"></div>
+      </aside>
+      <article>
+        <div id="banner" role="status"></div>
+        <div class="overline" id="run"></div>
+        <h1 id="title">Chọn mẫu để điều tra</h1>
+        <p id="meta"></p>
+        <div id="metrics"></div>
+        <nav aria-label="Nội dung hồ sơ">
+          <button data-view="map">Bản đồ chứng cứ</button
+          ><button data-view="claims">Nhận định</button
+          ><button data-view="log">Nhật ký</button
+          ><button data-view="qa">Hỏi đáp</button
+          ><button data-view="yara">YARA</button
+          ><button data-view="labels">Gán nhãn</button>
+        </nav>
+        <section id="panel"></section>
+      </article>
+    </main>
+  </body>
+</html>

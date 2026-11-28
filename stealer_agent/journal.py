@@ -66,6 +66,8 @@ class Journal:
                 print(f"[READY] Local model: {details['model']['tag']} | isolated VM: ready", flush=True)
             elif event == 'action_dispatched':
                 print(f"[STEP {details['step']}] CALL {details['action']}", flush=True)
+            elif event == 'hypothesis_open':
+                print(f"[GAP {details['step']}] {details['edge']}", flush=True)
             elif event == 'observation':
                 result=details['raw']
                 print(f"[STEP {details['step']}] {result['tool']} -> {result['status']} | backend={result['backend']}",flush=True)
