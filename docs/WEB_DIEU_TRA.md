@@ -10,6 +10,8 @@ Mở **http://127.0.0.1:4180**. Script bật VM và Ollama, đồng bộ mã cô
 
 ## Một lượt trình bày
 
+Muốn chứng minh agent tìm thêm bằng chứng ngoài hồ sơ gốc, mở **Nhận định → Điều tra bổ sung trên mã .NET → Tìm thêm và lập phụ lục**. Trong VM, ILSpy dịch ngược lại chính mẫu đó. Web kiểm tra hash nguồn trước khi cho tìm mới, lập phụ lục và mở từng trích dẫn. [Các bước, điểm đo và hai lượt chạy trực tiếp](PHU_LUC_DIEU_TRA_NET.md)
+
 Để minh họa cách kiểm tra một câu bị loại, mở Mercurial C8 rồi Gomorrah C5 ở mục **Nhận định**. Cả hai có nhật ký bấm thật và câu đọc lại, còn nguồn chỉ xác nhận đầy đủ trường hợp đầu. [Các bước, số dòng và hai kết quả](DOC_LAI_NHAN_DINH.md)
 
 Nhóm đã chạy lại từ nút **Chạy điều tra** với mẫu PythonStealer trên web và Qwen3 8B. Lượt `20261128T035912_e9d2b879` mất 495,58 giây, có 17 lượt công cụ, 38 lượt model và 232 sự kiện. Bốn backend phân tích thành công. Một lần dịch ngược lỗi, agent tiếp tục qua bytecode. Bản đồ kết thúc và bản đồ trên web cùng xác nhận ba liên kết tĩnh. Hỏi về dữ liệu từ truy vấn tới giải mã đã kích hoạt một lượt VM, được tám kết quả và còn thiếu chứng cứ. Hỏi về bản nén trong thông điệp dẫn lại 11 vị trí. YARA khớp trên mẫu phát triển. [Biên bản lượt trực tiếp](../deliverables/real-demo-evidence/web-20261128T035912_e9d2b879.json)

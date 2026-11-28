@@ -1,0 +1,485 @@
+{
+  "trial": "reports_f3a276bfaec7",
+  "method": "Đối chiếu phần nhận định và trích dẫn trên tập phát triển. Mỗi lỗi có khóa để khử trùng. Dòng đủ là điều kiện cần, ý nghĩa của câu quyết định mục được tính. Chưa có người chấm độc lập.",
+  "arms": {
+    "gomorrah/fixed": [
+      [
+        [
+          "opera-open"
+        ],
+        [],
+        [
+          1048,
+          1055
+        ],
+        "Khởi tạo bộ đọc trên đường dẫn Opera thuộc Roaming."
+      ],
+      [
+        [
+          "opera-password_value"
+        ],
+        [
+          "wrong/decrypt-as-column-reader"
+        ],
+        [
+          1056,
+          1069,
+          1070
+        ],
+        "GetValue đọc cột. Lời gọi Decrypt dùng giá trị của cột ở dòng sau."
+      ],
+      [
+        [
+          "chrome-open"
+        ],
+        [],
+        [
+          1103,
+          1104,
+          1116,
+          1117
+        ],
+        "Có lời gọi mở cơ sở dữ liệu Chrome và đọc các trường đăng nhập."
+      ],
+      [
+        [
+          "chrome-decrypt-call"
+        ],
+        [
+          "unverified/chrome-decrypt-result"
+        ],
+        [
+          1117,
+          1118
+        ],
+        "Có phép đổi thành byte và truyền cho hàm cục bộ. Đoạn trích thiếu thân hàm để xác nhận kết quả giải mã."
+      ],
+      [
+        [
+          "chrome-open"
+        ],
+        [
+          "unverified/actual-encrypted-credential-contents"
+        ],
+        [
+          1103,
+          1104,
+          1117
+        ],
+        "Có thao tác mở tệp và đọc trường. Nội dung thực tế của tệp trên máy nạn nhân chưa được quan sát."
+      ],
+      [
+        [
+          "chrome-password_value",
+          "chrome-decrypt-call"
+        ],
+        [
+          "unverified/chrome-decrypt-result"
+        ],
+        [
+          1104,
+          1117,
+          1118
+        ],
+        "Có đường truyền từ trường vào hàm và phép gán. Giá trị trả về có phải mật khẩu đã giải mã vẫn cần kiểm tra."
+      ]
+    ],
+    "gomorrah/adaptive": [
+      [
+        [],
+        [
+          "unverified/dictionary-type"
+        ],
+        [
+          4812,
+          4813
+        ],
+        "Có đối số do GetValue trả về. Đoạn trích thiếu khai báo chứng minh đối tượng là dictionary."
+      ],
+      [
+        [],
+        [],
+        [
+          4802,
+          4820,
+          4822
+        ],
+        "Có phép tạo đối tượng UTF8Encoding, mảng đối số và lời gọi qua late binding."
+      ],
+      [
+        [],
+        [],
+        [
+          4772,
+          4779,
+          4781,
+          4782
+        ],
+        "Các lời gọi mở khóa HKCU cùng đường dẫn và ngữ cảnh Outlook."
+      ],
+      [
+        [],
+        [],
+        [
+          4730,
+          4731
+        ],
+        "Có lời gọi và phép gán vào danh sách có kiểu."
+      ],
+      [
+        [],
+        [],
+        [
+          3254
+        ],
+        "Biểu thức ghép giá trị biến môi trường với tên tệp."
+      ]
+    ],
+    "mercurial/adaptive": [
+      [
+        [
+          "cookie-helper"
+        ],
+        [
+          "unverified/cookie-helper-effect"
+        ],
+        [
+          75
+        ],
+        "Có lời gọi hàm xử lý cookie. Chỉ riêng vị trí gọi chưa chứng minh tác dụng đánh cắp."
+      ],
+      [
+        [],
+        [
+          "unverified/password-helper-effect"
+        ],
+        [
+          76
+        ],
+        "Có lời gọi hàm liên quan mật khẩu. Tác dụng bên trong chưa xuất hiện."
+      ],
+      [
+        [],
+        [
+          "unverified/system-temp-path"
+        ],
+        [
+          237,
+          243,
+          244
+        ],
+        "Có thao tác sao chép ảnh và lưu JPEG. Biến tempFolder chưa được lần đến giá trị khởi tạo trong trích đoạn."
+      ],
+      [
+        [],
+        [
+          "unverified/senddata-network"
+        ],
+        [
+          244,
+          245
+        ],
+        "Có truyền đường dẫn và kiểu nội dung vào hàm SendData. Thân hàm gửi nằm ngoài trích dẫn."
+      ],
+      [
+        [],
+        [
+          "unverified/key-destination"
+        ],
+        [
+          272
+        ],
+        "Có lời gọi lồng để dựng nội dung từ khóa sản phẩm. Chưa chứng minh đích webhook."
+      ],
+      [
+        [
+          "ip-message"
+        ],
+        [
+          "unverified/ip-destination"
+        ],
+        [
+          279
+        ],
+        "Có chuyển các trường IP và vị trí cho hàm dựng nội dung. Điểm gọi chưa xác nhận đích webhook."
+      ]
+    ],
+    "mercurial/fixed": [
+      [
+        [],
+        [],
+        [
+          1738,
+          1744,
+          1745,
+          1746,
+          1747
+        ],
+        "Thiết lập HTTP POST, kiểu nội dung, user agent và đối tượng cookie."
+      ],
+      [
+        [],
+        [
+          "unverified/screenshot-origin",
+          "unverified/system-temp-path",
+          "unverified/senddata-network"
+        ],
+        [
+          244,
+          245
+        ],
+        "Có lưu JPEG và truyền đường dẫn vào hàm. Đoạn gửi cho model bắt đầu sau lệnh chụp ở 243, thiếu nguồn của tempFolder và thân hàm gửi."
+      ],
+      [
+        [],
+        [
+          "unverified/token-content-network"
+        ],
+        [
+          252,
+          256,
+          258,
+          260,
+          261
+        ],
+        "Có duyệt danh sách và truyền chuỗi nội dung. Tác dụng truyền trên mạng của SendContent chưa được xác nhận."
+      ],
+      [
+        [],
+        [],
+        [
+          1919,
+          1921
+        ],
+        "Có mở và đọc từ FileStream dùng đường dẫn đối số."
+      ],
+      [
+        [],
+        [
+          "unverified/multipart-network"
+        ],
+        [
+          1923,
+          1925,
+          1929
+        ],
+        "Có lời gọi hàm mang tên MultipartFormDataPost với đối số đích và dictionary. Đoạn trích không có thân hàm để xác nhận gửi request."
+      ],
+      [
+        [
+          "cookie-helper"
+        ],
+        [
+          "unverified/cookie-helper-effect"
+        ],
+        [
+          75
+        ],
+        "Có lời gọi hàm cookie. Tên hàm chưa chứng minh tác dụng bên trong."
+      ],
+      [
+        [],
+        [
+          "unverified/password-helper-effect"
+        ],
+        [
+          76
+        ],
+        "Có lời gọi hàm mật khẩu. Đoạn trích thiếu phần triển khai của hàm."
+      ]
+    ],
+    "gomorrah/mixed": [
+      [
+        [
+          "opera-open"
+        ],
+        [],
+        [
+          1048,
+          1055
+        ],
+        "Khởi tạo bộ đọc trên đường dẫn Opera thuộc Roaming."
+      ],
+      [
+        [
+          "opera-password_value"
+        ],
+        [
+          "wrong/decrypt-as-column-reader"
+        ],
+        [
+          1056,
+          1069,
+          1070
+        ],
+        "GetValue đọc cột. Lời gọi Decrypt dùng giá trị của cột ở dòng sau."
+      ],
+      [
+        [
+          "chrome-open"
+        ],
+        [],
+        [
+          1103,
+          1104,
+          1116,
+          1117
+        ],
+        "Có lời gọi mở cơ sở dữ liệu Chrome và đọc các trường đăng nhập."
+      ],
+      [
+        [
+          "chrome-decrypt-call"
+        ],
+        [
+          "unverified/chrome-decrypt-result"
+        ],
+        [
+          1117,
+          1118
+        ],
+        "Có phép đổi thành byte và truyền cho hàm cục bộ. Đoạn trích thiếu thân hàm để xác nhận kết quả giải mã."
+      ],
+      [
+        [],
+        [
+          "wrong/outlook-argument-origin"
+        ],
+        [
+          4812,
+          4813,
+          4816
+        ],
+        "4812 lấy giá trị theo khóa của vòng lặp. 4816 lấy một trường khác sau lời gọi ở 4813."
+      ],
+      [
+        [],
+        [],
+        [
+          4802,
+          4820,
+          4822
+        ],
+        "Có phép tạo đối tượng UTF8Encoding, mảng đối số và lời gọi qua late binding."
+      ],
+      [
+        [],
+        [],
+        [
+          4772,
+          4779,
+          4781,
+          4782
+        ],
+        "Các lời gọi mở khóa HKCU cùng đường dẫn và ngữ cảnh Outlook."
+      ]
+    ],
+    "mercurial/mixed": [
+      [
+        [],
+        [],
+        [
+          1738,
+          1744,
+          1745,
+          1746,
+          1747,
+          1749,
+          1752,
+          1759
+        ],
+        "Có cấu hình HTTP POST và ghi mảng byte vào request stream, sau đó lấy phản hồi."
+      ],
+      [
+        [],
+        [
+          "unverified/screenshot-origin",
+          "unverified/system-temp-path",
+          "unverified/senddata-network"
+        ],
+        [
+          244,
+          245
+        ],
+        "Có lưu JPEG và truyền đường dẫn vào hàm. Đoạn gửi cho model bắt đầu sau lệnh chụp ở 243, thiếu nguồn của tempFolder và thân hàm gửi."
+      ],
+      [
+        [],
+        [
+          "unverified/token-content-network"
+        ],
+        [
+          252,
+          256,
+          258,
+          260,
+          261
+        ],
+        "Có duyệt danh sách và truyền chuỗi nội dung. Tác dụng truyền trên mạng của SendContent chưa được xác nhận."
+      ],
+      [
+        [],
+        [],
+        [
+          1919,
+          1921
+        ],
+        "Có mở và đọc từ FileStream dùng đường dẫn đối số."
+      ],
+      [
+        [],
+        [
+          "unverified/multipart-network"
+        ],
+        [
+          1923,
+          1925,
+          1929
+        ],
+        "Có lời gọi hàm mang tên MultipartFormDataPost với đối số đích và dictionary. Đoạn trích không có thân hàm để xác nhận gửi request."
+      ],
+      [
+        [],
+        [],
+        [
+          1727,
+          1728,
+          1729,
+          1730
+        ],
+        "Tạo chuỗi phân cách từ GUID, dùng cho kiểu nội dung và truyền cho hàm dựng dữ liệu multipart."
+      ],
+      [
+        [],
+        [],
+        [
+          1729,
+          1730
+        ],
+        "Kết quả dựng dữ liệu từ các tham số được gán cho mảng byte và truyền cho PostForm."
+      ]
+    ]
+  },
+  "journals": {
+    "gomorrah/fixed": {
+      "sha256": "bd67a6974d55273b1f2074dda721eae1c7ce44990f250a32fceb736d48f8335f"
+    },
+    "gomorrah/adaptive": {
+      "sha256": "11bc91034ec6d4e91a0b97a6eed995f1b98a91a8602a6118d097c1a66c425f85"
+    },
+    "mercurial/adaptive": {
+      "sha256": "73e277b950967e836859297fe33463790bbf116a179c27460f8457b83330efe0"
+    },
+    "mercurial/fixed": {
+      "sha256": "7b8edb8663f31adf0dc13187565eba2cc36cafb2193af128959ebaed54b526a7"
+    },
+    "gomorrah/mixed": {
+      "id": "extra_e0243253cd13",
+      "sha256": "a9796884588b085b97644f7daaf054d3a3e55bd22d3429af40fd0cc40bb29ca8"
+    },
+    "mercurial/mixed": {
+      "id": "extra_2058df8b023d",
+      "sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757"
+    }
+  }
+}

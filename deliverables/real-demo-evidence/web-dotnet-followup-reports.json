@@ -1,0 +1,1067 @@
+{
+  "gomorrah/adaptive": {
+    "journal_sha256": "11bc91034ec6d4e91a0b97a6eed995f1b98a91a8602a6118d097c1a66c425f85",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "sha256": "cea7ec9371f12730ca9eca574c6cdfb8fe7d38e0908d131d1c1e29831b064511",
+        "retained": false,
+        "cited": [
+          [
+            4800,
+            4828
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/dictionary-type"
+        ],
+        "audit_lines": [
+          4812,
+          4813
+        ],
+        "reason": "Có đối số do GetValue trả về. Đoạn trích thiếu khai báo chứng minh đối tượng là dictionary."
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "sha256": "305f6a5387c21aaf288301d68ef4882a23c48532ced81ebaa8ff3ef63a7cd7c6",
+        "retained": true,
+        "cited": [
+          [
+            4800,
+            4828
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          4802,
+          4820,
+          4822
+        ],
+        "reason": "Có phép tạo đối tượng UTF8Encoding, mảng đối số và lời gọi qua late binding."
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "sha256": "b2128f2f584f7dd8973c17af4f5d737708de416052b67c4614af32ba1c9dc86c",
+        "retained": true,
+        "cited": [
+          [
+            4760,
+            4785
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          4772,
+          4779,
+          4781,
+          4782
+        ],
+        "reason": "Các lời gọi mở khóa HKCU cùng đường dẫn và ngữ cảnh Outlook."
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "sha256": "a5733ad9f1f58ba84c6a505bf6d5ef3d14a12d8e2a6f061d2ab1fe3c165edaef",
+        "retained": true,
+        "cited": [
+          [
+            4709,
+            4740
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          4730,
+          4731
+        ],
+        "reason": "Có lời gọi và phép gán vào danh sách có kiểu."
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "sha256": "fec33a8098da339af2d797923d42556159c2f001cd965d0e925b474ba11c8718",
+        "retained": true,
+        "cited": [
+          [
+            3239,
+            3269
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          3254
+        ],
+        "reason": "Biểu thức ghép giá trị biến môi trường với tên tệp."
+      }
+    ],
+    "cards": 4,
+    "vm_searches": 4,
+    "report_calls": 10,
+    "report_tokens": {
+      "prompt_tokens": 11462,
+      "completion_tokens": 640
+    },
+    "seconds": 73.383,
+    "addendum_verdict": "suspicious",
+    "added_units": [],
+    "newly_retrieved_and_reported": [],
+    "parent_run": "20261128T030521_c76fc69a",
+    "baseline": {
+      "correct": 11,
+      "incorrect": 0,
+      "unsupported": 2,
+      "missed": 29,
+      "precision": 0.8461538461538461,
+      "recall": 0.275,
+      "f1": 0.41509433962264153
+    },
+    "combined": {
+      "correct": 11,
+      "incorrect": 0,
+      "unsupported": 2,
+      "missed": 29,
+      "precision": 0.8461538461538461,
+      "recall": 0.275,
+      "f1": 0.41509433962264153
+    }
+  },
+  "gomorrah/fixed": {
+    "journal_sha256": "bd67a6974d55273b1f2074dda721eae1c7ce44990f250a32fceb736d48f8335f",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "sha256": "aea9e01fe90a67913df4682268b510833a8463be2c87f5362a76401e201953b8",
+        "retained": true,
+        "cited": [
+          [
+            1040,
+            1071
+          ]
+        ],
+        "hits": [
+          "opera-open"
+        ],
+        "errors": [],
+        "audit_lines": [
+          1048,
+          1055
+        ],
+        "reason": "Khởi tạo bộ đọc trên đường dẫn Opera thuộc Roaming."
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "sha256": "a410e578b46241100c04c3d8dbe799f0058d42b62d42f1c5fb467e0ac8d61584",
+        "retained": true,
+        "cited": [
+          [
+            1040,
+            1071
+          ]
+        ],
+        "hits": [
+          "opera-password_value"
+        ],
+        "errors": [
+          "wrong/decrypt-as-column-reader"
+        ],
+        "audit_lines": [
+          1056,
+          1069,
+          1070
+        ],
+        "reason": "GetValue đọc cột. Lời gọi Decrypt dùng giá trị của cột ở dòng sau."
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "sha256": "d4e9e260de5cccac75607cc506d5f8153581954527f4ba5cf41d6bf3aeef41fd",
+        "retained": true,
+        "cited": [
+          [
+            1101,
+            1132
+          ]
+        ],
+        "hits": [
+          "chrome-open"
+        ],
+        "errors": [],
+        "audit_lines": [
+          1103,
+          1104,
+          1116,
+          1117
+        ],
+        "reason": "Có lời gọi mở cơ sở dữ liệu Chrome và đọc các trường đăng nhập."
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "sha256": "851855300d11d03890fcde8d6e64fcc0f4e75390e4a91e8dc7dcc92f13ff5593",
+        "retained": true,
+        "cited": [
+          [
+            1101,
+            1132
+          ]
+        ],
+        "hits": [
+          "chrome-decrypt-call"
+        ],
+        "errors": [
+          "unverified/chrome-decrypt-result"
+        ],
+        "audit_lines": [
+          1117,
+          1118
+        ],
+        "reason": "Có phép đổi thành byte và truyền cho hàm cục bộ. Đoạn trích thiếu thân hàm để xác nhận kết quả giải mã."
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "sha256": "7435448bbee1a843e93e291e31400dd4822f2ee262aadcee363afdd136b09f0a",
+        "retained": true,
+        "cited": [
+          [
+            1088,
+            1119
+          ]
+        ],
+        "hits": [
+          "chrome-open"
+        ],
+        "errors": [
+          "unverified/actual-encrypted-credential-contents"
+        ],
+        "audit_lines": [
+          1103,
+          1104,
+          1117
+        ],
+        "reason": "Có thao tác mở tệp và đọc trường. Nội dung thực tế của tệp trên máy nạn nhân chưa được quan sát."
+      },
+      {
+        "claim": "C6",
+        "kind": "behavior",
+        "sha256": "d7cc42a921decbae17293fcf2f7fb98a0040033509c83ccb3cd6ec5d65389c06",
+        "retained": true,
+        "cited": [
+          [
+            1088,
+            1119
+          ]
+        ],
+        "hits": [
+          "chrome-password_value",
+          "chrome-decrypt-call"
+        ],
+        "errors": [
+          "unverified/chrome-decrypt-result"
+        ],
+        "audit_lines": [
+          1104,
+          1117,
+          1118
+        ],
+        "reason": "Có đường truyền từ trường vào hàm và phép gán. Giá trị trả về có phải mật khẩu đã giải mã vẫn cần kiểm tra."
+      }
+    ],
+    "cards": 3,
+    "vm_searches": 4,
+    "report_calls": 10,
+    "report_tokens": {
+      "prompt_tokens": 11400,
+      "completion_tokens": 689
+    },
+    "seconds": 88.9,
+    "addendum_verdict": "suspicious",
+    "added_units": [
+      "chrome-decrypt-call",
+      "chrome-open",
+      "chrome-password_value",
+      "opera-open",
+      "opera-password_value"
+    ],
+    "newly_retrieved_and_reported": [
+      "chrome-open",
+      "opera-open"
+    ],
+    "parent_run": "20261128T030521_c76fc69a",
+    "baseline": {
+      "correct": 11,
+      "incorrect": 0,
+      "unsupported": 2,
+      "missed": 29,
+      "precision": 0.8461538461538461,
+      "recall": 0.275,
+      "f1": 0.41509433962264153
+    },
+    "combined": {
+      "correct": 16,
+      "incorrect": 1,
+      "unsupported": 4,
+      "missed": 24,
+      "precision": 0.7619047619047619,
+      "recall": 0.4,
+      "f1": 0.5245901639344263
+    }
+  },
+  "gomorrah/mixed": {
+    "journal_sha256": "a9796884588b085b97644f7daaf054d3a3e55bd22d3429af40fd0cc40bb29ca8",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "sha256": "2719c6d6e45cad1d347c9fc4238518ca10717355f3831957cf1fca54c5662a9f",
+        "retained": true,
+        "cited": [
+          [
+            1040,
+            1071
+          ]
+        ],
+        "hits": [
+          "opera-open"
+        ],
+        "errors": [],
+        "audit_lines": [
+          1048,
+          1055
+        ],
+        "reason": "Khởi tạo bộ đọc trên đường dẫn Opera thuộc Roaming."
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "sha256": "cc9a6ade00dbf33653dc0855d214baef12e2dbba5165b2dfd5be5ab844ef4e86",
+        "retained": true,
+        "cited": [
+          [
+            1040,
+            1071
+          ]
+        ],
+        "hits": [
+          "opera-password_value"
+        ],
+        "errors": [
+          "wrong/decrypt-as-column-reader"
+        ],
+        "audit_lines": [
+          1056,
+          1069,
+          1070
+        ],
+        "reason": "GetValue đọc cột. Lời gọi Decrypt dùng giá trị của cột ở dòng sau."
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "sha256": "2a6b4a54f5c9d7a001a15b611e929dcb14d1bb0eb340250b6216594bd9815fe1",
+        "retained": true,
+        "cited": [
+          [
+            1101,
+            1132
+          ]
+        ],
+        "hits": [
+          "chrome-open"
+        ],
+        "errors": [],
+        "audit_lines": [
+          1103,
+          1104,
+          1116,
+          1117
+        ],
+        "reason": "Có lời gọi mở cơ sở dữ liệu Chrome và đọc các trường đăng nhập."
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "sha256": "78d525023f16b9101db95b365294ac8e22f3567d3c4b80e3ac95708e9f0b742f",
+        "retained": true,
+        "cited": [
+          [
+            1101,
+            1132
+          ]
+        ],
+        "hits": [
+          "chrome-decrypt-call"
+        ],
+        "errors": [
+          "unverified/chrome-decrypt-result"
+        ],
+        "audit_lines": [
+          1117,
+          1118
+        ],
+        "reason": "Có phép đổi thành byte và truyền cho hàm cục bộ. Đoạn trích thiếu thân hàm để xác nhận kết quả giải mã."
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "sha256": "61d3e23f038ffa728f63436e8e17980a1a264663de52d2da91c89796a0979aca",
+        "retained": false,
+        "cited": [
+          [
+            4800,
+            4828
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "wrong/outlook-argument-origin"
+        ],
+        "audit_lines": [
+          4812,
+          4813,
+          4816
+        ],
+        "reason": "4812 lấy giá trị theo khóa của vòng lặp. 4816 lấy một trường khác sau lời gọi ở 4813."
+      },
+      {
+        "claim": "C6",
+        "kind": "behavior",
+        "sha256": "a6e4ec3c5d728a04325fb8710bc60b7fcbdc58091ab9d8ecf5320a8bbaf86051",
+        "retained": true,
+        "cited": [
+          [
+            4800,
+            4828
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          4802,
+          4820,
+          4822
+        ],
+        "reason": "Có phép tạo đối tượng UTF8Encoding, mảng đối số và lời gọi qua late binding."
+      },
+      {
+        "claim": "C7",
+        "kind": "behavior",
+        "sha256": "3ba2708e8b371783c5078e57553f4146bc812436097abae4265c7b08f25246b7",
+        "retained": true,
+        "cited": [
+          [
+            4760,
+            4785
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          4772,
+          4779,
+          4781,
+          4782
+        ],
+        "reason": "Các lời gọi mở khóa HKCU cùng đường dẫn và ngữ cảnh Outlook."
+      }
+    ],
+    "cards": 4,
+    "vm_searches": 4,
+    "report_calls": 12,
+    "report_tokens": {
+      "prompt_tokens": 14288,
+      "completion_tokens": 877
+    },
+    "seconds": 169.646,
+    "addendum_verdict": "suspicious",
+    "added_units": [
+      "chrome-decrypt-call",
+      "chrome-open",
+      "opera-open",
+      "opera-password_value"
+    ],
+    "newly_retrieved_and_reported": [
+      "chrome-open",
+      "opera-open"
+    ],
+    "parent_run": "20261128T030521_c76fc69a",
+    "baseline": {
+      "correct": 11,
+      "incorrect": 0,
+      "unsupported": 2,
+      "missed": 29,
+      "precision": 0.8461538461538461,
+      "recall": 0.275,
+      "f1": 0.41509433962264153
+    },
+    "combined": {
+      "correct": 15,
+      "incorrect": 1,
+      "unsupported": 3,
+      "missed": 25,
+      "precision": 0.7894736842105263,
+      "recall": 0.375,
+      "f1": 0.5084745762711864
+    }
+  },
+  "mercurial/adaptive": {
+    "journal_sha256": "73e277b950967e836859297fe33463790bbf116a179c27460f8457b83330efe0",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "sha256": "79d61ce1a2f49786d6a49d1244345665be214d98654b263e5c2d5deb35ee0dab",
+        "retained": true,
+        "cited": [
+          [
+            60,
+            91
+          ]
+        ],
+        "hits": [
+          "cookie-helper"
+        ],
+        "errors": [
+          "unverified/cookie-helper-effect"
+        ],
+        "audit_lines": [
+          75
+        ],
+        "reason": "Có lời gọi hàm xử lý cookie. Chỉ riêng vị trí gọi chưa chứng minh tác dụng đánh cắp."
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "sha256": "ab5c771a3e2e131716579058cb9f5d3727891742ac0d407021286625c4ac493d",
+        "retained": true,
+        "cited": [
+          [
+            60,
+            91
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/password-helper-effect"
+        ],
+        "audit_lines": [
+          76
+        ],
+        "reason": "Có lời gọi hàm liên quan mật khẩu. Tác dụng bên trong chưa xuất hiện."
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "sha256": "1618d636e196bc06269edceffec7b540b80c59e319601d5dcb6606dfe34509f5",
+        "retained": true,
+        "cited": [
+          [
+            236,
+            267
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/system-temp-path"
+        ],
+        "audit_lines": [
+          237,
+          243,
+          244
+        ],
+        "reason": "Có thao tác sao chép ảnh và lưu JPEG. Biến tempFolder chưa được lần đến giá trị khởi tạo trong trích đoạn."
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "sha256": "fe203faac1022e1f7d210546f0760936bbf8b9b712233fea50e4184fd6c01c72",
+        "retained": true,
+        "cited": [
+          [
+            236,
+            267
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/senddata-network"
+        ],
+        "audit_lines": [
+          244,
+          245
+        ],
+        "reason": "Có truyền đường dẫn và kiểu nội dung vào hàm SendData. Thân hàm gửi nằm ngoài trích dẫn."
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "sha256": "7d280dda3e8722ec0c670868e98ef0258c4e2a4363575e96746bf777eddbbdac",
+        "retained": true,
+        "cited": [
+          [
+            267,
+            298
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/key-destination"
+        ],
+        "audit_lines": [
+          272
+        ],
+        "reason": "Có lời gọi lồng để dựng nội dung từ khóa sản phẩm. Chưa chứng minh đích webhook."
+      },
+      {
+        "claim": "C6",
+        "kind": "behavior",
+        "sha256": "d7318a4a7417f26d4b3b31866d0d45cb162b5fd6fe898c311b303736cd95d0c4",
+        "retained": true,
+        "cited": [
+          [
+            267,
+            298
+          ]
+        ],
+        "hits": [
+          "ip-message"
+        ],
+        "errors": [
+          "unverified/ip-destination"
+        ],
+        "audit_lines": [
+          279
+        ],
+        "reason": "Có chuyển các trường IP và vị trí cho hàm dựng nội dung. Điểm gọi chưa xác nhận đích webhook."
+      }
+    ],
+    "cards": 4,
+    "vm_searches": 4,
+    "report_calls": 11,
+    "report_tokens": {
+      "prompt_tokens": 10808,
+      "completion_tokens": 832
+    },
+    "seconds": 91.568,
+    "addendum_verdict": "suspicious",
+    "added_units": [
+      "cookie-helper",
+      "ip-message"
+    ],
+    "newly_retrieved_and_reported": [
+      "ip-message"
+    ],
+    "parent_run": "20261128T031606_ca91de35",
+    "baseline": {
+      "correct": 5,
+      "incorrect": 1,
+      "unsupported": 1,
+      "missed": 16,
+      "precision": 0.7142857142857143,
+      "recall": 0.23809523809523808,
+      "f1": 0.35714285714285715
+    },
+    "combined": {
+      "correct": 7,
+      "incorrect": 1,
+      "unsupported": 7,
+      "missed": 14,
+      "precision": 0.4666666666666667,
+      "recall": 0.3333333333333333,
+      "f1": 0.3888888888888889
+    }
+  },
+  "mercurial/fixed": {
+    "journal_sha256": "7b8edb8663f31adf0dc13187565eba2cc36cafb2193af128959ebaed54b526a7",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "sha256": "77d0863cea2e15d4d2cf8ba5d60509ab05c9e350a21bba2826d316bbc8af9530",
+        "retained": true,
+        "cited": [
+          [
+            1733,
+            1761
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          1738,
+          1744,
+          1745,
+          1746,
+          1747
+        ],
+        "reason": "Thiết lập HTTP POST, kiểu nội dung, user agent và đối tượng cookie."
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "sha256": "8ebed6972784af0dd97b45e936d40634a9cfea424be80af0794cd4d36570c881",
+        "retained": true,
+        "cited": [
+          [
+            244,
+            275
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/screenshot-origin",
+          "unverified/system-temp-path",
+          "unverified/senddata-network"
+        ],
+        "audit_lines": [
+          244,
+          245
+        ],
+        "reason": "Có lưu JPEG và truyền đường dẫn vào hàm. Đoạn gửi cho model bắt đầu sau lệnh chụp ở 243, thiếu nguồn của tempFolder và thân hàm gửi."
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "sha256": "c1a423b8dc274a93e0a234d56fbabeae045aff223a5cc937d72cf889a6795017",
+        "retained": false,
+        "cited": [
+          [
+            244,
+            275
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/token-content-network"
+        ],
+        "audit_lines": [
+          252,
+          256,
+          258,
+          260,
+          261
+        ],
+        "reason": "Có duyệt danh sách và truyền chuỗi nội dung. Tác dụng truyền trên mạng của SendContent chưa được xác nhận."
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "sha256": "3e74e5d1cbbdd2d9f5b89e4b0faa077973b1e2ff1c55eb066b438e923b0b7709",
+        "retained": true,
+        "cited": [
+          [
+            1911,
+            1935
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          1919,
+          1921
+        ],
+        "reason": "Có mở và đọc từ FileStream dùng đường dẫn đối số."
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "sha256": "72b4c3929987cb1ce03eb79c13a1f093dfc84f2eecc9791342543c487b69c51d",
+        "retained": false,
+        "cited": [
+          [
+            1911,
+            1935
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/multipart-network"
+        ],
+        "audit_lines": [
+          1923,
+          1925,
+          1929
+        ],
+        "reason": "Có lời gọi hàm mang tên MultipartFormDataPost với đối số đích và dictionary. Đoạn trích không có thân hàm để xác nhận gửi request."
+      },
+      {
+        "claim": "C6",
+        "kind": "behavior",
+        "sha256": "466eded23d52a868dff6038b4aff56685d303b184115fa4952b802157bb734cd",
+        "retained": true,
+        "cited": [
+          [
+            57,
+            88
+          ]
+        ],
+        "hits": [
+          "cookie-helper"
+        ],
+        "errors": [
+          "unverified/cookie-helper-effect"
+        ],
+        "audit_lines": [
+          75
+        ],
+        "reason": "Có lời gọi hàm cookie. Tên hàm chưa chứng minh tác dụng bên trong."
+      },
+      {
+        "claim": "C7",
+        "kind": "behavior",
+        "sha256": "a04f9c5479035210418edab8b9c22fe6fe3a4716e1ae5819b6171ade6326d9cd",
+        "retained": true,
+        "cited": [
+          [
+            57,
+            88
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/password-helper-effect"
+        ],
+        "audit_lines": [
+          76
+        ],
+        "reason": "Có lời gọi hàm mật khẩu. Đoạn trích thiếu phần triển khai của hàm."
+      }
+    ],
+    "cards": 4,
+    "vm_searches": 4,
+    "report_calls": 12,
+    "report_tokens": {
+      "prompt_tokens": 12009,
+      "completion_tokens": 854
+    },
+    "seconds": 98.92,
+    "addendum_verdict": "suspicious",
+    "added_units": [
+      "cookie-helper"
+    ],
+    "newly_retrieved_and_reported": [],
+    "parent_run": "20261128T031606_ca91de35",
+    "baseline": {
+      "correct": 5,
+      "incorrect": 1,
+      "unsupported": 1,
+      "missed": 16,
+      "precision": 0.7142857142857143,
+      "recall": 0.23809523809523808,
+      "f1": 0.35714285714285715
+    },
+    "combined": {
+      "correct": 6,
+      "incorrect": 1,
+      "unsupported": 6,
+      "missed": 15,
+      "precision": 0.46153846153846156,
+      "recall": 0.2857142857142857,
+      "f1": 0.35294117647058826
+    }
+  },
+  "mercurial/mixed": {
+    "journal_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "sha256": "c730c9f996c513b14bf470ad5ab898584309f4ead66b970f734605bc8b623b29",
+        "retained": true,
+        "cited": [
+          [
+            1732,
+            1763
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          1738,
+          1744,
+          1745,
+          1746,
+          1747,
+          1749,
+          1752,
+          1759
+        ],
+        "reason": "Có cấu hình HTTP POST và ghi mảng byte vào request stream, sau đó lấy phản hồi."
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "sha256": "17f69599a451731af2e82b845d449f08d085215d6869312dadde502806f2c57f",
+        "retained": true,
+        "cited": [
+          [
+            244,
+            275
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/screenshot-origin",
+          "unverified/system-temp-path",
+          "unverified/senddata-network"
+        ],
+        "audit_lines": [
+          244,
+          245
+        ],
+        "reason": "Có lưu JPEG và truyền đường dẫn vào hàm. Đoạn gửi cho model bắt đầu sau lệnh chụp ở 243, thiếu nguồn của tempFolder và thân hàm gửi."
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "sha256": "41156ef976b03dad01b540daedce9b202b22fb7848a431f571cede446b224bfa",
+        "retained": false,
+        "cited": [
+          [
+            244,
+            275
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/token-content-network"
+        ],
+        "audit_lines": [
+          252,
+          256,
+          258,
+          260,
+          261
+        ],
+        "reason": "Có duyệt danh sách và truyền chuỗi nội dung. Tác dụng truyền trên mạng của SendContent chưa được xác nhận."
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "sha256": "57589d803b020258ba58048abeba459a5e4b09dad10f7c674e67619fcc79ea6a",
+        "retained": true,
+        "cited": [
+          [
+            1911,
+            1935
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          1919,
+          1921
+        ],
+        "reason": "Có mở và đọc từ FileStream dùng đường dẫn đối số."
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "sha256": "f04032fe8f6475efe5cc2943cb0a4ce276d2112eef174852c3dfcfd814cdc1d2",
+        "retained": false,
+        "cited": [
+          [
+            1911,
+            1935
+          ]
+        ],
+        "hits": [],
+        "errors": [
+          "unverified/multipart-network"
+        ],
+        "audit_lines": [
+          1923,
+          1925,
+          1929
+        ],
+        "reason": "Có lời gọi hàm mang tên MultipartFormDataPost với đối số đích và dictionary. Đoạn trích không có thân hàm để xác nhận gửi request."
+      },
+      {
+        "claim": "C6",
+        "kind": "behavior",
+        "sha256": "fb7023b50f83cbd3037f9d11da5869f7eecb8a89d3cbc861ecfb2c954d3e27ef",
+        "retained": true,
+        "cited": [
+          [
+            1714,
+            1745
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          1727,
+          1728,
+          1729,
+          1730
+        ],
+        "reason": "Tạo chuỗi phân cách từ GUID, dùng cho kiểu nội dung và truyền cho hàm dựng dữ liệu multipart."
+      },
+      {
+        "claim": "C7",
+        "kind": "behavior",
+        "sha256": "8a0fb86a019067cc462a80622cb891946cb710f0ed18819622976a6f71b9f16b",
+        "retained": true,
+        "cited": [
+          [
+            1714,
+            1745
+          ]
+        ],
+        "hits": [],
+        "errors": [],
+        "audit_lines": [
+          1729,
+          1730
+        ],
+        "reason": "Kết quả dựng dữ liệu từ các tham số được gán cho mảng byte và truyền cho PostForm."
+      }
+    ],
+    "cards": 4,
+    "vm_searches": 4,
+    "report_calls": 12,
+    "report_tokens": {
+      "prompt_tokens": 12665,
+      "completion_tokens": 915
+    },
+    "seconds": 155.256,
+    "addendum_verdict": "inconclusive",
+    "added_units": [],
+    "newly_retrieved_and_reported": [],
+    "parent_run": "20261128T031606_ca91de35",
+    "baseline": {
+      "correct": 5,
+      "incorrect": 1,
+      "unsupported": 1,
+      "missed": 16,
+      "precision": 0.7142857142857143,
+      "recall": 0.23809523809523808,
+      "f1": 0.35714285714285715
+    },
+    "combined": {
+      "correct": 5,
+      "incorrect": 1,
+      "unsupported": 4,
+      "missed": 16,
+      "precision": 0.5,
+      "recall": 0.23809523809523808,
+      "f1": 0.3225806451612903
+    }
+  }
+}

@@ -395,6 +395,9 @@ def case(run):
                     )
                 }
             )
+    from .dotnet_supplement import latest
+    dotnet = any(rec["tool"] == "decompile_dotnet" for rec in records.values())
+    supplement = latest(directory(run), run, r["sample_sha256"], r["model"]["digest"]) if dotnet else None
     questions = []
     for path in sorted(
         directory(run).glob("questions/q_*/events.jsonl"),
@@ -438,6 +441,8 @@ def case(run):
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,
+        "can_supplement": dotnet,
+        "supplement": supplement,
         "yara": yara,
         "anchors": anchors,
         "questions": questions,

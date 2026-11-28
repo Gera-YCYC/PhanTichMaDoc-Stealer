@@ -73,6 +73,8 @@ Hai nhánh thu những vị trí bổ sung cho nhau. Cộng hai kết quả sẽ
 
 ### Điểm báo cáo của ba mẫu
 
+Sau phép thử truy xuất, nhóm đã đưa kết quả thật vào bước lập báo cáo, kiểm cả câu được giữ và câu bị loại, rồi đo lại từng phương án trên cùng mẫu số. Trang Đánh giá trình bày riêng số mục lấy đủ dòng và số mục thực sự được báo cáo đúng. [Điểm khi ghép phụ lục .NET](PHU_LUC_DIEU_TRA_NET.md)
+
 ```powershell
 .\.venv\Scripts\python.exe -m eval.web_report_quality
 ```

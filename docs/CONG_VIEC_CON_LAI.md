@@ -2,7 +2,7 @@
 
 ## Ưu tiên của nhóm
 
-Đã chạy phép thử truy vấn bổ sung với cùng ngân sách trên Gomorrah và Mercurial. Nhánh cố định tìm đủ dòng cho 6/20 mục, Qwen chọn theo chứng cứ tìm được 3/20. Bước tiếp theo của người phụ trách agent là so cách dành một phần ngân sách cho từ khóa cố định và phần còn lại cho việc tìm nơi tạo dữ liệu. Chốt ngân sách và cách chấm trước khi chạy. Người phụ trách đánh giá cần kiểm tra câu cuối cùng có trích và diễn giải đúng các dòng mới, rồi đo trên mẫu tách riêng. [Hai kết quả và các vị trí mới](CHAM_BA_MAU_WEB.md#tìm-thêm-chứng-cứ-trong-vm-trên-hai-mẫu-net)
+Đã thử cả ba cách dùng bốn lượt tìm và chấm từng câu phụ lục. Chế độ kết hợp trên web tăng bốn mục đúng trên Gomorrah và không tăng mục đúng trên Mercurial. Bước tiếp theo của người phụ trách agent là tách **lời gọi hàm** khỏi **tác dụng bên trong**, kiểm tra thân hàm hoặc nơi gán biến trước khi phát biểu về tác dụng. Trên Mercurial có ví dụ ở dòng 75 và 245. Người phụ trách đánh giá cần kiểm lại precision, recall, chất lượng verdict, lỗi tự duyệt và độ ổn định trên tập tách riêng. [Sáu phụ lục và điểm gộp](PHU_LUC_DIEU_TRA_NET.md)
 
 Phần đọc lại câu hẹp đã có hai lượt web thật và bảng chấm 13 câu. Khi cho chọn từng dòng, 5/7 câu Qwen giữ vẫn thiếu căn cứ. Người phụ trách đánh giá giữ kết quả này riêng, kiểm tra lại nhãn trên tập tách biệt và chỉ gộp một đề xuất vào báo cáo sau khi xác minh đủ nguồn. Ưu tiên kỹ thuật tiếp theo là tìm mắt xích .NET còn thiếu bằng công cụ trong VM. [Thí nghiệm và giới hạn](DOC_LAI_NHAN_DINH.md)
 

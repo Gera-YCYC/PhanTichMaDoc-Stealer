@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Đã nối việc tìm thêm dòng trong VM với phụ lục có thể mở và chấm từng câu trên web. Cấu hình kết hợp được thử trực tiếp trên hồ sơ .NET. Tiêu chí còn mở là chứng minh chất lượng của báo cáo hoàn chỉnh trên tập tách riêng và khả năng nối dữ liệu thu thập với dữ liệu gửi đi. [Phương pháp đối chứng và kiểm lại](PHU_LUC_DIEU_TRA_NET.md)
+
 Đối chứng cố định/thích nghi phải ghi riêng số lần gọi VM, model, thời gian và mục tìm được. Đã đo cho cả việc tìm liên kết ban đầu và việc tìm tiếp trên hai báo cáo .NET. Điều kiện nghiệm thu cuối vẫn cần đo lại recall, F1 và verdict sau khi đưa nguồn mới vào báo cáo. [Đối chứng tìm tiếp](CHAM_BA_MAU_WEB.md#tìm-thêm-chứng-cứ-trong-vm-trên-hai-mẫu-net)
 
 Web phải cho người phân tích truy ngược câu bị loại tới mã nguồn, yêu cầu đọc lại và kiểm tra lỗi của chính bộ duyệt. Chức năng này có hai lần bấm thật và bảng chấm hai phương án trên 13 câu. Mục tiêu chất lượng cuối vẫn tính trên báo cáo toàn mẫu. [Bằng chứng và phạm vi đo](DOC_LAI_NHAN_DINH.md)

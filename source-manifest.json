@@ -6,8 +6,8 @@
   },
   {
     "path": ".github/workflows/tests.yml",
-    "bytes": 1124,
-    "sha256": "9836d717ffcbb6a72b02ca7b2d444165b9b22670a0812801928a709b3fd8f294"
+    "bytes": 1171,
+    "sha256": "58df16290bf3d52baa0cbd4bc45be5a089ab7b0420d3a20b8cd342e0f4a70817"
   },
   {
     "path": ".gitignore",
@@ -1035,6 +1035,11 @@
     "sha256": "bfc6b37681b38a805082d11f028c350c051f9af7e01bbee8852896d10fa395a6"
   },
   {
+    "path": "deliverables/real-demo-evidence/web-dotnet-followup-reports.json",
+    "bytes": 28774,
+    "sha256": "43a5c3a100f38f0cf33abca3d7d0cd6cbcfff207cd5ccf783cd2a6261609f8f4"
+  },
+  {
     "path": "deliverables/real-demo-evidence/web-dotnet-followup.json",
     "bytes": 15042,
     "sha256": "ba3c9b80b57b9991d41abedf89ca4872bb43f3ecde3d1c077dcc2a9205a1c797"
@@ -1098,6 +1103,11 @@
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/source-audit.json",
     "bytes": 14152,
     "sha256": "7b64411e55fe0a40e1b1a04b4ca673ace7afe9d8a436168a6e250835e4f06114"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-supplement-actions.json",
+    "bytes": 2128,
+    "sha256": "7a11096a689f14cb2ca2ad7eecd6a14fe1b80d160bf76fb430403a20d3c18237"
   },
   {
     "path": "deliverables/real-demo-evidence/web-gomorrah-exposure.json",
@@ -1341,8 +1351,8 @@
   },
   {
     "path": "docs/CHAM_BA_MAU_WEB.md",
-    "bytes": 12053,
-    "sha256": "4bd4255d9566ef4e6eb87646e77629560086afec7e7b8da358c13c0973140f58"
+    "bytes": 12445,
+    "sha256": "c76c3aeb9c7a8819eb14c2f0427a125deccea3a9c993110cb04ae157b9e48b88"
   },
   {
     "path": "docs/CHAM_BAO_CAO_WEB.md",
@@ -1361,8 +1371,8 @@
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 19371,
-    "sha256": "1036b2223d06d7269b56f18452d536a4106e450ec97a94bf20179cacdddaa08d"
+    "bytes": 19344,
+    "sha256": "0c5118cbb6dfa9d6d62fb7049dd0135e20db6284b8b5f827c0b9c1cc168a757f"
   },
   {
     "path": "docs/DATASET.md",
@@ -1435,9 +1445,14 @@
     "sha256": "540d060d306976353931fc43d9a27dc7af0846b8dbe799598431e6f5011952f5"
   },
   {
+    "path": "docs/PHU_LUC_DIEU_TRA_NET.md",
+    "bytes": 7784,
+    "sha256": "aabd2f997cf4cfbb05a38e0fb9870e162f99d7bd29a9ec6fb2321a63f7317a32"
+  },
+  {
     "path": "docs/PROJECT_GOAL.md",
-    "bytes": 12608,
-    "sha256": "e5dd3916fe6a0543a54fbe99be83ebc3f6fc00c62c1621f5b4d17e80d6c0e625"
+    "bytes": 13053,
+    "sha256": "12baa3e5ddde31dbb6a9ca486b1450092cf977c2ee4544b9b863f7f5f4621dbb"
   },
   {
     "path": "docs/PUBLISH_STATUS.md",
@@ -1546,8 +1561,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 43985,
-    "sha256": "b1719525f6e7df54d76c157bc65174a470c314817628af85a15d6396a26f90b2"
+    "bytes": 44488,
+    "sha256": "3ad05286e90dcf787dbc1f521a149368f73efad9016b1b07e5b56d4590bc8be1"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -1581,8 +1596,8 @@
   },
   {
     "path": "docs/WEB_DIEU_TRA.md",
-    "bytes": 21596,
-    "sha256": "7b3b02bef574e0fc8000535ff7cbe6a35c0a941431cc20f49031985324641ff1"
+    "bytes": 22029,
+    "sha256": "ba45f8451952568b1741548a2512112e0356302d183c8e0e14ca08261fd27212"
   },
   {
     "path": "docs/YARA_REAL_CORPUS.md",
@@ -1673,6 +1688,11 @@
     "path": "eval/adjudications/20261128T012820_c485ff68-judgments.json",
     "bytes": 15687,
     "sha256": "61b2f2830b74b6e4424bab676b6ed4fdccb4efb77246a54572e94ad9496b461e"
+  },
+  {
+    "path": "eval/adjudications/dotnet-followup-reports.json",
+    "bytes": 12057,
+    "sha256": "0f4f1854f5ded45656c5c86bb9a8591b3b7aab09d3fe85d8b4c5593b2d9bd020"
   },
   {
     "path": "eval/adjudications/gomorrah-operations-v8-full-audit.json",
@@ -1848,6 +1868,16 @@
     "path": "eval/exposure.py",
     "bytes": 5924,
     "sha256": "67bb1da1ca4595048a61781838fdf3a0c60b427f193318e2945e7673989e309d"
+  },
+  {
+    "path": "eval/followup_report_audit.py",
+    "bytes": 13107,
+    "sha256": "f27c5c7267a33c924c12a06d70bc7c57af6a820a3883b38e1a753d11be11bd26"
+  },
+  {
+    "path": "eval/followup_report_trial.py",
+    "bytes": 5039,
+    "sha256": "1ad94d6256e6d44a5eb7828a5cad23578daafc13b20335d81a867ed781f2b7fc"
   },
   {
     "path": "eval/injection.py",
@@ -2126,13 +2156,18 @@
   },
   {
     "path": "lab_web/cases.py",
-    "bytes": 16308,
-    "sha256": "30395518b901b879990fe4ba1663f8bf5c1c90c0f15791ed1922c2657ccbdffb"
+    "bytes": 16610,
+    "sha256": "083a4736b712f73aa5dfae415180bea133b3ac579bc0a1ffc47a96e614d54199"
   },
   {
     "path": "lab_web/claim_review.py",
     "bytes": 4220,
     "sha256": "80bd8699a2cd7b1503e68fe00ded3af150e060a3b3ac40948d4c72b9c0e0622c"
+  },
+  {
+    "path": "lab_web/dotnet_supplement.py",
+    "bytes": 7905,
+    "sha256": "46de9af7d3934c6f53efcfce6eb6ae229d217798d7984b09e3356c0c8ed27eb5"
   },
   {
     "path": "lab_web/review.py",
@@ -2141,13 +2176,13 @@
   },
   {
     "path": "lab_web/server.py",
-    "bytes": 16370,
-    "sha256": "c5b2ab72b0f089b3f35ce080022992870c686d0bfbf79cf9ac495062e57933d2"
+    "bytes": 16875,
+    "sha256": "4e2fce87b58715b879471f3c6e2768da8a2b3382e1d74a10a3940ac43299f7d0"
   },
   {
     "path": "lab_web/static/app.js",
-    "bytes": 39063,
-    "sha256": "f3493042a09f1f3741f11333a3e6fa5c492310b1797ef9e646bf2a33192f75e5"
+    "bytes": 42584,
+    "sha256": "467add9e75bd9a8dbd2b9bd877d181f93f54312225a74f9b019744f565e37834"
   },
   {
     "path": "lab_web/static/index.html",
@@ -2725,6 +2760,11 @@
     "sha256": "702788e534fad5f99d456450fe6ca75ecd1270d704316c6d9e961c703b7daa40"
   },
   {
+    "path": "stealer_agent/followup_report.py",
+    "bytes": 2369,
+    "sha256": "999b083388154535afce665cec3d3453355141eaa8070b53642b008b36e0249d"
+  },
+  {
     "path": "stealer_agent/grounding.py",
     "bytes": 5991,
     "sha256": "eb566e7b090827a74a2c6d3df2850efe5bfe7c008354aef77a7babdd7e26e139"
@@ -2918,6 +2958,11 @@
     "path": "tests/test_extensions.py",
     "bytes": 4003,
     "sha256": "a9a028d1c51aaae2189a24301c6e3afc20ffe24d5faf0bb2bb32f7591dcfc7af"
+  },
+  {
+    "path": "tests/test_followup_report.py",
+    "bytes": 2478,
+    "sha256": "6034a808e7dc666ab49ad36c48b83d2605c89d2babf81762eddd54940d27d597"
   },
   {
     "path": "tests/test_guard_batch_comparison.py",

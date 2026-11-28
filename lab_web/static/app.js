@@ -116,7 +116,7 @@ async function check() {
     (h.vm ? "cô lập" : "chưa kết nối");
   $("#health").title = h.model + " · " + h.tools.join(", ");
 }
-function refs(where, rows, canLabel = false) {
+function refs(where, rows, canLabel = false, windows = record?.cited_windows) {
   for (const a of rows) {
     const d = el("div", undefined, "ref");
     d.append(
@@ -131,7 +131,7 @@ function refs(where, rows, canLabel = false) {
       ),
       el("pre", a.text),
     );
-    const source = record?.cited_windows?.[[a.eid, a.line, a.end].join(":")];
+    const source = windows?.[[a.eid, a.line, a.end].join(":")];
     if (source) {
       const expand = el("details");
       expand.append(el("summary", "Xem đoạn mã đã dẫn"));
@@ -186,6 +186,20 @@ function showClaimReview(panel, review) {
   if (review.text) panel.append(el("p", review.text));
   refs(panel, review.refs);
   panel.append(el("small", review.model_calls + " lượt Qwen · " + review.id));
+}
+function showSupplement(panel, result) {
+  panel.replaceChildren();
+  if (!result) return;
+  panel.append(el("p", result.steps.length + " truy vấn VM · " + result.cards + " đoạn được đọc · " +
+    result.model_calls + " lượt gọi Qwen · " + result.seconds.toLocaleString("vi-VN") + " giây"));
+  if (!result.claims.length) panel.append(el("p", "Phụ lục chưa có nhận định từ các dòng tìm thêm."));
+  for (const c of result.claims) {
+    const detail = el("details");
+    detail.append(el("summary", c.id + " · " + (c.kept ? "Đã giữ" : "Đã loại") + " · " + c.text));
+    refs(detail, c.refs, false, result.windows);
+    panel.append(detail);
+  }
+  panel.append(el("small", "Nhật ký phụ lục · " + result.id));
 }
 
 function map(panel) {
@@ -520,6 +534,24 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
       arm.covered.join(", ") || "Chưa đủ dòng cho mục nào",
     ]);
     table(["Cách tìm", "Mục đủ dòng", "Dòng mới", "VM / Qwen", "Giây", "Mục tham chiếu"], rows, details);
+    const strategies = {fixed:"Danh sách cố định",adaptive:"Qwen chọn theo chứng cứ",mixed:"Kết hợp trên web"};
+    details.append(el("h3","Các dòng mới có giúp báo cáo chính xác hơn?"));
+    const grades = Object.entries(data.followup_reports).filter(([key]) => key.startsWith(sample + "/"));
+    const base = grades[0][1].baseline;
+    const scoreRow = (label, m, units, calls) => [label, units, percent(m.precision), percent(m.recall), percent(m.f1), calls];
+    const scored = [scoreRow("Báo cáo gốc",base,"—","—")];
+    for (const [key, arm] of grades) {
+      scored.push(scoreRow(strategies[key.split("/")[1]], arm.combined, arm.added_units.length, arm.report_calls));
+    }
+    table(["Cách tìm", "Mục báo cáo tăng", "Precision", "Recall", "F1", "Lượt Qwen viết và duyệt"],scored,details);
+    for (const [key, arm] of grades) {
+      const grade = el("details");
+      grade.append(el("summary", "Đối chiếu phụ lục · " + strategies[key.split("/")[1]]));
+      const claims = arm.rows.map(row => [row.claim, row.retained ? "Giữ" : "Loại",
+        row.audit_lines.join(", "), row.hits.join(", ") || "—", row.reason]);
+      table(["Câu", "Qwen", "Dòng kiểm", "Mục đã chốt", "Đối chiếu nguồn"],claims,grade);
+      details.append(grade);
+    }
     panel.append(details);
   }
   const batch = data.current_batch;
@@ -882,6 +914,35 @@ async function render() {
       panel.append("Lượt này chưa có điểm tìm kiếm đủ ngữ cảnh.");
   }
   if (view === "claims") {
+    if (record.can_supplement) {
+      const block = el("details", undefined, "card");
+      block.append(el("summary", "Điều tra bổ sung trên mã .NET"));
+      block.append(el("p", "VM dịch ngược lại mẫu và đối chiếu hash với hồ sơ. Agent tìm thêm tối đa bốn lần rồi lập phụ lục có trích dẫn riêng."));
+      const result = el("div");
+      const selectedRun = record.run;
+      const generate = button("Tìm thêm và lập phụ lục", async () => {
+        generate.dataset.pending = "1";
+        generate.disabled = true;
+        result.textContent = "Đang tìm trong VM và đọc chứng cứ với Qwen…";
+        try {
+          const data = await api("dotnet-supplement", {run:selectedRun});
+          if (record?.run === selectedRun) {
+            record.supplement = data;
+            showSupplement(result, data);
+          }
+        } catch (err) {
+          result.textContent = err.message;
+        } finally {
+          delete generate.dataset.pending;
+          generate.disabled = init.history_only;
+        }
+      });
+      generate.disabled = init.history_only || job.active;
+      generate.dataset.claimReview = "";
+      showSupplement(result, record.supplement);
+      block.append(generate, result);
+      panel.append(block);
+    }
     for (const c of record.claims) {
       const d = el("details", undefined, "card");
       d.append(el("summary", c.id + " · " + c.text));
@@ -1069,7 +1130,7 @@ async function poll() {
         " · " +
         (job.lines.at(-1) || job.kind)
       : job.error || (job.yara_run ? "Đã ghi lượt YARA " + job.yara_run : "");
-    if (!job.active && old.active && old.kind !== "claim-review") {
+      if (!job.active && old.active && !["claim-review", "dotnet-supplement"].includes(old.kind)) {
       await bootstrap();
       if (job.run) await load(job.run);
       else await render();
