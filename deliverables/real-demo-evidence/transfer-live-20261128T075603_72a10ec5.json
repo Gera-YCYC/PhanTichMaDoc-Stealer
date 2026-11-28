@@ -1,0 +1,101 @@
+{
+  "run": "20261128T075603_72a10ec5",
+  "donor": "20261128T021511_bec5b2e5",
+  "journal_sha256": "37ef94151f819a37685332fd6dbe31fe655f8ee69c0a91b0626ae429a3c859ba",
+  "source_profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "accepted": 35,
+  "unmatched": [],
+  "graded_score": {
+    "correct": 20,
+    "incorrect": 0,
+    "unsupported": 0,
+    "missed": 16,
+    "precision": 1.0,
+    "recall": 0.5555555555555556,
+    "f1": 0.7142857142857143
+  },
+  "verdict": "suspicious",
+  "interaction": {
+    "run": "20261128T075603_72a10ec5",
+    "claims": [
+      {
+        "id": "C34",
+        "sources": [
+          {
+            "first": 299,
+            "last": 299,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 308,
+            "last": 308,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 116,
+            "last": 116,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 123,
+            "last": 123,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 124,
+            "last": 124,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          }
+        ]
+      },
+      {
+        "id": "C35",
+        "sources": [
+          {
+            "first": 82,
+            "last": 82,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 96,
+            "last": 98,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 102,
+            "last": 103,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          }
+        ]
+      },
+      {
+        "id": "C36",
+        "sources": [
+          {
+            "first": 82,
+            "last": 82,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 96,
+            "last": 98,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 102,
+            "last": 103,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          },
+          {
+            "first": 103,
+            "last": 109,
+            "output_sha256": "4e74c2da249212c98113d9f913122a99ab6f14f096979c93069f791c31c96b79"
+          }
+        ]
+      }
+    ],
+    "width": 390,
+    "page_errors": [],
+    "external_requests": []
+  }
+}

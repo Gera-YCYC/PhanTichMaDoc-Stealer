@@ -1,0 +1,104 @@
+{
+  "run": "20261128T075603_72a10ec5",
+  "inherit": "20261128T073934_730537f9",
+  "scope": "Exact source-verified signatures may reuse the preceding graded report.",
+  "claims": {
+    "C1": {
+      "signature": "f534b3186e7aefb615128f52652e6d761f9540346fc94724d7f8a7e8101a5b33",
+      "lines": [
+        10,
+        276,
+        277,
+        278,
+        279
+      ],
+      "atoms": [
+        [
+          "PY24-A18",
+          "correct"
+        ]
+      ],
+      "reason": "The imported archive routine, local output path, format and input directory appear in the cited helper."
+    },
+    "C8": {
+      "signature": "faa3ad4419c25025a2cc42d029a0dd187733589bd2e127894650bfadef22d8e2",
+      "lines": [
+        116,
+        122,
+        123,
+        124
+      ],
+      "atoms": [
+        [
+          "PY24-A15",
+          "correct"
+        ]
+      ],
+      "reason": "The guarded file write uses the type parameter for the text filename and a browser-specific directory in the temporary tree. The claim does not name any particular data being saved."
+    },
+    "C9": {
+      "signature": "0d1228132612a6c0ac051b18513ca12400e543b6ca856069de1d6f995ae037d2",
+      "lines": [
+        116,
+        122,
+        127,
+        128,
+        129
+      ],
+      "atoms": [
+        [
+          "PY24-A30",
+          "correct"
+        ]
+      ],
+      "reason": "The named aggregate file is opened in append mode and the selected content is written inside the Autofill branch."
+    },
+    "C10": {
+      "signature": "d5087575661807386532365c72a4ba29377bcc436f20a3acc6d66c4519832069",
+      "lines": [
+        24,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "atoms": [
+        [
+          "browser-directory-table",
+          "correct"
+        ]
+      ],
+      "reason": "The directory expressions combine a base obtained from the environment with fixed components for multiple browsers. No claim of accessing those directories is made."
+    },
+    "C28": {
+      "signature": "630f745a6816ac4420dd6096956d7f7565147b2177057c630a0c97ce97ef905b",
+      "lines": [
+        17,
+        97,
+        98
+      ],
+      "atoms": [
+        [
+          "mime-payload-expr",
+          "correct"
+        ]
+      ],
+      "reason": "The MIME object and payload expression match the claim. Without the opening site this citation does not establish the source file for A19."
+    },
+    "C29": {
+      "signature": "fe14877b73f6cccd03534a8f42d603f19c12258ae1e5992ccc99c91a011257a3",
+      "lines": [
+        96,
+        98
+      ],
+      "atoms": [
+        [
+          "read-attachment-expr",
+          "correct"
+        ]
+      ],
+      "reason": "The argument to open and the read on the bound handle support the claim. It describes a read without claiming the separate MIME step."
+    }
+  }
+}

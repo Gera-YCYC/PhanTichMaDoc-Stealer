@@ -8,7 +8,9 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lab_web.cases import ROOT, case, directory, read
-from stealer_agent.journal import dump_json, verify_journal
+from eval.stability import claim_key
+from scripts.report_experiment_receipt import config_digest
+from stealer_agent.journal import canonical, dump_json, verify_journal
 
 
 def export(run):
@@ -93,6 +95,35 @@ def export(run):
             }
         )
     browser = {}
+    reviews = []
+    for claim in view["rejected_claims"]:
+        display = claim.get("revisit")
+        if not display:
+            continue
+        child = folder / "claim-reviews" / display["id"] / "events.jsonl"
+        verify_journal(child)
+        logged = list(map(json.loads, child.read_bytes().splitlines()))
+        first, last = logged[0], logged[-1]
+        replies = [e for e in logged if e["event"] == "model_response"]
+        if not (
+            last["event"] == "review_finished"
+            and last["display"] == display
+            and first["parent"] == display["claim"] == claim["id"]
+            and first["source_journal_sha256"] == sha256(path.read_bytes()).hexdigest()
+            and display["model_calls"] == len(replies)
+        ):
+            raise ValueError("Follow-up review differs from the original case")
+        reviews.append(
+            {
+                "id": display["id"],
+                "parent_claim": claim["id"],
+                "decision": display["decision"],
+                "model_calls": len(replies),
+                "journal_sha256": sha256(child.read_bytes()).hexdigest(),
+                "original_request_sha256": first["original_request_sha256"],
+                "source_ranges": [[r["line"], r["end"]] for r in display["refs"]],
+            }
+        )
     clicks_file = ROOT / "evidence/local" / f"staging-{run}.json"
     if clicks_file.exists():
         clicks = read(clicks_file)
@@ -140,12 +171,16 @@ def export(run):
             }
     return {
         **browser,
+        **({"latest_followup_reviews": reviews} if reviews else {}),
         "run": run,
         "sample": view["sample"],
         "sha256": view["sha"],
         "model": view["model"],
         "model_digest": pre["model"]["digest"],
         "source_manifest_sha256": src["manifest_sha256"],
+        "config_sha256_excluding_sample": config_digest(
+            next(e["config"] for e in events if e["event"] == "run_started")
+        ),
         **(
             {"staging_parser_sha256": src["files"]["vm_tools/staging_link.py"]}
             if "vm_tools/staging_link.py" in src["files"]
@@ -168,6 +203,14 @@ def export(run):
             if e["event"] in ("hypothesis_open", "hypothesis_result")
         ],
         "accepted_claims": len(view["claims"]),
+        "accepted_claim_keys_sha256": sha256(
+            canonical(
+                sorted(
+                    sha256(canonical(claim_key(c))).hexdigest()
+                    for c in report["analysis"]["claims"]
+                )
+            )
+        ).hexdigest(),
         "terminal_edges": project(stored),
         "display_graph_origin": view["graph_origin"],
         "displayed_edges_match_terminal": project(view["graph"]) == project(stored),

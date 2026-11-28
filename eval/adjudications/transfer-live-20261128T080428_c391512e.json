@@ -1,0 +1,55 @@
+{
+  "run": "20261128T080428_c391512e",
+  "inherit": "20261128T075603_72a10ec5",
+  "scope": "Reuse source grades only for byte-equivalent statements and citations on the same development profile.",
+  "claims": {
+    "C3": {
+      "signature": "2c661729a05180094ce3143035da39fb8ee0116f042c727074063833f3f91e09",
+      "lines": [
+        83,
+        84,
+        106
+      ],
+      "atoms": [
+        [
+          "PY24-A27",
+          "correct"
+        ]
+      ],
+      "reason": "The stated IOC matches the configured hostname at the cited assignment and that variable is used by the SMTP constructor."
+    },
+    "C8": {
+      "signature": "1ed894191d84e2aed9fe426a213ea02a9c56e23ee72693feb4c881305139792b",
+      "lines": [
+        116,
+        122,
+        123,
+        124
+      ],
+      "atoms": [
+        [
+          "PY24-A15",
+          "correct"
+        ]
+      ],
+      "reason": "The guarded writer uses the data type and browser parameters in the path expression. Its destination is inside the temporary directory."
+    },
+    "C9": {
+      "signature": "ce408e5f17a29d47f3ac2933b9e864ba6cfff15b8b720cbb157e37e9484de365",
+      "lines": [
+        116,
+        122,
+        127,
+        128,
+        129
+      ],
+      "atoms": [
+        [
+          "PY24-A30",
+          "correct"
+        ]
+      ],
+      "reason": "The cited branch selects aggregate Autofill output and uses append mode in the temporary directory."
+    }
+  }
+}

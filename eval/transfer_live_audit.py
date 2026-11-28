@@ -6,10 +6,11 @@ from hashlib import sha256
 import json
 
 from eval.score_public_batch import metrics
+from eval.stability import claim_key
 from eval.transfer_report_audit import GRADES, PUBLIC, TRIAL, require
 from eval.web_report_exposure import source_id
 from eval.web_report_quality import EVIDENCE, PROFILE, ROOT, dotnet_profiles, read
-from lab_web.cases import records_for, trusted_report
+from lab_web.cases import RUN, records_for, trusted_report
 from stealer_agent.journal import canonical, dump_json, verify_journal
 
 
@@ -34,7 +35,7 @@ def signature(claim, records, profile_eid):
     return sha256(canonical({**content, "evidence": refs})).hexdigest()
 
 
-def check(run, interaction, *, include_coverage=False):
+def check(run, interaction, *, include_coverage=False, include_decisions=False):
     view = trusted_report(run)
     folder = ROOT / "runs" / run
     log = folder / "events.jsonl"
@@ -121,7 +122,7 @@ def check(run, interaction, *, include_coverage=False):
         if c["id"] in report["transfer_evidence_claim_ids"]
     }
     require(
-        list(tagged) == [item["id"] for item in interaction["claims"]] and bool(tagged),
+        list(tagged) == report["transfer_evidence_claim_ids"] == [item["id"] for item in interaction["claims"]],
         "Different claims opened in browser",
     )
     for item in interaction["claims"]:
@@ -137,7 +138,25 @@ def check(run, interaction, *, include_coverage=False):
             expected == item["sources"], "Browser excerpts differ from retained claim"
         )
     grade_file = ROOT / "eval/adjudications" / f"transfer-live-{run}.json"
-    manual = read(grade_file)["claims"] if grade_file.exists() else {}
+    adjudication = read(grade_file) if grade_file.exists() else {"claims": {}}
+    manual = adjudication["claims"]
+    if prior := adjudication.get("inherit"):
+        require(RUN.fullmatch(prior) and prior < run, "Expected an earlier graded run")
+        previous = read(EVIDENCE / f"transfer-live-{prior}.json")
+        require(previous["donor"] == donor
+                and previous["source_profile_sha256"] == mapping["profile_sha256"],
+                "Different reference profile for inherited decisions")
+        validated = check(prior, previous["interaction"], include_decisions=True)
+        prior_decisions = validated.pop("decisions")
+        require(validated == previous and not previous["unmatched"], "Unverified prior grades")
+        for decision in prior_decisions:
+            key, atoms = decision["signature"], decision["atoms"]
+            if atoms is None or not decision["retained"]:
+                continue
+            bound = [tuple(a) for a in atoms]
+            require(key not in labels or [tuple(a) for a in labels[key]] == bound,
+                    "Conflicting inherited grade")
+            labels[key] = bound
     used = set()
     declared = {u["id"]: u for u in profile["units"]}
     grades, unmatched = {}, []
@@ -207,6 +226,20 @@ def check(run, interaction, *, include_coverage=False):
     if include_coverage:
         require(not unmatched, "Ungraded claims in coverage comparison")
         result["covered_units"] = sorted(uid for uid in units if grades.get(uid) == "correct")
+    if include_decisions:
+        rejected = [row["claim"] for row in report["rejected_claims"]]
+        kept = {c["id"] for c in report["claims"]}
+        candidates = [*report["claims"], *rejected]
+        require(len({c["id"] for c in candidates}) == len(candidates), "Duplicate candidate IDs")
+        decisions = []
+        for c in candidates:
+            key = signature(c, current_ev, new_eid)
+            decisions.append({
+                "id": c["id"], "kind": c["kind"], "retained": c["id"] in kept,
+                "key": sha256(canonical(claim_key(c))).hexdigest(),
+                "signature": key, "atoms": labels.get(key), "citation_count": len(c["evidence"]),
+            })
+        result["decisions"] = decisions
     return result
 
 

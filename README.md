@@ -1,5 +1,7 @@
 # StealerLab — Đồ án Phân tích mã độc
 
+**Để demo phần kiểm chứng**, vào **Đánh giá → Độ ổn định của bản điều tra · ba lượt Python → Đối chiếu từng mục của đáp án**. Bấm **C7** ở mục **A09** trên máy lab để xem một ý có bằng chứng đã bị loại cùng câu chứa nó. Ba lượt web trên cùng mẫu thật có 28/40 nhận định trùng nhau (70%) và verdict đúng 0/3 lượt. [Kết quả, nguyên nhân bỏ sót và hướng dẫn mở bằng chứng](docs/DO_ON_DINH_BAN_DIEU_TRA.md)
+
 **Demo mới trên mẫu Python.** Mở đường nối **Ghi ra tệp → Tạo bản nén** để xem 13 đoạn nguồn. Hỏi agent về phần còn thiếu rồi bấm **Vị trí VM vừa tìm** để kiểm tra hai kết quả mới. Bản chạy cuối xác minh được đích ghi dưới thư mục nén và đạt 20/36 mục trên toàn báo cáo, F1 71,43%. [Chạy trên web, kiểm từng dẫn chứng và đọc bảng điểm](docs/DUONG_DAN_GHI_VA_NEN.md)
 
 **Demo đường truyền.** Từ bản đồ, bấm một đường nối rồi mở nhận định trích cùng vị trí để xem dòng mã và hash nguồn. Lượt Python chạy từ trình duyệt đạt 21/36 mục. Phép đối chứng báo cáo trên ba hồ sơ phát triển đạt 37/97 mục và verdict đúng 0/3. [Các bước demo và cách đọc điểm](docs/DOI_CHIEU_DUONG_TRUYEN.md)

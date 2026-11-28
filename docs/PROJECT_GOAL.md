@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Đưa việc kiểm chứng vào thao tác demo. Từ bảng chấm, người dùng mở được câu gốc và dòng chứng minh của từng lượt. Bản hiện tại đã đo 3 lượt Python với cùng model, mẫu và mã lõi. 28/40 nhận định trùng nhau, dưới ngưỡng 80% của giảng viên. Mốc kế tiếp là phục hồi các ý đúng bị loại cùng câu ghép, đo lại cả hai định dạng và đối chứng trên tập giữ riêng. [Ba lượt và tiêu chí chấm](DO_ON_DINH_BAN_DIEU_TRA.md)
+
 Nhóm ưu tiên hai chức năng đi cùng nhau. Khi một liên kết còn thiếu, agent phải chọn phép kiểm dựa trên kết quả vừa đọc. Người dùng bấm được vào chính đường nối đó để mở bằng chứng và hỏi tiếp. Đích ghi dưới thư mục nén đã được kiểm trong một ca Python thật. Điều kiện nghiệm thu tiếp theo là xác minh dữ liệu còn nguyên đến điểm sử dụng và lặp lại phép đo trên tập giữ riêng. Số liệu đầy đủ vẫn gồm cả chất lượng toàn báo cáo, tuyên bố thiếu căn cứ và chi phí gọi công cụ. [Lượt thử và những mắt xích còn mở](DUONG_DAN_GHI_VA_NEN.md)
 
 Mục tiêu nghiệm thu là người dùng có thể đi từ giả thuyết còn thiếu, qua hành động của agent trong VM, đến từng nhận định có nguồn và verdict đủ căn cứ. Bản web đã đưa liên kết vào báo cáo chính và đo tác động trên ba hồ sơ cố định. Mốc tiếp theo là chứng minh nguồn dữ liệu nhạy cảm đi tới bên gửi, đo lại độ phủ và verdict trên tập giữ riêng, rồi tái lập trên máy thành viên. [Bằng chứng và giới hạn hiện tại](DOI_CHIEU_DUONG_TRUYEN.md)

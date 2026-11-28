@@ -17,12 +17,49 @@
       ]
     ]
   },
+  "latest_followup_reviews": [
+    {
+      "id": "review_62cd4ee21387",
+      "parent_claim": "C7",
+      "decision": "rejected",
+      "model_calls": 2,
+      "journal_sha256": "75b934dd74fbede7f6d7157b033e0a55a9e2a7f9b769879ef78fd4f819e630e9",
+      "original_request_sha256": "ab9b42b38f6f6bfef27d8df99fe91b2cbcf5e06f13ce8f2b1f2f86b52db96223",
+      "source_ranges": [
+        [
+          134,
+          134
+        ],
+        [
+          135,
+          135
+        ],
+        [
+          136,
+          136
+        ],
+        [
+          137,
+          137
+        ],
+        [
+          138,
+          138
+        ],
+        [
+          139,
+          139
+        ]
+      ]
+    }
+  ],
   "run": "20261128T073934_730537f9",
   "sample": "public_python2024.bin",
   "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
   "model": "qwen3:8b",
   "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
   "source_manifest_sha256": "b783e6a1e2a68321a4ffdb17c8784cc31a9b0b10bd47f82df58319191dbd9b2f",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
   "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
   "current_logic_matches_run": true,
   "vm_isolation": {
@@ -175,6 +212,7 @@
     }
   ],
   "accepted_claims": 32,
+  "accepted_claim_keys_sha256": "4900c19921ae1b992ff0777ffaa748a09b0391188cf8404fffa18db684b89ef6",
   "terminal_edges": [
     {
       "id": "query-rows",

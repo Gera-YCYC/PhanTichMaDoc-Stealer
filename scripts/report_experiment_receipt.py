@@ -14,6 +14,11 @@ sys.path.insert(0, str(ROOT))
 from stealer_agent.journal import canonical, dump_json, utc_now, verify_journal
 
 
+def config_digest(config):
+    settings = {k: v for k, v in config.items() if k != 'expected_sample_sha256'}
+    return hashlib.sha256(canonical(settings)).hexdigest()
+
+
 def additional_measurements(directory, analysis, journal_hash):
     from stealer_agent.yara_case import RULES, select_row
     from stealer_agent.yara_corpus import validate_scan
@@ -123,8 +128,6 @@ def summarize(directory):
                    for e in events):
             raise ValueError('Channel shape has no matching successful VM observation')
         channel_features.append(feature)
-    experiment_config = dict(started['config'])
-    experiment_config.pop('expected_sample_sha256', None)
     decisions = [e for e in events if e['event'] == 'operation_review_decision']
     return {
         **additional_measurements(directory, result, hashlib.sha256(path.read_bytes()).hexdigest()),
@@ -135,7 +138,7 @@ def summarize(directory):
         'settings': {k: started['config'].get(k) for k in ('max_steps', 'num_ctx', 'num_predict', 'seed', 'think',
                     'report_mode', 'max_report_cards', 'min_code_searches', 'evidence_chars', 'code_evidence_chars',
                     'review_operations', 'semantic_review', 'recover_empty_searches', 'review_techniques', 'occurrence_order')},
-        'config_sha256_excluding_sample': hashlib.sha256(canonical(experiment_config)).hexdigest(),
+        'config_sha256_excluding_sample': config_digest(started['config']),
         'operation_review': {'decisions':len(decisions), 'selected':sum(e['selected'] is True for e in decisions)},
         'successful_tools': result['successful_tools'], 'metrics': result['metrics'],
         'journal': {'events': count, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),

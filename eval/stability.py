@@ -4,6 +4,15 @@ import json
 from pathlib import Path
 
 
+def claim_key(claim):
+    kind = claim["kind"]
+    if kind == "ioc":
+        return kind, claim["value"]
+    if kind == "attack":
+        return kind, claim["technique_id"]
+    return kind, claim["text"].strip()
+
+
 def calculate(reports):
     if len(reports) != 3:
         raise ValueError("Exactly three reports are required")
@@ -14,9 +23,7 @@ def calculate(reports):
     for report in reports:
         if not report["status"].startswith("completed"):
             raise ValueError("Incomplete runs cannot be used to claim stability")
-        sets.append({(c["kind"], c["value"] if c["kind"] == "ioc" else
-                     c["technique_id"] if c["kind"] == "attack" else c["text"].strip())
-                     for c in report["analysis"]["claims"]})
+        sets.append({claim_key(c) for c in report["analysis"]["claims"]})
     common, union = set.intersection(*sets), set.union(*sets)
     return {"stable_claims": len(common), "union_claims": len(union),
             "stability": len(common) / len(union) if union else None,

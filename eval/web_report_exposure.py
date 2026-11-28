@@ -16,16 +16,15 @@ def events(run):
     return [json.loads(s) for s in path.read_bytes().splitlines()]
 
 
-def request_windows(journal, eid, lines):
+def request_windows(journal, eid, lines, *, include_flow=False):
     """Count only rows verifiably present in actual candidate-authoring messages."""
     windows = []
     for event in journal:
         phase = event.get("phase")
-        if event["event"] != "model_request" or phase not in {
-            "card_generate",
-            "operation_review",
-            "technique_review",
-        }:
+        if event["event"] != "model_request" or not (
+            phase in {"card_generate", "operation_review", "technique_review"}
+            or include_flow and phase == "flow_review"
+        ):
             continue
         if sha256(canonical(event["messages"])).hexdigest() != event["messages_sha256"]:
             raise ValueError("Changed model request")
@@ -42,7 +41,7 @@ def request_windows(journal, eid, lines):
                         raise ValueError("Card row differs from projected source")
                     present.add(n)
         else:
-            for item in payload.values():
+            for item in ([payload] if phase == "flow_review" else payload.values()):
                 for ref in item["references"]:
                     if ref["evidence_id"] == eid:
                         interval = range(
@@ -86,6 +85,32 @@ def source_id(profile, journal):
     return ids.pop()
 
 
+def required_rows(unit, source, profile, historical=None):
+    """Bind a unit to the same parser rows before comparing two real runs."""
+    required = set()
+    for ref in unit["source_references"]:
+        interval = range(ref["line"], ref["end_line"] + 1)
+        if historical is not None:
+            origin = historical[ref["evidence_id"]]
+            if origin["sample_sha256"] != profile["sample_sha256"]:
+                raise ValueError("Reference from a different sample")
+            for n in interval:
+                original = origin["line_map"][n]
+                if n in source["line_map"] and (
+                    source["line_map"][n] != original
+                    or origin["line_metadata"][n] != source["line_metadata"][n]
+                ):
+                    raise ValueError("Different source coordinates")
+        elif not any(
+            isinstance(r, dict) and r.get("evidence_id") == ref["evidence_id"]
+            and r.get("output_sha256") == source["output_sha256"]
+            for r in profile["source_references"]
+        ):
+            raise ValueError("Reference rows belong to another ILSpy output")
+        required.update(interval)
+    return required
+
+
 def locate(run, profile_path, reviews, historical=None):
     profile = read(profile_path)
     journal = events(run)
@@ -104,28 +129,7 @@ def locate(run, profile_path, reviews, historical=None):
     rows = []
     for unit in profile["units"]:
         uid = unit["id"]
-        required = set()
-        for ref in unit["source_references"]:
-            interval = range(ref["line"], ref["end_line"] + 1)
-            if historical is not None:
-                origin = historical[ref["evidence_id"]]
-                if origin["sample_sha256"] != profile["sample_sha256"]:
-                    raise ValueError("Reference from a different sample")
-                for n in interval:
-                    original = origin["line_map"][n]
-                    if n in lines and (
-                        lines[n] != original
-                        or origin["line_metadata"][n] != source["line_metadata"][n]
-                    ):
-                        raise ValueError("Different source coordinates")
-            elif not any(
-                isinstance(r, dict)
-                and r.get("evidence_id") == ref["evidence_id"]
-                and r.get("output_sha256") == source["output_sha256"]
-                for r in profile["source_references"]
-            ):
-                raise ValueError("Reference rows belong to another ILSpy output")
-            required.update(interval)
+        required = required_rows(unit, source, profile, historical)
         if uid in score["after_filter"]["matched_reference_ids"]:
             reason = "retained"
         elif uid in score["raw"]["matched_reference_ids"]:

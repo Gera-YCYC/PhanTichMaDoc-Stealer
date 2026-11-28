@@ -1,6 +1,6 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
-**Ưu tiên sau lượt Python có đối chiếu đường dẫn.** Người làm phần phân tích kiểm sự tồn tại và biến đổi nội dung tệp giữa điểm ghi và điểm nén. Người làm phần đánh giá điều tra mục A09 còn thiếu và vì sao A26 bị mất rồi xuất hiện lại qua hai lượt. Dùng cùng đáp án 36 mục trước khi đổi thuật toán. Mục tiêu là tăng recall mà vẫn giữ khả năng từ chối kết luận thiếu căn cứ. [Dẫn chứng và kết quả trước/sau](DUONG_DAN_GHI_VA_NEN.md)
+**Ưu tiên sau ba lượt Python.** Người làm phần agent tách các suy luận gộp trong một câu, giữ trích dẫn riêng cho từng ý và thử lại A09, A26. Người làm phần truy xuất tập trung bảy mục còn thiếu dòng và bốn mục đã có dòng nhưng chưa được đưa chung vào một lần đọc. Người làm phần đánh giá khóa cấu hình trước khi chạy, ghi đủ các lượt, đo lại precision, recall, verdict và độ ổn định. Mức đối chiếu hiện tại là 28/40 nhận định trùng, 19/36 mục đúng chung và 0/3 verdict đúng trên cùng một mẫu phát triển. Sau đó lặp phép đo trên .NET và trên mẫu giữ riêng. [Phân loại bỏ sót và bằng chứng](DO_ON_DINH_BAN_DIEU_TRA.md)
 
 | Phụ trách | Việc kế tiếp | Bằng chứng để đóng |
 |---|---|---|

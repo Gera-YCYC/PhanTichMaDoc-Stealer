@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Để trả lời câu hỏi “Bộ duyệt có bỏ nhầm bằng chứng không?”, mở **Đánh giá**, chọn PythonStealer và mở bảng **Độ ổn định của bản điều tra · ba lượt Python**. Trong bảng 36 mục, bấm **A09 → C7** rồi mở trích dẫn. Chuyển sang **A26 → C2** của lượt 2 và lượt 3 để đối chiếu hai quyết định khác nhau. Các nút đọc báo cáo từ nhật ký cục bộ của đúng lượt. [Bảng số liệu và cách kiểm lại bằng trình duyệt](DO_ON_DINH_BAN_DIEU_TRA.md)
+
 Để demo cơ chế tự tìm mắt xích còn thiếu, chọn mẫu Python, mở đường nối **Ghi ra tệp → Tạo bản nén** rồi hỏi về nội dung tệp lúc nén. Trong câu trả lời, mở **Vị trí VM vừa tìm** để kiểm tra từng kết quả có trích dẫn. Màn hình **Đánh giá** có ba báo cáo để so precision, recall và F1. [Kịch bản bấm từng bước và giới hạn của kết luận](DUONG_DAN_GHI_VA_NEN.md)
 
 Trên máy Windows đã dựng lab của nhóm, mở PowerShell ở thư mục chứa `agent_react.py` và chạy:

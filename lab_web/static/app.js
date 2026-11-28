@@ -347,16 +347,8 @@ function map(panel) {
         if (!record.transfer_evidence_claim_ids?.includes(claim.id)) continue;
         const common = claim.refs.some(r => sites.some(s =>
           s.eid === r.eid && s.line <= r.end && r.line <= s.end));
-        if (common) links.append(button("Mở " + claim.id + " trong báo cáo", async () => {
-          view = "claims";
-          await render();
-          const card = document.getElementById("report-" + claim.id);
-          if (card) {
-            card.open = true;
-            card.querySelector("summary").focus();
-            card.scrollIntoView({block: "start"});
-          }
-        }));
+        if (common) links.append(button("Mở " + claim.id + " trong báo cáo",
+          () => openReportClaim(record.run, claim.id)));
       }
       if (links.childElementCount) detail.append(el("small", "Nhận định trích cùng vị trí nguồn"), links);
       refs(detail, sites, !item.trail);
@@ -433,6 +425,67 @@ function map(panel) {
     panel.append(section);
   }
 }
+async function openReportClaim(run, claimId) {
+  view = "claims";
+  if (record?.run === run) await render();
+  else await load(run);
+  if (record?.run !== run || view !== "claims") return;
+  const card = document.getElementById("report-" + claimId);
+  if (!card) throw Error("Chưa tìm thấy nhận định trong báo cáo trên máy.");
+  for (let section = card; section; section = section.parentElement?.closest("details")) {
+    section.open = true;
+  }
+  card.querySelector("summary").focus();
+  card.scrollIntoView({block: "start"});
+}
+
+function showCurrentStability(panel, data, table, percent) {
+  const block = el("details", undefined, "card");
+  block.append(el("summary", "Độ ổn định của bản điều tra · ba lượt Python"));
+  const agreement = data.agreement;
+  block.append(el("p", agreement.common + "/" + agreement.union +
+    " nhận định xuất hiện ở cả ba lượt (" + percent(agreement.rate) +
+    "). Mẫu số gồm mọi nhận định xuất hiện ít nhất một lần. Ngưỡng của slide là 80%."));
+  table(["Lượt", "Câu giữ", "Mục đúng", "Precision", "Recall", "F1", "Verdict", "Công cụ", "Giây"],
+    data.runs.map(r => [r.run, r.claims, r.correct + "/" + (r.correct + r.missed),
+      percent(r.precision), percent(r.recall), percent(r.f1), r.verdict, r.tools, r.seconds.toFixed(1)]), block);
+  const [always, sometimes, missed] = data.counts;
+  block.append(el("p", "Trong hồ sơ đáp án, " + always + " mục luôn được tìm thấy, " +
+    sometimes + " mục xuất hiện ở một hoặc hai lượt, " + missed + " mục bị bỏ sót cả ba lượt. Verdict đúng " +
+    data.correct_verdicts + "/3 theo nhãn của mẫu."));
+  const units = el("details");
+  units.append(el("summary", "Đối chiếu từng mục của đáp án"));
+  const names = {
+    retained: "Báo cáo giữ ý đúng",
+    rejected_evidence: "Ý đúng nằm trong câu bị loại",
+    visible_in_one_prompt: "Đủ dòng trong một lần hỏi model",
+    retrieved: "Công cụ đã lấy đủ dòng",
+    incomplete_source: "Còn thiếu dòng nguồn",
+  };
+  const localRuns = new Set(init.history.map(entry => entry.run));
+  const unitRows = data.units.map(u => {
+    const cells = u.states.map((state, i) => {
+      const cell = el("div");
+      cell.append(el("span", names[state]));
+      const run = data.runs[i].run;
+      if (localRuns.has(run) && u.claims[i].length) {
+        const links = el("div", undefined, "line");
+        for (const id of u.claims[i]) {
+          const link = button(id, () => openReportClaim(run, id));
+          link.setAttribute("aria-label", "Mở " + id + " của lượt " + (i + 1) + " cho " + u.id);
+          links.append(link);
+        }
+        cell.append(links);
+      }
+      return cell;
+    });
+    return [u.id, u.description, ...cells];
+  });
+  table(["Mục", "Mệnh đề tham chiếu", "Lượt 1", "Lượt 2", "Lượt 3"], unitRows, units);
+  block.append(units);
+  panel.append(block);
+}
+
 function renderEvaluation(panel, data, sample = evaluationSample) {
   panel.replaceChildren();
   const percent = (n) =>
@@ -446,7 +499,10 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     const body = grid.createTBody();
     for (const row of rows) {
       const tr = body.insertRow();
-      for (const cell of row) tr.append(el("td", String(cell)));
+      for (const cell of row) {
+        const td = tr.insertCell();
+        td.append(cell instanceof Node ? cell : String(cell));
+      }
     }
     const frame = el("div", undefined, "table-wrap");
     frame.append(grid);
@@ -471,6 +527,8 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   };
   selector.className = "evaluation-sample";
   label.append(selector);
+  if (sample === "python" && data.current_stability)
+    showCurrentStability(panel, data.current_stability, table, percent);
   panel.append(
     label,
     el(
@@ -879,7 +937,7 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     const s = data.stability,
       c = s.claim_stability;
     panel.append(
-      el("h2", "Ba lượt trên cùng mẫu Python"),
+      el("h2", "Ba lượt Python trước khi thêm đối chiếu đường dẫn"),
       el(
         "p",
         c.stable_claims +
@@ -1110,6 +1168,7 @@ async function render() {
       group.append(el("summary", "Nhận định bị loại (" + record.rejected_claims.length + ")"));
       for (const c of record.rejected_claims) {
         const d = el("details", undefined, "card");
+        d.id = "report-" + c.id;
         d.append(el("summary", c.id + " · " + c.text));
         if (c.reasons.length) d.append(el("small", "Mã lý do · " + c.reasons.join(", ")));
         if (c.review_note) d.append(el("p", "Nhận xét của bộ duyệt · " + c.review_note));

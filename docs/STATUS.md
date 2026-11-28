@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Ba lượt điều tra Python trên cùng phiên bản giữ lần lượt 20, 20 và 19 trong 36 mục tham chiếu. Độ ổn định 28/40 (70%) thấp hơn mục tiêu 80%. Mười sáu mục bị bỏ sót cả ba lần. Web cho phép bấm từ ô chấm sang câu được giữ hoặc bị loại ở đúng lượt. Các lần mở ở màn hình 1360 px và 390 px đã được đối chiếu với dòng nguồn trong nhật ký. [Bảng điểm, phạm vi và nguyên nhân bỏ sót](DO_ON_DINH_BAN_DIEU_TRA.md)
+
 Bản công cụ cuối đã chạy lại từ trình duyệt trong 408,65 giây. Python đạt 20/36, F1 71,43% và giữ verdict `suspicious`. Đã mở 13 khoảng nguồn trên bản đồ và cả hai vị trí mà VM trả về cho câu hỏi tiếp theo. [Biên bản có tọa độ và hash](../deliverables/real-demo-evidence/web-20261128T073934_730537f9.json)
 
 Web đã kiểm trên mẫu Python thật quan hệ giữa đích ghi và thư mục nén, có 38 dòng dẫn chứng. Khi hỏi tiếp, VM tìm được 8 vị trí cần đối chiếu. Báo cáo mới đúng 19/36 mục, F1 69,09%, verdict `suspicious`. Hai mục bị mất so với lượt 21/36 trước đó đã được xác định. [Số liệu và cách chạy lại](DUONG_DAN_GHI_VA_NEN.md)
