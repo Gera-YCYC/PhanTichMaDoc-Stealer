@@ -290,6 +290,7 @@ nav button {
 }
 .ref small {
   margin: 4px 0;
+  overflow-wrap: anywhere;
 }
 .ref pre {
   white-space: pre-wrap;
@@ -330,6 +331,9 @@ textarea {
 .card {
   padding: 12px 0;
   border-bottom: 1px solid #354343;
+}
+.card small {
+  overflow-wrap: anywhere;
 }
 .legend {
   margin-bottom: 16px;

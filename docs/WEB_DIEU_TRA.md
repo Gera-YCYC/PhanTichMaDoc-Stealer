@@ -10,6 +10,10 @@ Mở **http://127.0.0.1:4180**. Script bật VM và Ollama, đồng bộ mã cô
 
 ## Một lượt trình bày
 
+Nhóm đã chạy lại từ nút **Chạy điều tra** với mẫu PythonStealer trên web và Qwen3 8B. Lượt `20261128T035912_e9d2b879` mất 495,58 giây, có 17 lượt công cụ, 38 lượt model và 232 sự kiện. Bốn backend phân tích thành công. Một lần dịch ngược lỗi, agent tiếp tục qua bytecode. Bản đồ kết thúc và bản đồ trên web cùng xác nhận ba liên kết tĩnh. Hỏi về dữ liệu từ truy vấn tới giải mã đã kích hoạt một lượt VM, được tám kết quả và còn thiếu chứng cứ. Hỏi về bản nén trong thông điệp dẫn lại 11 vị trí. YARA khớp trên mẫu phát triển. [Biên bản lượt trực tiếp](../deliverables/real-demo-evidence/web-20261128T035912_e9d2b879.json)
+
+Cả 30 câu đề xuất của lượt này trùng lượt Python đầu tiên khi đối chiếu văn bản, loại, giá trị, tọa độ và trích dẫn, sau khi chuẩn hóa mã chứng cứ theo nguồn. Bộ duyệt đổi hai quyết định, giữ C7 và loại C6. Dùng lại nhãn đã chấm cho đúng các câu trùng, kết quả sau lọc là 20/36 mục, precision 95,24%, recall 55,56% và F1 70,18%. Đây là một lượt lặp Python. Bảng gộp ba mẫu vẫn dùng ba lượt đã chọn ban đầu. Trên máy lab có thể chạy `python -m eval.web_demo_repeat` để tính lại. [Phiếu đối chiếu lượt lặp](../deliverables/real-demo-evidence/web-live-repeat-quality.json)
+
 1. Kiểm tra mục Ollama và VM ở góc phải. Bấm vào đó để đọc lại trạng thái từ hai dịch vụ. Chọn mẫu trong danh mục đã khóa SHA-256. Tên và kích thước hiển thị lấy từ manifest.
 2. Bấm **Chạy điều tra** rồi mở **Nhật ký**. Trình duyệt gọi entrypoint của agent, dùng model thật và các công cụ đọc tĩnh trong VM. Mỗi lượt có mã mới. Tên công cụ, mã lượt và sự kiện trên màn hình đến từ tiến trình đang chạy. Trong lúc chờ, có thể mở một hồ sơ cũ ở cột Lịch sử. Tiêu đề hồ sơ cho biết đang xem lượt nào.
 3. Mở **Bản đồ chứng cứ** sau khi hoàn tất. Chọn một nút để xem thao tác và tọa độ công cụ. Chọn đường nối bên dưới nút để xem quan hệ giữa hai thao tác. Màu xanh biểu thị có bằng chứng cho mệnh đề tĩnh đó. Màu vàng biểu thị còn thiếu bằng chứng. Màu xám biểu thị chưa tìm thấy trong phạm vi đã đọc. Với quan hệ còn thiếu, giao diện chỉ ra phần đã thấy ở hai đầu.
@@ -27,6 +31,8 @@ Mở **http://127.0.0.1:4180**. Script bật VM và Ollama, đồng bộ mã cô
 
 ### Một liên kết được kiểm tra thế nào?
 
+Ở hồ sơ Python `20261128T021511_bec5b2e5`, chọn đường nối **Tuần tự hóa thông điệp → Gọi API gửi** rồi mở **Các lần agent kiểm tra liên kết**. Bước 11 tìm thấy một vị trí với `sendmail` nhưng liên kết còn thiếu chứng cứ. Sau bước 12 với `as_string`, trạng thái trong nhật ký chuyển sang **Có bằng chứng**. Bấm **Xem đoạn mã đã dẫn** để đọc các dòng mang dấu mũi tên và các dòng lân cận đã quan sát. Dấu chấm lửng giữa các dòng thể hiện khoảng bị lược. Hash dưới đoạn mã định danh đầu ra công cụ. Mỗi mẫu và mỗi lượt có thể có lịch sử truy vấn khác.
+
 Mỗi thao tác có mã bằng chứng, SHA-256 mẫu và SHA-256 đầu ra công cụ. Bộ điều phối theo dõi quan hệ còn thiếu, chọn từ khóa theo nền tảng hoặc tên hàm đã thấy, cho Qwen chọn phép tìm rồi cập nhật trạng thái sau quan sát. Bằng chứng của hai mẫu hoặc hai đầu ra dịch ngược khác nhau không được ghép với nhau.
 
 Bộ kiểm tra nhận các trường hợp hẹp có thể truy nguyên, chẳng hạn truy vấn và lần lấy kết quả bằng cùng con trỏ, hoặc giá trị trả về của UploadFile đi vào bộ giải mã phản hồi. Với MIME, bộ kiểm tra theo dõi biến nhận kết quả tuần tự hóa tới đối số thông điệp. Việc gán lại biến hoặc thiếu dòng liên quan khiến quan hệ đó còn mở.
@@ -36,6 +42,8 @@ Với một số chương trình Python, VM kiểm tra thêm hàm tạo bản n�
 Đối chiếu ATT&CK cần kiểm tra ý nghĩa dữ liệu. Một lời gọi SQL chưa đủ xác định truy cập mật khẩu trình duyệt. Một hàm nén cũng chưa đủ xác định lưu trữ dữ liệu đã thu thập. [T1555.003 – Credentials from Web Browsers](https://attack.mitre.org/techniques/T1555/003/) · [T1560.002 – Archive via Library](https://attack.mitre.org/techniques/T1560/002/)
 
 ## Huấn luyện từ nhận xét
+
+Trên web, vào **Gán nhãn → Xem cách train và kết quả trước/sau**. Trang đọc biên bản train thật, đối chiếu hash corpus, mã train và checkpoint dùng cho VM. Bộ xếp hạng được cập nhật 300 lần. Tập test có năm vị trí thuộc một nhóm truy vấn. Một kết quả đứng đầu đúng trên tập này chưa đủ để suy ra recall của cả báo cáo. [Mã train, loss và cách chia tập](../training/RANKER_EXPERIMENT.md)
 
 Nhãn do người vận hành nhập được lưu cục bộ dưới `evidence/local/web-feedback/` với mã lượt, dòng, hash và phiên bản schema. Nhãn ở trang **Gán nhãn** có thêm 13 đặc trưng tính từ cửa sổ nguồn mà VM thực sự trả về. Một nguồn thiếu hàng lân cận sẽ không trở thành ví dụ huấn luyện. Nhãn ở thẻ thao tác phục vụ đối chiếu mệnh đề đó.
 

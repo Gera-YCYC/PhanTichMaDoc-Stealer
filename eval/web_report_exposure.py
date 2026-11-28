@@ -57,13 +57,7 @@ def request_windows(journal, eid, lines):
     return windows
 
 
-def locate(run, profile_path, reviews, historical=None):
-    profile = read(profile_path)
-    journal = events(run)
-    receipt = read(EVIDENCE / f"web-{run}.json")
-    log = ROOT / "runs" / run / "events.jsonl"
-    if sha256(log.read_bytes()).hexdigest() != receipt["journal_sha256"]:
-        raise ValueError("Different journal")
+def source_id(profile, journal):
     normalized = {
         r["parser_source_sha256"]
         for r in profile["source_references"]
@@ -89,7 +83,17 @@ def locate(run, profile_path, reviews, historical=None):
     }
     if len(ids) != 1:
         raise ValueError("Expected one matching source from the reference profile")
-    eid = ids.pop()
+    return ids.pop()
+
+
+def locate(run, profile_path, reviews, historical=None):
+    profile = read(profile_path)
+    journal = events(run)
+    receipt = read(EVIDENCE / f"web-{run}.json")
+    log = ROOT / "runs" / run / "events.jsonl"
+    if sha256(log.read_bytes()).hexdigest() != receipt["journal_sha256"]:
+        raise ValueError("Different journal")
+    eid = source_id(profile, journal)
     source = reconstruct(journal)[eid]
     lines = source["line_map"]
     windows = request_windows(journal, eid, lines)
@@ -139,9 +143,14 @@ def locate(run, profile_path, reviews, historical=None):
         "run": run,
         "journal_sha256": receipt["journal_sha256"],
         "profile_sha256": score["profile_sha256"],
-        "source_sha256": next(iter(normalized))
-        if normalized
-        else source["output_sha256"],
+        "source_sha256": next(
+            (
+                r["parser_source_sha256"]
+                for r in profile["source_references"]
+                if isinstance(r, dict) and "parser_source_sha256" in r
+            ),
+            source["output_sha256"],
+        ),
         "report_requests": len(windows),
         "counts": dict(Counter(r["category"] for r in rows)),
         "units": rows,

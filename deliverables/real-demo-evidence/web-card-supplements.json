@@ -1,0 +1,311 @@
+{
+  "python": {
+    "source": "20261128T021511_bec5b2e5",
+    "experiment": "20261128T034814_3495e445",
+    "journal_sha256": "7c1ab24f2b0adf9e46f3f73de0c2a0fed411087060d68337bffd13356929d6fc",
+    "source_journal_sha256": "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+    "raw_sha256": "82e205e2ba5ecb5ede93b9c895495d6d40b742040774d51e92ea7e831ed4c10a",
+    "checked_sha256": "d207ff4a69c9c77498491fe3ad0f77f38f825f950e12aa69b80e7f679edd5bdc",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "selector_sha256": "3089e7745dd4d526e1dbcf3a43f20868a32ea9e875199df1a1afbb90706236e9",
+    "config_sha256": "2db707bd3b44bf0511fdd4f7e7227055e3d2834e144269334feb9bac8c78de5c",
+    "metrics": {
+      "model_calls": 8,
+      "prompt_tokens": 12507,
+      "completion_tokens": 588,
+      "minimum_free_ram_bytes": 1509560320,
+      "elapsed_s": 78.5121
+    },
+    "phases": {
+      "card_generate": 2,
+      "card_review": 5,
+      "card_verdict": 1
+    },
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "label": "correct",
+        "summary": "Gắn một phần MIME vào thông điệp.",
+        "reason": "Dòng 90, 96–102 cho thấy tạo phần chứa dữ liệu rồi gắn vào thư.",
+        "supported_units": [
+          "PY24-A20"
+        ],
+        "retained": true,
+        "lines": [
+          [
+            75,
+            106
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            14,
+            14
+          ]
+        ],
+        "claim_sha256": "85026708abd0645e0babbeea0f0db7d7b6ebf654e03256ebf3686d2b6fb4c87c"
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "label": "correct",
+        "summary": "Dùng máy chủ và cổng đã cấu hình để mở kết nối SMTP.",
+        "reason": "Đối chiếu cấu hình ở 83–84 với đối số tại 106.",
+        "supported_units": [
+          "PY24-A22"
+        ],
+        "retained": true,
+        "lines": [
+          [
+            75,
+            106
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            14,
+            14
+          ]
+        ],
+        "claim_sha256": "6a6933bf25c42b30bd636834d3b1c3e639ce45eb16fffeb003db337531a8fbdf"
+      },
+      {
+        "claim": "C3",
+        "kind": "ioc",
+        "label": "correct",
+        "summary": "Có tên máy chủ SMTP cụ thể trong cấu hình.",
+        "reason": "Giá trị nguyên văn được đối chiếu cục bộ ở 83 và sử dụng ở 106. Hồ sơ công khai chỉ giữ tọa độ.",
+        "supported_units": [
+          "PY24-A27"
+        ],
+        "retained": true,
+        "lines": [
+          [
+            75,
+            106
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            14,
+            14
+          ]
+        ],
+        "claim_sha256": "02a43df00669a582e9153493325723997d848c84ad6f4f3eba166bc6bdb8a990"
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "label": "correct",
+        "summary": "Mã hóa truyền tải Base64 cho phần đính kèm và gắn vào thư.",
+        "reason": "Dòng 96–102 cho thấy dữ liệu, bước mã hóa truyền tải và thao tác gắn. Phần Base64 cũng đã được ghi nhận ở báo cáo gốc.",
+        "supported_units": [
+          "PY24-A20"
+        ],
+        "retained": true,
+        "lines": [
+          [
+            88,
+            119
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            14,
+            14
+          ]
+        ],
+        "claim_sha256": "0259ccbdca4cf4328c93e1035aed6ddd094f5caa596cda873f84f38f397c763c"
+      },
+      {
+        "claim": "C5",
+        "kind": "behavior",
+        "label": "correct",
+        "summary": "Gọi xác thực trên kết nối SMTP.",
+        "reason": "Dòng 106–108 thể hiện kết nối và lời gọi đăng nhập. Chưa quan sát phản hồi máy chủ.",
+        "supported_units": [
+          "PY24-A24"
+        ],
+        "retained": true,
+        "lines": [
+          [
+            88,
+            119
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            14,
+            14
+          ]
+        ],
+        "claim_sha256": "15a64cc0d6f2ea53c01e2febc0dc6fbe32c3c2129ec006a8446ff187df34cf99"
+      }
+    ],
+    "new_accepted_units": [],
+    "reference_units": 36,
+    "visible_before": 24,
+    "visible_after": 24
+  },
+  "gomorrah": {
+    "source": "20261128T030521_c76fc69a",
+    "experiment": "20261128T034933_343e6946",
+    "journal_sha256": "bc942d37e4c6e040fa4265fd8b02a42a21dc2395f68d9f4e6564c93fb10842db",
+    "source_journal_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+    "raw_sha256": "ea28b8238967058a9d124a8f79453691286417e7022f551c126edb8246ce40f5",
+    "checked_sha256": "0d65d270e5019e28ff9a769f5fc0372a45831cb9b22667587ddc83b52f87333a",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "selector_sha256": "3089e7745dd4d526e1dbcf3a43f20868a32ea9e875199df1a1afbb90706236e9",
+    "config_sha256": "2db707bd3b44bf0511fdd4f7e7227055e3d2834e144269334feb9bac8c78de5c",
+    "metrics": {
+      "model_calls": 6,
+      "prompt_tokens": 7774,
+      "completion_tokens": 515,
+      "minimum_free_ram_bytes": 1401913344,
+      "elapsed_s": 53.2841
+    },
+    "phases": {
+      "card_generate": 2,
+      "card_review": 4
+    },
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "label": "unsupported",
+        "summary": "Ghi các trường tài khoản vào tệp có tên cố định.",
+        "reason": "Dòng 3483 và 3489–3492 hỗ trợ việc ghi trường tài khoản. Đích ghi là một biểu thức, chưa chứng minh tên tệp mà câu nêu.",
+        "supported_units": [],
+        "retained": false,
+        "lines": [
+          [
+            3479,
+            3501
+          ]
+        ],
+        "claim_sha256": "c183dd71ee11c179be5d780a9ab82aec9eb252746bed3a6f9f6b638483e5a7f7"
+      },
+      {
+        "claim": "C2",
+        "kind": "behavior",
+        "label": "unsupported",
+        "summary": "Ghi thông tin hệ thống vào một tệp được gọi tên.",
+        "reason": "Dòng 3500–3501 cho thấy làm rỗng tệp và mở bộ ghi. Đoạn được dẫn kết thúc trước phần ghi nội dung được khẳng định.",
+        "supported_units": [],
+        "retained": false,
+        "lines": [
+          [
+            3479,
+            3501
+          ]
+        ],
+        "claim_sha256": "61e8c2bdc77904afbe85d689fd50121411774b705b7074c6227a248dc742c5ef"
+      },
+      {
+        "claim": "C3",
+        "kind": "behavior",
+        "label": "unsupported",
+        "summary": "Đọc trường mật khẩu và giải mã giá trị lấy từ cơ sở dữ liệu.",
+        "reason": "Dòng 1069–1070 cho thấy đọc trường rồi gọi hàm phụ. Đoạn dẫn thiếu phần xác minh hiệu quả giải mã và nguồn bảng. Có thể chấm riêng lời gọi.",
+        "supported_units": [
+          "opera-decrypt-call"
+        ],
+        "retained": false,
+        "lines": [
+          [
+            1060,
+            1075
+          ],
+          [
+            793,
+            828
+          ]
+        ],
+        "claim_sha256": "d0432a8ad7210cf6a3e8593088e5130bf8a241a07792e39a96de8bebfe0c198b"
+      },
+      {
+        "claim": "C4",
+        "kind": "behavior",
+        "label": "unsupported",
+        "summary": "Tạo bản ghi tài khoản Opera chứa mật khẩu đã giải mã.",
+        "reason": "Dòng 1067–1072 cho thấy tạo và thêm bản ghi với kết quả hàm phụ. Tính chất bản rõ của kết quả còn thiếu chứng cứ.",
+        "supported_units": [
+          "opera-account"
+        ],
+        "retained": false,
+        "lines": [
+          [
+            1060,
+            1075
+          ],
+          [
+            793,
+            828
+          ]
+        ],
+        "claim_sha256": "c43cf1e807ae10ac16156d38707092c32ed82f5207aa29f13381453bd8268d16"
+      }
+    ],
+    "new_accepted_units": [],
+    "reference_units": 40,
+    "visible_before": 13,
+    "visible_after": 16
+  },
+  "mercurial": {
+    "source": "20261128T031606_ca91de35",
+    "experiment": "20261128T035027_852cfb9f",
+    "journal_sha256": "54dacbd6bac92bf325d942bf1f38dd8d0aebb07737e32a971b28773fa7b555ca",
+    "source_journal_sha256": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+    "raw_sha256": "1329886618d6ce34354eaef3f851e14f2f2e73c1aa5e771b813987dea39643d6",
+    "checked_sha256": "e8bf9c2d30d620e848be328588b9bf6ade99309b7ffbd653f3ac5d5bfacd93a9",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "selector_sha256": "3089e7745dd4d526e1dbcf3a43f20868a32ea9e875199df1a1afbb90706236e9",
+    "config_sha256": "2db707bd3b44bf0511fdd4f7e7227055e3d2834e144269334feb9bac8c78de5c",
+    "metrics": {
+      "model_calls": 3,
+      "prompt_tokens": 3353,
+      "completion_tokens": 159,
+      "minimum_free_ram_bytes": 1154543616,
+      "elapsed_s": 22.5606
+    },
+    "phases": {
+      "card_generate": 2,
+      "card_review": 1
+    },
+    "rows": [
+      {
+        "claim": "C1",
+        "kind": "behavior",
+        "label": "correct",
+        "summary": "Có lời gọi giải mã gốc với cấu hình AES-GCM, khóa, dữ liệu vào và thông tin xác thực.",
+        "reason": "Đối chiếu đối số ở 375, 380–382 với lời gọi ở 385 và 391. Mệnh đề giới hạn ở thao tác hiện diện trong mã. Kết quả thực thi và nội dung dữ liệu chưa được quan sát.",
+        "supported_units": [
+          "native-decrypt"
+        ],
+        "retained": false,
+        "lines": [
+          [
+            374,
+            397
+          ]
+        ],
+        "claim_sha256": "77717482763b3687ee26bc695a4ac13117c34878f76a8ed1b7c76e74d18de730"
+      }
+    ],
+    "new_accepted_units": [],
+    "reference_units": 21,
+    "visible_before": 8,
+    "visible_after": 9
+  }
+}

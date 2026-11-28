@@ -115,6 +115,47 @@ def review_anchors(raw, projected):
         yield {"fact": "anchor_" + ident, **ref}
 
 
+def trace_search(attempts, event):
+    """Join observed searches by step. Never infer a past status from the final map."""
+    step = event.get("step")
+    kind = event["event"]
+    if kind == "hypothesis_open":
+        if step in attempts:
+            raise ValueError("Trùng bước mở giả thuyết.")
+        query = event["query"]
+        attempts[step] = {
+            "step": step,
+            "edge": event["edge"],
+            "query": query
+            if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_ .(]{0,79}", query)
+            else "⟦đã ẩn⟧",
+            "anchors": [],
+            "status": None,
+            "hits": None,
+            "tool_status": None,
+        }
+    elif step in attempts:
+        row = attempts[step]
+        if kind == "observation":
+            obs = event["model_visible"]
+            observed = {line["line"] for line in obs.get("lines", [])}
+            row["anchors"] = sorted(
+                {
+                    g["anchor_line"]
+                    for g in obs.get("search_groups", [])
+                    if g["anchor_line"] in observed
+                }
+            )
+        elif kind == "hypothesis_result":
+            if row["edge"] != event["edge"] or row["status"] is not None:
+                raise ValueError("Kết quả không khớp bước điều tra.")
+            row.update(
+                status=event["status"],
+                hits=event["hit_count"],
+                tool_status=event["tool_status"],
+            )
+
+
 @lru_cache(maxsize=4)
 def source(run, fingerprint):
     folder = directory(run)
@@ -122,10 +163,12 @@ def source(run, fingerprint):
     verify_journal(log)
     r = trusted_report(run)
     records, timeline, anchors = {}, [], {}
+    attempts = {}
     last = {}
     with log.open(encoding="utf8") as stream:
         for line in stream:
             e = json.loads(line)
+            trace_search(attempts, e)
             last = e
             kind = e["event"]
             desc = None
@@ -179,13 +222,66 @@ def source(run, fingerprint):
         raise ValueError("Thông tin model hoặc mẫu không khớp.")
     saved = last["result"].get("investigation")
     frozen_graph = redact_document(saved)[0] if saved is not None else None
-    return records, timeline, list(anchors.values()), frozen_graph
+    return (
+        records,
+        timeline,
+        list(anchors.values()),
+        frozen_graph,
+        list(attempts.values()),
+    )
+
+
+def cited_windows(records, graph, claims):
+    """Display only recorded rows around a cited position, retaining visible gaps."""
+    windows = {}
+    for item in [*graph["nodes"], *graph["edges"], *claims]:
+        references = [
+            *item.get("refs", []),
+            *item.get("leads", []),
+            *item.get("trail", []),
+        ]
+        if item.get("lead"):
+            references.append(item["lead"])
+        for ref in references:
+            eid, start, end = ref["eid"], ref["line"], ref["end"]
+            key = f"{eid}:{start}:{end}"
+            record = records.get(eid)
+            if key in windows or record is None or not 0 < start <= end:
+                continue
+            if (
+                ref.get("output_sha256", record["output_sha256"])
+                != record["output_sha256"]
+            ):
+                continue
+            lines = record["line_map"]
+            if start not in lines:
+                continue
+            # Two context rows on either side of a short citation. For long
+            # citations label the omitted middle explicitly instead of joining it.
+            before, after = max(1, start - 2), end + 2
+            spans = (
+                [(before, after)]
+                if end - start < 48
+                else [(before, start + 21), (end - 21, after)]
+            )
+            rows = [
+                [n, excerpt(lines[n]), start <= n <= end]
+                for lo, hi in spans
+                for n in range(lo, hi + 1)
+                if n in lines
+            ]
+            windows[key] = {
+                "tool": record["tool"],
+                "output_sha256": record["output_sha256"],
+                "rows": rows,
+            }
+    return windows
 
 
 def case(run):
     r = trusted_report(run)
     log = directory(run) / "events.jsonl"
-    records, timeline, anchors, frozen_graph = source(
+    records, timeline, anchors, frozen_graph, attempts = source(
         run, (log.stat().st_size, log.stat().st_mtime_ns)
     )
     graph = (
@@ -263,7 +359,9 @@ def case(run):
             )
         },
         "timeline": timeline,
+        "search_attempts": attempts,
         "graph": graph,
+        "cited_windows": cited_windows(records, graph, claims),
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "yara": yara,

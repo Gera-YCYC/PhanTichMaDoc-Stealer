@@ -1,0 +1,33 @@
+{
+  "python": {
+    "source": "20261128T021511_bec5b2e5",
+    "experiment": "20261128T034814_3495e445",
+    "journal_sha256": "7c1ab24f2b0adf9e46f3f73de0c2a0fed411087060d68337bffd13356929d6fc",
+    "claims": {
+      "C1": ["correct", "Gắn một phần MIME vào thông điệp.", "Dòng 90, 96–102 cho thấy tạo phần chứa dữ liệu rồi gắn vào thư.", ["PY24-A20"]],
+      "C2": ["correct", "Dùng máy chủ và cổng đã cấu hình để mở kết nối SMTP.", "Đối chiếu cấu hình ở 83–84 với đối số tại 106.", ["PY24-A22"]],
+      "C3": ["correct", "Có tên máy chủ SMTP cụ thể trong cấu hình.", "Giá trị nguyên văn được đối chiếu cục bộ ở 83 và sử dụng ở 106. Hồ sơ công khai chỉ giữ tọa độ.", ["PY24-A27"]],
+      "C4": ["correct", "Mã hóa truyền tải Base64 cho phần đính kèm và gắn vào thư.", "Dòng 96–102 cho thấy dữ liệu, bước mã hóa truyền tải và thao tác gắn. Phần Base64 cũng đã được ghi nhận ở báo cáo gốc.", ["PY24-A20"]],
+      "C5": ["correct", "Gọi xác thực trên kết nối SMTP.", "Dòng 106–108 thể hiện kết nối và lời gọi đăng nhập. Chưa quan sát phản hồi máy chủ.", ["PY24-A24"]]
+    }
+  },
+  "gomorrah": {
+    "source": "20261128T030521_c76fc69a",
+    "experiment": "20261128T034933_343e6946",
+    "journal_sha256": "bc942d37e4c6e040fa4265fd8b02a42a21dc2395f68d9f4e6564c93fb10842db",
+    "claims": {
+      "C1": ["unsupported", "Ghi các trường tài khoản vào tệp có tên cố định.", "Dòng 3483 và 3489–3492 hỗ trợ việc ghi trường tài khoản. Đích ghi là một biểu thức, chưa chứng minh tên tệp mà câu nêu.", []],
+      "C2": ["unsupported", "Ghi thông tin hệ thống vào một tệp được gọi tên.", "Dòng 3500–3501 cho thấy làm rỗng tệp và mở bộ ghi. Đoạn được dẫn kết thúc trước phần ghi nội dung được khẳng định.", []],
+      "C3": ["unsupported", "Đọc trường mật khẩu và giải mã giá trị lấy từ cơ sở dữ liệu.", "Dòng 1069–1070 cho thấy đọc trường rồi gọi hàm phụ. Đoạn dẫn thiếu phần xác minh hiệu quả giải mã và nguồn bảng. Có thể chấm riêng lời gọi.", ["opera-decrypt-call"]],
+      "C4": ["unsupported", "Tạo bản ghi tài khoản Opera chứa mật khẩu đã giải mã.", "Dòng 1067–1072 cho thấy tạo và thêm bản ghi với kết quả hàm phụ. Tính chất bản rõ của kết quả còn thiếu chứng cứ.", ["opera-account"]]
+    }
+  },
+  "mercurial": {
+    "source": "20261128T031606_ca91de35",
+    "experiment": "20261128T035027_852cfb9f",
+    "journal_sha256": "54dacbd6bac92bf325d942bf1f38dd8d0aebb07737e32a971b28773fa7b555ca",
+    "claims": {
+      "C1": ["correct", "Có lời gọi giải mã gốc với cấu hình AES-GCM, khóa, dữ liệu vào và thông tin xác thực.", "Đối chiếu đối số ở 375, 380–382 với lời gọi ở 385 và 391. Mệnh đề giới hạn ở thao tác hiện diện trong mã. Kết quả thực thi và nội dung dữ liệu chưa được quan sát.", ["native-decrypt"]]
+    }
+  }
+}

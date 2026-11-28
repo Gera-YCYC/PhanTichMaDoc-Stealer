@@ -50,7 +50,7 @@ Khi rà lại câu C12 của Mercurial, nhãn được sửa thành **Đúng**. 
 
 Trong 62 mục còn thiếu, **27 mục** thiếu dòng ngay từ kết quả công cụ. **18 mục** đã có đủ dòng trong kết quả công cụ nhưng còn thiếu dòng trong các yêu cầu tạo nhận định. **3 mục** có dòng nằm ở nhiều yêu cầu, **13 mục** có đủ dòng trong một yêu cầu nhưng báo cáo đầu chưa nêu đúng, **1 mục** mất sau tự duyệt. Để kiểm lại, bộ chấm đối chiếu nội dung đã gửi ở các bước tạo nhận định với hash và vị trí nguồn. Việc có mặt của dòng tham chiếu chưa chứng minh ngữ cảnh đã đủ. [Python](../deliverables/real-demo-evidence/web-python-exposure.json) · [Gomorrah](../deliverables/real-demo-evidence/web-gomorrah-exposure.json) · [Mercurial](../deliverables/real-demo-evidence/web-mercurial-exposure.json)
 
-Ưu tiên thí nghiệm tiếp theo là so việc chọn đoạn bằng chứng trên cùng nhật ký và ngân sách, sau đó chạy lại đầu–cuối. Phải giữ cả các lỗi mới phát sinh và kết quả trên mẫu giữ riêng. Bảng công việc của nhóm có tiêu chí nghiệm thu cho truy xuất, verdict, injection, nhãn huấn luyện và tái lập trên máy khác. [Các việc còn lại](CONG_VIEC_CON_LAI.md)
+Nhóm đã thử đổi đoạn, mở rộng đoạn và gửi thêm hai đoạn trên cùng nhật ký. Phương án cuối giúp bốn mục có đủ dòng trong cùng một đoạn nhưng tạo thêm 0 mục đúng sau tự duyệt. Phép thử duyệt lại trên Mercurial cũng tái hiện một câu sai được giữ và một câu đúng bị loại. [Kết quả chọn đoạn và duyệt](THU_CHON_DOAN_CHUNG_CU.md) · [Các việc còn lại](CONG_VIEC_CON_LAI.md)
 
 ## Kiểm lại từ Git
 

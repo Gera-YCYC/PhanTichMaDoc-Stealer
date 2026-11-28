@@ -56,10 +56,18 @@ def select_reporter(method, measured_revision=False):
 def reconstruct(events):
     evidence = {}
     view = ModelEvidenceView()
+    actions = {}
     for event in events:
+        if event['event'] == 'action_dispatched':
+            actions[event['step']] = event['action']
         if event['event'] == 'observation':
             view.learn(event['model_visible'])
     for event in events:
+        if event['event'] == 'navigation_page_read':
+            record = evidence[event['evidence_id']]
+            if event['anchor'] not in record['latest_lines']:
+                raise ValueError('Navigation anchor is absent from its observed page')
+            record.setdefault('focus_groups', []).append([event['anchor']])
         if event['event'] != 'observation':
             continue
         clean = view.observation(event['model_visible'])
@@ -75,10 +83,12 @@ def reconstruct(events):
         for fact in clean.get('operation_facts', []):
             if fact not in record.setdefault('operation_facts', []):
                 record['operation_facts'].append(fact)
-        if 'search_groups' in clean:
+        if clean.get('search_groups'):
             for group in clean['search_groups']:
                 anchor = group['anchor_line']
                 record.setdefault('focus_groups', []).append(sorted(group['lines'], key=lambda n: (abs(n-anchor), n)))
+        elif actions.get(event.get('step')) == 'search_evidence':
+            record.setdefault('focus_groups', []).append(record['latest_lines'])
     return evidence
 
 
@@ -88,7 +98,7 @@ def main():
     parser.add_argument('--config', type=Path, required=True)
     parser.add_argument('--model')
     parser.add_argument('--cards', type=int, default=3)
-    parser.add_argument('--method', choices=['cards', 'operations', 'techniques'], default='cards',
+    parser.add_argument('--method', choices=['cards', 'operations', 'techniques', 'supplement'], default='cards',
                         help='Select full card reporting, operation-only review or technique-only review on captured evidence')
     parser.add_argument('--measured-revision', action='store_true',
                         help='Replay the archived operation reporter; verify every dependency hash first')
@@ -105,11 +115,23 @@ def main():
     if events[-1]['event'] != 'run_finished' or events[-1]['result'] != source_result:
         raise ValueError('Captured features must come from a terminal journal matching its saved report')
     evidence = reconstruct(events)
+    extra_cards = None
+    if args.method == 'supplement':
+        from eval.card_coverage import active, select
+        from stealer_agent.evidence_cards import select_cards
+        original = next(e['cards'] for e in events if e['event']=='evidence_cards_selected')
+        if args.cards != 2 or select_cards(evidence) != original:
+            raise ValueError('Supplement experiment requires two slots and an exact replay of the original cards')
+        extra_cards = select(evidence, [c for c in original if active(c)], supplements=args.cards)
+        selector_path = 'eval/card_coverage.py'
+        source_files[selector_path] = hashlib.sha256((ROOT/selector_path).read_bytes()).hexdigest()
     cfg = json.loads(args.config.read_text(encoding='utf-8'))
     if args.model:
         cfg['model'] = args.model
     llm = OllamaClient(cfg)
     model = llm.inspect()
+    if extra_cards is not None and model['digest'] != source_result['model']['digest']:
+        raise ValueError('Supplement model differs from the terminal run')
     run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '_' + uuid.uuid4().hex[:8]
     journal = Journal(ROOT / 'private/report-experiments' / run_id)
     metrics = {'model_calls': 0, 'prompt_tokens': 0, 'completion_tokens': 0, 'minimum_free_ram_bytes': None}
@@ -163,6 +185,8 @@ def main():
                           'selected': [c['technique_id'] for c in selected], 'full_agent_run': False}))
         return
     options = {}
+    if extra_cards is not None:
+        options['card_selector'] = lambda records, *, max_cards: extra_cards
     if args.method == 'cards':
         options.update(operation_review=cfg.get('review_operations', False),
                        technique_review=cfg.get('review_techniques', False))

@@ -18,6 +18,7 @@ const states = {
 let init,
   record = null,
   view = "map",
+  evaluationSample = "python",
   item = null,
   job = {},
   busy = false,
@@ -130,6 +131,20 @@ function refs(where, rows, canLabel = false) {
       ),
       el("pre", a.text),
     );
+    const source = record?.cited_windows?.[[a.eid, a.line, a.end].join(":")];
+    if (source) {
+      const expand = el("details");
+      expand.append(el("summary", "Xem đoạn mã đã dẫn"));
+      const text = [];
+      let previous;
+      for (const [n, line, cited] of source.rows) {
+        if (previous != null && n > previous + 1) text.push("…");
+        text.push((cited ? "→ " : "  ") + n + " │ " + line);
+        previous = n;
+      }
+      expand.append(el("pre", text.join("\n")), el("small", source.tool + " · SHA-256 " + source.output_sha256));
+      d.append(expand);
+    }
     if (canLabel) {
       const sel = el("select");
       for (const [v, t] of [
@@ -238,10 +253,30 @@ function map(panel) {
         ),
       );
   }
+  if (item?.id.includes("-")) {
+    const attempts = record.search_attempts.filter((row) => row.edge === item.id);
+    if (attempts.length) {
+      const trace = el("details", undefined, "card");
+      trace.append(el("summary", "Các lần agent kiểm tra liên kết (" + attempts.length + ")"));
+      const steps = el("ol");
+      for (const row of attempts) {
+        const li = el("li");
+        li.append(el("b", "Bước " + row.step + " · "), el("code", row.query));
+        const facts = [row.status ? states[row.status] : "Thiếu kết quả trong nhật ký"];
+        if (row.hits != null) facts.push(row.hits + " vị trí khớp");
+        if (row.anchors.length) facts.push("dòng đã trả về " + row.anchors.join(", "));
+        if (row.tool_status && row.tool_status !== "ok") facts.push("công cụ " + row.tool_status);
+        li.append(el("p", facts.join(" · ")));
+        steps.append(li);
+      }
+      trace.append(steps);
+      detail.append(trace);
+    }
+  }
   split.append(list, detail);
   panel.append(split);
 }
-function renderEvaluation(panel, data, sample = "python") {
+function renderEvaluation(panel, data, sample = evaluationSample) {
   panel.replaceChildren();
   const percent = (n) =>
     n == null
@@ -273,7 +308,10 @@ function renderEvaluation(panel, data, sample = "python") {
     selector.add(new Option(names[key], key));
   }
   selector.value = sample;
-  selector.onchange = () => renderEvaluation(panel, data, selector.value);
+  selector.onchange = () => {
+    evaluationSample = selector.value;
+    renderEvaluation(panel, data, evaluationSample);
+  };
   selector.className = "evaluation-sample";
   label.append(selector);
   panel.append(
@@ -410,6 +448,27 @@ function renderEvaluation(panel, data, sample = "python") {
     );
     panel.append(omissions);
   }
+  const extra = data.card_supplements[sample];
+  const review = el("details", undefined, "card");
+  review.append(el("summary", "Qwen đọc thêm hai đoạn chứng cứ · " + names[sample]));
+  review.append(el("p", "Dùng lại quan sát từ lượt " + extra.source +
+    ". Có đủ dòng trong cùng một đoạn cho " + extra.visible_before + "/" + extra.reference_units +
+    " mục ở lượt gốc và " + extra.visible_after + "/" + extra.reference_units +
+    " mục khi đọc bổ sung. Sau tự duyệt có " + extra.new_accepted_units.length +
+    " mục đúng mới so với báo cáo gốc. Lượt thử dùng " + extra.metrics.model_calls +
+    " lần gọi model và mất " + extra.metrics.elapsed_s.toLocaleString("vi") + " giây."));
+  table(["Câu", "Nhận định bổ sung", "Đối chiếu nguồn", "Dòng dẫn", "Nhãn", "Qwen"],
+    extra.rows.map(r => [r.claim, r.summary, r.reason,
+      r.lines.map(([a,b]) => a === b ? a : a + "–" + b).join(", "), labelName[r.label], r.retained ? "Giữ" : "Loại"]), review);
+  if (sample === "mercurial") {
+    const trial = data.cng_trial;
+    review.append(el("h3", "Khi bộ duyệt có thêm tài liệu API Windows"));
+    table(["Nhận định", "Đối chiếu nguồn", "Yêu cầu gốc", "Thêm tài liệu"],
+      trial.rows.map(r => [r.claim + (r.run === extra.experiment ? " · bổ sung" : " · gốc"),
+        r.expected_support ? "Đủ căn cứ" : "Sai", r.control.supported ? "Giữ" : "Loại",
+        r.reference.supported ? "Giữ" : "Loại"]), review);
+  }
+  panel.append(review);
   const batch = data.current_batch;
   panel.append(
     el("h2", "Kết quả gộp trên " + batch.total_attempts + " mẫu của bản web"),
@@ -727,6 +786,28 @@ async function render() {
       panel.append(d);
     }
     return;
+  }
+  if (view === "labels") {
+    const train = await api("training");
+    if (version !== renderVersion) return;
+    panel.append(el("h2", "Huấn luyện bộ xếp hạng chứng cứ"));
+    const receipt = el("details", undefined, "card");
+    receipt.append(el("summary", "Xem cách train và kết quả trước/sau"));
+    const fmt = (n) => n.toLocaleString("vi", {maximumFractionDigits: 4});
+    receipt.append(el("p", "Qwen dùng trọng số của nhà phát hành. Nhóm train mô hình phụ trợ xếp các vị trí tìm được " +
+      "theo mức liên quan. Lượt " + train.run + " dùng " + train.config.epochs +
+      " bước cập nhật toàn bộ tập, tốc độ học " + fmt(train.config.learning_rate) +
+      ", L2 " + fmt(train.config.l2) + ". Loss trên tập train đi từ " + fmt(train.loss_start) +
+      " tới " + fmt(train.loss_end) + "."));
+    const subsets = {train:"Train", validation:"Validation", test:"Test"};
+    for (const [key, score] of Object.entries(train.metrics)) {
+      receipt.append(el("p", subsets[key] + " · " + score.n + " vị trí / " + score.query_groups +
+        " nhóm truy vấn. Tỷ lệ vị trí đầu tiên phù hợp khi lấy kết quả theo thứ tự xuất hiện là " +
+        fmt(100 * score.first_occurrence_hit_at_1) + "%, sau xếp hạng là " + fmt(100 * score.learned_hit_at_1) + "%."));
+    }
+    receipt.append(el("p", "Tập test chỉ có một nhóm truy vấn. Hiệu quả đối với báo cáo cuối cần đo riêng."),
+      el("small", "SHA-256 checkpoint " + train.model_sha256));
+    panel.append(receipt);
   }
   if (!record) {
     panel.append(

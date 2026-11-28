@@ -1,0 +1,79 @@
+{
+  "scope": "Paired development review on one .NET sample, same projected source and schema.",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "config_sha256": "2db707bd3b44bf0511fdd4f7e7227055e3d2834e144269334feb9bac8c78de5c",
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/bcrypt/nf-bcrypt-bcryptdecrypt",
+    "https://learn.microsoft.com/en-us/windows/win32/api/bcrypt/ns-bcrypt-bcrypt_authenticated_cipher_mode_info",
+    "https://learn.microsoft.com/en-us/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider",
+    "https://learn.microsoft.com/en-us/windows/win32/api/bcrypt/nf-bcrypt-bcryptsetproperty"
+  ],
+  "notes_sha256": "b82aaffde4111e17b6cdcf8223ffbca560e323315f0b0d66e4fb742239dd4fd2",
+  "trial": "20261128T035518218226Z",
+  "journal_sha256": "826e92c56a6a6ccfd4141c1ce1237fb59f886706a5f1db26f3f3a611c5c14d00",
+  "rows": [
+    {
+      "run": "20261128T031606_ca91de35",
+      "claim": "C17",
+      "expected_support": false,
+      "original_support": true,
+      "original_request_sha256": "7fed07850aa4adffeab7a9f29f3eddf0cc5c6e26365a7de6d645c122867c4dbc",
+      "control": {
+        "supported": true,
+        "messages_sha256": "7fed07850aa4adffeab7a9f29f3eddf0cc5c6e26365a7de6d645c122867c4dbc",
+        "prompt_tokens": 1116,
+        "completion_tokens": 81,
+        "latency_s": 22.3262
+      },
+      "reference": {
+        "supported": true,
+        "messages_sha256": "7205e2341c4f8fb623ccc1f0fb49148664c877cf2a27f873b6347e5f8d3dfe67",
+        "prompt_tokens": 1233,
+        "completion_tokens": 68,
+        "latency_s": 10.2159
+      }
+    },
+    {
+      "run": "20261128T031606_ca91de35",
+      "claim": "C18",
+      "expected_support": true,
+      "original_support": true,
+      "original_request_sha256": "d895ad13452c2446d13350a181de49250560b68772cf67723db8b82fd32fbfdc",
+      "reference": {
+        "supported": true,
+        "messages_sha256": "6323333adf443d308baae875ceccdc1d2d84dd3d2af6ed23c0c8088ac94ebf11",
+        "prompt_tokens": 1227,
+        "completion_tokens": 39,
+        "latency_s": 5.284
+      },
+      "control": {
+        "supported": true,
+        "messages_sha256": "d895ad13452c2446d13350a181de49250560b68772cf67723db8b82fd32fbfdc",
+        "prompt_tokens": 1110,
+        "completion_tokens": 52,
+        "latency_s": 6.4417
+      }
+    },
+    {
+      "run": "20261128T035027_852cfb9f",
+      "claim": "C1",
+      "expected_support": true,
+      "original_support": false,
+      "original_request_sha256": "70f728b6da33998f71e03c26d09f099afea26d23d62cc40f9cb7ce5d3f7cd726",
+      "control": {
+        "supported": false,
+        "messages_sha256": "70f728b6da33998f71e03c26d09f099afea26d23d62cc40f9cb7ce5d3f7cd726",
+        "prompt_tokens": 1029,
+        "completion_tokens": 91,
+        "latency_s": 11.9286
+      },
+      "reference": {
+        "supported": false,
+        "messages_sha256": "3573cddd4298866662e538c575ed70f9881754bc36d61d3b993adefd926d696f",
+        "prompt_tokens": 1146,
+        "completion_tokens": 98,
+        "latency_s": 13.3247
+      }
+    }
+  ]
+}

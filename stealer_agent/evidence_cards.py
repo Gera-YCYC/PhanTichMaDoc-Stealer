@@ -198,9 +198,9 @@ Do not accept a claim merely because an operation ID is present."""
 
 
 def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True,
-                       operation_review=False, technique_review=False):
+                       operation_review=False, technique_review=False, card_selector=select_cards):
     """call_model(messages, schema, phase, evidence_records) owns telemetry/exposure logs."""
-    cards = select_cards(evidence, max_cards=max_cards)
+    cards = card_selector(evidence, max_cards=max_cards)
     journal.append('evidence_cards_selected', cards=cards,
                    scope='Exact bounded excerpts of previously retrieved guarded evidence; no new tool calls')
     claims, accepted, rejected = [], [], []

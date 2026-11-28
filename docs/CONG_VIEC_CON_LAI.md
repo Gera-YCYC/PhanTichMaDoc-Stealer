@@ -2,6 +2,8 @@
 
 ## Ưu tiên của nhóm
 
+Nhóm phụ trách bằng chứng tiếp tục tìm thiếu sót ở hai tầng. Ở tầng công cụ, thử truy vấn tiếp theo dựa vào đối số và nơi gán kết quả của hàm phụ, rồi so với quy trình cố định trong cùng ngân sách. Ở tầng báo cáo, tách mệnh đề có chứng cứ về lời gọi và mệnh đề cần thêm chứng cứ về tác dụng. Ví dụ thực tế là câu tạo bản ghi Opera và câu về tham số mở provider. Đo trên ba mẫu hiện có và tập giữ riêng trước khi chọn bản demo mới. [Sáu đoạn đã thử và hai lỗi tự duyệt](THU_CHON_DOAN_CHUNG_CU.md)
+
 Bản web đã chạy và chấm ba mẫu khác nhau trên cùng mã, model và cấu hình. Sau lọc, báo cáo phủ 35/97 mục và bỏ sót 62. Ưu tiên nhánh .NET. Trên Gomorrah, 14/29 mục bị bỏ sót thiếu dòng từ công cụ, còn 11/29 đã truy xuất đủ nhưng có dòng vắng ở bước tạo nhận định. Trên Mercurial, hai nhóm này lần lượt là 6 và 5 mục. Khi thử sửa, giữ ba lượt gốc, ngân sách truy vấn, nhãn và cách chấm để có đối chứng. [Bằng chứng của bản web](CHAM_BA_MAU_WEB.md)
 
 Ba báo cáo Python hiện đã đối chiếu đủ 99 lượt nhận định với nguồn. Sau tự duyệt còn bỏ sót 16–17/36 mục mỗi lượt. Trong từng lượt, 7 mục thiếu dòng từ công cụ, 5–6 mục đã có đủ dòng tham chiếu trong cùng một yêu cầu nhưng báo cáo đầu chưa nêu đúng. Nhóm phụ trách truy xuất cần đo lại phần lấy dòng. Nhóm phụ trách báo cáo cần kiểm riêng phần ý nghĩa và số câu đúng bị tự duyệt loại. Giữ tập chấm độc lập cho lần nghiệm thu. [Đối chiếu theo từng giai đoạn](CHAM_BAO_CAO_WEB.md)

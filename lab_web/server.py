@@ -21,6 +21,25 @@ JOB = {"active": False, "lines": []}
 KEY = secrets.token_urlsafe(32)
 
 
+def training_record():
+    folder = ROOT / "training/experiments/20261127T153436999877Z"
+    receipt = read(folder / "receipt.json")
+    for file, field in [(folder / "model.json", "model_sha256"),
+                        (ROOT / "vm_tools/code_ranker.json", "model_sha256"),
+                        (ROOT / "training/corpus/code-reference-v1.json", "dataset_sha256"),
+                        (ROOT / "training/train_ranker.py", "trainer_sha256")]:
+        if sha256(file.read_bytes()).hexdigest() != receipt[field]:
+            raise ValueError("Hash của hồ sơ huấn luyện không khớp.")
+    config = read(folder / "config.json")
+    loss = read(folder / "loss.json")
+    if [item["epoch"] for item in loss] != list(range(config["epochs"] + 1)):
+        raise ValueError("Chuỗi bước train bị thiếu.")
+    return {"run": receipt["run_id"], "config": config, "metrics":receipt["metrics"],
+            "model_sha256": receipt["model_sha256"], "dataset_sha256": receipt["dataset_sha256"],
+            "loss_start":loss[0]["train_binary_cross_entropy_plus_l2"],
+            "loss_end":loss[-1]["train_binary_cross_entropy_plus_l2"]}
+
+
 def token():
     return (ROOT / "config/lab.token").read_text(encoding="utf-8-sig").strip()
 
@@ -288,6 +307,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.reply(200, snapshot)
             if p == "/api/yara":
                 return self.reply(200, yara_history())
+            if p == "/api/training":
+                return self.reply(200, training_record())
             if p == "/api/evaluation":
                 from eval.web_report_quality import current_batch, dotnet_profiles, reports
 
@@ -324,6 +345,8 @@ class Handler(BaseHTTPRequestHandler):
                         "web_report_quality": reports(),
                         "dotnet_quality": {key: reports(sample=key) for key in dotnet_profiles()},
                         "current_batch": current_batch(),
+                        "card_supplements": read(base / "web-card-supplements.json"),
+                        "cng_trial": read(base / "web-cng-review.json"),
                     },
                 )
             if p == "/api/yara/regression":
