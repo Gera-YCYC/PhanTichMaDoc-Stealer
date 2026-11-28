@@ -6,8 +6,8 @@
   },
   {
     "path": ".github/workflows/tests.yml",
-    "bytes": 433,
-    "sha256": "8a91d12740f2bc882a3a8c54850ec41f55b351bd535b9a90a0c434d6ea76dfce"
+    "bytes": 797,
+    "sha256": "4f08ff057b8ecb935a8463b2245477d27db4125d34f309c06b22ce44598d6bac"
   },
   {
     "path": ".gitignore",
@@ -448,6 +448,11 @@
     "path": "deliverables/real-demo-evidence/coverage-v11-batch.json",
     "bytes": 15675,
     "sha256": "08786cc7c3740d77948c89fbd507ddfdf7826709a38d7c72d461b03518981733"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/coverage-v11-rubric.json",
+    "bytes": 3393,
+    "sha256": "f7b735fb6605e62b14c7f3b09078369ef5dbc7a890a96b3f27ba6b91b5ea09dc"
   },
   {
     "path": "deliverables/real-demo-evidence/critic-v5-assessment-first.json",
@@ -1016,8 +1021,8 @@
   },
   {
     "path": "docs/DEMO_COVERAGE.md",
-    "bytes": 17039,
-    "sha256": "e50bfe1d796dc647ba522322f2ac78d2f4bea38e927e77dc823fc9080bf1e609"
+    "bytes": 18390,
+    "sha256": "307d3fa14d8056fb557220548b1eb5cb29597406190045ece3163a7f13f05261"
   },
   {
     "path": "docs/EVIDENCE_CARDS.md",
@@ -1071,8 +1076,8 @@
   },
   {
     "path": "docs/PHIEU_DANH_GIA.md",
-    "bytes": 5125,
-    "sha256": "f55eb5c594498c6a0d32d8f46f099e1c56dd7d9b7c2116ae3716756e611e4da0"
+    "bytes": 5127,
+    "sha256": "d51c9d604663bc51c869bf637f57fd94ccf3b2cbcc84c0ac9c346488e8a6d35c"
   },
   {
     "path": "docs/PROJECT_GOAL.md",
@@ -1186,8 +1191,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 38370,
-    "sha256": "151bb68824b106a19cd2815c1b3034a627acd9b4ec04309074f4c25b2139d291"
+    "bytes": 38469,
+    "sha256": "5d320f6dee541ca76f52c0dcee67a89df0df3725517bd60f557ea8079e47a0ea"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -1418,6 +1423,11 @@
     "path": "eval/claim_audit.py",
     "bytes": 4719,
     "sha256": "ea65bc3649dea09da3c0ab8dbbe3ca77582859c53a5c341176f51cc35338bb64"
+  },
+  {
+    "path": "eval/compare_guard_batches.py",
+    "bytes": 9609,
+    "sha256": "ab51d99759136db22d7904d9dd2536a3fa88ec21dc6e5a5b34bbead8d5d68b6f"
   },
   {
     "path": "eval/corpora/real-yara-challenge-v2.json",
@@ -1653,6 +1663,11 @@
     "path": "eval/score.py",
     "bytes": 2931,
     "sha256": "1b221a1e9a3f05c0604e025e79d2b19c87785b4db5fc8ecdad07761c96ead36b"
+  },
+  {
+    "path": "eval/score_public_batch.py",
+    "bytes": 7142,
+    "sha256": "30103763b3a054b730f8ec12a29362ad4d7638f79b6a278b661dad01ab617751"
   },
   {
     "path": "eval/stability.py",
@@ -2380,6 +2395,11 @@
     "sha256": "a9a028d1c51aaae2189a24301c6e3afc20ffe24d5faf0bb2bb32f7591dcfc7af"
   },
   {
+    "path": "tests/test_guard_batch_comparison.py",
+    "bytes": 1594,
+    "sha256": "7c4ac22a17d1b41196b4fe469846a883a1b18c74aaed1c1db4f4981b32e72dc1"
+  },
+  {
     "path": "tests/test_indicator_vocabulary.py",
     "bytes": 3799,
     "sha256": "802494f5eabab47bcd8ead4bb951c3ab29193727a0b8f260ab93df4c56a274b5"
@@ -2438,6 +2458,11 @@
     "path": "tests/test_projection_audit.py",
     "bytes": 2664,
     "sha256": "c3c9e9c274d63d57525e74f7457b7e7357715aaa904e18ab1f14f65a7f24347b"
+  },
+  {
+    "path": "tests/test_public_batch.py",
+    "bytes": 859,
+    "sha256": "83e5a70c76f8d13010972041ce05245a3afe70fdb65ffebb7f03e3f10cbe0176"
   },
   {
     "path": "tests/test_python_operations_v4.py",
@@ -2525,6 +2550,11 @@
     "sha256": "688a894a07060601925c7d9571d6f2672b372f22d811889400fda76349149905"
   },
   {
+    "path": "training/corpus/feature-source-v1.txt",
+    "bytes": 4909,
+    "sha256": "df0aa8cd97f0e32d6946b57d681f6a68129bd2e8f18b7796b10911d1d796e274"
+  },
+  {
     "path": "training/DATASET_PROTOCOL.md",
     "bytes": 3010,
     "sha256": "d8e92b4b79477d74ec0a44b099277f4375e29251f69baac1e5d2b2ed708cca2b"
@@ -2571,8 +2601,8 @@
   },
   {
     "path": "training/RANKER_EXPERIMENT.md",
-    "bytes": 8590,
-    "sha256": "38ac50a41eadca5c87736c0afd7dc8d4cf00802a76db7b71d4e5b8d32b5bfcb3"
+    "bytes": 9820,
+    "sha256": "78ec004c4fca5964812f96ae835af45a5d7c463ac0a5c11816dec3d819618ddf"
   },
   {
     "path": "training/README.md",
@@ -2606,8 +2636,8 @@
   },
   {
     "path": "training/verify_ranker_reproduction.py",
-    "bytes": 3108,
-    "sha256": "215bf626ffb540989727322e0de3b8328bea08e6214562a98df6433f12f1b220"
+    "bytes": 6585,
+    "sha256": "294ff38cb621dc31163b9892569d1c7fa1698f32aadeea96ce10a5a65661803e"
   },
   {
     "path": "vm_tools/__init__.py",

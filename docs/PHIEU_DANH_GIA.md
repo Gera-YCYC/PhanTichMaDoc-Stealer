@@ -21,6 +21,7 @@ Các dòng lịch sử buổi 4 trong bảng dưới còn chờ chấm. Nhóm ki
 
 JSON để điền có cấu trúc: `eval/review-worksheet.json`. Không chạy score.py trực tiếp với phiếu chưa có nhãn.
 Nguồn ground truth phải độc lập với chính output của agent. Log công cụ kiểm định dạng được, nhưng muốn xác nhận hành vi phải đọc code/luồng dữ liệu hoặc nguồn phân tích tương ứng.
+
 ## Mercurial với profile techniques-8b
 
 Run `20261128T004729_8df9f715` có 19 câu đã đối chiếu, gồm cả 7 câu bộ tự duyệt loại. Trong 12 câu giữ có 9 đúng và 3 thiếu căn cứ. Mười mục trong đáp án 21 mục còn thiếu sau lọc. Thông tin IOC mà VM trích được có bảng riêng trong biên bản để người chấm phân biệt với nhận định của SLM. [Agent nói gì, trích dẫn ở đâu, nhãn và lý do](../deliverables/real-demo-evidence/20261128T004729_8df9f715/review.md) · [Kết quả các công cụ trong VM](../deliverables/real-demo-evidence/mercurial-techniques-v12-run.json).

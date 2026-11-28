@@ -24,6 +24,10 @@ Không có hash mẫu trùng giữa ba tập. Tuy nhiên cả bốn mẫu đều
 
 ## Cấu hình và bằng chứng chạy
 
+Giảng viên có thể mở GitHub Actions và chọn bước **Train lại bộ xếp hạng từ dữ liệu đã chốt**. Mỗi lần chạy workflow thực hiện đủ 300 cập nhật trên cả Windows và Ubuntu, từ 70 điểm train trong bộ 117 điểm. Lệnh để tái lập trên máy thành viên là `python training/verify_ranker_reproduction.py --portable`. Nhật ký in cả mức sai khác lớn nhất của loss và tham số. Chế độ mặc định kiểm chính xác từng byte tệp loss và cấu hình. Chế độ đa nền tảng dùng cùng cấu hình, đòi kết quả phân loại và xếp hạng trùng nhau, cho phép sai khác số học tối đa 10⁻¹² với đường loss, trọng số và bias.
+
+Tệp tìm mã trong VM đã có thêm hàm điều hướng trang sau lần train đầu. Bản nguồn lưu theo hash của lần train và bản hiện tại có cùng định nghĩa 13 đặc trưng. Phép tái lập train đọc lại vector đã khóa. Việc trích lại các vector từ mẫu là một thí nghiệm riêng. [Mã nguồn ở thời điểm tạo mô hình](corpus/feature-source-v1.txt) · [Chương trình tái lập](verify_ranker_reproduction.py).
+
 Run [20261127T153436999877Z](experiments/20261127T153436999877Z/receipt.json): CPU, Python 3.11.9, 300 bước full-batch gradient descent, learning rate 0,3, L2 0,01, khởi tạo zero, threshold 0,5. [Loss từng bước](experiments/20261127T153436999877Z/loss.json), [config](experiments/20261127T153436999877Z/config.json), [checkpoint](experiments/20261127T153436999877Z/model.json).
 
 Thời gian ghi nhận 0,0896 giây vì đây là mô hình rất nhỏ; không dùng GPU và không có epoch/loss giả của Qwen. Dataset SHA256 `688a894a07060601925c7d9571d6f2672b372f22d811889400fda76349149905`. Checkpoint SHA256 `030347e4b6d2662df8d68a5424918b835115d2738eb35e1ebb9575216a3d09fd`.

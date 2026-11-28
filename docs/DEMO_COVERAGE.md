@@ -101,6 +101,25 @@ Nhánh .NET có đáp án development gồm **40 mục**. Trình kiểm đối c
 
 ## Tái tính điểm
 
+Từ một bản clone trên máy thành viên, chạy lệnh dưới đây trong thư mục gốc. Lệnh chỉ đọc hồ sơ đã đưa lên Git, kiểm tra hash của đáp án, nhận định và nhật ký ghi trong biên bản, rồi cộng số đúng, sai, thiếu căn cứ và bỏ sót của các lượt cùng cấu hình.
+
+```powershell
+.\.venv\Scripts\python.exe -m eval.score_public_batch
+```
+
+| Bộ bốn mẫu v11 | Trước tự duyệt | Sau tự duyệt |
+|---|---:|---:|
+| Mục khớp / tổng mục tham chiếu | 52/104 | 49/104 |
+| Precision theo các mục tham chiếu | 71,23% | 81,67% |
+| Recall | 50,00% | 47,12% |
+| F1 | 58,76% | 59,76% |
+| Câu có dẫn chứng từ công cụ | 87/87 | 75/75 |
+| Câu có dẫn chứng đủ nghĩa | 67/87 | 64/75 |
+| Câu thiếu căn cứ | 17/87 | 8/75 |
+| F1 riêng IOC + ATT&CK | 16,67% | 16,67% |
+
+Mẫu số 104 gồm 36 mục PythonStealer, 40 Gomorrah, 21 Mercurial và 7 AgentTesla. Cả 7 mục AgentTesla đều tính là bỏ sót vì lượt này trả báo cáo rỗng. Phiếu của AgentTesla chỉ có hành vi và quan sát, nên mẫu này thêm 0 mục vào cột IOC + ATT&CK. Chỉ số dựa trên nhãn kỹ thuật development của nhóm. [Kết quả chi tiết và hash từng hồ sơ](../deliverables/real-demo-evidence/coverage-v11-rubric.json).
+
 Lệnh dưới đây đọc nhật ký trên máy thực nghiệm, xác minh chuỗi hash, so khớp báo cáo cuối và từng trích dẫn rồi áp dụng bảng chấm đã khóa theo hash. Một lần chạy mới cần bảng chấm riêng. Người chấm có thể phản biện từng nhãn qua ID, dòng nguồn và lý do trong bảng. Hiện các nhãn là kết quả đối chiếu kỹ thuật của dự án, chưa có chấm độc lập của giảng viên.
 
 ```powershell

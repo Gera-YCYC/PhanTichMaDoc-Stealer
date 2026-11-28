@@ -4,7 +4,11 @@ permissions:
   contents: read
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -12,4 +16,8 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install -r requirements-test.txt
       - run: python -m pytest -q
+      - name: Train lại bộ xếp hạng từ dữ liệu đã chốt
+        run: python training/verify_ranker_reproduction.py --portable
+      - name: Tính lại điểm bốn mẫu từ bằng chứng trong Git
+        run: python -m eval.score_public_batch
       - run: python -m compileall -q stealer_agent vm_tools training

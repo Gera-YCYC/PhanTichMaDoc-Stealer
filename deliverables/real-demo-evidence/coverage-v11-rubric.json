@@ -1,0 +1,105 @@
+{
+  "source_batch_sha256": "08786cc7c3740d77948c89fbd507ddfdf7826709a38d7c72d461b03518981733",
+  "cases": [
+    {
+      "run_id": "20261127T233612_212f9fbb",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+      "reference_count": 36,
+      "empty_report": false,
+      "expected_verdict": "malicious",
+      "verdict": "suspicious"
+    },
+    {
+      "run_id": "20261127T234632_6e94cea6",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+      "reference_count": 40,
+      "empty_report": false,
+      "expected_verdict": "malicious",
+      "verdict": "suspicious"
+    },
+    {
+      "run_id": "20261127T235732_bb94a784",
+      "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+      "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+      "reference_count": 7,
+      "empty_report": true,
+      "expected_verdict": "malicious",
+      "verdict": "inconclusive"
+    },
+    {
+      "run_id": "20261128T000247_b054cbfb",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+      "reference_count": 21,
+      "empty_report": false,
+      "expected_verdict": "malicious",
+      "verdict": "suspicious"
+    }
+  ],
+  "correct_verdicts": 0,
+  "total_attempts": 4,
+  "label_source": "real-yara-development-v3",
+  "raw": {
+    "declared_units": {
+      "correct": 52,
+      "incorrect": 3,
+      "unsupported": 18,
+      "missed": 52,
+      "precision": 0.7123287671232876,
+      "recall": 0.5,
+      "f1": 0.5875706214689266
+    },
+    "ioc_and_attack": {
+      "correct": 1,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 10,
+      "precision": 1.0,
+      "recall": 0.09090909090909091,
+      "f1": 0.16666666666666666
+    },
+    "sentences": {
+      "count": 87,
+      "correct": 67,
+      "incorrect": 3,
+      "unsupported": 17,
+      "citations": 87,
+      "citation_rate": 1.0,
+      "source_supported_rate": 0.7701149425287356,
+      "hallucination_rate": 0.19540229885057472
+    }
+  },
+  "after_filter": {
+    "declared_units": {
+      "correct": 49,
+      "incorrect": 3,
+      "unsupported": 8,
+      "missed": 55,
+      "precision": 0.8166666666666667,
+      "recall": 0.47115384615384615,
+      "f1": 0.5975609756097561
+    },
+    "ioc_and_attack": {
+      "correct": 1,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 10,
+      "precision": 1.0,
+      "recall": 0.09090909090909091,
+      "f1": 0.16666666666666666
+    },
+    "sentences": {
+      "count": 75,
+      "correct": 64,
+      "incorrect": 3,
+      "unsupported": 8,
+      "citations": 75,
+      "citation_rate": 1.0,
+      "source_supported_rate": 0.8533333333333334,
+      "hallucination_rate": 0.10666666666666667
+    }
+  },
+  "scope": "Micro counts on declared development references, including omissions in empty reports. Public metadata check. Semantic labels are project source reviews, not an independent grade."
+}

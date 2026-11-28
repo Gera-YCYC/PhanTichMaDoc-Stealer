@@ -183,8 +183,8 @@ P06 từng chạy với lớp chặn bật và tắt. Metadata ghi cùng verdict
 | Gate | Trạng thái |
 |---|---|
 | Buổi4, >=2 tool thật; SLM>=7B; >=4 tool thật | Có bằng chứng tích hợp/backend trên mẫu thật |
-| P>=0,8; R>=0,7; F1>=0,75/0,8; verdict100% | Chưa đạt/chưa chấm đủ; inconclusive không tính đúng cho mẫu malicious |
-| Bịa<=5%; grounding>=90% | Chưa có kiểm chứng nội dung đủ; còn lỗi citation/reviewer |
+| Chất lượng trên bốn mẫu v11 | Sau lọc, P 81,67%, R 47,12%, F1 59,76% trên 104 mục. F1 riêng IOC + ATT&CK 16,67%. Verdict 0/4. |
+| Bịa ≤ 5%, dẫn chứng ≥ 90% | 75/75 câu sau lọc có trích dẫn, 64/75 câu đủ chứng cứ theo nghĩa (85,33%). Còn 8/75 câu thiếu căn cứ (10,67%) và 3 câu sai. |
 | Ổn định qua 3 lần ≥ 80% | AgentTesla, cùng bản guided-8b, trùng 4/28 nhận định (14,29%). Các profile khác cần phép đo riêng. |
 | YARA TPR>=90%, FPR=0 | Đã đo 5/5 positive development, 0/39 negative với7B/8B và replay khớp. Chỉ áp dụng corpus công bố; luật theo bản build, chưa kiểm rename/repack/unseen malware |
 | Injection0%, >=10 ca | Chưa đủ coverage, hai chiều và guard ablation |
