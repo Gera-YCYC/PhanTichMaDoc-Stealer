@@ -1,0 +1,13 @@
+{
+  "time": "2026-11-28T09:31:08.761872+00:00",
+  "sample_order": [
+    "public_python2024.bin",
+    "public_gomorrah.bin",
+    "public_mercurial.bin"
+  ],
+  "python_run": "20261128T092538_136e21fd",
+  "selection": "Use the third Python repetition already in progress, then the first attempt at each of the two specified .NET samples after the private verdict trial. Retain failures.",
+  "source_manifest_sha256": "eb067519599a03b3f7b1207863c6bba42be0576548e51bef339a3cc265a832e6",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "configuration_sha256": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057"
+}

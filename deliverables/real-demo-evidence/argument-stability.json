@@ -1,0 +1,1440 @@
+{
+  "cases": [
+    {
+      "decisions": [
+        {
+          "atoms": [
+            [
+              "PY24-A18",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C1",
+          "key": "307c52e73ab170528273055762c98e29e1ace962c0b6ba819cad290d407a4649",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "f534b3186e7aefb615128f52652e6d761f9540346fc94724d7f8a7e8101a5b33"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A26",
+              "correct"
+            ],
+            [
+              "PY24-A20",
+              "correct"
+            ],
+            [
+              "PY24-A25",
+              "correct"
+            ],
+            [
+              "PY24-A24",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C2",
+          "key": "97f99106205030500e2eefb7a7823f7faf5d00334cb9deb3784de089babdc959",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "1f12352aa6a37b87878643505ff41991558ac2002c47346fcbe34eab68e76f15"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A27",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C3",
+          "key": "7c58e3c3520a884dd03f988d19ff62a5305ac1d703aa28a56eb76a5eb28801bf",
+          "kind": "ioc",
+          "retained": true,
+          "signature": "20b123a340b5dccd1ade0e727e5ae3e2515ac9087c75d84774613e7ddb351468"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A33",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C4",
+          "key": "999cff5100f55ae48b772ff8425a9acf0853b99c3c6bd77599232add82d1d0c9",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "2297946f6093d5cf04d1bf1f51b3b4a31bc12da1d83ee0f2cfe153c4970592b1"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-fetch",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C5",
+          "key": "1659be181ef1423a17f8d591505df140ce9ae0b92f9c27d8e410c66838c0d0b8",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "88eaddf149cb9e91f447540826f04fe3430a0e7518171e26fa8d8438a69d00ba"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A07",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C6",
+          "key": "cb0b5e9d8d51d75d281ce0f6b128e941feb16c3f768bb156989732ece6e64549",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "9903e0211f3d10f4bd205a420c907fe61f09900f1e32fb43f7aabeaa42835cff"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A15",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C8",
+          "key": "535e1671eb784228522fd26ae3f187c3c1035644a109f683f50105e2da5bf663",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "1ed894191d84e2aed9fe426a213ea02a9c56e23ee72693feb4c881305139792b"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A30",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C9",
+          "key": "6f1bf7dd408fe904e2aee4046c4dc8ccd75323055e9f44ce9714830aed812792",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "ce408e5f17a29d47f3ac2933b9e864ba6cfff15b8b720cbb157e37e9484de365"
+        },
+        {
+          "atoms": [
+            [
+              "browser-path-table",
+              "correct"
+            ]
+          ],
+          "citation_count": 1,
+          "id": "C10",
+          "key": "76e0f3ed848ff98c96c6da28fda82f17e9c28010da9a88a638d095657a1d9d6f",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "d5087575661807386532365c72a4ba29377bcc436f20a3acc6d66c4519832069"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A28",
+              "correct"
+            ]
+          ],
+          "citation_count": 1,
+          "id": "C11",
+          "key": "faddbf2777b06029c8a6c245f6e713d2f7874505c3adfcba7a48bf4c06c40985",
+          "kind": "attack",
+          "retained": true,
+          "signature": "b23ae9f66655dbeb575bb47ec2767f70f69d37ded84e4515a3745f05ea0ab7e3"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A08",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C12",
+          "key": "f07f239a3e22740c5ee149430b89a579c97ce75fd7ca54f8bb6e64a3fdf69b02",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "75da51597d3c6aca5971ad85086bbe172de235b12c19c08ea28e46772cb3e52f"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-fetch",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C13",
+          "key": "8578e78dca67f7e7a91acbdbd14ac7fdbf5f860ccd76f44ec9c21dfb1881536b",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "09ac763792a645e34280287a322d69584272ce3c19c675f7f1bc0917a9ee4b19"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A07",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C14",
+          "key": "8c4683549f8e9b5dc3cbeeb274a4e209c81a15bc659496fbd4f018d9aef53349",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "43ed1676ea6da43ba0296814b73b95b5332ba744b077be57396335354851ab28"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A33",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C15",
+          "key": "c63fe5ad758d759f6578349ca3cdb7bba5f822f783c12fb133b2de6d72b94bf1",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "c447e1031ea04f1a3cfad802c814bf71bdf143376fb14dffcd0f4887fddae825"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-connect-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C16",
+          "key": "7b771e88099a9e44020708e1cf0ec4a4edad95dde2175e4f77eeb2d136a725cb",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "5c7719912ef566519c16573a6c6b6806b389a4a2243485b45a32faba1ab42d70"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-copy-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C17",
+          "key": "fb2331216ba3fc1e4731bf8ded7d923a3319bdf709b26a9ac5b98cbe0ec6e367",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "37ce84b599872ad45b47ef89a0d1aa37b4277c8aa1d14e3c40f8e826d8c29aaa"
+        },
+        {
+          "atoms": [
+            [
+              "browser-write-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C18",
+          "key": "7b09b8955872620a8b48065040a0fceffb4699c51f94a714572bc6fd8072dc3b",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "a8c553bf6a632a670b51c09fee72cba126cd058ae9320db5d78d672f4c131698"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A36",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C19",
+          "key": "8a9726fc325d98cc760c18b8c1d3de720cdbd61485ed809de4ec15516aa11e19",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "9d9b4cd8797de1893e2ab465e918bd760f7565190d3782047eb8e62b683db18a"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-write-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C20",
+          "key": "bc03b825413444c0711c5ae6b3109690a7527726621a863225c8d5b8a000360e",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "198af97549c22547ab98e35cc23d235bcc946ef7f5f3b4785e31c00ea7e07fc9"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A18",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C21",
+          "key": "0969b1a8e1a127607fd093bccc217f576af58466864ad71715bae9882ba06775",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "15e5ce2ebbdeee9d55cdb1a68407bccf831fab465ffc6bf86434318b23673474"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A25",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C22",
+          "key": "793da44ee4d6e32218999186b7c20f3d4adc0041dcbb931622cbf558ae728aab",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "dd7199ec851abe33738f4659d74d9d21fd57a5e96c5d49a9f426b31ea316b640"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A24",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C23",
+          "key": "755604f235a784963754eda79164efd3832c7847f5b03a14a1b6a1366d776b56",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "d76746fe4ad64dd7506780c2a6b9da3179081d331cfb04422250ebae590e7ab0"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A23",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C24",
+          "key": "ab0efd201b25450ccdc935b34ffd2cd091ec7ad33460d2882be71a49b925432a",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "f76b0cfffe546aa8d67188d98cc95d24ffd3c26811d97f696e0a7c4fea28f67d"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A22",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C25",
+          "key": "4bc5caa9209a0b8a86bbfe9a96647b5d77f2bdbadb2f0a22698e4917749a3ab1",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "0b3842810ce626569d15d4a5050fd22dbcfe09ecaf105bbd004f4258c935b663"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A04",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C26",
+          "key": "13ae0da531065f2aefbc5fd4178970ef02a7bb27ca8a72b98e14a3526a18c14e",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "674917cfccee79ed1228504b1e17fad9618bc33c1be6e0265dae7fa4a9c226e8"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A35",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C27",
+          "key": "a7d9fa3f43478b43f9c91b33b7a9fe88b2da6ecbd7d4c3799c2121e324770291",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "b47cdf34ccfde26ad8ca8058bf17639cf7c7591bfdd23644ddb2fcdb4aab6d9a"
+        },
+        {
+          "atoms": [
+            [
+              "mime-payload-read-expression",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C28",
+          "key": "b4826f1f0bbf361941981a75f6c77c58ec5f30ea3eafbc59dae1c35609d66fef",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "630f745a6816ac4420dd6096956d7f7565147b2177057c630a0c97ce97ef905b"
+        },
+        {
+          "atoms": [
+            [
+              "read-attachment-path",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C29",
+          "key": "67fd404d17c00c726c78c92aca59f24ef1ead7976b4a00ac4c169cad968f7b5f",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "fe14877b73f6cccd03534a8f42d603f19c12258ae1e5992ccc99c91a011257a3"
+        },
+        {
+          "atoms": [
+            [
+              "mime-encode",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C30",
+          "key": "a76cf16d171ac3faed65c1fdbf5251a1c7444254a762fe0790fa1c3c6aebe4ea",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "fa776c09bfe4ae83deb128e4187c35d85036a23ce7c5451f159296b3af639341"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A21",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C31",
+          "key": "a71244bc2264ef1b022428f48063bf00b7826bc614d4556eb66dd7ce4c6cc38a",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "659f154842ec21c6bf4b5407eb837f02763ba5a822380a56c4dbdc4e20b1e3e6"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A20",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C32",
+          "key": "2e7f5cef302305a030dd1e23547e8bc4661b36477d658e438e6d67bba24e97eb",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "d1204779dd7ef8a3116ff02ee09c896f6b22f15413e7ba35bef0548db4c58d8a"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A06",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C33",
+          "key": "c5f1d73c27ee7ab58e468df2c5331ff8ff4e1d22faa9b01b501b097d6756f4da",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "b247762edf015436dcaa89d29b8a06ff43a2948efe49c29bd1e8499d0c90e11e"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A09",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C34",
+          "key": "65bbb5e101fee3a4ef4bb4cae2c3f5616605ffa0f35a4f5be8a7e21b44ef6e9d",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "36ca1f4db6c2334b35f0f1590a01d6711a33348eb5e46ee60b0627c83af1a6d0"
+        },
+        {
+          "atoms": [
+            [
+              "returned-value-to-writer-308",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C35",
+          "key": "f28eefd699a42980257f079d414fb5fcac9dcd6b90524373c381b807f686d2fb",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "1c22ed3663476860f6255ea0226ed8d4c0b80e1032ba827b8d94823942df679d"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A19",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C36",
+          "key": "1648455c24c4a933096c709403e6811694213d16192dcac872bc202bb8a84203",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "4608b3902a3e0e1b4b82bc6d2bdb6880d794d192d2e9e76e267443f810052af6"
+        },
+        {
+          "atoms": [],
+          "citation_count": 4,
+          "id": "C37",
+          "key": "13bda1593a9504411cdcc6076173f57a81768f5855cb2c616d036b6fd5713941",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "2aa18d6a7d224376ddac83e3645521a5ab868b496088e7953cd3d0a9a6ff6c7b"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A09",
+              "correct"
+            ],
+            [
+              "PY24-A04",
+              "correct"
+            ],
+            [
+              "returns-bytes",
+              "incorrect"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C7",
+          "key": "7ad4d2927fe51035b2059629151d59417ca03ef2d5626639bba9e86918c9d7b7",
+          "kind": "behavior",
+          "retained": false,
+          "signature": "18eba19e0772a42309ba4cb72bcde209b50635b810abd0a9411fdbb4d01299e5"
+        }
+      ],
+      "journal_sha256": "9a4400bf2e4afb39dc95572992389fa164add3ee8311bfc904ac956be145ea34",
+      "rows_in_one_prompt": [
+        "PY24-A04",
+        "PY24-A06",
+        "PY24-A07",
+        "PY24-A08",
+        "PY24-A09",
+        "PY24-A15",
+        "PY24-A16",
+        "PY24-A17",
+        "PY24-A18",
+        "PY24-A19",
+        "PY24-A20",
+        "PY24-A21",
+        "PY24-A22",
+        "PY24-A23",
+        "PY24-A24",
+        "PY24-A25",
+        "PY24-A26",
+        "PY24-A27",
+        "PY24-A30",
+        "PY24-A32",
+        "PY24-A33",
+        "PY24-A34",
+        "PY24-A35",
+        "PY24-A36"
+      ],
+      "rows_in_tools": [
+        "PY24-A02",
+        "PY24-A03",
+        "PY24-A04",
+        "PY24-A05",
+        "PY24-A06",
+        "PY24-A07",
+        "PY24-A08",
+        "PY24-A09",
+        "PY24-A15",
+        "PY24-A16",
+        "PY24-A17",
+        "PY24-A18",
+        "PY24-A19",
+        "PY24-A20",
+        "PY24-A21",
+        "PY24-A22",
+        "PY24-A23",
+        "PY24-A24",
+        "PY24-A25",
+        "PY24-A26",
+        "PY24-A27",
+        "PY24-A29",
+        "PY24-A30",
+        "PY24-A32",
+        "PY24-A33",
+        "PY24-A34",
+        "PY24-A35",
+        "PY24-A36"
+      ],
+      "run": "20261128T085636_4eaac445"
+    },
+    {
+      "decisions": [
+        {
+          "atoms": [
+            [
+              "PY24-A18",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C1",
+          "key": "b6809b9398dd1b7bc192761700c96ca5e8255293de0f03797a97e2e2dfb493df",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "09d74204f987ad1e064e79bc36b8414d38ea22a0418a98609fa3f00a75d7ed50"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A26",
+              "correct"
+            ],
+            [
+              "PY24-A20",
+              "correct"
+            ],
+            [
+              "PY24-A25",
+              "correct"
+            ],
+            [
+              "PY24-A24",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C2",
+          "key": "97f99106205030500e2eefb7a7823f7faf5d00334cb9deb3784de089babdc959",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "1f12352aa6a37b87878643505ff41991558ac2002c47346fcbe34eab68e76f15"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A27",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C3",
+          "key": "7c58e3c3520a884dd03f988d19ff62a5305ac1d703aa28a56eb76a5eb28801bf",
+          "kind": "ioc",
+          "retained": true,
+          "signature": "2c661729a05180094ce3143035da39fb8ee0116f042c727074063833f3f91e09"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A33",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C4",
+          "key": "999cff5100f55ae48b772ff8425a9acf0853b99c3c6bd77599232add82d1d0c9",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "2297946f6093d5cf04d1bf1f51b3b4a31bc12da1d83ee0f2cfe153c4970592b1"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-fetch",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C5",
+          "key": "1659be181ef1423a17f8d591505df140ce9ae0b92f9c27d8e410c66838c0d0b8",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "88eaddf149cb9e91f447540826f04fe3430a0e7518171e26fa8d8438a69d00ba"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A07",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C6",
+          "key": "cb0b5e9d8d51d75d281ce0f6b128e941feb16c3f768bb156989732ece6e64549",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "9903e0211f3d10f4bd205a420c907fe61f09900f1e32fb43f7aabeaa42835cff"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A09",
+              "correct"
+            ],
+            [
+              "PY24-A04",
+              "correct"
+            ],
+            [
+              "returns-bytes",
+              "incorrect"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C7",
+          "key": "7ad4d2927fe51035b2059629151d59417ca03ef2d5626639bba9e86918c9d7b7",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "18eba19e0772a42309ba4cb72bcde209b50635b810abd0a9411fdbb4d01299e5"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A15",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C8",
+          "key": "535e1671eb784228522fd26ae3f187c3c1035644a109f683f50105e2da5bf663",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "1ed894191d84e2aed9fe426a213ea02a9c56e23ee72693feb4c881305139792b"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A30",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C9",
+          "key": "6f1bf7dd408fe904e2aee4046c4dc8ccd75323055e9f44ce9714830aed812792",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "ce408e5f17a29d47f3ac2933b9e864ba6cfff15b8b720cbb157e37e9484de365"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A28",
+              "correct"
+            ]
+          ],
+          "citation_count": 1,
+          "id": "C10",
+          "key": "faddbf2777b06029c8a6c245f6e713d2f7874505c3adfcba7a48bf4c06c40985",
+          "kind": "attack",
+          "retained": true,
+          "signature": "b23ae9f66655dbeb575bb47ec2767f70f69d37ded84e4515a3745f05ea0ab7e3"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A08",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C11",
+          "key": "f07f239a3e22740c5ee149430b89a579c97ce75fd7ca54f8bb6e64a3fdf69b02",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "75da51597d3c6aca5971ad85086bbe172de235b12c19c08ea28e46772cb3e52f"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-fetch",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C12",
+          "key": "8578e78dca67f7e7a91acbdbd14ac7fdbf5f860ccd76f44ec9c21dfb1881536b",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "09ac763792a645e34280287a322d69584272ce3c19c675f7f1bc0917a9ee4b19"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A07",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C13",
+          "key": "8c4683549f8e9b5dc3cbeeb274a4e209c81a15bc659496fbd4f018d9aef53349",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "43ed1676ea6da43ba0296814b73b95b5332ba744b077be57396335354851ab28"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A33",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C14",
+          "key": "c63fe5ad758d759f6578349ca3cdb7bba5f822f783c12fb133b2de6d72b94bf1",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "c447e1031ea04f1a3cfad802c814bf71bdf143376fb14dffcd0f4887fddae825"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-connect-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C15",
+          "key": "7b771e88099a9e44020708e1cf0ec4a4edad95dde2175e4f77eeb2d136a725cb",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "5c7719912ef566519c16573a6c6b6806b389a4a2243485b45a32faba1ab42d70"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-copy-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C16",
+          "key": "fb2331216ba3fc1e4731bf8ded7d923a3319bdf709b26a9ac5b98cbe0ec6e367",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "37ce84b599872ad45b47ef89a0d1aa37b4277c8aa1d14e3c40f8e826d8c29aaa"
+        },
+        {
+          "atoms": [
+            [
+              "browser-write-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C17",
+          "key": "7b09b8955872620a8b48065040a0fceffb4699c51f94a714572bc6fd8072dc3b",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "a8c553bf6a632a670b51c09fee72cba126cd058ae9320db5d78d672f4c131698"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A36",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C18",
+          "key": "8a9726fc325d98cc760c18b8c1d3de720cdbd61485ed809de4ec15516aa11e19",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "9d9b4cd8797de1893e2ab465e918bd760f7565190d3782047eb8e62b683db18a"
+        },
+        {
+          "atoms": [
+            [
+              "autofill-write-expr",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C19",
+          "key": "bc03b825413444c0711c5ae6b3109690a7527726621a863225c8d5b8a000360e",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "198af97549c22547ab98e35cc23d235bcc946ef7f5f3b4785e31c00ea7e07fc9"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A18",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C20",
+          "key": "0969b1a8e1a127607fd093bccc217f576af58466864ad71715bae9882ba06775",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "15e5ce2ebbdeee9d55cdb1a68407bccf831fab465ffc6bf86434318b23673474"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A25",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C21",
+          "key": "793da44ee4d6e32218999186b7c20f3d4adc0041dcbb931622cbf558ae728aab",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "dd7199ec851abe33738f4659d74d9d21fd57a5e96c5d49a9f426b31ea316b640"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A24",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C22",
+          "key": "755604f235a784963754eda79164efd3832c7847f5b03a14a1b6a1366d776b56",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "d76746fe4ad64dd7506780c2a6b9da3179081d331cfb04422250ebae590e7ab0"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A23",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C23",
+          "key": "ab0efd201b25450ccdc935b34ffd2cd091ec7ad33460d2882be71a49b925432a",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "f76b0cfffe546aa8d67188d98cc95d24ffd3c26811d97f696e0a7c4fea28f67d"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A22",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C24",
+          "key": "4bc5caa9209a0b8a86bbfe9a96647b5d77f2bdbadb2f0a22698e4917749a3ab1",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "0b3842810ce626569d15d4a5050fd22dbcfe09ecaf105bbd004f4258c935b663"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A04",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C25",
+          "key": "13ae0da531065f2aefbc5fd4178970ef02a7bb27ca8a72b98e14a3526a18c14e",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "674917cfccee79ed1228504b1e17fad9618bc33c1be6e0265dae7fa4a9c226e8"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A35",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C26",
+          "key": "a7d9fa3f43478b43f9c91b33b7a9fe88b2da6ecbd7d4c3799c2121e324770291",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "b47cdf34ccfde26ad8ca8058bf17639cf7c7591bfdd23644ddb2fcdb4aab6d9a"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A21",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C27",
+          "key": "a71244bc2264ef1b022428f48063bf00b7826bc614d4556eb66dd7ce4c6cc38a",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "659f154842ec21c6bf4b5407eb837f02763ba5a822380a56c4dbdc4e20b1e3e6"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A20",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C28",
+          "key": "2e7f5cef302305a030dd1e23547e8bc4661b36477d658e438e6d67bba24e97eb",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "d1204779dd7ef8a3116ff02ee09c896f6b22f15413e7ba35bef0548db4c58d8a"
+        },
+        {
+          "atoms": [
+            [
+              "mime-encode",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C29",
+          "key": "a76cf16d171ac3faed65c1fdbf5251a1c7444254a762fe0790fa1c3c6aebe4ea",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "fa776c09bfe4ae83deb128e4187c35d85036a23ce7c5451f159296b3af639341"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A06",
+              "correct"
+            ]
+          ],
+          "citation_count": 2,
+          "id": "C30",
+          "key": "c5f1d73c27ee7ab58e468df2c5331ff8ff4e1d22faa9b01b501b097d6756f4da",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "b247762edf015436dcaa89d29b8a06ff43a2948efe49c29bd1e8499d0c90e11e"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A09",
+              "correct"
+            ]
+          ],
+          "citation_count": 4,
+          "id": "C31",
+          "key": "65bbb5e101fee3a4ef4bb4cae2c3f5616605ffa0f35a4f5be8a7e21b44ef6e9d",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "36ca1f4db6c2334b35f0f1590a01d6711a33348eb5e46ee60b0627c83af1a6d0"
+        },
+        {
+          "atoms": [
+            [
+              "returned-value-to-writer-308",
+              "correct"
+            ]
+          ],
+          "citation_count": 5,
+          "id": "C32",
+          "key": "f28eefd699a42980257f079d414fb5fcac9dcd6b90524373c381b807f686d2fb",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "1c22ed3663476860f6255ea0226ed8d4c0b80e1032ba827b8d94823942df679d"
+        },
+        {
+          "atoms": [
+            [
+              "PY24-A19",
+              "correct"
+            ]
+          ],
+          "citation_count": 3,
+          "id": "C33",
+          "key": "1648455c24c4a933096c709403e6811694213d16192dcac872bc202bb8a84203",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "4608b3902a3e0e1b4b82bc6d2bdb6880d794d192d2e9e76e267443f810052af6"
+        },
+        {
+          "atoms": [],
+          "citation_count": 4,
+          "id": "C34",
+          "key": "13bda1593a9504411cdcc6076173f57a81768f5855cb2c616d036b6fd5713941",
+          "kind": "behavior",
+          "retained": true,
+          "signature": "2aa18d6a7d224376ddac83e3645521a5ab868b496088e7953cd3d0a9a6ff6c7b"
+        }
+      ],
+      "journal_sha256": "e6befd70b51d1f2cee03f3fae6105b75928a5266576fce6503f7df4505c83ffa",
+      "rows_in_one_prompt": [
+        "PY24-A04",
+        "PY24-A06",
+        "PY24-A07",
+        "PY24-A08",
+        "PY24-A09",
+        "PY24-A15",
+        "PY24-A16",
+        "PY24-A17",
+        "PY24-A18",
+        "PY24-A19",
+        "PY24-A20",
+        "PY24-A21",
+        "PY24-A22",
+        "PY24-A23",
+        "PY24-A24",
+        "PY24-A25",
+        "PY24-A26",
+        "PY24-A27",
+        "PY24-A30",
+        "PY24-A32",
+        "PY24-A33",
+        "PY24-A34",
+        "PY24-A35",
+        "PY24-A36"
+      ],
+      "rows_in_tools": [
+        "PY24-A02",
+        "PY24-A03",
+        "PY24-A04",
+        "PY24-A05",
+        "PY24-A06",
+        "PY24-A07",
+        "PY24-A08",
+        "PY24-A09",
+        "PY24-A15",
+        "PY24-A16",
+        "PY24-A17",
+        "PY24-A18",
+        "PY24-A19",
+        "PY24-A20",
+        "PY24-A21",
+        "PY24-A22",
+        "PY24-A23",
+        "PY24-A24",
+        "PY24-A25",
+        "PY24-A26",
+        "PY24-A27",
+        "PY24-A29",
+        "PY24-A30",
+        "PY24-A32",
+        "PY24-A33",
+        "PY24-A34",
+        "PY24-A35",
+        "PY24-A36"
+      ],
+      "run": "20261128T091615_0ffb665e"
+    }
+  ],
+  "series": {
+    "accepted_claim_counts": [
+      36,
+      34
+    ],
+    "attempts": [
+      {
+        "journal_sha256": "9a4400bf2e4afb39dc95572992389fa164add3ee8311bfc904ac956be145ea34",
+        "run": "20261128T085636_4eaac445",
+        "status": "completed_with_rejected_claims"
+      },
+      {
+        "journal_sha256": "e6befd70b51d1f2cee03f3fae6105b75928a5266576fce6503f7df4505c83ffa",
+        "run": "20261128T091615_0ffb665e",
+        "status": "completed_needs_review"
+      },
+      {
+        "journal_sha256": "ec4310316cd157bbb908a7a2fd62f8e004edb73787a5685af40cb08c226b6d4a",
+        "run": "20261128T092538_136e21fd",
+        "status": "incomplete"
+      }
+    ],
+    "claim_stability": null,
+    "configuration_sha256": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+    "duration_seconds": [
+      575.7527,
+      551.7625
+    ],
+    "journal_sha256": [
+      "9a4400bf2e4afb39dc95572992389fa164add3ee8311bfc904ac956be145ea34",
+      "e6befd70b51d1f2cee03f3fae6105b75928a5266576fce6503f7df4505c83ffa"
+    ],
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "runs": [
+      "20261128T085636_4eaac445",
+      "20261128T091615_0ffb665e"
+    ],
+    "sample": "public_python2024.bin",
+    "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+    "source_manifest_sha256": "eb067519599a03b3f7b1207863c6bba42be0576548e51bef339a3cc265a832e6",
+    "tool_calls": [
+      17,
+      17
+    ],
+    "verdicts": [
+      "suspicious",
+      "suspicious"
+    ]
+  },
+  "summary": {
+    "exact": {
+      "common": 32,
+      "union": 38,
+      "rate": 0.8421052631578947
+    },
+    "score_per_run": [
+      {
+        "correct": 21,
+        "incorrect": 0,
+        "unsupported": 0,
+        "missed": 15,
+        "precision": 1.0,
+        "recall": 0.5833333333333334,
+        "f1": 0.7368421052631579
+      },
+      {
+        "correct": 21,
+        "incorrect": 1,
+        "unsupported": 0,
+        "missed": 15,
+        "precision": 0.9545454545454546,
+        "recall": 0.5833333333333334,
+        "f1": 0.7241379310344828
+      }
+    ],
+    "reviews": [
+      {
+        "sentence_labels": {
+          "supported": 35,
+          "no_scoped_atoms": 1
+        },
+        "retained": 36,
+        "cited": 36,
+        "ungraded_rejections": [],
+        "lost_at_review": []
+      },
+      {
+        "sentence_labels": {
+          "supported": 32,
+          "incorrect": 1,
+          "no_scoped_atoms": 1
+        },
+        "retained": 34,
+        "cited": 34,
+        "ungraded_rejections": [],
+        "lost_at_review": []
+      }
+    ],
+    "verdict_target": "malicious",
+    "correct_verdicts": 0,
+    "covered": [
+      "PY24-A04",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A15",
+      "PY24-A18",
+      "PY24-A19",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A28",
+      "PY24-A30",
+      "PY24-A33",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "sometimes": [],
+    "always_missing": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A03",
+      "PY24-A05",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A16",
+      "PY24-A17",
+      "PY24-A29",
+      "PY24-A31",
+      "PY24-A32",
+      "PY24-A34"
+    ],
+    "states": {
+      "PY24-A01": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A02": [
+        "retrieved",
+        "retrieved"
+      ],
+      "PY24-A03": [
+        "retrieved",
+        "retrieved"
+      ],
+      "PY24-A04": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A05": [
+        "retrieved",
+        "retrieved"
+      ],
+      "PY24-A06": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A07": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A08": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A09": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A10": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A11": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A12": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A13": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A14": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A15": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A16": [
+        "visible_in_one_prompt",
+        "visible_in_one_prompt"
+      ],
+      "PY24-A17": [
+        "visible_in_one_prompt",
+        "visible_in_one_prompt"
+      ],
+      "PY24-A18": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A19": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A20": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A21": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A22": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A23": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A24": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A25": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A26": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A27": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A28": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A29": [
+        "retrieved",
+        "retrieved"
+      ],
+      "PY24-A30": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A31": [
+        "incomplete_source",
+        "incomplete_source"
+      ],
+      "PY24-A32": [
+        "visible_in_one_prompt",
+        "visible_in_one_prompt"
+      ],
+      "PY24-A33": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A34": [
+        "visible_in_one_prompt",
+        "visible_in_one_prompt"
+      ],
+      "PY24-A35": [
+        "retained",
+        "retained"
+      ],
+      "PY24-A36": [
+        "retained",
+        "retained"
+      ]
+    }
+  }
+}

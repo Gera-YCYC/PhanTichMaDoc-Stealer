@@ -1,0 +1,268 @@
+{
+  "run": "20261128T094444_607b0b2d",
+  "sample": "public_mercurial.bin",
+  "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "eb067519599a03b3f7b1207863c6bba42be0576548e51bef339a3cc265a832e6",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 460.4645,
+    "model_calls": 46,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 81777,
+    "completion_tokens": 3556,
+    "host_peak_rss_bytes": 30322688,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 558186496,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 270,
+  "journal_sha256": "3ce5dd2a530f1baaf1f0c29ad1dc9343703bb9f47e6d5994190c67e8912e85a7",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 4,
+      "edge": "process-write"
+    },
+    {
+      "step": 4,
+      "edge": "process-write",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 6,
+      "edge": "rows-process"
+    },
+    {
+      "step": 6,
+      "edge": "rows-process",
+      "status": "partial",
+      "hit_count": 8
+    },
+    {
+      "step": 7,
+      "edge": "rows-process"
+    },
+    {
+      "step": 7,
+      "edge": "rows-process",
+      "status": "partial",
+      "hit_count": 12
+    },
+    {
+      "step": 8,
+      "edge": "query-rows"
+    },
+    {
+      "step": 8,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 9,
+      "edge": "archive-message"
+    },
+    {
+      "step": 9,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 10,
+      "edge": "send-response"
+    },
+    {
+      "step": 10,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 11,
+      "edge": "query-rows"
+    },
+    {
+      "step": 11,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 12,
+      "edge": "archive-message"
+    },
+    {
+      "step": 12,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 9
+    },
+    {
+      "step": 13,
+      "edge": "send-response"
+    },
+    {
+      "step": 13,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 15,
+      "edge": "process-write"
+    },
+    {
+      "step": 15,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 16,
+      "edge": "process-write"
+    },
+    {
+      "step": 16,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 5
+    }
+  ],
+  "accepted_claims": 14,
+  "accepted_claim_keys_sha256": "c25d41bde3249e8da6eb5d8b09c6b906601f9f0bec5daf49ed0133dfb2fa2736",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_05"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_578e47c5ae21",
+      "events": 5,
+      "journal_sha256": "e4ba00c4a23e270e752ff3b1e57a909e879f4d0f0bc0e246827458e9d5f36be1",
+      "topic": "rows-process",
+      "search_calls": 1,
+      "search_errors": 0,
+      "search_hits": [
+        7
+      ],
+      "source_refs": 0,
+      "related_locations": 2,
+      "status": "answered",
+      "opened_anchors": [
+        [
+          728,
+          796
+        ]
+      ],
+      "map_click": {
+        "run": "20261128T094444_607b0b2d",
+        "edge": "rows-process",
+        "journal": "q_578e47c5ae21",
+        "hits": 7,
+        "spans": [
+          [
+            728,
+            728
+          ],
+          [
+            796,
+            796
+          ]
+        ],
+        "opened": 1,
+        "source_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+        "errors": [],
+        "external": []
+      }
+    }
+  ],
+  "ranking_anchors_for_review": 20,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

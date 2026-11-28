@@ -1,5 +1,30 @@
 # Cài và demo thật trên máy của từng thành viên
 
+## Chuẩn bị model cho web trên máy mới
+
+Sau khi hoàn thành các bước cài Python, Ollama và VM ở dưới, mở PowerShell tại thư mục gốc. Trên máy lab đã có Qwen3 8B, chạy thẳng `.\scripts\Start-Web.ps1`. Trên máy mới đã có thư mục `private\ollama-models`, chạy đoạn lệnh sau một lần khi lab đang tắt. Model cần khoảng 5,23 GB dung lượng tải.
+
+```powershell
+.\scripts\Start-LocalModel.ps1 -PromptCacheMiB 0
+try {
+    $tags = 'http://127.0.0.1:11435/api/tags'
+    $model = (Invoke-RestMethod $tags).models | Where-Object name -eq 'qwen3:8b'
+    if (-not $model) {
+        .\.venv\Scripts\python.exe scripts/pull_model_candidate.py
+        if ($LASTEXITCODE) { throw 'Tải model chưa hoàn tất' }
+        $model = (Invoke-RestMethod $tags).models | Where-Object name -eq 'qwen3:8b'
+    }
+    $model | Select-Object name, digest, size
+    if ($model.digest -ne '500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41') {
+        throw 'Digest khác phiên bản đã chấm. Ghi lại phiên bản trước khi so số liệu.'
+    }
+} finally {
+    .\scripts\Stop-LocalModel.ps1
+}
+```
+
+Khi demo, chạy `.\scripts\Start-Web.ps1`, mở `http://127.0.0.1:4180`, chọn mẫu rồi bấm **Chạy điều tra**. Nút trạng thái hiển thị lượng RAM còn trống tại lần kiểm tra. Để xem tiếp mắt xích đang thiếu, mở **Bản đồ chứng cứ → Hỏi tiếp về đường nối này → Tra cứu chứng cứ**. Khi kết thúc, bấm **Tắt lab**. [Cách đọc kết quả thật và các lượt bị ngắt](DOI_CHIEU_KET_LUAN.md)
+
 Để demo điều tra bằng **trình duyệt**, chuẩn bị VM của nhóm và cài **Qwen3 8B** vào kho Ollama của dự án trên máy Windows. Sau đó chạy `.\scripts\Start-Web.ps1` từ thư mục gốc. Cấu hình dòng lệnh mặc định dùng **Qwen2.5 Coder 7B**. Nếu chỉ cần xem bảng điểm đã công bố trên máy mới, dùng `.\scripts\Start-Web.ps1 -HistoryOnly` sau khi cài môi trường Python của dự án. [Hướng dẫn giao diện và điều tra](WEB_DIEU_TRA.md) · [Cấu hình model 8B](DEMO_COVERAGE.md)
 
 Luồng dòng lệnh dùng bộ 7B ở Release của repo nhóm. Web dùng riêng cấu hình 8B. Trọng số bộ xếp hạng chứng cứ nằm trong source và được đồng bộ vào VM cùng công cụ. Hai lab dùng chung địa chỉ VM phải chạy lần lượt. [So sánh model](MODEL_COMPARISON.md) · [Luồng Python](PYTHON_STATIC_DECODING.md) · [Hồ sơ train](../training/RANKER_EXPERIMENT.md) · [Kết quả web trên ba mẫu](DOI_CHIEU_DUONG_TRUYEN.md)

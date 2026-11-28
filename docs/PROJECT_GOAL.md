@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Điều kiện nghiệm thu bổ sung là người xem mở được nguồn của từng vai trò trong verdict, đối chiếu các lượt cùng phiên bản và truy được nguyên nhân của lượt ngắt. Đạt ngưỡng ổn định cần đủ ba báo cáo liên tiếp. Phép thử thay cách dẫn chứng phải được kiểm riêng trên mẫu độc và lành trước khi đưa vào luồng kết luận. [Kết quả và cách demo](DOI_CHIEU_KET_LUAN.md)
+
 Sản phẩm bàn giao là web chạy trên máy thật, một agent ReAct dùng Qwen cục bộ và các công cụ đọc tĩnh trong VM. Điều kiện nghiệm thu cho từng quan hệ là có bằng chứng tại nơi tạo, nơi dùng và cách dữ liệu đi giữa hai vị trí. Khi thiếu một phần, agent tìm thêm trong ngân sách đã đặt, lưu kết quả từng lần, rồi giữ trạng thái còn thiếu nếu chưa xác minh được. Mục A09 trên Python hiện có phép kiểm hai phía và bản đồ mở được đúng nguồn. Các chỉ tiêu chấm trên toàn mẫu, hai định dạng và dữ liệu giữ riêng vẫn là mục tiêu chung. [Kết quả A09 và phép đo toàn báo cáo](KIEM_TRA_DOI_SO.md)
 
 Đã đưa phép thử tách mệnh đề vào màn hình đối chiếu và đo đủ các quyết định trên bảy câu thật. Mục tiêu còn mở là tìm bằng chứng nối trường đầu vào với nơi sử dụng, kiểm soát suy diễn thiếu căn cứ rồi đo tác động lên báo cáo cuối của cả Python và .NET. [Số liệu và ca chưa giải quyết](KIEM_TUNG_Y.md)

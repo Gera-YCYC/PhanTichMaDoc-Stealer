@@ -1,0 +1,38 @@
+{
+  "run": "20261128T091615_0ffb665e",
+  "inherit": "20261128T085636_4eaac445",
+  "claims": {
+    "C1": {
+      "signature": "09d74204f987ad1e064e79bc36b8414d38ea22a0418a98609fa3f00a75d7ed50",
+      "lines": [
+        10,
+        276,
+        277,
+        278,
+        279
+      ],
+      "atoms": [
+        [
+          "PY24-A18",
+          "correct"
+        ]
+      ],
+      "reason": "The cited temporary directory and ZIP creation call cover the archive unit. This does not identify the contents of the archive."
+    },
+    "C3": {
+      "signature": "2c661729a05180094ce3143035da39fb8ee0116f042c727074063833f3f91e09",
+      "lines": [
+        83,
+        84,
+        106
+      ],
+      "atoms": [
+        [
+          "PY24-A27",
+          "correct"
+        ]
+      ],
+      "reason": "The IOC equals the configured host at the cited assignment. The cited constructor uses the same variable."
+    }
+  }
+}

@@ -9,6 +9,7 @@ from vm_tools.code_search import structural_features
 from stealer_agent.investigation import CODE, excerpt, ledger
 from stealer_agent.journal import verify_journal
 from stealer_agent.redaction import redact_document
+from .verdict import trace as verdict_trace
 
 ROOT = Path(__file__).resolve().parents[1]
 RUN = re.compile(r"\d{8}T\d{6}_[a-f0-9]{8}")
@@ -170,6 +171,7 @@ def source(run, fingerprint):
     attempts = {}
     reviewable = set()
     last = {}
+    termination = {"last_model_phase": None, "error_class": None, "model_unloaded": False}
     with log.open(encoding="utf8") as stream:
         for line in stream:
             e = json.loads(line)
@@ -179,6 +181,15 @@ def source(run, fingerprint):
             if kind == "card_claim_review" and not e["check"]["supported"]:
                 reviewable.add(e["claim_id"])
             desc = None
+            if kind == "run_started":
+                termination["memory_floor_bytes"] = e.get("config", {}).get("minimum_free_ram_mb", 256) * 1024 * 1024
+            elif kind == "model_response" and "phase" in e:
+                termination["last_model_phase"] = e["phase"]
+            elif kind == "run_error":
+                error_class = e.get("error", "").partition(":")[0]
+                termination["error_class"] = error_class if re.fullmatch(r"[A-Za-z]{1,60}", error_class) else "unknown"
+            elif kind == "model_unloaded":
+                termination["model_unloaded"] = True
             if kind == "observation":
                 o = e["model_visible"]
                 if o["sample_sha256"] != r["sample_sha256"]:
@@ -234,6 +245,8 @@ def source(run, fingerprint):
     ):
         raise ValueError("Thông tin model hoặc mẫu không khớp.")
     saved = last["result"].get("investigation")
+    if verdict_trace(last["result"].get("analysis") or {}) != verdict_trace(r.get("analysis") or {}):
+        raise ValueError("Các nguồn dẫn cho verdict khác với nhật ký gốc.")
     frozen_graph = redact_document(saved)[0] if saved is not None else None
     return (
         records,
@@ -242,6 +255,7 @@ def source(run, fingerprint):
         frozen_graph,
         list(attempts.values()),
         reviewable,
+        termination if last["result"]["status"] == "incomplete" else None,
     )
 
 
@@ -363,7 +377,7 @@ def recent_reviews(folder, run, sample_digest, model_digest, *, parts=False):
 def case(run):
     r = trusted_report(run)
     log = directory(run) / "events.jsonl"
-    records, timeline, anchors, frozen_graph, attempts, reviewable = source(
+    records, timeline, anchors, frozen_graph, attempts, reviewable, termination = source(
         run, (log.stat().st_size, log.stat().st_mtime_ns)
     )
     graph = (
@@ -438,6 +452,8 @@ def case(run):
         "model": r["model"]["tag"],
         "status": r["status"],
         "verdict": analysis["verdict"],
+        "verdict_trace": verdict_trace(analysis),
+        "termination": termination,
         "metrics": {
             k: r["metrics"].get(k)
             for k in (

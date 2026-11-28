@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Trên bản kiểm tra đối số, hai trong ba lượt Python liên tiếp có báo cáo hoàn tất. Cùng đạt 21/36 mục đúng, F1 lần lượt 73,68% và 72,41%. Lượt cuối dừng ở ngưỡng RAM. Bản web có thể mở nguồn của verdict và nhật ký lượt ngắt. [Bảng chấm và thí nghiệm về cách Qwen chọn dẫn chứng](DOI_CHIEU_KET_LUAN.md)
+
 Web đã có lượt điều tra thực theo dõi một trường từ kết quả truy vấn tới hàm xử lý. Các trích dẫn ở bản đồ và báo cáo đã được mở trong trình duyệt ở hai kích thước. Khi đọc các số liệu lịch sử bên dưới, dùng bảng theo mã lượt để so cùng phiên bản. [Kết quả, các mốc còn thiếu và cách tái kiểm](KIEM_TRA_DOI_SO.md)
 
 Đã đo bước tách và duyệt riêng từng ý trên toàn bộ bảy câu hành vi bị loại đủ điều kiện của ba lượt Python/.NET. Qwen giữ đúng 6/15 ý, so với 2/3 ở cách viết lại một câu. Một phép kiểm khoảng chỉ số bắt được một lỗi. Mục A09 vẫn thiếu chứng cứ ở phía gọi. Hai thao tác web thật mở được đủ bảy trích dẫn và giữ riêng kết quả đọc lại. [Số liệu, phạm vi và bằng chứng](KIEM_TUNG_Y.md)

@@ -22,6 +22,11 @@ from lab_web.cases import RUN
 from stealer_agent.journal import canonical, dump_json
 
 PUBLIC = EVIDENCE / "staging-stability.json"
+ARGUMENT_SERIES = EVIDENCE / "argument-stability.json"
+
+
+ARGUMENT_RUNS = ("20261128T085636_4eaac445", "20261128T091615_0ffb665e", "20261128T092538_136e21fd")
+COMPLETE = {"completed_needs_review", "completed_with_rejected_claims"}
 
 
 def overlap(sets):
@@ -62,7 +67,7 @@ def collect(run, origins):
     }
 
 
-def assemble(ids):
+def assemble(ids, *, argument=False):
     require(
         len(ids) == 3
         and len(set(ids)) == 3
@@ -70,7 +75,26 @@ def assemble(ids):
         and all(RUN.fullmatch(x) for x in ids),
         "Supply three distinct chronological run IDs",
     )
-    base = evaluate(ids)
+    if argument:
+        require(tuple(ids) == ARGUMENT_RUNS, "Different consecutive Python attempts")
+        receipts = [read(EVIDENCE / f"web-{run}.json") for run in ids]
+        complete = [r for r in receipts if r["status"] in COMPLETE]
+        require([r["run"] for r in complete] == ids[:2], "Different terminal outcomes")
+        first = complete[0]
+        base = {
+            "runs": ids[:2], "sample": first["sample"], "sample_sha256": first["sha256"],
+            "model_digest": first["model_digest"], "source_manifest_sha256": first["source_manifest_sha256"],
+            "configuration_sha256": first["config_sha256_excluding_sample"],
+            "journal_sha256": [r["journal_sha256"] for r in complete],
+            "verdicts": [r["verdict"] for r in complete],
+            "accepted_claim_counts": [r["accepted_claims"] for r in complete],
+            "duration_seconds": [r["metrics"]["elapsed_s"] for r in complete],
+            "tool_calls": [r["metrics"]["tool_calls"] for r in complete],
+            "attempts": [{"run": r["run"], "status": r["status"], "journal_sha256": r["journal_sha256"]} for r in receipts],
+            "claim_stability": None,
+        }
+    else:
+        base = evaluate(ids)
     actual = []
     for p in sorted((ROOT / "runs").glob("*/events.jsonl")):
         if ids[0] <= p.parent.name <= ids[-1] and RUN.fullmatch(p.parent.name):
@@ -82,15 +106,33 @@ def assemble(ids):
     origins = {}
     for r in ("20261127T211223_9602dfdd", "20261127T230331_8bd30a1f"):
         origins.update(reconstruct(events(r)))
-    return {"series": base, "cases": [collect(run, origins) for run in ids]}
+    return {"series": base, "cases": [collect(run, origins) for run in base["runs"]]}
 
 
 def analyze(data):
     base, cases = data["series"], data["cases"]
     ids = [r["run"] for r in cases]
+    attempts = base.get("attempts")
+    if attempts is not None:
+        require([a["run"] for a in attempts] == list(ARGUMENT_RUNS)
+                and ids == list(ARGUMENT_RUNS[:2]) and base["claim_stability"] is None,
+                "Different membership or fabricated three-report stability")
+        for i, item in enumerate(attempts):
+            live = read(EVIDENCE / f"web-{item['run']}.json")
+            require(item == {k: live[k] for k in ("run", "status", "journal_sha256")}
+                    and live["sample"] == base["sample"] and live["sha256"] == base["sample_sha256"]
+                    and live["model_digest"] == base["model_digest"]
+                    and live["source_manifest_sha256"] == base["source_manifest_sha256"]
+                    and live["config_sha256_excluding_sample"] == base["configuration_sha256"]
+                    and live["status"] in (COMPLETE if i < 2 else {"incomplete"}),
+                    "Different terminal attempt or configuration")
+        stop = live["termination"]
+        require(stop["error_class"] == "ResourceBudgetExceeded" and stop["model_unloaded"]
+                and 0 < live["metrics"]["minimum_observed_host_available_memory_bytes"] < stop["memory_floor_bytes"]
+                and not live["accepted_claims"] and not live["yara"], "Different incomplete terminal report")
     require(
         ids == base["runs"]
-        and len(ids) == len(set(ids)) == 3
+        and len(ids) == len(set(ids)) == (2 if attempts is not None else 3)
         and ids == sorted(ids)
         and all(RUN.fullmatch(x) for x in ids),
         "Expected three distinct terminal runs",
@@ -246,7 +288,7 @@ def analyze(data):
     exact = overlap(accepted_sets)
     recorded = base["claim_stability"]
     require(
-        (exact["common"], exact["union"], exact["rate"])
+        attempts is not None or (exact["common"], exact["union"], exact["rate"])
         == (recorded["stable_claims"], recorded["union_claims"], recorded["stability"]),
         "Different slide stability",
     )
@@ -263,8 +305,61 @@ def analyze(data):
     }
 
 
-def web_results():
-    data = read(PUBLIC)
+def changing_claims(cases):
+    """Only compare review decisions as identical inputs when citations also match."""
+    proposed = []
+    accepted = []
+    for case in cases:
+        by_key = {}
+        for row in case["decisions"]:
+            by_key.setdefault(row["key"], []).append(row)
+        proposed.append(by_key)
+        accepted.append({k for k, rows in by_key.items() if any(r["retained"] for r in rows)})
+    result = []
+    for key in sorted(set.union(*accepted) - set.intersection(*accepted)):
+        steps = [items.get(key, []) for items in proposed]
+        all_rows = [r for step in steps for r in step]
+        fingerprints = {}
+        for i, step in enumerate(steps):
+            for r in step:
+                fingerprints.setdefault(r["signature"], {}).setdefault(i, set()).add(r["retained"])
+        opposite = any(left != right and True in states and False in other
+                       for by_run in fingerprints.values() for left, states in by_run.items()
+                       for right, other in by_run.items())
+        result.append({
+            "kind": all_rows[0]["kind"], "key": key,
+            "units": sorted({u for r in all_rows for u, label in r["atoms"] or []
+                             if label == "correct" and u.startswith("PY24-A")}),
+            "absent_in_drafts": any(not step for step in steps),
+            "same_input_opposite_decisions": opposite,
+            "steps": [[{"id": r["id"], "kept": r["retained"]} for r in step] for step in steps],
+        })
+    return result
+
+
+def kind_scores(case, profile):
+    """Use the same distinct-unit denominators as the published overall score."""
+    groups = {k: {} for k in ("behavior", "ioc", "attack")}
+    declared = {u["id"]: u["kind"] for u in profile["units"]}
+    owners = dict(declared)
+    for row in case["decisions"]:
+        if row["retained"]:
+            for uid, label in row["atoms"]:
+                kind = row["kind"]
+                require(owners.setdefault(uid, kind) == kind, "Ambiguous unit kind")
+                require(groups[kind].setdefault(uid, label) == label, "Conflicting grade")
+    result = {}
+    for kind, judged in groups.items():
+        units = {uid for uid, k in declared.items() if k == kind}
+        correct = sum(judged.get(uid) == "correct" for uid in units)
+        counts = Counter(judged.values())
+        result[kind] = metrics(dict(correct=correct, missed=len(units)-correct,
+                                    incorrect=counts["incorrect"], unsupported=counts["unsupported"]))
+    return result
+
+
+def web_results(path=PUBLIC):
+    data = read(path)
     summary = analyze(data)
     require(summary == data["summary"], "Different published stability table")
     base = data["series"]
@@ -276,7 +371,21 @@ def web_results():
                 if label == "correct":
                     by_unit.setdefault((uid, row["retained"]), []).append(row["id"])
         links.append(by_unit)
+    diagnostics = {}
+    if path == ARGUMENT_SERIES:
+        changing = changing_claims(data["cases"])
+        require(len(changing) == summary["exact"]["union"] - summary["exact"]["common"],
+                "Different number of changing claims")
+        profile = read(PROFILE)
+        by_kind = [kind_scores(c, profile) for c in data["cases"]]
+        for groups, overall in zip(by_kind, summary["score_per_run"], strict=True):
+            for field in ("correct", "incorrect", "unsupported", "missed"):
+                require(sum(s[field] for s in groups.values()) == overall[field], "Different unit totals by kind")
+        incomplete = read(EVIDENCE / f"web-{ARGUMENT_RUNS[-1]}.json")
+        diagnostics = {"changed": changing, "by_kind": by_kind, "three_report_agreement": None,
+                       "incomplete": {"run": incomplete["run"], **incomplete["termination"], **incomplete["metrics"]}}
     return {
+        **diagnostics,
         "agreement": summary["exact"],
         "correct_verdicts": summary["correct_verdicts"],
         "counts": [len(summary[k]) for k in ("covered", "sometimes", "always_missing")],
@@ -313,27 +422,28 @@ if __name__ == "__main__":
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--write", nargs=3, metavar="RUN")
     cli.add_argument("--replay", action="store_true")
+    cli.add_argument("--argument", action="store_true", help="Use the series with the row-to-argument check")
     args = cli.parse_args()
+    path = ARGUMENT_SERIES if args.argument else PUBLIC
     if args.write:
-        data = assemble(args.write)
+        data = assemble(args.write, argument=args.argument)
         # JSON round trip normalizes tuple grades to their portable representation.
         data = json.loads(canonical(data))
         data["summary"] = analyze(data)
-        dump_json(PUBLIC, data)
+        dump_json(path, data)
     else:
-        data = read(PUBLIC)
+        data = read(path)
         require(analyze(data) == data["summary"], "Different published stability table")
         if args.replay:
-            rebuilt = assemble(data["series"]["runs"])
+            ids = list(ARGUMENT_RUNS) if args.argument else data["series"]["runs"]
+            rebuilt = assemble(ids, argument=args.argument)
             require(
                 canonical(rebuilt) == canonical({k: data[k] for k in rebuilt}),
                 "Private journal replay differs",
             )
-    print(
-        json.dumps(
-            {
-                k: data["summary"][k]
-                for k in ("exact", "correct_verdicts", "always_missing")
-            }
-        )
-    )
+    summary = data["summary"]
+    if args.argument:
+        print(json.dumps({"attempts": 3, "completed": 2, "three_report_stability": None,
+                          "completed_pair_only": summary["exact"], "correct_verdicts_completed_only": summary["correct_verdicts"]}))
+    else:
+        print(json.dumps({k: summary[k] for k in ("exact", "correct_verdicts", "always_missing")}))

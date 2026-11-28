@@ -1,6 +1,18 @@
 """Q&A citations must come from the new, guarded observation."""
 
+import pytest
+
+from lab_web import review
 from lab_web.review import question_choices, search_excerpts
+
+
+@pytest.mark.parametrize("edge,question", [("other", "Một câu hỏi"), ("rows-process", "Một câu hỏi khác")])
+def test_map_question_must_match_an_edge_in_this_case(monkeypatch, edge, question):
+    graph = {"edges": [{"id": "rows-process", "label": "Đọc → Xử lý"}], "nodes": []}
+    monkeypatch.setattr(review, "case", lambda run: {"graph": graph})
+    monkeypatch.setattr(review, "records_for", lambda run: {})
+    with pytest.raises(ValueError, match="Đường nối"):
+        review.answer({"run": "example", "question": question, "focus_edge": edge}, {}, None)
 
 
 def test_directory_is_not_a_mail_stage_in_a_path_question():

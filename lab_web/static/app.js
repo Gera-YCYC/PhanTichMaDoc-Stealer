@@ -25,7 +25,8 @@ let init,
   closing = false,
   renderVersion = 0,
   request = 0,
-  answerResult = null;
+  answerResult = null,
+  questionDraft = null;
 const fail = (e) => {
   $("#banner").textContent = e.message || String(e);
 };
@@ -77,11 +78,12 @@ function historyView() {
   if (!init.history.length)
     h.append("Chưa có lượt phân tích mẫu thật trên máy.");
 }
-async function load(id) {
+async function load(id, initial = false) {
   const n = ++request;
   const r = await api("case/" + id);
   if (n !== request) return;
   record = r;
+  questionDraft = null;
   item = r.graph.nodes.find((x) => x.refs.length) || r.graph.nodes[0];
   answerResult = r.questions?.at(-1) || null;
   $("#run").textContent = r.run;
@@ -100,6 +102,7 @@ async function load(id) {
     }),
   );
   historyView();
+  if (initial && (view === "evaluation" || view === "yara")) return;
   await render();
 }
 async function check() {
@@ -114,7 +117,11 @@ async function check() {
     (h.ollama ? "sẵn sàng" : "chưa kết nối") +
     "　·　VM " +
     (h.vm ? "cô lập" : "chưa kết nối");
-  $("#health").title = h.model + " · " + h.tools.join(", ");
+  if (h.free_host_bytes != null) {
+    $("#health").textContent += "　·　RAM trống " + (h.free_host_bytes / 1048576).toFixed(0) + " MiB";
+  }
+  $("#health").title = h.model + " · " + h.tools.join(", ") +
+    (h.memory_floor_bytes ? " · Ngưỡng dừng " + h.memory_floor_bytes / 1048576 + " MiB" : "");
 }
 function refs(where, rows, canLabel = false, windows = record?.cited_windows) {
   for (const a of rows) {
@@ -322,6 +329,25 @@ function map(panel) {
     legend.append(s);
   }
   panel.append(legend);
+  const send = record.graph.edges.findIndex(edge => edge.id === "message-send");
+  if (send >= 0) {
+    const route = record.graph.edges.slice(0, send + 1);
+    const gaps = route.filter(edge => edge.status !== "supported");
+    const review = el("details", undefined, "card");
+    review.append(el("summary", "Mắt xích nào còn thiếu trước thao tác gửi?"));
+    review.append(el("p", (route.length - gaps.length) + "/" + route.length +
+      " đường nối có bằng chứng tĩnh trên tuyến đang xét. " +
+      (gaps.length ? "Chọn một đường nối bên dưới để xem agent đã kiểm tra đến đâu."
+        : "Cần kiểm tra dữ liệu ở các điểm nối và đường chạy trước khi kết luận đã truyền.")));
+    for (const edge of gaps) {
+      review.append(button(edge.label + " · " + states[edge.status], async () => {
+        item = edge;
+        await render();
+        $("#panel .split h2")?.scrollIntoView({block:"nearest"});
+      }));
+    }
+    panel.append(review);
+  }
   if (record.graph_origin === "reconstructed")
     panel.append(
       el(
@@ -402,6 +428,12 @@ function map(panel) {
       );
   }
   if (item?.id.includes("-")) {
+    detail.append(button("Hỏi tiếp về đường nối này", async () => {
+      questionDraft = {edge: item.id, text: "Bằng chứng nào nối hai bước " + item.label + "?"};
+      view = "qa";
+      await render();
+      $("#panel textarea")?.focus();
+    }));
     const attempts = record.search_attempts.filter((row) => row.edge === item.id);
     if (attempts.length) {
       const trace = el("details", undefined, "card");
@@ -464,20 +496,36 @@ async function openReportClaim(run, claimId) {
   card.scrollIntoView({block: "start"});
 }
 
-function showCurrentStability(panel, data, table, percent) {
+function showCurrentStability(panel, data, table, percent, title = "Độ ổn định của bản điều tra · ba lượt Python") {
   const block = el("details", undefined, "card");
-  block.append(el("summary", "Độ ổn định của bản điều tra · ba lượt Python"));
+  block.append(el("summary", title));
   const agreement = data.agreement;
+  const failed = data.incomplete;
+  if (failed) {
+    block.append(el("p", "2/3 lượt có báo cáo để chấm. Chưa đo được độ ổn định ba báo cáo theo slide."));
+  }
+  const repeats = failed ? "hai báo cáo hoàn tất" : "cả ba lượt";
   block.append(el("p", agreement.common + "/" + agreement.union +
-    " nhận định xuất hiện ở cả ba lượt (" + percent(agreement.rate) +
-    "). Mẫu số gồm mọi nhận định xuất hiện ít nhất một lần. Ngưỡng của slide là 80%."));
+    " nhận định xuất hiện ở " + repeats + " (" + percent(agreement.rate) + "). " +
+    (failed ? "Đây là đối chiếu riêng hai báo cáo." : "Ngưỡng của slide là 80%.")));
+  const headings = data.runs.map((_, i) => "Lượt " + (i + 1));
+  const scoreRows = data.runs.map(r => [r.run, r.claims, r.correct + "/" + (r.correct + r.missed),
+    percent(r.precision), percent(r.recall), percent(r.f1), r.verdict, r.tools, r.seconds.toFixed(1)]);
+  if (failed) {
+    const link = init.history.some(entry => entry.run === failed.run)
+      ? button(failed.run, async () => { view = "log"; await load(failed.run); })
+      : failed.run;
+    scoreRows.push([link, "Chưa có", "—", "—", "—", "—", "Dừng do RAM", failed.tool_calls, failed.elapsed_s.toFixed(1)]);
+    block.append(el("p", "Lượt 3 còn " + (failed.minimum_observed_host_available_memory_bytes / 1048576).toFixed(1) +
+      " MiB RAM trống, dưới ngưỡng " + failed.memory_floor_bytes / 1048576 +
+      " MiB. Agent đã gọi model " + failed.model_calls + " lần và đã giải phóng model."));
+  }
   table(["Lượt", "Câu giữ", "Mục đúng", "Precision", "Recall", "F1", "Verdict", "Công cụ", "Giây"],
-    data.runs.map(r => [r.run, r.claims, r.correct + "/" + (r.correct + r.missed),
-      percent(r.precision), percent(r.recall), percent(r.f1), r.verdict, r.tools, r.seconds.toFixed(1)]), block);
+    scoreRows, block);
   const [always, sometimes, missed] = data.counts;
   block.append(el("p", "Trong hồ sơ đáp án, " + always + " mục luôn được tìm thấy, " +
-    sometimes + " mục xuất hiện ở một hoặc hai lượt, " + missed + " mục bị bỏ sót cả ba lượt. Verdict đúng " +
-    data.correct_verdicts + "/3 theo nhãn của mẫu."));
+    sometimes + " mục chỉ có ở một phần số báo cáo, " + missed + " mục vắng trong mọi báo cáo hoàn tất. Verdict đúng " +
+    data.correct_verdicts + "/" + data.runs.length + " báo cáo được chấm."));
   const units = el("details");
   units.append(el("summary", "Đối chiếu từng mục của đáp án"));
   const names = {
@@ -488,6 +536,35 @@ function showCurrentStability(panel, data, table, percent) {
     incomplete_source: "Còn thiếu dòng nguồn",
   };
   const localRuns = new Set(init.history.map(entry => entry.run));
+  if (data.changed) {
+    const differences = el("details");
+    differences.append(el("summary", "Nhận định thay đổi giữa các lượt"));
+    differences.append(el("p", "Mỗi hàng là một nhận định được giữ ở một hoặc hai lượt. Cột cuối so cả nội dung và trích dẫn giữa các lần tự duyệt."));
+    const kinds = {behavior: "Hành vi", ioc: "IOC", attack: "ATT&CK"};
+    const diffRows = data.changed.map(change => {
+      const cells = change.steps.map((step, i) => {
+        if (!step.length) return "Chưa đề xuất";
+        const cell = el("div");
+        for (const item of step) {
+          const name = (item.kept ? "Giữ " : "Loại ") + item.id;
+          const run = data.runs[i].run;
+          cell.append(localRuns.has(run) ? button(name, () => openReportClaim(run, item.id)) : el("span", name));
+        }
+        return cell;
+      });
+      return [kinds[change.kind], change.units.join(", ") || "Ngoài mục đã khớp", ...cells,
+        change.same_input_opposite_decisions ? "Cùng câu và nguồn, quyết định khác nhau" : "Chưa thấy quyết định trái nhau trên cùng câu và nguồn"];
+    });
+    table(["Loại", "Mục tham chiếu", ...headings, "Đối chiếu"], diffRows, differences);
+    block.append(differences);
+    const byKind = el("details");
+    byKind.append(el("summary", "Điểm theo hành vi, IOC và ATT&CK"));
+    const groupRows = data.by_kind.flatMap((group, i) => Object.entries(group).map(([k, s]) =>
+      [i + 1, kinds[k], s.correct + "/" + (s.correct + s.missed), s.incorrect, s.unsupported,
+        percent(s.precision), percent(s.recall), percent(s.f1)]));
+    table(["Lượt", "Loại", "Mục đúng", "Sai", "Thiếu căn cứ", "Precision", "Recall", "F1"], groupRows, byKind);
+    block.append(byKind);
+  }
   const unitRows = data.units.map(u => {
     const cells = u.states.map((state, i) => {
       const cell = el("div");
@@ -506,7 +583,7 @@ function showCurrentStability(panel, data, table, percent) {
     });
     return [u.id, u.description, ...cells];
   });
-  table(["Mục", "Mệnh đề tham chiếu", "Lượt 1", "Lượt 2", "Lượt 3"], unitRows, units);
+  table(["Mục", "Mệnh đề tham chiếu", ...headings], unitRows, units);
   block.append(units);
   panel.append(block);
 }
@@ -552,6 +629,39 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   };
   selector.className = "evaluation-sample";
   label.append(selector);
+  const verdictTrial = data.verdict_format_trial?.find(r =>
+    r.sample === ({python:"public_python2024.bin", gomorrah:"public_gomorrah.bin", mercurial:"public_mercurial.bin"})[sample]);
+  if (verdictTrial) {
+    const test = el("details", undefined, "card");
+    test.append(el("summary", "Đối chứng cách Qwen dẫn nguồn cho verdict"),
+      el("p", "Hai cách dùng cùng các câu hành vi đã giữ trên mẫu " + names[sample] +
+        ". Nhãn tham chiếu là " + verdictTrial.truth + ". Tập kiểm có hai cặp câu–vai trò có căn cứ và ba cặp thiếu căn cứ cho mỗi mẫu."));
+    const lines = [["Báo cáo gốc", verdictTrial.baseline], ["Thử chọn nguồn theo vai trò", verdictTrial.trial]];
+    table(["Cách chọn", "Qwen đề xuất", "Sau kiểm tra", "Vai trò có ID ngoài danh sách", "Chọn đúng trong 2 cặp", "Chọn nhầm trong 3 cặp"],
+      lines.map(([name, arm]) => [name, arm.proposed, arm.final, arm.invalid_roles,
+        arm.positive_selected + "/" + arm.positives, arm.negative_selected + "/" + arm.negatives]), test);
+    test.append(el("small", "Cột chọn đúng chỉ đếm hai ví dụ đã chốt. Một vai trò có thể có câu khác làm chứng. Kết quả thử được lưu riêng với báo cáo gốc."));
+    panel.append(test);
+  }
+  if (data.argument_batch) {
+    const batch = data.argument_batch;
+    const group = el("details", undefined, "card");
+    group.append(el("summary", "Cùng bản agent trên Python và hai mẫu .NET"),
+      el("p", batch.completed + "/3 lượt hoàn tất. Bộ thử đã chốt thứ tự mẫu trước khi chạy .NET."));
+    const rows = batch.runs.map(r => {
+      const link = init.history.some(entry => entry.run === r.run)
+        ? button(r.run, async () => { view = r.score ? "claims" : "log"; await load(r.run); }) : r.run;
+      return [r.sample, link, r.score ? "Có báo cáo" : "Lượt bị ngắt", r.score ? r.score.correct + "/" + r.units : "—",
+        percent(r.score?.precision), percent(r.score?.recall), percent(r.score?.f1), r.verdict ?? "Chưa chốt", r.tool_calls, r.seconds.toFixed(1)];
+    });
+    table(["Mẫu", "Lượt", "Trạng thái", "Mục đúng", "Precision", "Recall", "F1", "Verdict", "Gọi công cụ", "Giây"], rows, group);
+    if (batch.score_completed_only) {
+      const s = batch.score_completed_only;
+      group.append(el("p", "Gộp trên các báo cáo hoàn tất: " + s.correct + "/" + (s.correct + s.missed) +
+        " mục đúng, F1 " + percent(s.f1) + ". Cả ba hồ sơ tham chiếu có " + batch.attempted_reference_units + " mục."));
+    }
+    panel.append(group);
+  }
   if (sample === "python" && data.argument_review) {
     const a = data.argument_review;
     const proof = el("details", undefined, "card");
@@ -569,6 +679,8 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
       "Các trích đoạn chỉ mở được trên máy lưu nhật ký gốc. Chọn mẫu và chạy điều tra để tạo hồ sơ mới trên máy này."));
     panel.append(proof);
   }
+  if (sample === "python" && data.argument_stability)
+    showCurrentStability(panel, data.argument_stability, table, percent, "Ba lượt cùng phiên bản kiểm tra đối số");
   if (sample === "python" && data.current_stability)
     showCurrentStability(panel, data.current_stability, table, percent);
   panel.append(
@@ -1170,15 +1282,42 @@ async function render() {
         " nhóm truy vấn. Tỷ lệ vị trí đầu tiên phù hợp khi lấy kết quả theo thứ tự xuất hiện là " +
         fmt(100 * score.first_occurrence_hit_at_1) + "%, sau xếp hạng là " + fmt(100 * score.learned_hit_at_1) + "%."));
     }
-    receipt.append(el("p", "Tập test chỉ có một nhóm truy vấn. Hiệu quả đối với báo cáo cuối cần đo riêng."),
+    receipt.append(el("p", "Tập test của riêng bộ xếp hạng có một nhóm truy vấn."),
       el("small", "SHA-256 checkpoint " + train.model_sha256));
     panel.append(receipt);
+    const paired = el("details", undefined, "card");
+    paired.append(el("summary", "Bộ xếp hạng có cải thiện báo cáo cuối không?"),
+      el("p", "Hai lượt AgentTesla dùng cùng mẫu, model, mã lõi và cấu hình, chỉ đổi thứ tự kết quả tìm mã."));
+    for (const [i, arm] of train.comparison.entries()) {
+      const score = arm.score;
+      paired.append(el("h3", i === 0 ? "Theo thứ tự dòng" : "Dùng bộ xếp hạng đã train"),
+        el("p", score.correct_units + "/" + score.reference_units + " mục đúng · F1 " + fmt(100 * score.f1) +
+          "% · " + arm.hits + "/" + arm.searches + " lần tìm có kết quả · " + arm.tools +
+          " lần gọi công cụ · " + fmt(arm.seconds) + " giây · verdict " + arm.verdict));
+      const local = init.history.some(entry => entry.run === arm.run);
+      paired.append(local ? button(arm.run, async () => { view = "claims"; await load(arm.run); }) : el("small", arm.run));
+    }
+    paired.append(el("p", "Hai lượt cùng phủ 2/7 mục tham chiếu. Cần kiểm lại trên mẫu giữ riêng để đánh giá khả năng áp dụng cho mẫu mới."));
+    panel.append(paired);
   }
   if (!record) {
     panel.append(
       el("p", "Chọn một lượt đã chạy hoặc bắt đầu điều tra mẫu trong VM."),
     );
     return;
+  }
+  if (record.termination && ["log", "claims", "map"].includes(view)) {
+    const t = record.termination;
+    const interrupted = el("section", undefined, "card");
+    interrupted.append(el("strong", "Lượt điều tra chưa hoàn tất"));
+    const free = record.metrics.minimum_observed_host_available_memory_bytes;
+    if (t.error_class === "ResourceBudgetExceeded" && free != null && free < t.memory_floor_bytes) {
+      interrupted.append(el("p", "Lượng RAM trống thấp nhất ghi được là " + (free / 1048576).toFixed(1) +
+        " MiB. Ngưỡng dừng là " + t.memory_floor_bytes / 1048576 + " MiB."));
+    }
+    if (t.last_model_phase) interrupted.append(el("p", "Pha cuối có phản hồi từ model · " + t.last_model_phase));
+    if (t.model_unloaded) interrupted.append(el("small", "Nhật ký đã ghi sự kiện giải phóng model."));
+    panel.append(interrupted);
   }
   if (view === "map") map(panel);
   if (view === "labels") {
@@ -1194,6 +1333,26 @@ async function render() {
       panel.append("Lượt này chưa có điểm tìm kiếm đủ ngữ cảnh.");
   }
   if (view === "claims") {
+    if (record.verdict_trace) {
+      const v = record.verdict_trace, section = el("details", undefined, "card");
+      section.append(el("summary", "Vì sao báo cáo đưa ra verdict này?"),
+        el("p", "Qwen đề xuất " + v.proposed + ". Báo cáo sau kiểm tra ghi " + v.final + "."),
+        el("p", "Qwen gán vai trò cho các câu dưới đây. Một ID hợp lệ cho biết câu hành vi đã được giữ và được verdict trích dẫn. Bấm vào câu để kiểm tra ý nghĩa trên nguồn."));
+      const labels = {sensitive_collection_claim_ids: "Thu thập dữ liệu nhạy cảm",
+        outbound_transfer_claim_ids: "Gọi thao tác gửi", data_link_claim_ids: "Liên hệ dữ liệu thu thập với thao tác gửi"};
+      const kept = new Set(record.claims.map(c => c.id));
+      for (const role of v.roles) {
+        const line = el("div", undefined, "line");
+        section.append(el("strong", labels[role.role]));
+        for (const id of role.ids) {
+          const name = id + (role.unbound.includes(id) ? " · ngoài danh sách dẫn hợp lệ" : "");
+          line.append(kept.has(id) ? button(name, () => openReportClaim(record.run, id)) : el("span", name));
+        }
+        section.append(role.ids.length ? line : el("p", "Qwen để trống vai trò này."));
+      }
+      section.append(el("small", "Danh sách nhận định dùng cho verdict · " + (v.citations.join(", ") || "trống")));
+      panel.append(section);
+    }
     if (record.can_supplement) {
       const block = el("details", undefined, "card");
       block.append(el("summary", "Điều tra bổ sung trên mã .NET"));
@@ -1339,17 +1498,20 @@ async function render() {
     q.placeholder =
       "Ví dụ: Có chứng cứ cho thấy dữ liệu truy vấn được đọc lại không?";
     q.maxLength = 300;
+    if (questionDraft) q.value = questionDraft.text;
     const act = button("Tra cứu chứng cứ", async () => {
       const run = record.run;
       act.disabled = true;
       try {
-        const a = await api("question", { run, question: q.value });
+        const focused = q.value === questionDraft?.text ? {focus_edge: questionDraft.edge} : {};
+        const a = await api("question", { run, question: q.value, ...focused });
         if (record.run === run) {
           if (
             !record.questions.some((existing) => existing.journal === a.journal)
           )
             record.questions.push(a);
           answerResult = a;
+          questionDraft = null;
           if (view === "qa") render();
         }
       } finally {
@@ -1425,7 +1587,7 @@ async function poll() {
         " · " +
         (job.lines.at(-1) || job.kind)
       : job.error || (job.yara_run ? "Đã ghi lượt YARA " + job.yara_run : "");
-    if (!job.active && old.active && !["claim-review", "dotnet-supplement", "field-review"].includes(old.kind)) {
+    if (!job.active && old.active && !["question", "claim-review", "dotnet-supplement", "field-review"].includes(old.kind)) {
       await bootstrap();
       if (job.run) await load(job.run);
       else await render();
@@ -1465,13 +1627,11 @@ document.querySelectorAll("nav button").forEach(
 );
 try {
   await bootstrap();
-  await check();
-  // A user can open a case while the first live health check is in flight.
-  // Do not replace that selection or collapse an already opened citation.
-  if (!request) {
-    if (init.history.length) await load(init.history[0].run);
+  if (!request && !renderVersion) {
+    if (init.history.length) await load(init.history[0].run, true);
     else await render();
   }
+  await check();
   await poll();
   setInterval(() => poll().catch(fail), 2000);
 } catch (e) {

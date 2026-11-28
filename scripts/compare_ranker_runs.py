@@ -39,12 +39,14 @@ def arm(name, baseline):
             'successful_tools':receipt['successful_tools'],'metrics':receipt['metrics']}
 
 
-def reviewed_metrics(row, directory):
+def reviewed_metrics(row, directory, *, verify_private=True):
     folder = directory / row['run_id']
     atomic = json.loads((folder / 'atomic-score.json').read_bytes())
     claims = json.loads((folder / 'claim-score.json').read_bytes())
     audit = json.loads((folder / 'source-audit.json').read_bytes())
-    raw_digest = hashlib.sha256((ROOT / 'runs' / row['run_id'] / 'report.model-raw.json').read_bytes()).hexdigest()
+    raw_digest = audit['raw_report_sha256']
+    if verify_private:
+        raw_digest = hashlib.sha256((ROOT / 'runs' / row['run_id'] / 'report.model-raw.json').read_bytes()).hexdigest()
     if (any(item['run_id'] != row['run_id'] or item['raw_report_sha256'] != raw_digest
             for item in (atomic, claims, audit)) or audit['journal_sha256'] != row['journal_sha256']
             or audit['sample_sha256'] != row['sample_sha256']

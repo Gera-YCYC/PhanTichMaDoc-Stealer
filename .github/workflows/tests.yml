@@ -31,6 +31,9 @@ jobs:
           python -m eval.transfer_report_audit
           python -m eval.staging_path_audit
           python -m eval.report_series
+          python -m eval.report_series --argument
+          python -m eval.cross_format
           python -m eval.parts_audit
           python -m eval.argument_review
+          python -m eval.verdict_trial --portable
       - run: python -m compileall -q stealer_agent vm_tools training

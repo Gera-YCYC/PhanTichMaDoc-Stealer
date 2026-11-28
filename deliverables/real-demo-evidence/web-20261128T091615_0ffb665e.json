@@ -1,0 +1,451 @@
+{
+  "argument_browser": {
+    "step": 6,
+    "backend": "static-row-argument/1",
+    "proof_id": "arg_e35fa887528b96bd",
+    "rows_sha256": "d7a92dbb9fc5b21d989f0c7fff232df30626afa29444ed85aff914ca050c6de1",
+    "roles": {
+      "query": 142,
+      "rows": 143,
+      "argument": 144,
+      "parameter": 69,
+      "operation": 73
+    },
+    "index_zero_based": 2,
+    "argument_zero_based": 0,
+    "spans": [
+      [
+        140,
+        144,
+        "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+      ],
+      [
+        69,
+        75,
+        "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+      ],
+      [
+        9,
+        9,
+        "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+      ],
+      [
+        12,
+        12,
+        "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+      ]
+    ],
+    "screens": [
+      {
+        "width": 390,
+        "graph_spans": 4,
+        "report_spans": 4
+      },
+      {
+        "width": 1360,
+        "graph_spans": 4,
+        "report_spans": 4
+      }
+    ],
+    "claim": "C31",
+    "retained": true
+  },
+  "run": "20261128T091615_0ffb665e",
+  "sample": "public_python2024.bin",
+  "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "eb067519599a03b3f7b1207863c6bba42be0576548e51bef339a3cc265a832e6",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_needs_review",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 551.7625,
+    "model_calls": 43,
+    "tool_calls": 17,
+    "tool_errors": 1,
+    "prompt_tokens": 82414,
+    "completion_tokens": 3163,
+    "host_peak_rss_bytes": 29298688,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 443621376,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decode_python_literals",
+    "disassemble_python",
+    "identify",
+    "unpack_pyinstaller"
+  ],
+  "journal_events": 255,
+  "journal_sha256": "e6befd70b51d1f2cee03f3fae6105b75928a5266576fce6503f7df4505c83ffa",
+  "gaps": [
+    {
+      "step": 6,
+      "edge": "rows-process"
+    },
+    {
+      "step": 6,
+      "edge": "rows-process",
+      "status": "supported",
+      "hit_count": 5
+    },
+    {
+      "step": 7,
+      "edge": "write-archive"
+    },
+    {
+      "step": 7,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 8,
+      "edge": "write-archive"
+    },
+    {
+      "step": 8,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 9,
+      "edge": "message-send"
+    },
+    {
+      "step": 9,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 10,
+      "edge": "message-send"
+    },
+    {
+      "step": 10,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 11,
+      "edge": "message-send"
+    },
+    {
+      "step": 11,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 12,
+      "edge": "message-send"
+    },
+    {
+      "step": 12,
+      "edge": "message-send",
+      "status": "supported",
+      "hit_count": 1
+    },
+    {
+      "step": 13,
+      "edge": "write-archive"
+    },
+    {
+      "step": 13,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 8
+    },
+    {
+      "step": 15,
+      "edge": "write-archive"
+    },
+    {
+      "step": 15,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 6
+    },
+    {
+      "step": 16,
+      "edge": "write-archive"
+    },
+    {
+      "step": 16,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 17,
+      "edge": "write-archive"
+    },
+    {
+      "step": 17,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 1
+    }
+  ],
+  "accepted_claims": 34,
+  "accepted_claim_keys_sha256": "367326602473bdde293ec5706a1b05cb5d305120e6ee3b3178da16164a1f6efe",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 142,
+          "end": 142
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 143,
+          "end": 143
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 247,
+          "end": 247
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 248,
+          "end": 248
+        }
+      ]
+    },
+    {
+      "id": "rows-process",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 140,
+          "end": 144
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 69,
+          "end": 75
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 9,
+          "end": 9
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 12,
+          "end": 12
+        }
+      ]
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "path_check": {
+        "relation": "writer_path_beneath_archive_input",
+        "possible_names": 16,
+        "unresolved": "file_presence_at_archive_time",
+        "spans": [
+          [
+            10,
+            10,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            25,
+            25,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            27,
+            45,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            116,
+            116,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            122,
+            124,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            262,
+            267,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            276,
+            276,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            279,
+            279,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            292,
+            292,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            294,
+            294,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            299,
+            299,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            308,
+            308,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ],
+          [
+            315,
+            315,
+            "f8b947fec4fcb48a00d5c845ecd1edc45f744ef0db4599eb7b20163212c4c6af"
+          ]
+        ]
+      },
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 276,
+          "end": 276
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 278,
+          "end": 278
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 279,
+          "end": 279
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 286,
+          "end": 286
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 315,
+          "end": 315
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 323,
+          "end": 323
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 82,
+          "end": 82
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 96,
+          "end": 96
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 98,
+          "end": 98
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 102,
+          "end": 102
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 103,
+          "end": 103
+        }
+      ]
+    },
+    {
+      "id": "message-send",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 103,
+          "end": 103
+        },
+        {
+          "eid": "ev_33ac393c59204e9d",
+          "line": 109,
+          "end": 109
+        }
+      ]
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_03"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [],
+  "ranking_anchors_for_review": 19,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

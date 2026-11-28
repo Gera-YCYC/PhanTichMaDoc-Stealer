@@ -1,0 +1,101 @@
+{
+  "protocol_sha256": "1b1531fa890e081137cd032a3f3f2fe0b3fa56778988f1d2c9a8d4d0f0ce72de",
+  "runs": [
+    {
+      "run": "20261128T092538_136e21fd",
+      "sample": "public_python2024.bin",
+      "truth": "malicious",
+      "status": "incomplete",
+      "termination": {
+        "error_class": "ResourceBudgetExceeded",
+        "last_model_phase": "operation_review",
+        "model_unloaded": true,
+        "memory_floor_bytes": 268435456
+      },
+      "units": 36,
+      "verdict": null,
+      "score": null,
+      "tools": [
+        "decode_python_literals",
+        "disassemble_python",
+        "identify",
+        "unpack_pyinstaller"
+      ],
+      "tool_calls": 17,
+      "seconds": 345.699,
+      "model_calls": 34,
+      "yara": [],
+      "journal_sha256": "ec4310316cd157bbb908a7a2fd62f8e004edb73787a5685af40cb08c226b6d4a"
+    },
+    {
+      "run": "20261128T093604_7feb877d",
+      "sample": "public_gomorrah.bin",
+      "truth": "malicious",
+      "status": "completed_with_rejected_claims",
+      "termination": null,
+      "units": 40,
+      "verdict": "suspicious",
+      "score": {
+        "correct": 12,
+        "incorrect": 0,
+        "unsupported": 3,
+        "missed": 28,
+        "precision": 0.8,
+        "recall": 0.3,
+        "f1": 0.43636363636363634
+      },
+      "tools": [
+        "decompile_dotnet",
+        "identify"
+      ],
+      "tool_calls": 17,
+      "seconds": 512.7986,
+      "model_calls": 51,
+      "yara": [
+        true
+      ],
+      "journal_sha256": "b5fe3a60a78b99cd0ca4f6bb8088bbba3ef1f5af2aa664729617de1f20eb40f7"
+    },
+    {
+      "run": "20261128T094444_607b0b2d",
+      "sample": "public_mercurial.bin",
+      "truth": "malicious",
+      "status": "completed_with_rejected_claims",
+      "termination": null,
+      "units": 21,
+      "verdict": "suspicious",
+      "score": {
+        "correct": 5,
+        "incorrect": 0,
+        "unsupported": 1,
+        "missed": 16,
+        "precision": 0.8333333333333334,
+        "recall": 0.23809523809523808,
+        "f1": 0.37037037037037035
+      },
+      "tools": [
+        "decompile_dotnet",
+        "identify"
+      ],
+      "tool_calls": 17,
+      "seconds": 460.4645,
+      "model_calls": 46,
+      "yara": [
+        true
+      ],
+      "journal_sha256": "3ce5dd2a530f1baaf1f0c29ad1dc9343703bb9f47e6d5994190c67e8912e85a7"
+    }
+  ],
+  "completed": 2,
+  "score_completed_only": {
+    "correct": 17,
+    "incorrect": 0,
+    "unsupported": 4,
+    "missed": 44,
+    "precision": 0.8095238095238095,
+    "recall": 0.2786885245901639,
+    "f1": 0.4146341463414634
+  },
+  "correct_final_verdicts": 0,
+  "attempted_reference_units": 97
+}

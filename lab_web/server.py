@@ -13,6 +13,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from .cases import ROOT, case, directory, history, read, samples
 from stealer_agent.transport import OllamaClient, ToolClient
+from stealer_agent.telemetry import available_memory_bytes
 
 CFG = "config/host.investigation.example.json"
 STATIC = Path(__file__).with_name("static")
@@ -34,7 +35,24 @@ def training_record():
     loss = read(folder / "loss.json")
     if [item["epoch"] for item in loss] != list(range(config["epochs"] + 1)):
         raise ValueError("Chuỗi bước train bị thiếu.")
-    return {"run": receipt["run_id"], "config": config, "metrics":receipt["metrics"],
+    from scripts.compare_ranker_runs import reviewed_metrics
+    base = ROOT / "deliverables/real-demo-evidence"
+    pair = read(base / "agenttesla-ranker-ablation.json")
+    before, after = pair["before"], pair["after"]
+    if (before["run_id"] == after["run_id"] or before["backend_ranker_sha256"] is not None
+            or after["backend_ranker_sha256"] != receipt["model_sha256"]
+            or any(before[k] != after[k] for k in ("sample_sha256", "shared_config_sha256", "source_manifest_sha256", "model_digest"))
+            or before["source_review"]["reference_sha256"] != after["source_review"]["reference_sha256"]):
+        raise ValueError("Điều kiện đối chứng của hai lượt xếp hạng khác nhau.")
+    comparison = []
+    for arm in (before, after):
+        grades = reviewed_metrics(arm, base, verify_private=False)
+        if grades != arm["source_review"]:
+            raise ValueError("Điểm của lượt xếp hạng khác hồ sơ nguồn.")
+        comparison.append({"run": arm["run_id"], "verdict": arm["verdict"], "searches": arm["code_searches"],
+                           "hits": arm["nonempty_code_searches"], "tools": arm["metrics"]["tool_calls"],
+                           "seconds": arm["metrics"]["elapsed_s"], "score": grades["after_filter"]})
+    return {"run": receipt["run_id"], "comparison": comparison, "config": config, "metrics":receipt["metrics"],
             "model_sha256": receipt["model_sha256"], "dataset_sha256": receipt["dataset_sha256"],
             "loss_start":loss[0]["train_binary_cross_entropy_plus_l2"],
             "loss_end":loss[-1]["train_binary_cross_entropy_plus_l2"]}
@@ -46,7 +64,9 @@ def token():
 
 def health():
     cfg = {**read(ROOT / CFG), "timeout_s": 3}
-    result = {"model": cfg["model"], "ollama": False, "vm": False, "tools": []}
+    result = {"model": cfg["model"], "ollama": False, "vm": False, "tools": [],
+              "free_host_bytes": available_memory_bytes(),
+              "memory_floor_bytes": cfg.get("minimum_free_ram_mb", 256) * 1024 * 1024}
     try:
         info = OllamaClient(cfg).inspect()
         result.update(ollama=True, digest=info["digest"])
@@ -347,8 +367,10 @@ class Handler(BaseHTTPRequestHandler):
                 return self.reply(200, training_record())
             if p == "/api/evaluation":
                 from eval.argument_review import review as argument_review
+                from eval.cross_format import published as cross_format
                 from eval.parts_audit import PUBLIC as parts_receipt, score as score_parts, web_details
-                from eval.report_series import web_results
+                from eval.report_series import ARGUMENT_SERIES, web_results
+                from eval.verdict_trial import PUBLIC as verdict_receipt, score as score_verdict
                 from eval.web_report_quality import current_batch, dotnet_profiles, reports
 
                 base = ROOT / "deliverables/real-demo-evidence"
@@ -393,6 +415,9 @@ class Handler(BaseHTTPRequestHandler):
                         ],
                         "stability": read(repeats) if repeats.exists() else None,
                         "current_stability": web_results(),
+                        "argument_stability": web_results(ARGUMENT_SERIES),
+                        "argument_batch": cross_format(),
+                        "verdict_format_trial": score_verdict(read(verdict_receipt)),
                         "argument_review": argument_review(),
                         "split_scores": score_parts(parts),
                         "split_details": web_details(parts),

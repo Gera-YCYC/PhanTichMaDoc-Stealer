@@ -2,6 +2,7 @@
 import pytest
 
 from stealer_agent.verdict_support import SUPPORT_KEYS, enforce_stealer_support
+from lab_web.verdict import trace
 
 
 def candidate():
@@ -42,3 +43,17 @@ def test_complete_roles_do_not_promote_a_lower_verdict_or_imply_semantic_truth()
     checked = enforce_stealer_support(raw, roles)
     assert checked['verdict'] == 'inconclusive'
     assert 'not independent' in checked['verdict_support_scope']
+
+
+def test_web_shows_original_decision_and_unbound_role_ids():
+    raw = candidate()
+    raw["verdict_claim_ids"] = ["C1", "C2"]
+    checked = enforce_stealer_support(raw, dict(zip(SUPPORT_KEYS, [["C1"], [], ["C3"]])))
+    summary = trace(checked)
+    assert (summary["proposed"], summary["final"]) == ("malicious", "suspicious")
+    assert [r["state"] for r in summary["roles"]] == ["cited", "missing", "invalid"]
+    assert summary["roles"][-1]["unbound"] == ["C3"]
+    checked["verdict_support_invalid"] = []
+    with pytest.raises(ValueError):
+        trace(checked)
+    assert trace({}) is None

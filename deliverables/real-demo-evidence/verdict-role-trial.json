@@ -1,0 +1,364 @@
+{
+  "trial": "trial_7d384e133ed7",
+  "journal_sha256": "bed2b2a1c83639aa13a05db06cb83cbdc314526c61c1ece1b68f0a1527a011d7",
+  "config_sha256": "9ec2b1314da1ec45e610f1a65537d1ff2eca024e5b108841b50c3a64aa8050ee",
+  "controls_sha256": "d94aff447e9da59fe4eb1d72f610680d6325cdf45cab4f40b1ab41910563e2cc",
+  "cases": [
+    {
+      "run": "20261128T085636_4eaac445",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "parent_journal_sha256": "9a4400bf2e4afb39dc95572992389fa164add3ee8311bfc904ac956be145ea34",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "behavior_payload_sha256": "81a1f1ed2c23f3887f85a4341e8dd9b7ff8b0fbb79c7770ddb7f2aed144dbc59",
+      "baseline_request_sha256": "42bf7e91cb41b508574297adb5ce544c034b97a4fc3761199aaaf097de550be7",
+      "trial_prompt_sha256": "38a4af1ad677a35c79a427f1ac25991fc85bff3e0d25ba1ef070cda158c05b3a",
+      "schema_sha256": "a18602582b487c66492d6710aca2cd29a2d97955123f7fdcdd16b606f24deb77",
+      "baseline": {
+        "proposed": "suspicious",
+        "final": "suspicious",
+        "citations": [
+          "C1",
+          "C2",
+          "C4",
+          "C5",
+          "C6",
+          "C8",
+          "C9",
+          "C10",
+          "C12",
+          "C13"
+        ],
+        "roles": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "ids": [
+              "C6",
+              "C13",
+              "C34"
+            ],
+            "unbound": [
+              "C34"
+            ],
+            "state": "invalid"
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "ids": [
+              "C1",
+              "C2",
+              "C22",
+              "C23",
+              "C24",
+              "C25",
+              "C27",
+              "C28",
+              "C29",
+              "C30"
+            ],
+            "unbound": [
+              "C22",
+              "C23",
+              "C24",
+              "C25",
+              "C27",
+              "C28",
+              "C29",
+              "C30"
+            ],
+            "state": "invalid"
+          },
+          {
+            "role": "data_link_claim_ids",
+            "ids": [
+              "C1",
+              "C2",
+              "C6",
+              "C13",
+              "C22",
+              "C23",
+              "C24",
+              "C25",
+              "C34"
+            ],
+            "unbound": [
+              "C22",
+              "C23",
+              "C24",
+              "C25",
+              "C34"
+            ],
+            "state": "invalid"
+          }
+        ],
+        "latency_s": 23.7958,
+        "prompt_tokens": 1800,
+        "completion_tokens": 191
+      },
+      "trial": {
+        "proposed": "malicious",
+        "final": "malicious",
+        "citations": [
+          "C1",
+          "C4",
+          "C6",
+          "C2",
+          "C22"
+        ],
+        "roles": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "ids": [
+              "C1",
+              "C4",
+              "C6"
+            ],
+            "unbound": [],
+            "state": "cited"
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "ids": [
+              "C2",
+              "C22"
+            ],
+            "unbound": [],
+            "state": "cited"
+          },
+          {
+            "role": "data_link_claim_ids",
+            "ids": [
+              "C1",
+              "C2"
+            ],
+            "unbound": [],
+            "state": "cited"
+          }
+        ],
+        "latency_s": 23.6155,
+        "prompt_tokens": 1699,
+        "completion_tokens": 62
+      }
+    },
+    {
+      "run": "20261128T030521_c76fc69a",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "parent_journal_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "behavior_payload_sha256": "88090d76a06b12d5ceca674bddcc1cc3dccc6701d9fa286684db8c38685715c4",
+      "baseline_request_sha256": "046b979ce0f34b65be8835b75467efe1ac7b5709d4aa8bd243a99b663035eba6",
+      "trial_prompt_sha256": "d61216b6c3c6b61b799f668d039bf95054b771af2d72194f3f18af60289f3166",
+      "schema_sha256": "748b2131574803f6d9db6c3d62a7522a8b882baf46259b3954acefdbe9584080",
+      "baseline": {
+        "proposed": "suspicious",
+        "final": "suspicious",
+        "citations": [
+          "C2",
+          "C4",
+          "C6",
+          "C8",
+          "C9",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C15"
+        ],
+        "roles": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "ids": [
+              "C22",
+              "C25",
+              "C12"
+            ],
+            "unbound": [
+              "C22",
+              "C25"
+            ],
+            "state": "invalid"
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "ids": [
+              "C1",
+              "C7",
+              "C9",
+              "C11",
+              "C18",
+              "C21",
+              "C22",
+              "C25",
+              "C27"
+            ],
+            "unbound": [
+              "C1",
+              "C7",
+              "C18",
+              "C21",
+              "C22",
+              "C25",
+              "C27"
+            ],
+            "state": "invalid"
+          },
+          {
+            "role": "data_link_claim_ids",
+            "ids": [
+              "C2",
+              "C4",
+              "C6",
+              "C8",
+              "C13",
+              "C15"
+            ],
+            "unbound": [],
+            "state": "cited"
+          }
+        ],
+        "latency_s": 24.9674,
+        "prompt_tokens": 1303,
+        "completion_tokens": 171
+      },
+      "trial": {
+        "proposed": "malicious",
+        "final": "malicious",
+        "citations": [
+          "C1",
+          "C7",
+          "C9"
+        ],
+        "roles": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "ids": [
+              "C1",
+              "C7",
+              "C9"
+            ],
+            "unbound": [],
+            "state": "cited"
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "ids": [
+              "C1",
+              "C7",
+              "C9"
+            ],
+            "unbound": [],
+            "state": "cited"
+          },
+          {
+            "role": "data_link_claim_ids",
+            "ids": [
+              "C1",
+              "C7",
+              "C9"
+            ],
+            "unbound": [],
+            "state": "cited"
+          }
+        ],
+        "latency_s": 8.4314,
+        "prompt_tokens": 1202,
+        "completion_tokens": 69
+      }
+    },
+    {
+      "run": "20261128T031606_ca91de35",
+      "sample": "public_mercurial.bin",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "parent_journal_sha256": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "behavior_payload_sha256": "b2b0d7adeeb3da4f7abdc2353749e28b7f9383a715557af62f259d83157cfe4d",
+      "baseline_request_sha256": "f79e7ca09532a48a8408626a375b3ad5deb23d3fe9c56b3ae0d97e8ef61626ba",
+      "trial_prompt_sha256": "89d10cbff73278d74684e5668b5d8293d19f8d5bca440bff4ea52c83e0d7a6c9",
+      "schema_sha256": "7bcd7662af39f45c6541fccc76c537150d73a39bea495126e93b22c0a482864d",
+      "baseline": {
+        "proposed": "suspicious",
+        "final": "suspicious",
+        "citations": [
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C9",
+          "C10",
+          "C11",
+          "C13",
+          "C14",
+          "C15"
+        ],
+        "roles": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "ids": [
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C9",
+              "C13",
+              "C14"
+            ],
+            "unbound": [],
+            "state": "cited"
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "ids": [],
+            "unbound": [],
+            "state": "missing"
+          },
+          {
+            "role": "data_link_claim_ids",
+            "ids": [],
+            "unbound": [],
+            "state": "missing"
+          }
+        ],
+        "latency_s": 10.55,
+        "prompt_tokens": 889,
+        "completion_tokens": 120
+      },
+      "trial": {
+        "proposed": "malicious",
+        "final": "suspicious",
+        "citations": [
+          "C1",
+          "C3",
+          "C9"
+        ],
+        "roles": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "ids": [
+              "C1",
+              "C3",
+              "C9"
+            ],
+            "unbound": [],
+            "state": "cited"
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "ids": [],
+            "unbound": [],
+            "state": "missing"
+          },
+          {
+            "role": "data_link_claim_ids",
+            "ids": [],
+            "unbound": [],
+            "state": "missing"
+          }
+        ],
+        "latency_s": 4.8549,
+        "prompt_tokens": 788,
+        "completion_tokens": 47
+      }
+    }
+  ]
+}

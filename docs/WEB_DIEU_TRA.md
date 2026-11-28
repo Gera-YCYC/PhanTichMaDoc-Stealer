@@ -1,5 +1,9 @@
 # Demo điều tra bằng trình duyệt
 
+**Bản đồ chứng cứ** có mục **Mắt xích nào còn thiếu trước thao tác gửi?**. Chọn một mắt xích để đọc trạng thái, dấu hiệu và lịch sử tìm kiếm trên mẫu đang mở. **Gán nhãn** có phép đối chiếu hai báo cáo AgentTesla trước/sau train bộ xếp hạng. Hai lượt đều tìm được 2/7 mục, F1 từ 33,33% lên 36,36%. [Hai lượt dùng chung điều kiện](../training/RANKER_EXPERIMENT.md)
+
+Để trả lời câu hỏi “vì sao kết luận như vậy?”, vào **Nhận định**, mở các vai trò làm căn cứ cho verdict, rồi bấm mã câu. Trong **Đánh giá**, có thể mở bằng chứng của từng lượt hoặc nhật ký một lượt bị ngắt. [Trình tự bấm và số liệu thực](DOI_CHIEU_KET_LUAN.md)
+
 Trên Windows đã dựng lab, chạy `.\scripts\Start-Web.ps1`, mở `http://127.0.0.1:4180`, chọn **public_python2024.bin** rồi bấm **Chạy điều tra**. Sau khi có báo cáo, mở **Đọc kết quả truy vấn → Xử lý dữ liệu** trên bản đồ. Đối chiếu vị trí truyền đối số, vị trí sử dụng nó và nội dung nhận định được giữ trong báo cáo. Trong **Đánh giá** có bảng so sánh với ba lượt trước cùng mẫu. [Các bước đối chiếu và kết quả](KIEM_TRA_DOI_SO.md)
 
 Trong **Nhận định**, mở một câu bị loại và chọn **Tách và kiểm từng ý**. Mỗi ý có quyết định và trích dẫn riêng. Trên hồ sơ Python C7, so sánh quyết định của Qwen với phép kiểm khoảng chỉ số ngay bên cạnh dòng nguồn. [Hai ca demo, cách chạy lại và kết quả đối chứng](KIEM_TUNG_Y.md)

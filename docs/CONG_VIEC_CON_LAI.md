@@ -1,5 +1,7 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+Người phụ trách môi trường cần tái lập ba lượt liên tiếp trong điều kiện đủ RAM và ghi cả lượt dừng. Người phụ trách agent cần kiểm câu được gán cho vai trò nối dữ liệu với nơi gửi, đặc biệt trên Gomorrah. Người phụ trách đánh giá cần chốt trước mẫu độc và lành độc lập, so cả verdict lẫn dẫn chứng đúng. Dùng nguyên ngưỡng slide. [Lần ngắt và kết quả thực nghiệm](DOI_CHIEU_KET_LUAN.md)
+
 **Sau khi có bằng chứng A09 trên Python**, nhóm điều tra cần kiểm tiếp phần dữ liệu từ xử lý tới thao tác ghi, và việc tệp còn tồn tại khi nén. Nhóm đánh giá khóa cấu hình và đáp án trước lượt thử độc lập trên .NET/Python, chấm đủ các mục bỏ sót và verdict. Nhóm phụ trách ranker cần nhãn mới của người đọc nguồn, đo cả chất lượng truy xuất lẫn báo cáo cuối. Thành viên thứ hai chạy hướng dẫn cài đặt trên máy của mình, lưu mã lượt, kết quả YARA và trạng thái tắt lab. [Chứng cứ vừa bổ sung](KIEM_TRA_DOI_SO.md)
 
 **Sau thử nghiệm tách ý**, ưu tiên kiểm chứng trường được truyền tại điểm gọi trước khi nối nó với xử lý trong thân hàm. Trên 7 câu phát triển, tách ý tìm được nhiều ý đúng hơn nhưng Qwen cũng chấp nhận 9 ý sai hoặc thiếu dẫn chứng. Giữ phần này ở màn hình đối chiếu. Việc tiếp theo của nhóm đánh giá là chấm lại tác động lên recall và verdict khi có bằng chứng phía gọi, dùng thêm mẫu giữ riêng. [Phép đo trên bảy câu](KIEM_TUNG_Y.md)

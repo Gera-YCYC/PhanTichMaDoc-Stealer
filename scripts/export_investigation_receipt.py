@@ -129,6 +129,30 @@ def export(run):
                 ),
             }
         )
+        selected = next((e for e in qs if e["event"] == "topic_selected"), {})
+        if selected.get("origin") == "map_edge":
+            clicks_file = ROOT / "evidence/local" / f"focus-{p.parent.name}.json"
+            if clicks_file.is_file():
+                clicks = read(clicks_file)
+                edge, = (e for e in view["graph"]["edges"] if e["id"] == selected["topic"])
+                answer = qs[-1]["answer"]
+                search = answer["search"]
+                observed, = (e for e in qs if e["event"] == "observation")
+                dispatched, = (e for e in qs if e["event"] == "action_dispatched")
+                spans = [[r["line"], r["end"]] for r in search["refs"]]
+                expected = {"run": run, "edge": edge["id"], "journal": p.parent.name,
+                            "hits": search["hit_count"], "spans": spans, "opened": int(bool(spans)),
+                            "source_sha256": search["output_sha256"], "errors": [], "external": []}
+                if (clicks != expected or qs[0]["model"] != pre["model"]["digest"]
+                        or qs[0]["question"] != f"Bằng chứng nào nối hai bước {edge['label']}?"
+                        or edge["status"] == "supported" or selected["topic"] != answer["topic"]
+                        or search["status"] != "ok" or dispatched["action"] != "search_evidence"
+                        or not selected["sequence"] < dispatched["sequence"] < observed["sequence"] < qs[-1]["sequence"]
+                        or search["output_sha256"] != observed["output_sha256"]
+                        or search["hit_count"] != observed["hit_count"]
+                        or [a for a, _ in spans] != observed["opened_anchors"]):
+                    raise ValueError("Browser focus differs from the selected edge or live VM search")
+                questions[-1]["map_click"] = expected
     browser = {}
     reviews = []
     for claim in view["rejected_claims"]:
@@ -220,6 +244,7 @@ def export(run):
             proof["question_journal_sha256"] = question["journal_sha256"]
         browser["argument_browser"] = proof
     return {
+        **({"termination": view["termination"]} if view["termination"] else {}),
         **browser,
         **({"latest_followup_reviews": reviews} if reviews else {}),
         "run": run,

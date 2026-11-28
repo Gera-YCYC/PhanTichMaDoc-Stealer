@@ -1,0 +1,323 @@
+{
+  "scope": "Fifteen fixed role selections on three development reports. Coverage of these checks only. A different valid citation can support the same role.",
+  "cases": [
+    {
+      "run": "20261128T085636_4eaac445",
+      "probes": [
+        {
+          "claim": "C12",
+          "role": "sensitive_collection_claim_ids",
+          "expected": true,
+          "reason": "The identified login query is followed by a fetch of its rows.",
+          "claim_sha256": "9fc115e4172154e7378feb3e25efac7f2984543254b3213d77672697c8d81b3c",
+          "ranges": [
+            [
+              9,
+              9
+            ],
+            [
+              140,
+              140
+            ],
+            [
+              141,
+              141
+            ],
+            [
+              142,
+              142
+            ],
+            [
+              143,
+              143
+            ]
+          ]
+        },
+        {
+          "claim": "C22",
+          "role": "outbound_transfer_claim_ids",
+          "expected": true,
+          "reason": "The cited SMTP method sends the message.",
+          "claim_sha256": "7929ff9dc387bb1a0e5cc727d1ddef7c2c62670cc57869e368911553a9dc2a1a",
+          "ranges": [
+            [
+              14,
+              14
+            ],
+            [
+              106,
+              106
+            ],
+            [
+              109,
+              109
+            ]
+          ]
+        },
+        {
+          "claim": "C1",
+          "role": "outbound_transfer_claim_ids",
+          "expected": false,
+          "reason": "Creating an archive does not call a network send.",
+          "claim_sha256": "923159f50aa7a58d358987b84af339cb8a224a4190197c6c6358ceae625d6474",
+          "ranges": [
+            [
+              313,
+              328
+            ],
+            [
+              82,
+              113
+            ],
+            [
+              276,
+              286
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              14,
+              14
+            ]
+          ]
+        },
+        {
+          "claim": "C23",
+          "role": "outbound_transfer_claim_ids",
+          "expected": false,
+          "reason": "SMTP authentication is distinct from sending the data.",
+          "claim_sha256": "16f42fac564ceca48d2b38f2819281b763fd3716d44da3db73416ece28f3d5d9",
+          "ranges": [
+            [
+              14,
+              14
+            ],
+            [
+              106,
+              106
+            ],
+            [
+              108,
+              108
+            ]
+          ]
+        },
+        {
+          "claim": "C34",
+          "role": "data_link_claim_ids",
+          "expected": false,
+          "reason": "The checked parameter connects a selected value to local processing; the claim establishes no outbound argument.",
+          "claim_sha256": "dba9848eb4061cac8083d04c5a4e0c30e09b3c829744dbd69a9761b60b45977b",
+          "ranges": [
+            [
+              140,
+              144
+            ],
+            [
+              69,
+              75
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              12,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "run": "20261128T030521_c76fc69a",
+      "probes": [
+        {
+          "claim": "C1",
+          "role": "outbound_transfer_claim_ids",
+          "expected": true,
+          "reason": "The cited WebClient call uploads a file.",
+          "claim_sha256": "8a273eac1a661bfaf497126be2bb0854d913a76914e5a6dd067ff7600014f77c",
+          "ranges": [
+            [
+              3516,
+              3531
+            ],
+            [
+              3645,
+              3669
+            ],
+            [
+              15,
+              15
+            ],
+            [
+              22,
+              22
+            ]
+          ]
+        },
+        {
+          "claim": "C25",
+          "role": "outbound_transfer_claim_ids",
+          "expected": true,
+          "reason": "The other cited upload site supplies an address and a file-path expression.",
+          "claim_sha256": "27d31056cf3c98e17a3f02efafcb271af25dd0de0796cdd6c1eb7fff98bb5f47",
+          "ranges": [
+            [
+              15,
+              15
+            ],
+            [
+              3574,
+              3574
+            ],
+            [
+              3577,
+              3577
+            ]
+          ]
+        },
+        {
+          "claim": "C17",
+          "role": "sensitive_collection_claim_ids",
+          "expected": false,
+          "reason": "A decryption API call alone does not identify or collect a sensitive source.",
+          "claim_sha256": "8bf49b88840d1c69043b65631de9a14dad4824235bb3c4845a8a6b2ecad7d868",
+          "ranges": [
+            [
+              4875,
+              4906
+            ]
+          ]
+        },
+        {
+          "claim": "C2",
+          "role": "outbound_transfer_claim_ids",
+          "expected": false,
+          "reason": "The cited conversion consumes response bytes after an upload.",
+          "claim_sha256": "7d301c0be4c1755fd6d099c6edebe74317fdeebe9ceb18e7f7b7ed55f1b1eca6",
+          "ranges": [
+            [
+              3516,
+              3531
+            ],
+            [
+              3645,
+              3669
+            ],
+            [
+              15,
+              15
+            ],
+            [
+              22,
+              22
+            ]
+          ]
+        },
+        {
+          "claim": "C1",
+          "role": "data_link_claim_ids",
+          "expected": false,
+          "reason": "The upload call identifies the file variable; its name is insufficient to identify what sensitive data was collected into it.",
+          "claim_sha256": "8a273eac1a661bfaf497126be2bb0854d913a76914e5a6dd067ff7600014f77c",
+          "ranges": [
+            [
+              3516,
+              3531
+            ],
+            [
+              3645,
+              3669
+            ],
+            [
+              15,
+              15
+            ],
+            [
+              22,
+              22
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "run": "20261128T031606_ca91de35",
+      "probes": [
+        {
+          "claim": "C1",
+          "role": "sensitive_collection_claim_ids",
+          "expected": true,
+          "reason": "The cited operation copies the browser credential store.",
+          "claim_sha256": "83c5a28899ac2aa94faa00f71f9b9aef44c85f29f8e2e97bbf5165a3c235696f",
+          "ranges": [
+            [
+              66,
+              81
+            ],
+            [
+              775,
+              810
+            ]
+          ]
+        },
+        {
+          "claim": "C13",
+          "role": "sensitive_collection_claim_ids",
+          "expected": true,
+          "reason": "The cited operation copies the browser cookie store.",
+          "claim_sha256": "52ccd3869ef5f033d15ef1cd08f47c46e2d95937b50dbf00b420204ccdeadb5d",
+          "ranges": [
+            [
+              713,
+              744
+            ]
+          ]
+        },
+        {
+          "claim": "C15",
+          "role": "sensitive_collection_claim_ids",
+          "expected": false,
+          "reason": "The cited registry read identifies a processor, not browser secrets.",
+          "claim_sha256": "72771ed2b3baca55e57430423e4538eab298febe8ab40b0f9a749b509593a809",
+          "ranges": [
+            [
+              1133,
+              1163
+            ]
+          ]
+        },
+        {
+          "claim": "C13",
+          "role": "outbound_transfer_claim_ids",
+          "expected": false,
+          "reason": "The file copy has a local destination, with no send call.",
+          "claim_sha256": "52ccd3869ef5f033d15ef1cd08f47c46e2d95937b50dbf00b420204ccdeadb5d",
+          "ranges": [
+            [
+              713,
+              744
+            ]
+          ]
+        },
+        {
+          "claim": "C14",
+          "role": "data_link_claim_ids",
+          "expected": false,
+          "reason": "The referenced database read and alleged local write establish no outbound destination or transfer.",
+          "claim_sha256": "519b788b9826725bc245d7566055b39d7bad98635f80e213a191637f49f7e58e",
+          "ranges": [
+            [
+              713,
+              744
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

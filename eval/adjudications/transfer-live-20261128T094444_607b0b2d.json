@@ -1,0 +1,26 @@
+{
+  "run": "20261128T094444_607b0b2d",
+  "scope": "Đối chiếu các nhận định mới với tọa độ trong đầu ra ILSpy trên tập phát triển. Chưa có người chấm độc lập.",
+  "claims": {
+    "C8": {
+      "signature": "4d470cacc1b91ae1851ebf7c73f29053c80ecb0721d92a0b8ae512f7f7e7c7b1",
+      "lines": [667, 668], "atoms": [["aes-wrapper-call", "correct"]],
+      "reason": "Có đối tượng và lời gọi helper với đúng thứ tự đối số. Mục native-decrypt trong đáp án yêu cầu vị trí khác."
+    },
+    "C9": {
+      "signature": "6a1fcca9236af4c8dc54e76345bc098d6850a737d16f948c8d22d67b415177d3",
+      "lines": [668], "atoms": [["utf8-wrapper-return-668", "correct"]],
+      "reason": "Kết quả của lời gọi bên trong được truyền trực tiếp vào bộ giải mã UTF-8."
+    },
+    "C11": {
+      "signature": "b25e88c28a8bdd9e17b96e8d09822037578d14a9947fb2ebc30f565d067e2550",
+      "lines": [1148, 1155, 1156], "atoms": [["video-wmi-query", "correct"]],
+      "reason": "Truy vấn chọn đúng lớp WMI và hai phép đọc thuộc tính có tên tương ứng."
+    },
+    "C16": {
+      "signature": "b162a422178bddbabd0e48e12b2270171a76fe470893f4e660ad9d3b43cbd94d",
+      "lines": [714, 727, 728, 732, 733, 734], "atoms": [["cookie-table", "correct"], ["cookie-field-names-by-position", "unsupported"]],
+      "reason": "Đã dẫn tên bảng. Các trường được đọc theo chỉ số, đoạn trích thiếu lược đồ để xác nhận ý nghĩa cụ thể mà câu nêu."
+    }
+  }
+}

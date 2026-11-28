@@ -1,0 +1,22 @@
+{
+  "run": "20261128T093604_7feb877d",
+  "inherit": "20261128T065309_3102f839",
+  "scope": "Đối chiếu câu với nguồn tĩnh trên tập phát triển. Chưa có người chấm độc lập.",
+  "claims": {
+    "C2": {
+      "signature": "e784102890d4790739159b8a0a2970bcea7f001a83a0c5f65a9d6b244dc96ae9",
+      "lines": [3655, 3656], "atoms": [["cc-ascii", "correct"]],
+      "reason": "Hai dòng liên tiếp nối giá trị trả về với bộ giải mã ASCII và phép gán đúng trường."
+    },
+    "C3": {
+      "signature": "7f5c864bb9fe092478164863a82e80b9ef12cc70e537e8f346dd6ca33dc21533",
+      "lines": [3603], "atoms": [["emails-upload", "correct"], ["exact-http-body-3603", "unsupported"]],
+      "reason": "Đối số của API xác nhận đường dẫn và biểu thức đích. Đoạn được dẫn chưa xác nhận nội dung tệp là nguyên văn toàn bộ request body trên đường truyền."
+    },
+    "C4": {
+      "signature": "fd0e89e3d76050b9e29f81f7e3b37595f8d892030b64962b12b62d1e4fbc64c7",
+      "lines": [3603, 3604], "atoms": [["emails-ascii", "correct"]],
+      "reason": "Biến nhận byte trả về ở dòng 3603 đi vào phép giải mã ASCII ở dòng kế tiếp, rồi được gán vào đúng trường."
+    }
+  }
+}
