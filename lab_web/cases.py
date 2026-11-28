@@ -85,6 +85,8 @@ def absorb(records, obs):
         rec["archive_link"] = obs["archive_link"]
     if "staging_link" in obs:
         rec["staging_link"] = obs["staging_link"]
+    if "row_use" in obs:
+        rec["row_use"] = obs["row_use"]
     for f in obs.get("operation_facts", []):
         if f not in facts:
             facts.append(f)
@@ -458,7 +460,11 @@ def case(run):
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,
-        "transfer_evidence_claim_ids": analysis.get("transfer_evidence_claim_ids", []),
+        "transfer_proposed_claim_ids": analysis.get("transfer_evidence_claim_ids", []),
+        "transfer_evidence_claim_ids": [c["id"] for c in claims
+                                       if c["id"] in analysis.get("transfer_evidence_claim_ids", [])],
+        "transfer_rejected_claim_ids": [c["id"] for c in rejected
+                                       if c["id"] in analysis.get("transfer_evidence_claim_ids", [])],
         "can_supplement": dotnet,
         "supplement": supplement,
         "yara": yara,

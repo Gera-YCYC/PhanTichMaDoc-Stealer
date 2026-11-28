@@ -48,6 +48,17 @@ except Exception as exc:
     result['operation_facts'] = []
     result['operation_status'] = {'status':'unavailable','error_class':type(exc).__name__}
 else:
+    if request.get('verify_row_use'):
+        from .row_use import find_witness as row_use
+        try:
+            proof = row_use(request['record'], operations['facts'], visible)
+            if proof:
+                for lo, hi in proof['ranges']:
+                    for n in range(lo, hi + 1):
+                        rows[n] = request['record']['lines'][n-1]
+                result.update(lines=[rows[n] for n in sorted(rows)], row_use=proof)
+        except (KeyError, ValueError, TypeError, SyntaxError, RecursionError):
+            result['row_use_status'] = 'unavailable'
     from .archive_link import find_witness
     try:
         witness=find_witness(request['record'],operations['facts'],visible)

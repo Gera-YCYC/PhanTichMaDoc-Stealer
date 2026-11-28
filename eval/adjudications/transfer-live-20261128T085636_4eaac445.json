@@ -1,0 +1,84 @@
+{
+  "run": "20261128T085636_4eaac445",
+  "inherit": "20261128T084808_81ca89a3",
+  "claims": {
+    "C1": {
+      "signature": "f534b3186e7aefb615128f52652e6d761f9540346fc94724d7f8a7e8101a5b33",
+      "lines": [
+        10,
+        276,
+        277,
+        278,
+        279
+      ],
+      "atoms": [
+        [
+          "PY24-A18",
+          "correct"
+        ]
+      ],
+      "reason": "The archive creation call supplies the temporary directory and ZIP format in the declared source span."
+    },
+    "C3": {
+      "signature": "20b123a340b5dccd1ade0e727e5ae3e2515ac9087c75d84774613e7ddb351468",
+      "lines": [
+        83,
+        84,
+        106
+      ],
+      "atoms": [
+        [
+          "PY24-A27",
+          "correct"
+        ]
+      ],
+      "reason": "The IOC value equals the hostname assignment and is used by the SMTP constructor at the declared site."
+    },
+    "C10": {
+      "signature": "d5087575661807386532365c72a4ba29377bcc436f20a3acc6d66c4519832069",
+      "lines": [
+        24,
+        27,
+        28,
+        29,
+        30
+      ],
+      "atoms": [
+        [
+          "browser-path-table",
+          "correct"
+        ]
+      ],
+      "reason": "An environment lookup and code-defined browser paths support this path-construction statement. It makes no file-read claim from the profile."
+    },
+    "C28": {
+      "signature": "630f745a6816ac4420dd6096956d7f7565147b2177057c630a0c97ce97ef905b",
+      "lines": [
+        17,
+        97,
+        98
+      ],
+      "atoms": [
+        [
+          "mime-payload-read-expression",
+          "correct"
+        ]
+      ],
+      "reason": "The MIME method consumes the return of a read call. This sentence does not identify the opening path and lacks row 96 required by A19."
+    },
+    "C29": {
+      "signature": "fe14877b73f6cccd03534a8f42d603f19c12258ae1e5992ccc99c91a011257a3",
+      "lines": [
+        96,
+        98
+      ],
+      "atoms": [
+        [
+          "read-attachment-path",
+          "correct"
+        ]
+      ],
+      "reason": "The open and read use the same handle. This sentence does not assert where the bytes are used and does not independently meet A19."
+    }
+  }
+}

@@ -32,4 +32,5 @@ jobs:
           python -m eval.staging_path_audit
           python -m eval.report_series
           python -m eval.parts_audit
+          python -m eval.argument_review
       - run: python -m compileall -q stealer_agent vm_tools training

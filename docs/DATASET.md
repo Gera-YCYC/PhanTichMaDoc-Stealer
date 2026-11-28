@@ -8,7 +8,7 @@ Người dùng xác nhận ngày 27/11/2026: giảng viên không cấp I/J, nh�
 | public_agenttesla.bin | jstrosch, AgentTesla SMTP, 04/2020 | 608.768 B | Mẫu bổ sung, cần đối chiếu dịch ngược |
 | public_luna.bin | MalwareBazaar, LunaGrabber, 01/2026 | 23.250.383 B | PyInstaller 3.11, unpack được, pycdc cảnh báo; giữ làm ca khó |
 | public_mercurial.bin | MalwareBazaar, Mercurial, 10/2021 | 43.008 B | Nhãn họ không chứng minh Python; nguồn ghi MSIL, không chọn thay J |
-| public_python2024.bin | MalwareBazaar, PythonStealer, 03/2024 | 22.183.360 B | PyInstaller 3.11, unpack được, pycdc cảnh báo; chưa chốt làm mẫu chính |
+| public_python2024.bin | MalwareBazaar, PythonStealer, 03/2024 | 22.183.360 B | Mẫu chính để demo nhánh Python. PyInstaller 3.11, giải gói được, có nhánh đọc bytecode khi pycdc lỗi. |
 
 Không file nào ở bảng được thực thi. Archive nguồn được chuyển vào VM để giải mã. Bộ Release lưu archive AES mã hóa ở host; plaintext chỉ ở VM. Không tải file mẫu lên dịch vụ phân tích cloud. Mọi truy vấn nguồn ngoài chỉ là đọc metadata hoặc tải dữ liệu đã công khai.
 

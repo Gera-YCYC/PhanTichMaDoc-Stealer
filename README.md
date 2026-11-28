@@ -1,18 +1,19 @@
 # StealerLab — Đồ án Phân tích mã độc
 
-**Demo kiểm từng ý.** Mở một câu hành vi bị loại rồi bấm **Tách và kiểm từng ý**. Mỗi ý có nguồn riêng và quyết định của Qwen. Trên bảy câu Python/.NET, cách tách ý tìm được ý đúng ở bốn câu, nhưng Qwen cũng giữ bảy ý thiếu căn cứ và hai ý sai. [Hướng dẫn demo và bảng đối chứng](docs/KIEM_TUNG_Y.md)
+StealerLab là đồ án phân tích tĩnh stealer .NET/Python bằng agent ReAct. Trên Windows, người dùng mở web cục bộ và Qwen3 8B chọn phép tìm tiếp theo. VM Ubuntu giữ mẫu, chạy các công cụ đọc tĩnh và trả đặc trưng có tọa độ nguồn. Khi thiếu bằng chứng cho một đường nối, bản đồ giữ trạng thái chờ kiểm tra.
 
-**Để demo phần kiểm chứng**, vào **Đánh giá → Độ ổn định của bản điều tra · ba lượt Python → Đối chiếu từng mục của đáp án**. Bấm **C7** ở mục **A09** trên máy lab để xem một ý có bằng chứng đã bị loại cùng câu chứa nó. Ba lượt web trên cùng mẫu thật có 28/40 nhận định trùng nhau (70%) và verdict đúng 0/3 lượt. [Kết quả, nguyên nhân bỏ sót và hướng dẫn mở bằng chứng](docs/DO_ON_DINH_BAN_DIEU_TRA.md)
+## Demo trực tiếp
 
-**Demo mới trên mẫu Python.** Mở đường nối **Ghi ra tệp → Tạo bản nén** để xem 13 đoạn nguồn. Hỏi agent về phần còn thiếu rồi bấm **Vị trí VM vừa tìm** để kiểm tra hai kết quả mới. Bản chạy cuối xác minh được đích ghi dưới thư mục nén và đạt 20/36 mục trên toàn báo cáo, F1 71,43%. [Chạy trên web, kiểm từng dẫn chứng và đọc bảng điểm](docs/DUONG_DAN_GHI_VA_NEN.md)
+Trên máy đã dựng lab, mở PowerShell trong thư mục dự án và chạy lệnh dưới đây. Trên máy thành viên mới, hoàn thành bước cài VM, model và bộ công cụ trước. [Hướng dẫn cài đặt](docs/TEAM_SETUP.md)
 
-**Demo đường truyền.** Từ bản đồ, bấm một đường nối rồi mở nhận định trích cùng vị trí để xem dòng mã và hash nguồn. Lượt Python chạy từ trình duyệt đạt 21/36 mục. Phép đối chứng báo cáo trên ba hồ sơ phát triển đạt 37/97 mục và verdict đúng 0/3. [Các bước demo và cách đọc điểm](docs/DOI_CHIEU_DUONG_TRUYEN.md)
+```powershell
+.\scripts\Start-Web.ps1
+```
 
-**Demo bằng trình duyệt trên máy đã dựng lab.** Mở PowerShell tại thư mục dự án, chạy `.\scripts\Start-Web.ps1`, rồi mở http://127.0.0.1:4180. Chọn mẫu, bấm **Chạy điều tra** và mở **Nhật ký**. Khi có báo cáo, bấm từng nút hoặc đường nối để kiểm tra bằng chứng. [Hướng dẫn demo web](docs/WEB_DIEU_TRA.md) · [Cài trên máy nhóm](docs/TEAM_SETUP.md)
-
-Để xem kết quả bản hiện hành, mở **Đánh giá** và chọn PythonStealer, Gomorrah hoặc Mercurial. Repo có bảng chấm cả những câu agent đã tự loại, các mục bỏ sót và số lần gọi công cụ của từng mẫu. [Đối chiếu ba mẫu với slide giảng viên](docs/CHAM_BA_MAU_WEB.md)
-
-AI Agent ReAct dùng SLM cục bộ để phân tích tĩnh stealer .NET/Python. Mục tiêu hiện tại là **hoàn thành toàn bộ sản phẩm theo slide và đề xuất gốc**; mốc buổi 4 đã có bằng chứng tích hợp.
+1. Mở `http://127.0.0.1:4180`, kiểm tra trạng thái Ollama và VM, chọn **public_python2024.bin** và bấm **Chạy điều tra**. Tab **Nhật ký** hiển thị công cụ agent đang gọi trong lượt mới.
+2. Mở **Bản đồ chứng cứ → Đọc kết quả truy vấn → Xử lý dữ liệu**. Bấm **Xem đoạn mã đã dẫn**, đối chiếu bên gọi và bên nhận. Nút **Mở C… trong báo cáo** đưa tới nhận định của đúng lượt. Một số đường nối khác có thể còn thiếu bằng chứng.
+3. Trong **Hỏi đáp**, hỏi “Bản ghi nào được truyền vào hàm xử lý?”. Mở nguồn của câu trả lời. Chuyển sang **YARA** để xem kết quả quét mẫu, hoặc **Gán nhãn** để đối chiếu và đánh dấu một vị trí.
+4. Trong **Đánh giá**, mở **Từ trường truy vấn đến hàm xử lý · hai lượt Python** để so với ba lượt trước. Khi hết demo, đợi tác vụ hoàn tất rồi bấm **Tắt lab**. [Chứng cứ và phạm vi kết luận](docs/KIEM_TRA_DOI_SO.md) · [Thao tác trên web](docs/WEB_DIEU_TRA.md)
 
 **Sản phẩm đang phát triển, chưa đạt toàn bộ tiêu chí chất lượng.** Repo chính: [Gera-YCYC/PhanTichMaDoc-Stealer](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer). Source ở root; model và mẫu public mã hóa ở Release có khóa hash. Tài liệu bàn giao là Markdown kỹ thuật, không cần thông tin sinh viên.
 
@@ -43,7 +44,7 @@ Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-versio
 
 Prompt/schema/guard hoặc tải model không phải huấn luyện trọng số. Yêu cầu train chưa được GV làm rõ là fine-tune SLM hay ML phụ trợ; hồ sơ không có epoch/loss/checkpoint giả.
 
-Dự án trên ổ C. Ollama dùng `qwen2.5-coder:7b` Q4_K_M, 7.615.616.512 tham số, kho model `private/ollama-models` trên C. Model cũ `qwen2.5:1.5b` ở D được giữ nguyên. Runtime Ollama hiện có ở M. Metadata và digest từng lần chạy nằm trong `runs/*/report.private.json`.
+Dự án trên ổ C. Web điều tra dùng `qwen3:8b`. Cấu hình CLI buổi 4 dùng `qwen2.5-coder:7b` Q4_K_M, 7.615.616.512 tham số, kho model `private/ollama-models` trên C. Model cũ `qwen2.5:1.5b` ở D được giữ nguyên. Runtime Ollama hiện có ở M. Metadata và digest từng lần chạy nằm trong `runs/*/report.private.json`.
 
 ## Chạy trên máy đã chuẩn bị
 

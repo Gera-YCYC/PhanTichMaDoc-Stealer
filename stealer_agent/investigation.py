@@ -137,6 +137,47 @@ def proven_pair(a, b, record):
     return re.match(r"[ \t]*", lines[-1])[0] == block_indent
 
 
+def checked_argument(rec, digest):
+    proof = rec.get("row_use")
+    if not isinstance(proof, dict) or proof.get("backend") != "static-row-argument/1":
+        return None
+    if (rec.get("status") != "ok" or rec["sample_sha256"] != digest
+            or rec.get("tool") not in {"python_ast", "decode_python_literals", "decompile_python"}
+            or any(not rec.get(k) or rec[k] != proof.get(k) for k in ("evidence_id", "output_sha256", "sample_sha256"))):
+        return None
+    body = {k: v for k, v in proof.items() if k != "proof_id"}
+    if (proof.get("proof_id") != "arg_" + sha256(canonical(body)).hexdigest()[:16]
+            or not isinstance(proof.get("column"), str)
+            or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]{0,63}", proof["column"])
+            or any(type(proof.get(k)) is not int or not 0 <= proof[k] < 256 for k in ("index", "position"))):
+        return None
+    spans, sites = proof.get("ranges"), proof.get("roles")
+    if not isinstance(spans, list) or not 1 <= len(spans) <= 6 or not isinstance(sites, dict):
+        return None
+    if set(sites) != {"query", "rows", "argument", "parameter", "operation"}:
+        return None
+    numbers = set()
+    refs = []
+    for span in spans:
+        if not isinstance(span, list) or len(span) != 2 or not all(type(n) is int for n in span):
+            return None
+        a, b = span
+        if not 1 <= a <= b < a + 40:
+            return None
+        numbers.update(range(a, b + 1))
+        refs.append({"eid": rec["evidence_id"], "fact": proof["proof_id"], "tool": rec["tool"],
+                     "output_sha256": rec["output_sha256"], "line": a, "end": b})
+    if (len(numbers) > 36 or not all(type(n) is int and n in numbers for n in sites.values())
+            or not numbers <= rec["line_map"].keys()):
+        return None
+    rows = [[n, rec["line_map"][n]] for n in sorted(numbers)]
+    if (any(m in s for _, s in rows for m in ("[REDACTED", "__PRIVATE_LITERAL_", "[PRIVATE_", "__UNKNOWN", "[UNKNOWN"))
+            or sha256(canonical(rows)).hexdigest() != proof.get("rows_sha256")):
+        return None
+    return {"column": proof["column"], "index": proof["index"], "position": proof["position"],
+            "roles": sites, "refs": refs}
+
+
 def ledger(evidence, digest):
     nodes = {
         k: {"id": k, "label": v[0], "status": "missing", "refs": []}
@@ -284,6 +325,18 @@ def ledger(evidence, digest):
         if check:
             edge = next(e for e in edges if e["id"] == "write-archive")
             edge.update(status="partial", path_check=check)
+            break
+    for record in evidence.values():
+        check = checked_argument(record, digest)
+        if check:
+            edge = next(e for e in edges if e["id"] == "rows-process")
+            edge.update(status="supported", argument_check=check, refs=check["refs"])
+            edge.pop("leads", None)
+            for stage, role in (("rows", "rows"), ("process", "operation")):
+                if not nodes[stage]["refs"]:
+                    n = check["roles"][role]
+                    ref = {**check["refs"][0], "line": n, "end": n, "text": excerpt(record["line_map"][n])}
+                    nodes[stage].update(status="supported", refs=[ref])
             break
     return {
         "method": "static-link-ledger/2",

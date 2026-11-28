@@ -332,6 +332,12 @@ function map(panel) {
   if (item) {
     detail.append(el("small", states[item.status]), el("h2", item.label));
     const path = item.path_check;
+    if (item.argument_check) {
+      const a = item.argument_check;
+      detail.append(el("p", "Trường " + a.column + " là cột thứ " + (a.index + 1) + " trong kết quả truy vấn (chỉ số " + a.index + ") và" +
+        " đi vào đối số thứ " + (a.position + 1) + " của hàm cục bộ. Trong thân hàm, dữ liệu từ tham số đó đi tới lời gọi xử lý. " +
+        "Vị trí gọi ở dòng " + a.roles.argument + ", lời gọi xử lý ở dòng " + a.roles.operation + "."));
+    }
     if (path?.relation === "writer_path_beneath_archive_input") {
       const proof = el("details", undefined, "card");
       proof.append(el("summary", "Đối chiếu đích ghi với thư mục nén"),
@@ -370,7 +376,7 @@ function map(panel) {
           () => openReportClaim(record.run, claim.id)));
       }
       if (links.childElementCount) detail.append(el("small", "Nhận định trích cùng vị trí nguồn"), links);
-      refs(detail, sites, !item.trail);
+      refs(detail, sites, !item.trail && !item.argument_check);
     } else if (item.leads?.length) {
       detail.append(
         el(
@@ -546,6 +552,23 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   };
   selector.className = "evaluation-sample";
   label.append(selector);
+  if (sample === "python" && data.argument_review) {
+    const a = data.argument_review;
+    const proof = el("details", undefined, "card");
+    proof.append(el("summary", "Từ trường truy vấn đến hàm xử lý · hai lượt Python"));
+    proof.append(el("p", "Ba lượt trước trên cùng mẫu đạt " +
+      a.baseline.map(s => s.correct + "/" + a.units).join(", ") + " mục. Nhãn tham chiếu là " + a.target_verdict + "."));
+    table(["Lượt", "Mục A09", "Mục đúng", "Precision", "Recall", "F1", "Verdict", "Công cụ", "Giây"],
+      a.runs.map(r => [r.run, r.retained ? "Đã giữ " + r.claim : "Đã loại " + r.claim,
+        r.score.correct + "/" + a.units, percent(r.score.precision), percent(r.score.recall),
+        percent(r.score.f1), r.verdict, r.tool_calls, r.seconds.toFixed(1)]), proof);
+    const local = a.runs.filter(r => init.history.some(entry => entry.run === r.run));
+    for (const r of local) proof.append(button("Mở " + r.claim + " của lượt " + r.run,
+      () => openReportClaim(r.run, r.claim)));
+    if (local.length < a.runs.length) proof.append(el("small",
+      "Các trích đoạn chỉ mở được trên máy lưu nhật ký gốc. Chọn mẫu và chạy điều tra để tạo hồ sơ mới trên máy này."));
+    panel.append(proof);
+  }
   if (sample === "python" && data.current_stability)
     showCurrentStability(panel, data.current_stability, table, percent);
   panel.append(
@@ -1342,7 +1365,7 @@ async function render() {
         el("p", answerResult.text),
         el("small", answerResult.note),
       );
-      refs(d, answerResult.refs);
+        refs(d, answerResult.refs, false, answerResult.windows || record.cited_windows);
         if (answerResult.search?.refs?.length) {
           const results = el("details", undefined, "card");
           results.append(el("summary", "Vị trí VM vừa tìm"),

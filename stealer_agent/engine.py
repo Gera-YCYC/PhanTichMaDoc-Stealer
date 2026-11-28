@@ -372,6 +372,10 @@ class Agent:
                         if self.config.get('occurrence_order'):
                             args['occurrence_order'] = True
                         target = evidence[args['evidence_id']]
+                        if (gap_by_evidence.get(args['evidence_id']) == 'rows-process'
+                                and target['tool'] in {'decode_python_literals', 'decompile_python', 'python_ast'}
+                                and not target.get('row_use')):
+                            args['verify_row_use'] = True
                         if (gap_by_evidence.get(args['evidence_id']) == 'write-archive'
                                 and target['tool'] in {'decode_python_literals', 'decompile_python', 'python_ast'}
                                 and not target.get('staging_link')):
@@ -448,6 +452,8 @@ class Agent:
                         record['archive_link']=clean['archive_link']
                     if 'staging_link' in clean:
                         record['staging_link']=clean['staging_link']
+                    if 'row_use' in clean:
+                        record['row_use']=clean['row_use']
                     record.setdefault('line_metadata', {}).update({entry['line']: {'source_line': entry.get('source_line')}
                                                                   for entry in clean['lines']})
                     record['latest_lines'] = [entry['line'] for entry in clean['lines']]

@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Trên Windows đã dựng lab, chạy `.\scripts\Start-Web.ps1`, mở `http://127.0.0.1:4180`, chọn **public_python2024.bin** rồi bấm **Chạy điều tra**. Sau khi có báo cáo, mở **Đọc kết quả truy vấn → Xử lý dữ liệu** trên bản đồ. Đối chiếu vị trí truyền đối số, vị trí sử dụng nó và nội dung nhận định được giữ trong báo cáo. Trong **Đánh giá** có bảng so sánh với ba lượt trước cùng mẫu. [Các bước đối chiếu và kết quả](KIEM_TRA_DOI_SO.md)
+
 Trong **Nhận định**, mở một câu bị loại và chọn **Tách và kiểm từng ý**. Mỗi ý có quyết định và trích dẫn riêng. Trên hồ sơ Python C7, so sánh quyết định của Qwen với phép kiểm khoảng chỉ số ngay bên cạnh dòng nguồn. [Hai ca demo, cách chạy lại và kết quả đối chứng](KIEM_TUNG_Y.md)
 
 Để trả lời câu hỏi “Bộ duyệt có bỏ nhầm bằng chứng không?”, mở **Đánh giá**, chọn PythonStealer và mở bảng **Độ ổn định của bản điều tra · ba lượt Python**. Trong bảng 36 mục, bấm **A09 → C7** rồi mở trích dẫn. Chuyển sang **A26 → C2** của lượt 2 và lượt 3 để đối chiếu hai quyết định khác nhau. Các nút đọc báo cáo từ nhật ký cục bộ của đúng lượt. [Bảng số liệu và cách kiểm lại bằng trình duyệt](DO_ON_DINH_BAN_DIEU_TRA.md)

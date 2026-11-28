@@ -346,6 +346,7 @@ class Handler(BaseHTTPRequestHandler):
             if p == "/api/training":
                 return self.reply(200, training_record())
             if p == "/api/evaluation":
+                from eval.argument_review import review as argument_review
                 from eval.parts_audit import PUBLIC as parts_receipt, score as score_parts, web_details
                 from eval.report_series import web_results
                 from eval.web_report_quality import current_batch, dotnet_profiles, reports
@@ -392,6 +393,7 @@ class Handler(BaseHTTPRequestHandler):
                         ],
                         "stability": read(repeats) if repeats.exists() else None,
                         "current_stability": web_results(),
+                        "argument_review": argument_review(),
                         "split_scores": score_parts(parts),
                         "split_details": web_details(parts),
                         "split_a09": parts["a09_source"],

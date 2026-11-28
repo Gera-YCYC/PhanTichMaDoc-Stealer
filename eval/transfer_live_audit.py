@@ -121,8 +121,13 @@ def check(run, interaction, *, include_coverage=False, include_decisions=False):
         for c in report["claims"]
         if c["id"] in report["transfer_evidence_claim_ids"]
     }
+    proposed_ids = report["transfer_evidence_claim_ids"]
+    rejected_ids = {row["claim"]["id"] for row in report["rejected_claims"]}
     require(
-        list(tagged) == report["transfer_evidence_claim_ids"] == [item["id"] for item in interaction["claims"]],
+        len(set(proposed_ids)) == len(proposed_ids)
+        and all(i in tagged or i in rejected_ids for i in proposed_ids)
+        and list(tagged) == [i for i in proposed_ids if i not in rejected_ids]
+        == [item["id"] for item in interaction["claims"]],
         "Different claims opened in browser",
     )
     for item in interaction["claims"]:

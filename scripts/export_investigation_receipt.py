@@ -11,6 +11,41 @@ from lab_web.cases import ROOT, case, directory, read
 from eval.stability import claim_key
 from scripts.report_experiment_receipt import config_digest
 from stealer_agent.journal import canonical, dump_json, verify_journal
+from stealer_agent.investigation import checked_argument
+
+
+def argument_clicks(view, events, records, clicks):
+    edge, = (e for e in view["graph"]["edges"] if e["id"] == "rows-process")
+    proof = edge["argument_check"]
+    eid = proof["refs"][0]["eid"]
+    rec = records[eid]
+    spans = [[r["line"], r["end"], r["output_sha256"]] for r in proof["refs"]]
+    if (edge["status"] != "supported" or checked_argument(rec, view["sha"]) != proof
+            or clicks["run"] != view["run"] or clicks["spans"] != spans
+            or any(clicks[k] != proof[k] for k in ("roles", "index", "position"))
+            or clicks["errors"] or clicks["external"]):
+        raise ValueError("Browser did not reproduce the bound VM result")
+    screens = [{"width": w, "graph_spans": len(spans), "report_spans": len(spans)} for w in (390, 1360)]
+    if clicks["screens"] != screens:
+        raise ValueError("Incomplete browser coverage")
+    group = "claims" if clicks["retained"] else "rejected_claims"
+    claim, = (c for c in view[group] if c["id"] == clicks["claim"])
+    if [(r["eid"], r["line"], r["end"]) for r in claim["refs"]] != [
+            (r["eid"], r["line"], r["end"]) for r in proof["refs"]]:
+        raise ValueError("Report cites different locations")
+    observed = next(e for e in events if e["event"] == "observation"
+                    and e["model_visible"].get("row_use") == rec["row_use"])
+    trace = {e["event"]: e for e in events if e.get("step") == observed["step"]}
+    start, action, end = (trace[k] for k in ("hypothesis_open", "action_dispatched", "hypothesis_result"))
+    if not (start["edge"] == end["edge"] == edge["id"] and edge["id"] not in start["supported"]
+            and action["action"] == "search_evidence" and action["arguments"].get("verify_row_use") is True
+            and action["arguments"]["evidence_id"] == eid and end["status"] == "supported"
+            and start["sequence"] < action["sequence"] < observed["sequence"] < end["sequence"]):
+        raise ValueError("Missing live search or status transition")
+    return {"step": observed["step"], "backend": rec["row_use"]["backend"],
+            "proof_id": rec["row_use"]["proof_id"], "rows_sha256": rec["row_use"]["rows_sha256"],
+            "roles": proof["roles"], "index_zero_based": proof["index"], "argument_zero_based": proof["position"],
+            "spans": spans, "screens": screens, "claim": claim["id"], "retained": clicks["retained"]}
 
 
 def export(run):
@@ -169,6 +204,21 @@ def export(run):
                     "search_spans_opened": found,
                 }
             }
+    argument_file = ROOT / "evidence/local" / f"argument-web-{run}.json"
+    if argument_file.is_file():
+        from lab_web.cases import records_for
+        clicks = read(argument_file)
+        proof = argument_clicks(view, events, records_for(run), clicks)
+        if qid := clicks.get("question"):
+            question, = (q for q in questions if q["id"] == qid and q["status"] == "answered")
+            trace = list(map(json.loads, (folder / "questions" / qid / "events.jsonl").read_bytes().splitlines()))
+            answer = trace[-1]["answer"]
+            expected = [[r["line"], r["end"], r["output_sha256"]] for r in answer["refs"]]
+            if not (question["topic"] == "rows-process" and question["search_calls"] == 0
+                    and trace[0]["model"] == pre["model"]["digest"] and expected == proof["spans"]):
+                raise ValueError("Question differs from the checked source")
+            proof["question_journal_sha256"] = question["journal_sha256"]
+        browser["argument_browser"] = proof
     return {
         **browser,
         **({"latest_followup_reviews": reviews} if reviews else {}),

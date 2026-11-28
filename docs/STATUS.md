@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Web đã có lượt điều tra thực theo dõi một trường từ kết quả truy vấn tới hàm xử lý. Các trích dẫn ở bản đồ và báo cáo đã được mở trong trình duyệt ở hai kích thước. Khi đọc các số liệu lịch sử bên dưới, dùng bảng theo mã lượt để so cùng phiên bản. [Kết quả, các mốc còn thiếu và cách tái kiểm](KIEM_TRA_DOI_SO.md)
+
 Đã đo bước tách và duyệt riêng từng ý trên toàn bộ bảy câu hành vi bị loại đủ điều kiện của ba lượt Python/.NET. Qwen giữ đúng 6/15 ý, so với 2/3 ở cách viết lại một câu. Một phép kiểm khoảng chỉ số bắt được một lỗi. Mục A09 vẫn thiếu chứng cứ ở phía gọi. Hai thao tác web thật mở được đủ bảy trích dẫn và giữ riêng kết quả đọc lại. [Số liệu, phạm vi và bằng chứng](KIEM_TUNG_Y.md)
 
 Ba lượt điều tra Python trên cùng phiên bản giữ lần lượt 20, 20 và 19 trong 36 mục tham chiếu. Độ ổn định 28/40 (70%) thấp hơn mục tiêu 80%. Mười sáu mục bị bỏ sót cả ba lần. Web cho phép bấm từ ô chấm sang câu được giữ hoặc bị loại ở đúng lượt. Các lần mở ở màn hình 1360 px và 390 px đã được đối chiếu với dòng nguồn trong nhật ký. [Bảng điểm, phạm vi và nguyên nhân bỏ sót](DO_ON_DINH_BAN_DIEU_TRA.md)

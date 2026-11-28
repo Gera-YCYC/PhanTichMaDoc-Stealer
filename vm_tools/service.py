@@ -92,6 +92,7 @@ class ToolService:
                         snapshot.write_text(json.dumps({'record': self.store.get(arguments['evidence_id'], digest),
                             'anchors': [g['anchor_line'] for g in result['search_groups']],
                             'verify_staging': arguments.get('verify_staging', False),
+                            'verify_row_use': arguments.get('verify_row_use', False),
                             'visible_lines': [r['line'] for r in result['lines']]}), encoding='utf-8')
                         context = json.loads(bounded_process([sys.executable, '-m', 'vm_tools.context_worker', str(snapshot.resolve())],
                             Path(self.config['evidence_dir'])/'work', timeout=20, max_bytes=100_000,
@@ -107,6 +108,8 @@ class ToolService:
                             result['archive_link']=context['archive_link']
                         if 'staging_link' in context:
                             result['staging_link']=context['staging_link']
+                        if 'row_use' in context:
+                            result['row_use']=context['row_use']
                     except Exception as exc:
                         result['syntax_context'] = {'status': 'unavailable', 'error_class': type(exc).__name__,
                                                    'scope': 'Literal search remains available; no syntax links claimed'}

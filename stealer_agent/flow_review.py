@@ -104,6 +104,18 @@ def candidates(evidence, digest):
     proposals = []
     graph = ledger(evidence, digest)
     for edge in graph["edges"]:
+        argument = edge.get("argument_check")
+        if argument:
+            rec = evidence[argument["refs"][0]["eid"]]
+            refs = [reference(rec, r["line"], r["end"]) for r in argument["refs"]]
+            if all(refs):
+                proposals.append({
+                    "route": "selected_column_to_helper", "kind": "behavior", "value": "",
+                    "text": f"The selected {argument['column']} field at row index {argument['index']} is passed "
+                            f"as positional argument {argument['position'] + 1} to the local helper. "
+                            "The helper uses data derived from that parameter as input to its AES-GCM decrypt call.",
+                    "evidence": refs,
+                })
         check = edge.get("path_check")
         if not check:
             continue

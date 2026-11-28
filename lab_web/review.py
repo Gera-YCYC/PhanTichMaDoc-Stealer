@@ -215,6 +215,8 @@ def answer(data, cfg, key):
                     ),
                 )
             args = {"sample": r["sample"], "query": selected, "evidence_id": eid}
+            if topic == "rows-process" and src["tool"] in {"decode_python_literals", "decompile_python"}:
+                args["verify_row_use"] = True
             vm = ToolClient(cfg, key)
             search = {
                 "evidence_id": eid,
@@ -275,6 +277,13 @@ def answer(data, cfg, key):
                 else "Chưa đủ chứng cứ để xác nhận trong phạm vi đã đọc."
             )
         )
+        if item.get("argument_check"):
+            proof = item["argument_check"]
+            refs = proof["refs"]
+            text = (f"VM xác định trường {proof['column']} là cột thứ {proof['index'] + 1}. "
+                    f"Dòng {proof['roles']['argument']} truyền trường này vào đối số thứ {proof['position'] + 1}. "
+                    f"Dòng {proof['roles']['operation']} dùng dữ liệu từ tham số đó trong lời gọi xử lý. "
+                    "Kết quả ghi nhận quan hệ tĩnh trong mã.")
         if item.get("path_check"):
             check = item["path_check"]
             refs = check["refs"]
@@ -288,6 +297,7 @@ def answer(data, cfg, key):
         "topic": topic,
         "text": text,
         "refs": refs,
+        "windows": cited_windows(records, {"nodes": [], "edges": []}, [{"refs": refs}]),
         "related_locations": leads,
         "search": search,
         "note": note,

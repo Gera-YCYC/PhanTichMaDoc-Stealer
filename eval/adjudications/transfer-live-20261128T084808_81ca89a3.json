@@ -1,0 +1,99 @@
+{
+  "run": "20261128T084808_81ca89a3",
+  "inherit": "20261128T080428_c391512e",
+  "claims": {
+    "C1": {
+      "signature": "09d74204f987ad1e064e79bc36b8414d38ea22a0418a98609fa3f00a75d7ed50",
+      "lines": [
+        10,
+        276,
+        277,
+        278,
+        279
+      ],
+      "atoms": [
+        [
+          "PY24-A18",
+          "correct"
+        ]
+      ],
+      "reason": "The source location and archive arguments match the independently graded A18 reference. Case of ZIP in the description does not change the call."
+    },
+    "C2": {
+      "signature": "1f12352aa6a37b87878643505ff41991558ac2002c47346fcbe34eab68e76f15",
+      "lines": [
+        14,
+        82,
+        90,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        106,
+        108,
+        109,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        315,
+        323
+      ],
+      "atoms": [
+        [
+          "PY24-A26",
+          "correct"
+        ],
+        [
+          "PY24-A20",
+          "correct"
+        ],
+        [
+          "PY24-A25",
+          "correct"
+        ],
+        [
+          "PY24-A24",
+          "correct"
+        ]
+      ],
+      "reason": "Same statement and source ranges as the graded C2 in the preceding run. The retained content refers to static archive argument, MIME attachment, SMTP login and send call sites. No credit for successful delivery."
+    },
+    "C31": {
+      "signature": "36ca1f4db6c2334b35f0f1590a01d6711a33348eb5e46ee60b0627c83af1a6d0",
+      "lines": [
+        12,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "atoms": [
+        [
+          "PY24-A09",
+          "correct"
+        ]
+      ],
+      "reason": "The caller projects column 2 and passes that field as argument 1. The callee row and operand witness cover the declared A09 sites. No claim of runtime decryption, plaintext contents or transfer."
+    }
+  }
+}
