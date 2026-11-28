@@ -1,0 +1,105 @@
+{
+  "runs": [
+    {
+      "run": "20261128T031606_ca91de35",
+      "journal_sha256": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+      "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+      "source_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+      "report_requests": 11,
+      "counts": {
+        "in_one_request": 4,
+        "retained": 5,
+        "retrieved_but_not_in_requests": 5,
+        "missing_from_retrieval": 6,
+        "split_across_requests": 1
+      },
+      "units": [
+        {
+          "unit": "cookie-helper",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "cookie-copy",
+          "category": "retained"
+        },
+        {
+          "unit": "cookie-table",
+          "category": "retained"
+        },
+        {
+          "unit": "login-copy",
+          "category": "retained"
+        },
+        {
+          "unit": "login-table",
+          "category": "retained"
+        },
+        {
+          "unit": "cookie-key-call",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "login-key-call",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "native-decrypt",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "tag-length",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "aes-provider",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "key-import",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "cookie-handoff",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "password-handoff",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "cookie-error-call",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "password-error-call",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "ip-message",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "hardware-message",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "post-body",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "webhook-config",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "browser-technique",
+          "category": "split_across_requests"
+        },
+        {
+          "unit": "cookie-technique",
+          "category": "retained"
+        }
+      ]
+    }
+  ],
+  "scope": "Rows in the pinned ILSpy output and logged report requests. Presence does not establish a complete data flow or human validation."
+}

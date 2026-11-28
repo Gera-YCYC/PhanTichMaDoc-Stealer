@@ -241,7 +241,8 @@ function map(panel) {
   split.append(list, detail);
   panel.append(split);
 }
-function renderEvaluation(panel, data) {
+function renderEvaluation(panel, data, sample = "python") {
+  panel.replaceChildren();
   const percent = (n) =>
     n == null
       ? "Chưa đo"
@@ -259,15 +260,39 @@ function renderEvaluation(panel, data) {
     frame.append(grid);
     parent.append(frame);
   }
+  const names = {
+    python: "PythonStealer",
+    gomorrah: "Gomorrah",
+    mercurial: "Mercurial",
+  };
+  const cohorts = { python: data.web_report_quality, ...data.dotnet_quality };
+  const reports = cohorts[sample];
+  const selector = el("select");
+  const label = el("label", "Mẫu dùng để đối chiếu");
+  for (const key of Object.keys(cohorts)) {
+    selector.add(new Option(names[key], key));
+  }
+  selector.value = sample;
+  selector.onchange = () => renderEvaluation(panel, data, selector.value);
+  selector.className = "evaluation-sample";
+  label.append(selector);
   panel.append(
-    el("h2", "Bảng chấm ba lượt web trên cùng mẫu Python"),
+    label,
+    el(
+      "h2",
+      sample === "python"
+        ? "Bảng chấm ba lượt web trên cùng mẫu Python"
+        : "Bảng chấm .NET · " + names[sample],
+    ),
     el(
       "p",
-      "Mỗi lượt đối chiếu với cùng 36 mục tham chiếu đã chốt. Nhãn do dự án đối chiếu nguồn tĩnh trên mẫu phát triển. Một mục xuất hiện nhiều lần chỉ được tính một lần trong precision, recall và F1.",
+      "Mỗi lượt đối chiếu với " +
+        reports[0].reference_count +
+        " mục tham chiếu đã chốt. Nhãn do dự án đối chiếu nguồn tĩnh trên mẫu phát triển. Một mục xuất hiện nhiều lần chỉ được tính một lần trong precision, recall và F1.",
     ),
   );
   const reportRows = [];
-  for (const result of data.web_report_quality) {
+  for (const result of reports) {
     for (const [label, stage] of [
       ["Trước lọc", result.raw],
       ["Sau lọc", result.after_filter],
@@ -304,7 +329,7 @@ function renderEvaluation(panel, data) {
     incorrect: "Sai",
     unsupported: "Thiếu căn cứ",
   };
-  for (const result of data.web_report_quality) {
+  for (const result of reports) {
     const detail = el("details", undefined, "card");
     detail.append(
       el("summary", "Đối chiếu từng câu · " + result.run),
@@ -385,6 +410,80 @@ function renderEvaluation(panel, data) {
     );
     panel.append(omissions);
   }
+  const batch = data.current_batch;
+  panel.append(
+    el("h2", "Kết quả gộp trên " + batch.total_attempts + " mẫu của bản web"),
+    el(
+      "p",
+      "Mỗi mẫu góp một lượt. Với Python, dùng lượt đầu tiên của bộ ba cùng cấu hình. Các phép đo dùng đáp án phát triển.",
+    ),
+  );
+  table(
+    [
+      "Báo cáo",
+      "Mục đúng",
+      "Sai",
+      "Thiếu căn cứ",
+      "Bỏ sót",
+      "Precision",
+      "Recall",
+      "F1",
+      "F1 IOC và ATT&CK",
+    ],
+    [
+      ["Trước lọc", batch.raw],
+      ["Sau lọc", batch.after_filter],
+    ].map(([label, s]) => {
+      const d = s.declared_units;
+      return [
+        label,
+        d.correct,
+        d.incorrect,
+        d.unsupported,
+        d.missed,
+        percent(d.precision),
+        percent(d.recall),
+        percent(d.f1),
+        percent(s.ioc_and_attack.f1),
+      ];
+    }),
+  );
+  panel.append(
+    el(
+      "p",
+      "Verdict đúng " +
+        batch.correct_verdicts +
+        "/" +
+        batch.total_attempts +
+        " mẫu của bản web.",
+    ),
+  );
+  const times = el("details", undefined, "card");
+  times.append(el("summary", "Thời gian, công cụ và token theo từng mẫu"));
+  table(
+    [
+      "Mẫu",
+      "Verdict",
+      "Câu giữ / đề xuất",
+      "Giây",
+      "Lượt công cụ",
+      "Lỗi công cụ",
+      "Lượt model",
+      "Token vào / ra",
+    ],
+    batch.timings.map(({ sample, verdict, accepted, proposed, metrics: m }) => [
+      sample,
+      verdict,
+      accepted + "/" + proposed,
+      m.elapsed_s.toLocaleString("vi"),
+      m.tool_calls,
+      m.tool_errors,
+      m.model_calls,
+      m.prompt_tokens + " / " + m.completion_tokens,
+    ]),
+    times,
+  );
+  panel.append(times);
   const r = data.rubric,
     after = r.after_filter,
     raw = r.raw;

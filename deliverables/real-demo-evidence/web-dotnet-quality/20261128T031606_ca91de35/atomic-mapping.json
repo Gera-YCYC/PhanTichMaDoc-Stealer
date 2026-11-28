@@ -1,0 +1,534 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+  "raw_report_sha256": "3aace7696a77b261b57ed8fed74a707e5accb8c65bb194ba8e9e8e126d267fb5",
+  "checked_report_sha256": "cbbc54a05c85bd614f49b79827c5544f463658ee51ea0b0a449c765aebf2deef",
+  "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+  "method": "Explicit exhaustive spans. Duplicate operations at the same site count once. API qualifiers are part of the asserted operation.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 65,
+          "label": "correct",
+          "unit_key": "login-copy",
+          "reference_id": "login-copy",
+          "reason": "Đường dẫn nguồn và thao tác sao chép có mặt ở dòng 779 và 787.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 66,
+              "end_line": 81,
+              "projected_quote_sha256": "17d628c44a2c627f4b80b008eb1f8106a2ae7bf698ed93def1ba635799aad23b"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 775,
+              "end_line": 810,
+              "projected_quote_sha256": "c79bfbc98d0d6d6597ef80f0887fcf1d3ee10459cadcac628f8ab753c8ff1540"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 73,
+          "label": "correct",
+          "unit_key": "login-table",
+          "reference_id": "login-table",
+          "reason": "Đoạn 779–796 cho thấy bản sao tệp, lúc mở cơ sở dữ liệu và tên bảng được chọn.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 66,
+              "end_line": 81,
+              "projected_quote_sha256": "17d628c44a2c627f4b80b008eb1f8106a2ae7bf698ed93def1ba635799aad23b"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 775,
+              "end_line": 810,
+              "projected_quote_sha256": "c79bfbc98d0d6d6597ef80f0887fcf1d3ee10459cadcac628f8ab753c8ff1540"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 133,
+          "label": "correct",
+          "unit_key": "key-from-state",
+          "reference_id": "key-from-state",
+          "reason": "Dòng 681 xác định tệp nguồn. Dòng 687 đọc tệp và tìm trường khóa. Dòng 693 xác nhận cách biểu diễn bằng Base64.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 737,
+              "end_line": 752,
+              "projected_quote_sha256": "3c48f2e63142cdd661c1bde0611d682e380933df6b2799294e13a39fc10d5002"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 676,
+              "end_line": 707,
+              "projected_quote_sha256": "806a2f5cddca611859c5f1becf752919fcdceb640e0feca8b21b6e3b98227658"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 91,
+          "label": "correct",
+          "unit_key": "key-unprotect",
+          "reference_id": "key-unprotect",
+          "reason": "Dòng 693–700 cho thấy bước chuẩn bị đầu vào và trả kết quả Unprotect trong thân hàm lấy khóa.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 737,
+              "end_line": 752,
+              "projected_quote_sha256": "3c48f2e63142cdd661c1bde0611d682e380933df6b2799294e13a39fc10d5002"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 676,
+              "end_line": 707,
+              "projected_quote_sha256": "806a2f5cddca611859c5f1becf752919fcdceb640e0feca8b21b6e3b98227658"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 134,
+          "label": "correct",
+          "unit_key": "os-wmi-fields",
+          "reference_id": "os-wmi-fields",
+          "reason": "Lớp được truy vấn hiện ở 1106. Các trường Caption, OSArchitecture và Version xuất hiện ở 1113–1123.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1076,
+              "end_line": 1083,
+              "projected_quote_sha256": "5edfe022c40c0f5bf10ced1736fbad86593eeb9e3f1ca040d9dc61ec61c93a61"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1100,
+              "end_line": 1131,
+              "projected_quote_sha256": "a63ff3ebee18d58e14b7543066d29c693bfcfc9997af4c22c833384b5aad66c7"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1133,
+              "end_line": 1140,
+              "projected_quote_sha256": "2f678037650822dfe51cfb119fe2d450f524343141bbdd1a3de20da33187bd6d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 94,
+          "label": "unsupported",
+          "unit_key": "unproven-decoded-password-write",
+          "reference_id": null,
+          "reason": "Dòng 797 mở bộ ghi. Đến 812, đoạn dẫn chưa có thao tác ghi giá trị đã giải mã vào bộ ghi đó.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 797,
+              "end_line": 812,
+              "projected_quote_sha256": "2961cce853768b46acf94e6f21482182af0e9b353a8b6840480621316dea81f0"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 676,
+              "end_line": 707,
+              "projected_quote_sha256": "806a2f5cddca611859c5f1becf752919fcdceb640e0feca8b21b6e3b98227658"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 75,
+          "label": "correct",
+          "unit_key": "key-from-state",
+          "reference_id": "key-from-state",
+          "reason": "Đường dẫn và phép đọc ở 681–687, sau đó dữ liệu được chuẩn bị và chuyển vào Unprotect tại 693–700.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 797,
+              "end_line": 812,
+              "projected_quote_sha256": "2961cce853768b46acf94e6f21482182af0e9b353a8b6840480621316dea81f0"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 676,
+              "end_line": 707,
+              "projected_quote_sha256": "806a2f5cddca611859c5f1becf752919fcdceb640e0feca8b21b6e3b98227658"
+            }
+          ]
+        },
+        {
+          "start": 75,
+          "end": 122,
+          "label": "correct",
+          "unit_key": "key-unprotect",
+          "reference_id": "key-unprotect",
+          "reason": "Đường dẫn và phép đọc ở 681–687, sau đó dữ liệu được chuẩn bị và chuyển vào Unprotect tại 693–700.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 797,
+              "end_line": 812,
+              "projected_quote_sha256": "2961cce853768b46acf94e6f21482182af0e9b353a8b6840480621316dea81f0"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 676,
+              "end_line": 707,
+              "projected_quote_sha256": "806a2f5cddca611859c5f1becf752919fcdceb640e0feca8b21b6e3b98227658"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 116,
+          "label": "correct",
+          "unit_key": "aes-wrapper-call",
+          "reference_id": "aes-wrapper-call",
+          "reason": "Đối tượng ở 667 và lời gọi cụ thể ở 668 xác nhận bốn đối số. Đây là lời gọi ở tầng sử dụng thư viện.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 665,
+              "end_line": 696,
+              "projected_quote_sha256": "8d055b93c8df5a640813abd9bf8b5fd4850b579c4c3c17751150ee5d5f82e09e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 101,
+          "label": "correct",
+          "unit_key": "key-from-state",
+          "reference_id": "key-from-state",
+          "reason": "Dòng 681–687 xác nhận nguồn và cách lấy dữ liệu. Dòng 693 chuyển dữ liệu Base64 thành byte.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 665,
+              "end_line": 696,
+              "projected_quote_sha256": "8d055b93c8df5a640813abd9bf8b5fd4850b579c4c3c17751150ee5d5f82e09e"
+            }
+          ]
+        },
+        {
+          "start": 101,
+          "end": 129,
+          "label": "correct",
+          "unit_key": "key-base64",
+          "reference_id": "key-base64",
+          "reason": "Dòng 681–687 xác nhận nguồn và cách lấy dữ liệu. Dòng 693 chuyển dữ liệu Base64 thành byte.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 665,
+              "end_line": 696,
+              "projected_quote_sha256": "8d055b93c8df5a640813abd9bf8b5fd4850b579c4c3c17751150ee5d5f82e09e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 181,
+          "label": "correct",
+          "unit_key": "row-content-default",
+          "reference_id": "row-content-default",
+          "reason": "Điều kiện ở 1386 và phép gán ở 1388 khớp bộ mã mặc định, mảng, chỉ số và trường đích.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1374,
+              "end_line": 1403,
+              "projected_quote_sha256": "13c5c4c2fc0b8eac563c88ecd125db1e5c4068dc56af4a3b7397049bb2591e19"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 135,
+          "label": "correct",
+          "unit_key": "item-name-default",
+          "reference_id": "item-name-default",
+          "reason": "Dòng 1507 chứa phép gán trường tên và lời gọi bộ giải mã mặc định.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1489,
+              "end_line": 1520,
+              "projected_quote_sha256": "03339d631f2b237a753c27857a89350b349792853843f79205467d255f15be2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 89,
+          "label": "incorrect",
+          "unit_key": "rootnum-unsigned-assignment",
+          "reference_id": null,
+          "reason": "Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1489,
+              "end_line": 1520,
+              "projected_quote_sha256": "03339d631f2b237a753c27857a89350b349792853843f79205467d255f15be2a"
+            }
+          ]
+        },
+        {
+          "start": 89,
+          "end": 135,
+          "label": "correct",
+          "unit_key": "rootnum-offsets",
+          "reference_id": "rootnum-offsets",
+          "reason": "Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1489,
+              "end_line": 1520,
+              "projected_quote_sha256": "03339d631f2b237a753c27857a89350b349792853843f79205467d255f15be2a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 112,
+          "label": "correct",
+          "unit_key": "cookie-copy",
+          "reference_id": "cookie-copy",
+          "reason": "Dòng 713–714 xác nhận nguồn và đích, dòng 720 thực hiện sao chép.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 713,
+              "end_line": 744,
+              "projected_quote_sha256": "f649744dee064134852bbed3c57ef7176a6113c0b4981ec31a31902e3db13eec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 85,
+          "label": "correct",
+          "unit_key": "cookie-table",
+          "reference_id": "cookie-table",
+          "reason": "Đoạn 720–728 xác nhận bản sao và bảng. Dòng 729 mở bộ ghi, 732–739 truy xuất trường. Trong phần trích đến 744 chưa thấy lời ghi nối các trường với bộ ghi.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 713,
+              "end_line": 744,
+              "projected_quote_sha256": "f649744dee064134852bbed3c57ef7176a6113c0b4981ec31a31902e3db13eec"
+            }
+          ]
+        },
+        {
+          "start": 85,
+          "end": 148,
+          "label": "unsupported",
+          "unit_key": "cookie-fields-written",
+          "reference_id": null,
+          "reason": "Đoạn 720–728 xác nhận bản sao và bảng. Dòng 729 mở bộ ghi, 732–739 truy xuất trường. Trong phần trích đến 744 chưa thấy lời ghi nối các trường với bộ ghi.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 713,
+              "end_line": 744,
+              "projected_quote_sha256": "f649744dee064134852bbed3c57ef7176a6113c0b4981ec31a31902e3db13eec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 71,
+          "label": "correct",
+          "unit_key": "processor-registry",
+          "reference_id": "processor-registry",
+          "reason": "Dòng 1135–1138 mở khóa và đọc giá trị tên bộ xử lý.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1133,
+              "end_line": 1163,
+              "projected_quote_sha256": "002d72f0f1adf356f88e6eb218843c2ef7f4b2c2972568ad55db2575dba03243"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C16",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 139,
+          "label": "correct",
+          "unit_key": "video-wmi-query",
+          "reference_id": "video-wmi-query",
+          "reason": "Dòng 1148 tạo truy vấn trên lớp bộ điều khiển video.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 1133,
+              "end_line": 1163,
+              "projected_quote_sha256": "002d72f0f1adf356f88e6eb218843c2ef7f4b2c2972568ad55db2575dba03243"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C17",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 157,
+          "label": "incorrect",
+          "unit_key": "chaining-mode-at-open",
+          "reference_id": null,
+          "reason": "Hàm bao nhận ba tham số ở 419. Ở 424, lời gọi mở provider nhận tên thuật toán và nhà cung cấp. Chế độ nối khối được áp dụng ở lời gọi khác tại 430 hoặc 433.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 416,
+              "end_line": 447,
+              "projected_quote_sha256": "3cd259d75e58c9181d846e9b0543a78c320cb587d826a7c1143007d553f7c57b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C18",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 123,
+          "label": "correct",
+          "unit_key": "set-chaining-mode",
+          "reference_id": "set-chaining-mode",
+          "reason": "Dòng 430 và 433 có lời gọi đặt thuộc tính. Đáp án về AES cụ thể còn cần điểm gọi chọn thuật toán ở 380, ngoài đoạn dẫn của câu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 416,
+              "end_line": 447,
+              "projected_quote_sha256": "3cd259d75e58c9181d846e9b0543a78c320cb587d826a7c1143007d553f7c57b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C19",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 58,
+          "label": "correct",
+          "unit_key": "cookie-technique",
+          "reference_id": "cookie-technique",
+          "reason": "Hai trích dẫn liền nhau 709–730 và 731–751 xác định kho Chrome, đích sao chép, phép sao chép ở 720, thao tác đọc bảng ở 727–728 và xử lý giá trị ở 747. Bằng chứng đủ cho kỹ thuật thu thập cookie trong mã tĩnh.",
+          "source_references": [
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 709,
+              "end_line": 730,
+              "projected_quote_sha256": "d2f71fceaca469bdff9863f1c0dd2f65c58276c4fa9af723a3d2f623734ab9b7"
+            },
+            {
+              "evidence_id": "ev_9c1fe7f89a594a3d",
+              "line": 731,
+              "end_line": 751,
+              "projected_quote_sha256": "5585c7ff4d949e49404c9b4ff4e6b116d47f30e8e8b75b57d5899d937a787a31"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

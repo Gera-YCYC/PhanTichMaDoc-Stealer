@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-11-28T03:34:57.2631043Z",
+  "project_ollama_pid": 5160,
+  "project_ollama_process_present": false,
+  "project_port": 11435,
+  "port_listeners": 0,
+  "project_vm_listed": false,
+  "gpu_observations": [
+    {
+      "used_mib": 0,
+      "total_mib": 6144
+    }
+  ],
+  "scope": "The VM inventory and listener were checked on the project host. GPU memory includes other applications."
+}

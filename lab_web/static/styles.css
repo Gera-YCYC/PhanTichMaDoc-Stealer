@@ -125,6 +125,10 @@ select {
   font-size: 14px;
   margin-top: 5px;
 }
+.evaluation-sample {
+  display: block;
+  margin-bottom: 14px;
+}
 #panel .box p,
 #panel .card p {
   overflow-wrap: anywhere;

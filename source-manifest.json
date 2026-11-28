@@ -6,8 +6,8 @@
   },
   {
     "path": ".github/workflows/tests.yml",
-    "bytes": 923,
-    "sha256": "8be9af955159fe89c450c1770d427fa8622a78604cceada52f2a77c53a22b616"
+    "bytes": 931,
+    "sha256": "515eb838182e2ba60b4c0ff1d6f79a1553015d302e8dc30fff6e2bd22ac3d787"
   },
   {
     "path": ".gitignore",
@@ -900,6 +900,11 @@
     "sha256": "7fce6e3d5997e18b5984ef528f30ac8d164bb5f1fceef023d219753fd1b16273"
   },
   {
+    "path": "deliverables/real-demo-evidence/runtime-stopped-after-web-batch.json",
+    "bytes": 421,
+    "sha256": "5a9719b1741fa180bb2e2a6b4b4653ad2b630fc91f9965034fbbb419536430d2"
+  },
+  {
     "path": "deliverables/real-demo-evidence/runtime-stopped-after-web.json",
     "bytes": 421,
     "sha256": "de66936739f6e32c75443278b2a5aab2bb967050f9b99fc6c7fbb4be48151fd7"
@@ -985,6 +990,16 @@
     "sha256": "d5f0e82567eb1e632abfb0f3cd9cc6e2178c9d1b616e4539cae96b1de41761c7"
   },
   {
+    "path": "deliverables/real-demo-evidence/web-20261128T030521_c76fc69a.json",
+    "bytes": 6404,
+    "sha256": "955f89792665ffe1002d2527db9f0bd9dfd13c9c4c689e882db31175a2c146a2"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-20261128T031606_ca91de35.json",
+    "bytes": 4743,
+    "sha256": "0bdfd5aecbff18e4b6052e7e606c4e494dd3fcc7982458bd18c3e0336d458ef7"
+  },
+  {
     "path": "deliverables/real-demo-evidence/web-comparison-initial.json",
     "bytes": 6642,
     "sha256": "8d62de8b2eb1fed201066257bb0d9350d83f49cda4a677bf093538a6868192bd"
@@ -993,6 +1008,81 @@
     "path": "deliverables/real-demo-evidence/web-comparison.json",
     "bytes": 6695,
     "sha256": "44f7eb8c4425e334f38c5c03b8af002bd1f1be284cf4882f3125578bdc23b049"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-current-batch.json",
+    "bytes": 15468,
+    "sha256": "bfc6b37681b38a805082d11f028c350c051f9af7e01bbee8852896d10fa395a6"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/atomic-mapping.json",
+    "bytes": 39279,
+    "sha256": "c7a3c76c76655fee74c856fa869f8bdb918f5c69b0470370db55bb65556fd622"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/atomic-score.json",
+    "bytes": 17354,
+    "sha256": "85f3f145331ac6c42d6c6477e1bcf5041f1ee6eae95d303be14a3b809c1f13ba"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/claim-score.json",
+    "bytes": 1700,
+    "sha256": "cede6cfe726e936ec93588ece21a17bc1ef2313bc128c3b7d5319d0cbf0e9537"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/judgments.json",
+    "bytes": 17427,
+    "sha256": "b961e4a92e0c7bc443a9ef4ae395c7d68ceab6b3ede20fe7cc039389c70ea63b"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/review.md",
+    "bytes": 7727,
+    "sha256": "3a01f09b2c7f1871772fc29f7518cb48575cf64ae2a609b4b8084fe11e154935"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/source-audit.json",
+    "bytes": 28766,
+    "sha256": "1ce86a14020e1c765b22f507f929ac0311b5ecc5d3200c11ac888027472ddba5"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/atomic-mapping.json",
+    "bytes": 19377,
+    "sha256": "e23596313abf9950d4efa5512d89d07f8662a8e7cf40b4890ab0e25de654af28"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/atomic-score.json",
+    "bytes": 15553,
+    "sha256": "ad3622afb7a9be73351d050cd2f8e86eff2db2da88a77fa35ccbdd478772d0cc"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/claim-score.json",
+    "bytes": 1703,
+    "sha256": "4f80f2b27b85ec37d8eda584d044048ea8a5dcd8e4591735d5d15c2e9f8fcf43"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/judgments.json",
+    "bytes": 14297,
+    "sha256": "38456b53cd4cdb2b8144ef8070199b7c6630065c07f4103874cb6fc0b58777e8"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/review.md",
+    "bytes": 5627,
+    "sha256": "f457f2176228f3efa3c7178485f0f62474e22ba2d6bc38fdbf5b339e7e66d2ea"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/source-audit.json",
+    "bytes": 14123,
+    "sha256": "5af656523465f845feec26e7e2446647029dced13c928bf95c3ddfe570b0135b"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-gomorrah-exposure.json",
+    "bytes": 4913,
+    "sha256": "d8b9ba5421e3ccf786f840b3579b2b84193c6aa30400c216ddf3e02327c56cc3"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/web-mercurial-exposure.json",
+    "bytes": 2947,
+    "sha256": "e8ac0c00ae3a11da06287d993244ce74472a907ea4202a1bba9ff8f48c9a933b"
   },
   {
     "path": "deliverables/real-demo-evidence/web-python-exposure.json",
@@ -1210,6 +1300,11 @@
     "sha256": "2a59d9bd499ab838bf79af3872e1c600650611b8942667900e6beaa15920bc79"
   },
   {
+    "path": "docs/CHAM_BA_MAU_WEB.md",
+    "bytes": 8248,
+    "sha256": "cb12f14349c3c0bed82d4fc4a1b2d408ada03c62817d8da6e155efb98d9c7852"
+  },
+  {
     "path": "docs/CHAM_BAO_CAO_WEB.md",
     "bytes": 6079,
     "sha256": "f75b1c27d92ae8b9569024f28e75bac814fdc8f9cc241b3127e7a71b3a33584b"
@@ -1226,8 +1321,8 @@
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 16888,
-    "sha256": "df5538f37cb85821e7c5d0e8ef0a846983387294dda8e11663e767b7017a467b"
+    "bytes": 17462,
+    "sha256": "fedacfc05bc5a0f6830add4d35928e4c5915bb151f543743e02e216cc960e685"
   },
   {
     "path": "docs/DATASET.md",
@@ -1296,8 +1391,8 @@
   },
   {
     "path": "docs/PROJECT_GOAL.md",
-    "bytes": 10921,
-    "sha256": "a1c489582b1d5155c846cf7c55ab621f487e6f3d6fefd230194b2b7c5a9b12ea"
+    "bytes": 11313,
+    "sha256": "9c9d316278c90c0a220f7273e95c9bdc0f4741b62ad493099d871dd4012f80ae"
   },
   {
     "path": "docs/PUBLISH_STATUS.md",
@@ -1406,8 +1501,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 41644,
-    "sha256": "cf2d62d0bfd56b890e188a308c852306ba65c5f9bd9ec77420be5601dd9f66c7"
+    "bytes": 42161,
+    "sha256": "5d3acaec5389f4665325eb9630715d1cf7cb5773e1e52d0cf9335f6d44ef656d"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -1436,8 +1531,8 @@
   },
   {
     "path": "docs/WEB_DIEU_TRA.md",
-    "bytes": 17956,
-    "sha256": "0b10a687bfe3bed8ddfdf9f76be0f6071f6ee6ef71999d3f624ef01fec158f8e"
+    "bytes": 18550,
+    "sha256": "98f22e76363c327db0a2b9a131e04f3ff38aff0bd30b5038a7a9f109dedd26f4"
   },
   {
     "path": "docs/YARA_REAL_CORPUS.md",
@@ -1896,8 +1991,8 @@
   },
   {
     "path": "eval/score_public_batch.py",
-    "bytes": 7142,
-    "sha256": "30103763b3a054b730f8ec12a29362ad4d7638f79b6a278b661dad01ab617751"
+    "bytes": 7233,
+    "sha256": "b7b75ff8b72f337635d125322520f9111fa0162a4616909e70e4d894981ce7ec"
   },
   {
     "path": "eval/stability.py",
@@ -1906,13 +2001,13 @@
   },
   {
     "path": "eval/web_report_exposure.py",
-    "bytes": 6224,
-    "sha256": "36755c3747b0f37dd445730b512b98c0d8b1c856560914b3320d07e3146928d6"
+    "bytes": 7566,
+    "sha256": "c3e9abda5b34fdc9df903b8357d8765e12d284b6aa116c46809ccf3a3524eaed"
   },
   {
     "path": "eval/web_report_quality.py",
-    "bytes": 9713,
-    "sha256": "14b9969da0f602fc10f7e77417228e6f24d279d3c08e30df73c625eabd9817e0"
+    "bytes": 12382,
+    "sha256": "9868be8f5fa89f98844e0277ca426c1a6886bc8f750b69c65916f6fa55ae317e"
   },
   {
     "path": "eval/web_stability.py",
@@ -1946,13 +2041,13 @@
   },
   {
     "path": "lab_web/server.py",
-    "bytes": 14232,
-    "sha256": "55a64ec2073146853f877fac83413c3db72ef1c5a73760e22070600d25afba18"
+    "bytes": 14421,
+    "sha256": "ce2fad87014f71e8370ea0bd4829c247f74352b1652007f605a17e9809dd37ae"
   },
   {
     "path": "lab_web/static/app.js",
-    "bytes": 24752,
-    "sha256": "c5abc5278a02bdbdc80e7c7e5e2c16feea73a48a59014e8e371e42afd6363ec0"
+    "bytes": 27306,
+    "sha256": "19846275919a69bafb5198b9aa59f7f77e8773f78f28e795b2559b550a30f121"
   },
   {
     "path": "lab_web/static/index.html",
@@ -1961,8 +2056,8 @@
   },
   {
     "path": "lab_web/static/styles.css",
-    "bytes": 5775,
-    "sha256": "eada37cf3d343a132913b23259bf9ca0ad1e96ccafb989fce7ad6d75214eb241"
+    "bytes": 5839,
+    "sha256": "8a104f04eefbbab53530bf2906c003985b9955a2830509c8dc14f1e0bb917ca9"
   },
   {
     "path": "lab_web/yara_view.py",
@@ -1976,8 +2071,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 15128,
-    "sha256": "7351d767be34242fca151352e3191729dc71da9e3554a8d78e10880fdf2de3b5"
+    "bytes": 15462,
+    "sha256": "bba4628d642c07eed3b86861e7c656320a1d419318012df55ad19b426213118d"
   },
   {
     "path": "requirements-dev.lock.txt",
@@ -2856,8 +2951,8 @@
   },
   {
     "path": "tests/test_web_report_quality.py",
-    "bytes": 1219,
-    "sha256": "ec2757b4dfa94430bbc8aa4e4b547017b2c1d9506fe1b6896323eda0d9b2c7ee"
+    "bytes": 1946,
+    "sha256": "0ddc54ab6c2ff805dedad8f4ca603c7fe73a04215a34e1d39af4a6bbbef33bd5"
   },
   {
     "path": "training/__init__.py",
@@ -2936,8 +3031,8 @@
   },
   {
     "path": "training/RANKER_EXPERIMENT.md",
-    "bytes": 11017,
-    "sha256": "21d5bdd22a785d1a7bb420658298d291b8aaf31aefa4d0a8cfa73ca3f13d33e4"
+    "bytes": 11473,
+    "sha256": "063d4c1bc9b3680a2318dd3d848b27b10648ff8acb39c7759df43c9517d3a1d5"
   },
   {
     "path": "training/README.md",

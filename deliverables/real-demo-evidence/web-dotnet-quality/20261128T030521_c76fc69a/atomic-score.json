@@ -1,0 +1,621 @@
+{
+  "contract": "frozen-reference-plus-separate-source-findings/1",
+  "run_id": "20261128T030521_c76fc69a",
+  "profile_id": "gomorrah.atomic-development/1",
+  "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+  "raw_report_sha256": "890c32613c1d952177d375f7f1a5e1fc44b05a9a2c66dbb15d70767d28b9ae80",
+  "method": "P and F1 on declared units charge all incorrect or unsupported predictions. Supported extra findings are listed separately. All-prediction precision includes them. Recall uses the frozen denominator.",
+  "additional_findings": [
+    {
+      "id": "cc-response-assignment",
+      "kind": "behavior",
+      "proposition": "Gán kết quả lời gọi cho mảng tại vị trí này.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3655,
+          "end_line": 3655
+        }
+      ]
+    },
+    {
+      "id": "screen-target-build",
+      "kind": "behavior",
+      "proposition": "Ghép đích từ phần cấu hình và thành phần nhận dạng.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3677,
+          "end_line": 3677
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3681,
+          "end_line": 3681
+        }
+      ]
+    },
+    {
+      "id": "info-response-assignment",
+      "kind": "behavior",
+      "proposition": "Gán mảng trả về cho biến ở vị trí tệp thông tin.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3629,
+          "end_line": 3629
+        }
+      ]
+    },
+    {
+      "id": "late-one-call",
+      "kind": "behavior",
+      "proposition": "Gọi phương thức tải tệp qua liên kết muộn ở vị trí thứ nhất.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4244,
+          "end_line": 4244
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4253,
+          "end_line": 4253
+        }
+      ]
+    },
+    {
+      "id": "late-two-call",
+      "kind": "behavior",
+      "proposition": "Gọi phương thức tải tệp qua liên kết muộn ở vị trí thứ hai.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4297,
+          "end_line": 4297
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4306,
+          "end_line": 4306
+        }
+      ]
+    },
+    {
+      "id": "document-extension-enumeration",
+      "kind": "behavior",
+      "proposition": "Liệt kê các phần mở rộng đã chỉ định trong thư mục tài liệu.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4293,
+          "end_line": 4293
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4296,
+          "end_line": 4296
+        }
+      ]
+    },
+    {
+      "id": "table-type-decode",
+      "kind": "behavior",
+      "proposition": "Đọc vùng byte với bộ mã mặc định để gán trường kiểu.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2748,
+          "end_line": 2748
+        }
+      ]
+    },
+    {
+      "id": "table-name-decode",
+      "kind": "behavior",
+      "proposition": "Đọc vùng byte bằng Unicode để gán trường tên.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2764,
+          "end_line": 2764
+        }
+      ]
+    },
+    {
+      "id": "table-encoding-selection",
+      "kind": "behavior",
+      "proposition": "Rẽ nhánh chọn một trong ba cách chuyển byte thành văn bản.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2746,
+          "end_line": 2746
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2748,
+          "end_line": 2748
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2752,
+          "end_line": 2752
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2756,
+          "end_line": 2756
+        }
+      ]
+    },
+    {
+      "id": "local-unprotect-utf8",
+      "kind": "behavior",
+      "proposition": "Chuyển đầu vào sang byte rồi gọi Unprotect và giải mã kết quả tại hàm này.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4098,
+          "end_line": 4098
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4099,
+          "end_line": 4099
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4100,
+          "end_line": 4100
+        }
+      ]
+    },
+    {
+      "id": "other-unprotect",
+      "kind": "behavior",
+      "proposition": "Gọi Unprotect với mảng byte tại hàm thứ hai.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4890,
+          "end_line": 4890
+        }
+      ]
+    }
+  ],
+  "human_reviewers": [],
+  "full_coursework_quality_gate_passed": false,
+  "raw": {
+    "reference_units": 40,
+    "correct": 11,
+    "missed": 29,
+    "supported_outside_scope": [
+      "cc-response-assignment",
+      "document-extension-enumeration",
+      "info-response-assignment",
+      "late-one-call",
+      "late-two-call",
+      "local-unprotect-utf8",
+      "other-unprotect",
+      "screen-target-build",
+      "table-encoding-selection",
+      "table-name-decode",
+      "table-type-decode"
+    ],
+    "incorrect": 0,
+    "unsupported": 3,
+    "prediction_atoms": 33,
+    "duplicate_atoms": 8,
+    "unique_prediction_units": 25,
+    "all_prediction_precision": 0.88,
+    "all_prediction_hallucination_rate": 0.12,
+    "precision": 0.7857142857142857,
+    "recall": 0.275,
+    "f1": 0.4074074074074074,
+    "matched_reference_ids": [
+      "cc-ascii",
+      "cc-upload",
+      "emails-ascii",
+      "emails-upload",
+      "info-ascii",
+      "info-upload",
+      "late-one-ascii",
+      "passwords-ascii",
+      "passwords-upload",
+      "screen-ascii",
+      "screen-upload"
+    ],
+    "missed_reference_ids": [
+      "browser-attack",
+      "capture",
+      "chrome-account",
+      "chrome-decrypt-call",
+      "chrome-open",
+      "chrome-origin_url",
+      "chrome-password_value",
+      "chrome-table",
+      "chrome-username_value",
+      "config-field",
+      "config-split",
+      "decrypt-declaration",
+      "dpapi",
+      "late-one-upload",
+      "late-two-ascii",
+      "late-two-upload",
+      "logs-fragment",
+      "opera-account",
+      "opera-decrypt-call",
+      "opera-open",
+      "opera-origin_url",
+      "opera-password_value",
+      "opera-table",
+      "opera-username_value",
+      "save-capture",
+      "screen-attack",
+      "screen-fragment",
+      "self-read",
+      "utf8"
+    ]
+  },
+  "after_filter": {
+    "reference_units": 40,
+    "correct": 11,
+    "missed": 29,
+    "supported_outside_scope": [
+      "cc-response-assignment",
+      "document-extension-enumeration",
+      "info-response-assignment",
+      "late-one-call",
+      "late-two-call",
+      "local-unprotect-utf8",
+      "other-unprotect",
+      "table-encoding-selection",
+      "table-type-decode"
+    ],
+    "incorrect": 0,
+    "unsupported": 2,
+    "prediction_atoms": 29,
+    "duplicate_atoms": 7,
+    "unique_prediction_units": 22,
+    "all_prediction_precision": 0.9090909090909091,
+    "all_prediction_hallucination_rate": 0.09090909090909091,
+    "precision": 0.8461538461538461,
+    "recall": 0.275,
+    "f1": 0.41509433962264153,
+    "matched_reference_ids": [
+      "cc-ascii",
+      "cc-upload",
+      "emails-ascii",
+      "emails-upload",
+      "info-ascii",
+      "info-upload",
+      "late-one-ascii",
+      "passwords-ascii",
+      "passwords-upload",
+      "screen-ascii",
+      "screen-upload"
+    ],
+    "missed_reference_ids": [
+      "browser-attack",
+      "capture",
+      "chrome-account",
+      "chrome-decrypt-call",
+      "chrome-open",
+      "chrome-origin_url",
+      "chrome-password_value",
+      "chrome-table",
+      "chrome-username_value",
+      "config-field",
+      "config-split",
+      "decrypt-declaration",
+      "dpapi",
+      "late-one-upload",
+      "late-two-ascii",
+      "late-two-upload",
+      "logs-fragment",
+      "opera-account",
+      "opera-decrypt-call",
+      "opera-open",
+      "opera-origin_url",
+      "opera-password_value",
+      "opera-table",
+      "opera-username_value",
+      "save-capture",
+      "screen-attack",
+      "screen-fragment",
+      "self-read",
+      "utf8"
+    ]
+  },
+  "by_kind": {
+    "attack": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 0,
+        "missed": 2,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "browser-attack",
+          "screen-attack"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 0,
+        "missed": 2,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "browser-attack",
+          "screen-attack"
+        ]
+      }
+    },
+    "behavior": {
+      "raw": {
+        "reference_units": 35,
+        "correct": 11,
+        "missed": 24,
+        "supported_outside_scope": [
+          "cc-response-assignment",
+          "document-extension-enumeration",
+          "info-response-assignment",
+          "late-one-call",
+          "late-two-call",
+          "local-unprotect-utf8",
+          "other-unprotect",
+          "screen-target-build",
+          "table-encoding-selection",
+          "table-name-decode",
+          "table-type-decode"
+        ],
+        "incorrect": 0,
+        "unsupported": 3,
+        "prediction_atoms": 33,
+        "duplicate_atoms": 8,
+        "unique_prediction_units": 25,
+        "all_prediction_precision": 0.88,
+        "all_prediction_hallucination_rate": 0.12,
+        "precision": 0.7857142857142857,
+        "recall": 0.3142857142857143,
+        "f1": 0.4489795918367347,
+        "matched_reference_ids": [
+          "cc-ascii",
+          "cc-upload",
+          "emails-ascii",
+          "emails-upload",
+          "info-ascii",
+          "info-upload",
+          "late-one-ascii",
+          "passwords-ascii",
+          "passwords-upload",
+          "screen-ascii",
+          "screen-upload"
+        ],
+        "missed_reference_ids": [
+          "capture",
+          "chrome-account",
+          "chrome-decrypt-call",
+          "chrome-open",
+          "chrome-origin_url",
+          "chrome-password_value",
+          "chrome-table",
+          "chrome-username_value",
+          "config-field",
+          "config-split",
+          "dpapi",
+          "late-one-upload",
+          "late-two-ascii",
+          "late-two-upload",
+          "opera-account",
+          "opera-decrypt-call",
+          "opera-open",
+          "opera-origin_url",
+          "opera-password_value",
+          "opera-table",
+          "opera-username_value",
+          "save-capture",
+          "self-read",
+          "utf8"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 35,
+        "correct": 11,
+        "missed": 24,
+        "supported_outside_scope": [
+          "cc-response-assignment",
+          "document-extension-enumeration",
+          "info-response-assignment",
+          "late-one-call",
+          "late-two-call",
+          "local-unprotect-utf8",
+          "other-unprotect",
+          "table-encoding-selection",
+          "table-type-decode"
+        ],
+        "incorrect": 0,
+        "unsupported": 2,
+        "prediction_atoms": 29,
+        "duplicate_atoms": 7,
+        "unique_prediction_units": 22,
+        "all_prediction_precision": 0.9090909090909091,
+        "all_prediction_hallucination_rate": 0.09090909090909091,
+        "precision": 0.8461538461538461,
+        "recall": 0.3142857142857143,
+        "f1": 0.4583333333333333,
+        "matched_reference_ids": [
+          "cc-ascii",
+          "cc-upload",
+          "emails-ascii",
+          "emails-upload",
+          "info-ascii",
+          "info-upload",
+          "late-one-ascii",
+          "passwords-ascii",
+          "passwords-upload",
+          "screen-ascii",
+          "screen-upload"
+        ],
+        "missed_reference_ids": [
+          "capture",
+          "chrome-account",
+          "chrome-decrypt-call",
+          "chrome-open",
+          "chrome-origin_url",
+          "chrome-password_value",
+          "chrome-table",
+          "chrome-username_value",
+          "config-field",
+          "config-split",
+          "dpapi",
+          "late-one-upload",
+          "late-two-ascii",
+          "late-two-upload",
+          "opera-account",
+          "opera-decrypt-call",
+          "opera-open",
+          "opera-origin_url",
+          "opera-password_value",
+          "opera-table",
+          "opera-username_value",
+          "save-capture",
+          "self-read",
+          "utf8"
+        ]
+      }
+    },
+    "ioc": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 0,
+        "missed": 2,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "logs-fragment",
+          "screen-fragment"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 0,
+        "missed": 2,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "logs-fragment",
+          "screen-fragment"
+        ]
+      }
+    },
+    "observation": {
+      "raw": {
+        "reference_units": 1,
+        "correct": 0,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "decrypt-declaration"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 1,
+        "correct": 0,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "decrypt-declaration"
+        ]
+      }
+    }
+  },
+  "rubric_ioc_attack": {
+    "raw": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 4,
+      "reference_units": 4,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "supported_outside_scope_count": 0
+    },
+    "after_filter": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 4,
+      "reference_units": 4,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "supported_outside_scope_count": 0
+    }
+  }
+}

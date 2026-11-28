@@ -1,0 +1,739 @@
+{
+  "run_id": "20261128T030521_c76fc69a",
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "raw_report_sha256": "890c32613c1d952177d375f7f1a5e1fc44b05a9a2c66dbb15d70767d28b9ae80",
+  "journal_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3516,
+          "end_line": 3531,
+          "projected_quote_sha256": "2780d34053625618b756e1da9aea8c8e22b13a39ad5e00cd457be3117d4ed1e2"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3645,
+          "end_line": 3669,
+          "projected_quote_sha256": "a2dcad2d56cfad8ca46403c8f55fcf55442f547dbca09998b5412ef5c611184c"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Dòng 3655 truyền biến đường dẫn vào lời gọi và gán giá trị trả về cho mảng."
+    },
+    {
+      "claim_id": "C2",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3516,
+          "end_line": 3531,
+          "projected_quote_sha256": "2780d34053625618b756e1da9aea8c8e22b13a39ad5e00cd457be3117d4ed1e2"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3645,
+          "end_line": 3669,
+          "projected_quote_sha256": "a2dcad2d56cfad8ca46403c8f55fcf55442f547dbca09998b5412ef5c611184c"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Dòng 3655–3656 cho thấy mảng trả về, bộ giải mã và biến nhận kết quả."
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3518,
+          "end_line": 3533,
+          "projected_quote_sha256": "c8a1b4811efbd1d3b48783bff8ee161f9f8c16191c0f4d969131d059286d5ff7"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3593,
+          "end_line": 3617,
+          "projected_quote_sha256": "82eff11fa7db3a2de00cbbc7966d02f3b234645b93aa28b09c5efa17f22e89f7"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Tại dòng 3603, hai đối số đúng vai trò mà câu mô tả."
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3518,
+          "end_line": 3533,
+          "projected_quote_sha256": "c8a1b4811efbd1d3b48783bff8ee161f9f8c16191c0f4d969131d059286d5ff7"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3593,
+          "end_line": 3617,
+          "projected_quote_sha256": "82eff11fa7db3a2de00cbbc7966d02f3b234645b93aa28b09c5efa17f22e89f7"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Tại dòng 3603–3604, mảng nhận kết quả rồi được chuyển thành văn bản ASCII."
+    },
+    {
+      "claim_id": "C5",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3520,
+          "end_line": 3535,
+          "projected_quote_sha256": "50cf762ace21c4c3ae2e244fb2d9c9b2ece88fe02c678a865ed7c5e22964e78f"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3671,
+          "end_line": 3695,
+          "projected_quote_sha256": "1a332fefa5f1d7dba4464e1399e33e8ade3b7eaa525e28e36b54b23e9f039d0d"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Đoạn trích cho thấy biến đường dẫn được truyền vào lời gọi. Nội dung ảnh chưa được chứng minh. Dòng 3677 và 3681 xác nhận phần ghép đích."
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3520,
+          "end_line": 3535,
+          "projected_quote_sha256": "50cf762ace21c4c3ae2e244fb2d9c9b2ece88fe02c678a865ed7c5e22964e78f"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3671,
+          "end_line": 3695,
+          "projected_quote_sha256": "1a332fefa5f1d7dba4464e1399e33e8ade3b7eaa525e28e36b54b23e9f039d0d"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Dòng 3681 và 3682 nối mảng phản hồi với lời gọi giải mã ASCII và biến nhận."
+    },
+    {
+      "claim_id": "C7",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3514,
+          "end_line": 3529,
+          "projected_quote_sha256": "04ea1d129b1dcff71a3afdc49b02f151b82d9d361c04d8098e3a50e345775903"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3619,
+          "end_line": 3643,
+          "projected_quote_sha256": "cf676f1717a2b9457c61be4c8a517f9986cebcef6cc2964333f8c4072cdca927"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Dòng 3629 cho thấy cả đối số tệp và đích, sau đó gán lại kết quả cho mảng."
+    },
+    {
+      "claim_id": "C8",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3514,
+          "end_line": 3529,
+          "projected_quote_sha256": "04ea1d129b1dcff71a3afdc49b02f151b82d9d361c04d8098e3a50e345775903"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3619,
+          "end_line": 3643,
+          "projected_quote_sha256": "cf676f1717a2b9457c61be4c8a517f9986cebcef6cc2964333f8c4072cdca927"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "Dòng 3629–3630 xác nhận nguồn mảng và phép gán vào biến đã nêu."
+    },
+    {
+      "claim_id": "C9",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4240,
+          "end_line": 4267,
+          "projected_quote_sha256": "a618ba84a99573a8cb57ed60e447f24d9fd2703791a3dbfd8a9580f95edd3756"
+        }
+      ],
+      "reason": "Tên phương thức và đối tượng hiện ở 4244–4253. Dòng 4243 lấy phần tử hiện tại của trình duyệt tập hợp. Tên biến chưa xác định thư mục làm việc của tiến trình."
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4240,
+          "end_line": 4267,
+          "projected_quote_sha256": "a618ba84a99573a8cb57ed60e447f24d9fd2703791a3dbfd8a9580f95edd3756"
+        }
+      ],
+      "reason": "Lời gọi, phép chuyển thành byte và bộ giải mã ASCII xuất hiện ở 4253, 4262 và 4263."
+    },
+    {
+      "claim_id": "C11",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4289,
+          "end_line": 4320,
+          "projected_quote_sha256": "e967bd2d218a627bde83d0c4b011d42acf86f7fc946cac14e5e3d476348b9103"
+        }
+      ],
+      "reason": "Dòng 4297–4306 xác nhận đối tượng, phương thức và biến đích. Trích dẫn chưa giải được địa chỉ hay vị trí mạng của máy nhận."
+    },
+    {
+      "claim_id": "C12",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4289,
+          "end_line": 4320,
+          "projected_quote_sha256": "e967bd2d218a627bde83d0c4b011d42acf86f7fc946cac14e5e3d476348b9103"
+        }
+      ],
+      "reason": "Dòng 4293–4296 cho thấy thư mục, bộ lọc và phần tử được chọn. Ở 4302–4306 đích còn là biến. Chưa có giá trị đích để xác nhận máy chủ từ xa."
+    },
+    {
+      "claim_id": "C13",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2735,
+          "end_line": 2766,
+          "projected_quote_sha256": "14a645879eb96b86510bc0eb9d873c2e9bd477882b3fe891246104aebfd9fc9b"
+        }
+      ],
+      "reason": "Dòng 2748 dùng bộ mã mặc định, khoảng byte và phần tử đích mà câu mô tả."
+    },
+    {
+      "claim_id": "C14",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2735,
+          "end_line": 2766,
+          "projected_quote_sha256": "14a645879eb96b86510bc0eb9d873c2e9bd477882b3fe891246104aebfd9fc9b"
+        }
+      ],
+      "reason": "Dòng 2764 có bộ mã Unicode, các toán hạng tính vị trí và độ dài, cùng phép gán trường tên."
+    },
+    {
+      "claim_id": "C15",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2745,
+          "end_line": 2776,
+          "projected_quote_sha256": "38aec1eec113e36c403eea7ac4014748d10b92a3ce9b84f15072c17c0ab82991"
+        }
+      ],
+      "reason": "Các nhánh ở 2746–2756 lần lượt chọn bộ mã mặc định, Unicode hoặc BigEndianUnicode."
+    },
+    {
+      "claim_id": "C16",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4084,
+          "end_line": 4114,
+          "projected_quote_sha256": "856f3fa026605214a8181a774aa191f9ea7fb33b1de75742e0a9beb43961b827"
+        }
+      ],
+      "reason": "Dòng 4098–4100 nối liền ba thao tác. Đây là vị trí khác với mục DPAPI ở dòng 880 trong đáp án."
+    },
+    {
+      "claim_id": "C17",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4875,
+          "end_line": 4906,
+          "projected_quote_sha256": "198fe0010bf2ecf5081b70b08e46eb261e20ccbf866575d04340daec6d832417"
+        }
+      ],
+      "reason": "Lời gọi có đối số mảng xuất hiện trực tiếp tại dòng 4890, khác vị trí DPAPI đã chốt."
+    },
+    {
+      "claim_id": "C18",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3678,
+          "end_line": 3678,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3681,
+          "end_line": 3681,
+          "projected_quote_sha256": "ee7a41c08fe304ff3cda674136f0cf823684c863db1c4bdf6705bb7d91815869"
+        }
+      ],
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3681 khớp với các vai trò được nêu."
+    },
+    {
+      "claim_id": "C19",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3678,
+          "end_line": 3678,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3681,
+          "end_line": 3681,
+          "projected_quote_sha256": "ee7a41c08fe304ff3cda674136f0cf823684c863db1c4bdf6705bb7d91815869"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3682,
+          "end_line": 3682,
+          "projected_quote_sha256": "76e5a0206e0535c340ec6b92971438f78eeecfe5099aa4d2a633c7c929dbae94"
+        }
+      ],
+      "reason": "Đối chiếu dòng 3681 và 3682. Mảng trả về của lời gọi là đầu vào của bộ giải mã."
+    },
+    {
+      "claim_id": "C20",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3652,
+          "end_line": 3652,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3655,
+          "end_line": 3655,
+          "projected_quote_sha256": "a7bfe1c5003b54aa19a0c1e55aa406377cfd058ad1234f20ee4fb7ffb3b7d9f4"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3656,
+          "end_line": 3656,
+          "projected_quote_sha256": "cb761c625aaeed72887ee93b6a73e6ce02114e25975d5b785498a93bbc3107a9"
+        }
+      ],
+      "reason": "Đối chiếu dòng 3655 và 3656. Mảng trả về của lời gọi là đầu vào của bộ giải mã."
+    },
+    {
+      "claim_id": "C21",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3652,
+          "end_line": 3652,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3655,
+          "end_line": 3655,
+          "projected_quote_sha256": "a7bfe1c5003b54aa19a0c1e55aa406377cfd058ad1234f20ee4fb7ffb3b7d9f4"
+        }
+      ],
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3655 khớp với các vai trò được nêu."
+    },
+    {
+      "claim_id": "C22",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3600,
+          "end_line": 3600,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3603,
+          "end_line": 3603,
+          "projected_quote_sha256": "21ab7fa1461509bfc04ca47bfd7c1eac18b15932996b1fc7ef9c2162d5c73d14"
+        }
+      ],
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3603 khớp với các vai trò được nêu."
+    },
+    {
+      "claim_id": "C23",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3600,
+          "end_line": 3600,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3603,
+          "end_line": 3603,
+          "projected_quote_sha256": "21ab7fa1461509bfc04ca47bfd7c1eac18b15932996b1fc7ef9c2162d5c73d14"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3604,
+          "end_line": 3604,
+          "projected_quote_sha256": "d428ba61da7fab67612214d5f66e652d048a8857f595923f5bab00d5fe506fdd"
+        }
+      ],
+      "reason": "Đối chiếu dòng 3603 và 3604. Mảng trả về của lời gọi là đầu vào của bộ giải mã."
+    },
+    {
+      "claim_id": "C24",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3574,
+          "end_line": 3574,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3577,
+          "end_line": 3577,
+          "projected_quote_sha256": "6147819475d66037b6393cd8ffc946815ec079995b72f65b419b62e979cf56a4"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3578,
+          "end_line": 3578,
+          "projected_quote_sha256": "8600d1d7bb2821d4d12eac9c532d146f24076f0093ee37c8e0a802108563ab8a"
+        }
+      ],
+      "reason": "Đối chiếu dòng 3577 và 3578. Mảng trả về của lời gọi là đầu vào của bộ giải mã."
+    },
+    {
+      "claim_id": "C25",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3574,
+          "end_line": 3574,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3577,
+          "end_line": 3577,
+          "projected_quote_sha256": "6147819475d66037b6393cd8ffc946815ec079995b72f65b419b62e979cf56a4"
+        }
+      ],
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3577 khớp với các vai trò được nêu."
+    },
+    {
+      "claim_id": "C26",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3626,
+          "end_line": 3626,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3629,
+          "end_line": 3629,
+          "projected_quote_sha256": "54a8ded5dc864a3c0f9bdbbfc064825ee118796dc6800de9579612c608656a22"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3630,
+          "end_line": 3630,
+          "projected_quote_sha256": "97fa14914556973072e6d21cee45212874bd1c9296543ad7dc5e98f6f9a3785e"
+        }
+      ],
+      "reason": "Đối chiếu dòng 3629 và 3630. Mảng trả về của lời gọi là đầu vào của bộ giải mã."
+    },
+    {
+      "claim_id": "C27",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3626,
+          "end_line": 3626,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3629,
+          "end_line": 3629,
+          "projected_quote_sha256": "54a8ded5dc864a3c0f9bdbbfc064825ee118796dc6800de9579612c608656a22"
+        }
+      ],
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3629 khớp với các vai trò được nêu."
+    }
+  ],
+  "human_reviewers": [],
+  "dataset_origin": "public development sample, static analysis in isolated VM"
+}

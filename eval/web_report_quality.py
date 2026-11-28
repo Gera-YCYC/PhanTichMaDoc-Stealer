@@ -8,7 +8,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from stealer_agent.journal import canonical
-from eval.score_public_batch import metrics
+from eval.score_public_batch import metrics, summarize_public_batch
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "deliverables/real-demo-evidence"
@@ -19,22 +19,85 @@ def read(path):
     return json.loads(path.read_bytes())
 
 
-def reports(*, replay=False):
+def dotnet_profiles():
+    batch = read(EVIDENCE / "web-current-batch.json")
+    profiles = {}
+    for row in batch["runs"]:
+        if row["sample"] in {"public_gomorrah.bin", "public_mercurial.bin"}:
+            key = row["sample"].removeprefix("public_").removesuffix(".bin")
+            profiles[key] = (row["run_id"], PROFILE.parent / f"{key}.atomic-v1.json")
+    return profiles
+
+
+def current_batch():
+    path = EVIDENCE / "web-current-batch.json"
+    runs = read(path)["runs"]
+    reviews = {}
+    for row in runs:
+        root = (
+            "web-python-quality"
+            if row["sample"] == "public_python2024.bin"
+            else "web-dotnet-quality"
+        )
+        reviews[row["run_id"]] = EVIDENCE / root / row["run_id"]
+    profiles = [PROFILE, *(path for _, path in dotnet_profiles().values())]
+    results = summarize_public_batch(path, profiles, review_directories=reviews)
+    results["timings"] = [
+        {
+            "sample": row["sample"],
+            "run": row["run_id"],
+            "verdict": row["verdict"],
+            "accepted": row["accepted_claims"],
+            "proposed": row["proposed_claims"],
+            "metrics": row["metrics"],
+        }
+        for row in runs
+    ]
+    return results
+
+
+def reports(*, replay=False, sample="python"):
     series = read(EVIDENCE / "web-stability-python.json")
-    profile = read(PROFILE)
-    profile_hash = sha256(PROFILE.read_bytes()).hexdigest()
+    profile_path = PROFILE
+    review_root = "web-python-quality"
+    if sample != "python":
+        run, profile_path = dotnet_profiles()[sample]
+        row = next(
+            r
+            for r in read(EVIDENCE / "web-current-batch.json")["runs"]
+            if r["run_id"] == run
+        )
+        if (
+            row["config_sha256_excluding_sample"] != series["configuration_sha256"]
+            or row["model"]["digest"] != series["model_digest"]
+            or row["source_manifest_sha256"] != series["source_manifest_sha256"]
+        ):
+            raise ValueError(
+                "Different model, settings or agent revision in cross-format comparison"
+            )
+        series = {
+            **series,
+            "runs": [run],
+            "journal_sha256": [row["journal"]["sha256"]],
+            "sample_sha256": row["sample_sha256"],
+        }
+        review_root = "web-dotnet-quality"
+    profile = read(profile_path)
+    profile_hash = sha256(profile_path.read_bytes()).hexdigest()
     declared = {u["id"]: u["kind"] for u in profile["units"]}
     target_kinds = {"ioc", "attack"}
-    if len(set(series["runs"])) != 3 or len(series["runs"]) != 3:
+    if sample == "python" and (
+        len(set(series["runs"])) != 3 or len(series["runs"]) != 3
+    ):
         raise ValueError("Expected three distinct terminal runs")
-    exposure = read(EVIDENCE / "web-python-exposure.json")["runs"]
+    exposure = read(EVIDENCE / f"web-{sample}-exposure.json")["runs"]
     if [item["run"] for item in exposure] != series["runs"]:
         raise ValueError("Different exposure cohort")
     cohort = []
     for run, journal_hash, visibility in zip(
         series["runs"], series["journal_sha256"], exposure, strict=True
     ):
-        folder = EVIDENCE / "web-python-quality" / run
+        folder = EVIDENCE / review_root / run
         judgments = read(folder / "judgments.json")
         audit = read(folder / "source-audit.json")
         atoms = read(folder / "atomic-mapping.json")
@@ -175,7 +238,7 @@ def reports(*, replay=False):
                 raise ValueError(f"Terminal report differs for {run}")
             with TemporaryDirectory() as tmp:
                 rebuilt = Path(tmp)
-                score(original, PROFILE, judgments, rebuilt)
+                score(original, profile_path, judgments, rebuilt)
                 for artifact in rebuilt.iterdir():
                     if artifact.suffix == ".json":
                         equal = read(artifact) == read(folder / artifact.name)
@@ -226,5 +289,18 @@ if __name__ == "__main__":
         action="store_true",
         help="Verify local journals and reproduce every grading artifact",
     )
-    for result in reports(replay=parser.parse_args().replay):
-        print(result["run"], result["raw"]["f1"], result["after_filter"]["f1"])
+    parser.add_argument("--sample", default="all")
+    args = parser.parse_args()
+    for name in (
+        ["python", *dotnet_profiles()] if args.sample == "all" else [args.sample]
+    ):
+        for result in reports(replay=args.replay, sample=name):
+            print(result["run"], result["raw"]["f1"], result["after_filter"]["f1"])
+    if args.sample == "all":
+        batch = current_batch()
+        print(
+            "Micro F1:",
+            batch["after_filter"]["declared_units"]["f1"],
+            "samples:",
+            batch["total_attempts"],
+        )

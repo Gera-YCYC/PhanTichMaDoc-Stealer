@@ -1,5 +1,7 @@
 # Thực nghiệm train bộ xếp hạng chứng cứ
 
+Demo web hiện chạy Qwen3 8B bằng Ollama. Qwen dùng trọng số đã tải. Thành phần nhóm đã trực tiếp train là bộ xếp hạng chứng cứ dùng trong truy vấn mã. Trên web, **Gán nhãn** lưu nhận xét sau khi người dùng kiểm tra nguồn. Git có mã train, đặc trưng, cách chia dữ liệu và bước CI tái tạo checkpoint. [Cách dùng nhãn mới](../docs/WEB_DIEU_TRA.md#huấn-luyện-từ-nhận-xét)
+
 Đây là **một lần train thật mô hình ML phụ trợ**, không phải fine-tune Qwen. Qwen2.5 Coder 7B vẫn dùng trọng số upstream. Loại train GV yêu cầu chưa rõ; thực nghiệm này không tự chứng minh GV chấp nhận thay fine-tuning SLM.
 
 ## Vì sao cần thành phần này?

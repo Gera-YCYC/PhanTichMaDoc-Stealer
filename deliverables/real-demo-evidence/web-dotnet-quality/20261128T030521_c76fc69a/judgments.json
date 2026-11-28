@@ -1,0 +1,540 @@
+{
+  "run_id": "20261128T030521_c76fc69a",
+  "raw_report_sha256": "890c32613c1d952177d375f7f1a5e1fc44b05a9a2c66dbb15d70767d28b9ae80",
+  "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+  "checked_report_sha256": "62b684a97e2e16e6ad25e9d66ca38453d78afdd19ad2cc4e67f6eb1804daaa47",
+  "retained_ids": [
+    "C1",
+    "C2",
+    "C4",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27"
+  ],
+  "claims": {
+    "C1": {
+      "public_summary": "Dùng biểu thức đường dẫn của tệp và lưu byte phản hồi.",
+      "reason": "Dòng 3655 truyền biến đường dẫn vào lời gọi và gán giá trị trả về cho mảng.",
+      "atoms": [
+        {
+          "key": "cc-upload",
+          "label": "correct",
+          "until": ", and stores"
+        },
+        {
+          "key": "cc-response-assignment",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C2": {
+      "public_summary": "Đọc nội dung phản hồi dưới dạng ASCII và gán kết quả.",
+      "reason": "Dòng 3655–3656 cho thấy mảng trả về, bộ giải mã và biến nhận kết quả.",
+      "atoms": [
+        {
+          "key": "cc-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C3": {
+      "public_summary": "Truyền tệp do biến đường dẫn chỉ định tới đích ghép từ hai thành phần.",
+      "reason": "Tại dòng 3603, hai đối số đúng vai trò mà câu mô tả.",
+      "atoms": [
+        {
+          "key": "emails-upload",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C4": {
+      "public_summary": "Giải mã mảng byte phản hồi và gán vào biến kết quả.",
+      "reason": "Tại dòng 3603–3604, mảng nhận kết quả rồi được chuyển thành văn bản ASCII.",
+      "atoms": [
+        {
+          "key": "emails-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C5": {
+      "public_summary": "Gọi tệp được gửi là ảnh màn hình và mô tả cách ghép đích.",
+      "reason": "Đoạn trích cho thấy biến đường dẫn được truyền vào lời gọi. Nội dung ảnh chưa được chứng minh. Dòng 3677 và 3681 xác nhận phần ghép đích.",
+      "atoms": [
+        {
+          "key": "unproven-screen-contents",
+          "label": "unsupported",
+          "until": " to the address"
+        },
+        {
+          "key": "screen-target-build",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C6": {
+      "public_summary": "Giải mã phản hồi của lời gọi tại vị trí có đường dẫn ảnh.",
+      "reason": "Dòng 3681 và 3682 nối mảng phản hồi với lời gọi giải mã ASCII và biến nhận.",
+      "atoms": [
+        {
+          "key": "screen-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C7": {
+      "public_summary": "Dùng đường dẫn tệp do biến cấu hình chỉ định và lưu kết quả trả về.",
+      "reason": "Dòng 3629 cho thấy cả đối số tệp và đích, sau đó gán lại kết quả cho mảng.",
+      "atoms": [
+        {
+          "key": "info-upload",
+          "label": "correct",
+          "until": ", and stores"
+        },
+        {
+          "key": "info-response-assignment",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C8": {
+      "public_summary": "Chuyển mảng phản hồi thành văn bản ASCII.",
+      "reason": "Dòng 3629–3630 xác nhận nguồn mảng và phép gán vào biến đã nêu.",
+      "atoms": [
+        {
+          "key": "info-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C9": {
+      "public_summary": "Gọi phương thức qua liên kết muộn và suy ra đường dẫn thuộc thư mục hiện hành.",
+      "reason": "Tên phương thức và đối tượng hiện ở 4244–4253. Dòng 4243 lấy phần tử hiện tại của trình duyệt tập hợp. Tên biến chưa xác định thư mục làm việc của tiến trình.",
+      "atoms": [
+        {
+          "key": "late-one-call",
+          "label": "correct",
+          "until": ", passing"
+        },
+        {
+          "key": "unproven-working-directory",
+          "label": "unsupported"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C10": {
+      "public_summary": "Giải mã phản hồi của lời gọi gián tiếp thứ nhất.",
+      "reason": "Lời gọi, phép chuyển thành byte và bộ giải mã ASCII xuất hiện ở 4253, 4262 và 4263.",
+      "atoms": [
+        {
+          "key": "late-one-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C11": {
+      "public_summary": "Nêu lời gọi gián tiếp thứ hai và suy đích là máy chủ từ xa.",
+      "reason": "Dòng 4297–4306 xác nhận đối tượng, phương thức và biến đích. Trích dẫn chưa giải được địa chỉ hay vị trí mạng của máy nhận.",
+      "atoms": [
+        {
+          "key": "late-two-call",
+          "label": "correct",
+          "until": " to a remote"
+        },
+        {
+          "key": "unresolved-second-remote",
+          "label": "unsupported"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C12": {
+      "public_summary": "Liệt kê tệp ảnh trong thư mục tài liệu rồi nêu việc gửi lên máy chủ từ xa.",
+      "reason": "Dòng 4293–4296 cho thấy thư mục, bộ lọc và phần tử được chọn. Ở 4302–4306 đích còn là biến. Chưa có giá trị đích để xác nhận máy chủ từ xa.",
+      "atoms": [
+        {
+          "key": "document-extension-enumeration",
+          "label": "correct",
+          "until": ", then"
+        },
+        {
+          "key": "unresolved-second-remote",
+          "label": "unsupported"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C13": {
+      "public_summary": "Đọc một vùng byte thành văn bản và gán trường kiểu của bảng.",
+      "reason": "Dòng 2748 dùng bộ mã mặc định, khoảng byte và phần tử đích mà câu mô tả.",
+      "atoms": [
+        {
+          "key": "table-type-decode",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C14": {
+      "public_summary": "Đọc vùng byte theo Unicode và gán trường tên của bảng.",
+      "reason": "Dòng 2764 có bộ mã Unicode, các toán hạng tính vị trí và độ dài, cùng phép gán trường tên.",
+      "atoms": [
+        {
+          "key": "table-name-decode",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C15": {
+      "public_summary": "Chọn bộ giải mã theo giá trị cấu hình mã hóa.",
+      "reason": "Các nhánh ở 2746–2756 lần lượt chọn bộ mã mặc định, Unicode hoặc BigEndianUnicode.",
+      "atoms": [
+        {
+          "key": "table-encoding-selection",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C16": {
+      "public_summary": "Chuyển đầu vào thành byte, gọi API bảo vệ dữ liệu và chuyển kết quả sang UTF-8.",
+      "reason": "Dòng 4098–4100 nối liền ba thao tác. Đây là vị trí khác với mục DPAPI ở dòng 880 trong đáp án.",
+      "atoms": [
+        {
+          "key": "local-unprotect-utf8",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C17": {
+      "public_summary": "Gọi Unprotect để giải mã mảng byte ở một hàm khác.",
+      "reason": "Lời gọi có đối số mảng xuất hiện trực tiếp tại dòng 4890, khác vị trí DPAPI đã chốt.",
+      "atoms": [
+        {
+          "key": "other-unprotect",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C18": {
+      "public_summary": "Xác định biểu thức đích và đối số đường dẫn cục bộ trong lời gọi tải tệp.",
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3681 khớp với các vai trò được nêu.",
+      "atoms": [
+        {
+          "key": "screen-upload",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C19": {
+      "public_summary": "Chuyển mảng byte phản hồi thành văn bản ASCII.",
+      "reason": "Đối chiếu dòng 3681 và 3682. Mảng trả về của lời gọi là đầu vào của bộ giải mã.",
+      "atoms": [
+        {
+          "key": "screen-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C20": {
+      "public_summary": "Chuyển mảng byte phản hồi thành văn bản ASCII.",
+      "reason": "Đối chiếu dòng 3655 và 3656. Mảng trả về của lời gọi là đầu vào của bộ giải mã.",
+      "atoms": [
+        {
+          "key": "cc-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C21": {
+      "public_summary": "Xác định biểu thức đích và đối số đường dẫn cục bộ trong lời gọi tải tệp.",
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3655 khớp với các vai trò được nêu.",
+      "atoms": [
+        {
+          "key": "cc-upload",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C22": {
+      "public_summary": "Xác định biểu thức đích và đối số đường dẫn cục bộ trong lời gọi tải tệp.",
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3603 khớp với các vai trò được nêu.",
+      "atoms": [
+        {
+          "key": "emails-upload",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C23": {
+      "public_summary": "Chuyển mảng byte phản hồi thành văn bản ASCII.",
+      "reason": "Đối chiếu dòng 3603 và 3604. Mảng trả về của lời gọi là đầu vào của bộ giải mã.",
+      "atoms": [
+        {
+          "key": "emails-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C24": {
+      "public_summary": "Chuyển mảng byte phản hồi thành văn bản ASCII.",
+      "reason": "Đối chiếu dòng 3577 và 3578. Mảng trả về của lời gọi là đầu vào của bộ giải mã.",
+      "atoms": [
+        {
+          "key": "passwords-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C25": {
+      "public_summary": "Xác định biểu thức đích và đối số đường dẫn cục bộ trong lời gọi tải tệp.",
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3577 khớp với các vai trò được nêu.",
+      "atoms": [
+        {
+          "key": "passwords-upload",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C26": {
+      "public_summary": "Chuyển mảng byte phản hồi thành văn bản ASCII.",
+      "reason": "Đối chiếu dòng 3629 và 3630. Mảng trả về của lời gọi là đầu vào của bộ giải mã.",
+      "atoms": [
+        {
+          "key": "info-ascii",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    },
+    "C27": {
+      "public_summary": "Xác định biểu thức đích và đối số đường dẫn cục bộ trong lời gọi tải tệp.",
+      "reason": "Tên phương thức và hai biểu thức tại dòng 3629 khớp với các vai trò được nêu.",
+      "atoms": [
+        {
+          "key": "info-upload",
+          "label": "correct"
+        }
+      ],
+      "kind": "behavior"
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "cc-response-assignment",
+      "kind": "behavior",
+      "proposition": "Gán kết quả lời gọi cho mảng tại vị trí này.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3655,
+          "end_line": 3655
+        }
+      ]
+    },
+    {
+      "id": "screen-target-build",
+      "kind": "behavior",
+      "proposition": "Ghép đích từ phần cấu hình và thành phần nhận dạng.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3677,
+          "end_line": 3677
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3681,
+          "end_line": 3681
+        }
+      ]
+    },
+    {
+      "id": "info-response-assignment",
+      "kind": "behavior",
+      "proposition": "Gán mảng trả về cho biến ở vị trí tệp thông tin.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 3629,
+          "end_line": 3629
+        }
+      ]
+    },
+    {
+      "id": "late-one-call",
+      "kind": "behavior",
+      "proposition": "Gọi phương thức tải tệp qua liên kết muộn ở vị trí thứ nhất.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4244,
+          "end_line": 4244
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4253,
+          "end_line": 4253
+        }
+      ]
+    },
+    {
+      "id": "late-two-call",
+      "kind": "behavior",
+      "proposition": "Gọi phương thức tải tệp qua liên kết muộn ở vị trí thứ hai.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4297,
+          "end_line": 4297
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4306,
+          "end_line": 4306
+        }
+      ]
+    },
+    {
+      "id": "document-extension-enumeration",
+      "kind": "behavior",
+      "proposition": "Liệt kê các phần mở rộng đã chỉ định trong thư mục tài liệu.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4293,
+          "end_line": 4293
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4296,
+          "end_line": 4296
+        }
+      ]
+    },
+    {
+      "id": "table-type-decode",
+      "kind": "behavior",
+      "proposition": "Đọc vùng byte với bộ mã mặc định để gán trường kiểu.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2748,
+          "end_line": 2748
+        }
+      ]
+    },
+    {
+      "id": "table-name-decode",
+      "kind": "behavior",
+      "proposition": "Đọc vùng byte bằng Unicode để gán trường tên.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2764,
+          "end_line": 2764
+        }
+      ]
+    },
+    {
+      "id": "table-encoding-selection",
+      "kind": "behavior",
+      "proposition": "Rẽ nhánh chọn một trong ba cách chuyển byte thành văn bản.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2746,
+          "end_line": 2746
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2748,
+          "end_line": 2748
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2752,
+          "end_line": 2752
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 2756,
+          "end_line": 2756
+        }
+      ]
+    },
+    {
+      "id": "local-unprotect-utf8",
+      "kind": "behavior",
+      "proposition": "Chuyển đầu vào sang byte rồi gọi Unprotect và giải mã kết quả tại hàm này.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4098,
+          "end_line": 4098
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4099,
+          "end_line": 4099
+        },
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4100,
+          "end_line": 4100
+        }
+      ]
+    },
+    {
+      "id": "other-unprotect",
+      "kind": "behavior",
+      "proposition": "Gọi Unprotect với mảng byte tại hàm thứ hai.",
+      "source_references": [
+        {
+          "evidence_id": "ev_98a9e5cedd7b4e5a",
+          "line": 4890,
+          "end_line": 4890
+        }
+      ]
+    }
+  ]
+}

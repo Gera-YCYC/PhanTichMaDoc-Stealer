@@ -33,3 +33,20 @@ def test_a_repeated_run_cannot_count_as_three(monkeypatch):
     monkeypatch.setattr(quality, "read", repeat)
     with pytest.raises(ValueError, match="distinct terminal runs"):
         quality.reports()
+
+
+def test_cross_format_batch_counts_samples_once_and_preserves_verdicts():
+    group = quality.current_batch()
+    runs = {item["run_id"] for item in group["cases"]}
+    graded = [
+        quality.reports()[0],
+        quality.reports(sample="gomorrah")[0],
+        quality.reports(sample="mercurial")[0],
+    ]
+    assert runs == {r["run"] for r in graded}
+    assert (group["total_attempts"], group["correct_verdicts"]) == (3, 0)
+    for stage in ("raw", "after_filter"):
+        summary = group[stage]["declared_units"]
+        for name in ("correct", "incorrect", "unsupported", "missed"):
+            assert summary[name] == sum(r[stage][name] for r in graded)
+        assert summary["correct"] + summary["missed"] == 97

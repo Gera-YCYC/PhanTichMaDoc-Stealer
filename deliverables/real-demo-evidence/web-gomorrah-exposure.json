@@ -1,0 +1,180 @@
+{
+  "runs": [
+    {
+      "run": "20261128T030521_c76fc69a",
+      "journal_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+      "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+      "source_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "report_requests": 13,
+      "counts": {
+        "missing_from_retrieval": 14,
+        "retrieved_but_not_in_requests": 11,
+        "retained": 11,
+        "in_one_request": 4
+      },
+      "units": [
+        {
+          "unit": "opera-open",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "opera-table",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "opera-origin_url",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "opera-username_value",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "opera-password_value",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "opera-decrypt-call",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "opera-account",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "chrome-open",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "chrome-table",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "chrome-origin_url",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "chrome-username_value",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "chrome-password_value",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "chrome-decrypt-call",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "chrome-account",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "passwords-upload",
+          "category": "retained"
+        },
+        {
+          "unit": "passwords-ascii",
+          "category": "retained"
+        },
+        {
+          "unit": "emails-upload",
+          "category": "retained"
+        },
+        {
+          "unit": "emails-ascii",
+          "category": "retained"
+        },
+        {
+          "unit": "info-upload",
+          "category": "retained"
+        },
+        {
+          "unit": "info-ascii",
+          "category": "retained"
+        },
+        {
+          "unit": "cc-upload",
+          "category": "retained"
+        },
+        {
+          "unit": "cc-ascii",
+          "category": "retained"
+        },
+        {
+          "unit": "screen-upload",
+          "category": "retained"
+        },
+        {
+          "unit": "screen-ascii",
+          "category": "retained"
+        },
+        {
+          "unit": "late-one-upload",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "late-one-ascii",
+          "category": "retained"
+        },
+        {
+          "unit": "late-two-upload",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "late-two-ascii",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "dpapi",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "utf8",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "decrypt-declaration",
+          "category": "retrieved_but_not_in_requests"
+        },
+        {
+          "unit": "capture",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "save-capture",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "self-read",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "config-split",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "config-field",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "logs-fragment",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "screen-fragment",
+          "category": "in_one_request"
+        },
+        {
+          "unit": "browser-attack",
+          "category": "missing_from_retrieval"
+        },
+        {
+          "unit": "screen-attack",
+          "category": "missing_from_retrieval"
+        }
+      ]
+    }
+  ],
+  "scope": "Rows in the pinned ILSpy output and logged report requests. Presence does not establish a complete data flow or human validation."
+}

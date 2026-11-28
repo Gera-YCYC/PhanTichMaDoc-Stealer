@@ -1,0 +1,51 @@
+{
+  "run_id": "20261128T031606_ca91de35",
+  "raw_report_sha256": "3aace7696a77b261b57ed8fed74a707e5accb8c65bb194ba8e9e8e126d267fb5",
+  "dataset_origin": "public development sample, static analysis in isolated VM",
+  "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "raw": {
+    "claim_count": 19,
+    "counts": {
+      "correct": 15,
+      "incorrect": 2,
+      "unsupported": 2
+    },
+    "precision": 0.7894736842105263,
+    "hallucination_rate": 0.10526315789473684,
+    "grounding_rate": 0.7894736842105263,
+    "recall": null,
+    "f1": null,
+    "verified_tool_citation_count": 19,
+    "verified_tool_citation_rate": 1.0
+  },
+  "after_filter": {
+    "claim_count": 16,
+    "counts": {
+      "correct": 13,
+      "incorrect": 2,
+      "unsupported": 1
+    },
+    "precision": 0.8125,
+    "hallucination_rate": 0.0625,
+    "grounding_rate": 0.8125,
+    "recall": null,
+    "f1": null,
+    "verified_tool_citation_count": 16,
+    "verified_tool_citation_rate": 1.0
+  },
+  "review_filter": {
+    "accepted_correct": 13,
+    "accepted_not_supported": 3,
+    "rejected_correct": 2,
+    "rejected_not_supported": 1
+  },
+  "proposed_verdict": "suspicious",
+  "checked_verdict": "suspicious",
+  "quality_gate_passed": false,
+  "limits": [
+    "Complete prediction audit for one development run, not a full-corpus evaluation.",
+    "No human or lecturer approval is asserted; source-audit labels may need correction.",
+    "Recall/F1 remain null until independently declared reference units are fully adjudicated.",
+    "Raw/rejected candidates remain in the primary denominator; filtered scores are secondary."
+  ]
+}

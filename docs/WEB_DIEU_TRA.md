@@ -92,6 +92,8 @@ Hồ sơ có bản đồ đã lưu sẽ hiển thị bản đồ tại thời đ
 
 ## Độ ổn định của ba lượt Python
 
+Trong **Đánh giá**, bộ chọn **Mẫu dùng để đối chiếu** cho phép chuyển giữa PythonStealer, Gomorrah và Mercurial. Mỗi mẫu có bảng trước/sau tự duyệt, bảng từng câu và danh sách mục bỏ sót. Bảng tổng hợp ngay dưới tính mỗi mẫu đúng một lần. Có thể đối chiếu ba báo cáo công khai trên bản clone chỉ có Python của dự án, với lệnh `.\scripts\Start-Web.ps1 -HistoryOnly`. Chế độ chạy một mẫu mới cần lab đầy đủ. [Điểm của ba mẫu và điều kiện đo](CHAM_BA_MAU_WEB.md)
+
 Để trình bày phần chấm chất lượng, mở **Đánh giá → Đối chiếu từng câu** ở lượt kết thúc bằng `4ad0f5f6`. So C12 với C16 để thấy hai loại lỗi của bộ tự duyệt. Mở **Mục còn thiếu** ngay bên dưới để xem từng mục bị mất ở khâu nào. Phần này đọc được cả khi mở web bằng `-HistoryOnly`. [Kết quả và cách tái lập](CHAM_BAO_CAO_WEB.md)
 
 Ba lượt liên tiếp dùng cùng SHA-256 của mẫu, model, mã phân tích và cấu hình. Các lượt lần lượt giữ 29, 30 và 36 nhận định, mất 376,77, 399,07 và 495,93 giây. Cả ba gọi công cụ 17 lần và cùng đưa verdict `suspicious`. Số lượt gọi model lần lượt là 38, 38 và 49.

@@ -1,0 +1,295 @@
+{
+  "run": "20261128T030521_c76fc69a",
+  "sample": "public_gomorrah.bin",
+  "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "786ba586484d8b09975bbde9a8156d1e008fe6c81616d67a59888ce86cb3aa9f",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 591.0088,
+    "model_calls": 49,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 94753,
+    "completion_tokens": 3561,
+    "host_peak_rss_bytes": 29417472,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 729481216,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 292,
+  "journal_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 13
+    },
+    {
+      "step": 4,
+      "edge": "send-response"
+    },
+    {
+      "step": 4,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 34
+    },
+    {
+      "step": 5,
+      "edge": "message-send"
+    },
+    {
+      "step": 5,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 6,
+      "edge": "process-write"
+    },
+    {
+      "step": 6,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 5
+    },
+    {
+      "step": 7,
+      "edge": "write-archive"
+    },
+    {
+      "step": 7,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 4
+    },
+    {
+      "step": 8,
+      "edge": "archive-message"
+    },
+    {
+      "step": 8,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 9,
+      "edge": "archive-message"
+    },
+    {
+      "step": 9,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 13
+    },
+    {
+      "step": 10,
+      "edge": "query-rows"
+    },
+    {
+      "step": 10,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 12
+    },
+    {
+      "step": 11,
+      "edge": "query-rows"
+    },
+    {
+      "step": 11,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 22
+    },
+    {
+      "step": 12,
+      "edge": "write-archive"
+    },
+    {
+      "step": 12,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 13,
+      "edge": "process-write"
+    },
+    {
+      "step": 13,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 4
+    },
+    {
+      "step": 15,
+      "edge": "process-write"
+    },
+    {
+      "step": 15,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 18
+    },
+    {
+      "step": 16,
+      "edge": "message-send"
+    },
+    {
+      "step": 16,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 17,
+      "edge": "message-send"
+    },
+    {
+      "step": 17,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    }
+  ],
+  "accepted_claims": 24,
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3681,
+          "end": 3681
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3682,
+          "end": 3682
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3655,
+          "end": 3655
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3656,
+          "end": 3656
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3603,
+          "end": 3603
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3604,
+          "end": 3604
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3577,
+          "end": 3577
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3578,
+          "end": 3578
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3629,
+          "end": 3629
+        },
+        {
+          "eid": "ev_98a9e5cedd7b4e5a",
+          "line": 3630,
+          "end": 3630
+        }
+      ]
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_01"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [],
+  "ranking_anchors_for_review": 28,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

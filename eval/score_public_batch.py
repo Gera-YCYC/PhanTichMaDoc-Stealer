@@ -29,7 +29,7 @@ def metrics(count):
             'f1': 2 * tp / (2 * tp + fp + fn) if 2 * tp + fp + fn else None}
 
 
-def summarize_public_batch(batch_path, profiles, evidence=EVIDENCE):
+def summarize_public_batch(batch_path, profiles, evidence=EVIDENCE, *, review_directories=None):
     batch = read(batch_path)
     corpus = read(ROOT/'eval/corpora/real-yara-development-v3.json')['corpora']
     labels = {r['sha256']: ('malicious' if r['positive'] else 'benign')
@@ -59,7 +59,7 @@ def summarize_public_batch(batch_path, profiles, evidence=EVIDENCE):
         empty = row['status'] == 'incomplete' and row['raw_report_available'] and row['proposed_claims'] == 0
         if not empty and not row['status'].startswith('completed'):
             raise ValueError('Unreviewed failure with unknown predictions: ' + rid)
-        endpoint = evidence / rid
+        endpoint = review_directories[rid] if review_directories is not None else evidence / rid
         if empty:
             if row['accepted_claims'] or row['rejected_claims']:
                 raise ValueError('Empty report counts differ')

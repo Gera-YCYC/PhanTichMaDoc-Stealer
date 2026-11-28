@@ -289,7 +289,7 @@ class Handler(BaseHTTPRequestHandler):
             if p == "/api/yara":
                 return self.reply(200, yara_history())
             if p == "/api/evaluation":
-                from eval.web_report_quality import reports
+                from eval.web_report_quality import current_batch, dotnet_profiles, reports
 
                 base = ROOT / "deliverables/real-demo-evidence"
                 rubric = read(base / "coverage-v11-rubric.json")
@@ -322,6 +322,8 @@ class Handler(BaseHTTPRequestHandler):
                         ],
                         "stability": read(repeats) if repeats.exists() else None,
                         "web_report_quality": reports(),
+                        "dotnet_quality": {key: reports(sample=key) for key in dotnet_profiles()},
+                        "current_batch": current_batch(),
                     },
                 )
             if p == "/api/yara/regression":
