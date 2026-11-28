@@ -1,0 +1,243 @@
+{
+  "run_id": "20261128T000247_b054cbfb",
+  "raw_report_sha256": "1a9f4e3f01e9ec0130eb43e439d9a8de2a26d6ee21dd377746ed794f5b05ebca",
+  "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+  "claims": {
+    "C1": {
+      "public_summary": "Gọi hàm xử lý cookie, sao chép cơ sở dữ liệu của Chrome và đọc bảng cookie.",
+      "reason": "Dòng 75 gọi hàm. Các dòng 713–720 xác định nguồn và đích sao chép. Dòng 728 chọn bảng dữ liệu.",
+      "atoms": [
+        {
+          "key": "cookie-helper",
+          "label": "correct",
+          "until": ", which copies"
+        },
+        {
+          "key": "cookie-copy",
+          "label": "correct",
+          "until": " and reads"
+        },
+        {
+          "key": "cookie-table",
+          "label": "correct"
+        }
+      ]
+    },
+    "C2": {
+      "public_summary": "Chuyển thông tin phần cứng vào hàm và cho rằng dữ liệu đi ra qua webhook.",
+      "reason": "Dòng 285 xác nhận kiểu đối tượng và lời gọi. Các dòng dẫn trong câu chưa nối được lời gọi với yêu cầu mạng.",
+      "atoms": [
+        {
+          "key": "hardware-message",
+          "label": "correct",
+          "until": ", indicating"
+        },
+        {
+          "key": "exfil-hardware",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C3": {
+      "public_summary": "Sao chép tệp Login Data của Chrome vào thư mục tạm.",
+      "reason": "Đường dẫn nguồn và thao tác sao chép có mặt ở dòng 779 và 787.",
+      "atoms": [
+        {
+          "key": "login-copy",
+          "label": "correct"
+        }
+      ]
+    },
+    "C4": {
+      "public_summary": "Dùng khóa chính để thử giải mã mật khẩu đã lưu.",
+      "reason": "Trích dẫn dừng ở dòng 810 sau khi lấy khóa. Điểm dùng khóa ở dòng 812 nằm ngoài chứng cứ của câu.",
+      "atoms": [
+        {
+          "key": "password-attempt-outside",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C5": {
+      "public_summary": "Gọi API giải mã với dữ liệu mã hóa, khóa và thẻ xác thực.",
+      "reason": "Các dòng 382–385 thể hiện đối số và lời gọi API.",
+      "atoms": [
+        {
+          "key": "native-decrypt",
+          "label": "correct"
+        }
+      ]
+    },
+    "C6": {
+      "public_summary": "Đọc thuộc tính độ dài thẻ xác thực từ bộ cung cấp mật mã.",
+      "reason": "Trích dẫn chứa cả lần chọn thuộc tính lẫn lời gọi API đọc thuộc tính.",
+      "atoms": [
+        {
+          "key": "tag-length",
+          "label": "correct"
+        }
+      ]
+    },
+    "C7": {
+      "public_summary": "Mở bộ cung cấp AES và cấu hình chế độ GCM.",
+      "reason": "Dòng 380 chọn AES/GCM. Đoạn 419–436 chứa thao tác cấu hình.",
+      "atoms": [
+        {
+          "key": "aes-provider",
+          "label": "correct"
+        }
+      ]
+    },
+    "C8": {
+      "public_summary": "Nhập khóa vào bộ cung cấp mật mã.",
+      "reason": "Lời gọi nhập khóa nằm ở dòng 445.",
+      "atoms": [
+        {
+          "key": "key-import",
+          "label": "correct"
+        }
+      ]
+    },
+    "C9": {
+      "public_summary": "Truyền đường dẫn tệp cookie và kiểu nội dung multipart vào hàm SendData.",
+      "reason": "Dòng 761 xác nhận đường dẫn và hai vai trò đối số được nêu.",
+      "atoms": [
+        {
+          "key": "cookie-handoff",
+          "label": "correct"
+        }
+      ]
+    },
+    "C10": {
+      "public_summary": "Truyền thông điệp của ngoại lệ cho hàm Send.",
+      "reason": "Các dòng 765–768 nối nhánh bắt lỗi với đối số của hàm.",
+      "atoms": [
+        {
+          "key": "cookie-error-call",
+          "label": "correct"
+        }
+      ]
+    },
+    "C11": {
+      "public_summary": "Gửi tệp mật khẩu theo kiểu multipart qua hàm SendData.",
+      "reason": "Dòng 826 xác nhận lời gọi, tệp và kiểu nội dung. Để xác nhận hiệu ứng gửi cần kiểm tra tiếp thân hàm.",
+      "atoms": [
+        {
+          "key": "password-send-effect",
+          "label": "unsupported",
+          "until": " a file named"
+        },
+        {
+          "key": "password-handoff",
+          "label": "correct"
+        }
+      ]
+    },
+    "C12": {
+      "public_summary": "Gửi thông báo lỗi qua hàm Send.",
+      "reason": "Dòng 833 truyền trường Message của ngoại lệ. Trích dẫn thiếu phần hàm thực hiện truyền.",
+      "atoms": [
+        {
+          "key": "error-send-effect",
+          "label": "unsupported",
+          "until": " an error message"
+        },
+        {
+          "key": "password-error-call",
+          "label": "correct"
+        }
+      ]
+    },
+    "C13": {
+      "public_summary": "Truyền đối tượng thông tin IP và vị trí cho hàm xử lý nội dung.",
+      "reason": "Lời gọi và các trường dữ liệu được nêu cùng ở dòng 279.",
+      "atoms": [
+        {
+          "key": "ip-message",
+          "label": "correct"
+        }
+      ]
+    },
+    "C14": {
+      "public_summary": "Truyền đối tượng thông tin hệ điều hành và phần cứng cho hàm xử lý nội dung.",
+      "reason": "Đối tượng ở dòng 285 có các trường được nêu.",
+      "atoms": [
+        {
+          "key": "hardware-message",
+          "label": "correct"
+        }
+      ]
+    },
+    "C15": {
+      "public_summary": "Giải mã trường dữ liệu cookie qua hàm cục bộ với khóa chính.",
+      "reason": "Đoạn mã chứng minh dữ liệu và khóa được truyền vào helper. Thân hàm quyết định hiệu ứng giải mã nằm ngoài trích dẫn.",
+      "atoms": [
+        {
+          "key": "cookie-decrypt-effect",
+          "label": "unsupported",
+          "until": " using the DecryptWithKey"
+        },
+        {
+          "key": "cookie-key-call",
+          "label": "correct"
+        }
+      ]
+    },
+    "C16": {
+      "public_summary": "Gửi tệp cookie trong thư mục tạm qua SendData.",
+      "reason": "Dòng 761 chứng minh thao tác chuyển đối số. Đoạn này thiếu thân hàm để xác nhận tác dụng truyền dữ liệu.",
+      "atoms": [
+        {
+          "key": "cookie-send-effect",
+          "label": "unsupported",
+          "until": " via the SendData"
+        },
+        {
+          "key": "cookie-handoff",
+          "label": "correct"
+        }
+      ]
+    },
+    "C17": {
+      "public_summary": "Giải mã mật khẩu bằng khóa do hàm GetMasterKey trả về.",
+      "reason": "Dòng 807 lấy khóa và dòng 812 chuyển khóa cùng dữ liệu mật khẩu cho helper. Tác dụng giải mã chưa được chứng minh bởi các dòng của câu.",
+      "atoms": [
+        {
+          "key": "password-decrypt-effect",
+          "label": "unsupported",
+          "until": " using a master key"
+        },
+        {
+          "key": "login-key-call",
+          "label": "correct"
+        }
+      ]
+    },
+    "C18": {
+      "public_summary": "Chuyển mật khẩu đã giải mã đến máy chủ từ xa qua hàm nhận dữ liệu multipart.",
+      "reason": "Lời gọi ở dòng 826 xác nhận tệp và kiểu multipart. Trích dẫn không xác minh trạng thái nội dung của tệp hay đích đến.",
+      "atoms": [
+        {
+          "key": "password-send-effect",
+          "label": "unsupported",
+          "until": " the decrypted passwords"
+        },
+        {
+          "key": "plaintext-password-content",
+          "label": "unsupported",
+          "until": " to a remote server"
+        },
+        {
+          "key": "resolved-password-destination",
+          "label": "unsupported",
+          "until": " using the SendData"
+        },
+        {
+          "key": "password-handoff",
+          "label": "correct"
+        }
+      ]
+    }
+  },
+  "additional_findings": []
+}

@@ -14,7 +14,9 @@
     "hallucination_rate": 0.2,
     "grounding_rate": 0.7,
     "recall": null,
-    "f1": null
+    "f1": null,
+    "verified_tool_citation_count": 30,
+    "verified_tool_citation_rate": 1.0
   },
   "after_filter": {
     "claim_count": 25,
@@ -27,7 +29,9 @@
     "hallucination_rate": 0.12,
     "grounding_rate": 0.76,
     "recall": null,
-    "f1": null
+    "f1": null,
+    "verified_tool_citation_count": 25,
+    "verified_tool_citation_rate": 1.0
   },
   "review_filter": {
     "accepted_correct": 19,

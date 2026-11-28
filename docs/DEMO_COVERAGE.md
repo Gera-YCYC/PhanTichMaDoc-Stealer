@@ -9,6 +9,7 @@ Mở PowerShell tại thư mục gốc trên máy Windows đã cài theo hướn
 .\scripts\Run-Demo.ps1 -Profile coverage-8b -Sample public_python2024.bin
 .\scripts\Run-Demo.ps1 -Profile coverage-8b -Sample public_gomorrah.bin
 .\scripts\Run-Demo.ps1 -Profile coverage-8b -Sample public_agenttesla.bin
+.\scripts\Run-Demo.ps1 -Profile coverage-8b -Sample public_mercurial.bin
 .\scripts\Stop-Lab.ps1
 ```
 
@@ -42,6 +43,25 @@ Agent xác định được cấu hình máy chủ SMTP và luồng gắn tệp 
 Lượt `20261127T234632_6e94cea6` gọi pefile và ILSpy trong VM. Sau 659,2 giây, agent kết luận `suspicious`. Bộ chấm nguồn ghi nhận 21/30 câu thô đúng, ba câu sai và sáu câu thiếu căn cứ. Sau tự duyệt còn 25 câu, trong đó 19 câu đúng. Model nhận biết các lời gọi tải tệp và phân biệt đúng một số thao tác giải mã ký tự ASCII trên dữ liệu phản hồi. Ở các câu khác, model suy tên tệp từ tên biến hoặc nhầm nội dung tệp gửi đi với dữ liệu máy chủ trả về.
 
 Trên 40 đơn vị đã chốt, agent phủ 14 đơn vị, bỏ sót 26. Precision thô theo phạm vi là 60,87%, Recall 35,00%, F1 44,44%. Sau lọc lần lượt là 70,00%, 35,00% và 46,67%. Chín phát hiện thô khác có căn cứ ngoài phạm vi ban đầu. [Nhật ký rút gọn](../deliverables/real-demo-evidence/gomorrah-coverage-v11-run.json) · [Chấm nguyên câu](../deliverables/real-demo-evidence/20261127T234632_6e94cea6/claim-score.json) · [Chấm theo đơn vị](../deliverables/real-demo-evidence/20261127T234632_6e94cea6/atomic-score.json).
+
+## Mercurial và AgentTesla
+
+Ở Mercurial, ILSpy cho thấy một địa chỉ có cấu trúc webhook Discord tại dòng 37. Nhóm kiểm tra kiểu địa chỉ ngay trong VM và giữ kín phần định danh cùng khóa. Agent bỏ sót IOC này. Trong 18 câu thô, 10 câu đủ căn cứ. Sau lọc còn 11 câu, trong đó 9 đúng và 2 thiếu căn cứ. Một lỗi điển hình là suy ra tệp đã được truyền đi từ lời gọi hàm nhận đường dẫn tệp. Dòng gọi chứng minh việc chuyển đối số. Muốn xác nhận kênh gửi còn phải lần sang thân hàm và đối chiếu đích. Bộ 21 mục Mercurial được lập **sau khi xem kết quả**, dùng để phân tích lỗi trên mẫu phát triển. [18 nhận định và lý do](../deliverables/real-demo-evidence/20261128T000247_b054cbfb/review.md) · [Đối chiếu 30 dòng nguồn trong VM](../deliverables/real-demo-evidence/mercurial-atomic-source-check.json).
+
+Ở AgentTesla, bản coverage đọc được PE và dịch ngược thành 3.345 dòng. Có 14 tìm kiếm rỗng và báo cáo cuối có 0 câu. Phiên mới `guided-8b` chuyển sang một trang mã chưa đọc khi hai lượt tìm liên tiếp không có kết quả. Nó ưu tiên trang có các lời gọi khác nhau, rồi để model chọn truy vấn tiếp theo. [Đáp án 7 mục](../eval/reference_units/agenttesla.atomic-v1.json) · [Lượt rỗng được giữ trong đợt đo](../deliverables/real-demo-evidence/agenttesla-coverage-v11-run.json).
+
+## Đối chiếu đợt bốn mẫu
+
+Cùng source, digest model và cấu hình điều phối, ba mẫu có báo cáo chứa nhận định và một mẫu kết thúc với báo cáo rỗng. Ba báo cáo có nhận định sử dụng tổng cộng năm công cụ phân tích khác nhau. Nhóm đã có bằng chứng cho mốc buổi 6. Nhóm có thể dùng video để giới thiệu kết quả trước khi chạy trực tiếp bằng lệnh PowerShell ở đầu trang. [Bằng chứng bốn lượt](../deliverables/real-demo-evidence/coverage-v11-batch.json) · [Video phát lại từ nhật ký](../deliverables/Demo_phan_tich_tinh.mp4) · [Hash video và nhật ký đầu vào](../deliverables/Demo_phan_tich_tinh.json).
+
+| Mẫu | F1 mọi loại sau lọc | IOC + ATT&CK đúng / mục tham chiếu | F1 riêng IOC + ATT&CK | Câu có trích dẫn / câu đủ căn cứ sau lọc |
+|---|---:|---:|---:|---|
+| PythonStealer 2024 | 72,13% | 1/4 | 40,00% | 39/39 có trích dẫn, 36/39 đủ căn cứ |
+| Gomorrah | 46,67% | 0/4 | 0% | 25/25 có trích dẫn, 19/25 đủ căn cứ |
+| Mercurial | 72,22% | 0/3 | 0% | 11/11 có trích dẫn, 9/11 đủ căn cứ |
+| AgentTesla, coverage | Chưa có nhận định | Đáp án 7 mục thuộc hành vi và quan sát | Chưa xác định | 0 câu |
+
+Ba mẫu có bảng chấm cho kết quả gộp IOC + ATT&CK là **1 đúng, 10 bỏ sót, 0 sai, 0 bịa** sau lọc trong phạm vi đã khai báo. F1 gộp là 2/(2+10) = **16,67%**. Có thể kiểm tra các bộ đếm trong trường `rubric_ioc_attack` của từng bảng điểm. Các mẫu số trên phản ánh tập development của nhóm. Cả bốn lượt đều chưa đưa ra verdict `malicious` nên độ đúng verdict trên bốn mẫu độc trong đợt này là **0/4**. [Python](../deliverables/real-demo-evidence/20261127T233612_212f9fbb/atomic-score.json) · [Gomorrah](../deliverables/real-demo-evidence/20261127T234632_6e94cea6/atomic-score.json) · [Mercurial](../deliverables/real-demo-evidence/20261128T000247_b054cbfb/atomic-score.json).
 
 ## Đối chiếu các bản trước
 

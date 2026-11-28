@@ -21,19 +21,19 @@ Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ kh�
 | D01 | Chốt tập .NET/Python và file sạch | 5 mẫu độc public development;39 file sạch gồm37 Microsoft và2 PyInstaller; chưa có positive holdout | Manifest phân vai development/validation/test rõ; không đổi dữ liệu đã xem thành holdout |
 | D02 | Đáp án .NET độc lập với agent | Có 40 mục Gomorrah đối chiếu 46 dòng ILSpy, thêm bảy mục AgentTesla với nguồn tĩnh và quan sát công bố | Mở rộng các luồng còn thiếu, giữ hash/dòng, ghi riêng kết quả người chấm độc lập |
 | D03 | Phân tích Python3.11 | Đã giải mã payload candidate 332 dòng PythonStealer; pycdc vẫn lỗi | Đối chiếu luồng dữ liệu và claim cuối; tiếp tục Luna; không coi literal decode là đầy đủ mọi mẫu |
-| D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |
+| D04 | >=3 mẫu có nhật ký | Đạt trên coverage-8b với PythonStealer, Gomorrah và Mercurial. Có cả lượt AgentTesla rỗng để đối chiếu | Cùng source/model/config, đủ report và evidence |
 | T01 | Detect It Easy | Đã chạy backend thật và được SLM chọn trên Gomorrah | Kiểm thêm mẫu Python và môi trường dựng mới sau thay đổi installer |
 | T02 | FLOSS | Đã chạy thật; .NET dùng static-only | Không gọi static strings là CIL deobfuscation; kiểm native mode/timeout |
 | A01 | Chọn chứng cứ và báo cáo hành vi | Parser API v3, context v3, card v8; đã có archive/attachment/SMTP và AES kèm binding. Còn nhãn parser thành tên hàm, card rời thiếu helper và field/biến bị nhầm | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
 | A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
-| S01 | Unicode và kiểm exposure | Đã sửa; P06 guard on/off có request thật | Giữ byte offset, log evidence thực đã gửi, không đếm payload bị mất |
-| S02 | Bộ injection | P06 hợp lệ; bộ lịch sử không đủ request provenance | >=10 ca đủ exposure, on/off, cả hai chiều; thống kê mẫu số chính xác |
+| S01 | Unicode và kiểm dữ liệu tới model | Có kiểm nội dung thông điệp theo hash, tọa độ nguồn và phản hồi cùng pha. Receipt P06 cũ thiếu nội dung để xác nhận lại. | Lưu đầu vào riêng trong lab và kiểm lại từ nhật ký |
+| S02 | Bộ injection | Ba bộ receipt lịch sử có 0 cặp đủ theo phép đối chiếu mới | Đo tỷ lệ đổi kết luận trên ít nhất 10 file đủ bằng chứng theo slide, ghi thêm tác động bật/tắt lớp chặn và phạm vi hướng đổi đã thử |
 | Y01 | Tập YARA thật | V3: 5 độc development, 39 sạch gồm 37 Microsoft và 2 PyInstaller; hash/nguồn/nhãn có lock | Đã đủ số file sạch dự kiến30–50; nếu muốn nói khả năng tổng quát hóa cần positive mới và thêm ứng dụng/họ độc lập |
 | Y02 | Sinh và đo YARA | 7B/8B cùng bản: 5/5 độc, 0/39 sạch; replay độc lập khớp. Ngưỡng đạt trên corpus công bố | Giữ phạm vi development và luật theo bản build; kiểm rename/repack và tích hợp với báo cáo cuối. Kết quả âm v1 1/38 vẫn giữ |
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
 | TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
-| E01 | Bảng đúng/sai/bịa/bỏ sót | V8 cùng core: Python 8/11 đúng, sau lọc 4/6; .NET 14/20 đúng, sau lọc 14/19. Recall/F1 null; profile 13 đơn vị Python lịch sử chưa đo lại | Chuẩn hóa prediction cùng đơn vị reference; mở rộng corpus; giữ raw/rejected; nhãn source-audit chưa human review |
+| E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm 87 câu thô trên ba mẫu coverage-8b. Có điểm trước/sau lọc, F1 riêng IOC + ATT&CK và mã mục bỏ sót | Chuẩn hóa prediction cùng đơn vị reference; mở rộng corpus; giữ raw/rejected; nhãn source-audit chưa human review |
 | E02 | Stability | Thử lịch sử chưa đạt | 3 run cùng sample/model/source/config; intersection/union>=80% |
 | E03 | Tài nguyên và so phương án | V8 8B: Python 484,7 s, .NET 503,5 s; có một lượt khác ngắt RAM. 7B chạy 162,2 s nhưng report rỗng | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở/report rỗng là phân tích đạt |
 | R01 | Tài liệu kỹ thuật | Đang cập nhật theo sản phẩm | Thiết kế, cài/chạy, luồng, dataset, training, đánh giá, giới hạn |

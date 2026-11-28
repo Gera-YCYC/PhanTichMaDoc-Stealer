@@ -213,10 +213,16 @@ class Agent:
                 if not any(search_options.values()):
                     eligible = [t for t in eligible if t != 'search_evidence']
                 search_debt = max(0,self.config.get('min_code_searches',0)-len(code_searches)) if long_code else 0
+                recovery = {eid:[p for p in evidence[eid].get('navigation_pages',[]) if p in available_pages]
+                            for eid,available_pages in unread.items() if evidence[eid].get('empty_searches',0) >= 2}
+                recovery = {eid:pages for eid,pages in recovery.items() if pages}
                 # Inspect supported decoded source before spending navigation
                 # budget on its bytecode wrapper. Tool failure stays explicit.
                 if 'decode_python_literals' in eligible and python_sources:
                     eligible = ['decode_python_literals']
+                elif (self.config.get('recover_empty_searches') and recovery and 'read_evidence' in eligible
+                      and step < self.config.get('max_steps',12)):
+                    unread, eligible, can_finish = recovery, ['read_evidence'], False
                 elif search_debt:
                     focused = {eid:queries for eid,queries in search_options.items() if eid in long_code and queries}
                     if focused and 'search_evidence' in eligible:
@@ -343,6 +349,8 @@ class Agent:
                         if query.strip() not in search_options[args['evidence_id']]:
                             raise ValueError('Choose a literal from the current source-derived search choices')
                         args['query'] = query.strip()
+                        if self.config.get('occurrence_order'):
+                            args['occurrence_order'] = True
                     call_key = hashlib.sha256(canonical({"action": name, "arguments": args})).hexdigest()
                     if call_key in seen_calls:
                         raise ValueError("Duplicate tool call; use a different tool or evidence page")
@@ -410,6 +418,18 @@ class Agent:
                     record.setdefault('line_metadata', {}).update({entry['line']: {'source_line': entry.get('source_line')}
                                                                   for entry in clean['lines']})
                     record['latest_lines'] = [entry['line'] for entry in clean['lines']]
+                    if self.config.get('recover_empty_searches'):
+                        if name == 'search_evidence' and clean.get('status') == 'ok':
+                            record['empty_searches'] = record.get('empty_searches',0)+1 if clean.get('hit_count')==0 else 0
+                            if 'navigation_pages' in clean:
+                                record['navigation_pages'] = [h['page'] for h in clean['navigation_pages']]
+                        if name == 'read_evidence' and clean.get('status') == 'ok':
+                            record['empty_searches'] = 0
+                            anchor = clean.get('navigation_anchor')
+                            if anchor in record['latest_lines']:
+                                record.setdefault('focus_groups',[]).append([anchor])
+                                journal.append('navigation_page_read', evidence_id=eid, page=clean['page'], anchor=anchor,
+                                               scope='Source reading after missed searches; lexical navigation only')
                     for link in clean.get('context_links', []):
                         if link not in record.setdefault('context_links', []):
                             record['context_links'].append(link)

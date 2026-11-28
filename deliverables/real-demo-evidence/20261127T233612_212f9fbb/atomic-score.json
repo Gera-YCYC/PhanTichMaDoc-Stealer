@@ -290,7 +290,7 @@
         "all_prediction_hallucination_rate": null,
         "precision": null,
         "recall": 0.0,
-        "f1": null,
+        "f1": 0.0,
         "matched_reference_ids": [],
         "missed_reference_ids": [
           "PY24-A28",
@@ -311,7 +311,7 @@
         "all_prediction_hallucination_rate": null,
         "precision": null,
         "recall": 0.0,
-        "f1": null,
+        "f1": 0.0,
         "matched_reference_ids": [],
         "missed_reference_ids": [
           "PY24-A28",
@@ -528,6 +528,30 @@
         "matched_reference_ids": [],
         "missed_reference_ids": []
       }
+    }
+  },
+  "rubric_ioc_attack": {
+    "raw": {
+      "correct": 1,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 3,
+      "reference_units": 4,
+      "precision": 1.0,
+      "recall": 0.25,
+      "f1": 0.4,
+      "supported_outside_scope_count": 0
+    },
+    "after_filter": {
+      "correct": 1,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 3,
+      "reference_units": 4,
+      "precision": 1.0,
+      "recall": 0.25,
+      "f1": 0.4,
+      "supported_outside_scope_count": 0
     }
   }
 }

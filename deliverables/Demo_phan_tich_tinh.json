@@ -1,0 +1,40 @@
+{
+  "kind": "condensed-replay-of-real-journals",
+  "sha256": "ec74bbcfc3f0815ef363e1c71560e62a49f544af78ab21d8f792e1765d624f47",
+  "video_bytes": 415493,
+  "resolution": [
+    1280,
+    720
+  ],
+  "seconds_per_page": 8,
+  "page_png_sha256": [
+    "8c3d7ca444fd56719fb256ff221e6bc6a6aad8fe6a8c1b9e83737dbab4f13537",
+    "2549db0a2f9fda61358620f23337591e7317e594a711de7f0e6f61ce07d8fbdb",
+    "6b1c45c57da09d42bf317503e46fdcd1da0954aa78d85cad3ea5620709e3c5c7",
+    "dc4227438b37b4a0ceba264c6d0015a3b4683da28efeb78105e8bf98998acdf2",
+    "e2331e59dc3a46de007040a564f267c85dc2cb8bc27735a770fc3593d994a628",
+    "1a7cd494157038802ff1b29efa43f82d39ba8a045140a6a7daae8b54497b2552",
+    "5d9ac0659607bc613c2ea896c32d86b6e87d766a48a71064004c28593cd56d2a",
+    "983be8420b017a6302a355f9849924f706b3444ebc77c507b0171d95b6a1817c",
+    "232acc85ad4bce8e5036c16fcced1e596b02f20ef53253dc09b290910c460604"
+  ],
+  "runs": [
+    {
+      "run_id": "20261127T233612_212f9fbb",
+      "journal_sha256": "5e0a74e7b950a260a47462656b148e74b16a25273982081c65ae6705349b3a80"
+    },
+    {
+      "run_id": "20261127T234632_6e94cea6",
+      "journal_sha256": "67f83b349d730c4dc639394e954a267041a4418c9497965bf5abb8646708a2bf"
+    },
+    {
+      "run_id": "20261127T235732_bb94a784",
+      "journal_sha256": "31402864c989e529b62d6d493f2d4578300402591cc8ddb52fb76de291a1eaa6"
+    },
+    {
+      "run_id": "20261128T000247_b054cbfb",
+      "journal_sha256": "81c8ce2c8b28d9119dc4ddf8dd0d066e608b8e20fb48b65d53c020d2a09d0a0e"
+    }
+  ],
+  "source_manifest_sha256": "231b4997344ee1c451611e74375c62645edd2ac7553cba0832fb2c18c4e5ceeb"
+}

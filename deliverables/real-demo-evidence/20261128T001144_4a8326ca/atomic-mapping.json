@@ -1,0 +1,582 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "raw_report_sha256": "8729c71ff9e2938d1547843e0be698aac448be94866f4bcb9f07a3295ca5b676",
+  "checked_report_sha256": "9be74d3758a349124ff16e47a1b7a513ea3704e97843f6d31bcbb9bb90abd8c7",
+  "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+  "method": "Explicit exhaustive spans. Duplicate operations at the same site count once. API qualifiers are part of the asserted operation.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 61,
+          "label": "correct",
+          "unit_key": "assembly-load",
+          "reference_id": "assembly-load",
+          "reason": "Dòng 275 nạp dữ liệu sau bước chuyển đổi rồi chọn kiểu đầu tiên. Dòng 282–286 nối phương thức đã tra cứu, thao tác gọi và các đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        },
+        {
+          "start": 61,
+          "end": 117,
+          "label": "correct",
+          "unit_key": "first-type",
+          "reference_id": "first-type",
+          "reason": "Dòng 275 nạp dữ liệu sau bước chuyển đổi rồi chọn kiểu đầu tiên. Dòng 282–286 nối phương thức đã tra cứu, thao tác gọi và các đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        },
+        {
+          "start": 117,
+          "end": 156,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Dòng 275 nạp dữ liệu sau bước chuyển đổi rồi chọn kiểu đầu tiên. Dòng 282–286 nối phương thức đã tra cứu, thao tác gọi và các đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        },
+        {
+          "start": 156,
+          "end": 181,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Dòng 275 nạp dữ liệu sau bước chuyển đổi rồi chọn kiểu đầu tiên. Dòng 282–286 nối phương thức đã tra cứu, thao tác gọi và các đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 185,
+          "label": "correct",
+          "unit_key": "base32-decoding",
+          "reference_id": "base32-decoding",
+          "reason": "Các dòng 211–230 thể hiện bước chuẩn hóa và tạo mảng byte của hàm chuyển đổi.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 150,
+          "label": "correct",
+          "unit_key": "hex-decoding",
+          "reference_id": "hex-decoding",
+          "reason": "Dòng 275 chứa điểm gọi. Các dòng 52–57 tách văn bản, chuyển cơ số 16 và nối ký tự.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 48,
+              "end_line": 60,
+              "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 75,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Dòng 282–286 xác nhận thao tác gọi cùng hai đối số. Chỉ tính nạp assembly khi câu khẳng định việc nạp.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 48,
+              "end_line": 60,
+              "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        },
+        {
+          "start": 75,
+          "end": 170,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Dòng 282–286 xác nhận thao tác gọi cùng hai đối số. Chỉ tính nạp assembly khi câu khẳng định việc nạp.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 48,
+              "end_line": 60,
+              "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 83,
+          "label": "correct",
+          "unit_key": "tree-layout",
+          "reference_id": "tree-layout",
+          "reason": "Các dòng 1614 và 1904–1906 xác nhận lời gọi và SuspendLayout. Lý do tăng hiệu năng khi xử lý hàng loạt là suy diễn.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 1604,
+              "end_line": 1619,
+              "projected_quote_sha256": "52be168a6e593351852955c4071406ca012543d0224a5bad8bd7c479e83c2577"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 1904,
+              "end_line": 1908,
+              "projected_quote_sha256": "13b3f3a85bc6b80f2362f549fe1fe00e36f3a4b08e88cec20935f139fc25118a"
+            }
+          ]
+        },
+        {
+          "start": 83,
+          "end": 130,
+          "label": "unsupported",
+          "unit_key": "performance-purpose",
+          "reference_id": null,
+          "reason": "Các dòng 1614 và 1904–1906 xác nhận lời gọi và SuspendLayout. Lý do tăng hiệu năng khi xử lý hàng loạt là suy diễn.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 1604,
+              "end_line": 1619,
+              "projected_quote_sha256": "52be168a6e593351852955c4071406ca012543d0224a5bad8bd7c479e83c2577"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 1904,
+              "end_line": 1908,
+              "projected_quote_sha256": "13b3f3a85bc6b80f2362f549fe1fe00e36f3a4b08e88cec20935f139fc25118a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 120,
+          "label": "correct",
+          "unit_key": "assembly-load",
+          "reference_id": "assembly-load",
+          "reason": "Điểm nạp và các lời gọi lồng cùng xuất hiện ở dòng 275. Câu mô tả nguồn đầu vào.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 43,
+              "end_line": 46,
+              "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 81,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Các dòng 282–286 đủ để xác định lời gọi và hai đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 43,
+              "end_line": 46,
+              "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        },
+        {
+          "start": 81,
+          "end": 143,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Các dòng 282–286 đủ để xác định lời gọi và hai đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 43,
+              "end_line": 46,
+              "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 76,
+          "label": "correct",
+          "unit_key": "tree-remove",
+          "reference_id": "tree-remove",
+          "reason": "Dòng 1621 thao tác trên tập nút của nút cha.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 1610,
+              "end_line": 1641,
+              "projected_quote_sha256": "ed0f31f915a4cb938fa0149852603dcca8d2928cec5175b10aaeac24723515c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 96,
+          "label": "correct",
+          "unit_key": "tree-insert",
+          "reference_id": "tree-insert",
+          "reason": "Các dòng 1635 và 1640 có thao tác chèn tập phần tử.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 1610,
+              "end_line": 1641,
+              "projected_quote_sha256": "ed0f31f915a4cb938fa0149852603dcca8d2928cec5175b10aaeac24723515c3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 100,
+          "label": "correct",
+          "unit_key": "tree-scroll",
+          "reference_id": "tree-scroll",
+          "reason": "Khai báo ở 919–920 và đối số ở 926 phù hợp thông điệp WM_VSCROLL và SB_LINEDOWN của Win32.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 911,
+              "end_line": 942,
+              "projected_quote_sha256": "cb57c8a322bff6e5b587c28dd70c1e0a3154378e216b113266470fd10e7c0d93"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 79,
+          "label": "correct",
+          "unit_key": "mouse-up-remove",
+          "reference_id": "mouse-up-remove",
+          "reason": "Dòng 3173 dùng phép gỡ đăng ký. Đoạn chứng cứ cũng chứa điểm thêm đăng ký trước đó.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 3148,
+              "end_line": 3175,
+              "projected_quote_sha256": "e6c6fed1f8e999d35effd049aa4df172dd1b90ab604e21398923ef7567d6a6dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 83,
+          "label": "correct",
+          "unit_key": "mouse-move-remove",
+          "reference_id": "mouse-move-remove",
+          "reason": "Dòng 3174 dùng phép gỡ đăng ký cho sự kiện được nêu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 3148,
+              "end_line": 3175,
+              "projected_quote_sha256": "e6c6fed1f8e999d35effd049aa4df172dd1b90ab604e21398923ef7567d6a6dd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 147,
+          "label": "unsupported",
+          "unit_key": "hardcoded-hex-call",
+          "reference_id": null,
+          "reason": "Trích dẫn 36–67 có khai báo và thân hàm nhận đối số. Nó chưa cho thấy lời gọi tại điểm truyền chuỗi ghi cứng, cũng chưa ràng buộc miền ký tự ASCII.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 36,
+              "end_line": 67,
+              "projected_quote_sha256": "aa507898e04965e90b712485a45bb991077392faf89c8a2f35b5506178ec6a8a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 47,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Dòng 282–283 gọi phương thức và dòng 275 xác định nguồn kiểu từ assembly đã nạp.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 255,
+              "end_line": 286,
+              "projected_quote_sha256": "47c23201cb03c54e9e47149b01a38f00db181e5b6d8e4f647f8a9b4e3234159d"
+            }
+          ]
+        },
+        {
+          "start": 47,
+          "end": 123,
+          "label": "correct",
+          "unit_key": "assembly-load",
+          "reference_id": "assembly-load",
+          "reason": "Dòng 282–283 gọi phương thức và dòng 275 xác định nguồn kiểu từ assembly đã nạp.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 255,
+              "end_line": 286,
+              "projected_quote_sha256": "47c23201cb03c54e9e47149b01a38f00db181e5b6d8e4f647f8a9b4e3234159d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 103,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Dòng 283–286 thể hiện danh sách đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_47d64d61088c412f",
+              "line": 255,
+              "end_line": 286,
+              "projected_quote_sha256": "47c23201cb03c54e9e47149b01a38f00db181e5b6d8e4f647f8a9b4e3234159d"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

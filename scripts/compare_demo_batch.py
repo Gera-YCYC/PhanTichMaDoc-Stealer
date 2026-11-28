@@ -39,7 +39,9 @@ def compare(run_ids):
     for r in rows:
         if r['status'].startswith('completed'):
             tools.update(r['successful_tools'])
+    attempted = {r['sample_sha256'] for r in rows}
     return {'kind':'same-revision-end-to-end-vm-demo', 'runs':rows,
+            'distinct_attempted_samples_with_terminal_journal':len(attempted),
             'distinct_completed_samples':len(reports), 'at_least_three_samples_with_journal':len(reports) >= 3,
             'successful_analysis_tools':sorted(tools), 'stable_series_by_sample':repeated,
             'stability_definition':'Exact intersection/union on three distinct completed runs for a single sample.',

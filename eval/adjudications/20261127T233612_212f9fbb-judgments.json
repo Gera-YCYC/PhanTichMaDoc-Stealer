@@ -10,7 +10,8 @@
           "key": "PY24-A18",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Tạo tệp ZIP của thư mục Browser trong thư mục tạm."
     },
     "C2": {
       "reason": "Archive body, return value, caller and complete send_email body are supplied. The archive path is read, attached, serialized and passed to sendmail after login. Static capability, not successful delivery.",
@@ -29,7 +30,8 @@
           "key": "PY24-A24",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gửi email qua SMTP có xác thực và đính kèm tệp ZIP."
     },
     "C3": {
       "reason": "The exact SMTP hostname literal is assigned and used by the SMTP constructor. This is a configured destination candidate, not confirmed malicious infrastructure or observed traffic.",
@@ -38,7 +40,8 @@
           "key": "PY24-A27",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Dùng một hostname cụ thể làm máy chủ SMTP."
     },
     "C4": {
       "reason": "The source constructs the Login Data path then copies it to the user temporary login_db path.",
@@ -47,7 +50,8 @@
           "key": "PY24-A05",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Chép Login Data của trình duyệt vào thư mục tạm."
     },
     "C5": {
       "reason": "The database connection receives the copy destination as its argument.",
@@ -56,7 +60,8 @@
           "key": "PY24-A06",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Mở kết nối SQLite tới bản sao Login Data."
     },
     "C6": {
       "reason": "The history helper constructs the History database path and calls shutil.copy at line 192.",
@@ -65,7 +70,8 @@
           "key": "history-copy",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Chép cơ sở dữ liệu lịch sử web vào thư mục tạm."
     },
     "C7": {
       "reason": "The history helper opens the copy destination with sqlite3.connect at line 193.",
@@ -74,7 +80,8 @@
           "key": "history-open",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Mở SQLite trên bản sao cơ sở dữ liệu lịch sử."
     },
     "C8": {
       "reason": "The implementation calls the imported CryptUnprotectData with master_key. The assertion does not describe the five-byte slice required by A03.",
@@ -83,7 +90,8 @@
           "key": "key-api",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi API DPAPI trên biến khóa chính."
     },
     "C9": {
       "reason": "The encoded key accessed under os_crypt is the operand of the Base64 decoder.",
@@ -92,7 +100,8 @@
           "key": "PY24-A02",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã Base64 trường encrypted_key trong Local State."
     },
     "C10": {
       "reason": "The submitted caller proves the helper invocation, arguments and assignment. Its implementation is absent from this claim, so the asserted collection effect is unverified here.",
@@ -106,7 +115,8 @@
           "key": "unproven-login-helper-effect",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Gọi helper của profile Default để lấy dữ liệu đăng nhập."
     },
     "C11": {
       "reason": "The caller actually passes login_data and Saved_Passwords to the save helper. A comment mentions text output, but these references do not include the implementation which establishes the file write.",
@@ -120,7 +130,8 @@
           "key": "unproven-file-effect-at-caller",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Truyền kết quả đăng nhập cho helper và khẳng định đích ghi là tệp văn bản."
     },
     "C12": {
       "reason": "The complete write helper contains the non-null guard and constructs the browser/data-type text path under the temporary directory.",
@@ -129,7 +140,8 @@
           "key": "PY24-A15",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Ghi nội dung vào tệp theo loại dữ liệu trong thư mục tạm của trình duyệt."
     },
     "C13": {
       "reason": "The serialized text and the use of that text in the SMTP send call are visible at lines 103 and 109.",
@@ -143,7 +155,8 @@
           "key": "PY24-A21",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gửi qua SMTP nội dung thư đã tuần tự hóa."
     },
     "C14": {
       "reason": "The executed SELECT lists all three named fields and the logins table.",
@@ -152,7 +165,8 @@
           "key": "PY24-A07",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Truy vấn ba trường về URL, tài khoản và mật khẩu trong bảng logins."
     },
     "C15": {
       "reason": "The loop iterates fetchall results and passes the password column and master_key to a helper. The submitted excerpts omit the body needed to establish actual cryptographic decryption.",
@@ -171,7 +185,8 @@
           "key": "PY24-A09",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Duyệt các dòng rồi giải mã trường mật khẩu bằng helper và khóa chính."
     },
     "C16": {
       "reason": "The cursor executes the two-column SELECT on the downloads table.",
@@ -180,7 +195,8 @@
           "key": "PY24-A31",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Truy vấn URL và đường dẫn tệp đích trong bảng downloads."
     },
     "C17": {
       "reason": "The copy operands are visible. This narrower statement does not resolve the source expression to a specific browser database.",
@@ -189,7 +205,8 @@
           "key": "copy-login-expr",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Chép tệp mang đường dẫn của biến login_db tới đường dẫn tạm."
     },
     "C18": {
       "reason": "The bound sqlite3.connect call takes the temporary login_db path.",
@@ -198,7 +215,8 @@
           "key": "PY24-A06",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi SQLite connect với đường dẫn login_db tạm."
     },
     "C19": {
       "reason": "The bound cursor executes the same logins SELECT with all declared columns.",
@@ -207,7 +225,8 @@
           "key": "PY24-A07",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Thực hiện SELECT ba trường của bảng logins."
     },
     "C20": {
       "reason": "The same cursor calls fetchall after the logins SELECT.",
@@ -216,7 +235,8 @@
           "key": "PY24-A08",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi fetchall sau truy vấn bảng logins."
     },
     "C21": {
       "reason": "The interpolated output and write operand are visible. This two-line claim does not supply the non-null guard.",
@@ -225,7 +245,8 @@
           "key": "browser-write-expr",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Ghi biến content vào đường dẫn tạm được tạo từ tên trình duyệt và loại dữ liệu."
     },
     "C22": {
       "reason": "The destination and write operand are cited. The claim does not say append or identify the guard required by A30.",
@@ -234,7 +255,8 @@
           "key": "autofill-write-expr",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Ghi biến content vào tệp văn bản tổng hợp autofill."
     },
     "C23": {
       "reason": "The source supplies zip format, the temporary base name and Browser staging root.",
@@ -243,7 +265,8 @@
           "key": "PY24-A18",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Tạo ZIP với thư mục Browser tạm làm gốc dữ liệu."
     },
     "C24": {
       "reason": "The SMTP receiver, sendmail call and three named expressions are present.",
@@ -252,7 +275,8 @@
           "key": "PY24-A25",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi sendmail với các biến người gửi, người nhận và nội dung."
     },
     "C25": {
       "reason": "The SMTP receiver and its two credential argument positions are explicit. A local display suppresses sensitive literals. No successful authentication is claimed.",
@@ -261,7 +285,8 @@
           "key": "PY24-A24",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi đăng nhập SMTP với hai đối số xác thực."
     },
     "C26": {
       "reason": "The bound SMTP client explicitly requests STARTTLS.",
@@ -270,7 +295,8 @@
           "key": "PY24-A23",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Yêu cầu STARTTLS trên kết nối SMTP."
     },
     "C27": {
       "reason": "The SMTP constructor takes the configured host and port expressions.",
@@ -279,7 +305,8 @@
           "key": "PY24-A22",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Tạo đối tượng SMTP với biến máy chủ và cổng."
     },
     "C28": {
       "reason": "The multipart message attaches MIMEText of the plain message body.",
@@ -288,7 +315,8 @@
           "key": "PY24-A35",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gắn phần thân văn bản thuần vào thư nhiều phần."
     },
     "C29": {
       "reason": "The multipart message attaches the MIME part.",
@@ -297,7 +325,8 @@
           "key": "PY24-A20",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gắn phần MIME vào thư."
     },
     "C30": {
       "reason": "as_string is invoked on the multipart message.",
@@ -306,7 +335,8 @@
           "key": "PY24-A21",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Chuyển thư nhiều phần thành chuỗi."
     },
     "C31": {
       "reason": "The bound cipher comes from AES GCM with this key/nonce. Its decrypt method takes the payload expression.",
@@ -315,7 +345,8 @@
           "key": "PY24-A04",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi AES-GCM decrypt với dữ liệu, khóa và nonce."
     },
     "C32": {
       "reason": "The import and call establish DPAPI with this argument. These citations do not include the prefix-removal operation.",
@@ -324,7 +355,8 @@
           "key": "key-api",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi CryptUnprotectData trên biến khóa chính."
     },
     "C33": {
       "reason": "The Base64 argument contains the local_state encrypted key lookup.",
@@ -333,7 +365,8 @@
           "key": "PY24-A02",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã Base64 giá trị encrypted_key trong cấu hình."
     },
     "C34": {
       "reason": "The file object opened at the Local State path is read.",
@@ -342,7 +375,8 @@
           "key": "PY24-A01",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Đọc tệp Local State."
     },
     "C35": {
       "reason": "The text file path uses the filename parameter and the write operand formats each item.",
@@ -351,7 +385,8 @@
           "key": "PY24-A36",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Ghi từng phần tử đã định dạng vào tệp tạm theo tên truyền vào."
     },
     "C36": {
       "reason": "The operands and copy call point to the same history-file copy site as C6.",
@@ -360,7 +395,8 @@
           "key": "history-copy",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Chép tệp lịch sử tới đường dẫn tạm."
     },
     "C37": {
       "reason": "The SQLite call uses the same temporary history path as C7.",
@@ -369,7 +405,8 @@
           "key": "history-open",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Mở SQLite với đường dẫn lịch sử tạm."
     },
     "C38": {
       "reason": "The history SELECT names the url, title and last-visit columns.",
@@ -378,7 +415,8 @@
           "key": "history-query",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Truy vấn URL, tiêu đề và lần truy cập cuối trong bảng lịch sử."
     },
     "C39": {
       "reason": "The bound history cursor calls fetchall following that SELECT.",
@@ -387,7 +425,8 @@
           "key": "history-fetch",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Lấy các dòng kết quả của truy vấn lịch sử."
     }
   },
   "additional_findings": [

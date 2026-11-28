@@ -108,8 +108,8 @@ def run_pages(row):
 def render(run_ids, output):
     batch = compare(run_ids)
     rows = batch['runs']
-    if any(not row['status'].startswith('completed') for row in rows):
-        raise ValueError('Render completed runs only')
+    if any(not row['successful_tools'] or not row['model']['digest'] for row in rows):
+        raise ValueError('Video requires real model and tool evidence for each attempted run')
     intro = page('Agent ReAct phân tích stealer .NET và Python','Phát lại diễn biến từ nhật ký thật · Rút gọn thời gian chờ suy luận',
                  ('Thành phần','Vai trò trong lần demo','Bằng chứng'),
                  [('Máy Windows','Chạy bộ điều phối và Ollama cục bộ',label(rows[0]['model']['tag'])),

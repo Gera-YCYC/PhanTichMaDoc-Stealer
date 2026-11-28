@@ -1,0 +1,371 @@
+{
+  "run_id": "20261128T001144_4a8326ca",
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "raw_report_sha256": "8729c71ff9e2938d1547843e0be698aac448be94866f4bcb9f07a3295ca5b676",
+  "claims": {
+    "C1": {
+      "public_summary": "Nạp assembly qua chuỗi chuyển đổi, lấy kiểu đầu tiên rồi gọi một phương thức theo tên.",
+      "reason": "Dòng 275 nạp dữ liệu sau bước chuyển đổi rồi chọn kiểu đầu tiên. Dòng 282–286 nối phương thức đã tra cứu, thao tác gọi và các đối số.",
+      "atoms": [
+        {
+          "key": "assembly-load",
+          "label": "correct",
+          "until": ", then retrieves"
+        },
+        {
+          "key": "first-type",
+          "label": "correct",
+          "until": " and invokes"
+        },
+        {
+          "key": "method-invoke",
+          "label": "correct",
+          "until": " with specific"
+        },
+        {
+          "key": "invoke-arguments"
+        }
+      ]
+    },
+    "C2": {
+      "public_summary": "Mô tả các bước thay dấu nối và khôi phục một mảng byte từ chuỗi Base32.",
+      "reason": "Các dòng 211–230 thể hiện bước chuẩn hóa và tạo mảng byte của hàm chuyển đổi.",
+      "atoms": [
+        {
+          "key": "base32-decoding"
+        }
+      ]
+    },
+    "C3": {
+      "public_summary": "Gọi trình chuyển đổi hệ 16, tách các phần rồi ghép ký tự.",
+      "reason": "Dòng 275 chứa điểm gọi. Các dòng 52–57 tách văn bản, chuyển cơ số 16 và nối ký tự.",
+      "atoms": [
+        {
+          "key": "hex-decoding"
+        }
+      ]
+    },
+    "C4": {
+      "public_summary": "Gọi phương thức phản chiếu trên kiểu đã nạp và truyền hai đối số.",
+      "reason": "Dòng 282–286 xác nhận thao tác gọi cùng hai đối số. Chỉ tính nạp assembly khi câu khẳng định việc nạp.",
+      "atoms": [
+        {
+          "key": "method-invoke",
+          "label": "correct",
+          "until": ", passing"
+        },
+        {
+          "key": "invoke-arguments"
+        }
+      ]
+    },
+    "C5": {
+      "public_summary": "Gọi BeginUpdate để hoãn cập nhật bố cục và tăng hiệu năng.",
+      "reason": "Các dòng 1614 và 1904–1906 xác nhận lời gọi và SuspendLayout. Lý do tăng hiệu năng khi xử lý hàng loạt là suy diễn.",
+      "atoms": [
+        {
+          "key": "tree-layout",
+          "label": "correct",
+          "until": " to improve"
+        },
+        {
+          "key": "performance-purpose",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C6": {
+      "public_summary": "Nạp assembly bằng dữ liệu qua chuỗi hàm chuyển đổi.",
+      "reason": "Điểm nạp và các lời gọi lồng cùng xuất hiện ở dòng 275. Câu mô tả nguồn đầu vào.",
+      "atoms": [
+        {
+          "key": "assembly-load"
+        }
+      ]
+    },
+    "C7": {
+      "public_summary": "Gọi phương thức trên kiểu đã nạp với hai đối số cụ thể.",
+      "reason": "Các dòng 282–286 đủ để xác định lời gọi và hai đối số.",
+      "atoms": [
+        {
+          "key": "method-invoke",
+          "label": "correct",
+          "until": ", passing"
+        },
+        {
+          "key": "invoke-arguments"
+        }
+      ]
+    },
+    "C8": {
+      "public_summary": "Gỡ phần tử khỏi tập nút cha của cây.",
+      "reason": "Dòng 1621 thao tác trên tập nút của nút cha.",
+      "atoms": [
+        {
+          "key": "tree-remove"
+        }
+      ]
+    },
+    "C9": {
+      "public_summary": "Chèn nhiều nút vào tập nút của cây.",
+      "reason": "Các dòng 1635 và 1640 có thao tác chèn tập phần tử.",
+      "atoms": [
+        {
+          "key": "tree-insert"
+        }
+      ]
+    },
+    "C10": {
+      "public_summary": "Gọi hàm gửi thông điệp cuộn dọc xuống một dòng.",
+      "reason": "Khai báo ở 919–920 và đối số ở 926 phù hợp thông điệp WM_VSCROLL và SB_LINEDOWN của Win32.",
+      "atoms": [
+        {
+          "key": "tree-scroll"
+        }
+      ]
+    },
+    "C11": {
+      "public_summary": "Hủy đăng ký hàm xử lý sự kiện nhả chuột.",
+      "reason": "Dòng 3173 dùng phép gỡ đăng ký. Đoạn chứng cứ cũng chứa điểm thêm đăng ký trước đó.",
+      "atoms": [
+        {
+          "key": "mouse-up-remove"
+        }
+      ]
+    },
+    "C12": {
+      "public_summary": "Hủy đăng ký hàm xử lý sự kiện di chuyển chuột.",
+      "reason": "Dòng 3174 dùng phép gỡ đăng ký cho sự kiện được nêu.",
+      "atoms": [
+        {
+          "key": "mouse-move-remove"
+        }
+      ]
+    },
+    "C13": {
+      "public_summary": "Gọi hàm chuyển hệ 16 với chuỗi ASCII được ghi cứng.",
+      "reason": "Trích dẫn 36–67 có khai báo và thân hàm nhận đối số. Nó chưa cho thấy lời gọi tại điểm truyền chuỗi ghi cứng, cũng chưa ràng buộc miền ký tự ASCII.",
+      "atoms": [
+        {
+          "key": "hardcoded-hex-call",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C14": {
+      "public_summary": "Gọi phương thức theo tên trên kiểu của assembly được nạp sau bước chuyển đổi.",
+      "reason": "Dòng 282–283 gọi phương thức và dòng 275 xác định nguồn kiểu từ assembly đã nạp.",
+      "atoms": [
+        {
+          "key": "method-invoke",
+          "label": "correct",
+          "until": " obtained from an assembly"
+        },
+        {
+          "key": "assembly-load"
+        }
+      ]
+    },
+    "C15": {
+      "public_summary": "Truyền hai đối số cụ thể vào phương thức được gọi.",
+      "reason": "Dòng 283–286 thể hiện danh sách đối số.",
+      "atoms": [
+        {
+          "key": "invoke-arguments"
+        }
+      ]
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "first-type",
+      "kind": "behavior",
+      "proposition": "Selects the first type from the loaded assembly.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 275,
+          "end_line": 275
+        }
+      ]
+    },
+    {
+      "id": "invoke-arguments",
+      "kind": "behavior",
+      "proposition": "Supplies a static field and a string to the invocation.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 283,
+          "end_line": 283
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 285,
+          "end_line": 285
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 286,
+          "end_line": 286
+        }
+      ]
+    },
+    {
+      "id": "base32-decoding",
+      "kind": "behavior",
+      "proposition": "Normalizes encoded input and reconstructs a byte array.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 211,
+          "end_line": 211
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 213,
+          "end_line": 213
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 216,
+          "end_line": 216
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 228,
+          "end_line": 228
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 230,
+          "end_line": 230
+        }
+      ]
+    },
+    {
+      "id": "hex-decoding",
+      "kind": "behavior",
+      "proposition": "Splits text and converts hexadecimal fields to characters.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 52,
+          "end_line": 52
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 53,
+          "end_line": 53
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 57,
+          "end_line": 57
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 275,
+          "end_line": 275
+        }
+      ]
+    },
+    {
+      "id": "tree-layout",
+      "kind": "behavior",
+      "proposition": "Calls the tree update helper that suspends layout.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1614,
+          "end_line": 1614
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1904,
+          "end_line": 1904
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1906,
+          "end_line": 1906
+        }
+      ]
+    },
+    {
+      "id": "tree-remove",
+      "kind": "behavior",
+      "proposition": "Removes an item from the parent node collection.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1621,
+          "end_line": 1621
+        }
+      ]
+    },
+    {
+      "id": "tree-insert",
+      "kind": "behavior",
+      "proposition": "Inserts a range into a node collection.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1635,
+          "end_line": 1635
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1640,
+          "end_line": 1640
+        }
+      ]
+    },
+    {
+      "id": "tree-scroll",
+      "kind": "behavior",
+      "proposition": "Calls the operating-system API with the vertical line-down message.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 919,
+          "end_line": 919
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 920,
+          "end_line": 920
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 926,
+          "end_line": 926
+        }
+      ]
+    },
+    {
+      "id": "mouse-up-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-up handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 3173,
+          "end_line": 3173
+        }
+      ]
+    },
+    {
+      "id": "mouse-move-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-move handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 3174,
+          "end_line": 3174
+        }
+      ]
+    }
+  ]
+}

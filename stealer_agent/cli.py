@@ -16,9 +16,12 @@ def main() -> int:
     parser.add_argument("--runs", type=int, default=1, choices=(1, 3))
     parser.add_argument("--public-demo", action="store_true", help="Require an exact public sample hash and a >=7B local model")
     parser.add_argument("--live", action="store_true", help="Print tool dispatch/status without raw sample strings or secrets")
+    parser.add_argument("--occurrence-order", action="store_true", help="Use source order in VM code searches for a ranker ablation")
     args = parser.parse_args()
     config = json.loads(Path(args.config).read_text(encoding="utf-8-sig"))
     config['live_progress'] = args.live
+    if args.occurrence_order:
+        config['occurrence_order'] = True
     if args.public_demo:
         manifest_path=Path(__file__).resolve().parents[1]/'config/public-samples.json'
         manifest=json.loads(manifest_path.read_text(encoding='utf-8'))

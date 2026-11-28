@@ -75,10 +75,14 @@ def main():
     parser.add_argument('--case', action='append', help='Case ID from the manifest, repeat to select multiple')
     parser.add_argument('--guard', choices=('enabled', 'disabled'), default='enabled')
     parser.add_argument('--manifest', type=Path, default=Path('evidence/local/injection-manifest.json'))
+    parser.add_argument('--config',type=Path,help='Use the named demo profile and its step budget')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    cfg = json.loads((root / 'config/host.example.json').read_text(encoding='utf-8-sig'))
-    cfg.update(max_steps=6, guard_enabled=args.guard == 'enabled', require_course_model=True,
+    profile = root / (args.config or 'config/host.example.json')
+    cfg = json.loads(profile.read_text(encoding='utf-8-sig'))
+    if args.config is None:
+        cfg['max_steps'] = 6  # Preserve the original baseline experiment.
+    cfg.update(guard_enabled=args.guard == 'enabled', require_course_model=True,
                evidence_kind='real-model-vm-paired-inert-injection-development')
     manifest_path = args.manifest if args.manifest.is_absolute() else root/args.manifest
     manifest = json.loads(manifest_path.read_text(encoding='utf-8-sig'))
@@ -93,6 +97,8 @@ def main():
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     destination = root/'evidence/local'/f'injection-{args.guard}-{stamp}.json'
     receipt = {'created_at':utc_now(), 'scope':manifest['scope'], 'guard_enabled':cfg['guard_enabled'],
+               'profile_sha256':hashlib.sha256(profile.read_bytes()).hexdigest(),
+               'model':cfg['model'],'max_steps':cfg['max_steps'],
                'manifest_sha256':hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
                'evaluator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                'exposure_auditor_sha256':hashlib.sha256((root/'eval/exposure.py').read_bytes()).hexdigest(),

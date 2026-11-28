@@ -61,6 +61,22 @@ def test_scoped_metrics_preserve_frozen_denominator_and_charge_false_predictions
     assert scoped_counts(result['raw'], set())['recall'] is None
 
 
+def test_ioc_attack_rubric_uses_pooled_counts_and_scores_missed_only():
+    from scripts.score_reviewed_run import rubric_score
+
+    def counts(hits, wrong, unsupported, misses):
+        return {'raw': {'correct': hits, 'incorrect': wrong, 'unsupported': unsupported,
+                        'missed': misses, 'reference_units': hits + misses, 'supported_outside_scope': []}}
+
+    grades = {'ioc': counts(1, 0, 1, 0), 'attack': counts(0, 0, 0, 3)}
+    assert rubric_score(grades, 'raw')['f1'] == 2 / 6
+    grades['ioc'] = counts(0, 0, 0, 0)
+    result = rubric_score(grades, 'raw')
+    assert result['precision'] is None and result['f1'] == 0
+    grades['attack'] = counts(0, 0, 0, 0)
+    assert rubric_score(grades, 'raw')['f1'] is None
+
+
 @pytest.mark.parametrize('error', ['missing_claim', 'missing_atom', 'overlap', 'uncovered', 'tail', 'wrong_kind',
                                  'invented_credit', 'outside_reference', 'conflicting_duplicate', 'changed_checked'])
 def test_mappings_cannot_hide_errors_or_gain_duplicate_credit(error):

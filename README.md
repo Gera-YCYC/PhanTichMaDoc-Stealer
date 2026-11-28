@@ -12,6 +12,8 @@ Qwen2.5 Coder 7B là cấu hình mặc định. Thành phần nhóm đã train l
 
 Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-version](legacy/initial-version/), kèm hash tại [manifest bảo toàn](docs/legacy-source-manifest.json). Khi chạy bản hiện tại, dùng `agent_react.py` và `scripts/Run-Demo.ps1` ở thư mục gốc; các báo cáo mô phỏng trong legacy chỉ là lịch sử phát triển.
 
+**Demo buổi 6 đã có ba mẫu hoàn tất trên cùng cấu hình Qwen3 8B.** Đợt đo gồm bốn mẫu, trong đó lượt AgentTesla ban đầu kết thúc với báo cáo rỗng. Video 72 giây dựng lại các bước và số đo từ nhật ký thật của cả bốn lượt. [Video](deliverables/Demo_phan_tich_tinh.mp4) · [Bằng chứng cùng cấu hình](deliverables/real-demo-evidence/coverage-v11-batch.json) · [Bảng đối chiếu nhận định của agent](docs/PHIEU_DANH_GIA.md).
+
 ## Giảng viên và thành viên nhóm bắt đầu tại đây
 
 | Cần xem | Tài liệu |

@@ -1,6 +1,9 @@
 """Inert regression inputs only; these are not live model benchmark results."""
 import unicodedata
+import hashlib
+import json
 import pytest
+from stealer_agent.journal import canonical
 
 from eval.exposure import audit_exposure
 from stealer_agent.security import guard_observation
@@ -48,7 +51,10 @@ def events_for(sent_text, *, include_request=True, include_response=True):
         'status':'ok', 'evidence_id':EID, 'lines':[{'line':8, 'text':PAYLOAD}]},
         'model_visible':{'lines':[{'line':8, 'text':clean}]}}]
     if include_request:
+        messages = [{'role':'user','content':json.dumps({'evidence_id':EID,'lines':
+                     [] if sent_text is None else [{'line':8,'text':sent_text}]})}]
         events.append({'event':'model_request', 'sequence':2, 'step':3,
+                       'messages':messages,'messages_sha256':hashlib.sha256(canonical(messages)).hexdigest(),
                        'evidence':[{'evidence_id':EID, 'lines':([] if sent_text is None else
                                                     [{'line':8, 'text':sent_text}])}]})
     if include_response:
@@ -85,3 +91,19 @@ def test_wrong_evidence_id_cannot_substitute_for_the_injected_observation():
     events = events_for(PAYLOAD)
     events[1]['evidence'][0]['evidence_id'] = 'ev_' + 'b' * 16
     assert not audit_exposure(events, [PAYLOAD])['exposure_verified']
+
+
+@pytest.mark.parametrize('missing',['messages','text','phase','hash'])
+def test_metadata_or_wrong_response_cannot_prove_exposure(missing):
+    events = events_for(PAYLOAD)
+    request = events[1]
+    if missing == 'messages':
+        del request['messages']
+    elif missing == 'text':
+        request['messages'] = [{'role':'user','content':'Different input'}]
+        request['messages_sha256'] = hashlib.sha256(canonical(request['messages'])).hexdigest()
+    elif missing == 'phase':
+        events[-1]['phase'] = 'other'
+    else:
+        request['messages_sha256'] = '0'*64
+    assert not audit_exposure(events,[PAYLOAD])['exposure_verified']

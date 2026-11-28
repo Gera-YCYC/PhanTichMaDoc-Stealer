@@ -74,6 +74,36 @@ def rank(record, query, model=None):
     return sorted(rows, key=lambda row: (-row['score'], row['line']))
 
 
+def navigation_pages(pages, limit=8):
+    """Find readable call sites on diverse pages. Only page/line numbers leave the VM."""
+    ranked = []
+    for index, page in enumerate(pages):
+        if index > 1000:  # Largest page index accepted by the tool contract.
+            break
+        names = set()
+        anchor = None
+        best = 0
+        for row in page:
+            code = _STRING.sub('""', row['text']).split('//', 1)[0].split('#', 1)[0]
+            if _DECL.search(code) or code.lstrip().startswith(('def ', 'class ', '/*', '*')):
+                continue
+            calls = set(re.findall(r'\.([A-Za-z_]\w{1,79})\s*\(', code))
+            if calls:
+                names.update(calls)
+                if len(calls) > best:
+                    anchor, best = row['line'], len(calls)
+        if anchor is not None:
+            ranked.append((index, anchor, names))
+    selected, seen = [], set()
+    while ranked and len(selected) < limit:
+        candidate = max(ranked, key=lambda item:(len(item[2]-seen), len(item[2]), -item[0]))
+        page, anchor, names = candidate
+        selected.append({'page':page,'anchor':anchor})
+        seen.update(names)
+        ranked = [r for r in ranked if abs(r[0]-page) > 1]
+    return selected
+
+
 def select_contexts(record, query, model=None, max_contexts=3, max_chars=5200):
     ranked = rank(record, query, model)
     anchors = []

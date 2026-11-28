@@ -24,9 +24,9 @@ def scoped_counts(counts, declared):
     wrong = counts['incorrect'] + counts['unsupported']
     precision = len(inside) / (len(inside) + wrong) if inside or wrong else None
     recall = len(inside) / len(declared) if declared else None
-    f1 = None
-    if precision is not None and recall is not None:
-        f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    missed = len(declared - inside)
+    denominator = 2 * len(inside) + wrong + missed
+    f1 = 2 * len(inside) / denominator if denominator else None
     return {
         'reference_units': len(declared), 'correct': len(inside), 'missed': len(declared - inside),
         'supported_outside_scope': sorted(hits - declared), 'incorrect': counts['incorrect'],
@@ -36,6 +36,40 @@ def scoped_counts(counts, declared):
         'precision': precision, 'recall': recall, 'f1': f1, 'matched_reference_ids': sorted(inside),
         'missed_reference_ids': sorted(declared - inside),
     }
+
+
+def rubric_score(by_kind, stage):
+    """Pool IOC and ATT&CK counts before division, as in the analysis rubric."""
+    counts = {key: sum(by_kind[kind][stage][key] for kind in ('ioc', 'attack'))
+              for key in ('correct', 'incorrect', 'unsupported', 'missed', 'reference_units')}
+    tp = counts['correct']
+    fp = counts['incorrect'] + counts['unsupported']
+    fn = counts['missed']
+    return {**counts, 'precision': tp / (tp + fp) if tp + fp else None,
+            'recall': tp / (tp + fn) if tp + fn else None,
+            'f1': 2 * tp / (2 * tp + fp + fn) if 2 * tp + fp + fn else None,
+            'supported_outside_scope_count': sum(len(by_kind[k][stage]['supported_outside_scope'])
+                                                 for k in ('ioc', 'attack'))}
+
+
+def write_review_table(path, rows, audit, accepted, atomic):
+    def cell(value):
+        return str(value).replace('|','\\|').replace('\n',' ')
+    labels={'correct':'Đúng','incorrect':'Sai','unsupported':'Thiếu căn cứ'}
+    lines=['# Đối chiếu từng nhận định', '', 'Run ID `'+audit['run_id']+'`. Cột thứ hai diễn ý câu của agent. '
+           'Bảng giữ cả những nhận định mà bộ tự duyệt đã loại. Tọa độ là số dòng trong kết quả công cụ của mẫu.','',
+           '| ID | Agent nói | Đối chiếu mã nguồn | Dòng đối chiếu | Nhãn | Tự duyệt |',
+           '|---|---|---|---|---|---|']
+    for claim in audit['claims']:
+        cid=claim['claim_id']
+        coordinates=', '.join(f"{r['line']}–{r['end_line']}" if r['line'] != r['end_line'] else str(r['line'])
+                              for r in claim['truth_reference'])
+        fields=[cid,rows[cid]['public_summary'],claim['reason'],coordinates,labels[claim['label']],
+                'Giữ' if cid in accepted else 'Loại']
+        lines.append('| '+' | '.join(map(cell,fields))+' |')
+    lines.extend(['','## Mục bị bỏ sót trên đáp án đã chốt','',
+                  ', '.join(atomic['raw']['missed_reference_ids']) or 'Đã phủ hết các mục trong phạm vi.',''])
+    path.write_text('\n'.join(lines),encoding='utf-8')
 
 
 def score(directory, profile_path, decisions, output):
@@ -94,6 +128,13 @@ def score(directory, profile_path, decisions, output):
                                 'reviewer':mapping['reviewer'],'truth_reference':refs,'reason':judgment['reason']})
         mapping['claims'].append({'claim_id':cid,'atoms':atoms})
     per_claim = claim_score(raw_bytes,checked,audit)
+    # The lecturer counts a claim citing a tool separately from whether that
+    # citation actually supports the claim. The exact spans were checked above.
+    cited_ids = {r['claim_id'] for r in audit['claims'] if r['truth_reference']}
+    for stage, items in [('raw', claims), ('after_filter', checked['claims'])]:
+        count = sum(c['id'] in cited_ids for c in items)
+        per_claim[stage]['verified_tool_citation_count'] = count
+        per_claim[stage]['verified_tool_citation_rate'] = count / len(items) if items else None
     # Validate all spans with the common calculator. Additional source-supported
     # propositions are listed separately and never enter the frozen recall denominator.
     extras = decisions.get('additional_findings', [])
@@ -119,9 +160,12 @@ def score(directory, profile_path, decisions, output):
               **{s: scoped_counts(validated[s], ids) for s in stages},
               'by_kind': {kind: {s: scoped_counts(counts[s], {u['id'] for u in profile['units'] if u['kind'] == kind})
                                  for s in stages} for kind, counts in validated['by_kind'].items()}}
+    atomic['rubric_ioc_attack'] = {stage: rubric_score(atomic['by_kind'], stage) for stage in stages}
     output.mkdir(parents=True,exist_ok=True)
     for name, obj in [('source-audit',audit),('atomic-mapping',mapping),('claim-score',per_claim),('atomic-score',atomic)]:
         dump_json(output/(name+'.json'),obj)
+    if rows and all(row.get('public_summary') for row in rows.values()):
+        write_review_table(output/'review.md',rows,audit,{c['id'] for c in checked['claims']},atomic)
     print(json.dumps({'raw':{k:atomic['raw'][k] for k in ('correct','unsupported','missed','precision','recall','f1')},
                       'after_filter':{k:atomic['after_filter'][k] for k in ('correct','missed','precision','recall','f1')}}))
 

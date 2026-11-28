@@ -10,7 +10,8 @@
           "key": "emails-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Tải tệp có đường dẫn trong biến emails_pass lên địa chỉ được ghép trong mã."
     },
     "C2": {
       "reason": "CC is a variable supplying a path. The citation does not prove a file literally named CC. The incorrect path qualifier belongs to the upload operation.",
@@ -19,7 +20,8 @@
           "key": "literal-cc-file",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Tải một tệp có tên CC lên địa chỉ được ghép trong mã."
     },
     "C3": {
       "reason": "The call uploads the path_screenshot expression. This excerpt does not establish the actual contents of the file as a screenshot.",
@@ -28,7 +30,8 @@
           "key": "unproven-screenshot-contents",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Tải tệp ảnh chụp màn hình qua WebClient."
     },
     "C4": {
       "reason": "The bytes returned from the upload are decoded as ASCII and assigned to Fileuri4.",
@@ -37,7 +40,8 @@
           "key": "screen-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII phản hồi upload rồi gán vào Fileuri4."
     },
     "C5": {
       "reason": "The file supplied through info_pc is uploaded to the composed address. The description identifies outgoing file contents and makes no claim of plaintext recovery.",
@@ -46,7 +50,8 @@
           "key": "info-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gửi nội dung tệp có đường dẫn trong info_pc tới địa chỉ được ghép."
     },
     "C6": {
       "reason": "The upload result bytes are explicitly decoded and assigned to Fileuri2.",
@@ -55,7 +60,8 @@
           "key": "info-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã phản hồi của lượt gửi tệp thông tin và gán vào Fileuri2."
     },
     "C7": {
       "reason": "The upload uses the Passwords variable as the local path and the concatenated destination expression.",
@@ -64,7 +70,8 @@
           "key": "passwords-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Tải tệp được chỉ bởi biến Passwords."
     },
     "C8": {
       "reason": "The returned response is ASCII decoded and assigned to Fileuri.",
@@ -73,7 +80,8 @@
           "key": "passwords-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII phần phản hồi và gán vào Fileuri."
     },
     "C9": {
       "reason": "The Opera path is opened and the logins fields are actually read. The sentence does not name each field separately.",
@@ -87,7 +95,8 @@
           "key": "opera-generic-credential-read",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Đọc Login Data của Opera để lấy thông tin đăng nhập."
     },
     "C10": {
       "reason": "Encoding.Default.GetBytes converts the selected field to bytes before the custom helper. The claimed direction from bytes is contradicted. No body here verifies decryption.",
@@ -96,7 +105,8 @@
           "key": "wrong-opera-byte-direction",
           "label": "incorrect"
         }
-      ]
+      ],
+      "public_summary": "Giải mã trường mật khẩu bằng helper sau khi chuyển đổi từ byte."
     },
     "C11": {
       "reason": "The Chrome Login Data path and field reads are visible. No separate credit for a specific field name absent from the sentence.",
@@ -110,7 +120,8 @@
           "key": "chrome-generic-credential-read",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Đọc Login Data của Chrome để lấy thông tin đăng nhập."
     },
     "C12": {
       "reason": "Account construction is explicit. The two decrypted-result clauses both rely on the unseen custom helper body and are the same unsupported proposition.",
@@ -129,7 +140,8 @@
           "key": "unverified-chrome-decryption",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Giải mã mật khẩu rồi tạo đối tượng Account với thông tin đã giải mã."
     },
     "C13": {
       "reason": "GetValue and the byte-array cast are in the quoted source. This identifies a stored configuration value, not a real SMTP connection.",
@@ -138,7 +150,8 @@
           "key": "smtp-config-bytes",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Đọc giá trị SMTP Server từ cấu hình dưới dạng mảng byte."
     },
     "C14": {
       "reason": "The recovered account and URL assignment contain the encoding operation on bytes.",
@@ -147,7 +160,8 @@
           "key": "account-url-decode",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Đổi byte sang chuỗi rồi gán vào URL của đối tượng tài khoản."
     },
     "C15": {
       "reason": "The code writes the enumerated browser account fields with a StreamWriter. The target is a path variable and no quoted literal basename is demonstrated.",
@@ -166,7 +180,8 @@
           "key": "credential-write",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Ghi thông tin tài khoản trình duyệt vào một tệp có tên Passwords."
     },
     "C16": {
       "reason": "The shown File.WriteAllText call overwrites with an empty string. It does not write system information and the path variable does not establish a literal filename.",
@@ -180,7 +195,8 @@
           "key": "clear-info-file",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Ghi đè thông tin hệ thống vào một tệp có tên info_pc."
     },
     "C17": {
       "reason": "The WebClient late-bound upload call is visible. A variable named current does not prove a path originating in the process current directory.",
@@ -194,7 +210,8 @@
           "key": "current-working-directory",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Gọi upload gián tiếp và lấy đường dẫn từ thư mục hiện hành."
     },
     "C18": {
       "reason": "The returned object is converted to bytes then ASCII-decoded at the first late-bound site.",
@@ -203,7 +220,8 @@
           "key": "late-one-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII phản hồi sau lời gọi upload gián tiếp."
     },
     "C19": {
       "reason": "The second late-bound local-file upload call is real. The actual destination host or remote server is not resolved by this citation.",
@@ -217,7 +235,8 @@
           "key": "resolved-remote-destination",
           "label": "unsupported"
         }
-      ]
+      ],
+      "public_summary": "Gọi upload gián tiếp để gửi tệp hệ thống cục bộ đến máy chủ từ xa."
     },
     "C20": {
       "reason": "The ASCII decoder acts on the upload response. It does not retrieve the uploaded file contents. The following clause correctly describes the response conversion.",
@@ -231,7 +250,8 @@
           "key": "late-two-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Dùng bộ giải mã ASCII để lấy nội dung tệp đã tải lên từ phần phản hồi."
     },
     "C21": {
       "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
@@ -240,7 +260,8 @@
           "key": "emails-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi UploadFile với địa chỉ ghép và đường dẫn trong emails_pass."
     },
     "C22": {
       "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
@@ -249,7 +270,8 @@
           "key": "emails-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII byte phản hồi của lượt upload tại vị trí emails_pass."
     },
     "C23": {
       "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
@@ -258,7 +280,8 @@
           "key": "passwords-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi UploadFile với địa chỉ ghép và đường dẫn trong Passwords."
     },
     "C24": {
       "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
@@ -267,7 +290,8 @@
           "key": "passwords-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII byte phản hồi của lượt upload tại vị trí Passwords."
     },
     "C25": {
       "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
@@ -276,7 +300,8 @@
           "key": "screen-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi UploadFile với địa chỉ ghép và đường dẫn trong path_screenshot."
     },
     "C26": {
       "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
@@ -285,7 +310,8 @@
           "key": "screen-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII byte phản hồi của lượt upload tại vị trí path_screenshot."
     },
     "C27": {
       "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
@@ -294,7 +320,8 @@
           "key": "info-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi UploadFile với địa chỉ ghép và đường dẫn trong info_pc."
     },
     "C28": {
       "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
@@ -303,7 +330,8 @@
           "key": "info-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII byte phản hồi của lượt upload tại vị trí info_pc."
     },
     "C29": {
       "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
@@ -312,7 +340,8 @@
           "key": "cc-upload",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Gọi UploadFile với địa chỉ ghép và đường dẫn trong CC."
     },
     "C30": {
       "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
@@ -321,7 +350,8 @@
           "key": "cc-ascii",
           "label": "correct"
         }
-      ]
+      ],
+      "public_summary": "Giải mã ASCII byte phản hồi của lượt upload tại vị trí CC."
     }
   },
   "additional_findings": [

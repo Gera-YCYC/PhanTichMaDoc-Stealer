@@ -1,0 +1,542 @@
+{
+  "schema_version": 1,
+  "profile_id": "mercurial.atomic-development/1",
+  "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "scope": "Declared browser, configuration, cryptographic and network-related sites in the ILSpy record.",
+  "reference_method": "Development reference built after inspecting the report and full static record. No independence or holdout is claimed.",
+  "dataset_split": "development",
+  "reference_created_after_development_runs": true,
+  "scoring_ready": true,
+  "model_self_review_used_as_truth": false,
+  "human_reviewers": [],
+  "source_record": {
+    "evidence_id": "ev_a21681d563b34039",
+    "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+  },
+  "source_references": [
+    {
+      "evidence_id": "ev_a21681d563b34039",
+      "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+    }
+  ],
+  "units": [
+    {
+      "id": "cookie-helper",
+      "kind": "behavior",
+      "proposition": "Invokes the local browser cookie helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 75,
+          "end_line": 75
+        }
+      ]
+    },
+    {
+      "id": "cookie-copy",
+      "kind": "behavior",
+      "proposition": "Copies the Chrome default profile cookie database into a temporary file.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 713,
+          "end_line": 713
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 714,
+          "end_line": 714
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 720,
+          "end_line": 720
+        }
+      ]
+    },
+    {
+      "id": "cookie-table",
+      "kind": "behavior",
+      "proposition": "Reads the cookies table using the SQLite helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 728,
+          "end_line": 728
+        }
+      ]
+    },
+    {
+      "id": "login-copy",
+      "kind": "behavior",
+      "proposition": "Copies Chrome Login Data to a temporary file.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 779,
+          "end_line": 779
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 787,
+          "end_line": 787
+        }
+      ]
+    },
+    {
+      "id": "login-table",
+      "kind": "behavior",
+      "proposition": "Reads the logins table with SQLite.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 796,
+          "end_line": 796
+        }
+      ]
+    },
+    {
+      "id": "cookie-key-call",
+      "kind": "behavior",
+      "proposition": "Passes cookie data and a master key into the local decryption helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 747,
+          "end_line": 747
+        }
+      ]
+    },
+    {
+      "id": "login-key-call",
+      "kind": "behavior",
+      "proposition": "Passes password data and the master key to the local decryption helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 807,
+          "end_line": 807
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 812,
+          "end_line": 812
+        }
+      ]
+    },
+    {
+      "id": "native-decrypt",
+      "kind": "behavior",
+      "proposition": "Calls the native decrypt API with ciphertext, key and authentication data.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 382,
+          "end_line": 382
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 385,
+          "end_line": 385
+        }
+      ]
+    },
+    {
+      "id": "tag-length",
+      "kind": "behavior",
+      "proposition": "Retrieves the authentication-tag length property.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 409,
+          "end_line": 409
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 458,
+          "end_line": 458
+        }
+      ]
+    },
+    {
+      "id": "aes-provider",
+      "kind": "behavior",
+      "proposition": "Opens an AES provider and configures GCM chaining.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 380,
+          "end_line": 380
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 424,
+          "end_line": 424
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 433,
+          "end_line": 433
+        }
+      ]
+    },
+    {
+      "id": "key-import",
+      "kind": "behavior",
+      "proposition": "Imports a key with the native cryptographic provider.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 445,
+          "end_line": 445
+        }
+      ]
+    },
+    {
+      "id": "cookie-handoff",
+      "kind": "behavior",
+      "proposition": "Calls SendData with the cookies text-file path and multipart content type.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 761,
+          "end_line": 761
+        }
+      ]
+    },
+    {
+      "id": "password-handoff",
+      "kind": "behavior",
+      "proposition": "Calls SendData with the password text-file path and multipart content type.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 826,
+          "end_line": 826
+        }
+      ]
+    },
+    {
+      "id": "cookie-error-call",
+      "kind": "behavior",
+      "proposition": "Passes the cookie exception message to the Send method.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 765,
+          "end_line": 765
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 768,
+          "end_line": 768
+        }
+      ]
+    },
+    {
+      "id": "password-error-call",
+      "kind": "behavior",
+      "proposition": "Passes an error after the password branch to the Send method.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 830,
+          "end_line": 830
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 833,
+          "end_line": 833
+        }
+      ]
+    },
+    {
+      "id": "ip-message",
+      "kind": "behavior",
+      "proposition": "Passes an IP/location information object to the content helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 279,
+          "end_line": 279
+        }
+      ]
+    },
+    {
+      "id": "hardware-message",
+      "kind": "behavior",
+      "proposition": "Passes a hardware and operating-system information object to the content helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 285,
+          "end_line": 285
+        }
+      ]
+    },
+    {
+      "id": "post-body",
+      "kind": "behavior",
+      "proposition": "Writes the outgoing request body via a request stream.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 1896,
+          "end_line": 1896
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 1897,
+          "end_line": 1897
+        }
+      ]
+    },
+    {
+      "id": "webhook-config",
+      "kind": "ioc",
+      "proposition": "A configured Discord webhook URL has both an ID and a token-shaped segment; both are withheld.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 37,
+          "end_line": 37
+        }
+      ]
+    },
+    {
+      "id": "browser-technique",
+      "kind": "attack",
+      "proposition": "T1555.003 maps the browser Login Data access and password-value processing.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 779,
+          "end_line": 779
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 796,
+          "end_line": 796
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 812,
+          "end_line": 812
+        }
+      ]
+    },
+    {
+      "id": "cookie-technique",
+      "kind": "attack",
+      "proposition": "T1539 maps collection of browser web-session cookies.",
+      "source_references": [
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 713,
+          "end_line": 713
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 728,
+          "end_line": 728
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 747,
+          "end_line": 747
+        },
+        {
+          "evidence_id": "ev_a21681d563b34039",
+          "line": 761,
+          "end_line": 761
+        }
+      ]
+    }
+  ],
+  "source_checks": {
+    "cookie-helper": {
+      "75": [
+        "StealCookies("
+      ]
+    },
+    "cookie-copy": {
+      "713": [
+        "Chrome",
+        "Default",
+        "Cookies"
+      ],
+      "714": [
+        "temp",
+        "Cookies"
+      ],
+      "720": [
+        "File.Copy"
+      ]
+    },
+    "cookie-table": {
+      "728": [
+        "sqlite",
+        "ReadTable",
+        "cookies"
+      ]
+    },
+    "login-copy": {
+      "779": [
+        "Chrome",
+        "Login Data"
+      ],
+      "787": [
+        "File.Copy"
+      ]
+    },
+    "login-table": {
+      "796": [
+        "ReadTable",
+        "logins"
+      ]
+    },
+    "cookie-key-call": {
+      "747": [
+        "DecryptWithKey",
+        "GetMasterKey",
+        "GetBytes"
+      ]
+    },
+    "login-key-call": {
+      "807": [
+        "GetMasterKey"
+      ],
+      "812": [
+        "DecryptWithKey",
+        "GetBytes"
+      ]
+    },
+    "native-decrypt": {
+      "382": [
+        "authTag"
+      ],
+      "385": [
+        "BCryptDecrypt",
+        "cipher"
+      ]
+    },
+    "tag-length": {
+      "409": [
+        "GetProperty",
+        "AUTH_TAG"
+      ],
+      "458": [
+        "BCryptGetProperty"
+      ]
+    },
+    "aes-provider": {
+      "380": [
+        "AES",
+        "GCM",
+        "OpenAlgorithm"
+      ],
+      "424": [
+        "BCryptOpenAlgorithmProvider"
+      ],
+      "433": [
+        "GCM"
+      ]
+    },
+    "key-import": {
+      "445": [
+        "BCryptImportKey"
+      ]
+    },
+    "cookie-handoff": {
+      "761": [
+        "SendData",
+        "cookies.txt",
+        "multipart/form-data"
+      ]
+    },
+    "password-handoff": {
+      "826": [
+        "SendData",
+        "passwords.txt",
+        "multipart/form-data"
+      ]
+    },
+    "cookie-error-call": {
+      "765": [
+        "catch"
+      ],
+      "768": [
+        "wh.Send",
+        "ex.Message"
+      ]
+    },
+    "password-error-call": {
+      "830": [
+        "catch"
+      ],
+      "833": [
+        "wh.Send"
+      ]
+    },
+    "ip-message": {
+      "279": [
+        "SendContent",
+        "WebhookContent.IP",
+        "country",
+        "zip"
+      ]
+    },
+    "hardware-message": {
+      "285": [
+        "SendContent",
+        "Hardware",
+        "version",
+        "GPU",
+        "disk"
+      ]
+    },
+    "post-body": {
+      "1896": [
+        "POST"
+      ],
+      "1897": [
+        "GetRequestStream",
+        "Write"
+      ]
+    },
+    "webhook-config": {
+      "37": [
+        "<DISCORD_WEBHOOK_SHAPE>"
+      ]
+    },
+    "browser-technique": {
+      "779": [
+        "Chrome",
+        "Login Data"
+      ],
+      "796": [
+        "ReadTable",
+        "logins"
+      ],
+      "812": [
+        "DecryptWithKey"
+      ]
+    },
+    "cookie-technique": {
+      "713": [
+        "Cookies",
+        "Chrome"
+      ],
+      "728": [
+        "ReadTable",
+        "cookies"
+      ],
+      "747": [
+        "DecryptWithKey"
+      ],
+      "761": [
+        "cookies.txt"
+      ]
+    }
+  }
+}

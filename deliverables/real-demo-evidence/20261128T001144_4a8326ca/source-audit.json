@@ -1,0 +1,313 @@
+{
+  "run_id": "20261128T001144_4a8326ca",
+  "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+  "raw_report_sha256": "8729c71ff9e2938d1547843e0be698aac448be94866f4bcb9f07a3295ca5b676",
+  "journal_sha256": "4c4d98622feb0c883a20a602060fb663a1cd60c8289ace91966b12b585ef4bbe",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 273,
+          "end_line": 278,
+          "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 280,
+          "end_line": 288,
+          "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 211,
+          "end_line": 231,
+          "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+        }
+      ],
+      "reason": "Dòng 275 nạp dữ liệu sau bước chuyển đổi rồi chọn kiểu đầu tiên. Dòng 282–286 nối phương thức đã tra cứu, thao tác gọi và các đối số."
+    },
+    {
+      "claim_id": "C2",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 273,
+          "end_line": 278,
+          "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 280,
+          "end_line": 288,
+          "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 211,
+          "end_line": 231,
+          "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+        }
+      ],
+      "reason": "Các dòng 211–230 thể hiện bước chuẩn hóa và tạo mảng byte của hàm chuyển đổi."
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 273,
+          "end_line": 278,
+          "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 48,
+          "end_line": 60,
+          "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 280,
+          "end_line": 288,
+          "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+        }
+      ],
+      "reason": "Dòng 275 chứa điểm gọi. Các dòng 52–57 tách văn bản, chuyển cơ số 16 và nối ký tự."
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 273,
+          "end_line": 278,
+          "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 48,
+          "end_line": 60,
+          "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 280,
+          "end_line": 288,
+          "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+        }
+      ],
+      "reason": "Dòng 282–286 xác nhận thao tác gọi cùng hai đối số. Chỉ tính nạp assembly khi câu khẳng định việc nạp."
+    },
+    {
+      "claim_id": "C5",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1604,
+          "end_line": 1619,
+          "projected_quote_sha256": "52be168a6e593351852955c4071406ca012543d0224a5bad8bd7c479e83c2577"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1904,
+          "end_line": 1908,
+          "projected_quote_sha256": "13b3f3a85bc6b80f2362f549fe1fe00e36f3a4b08e88cec20935f139fc25118a"
+        }
+      ],
+      "reason": "Các dòng 1614 và 1904–1906 xác nhận lời gọi và SuspendLayout. Lý do tăng hiệu năng khi xử lý hàng loạt là suy diễn."
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 43,
+          "end_line": 46,
+          "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 273,
+          "end_line": 278,
+          "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 280,
+          "end_line": 288,
+          "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+        }
+      ],
+      "reason": "Điểm nạp và các lời gọi lồng cùng xuất hiện ở dòng 275. Câu mô tả nguồn đầu vào."
+    },
+    {
+      "claim_id": "C7",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 43,
+          "end_line": 46,
+          "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 273,
+          "end_line": 278,
+          "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+        },
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 280,
+          "end_line": 288,
+          "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+        }
+      ],
+      "reason": "Các dòng 282–286 đủ để xác định lời gọi và hai đối số."
+    },
+    {
+      "claim_id": "C8",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1610,
+          "end_line": 1641,
+          "projected_quote_sha256": "ed0f31f915a4cb938fa0149852603dcca8d2928cec5175b10aaeac24723515c3"
+        }
+      ],
+      "reason": "Dòng 1621 thao tác trên tập nút của nút cha."
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 1610,
+          "end_line": 1641,
+          "projected_quote_sha256": "ed0f31f915a4cb938fa0149852603dcca8d2928cec5175b10aaeac24723515c3"
+        }
+      ],
+      "reason": "Các dòng 1635 và 1640 có thao tác chèn tập phần tử."
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 911,
+          "end_line": 942,
+          "projected_quote_sha256": "cb57c8a322bff6e5b587c28dd70c1e0a3154378e216b113266470fd10e7c0d93"
+        }
+      ],
+      "reason": "Khai báo ở 919–920 và đối số ở 926 phù hợp thông điệp WM_VSCROLL và SB_LINEDOWN của Win32."
+    },
+    {
+      "claim_id": "C11",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 3148,
+          "end_line": 3175,
+          "projected_quote_sha256": "e6c6fed1f8e999d35effd049aa4df172dd1b90ab604e21398923ef7567d6a6dd"
+        }
+      ],
+      "reason": "Dòng 3173 dùng phép gỡ đăng ký. Đoạn chứng cứ cũng chứa điểm thêm đăng ký trước đó."
+    },
+    {
+      "claim_id": "C12",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 3148,
+          "end_line": 3175,
+          "projected_quote_sha256": "e6c6fed1f8e999d35effd049aa4df172dd1b90ab604e21398923ef7567d6a6dd"
+        }
+      ],
+      "reason": "Dòng 3174 dùng phép gỡ đăng ký cho sự kiện được nêu."
+    },
+    {
+      "claim_id": "C13",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 36,
+          "end_line": 67,
+          "projected_quote_sha256": "aa507898e04965e90b712485a45bb991077392faf89c8a2f35b5506178ec6a8a"
+        }
+      ],
+      "reason": "Trích dẫn 36–67 có khai báo và thân hàm nhận đối số. Nó chưa cho thấy lời gọi tại điểm truyền chuỗi ghi cứng, cũng chưa ràng buộc miền ký tự ASCII."
+    },
+    {
+      "claim_id": "C14",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 255,
+          "end_line": 286,
+          "projected_quote_sha256": "47c23201cb03c54e9e47149b01a38f00db181e5b6d8e4f647f8a9b4e3234159d"
+        }
+      ],
+      "reason": "Dòng 282–283 gọi phương thức và dòng 275 xác định nguồn kiểu từ assembly đã nạp."
+    },
+    {
+      "claim_id": "C15",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_47d64d61088c412f",
+          "line": 255,
+          "end_line": 286,
+          "projected_quote_sha256": "47c23201cb03c54e9e47149b01a38f00db181e5b6d8e4f647f8a9b4e3234159d"
+        }
+      ],
+      "reason": "Dòng 283–286 thể hiện danh sách đối số."
+    }
+  ],
+  "human_reviewers": [],
+  "dataset_origin": "public development sample, static analysis in isolated VM"
+}

@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Đợt `coverage-8b` đã chạy trên bốn mẫu thật trong VM. PythonStealer, Gomorrah và Mercurial có báo cáo chứa nhận định, đủ mốc buổi 6. AgentTesla có 14 truy vấn rỗng và được tính vào bốn lượt đã thử. F1 gộp IOC + ATT&CK trên ba mẫu có đáp án cho hai loại này là 16,67%. Verdict chính xác trên bốn mẫu độc là 0/4. [Các mẫu số và lý do chấm](DEMO_COVERAGE.md) · [Video nhật ký thật](../deliverables/Demo_phan_tich_tinh.mp4).
+
 Lượt đầu-cuối Python với Qwen3 8B và báo cáo v11 đã hoàn tất trong 588,6 giây. Có 36/39 câu đủ chứng cứ, Recall 61,11% trên 36 mục tham chiếu và verdict `suspicious`. Nhóm đã lập thêm 40 đơn vị tham chiếu .NET từ kết quả ILSpy của Gomorrah. [Số đo và hướng dẫn tái lập](DEMO_COVERAGE.md).
 
 ### Các lượt trước với báo cáo v9 và v10
@@ -170,7 +172,7 @@ Regression mới `20261127T160346_4685a56a` trên Python thật đã hoàn tất
 
 20 run/10 cặp lịch sử thiếu model_request. Audit v2: **0 eligible/10 unevaluable, rate=null**. Con số 9/10 cũ chỉ chứng minh payload tới tool observation, không dùng làm tỷ lệ chống injection.
 
-P06 đã chạy guard on/off thật, payload đi đúng đường. Cả hai không đổi verdict nhưng vẫn inconclusive; chưa chứng minh guard cải thiện kết luận hoặc đủ >=10 ca. [Chi tiết Unicode/exposure](NATIVE_TOOLS_AND_EXPOSURE.md). Regression mới có receipt riêng, không trộn các revision.
+P06 từng chạy với lớp chặn bật và tắt. Metadata ghi cùng verdict, nhưng nhật ký lịch sử thiếu nội dung thông điệp để xác minh payload đã tới model. Hiện chưa đủ mẫu số cho tỷ lệ bị lừa 0%. [Chi tiết kiểm lại](NATIVE_TOOLS_AND_EXPOSURE.md).
 
 ## Gate còn mở
 

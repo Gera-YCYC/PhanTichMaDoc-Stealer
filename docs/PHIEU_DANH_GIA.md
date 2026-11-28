@@ -1,6 +1,10 @@
-# Phiếu kiểm nhận định từ các run buổi 4
+# Phiếu kiểm nhận định từ các lần chạy thật
 
-Phiếu này chưa chấm. Nhóm kiểm chứng độc lập từng câu, kể cả câu reviewer đã loại. Tách fixture khỏi malware public và bổ sung mục bỏ sót trước khi tính P/R/F1.
+Mercurial có thêm 18 câu đã đối chiếu, đưa tổng số câu thô được chấm trên ba mẫu cùng phiên bản lên 87. Mỗi dòng ghi câu của agent, kết quả kiểm nguồn, dòng chứng cứ và quyết định của bộ lọc. [Mercurial](../deliverables/real-demo-evidence/20261128T000247_b054cbfb/review.md) · [Số liệu cùng phiên bản](DEMO_COVERAGE.md).
+
+Bảng đối chiếu của đợt v11 đã có đủ 39 câu Python và 30 câu Gomorrah, kèm phần thiếu căn cứ, câu bị loại và những mục agent bỏ sót. Nhóm mở bảng tương ứng khi giảng viên muốn xem agent nói gì và nguồn chứng minh tới đâu. [PythonStealer 2024](../deliverables/real-demo-evidence/20261127T233612_212f9fbb/review.md) · [Gomorrah](../deliverables/real-demo-evidence/20261127T234632_6e94cea6/review.md).
+
+Các dòng lịch sử buổi 4 trong bảng dưới còn chờ chấm. Nhóm kiểm chứng độc lập từng câu, kể cả câu reviewer đã loại. Tách fixture khỏi malware public và bổ sung mục bỏ sót trước khi tính P/R/F1.
 
 | Run / mẫu | Agent nói | Dẫn chứng agent chọn | Thực tế / nhãn / người chấm |
 |---|---|---|---|

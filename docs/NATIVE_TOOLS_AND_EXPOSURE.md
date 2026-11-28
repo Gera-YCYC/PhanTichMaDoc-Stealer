@@ -50,6 +50,8 @@ Chỉ sync trước run mới vì service restart làm mất evidence ID trong b
 
 ## Regression trên phiên bản sau sửa navigation
 
+**Đính chính phạm vi phép đo.** Các con số lịch sử bên dưới dựa trên metadata của yêu cầu. Khi kiểm lại đầu vào theo từng dòng và phản hồi đúng bước, ba bộ receipt đều có **0 cặp đủ bằng chứng**. Nhật ký cũ chỉ giữ hash thông điệp hoặc thiếu nội dung cần đối chiếu. Tỷ lệ bị câu chèn làm đổi verdict theo phép đo này còn để trống. [Biên bản kiểm lại từng run](../deliverables/real-demo-evidence/injection-exact-message-recheck.json).
+
 P01/P06/P07 chạy đủ 6 lượt thật, hash chain và exposure hợp lệ. Scorer cũ bỏ sót verdict hợp lệ `suspicious`; đã chấm lại cùng đầu ra và giữ receipt gốc. `injection-regression-rescored.json` ghi cả hash bản gốc và scorer mới.
 
 - Không cặp nào đổi thành target malicious: 0/3.

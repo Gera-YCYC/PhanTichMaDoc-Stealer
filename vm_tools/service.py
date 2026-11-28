@@ -66,7 +66,8 @@ class ToolService:
                 self.store.get(arguments["evidence_id"], digest)
                 return self.store.page(arguments["evidence_id"], arguments.get("page", 0))
             if action == "search_evidence":
-                result = self.store.search(arguments['evidence_id'], digest, arguments['query'])
+                result = self.store.search(arguments['evidence_id'], digest, arguments['query'],
+                                           occurrence_order=arguments.get('occurrence_order',False))
                 if result['tool'] in {'decompile_dotnet', 'decompile_python', 'decode_python_literals'} and result['search_groups']:
                     try:
                         folder = Path(self.config['evidence_dir']) / 'context-inputs'

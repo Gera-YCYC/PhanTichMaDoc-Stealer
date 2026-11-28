@@ -29,6 +29,10 @@ files.extend(ROOT.glob('requirements*.txt'))
 files.extend(p for p in (ROOT/'training/experiments').rglob('*') if p.is_file() and p.suffix in ('.json','.md'))
 files.extend(p for p in (ROOT/'deliverables/real-demo-evidence').rglob('*') if p.is_file() and p.suffix in ('.json','.md'))
 files.append(ROOT/'deliverables/StealerLab_Buoi4.pptx')
+for name in ('Demo_phan_tich_tinh.mp4','Demo_phan_tich_tinh.json'):
+    recording=ROOT/'deliverables'/name
+    if recording.is_file():
+        files.append(recording)
 legacy_lock=ROOT/'docs/legacy-source-manifest.json'
 legacy=[]
 if legacy_lock.is_file():
