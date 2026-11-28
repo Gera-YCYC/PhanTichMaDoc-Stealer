@@ -154,16 +154,11 @@
       "kind": "behavior"
     },
     "C12": {
-      "public_summary": "Mô tả phép gán giá trị không dấu vào trường gốc theo các độ lệch đã tính.",
-      "reason": "Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ.",
+      "public_summary": "Gán giá trị số sau chuyển đổi vào trường gốc theo các độ lệch và giá trị mảng.",
+      "reason": "Dòng 1518 tính đầu vào từ độ lệch và mảng, gọi ConvertToULong rồi ép sang long trước khi gán. Câu mô tả giá trị đã chuyển đổi, không khẳng định kiểu khai báo của trường đích.",
       "atoms": [
         {
-          "key": "rootnum-unsigned-assignment",
-          "label": "incorrect",
-          "until": " based on"
-        },
-        {
-          "key": "rootnum-offsets",
+          "key": "rootnum-converted-assignment",
           "label": "correct"
         }
       ],
@@ -383,9 +378,9 @@
       ]
     },
     {
-      "id": "rootnum-offsets",
+      "id": "rootnum-converted-assignment",
       "kind": "behavior",
-      "proposition": "Tính vị trí và độ dài cho hàm chuyển đổi số ở phép gán trường gốc.",
+      "proposition": "Gán kết quả chuyển đổi số ở vị trí và độ dài đã tính.",
       "source_references": [
         {
           "line": 1518,

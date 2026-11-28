@@ -15,7 +15,7 @@ Run ID `20261128T031606_ca91de35`. Cột thứ hai diễn ý câu của agent. B
 | C9 | Đọc trường khóa từ tệp trạng thái và chuyển giá trị Base64 thành byte. | Dòng 681–687 xác nhận nguồn và cách lấy dữ liệu. Dòng 693 chuyển dữ liệu Base64 thành byte. | 665–696 | Đúng | Giữ |
 | C10 | Giải mã một vùng byte theo cấu hình và gán nội dung phần tử bảng. | Điều kiện ở 1386 và phép gán ở 1388 khớp bộ mã mặc định, mảng, chỉ số và trường đích. | 1374–1403 | Đúng | Giữ |
 | C11 | Gán tên mục bảng từ vùng byte được giải mã bằng bộ mã mặc định. | Dòng 1507 chứa phép gán trường tên và lời gọi bộ giải mã mặc định. | 1489–1520 | Đúng | Giữ |
-| C12 | Mô tả phép gán giá trị không dấu vào trường gốc theo các độ lệch đã tính. | Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ. | 1489–1520 | Sai | Giữ |
+| C12 | Gán giá trị số sau chuyển đổi vào trường gốc theo các độ lệch và giá trị mảng. | Dòng 1518 tính đầu vào từ độ lệch và mảng, gọi ConvertToULong rồi ép sang long trước khi gán. Câu mô tả giá trị đã chuyển đổi, không khẳng định kiểu khai báo của trường đích. | 1489–1520 | Đúng | Giữ |
 | C13 | Sao chép cơ sở dữ liệu cookie của Chrome đến tệp tạm đã nêu. | Dòng 713–714 xác nhận nguồn và đích, dòng 720 thực hiện sao chép. | 713–744 | Đúng | Giữ |
 | C14 | Đọc bảng cookie và khẳng định đã ghi các trường vừa chọn ra tệp. | Đoạn 720–728 xác nhận bản sao và bảng. Dòng 729 mở bộ ghi, 732–739 truy xuất trường. Trong phần trích đến 744 chưa thấy lời ghi nối các trường với bộ ghi. | 713–744 | Thiếu căn cứ | Giữ |
 | C15 | Đọc tên bộ xử lý từ registry. | Dòng 1135–1138 mở khóa và đọc giá trị tên bộ xử lý. | 1133–1163 | Đúng | Giữ |

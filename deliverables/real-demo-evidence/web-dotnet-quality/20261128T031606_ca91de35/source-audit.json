@@ -219,8 +219,8 @@
     },
     {
       "claim_id": "C12",
-      "label": "incorrect",
-      "grounded": false,
+      "label": "correct",
+      "grounded": true,
       "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
       "truth_reference": [
         {
@@ -230,7 +230,7 @@
           "projected_quote_sha256": "03339d631f2b237a753c27857a89350b349792853843f79205467d255f15be2a"
         }
       ],
-      "reason": "Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ."
+      "reason": "Dòng 1518 tính đầu vào từ độ lệch và mảng, gọi ConvertToULong rồi ép sang long trước khi gán. Câu mô tả giá trị đã chuyển đổi, không khẳng định kiểu khai báo của trường đích."
     },
     {
       "claim_id": "C13",

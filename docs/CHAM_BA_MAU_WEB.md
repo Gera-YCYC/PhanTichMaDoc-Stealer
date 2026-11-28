@@ -22,17 +22,17 @@ Ba lượt có nhật ký đầu–cuối. Hợp các lượt có năm công c�
 |---|---:|---:|---:|---:|---:|
 | PythonStealer | 19/36 | 100% | 52,78% | 69,09% | 66,67% |
 | Gomorrah | 11/40 | 84,62% | 27,50% | 41,51% | 0% |
-| Mercurial | 5/21 | 62,50% | 23,81% | 34,48% | 50% |
-| **Gộp theo đơn vị** | **35/97** | **87,50%** | **36,08%** | **51,09%** | **42,86%** |
+| Mercurial | 5/21 | 71,43% | 23,81% | 35,71% | 50% |
+| **Gộp theo đơn vị** | **35/97** | **89,74%** | **36,08%** | **51,47%** | **42,86%** |
 
-Trước lọc có 36 mục đúng, 3 sai, 5 thiếu căn cứ và 61 bỏ sót. Sau lọc còn 35 đúng, 2 sai, 3 thiếu căn cứ và 62 bỏ sót. Mỗi mục trùng lặp trong một mẫu chỉ được đếm một lần. Phát hiện đúng ngoài hồ sơ 97 mục vẫn xuất hiện trong bảng từng câu. Từng hồ sơ đã được chốt trước các lượt trên. Nhãn dựa trên mã dịch ngược của mẫu phát triển và còn chờ người chấm độc lập.
+Trước lọc có 36 mục đúng, 2 sai, 5 thiếu căn cứ và 61 bỏ sót. Sau lọc còn 35 đúng, 1 sai, 3 thiếu căn cứ và 62 bỏ sót. Mỗi mục trùng lặp trong một mẫu chỉ được đếm một lần. Phát hiện đúng ngoài hồ sơ 97 mục vẫn xuất hiện trong bảng từng câu. Từng hồ sơ đã được chốt trước các lượt trên. Nhãn dựa trên mã dịch ngược của mẫu phát triển và còn chờ người chấm độc lập.
 
 | Tiêu chí từ slide | Kết quả trên phạm vi đã đo | Đối chiếu |
 |---|---|---|
-| Precision ≥ 80%, recall ≥ 70%, F1 ≥ 75% | 87,50%, 36,08%, 51,09% | Chỉ precision đạt khi gộp ba mẫu |
+| Precision ≥ 80%, recall ≥ 70%, F1 ≥ 75% | 89,74%, 36,08%, 51,47% | Chỉ precision đạt khi gộp ba mẫu |
 | F1 riêng IOC và ATT&CK ≥ 80% cho mức xuất sắc | 3/11 mục đúng, 8 bỏ sót, F1 42,86% | Thiếu cả chỉ báo và kỹ thuật |
 | Verdict lành/độc đúng 100% | 0/3. Cả ba được gán `suspicious` trong khi nhãn mẫu là `malicious` | Chưa đạt |
-| Có dẫn chứng ≥ 90%, thiếu căn cứ ≤ 5% | 69/69 câu có trích dẫn, 63/69 đúng về nghĩa, 4/69 thiếu căn cứ (5,80%), 2/69 sai | Đạt tỷ lệ trích dẫn, vượt ngưỡng thiếu căn cứ |
+| Có dẫn chứng ≥ 90%, thiếu căn cứ ≤ 5% | 69/69 câu có trích dẫn, 64/69 đúng về nghĩa, 4/69 thiếu căn cứ (5,80%), 1/69 sai | Đạt tỷ lệ trích dẫn, vượt ngưỡng thiếu căn cứ |
 | Ổn định ba lần ≥ 80% | 71,05% trên một mẫu Python | Chưa đạt. Cần lặp trên .NET |
 | YARA TPR ≥ 90%, FPR = 0 | Thí nghiệm tạo luật trước đó khớp 5/5 mẫu phát triển và báo nhầm 0/39 tệp sạch | TPR trên mẫu độc giữ riêng còn chờ đo |
 
@@ -45,6 +45,8 @@ Tỷ lệ thiếu căn cứ ở bảng này đếm theo **câu**, còn precision
 - **Mercurial → C17.** So dòng 419, 424 và 430. Agent nhầm một tham số của hàm bao với tham số thật của lời gọi mở provider. Với mẫu này bản đồ có 6 quan hệ cần kiểm thêm và 1 quan hệ chưa tìm thấy. Kết quả quét YARA khớp mẫu và kết quả phân tích luồng dữ liệu là hai phép đo riêng. [Biên bản Mercurial](../deliverables/real-demo-evidence/web-20261128T031606_ca91de35.json)
 
 ## Nhóm cần cải thiện ở đâu
+
+Khi rà lại câu C12 của Mercurial, nhãn được sửa thành **Đúng**. Dòng 1518 thực hiện chuyển đổi rồi gán giá trị vào trường. Câu của agent mô tả phép chuyển đổi và không nêu kiểu khai báo của trường đích. Nhận định đúng này nằm ngoài hồ sơ 21 mục của Mercurial nên số mục bỏ sót giữ nguyên. Lịch sử Git ghi cả hai lần chấm. [C12 và lý do chấm](../deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/review.md)
 
 Trong 62 mục còn thiếu, **27 mục** thiếu dòng ngay từ kết quả công cụ. **18 mục** đã có đủ dòng trong kết quả công cụ nhưng còn thiếu dòng trong các yêu cầu tạo nhận định. **3 mục** có dòng nằm ở nhiều yêu cầu, **13 mục** có đủ dòng trong một yêu cầu nhưng báo cáo đầu chưa nêu đúng, **1 mục** mất sau tự duyệt. Để kiểm lại, bộ chấm đối chiếu nội dung đã gửi ở các bước tạo nhận định với hash và vị trí nguồn. Việc có mặt của dòng tham chiếu chưa chứng minh ngữ cảnh đã đủ. [Python](../deliverables/real-demo-evidence/web-python-exposure.json) · [Gomorrah](../deliverables/real-demo-evidence/web-gomorrah-exposure.json) · [Mercurial](../deliverables/real-demo-evidence/web-mercurial-exposure.json)
 

@@ -1046,33 +1046,33 @@
   },
   {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/atomic-mapping.json",
-    "bytes": 19377,
-    "sha256": "e23596313abf9950d4efa5512d89d07f8662a8e7cf40b4890ab0e25de654af28"
+    "bytes": 18724,
+    "sha256": "d88f1eda345d53f5083556123a99aca94c6e83e781c380e152d8393fc3bb6bad"
   },
   {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/atomic-score.json",
-    "bytes": 15553,
-    "sha256": "ad3622afb7a9be73351d050cd2f8e86eff2db2da88a77fa35ccbdd478772d0cc"
+    "bytes": 15624,
+    "sha256": "5814f6afc506758c0b3d08b806fd4a30d1733e3f022b2c7e3f43f3b3c216ae9b"
   },
   {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/claim-score.json",
-    "bytes": 1703,
-    "sha256": "4f80f2b27b85ec37d8eda584d044048ea8a5dcd8e4591735d5d15c2e9f8fcf43"
+    "bytes": 1701,
+    "sha256": "1c4f328519af43c21bca9b71d5083ee44885f647c7d3ce5ec4198ce6b385923a"
   },
   {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/judgments.json",
-    "bytes": 14297,
-    "sha256": "38456b53cd4cdb2b8144ef8070199b7c6630065c07f4103874cb6fc0b58777e8"
+    "bytes": 14212,
+    "sha256": "e7e5d184f16e2fdf768c01b060f4cec02f203945fb06f4e007887fadbb72520f"
   },
   {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/review.md",
-    "bytes": 5627,
-    "sha256": "f457f2176228f3efa3c7178485f0f62474e22ba2d6bc38fdbf5b339e7e66d2ea"
+    "bytes": 5670,
+    "sha256": "2d93b96e68de63f9e2cd47ca9fa68101543ec0bee7a9d9d9fbfd1e4955e5f728"
   },
   {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T031606_ca91de35/source-audit.json",
-    "bytes": 14123,
-    "sha256": "5af656523465f845feec26e7e2446647029dced13c928bf95c3ddfe570b0135b"
+    "bytes": 14152,
+    "sha256": "7b64411e55fe0a40e1b1a04b4ca673ace7afe9d8a436168a6e250835e4f06114"
   },
   {
     "path": "deliverables/real-demo-evidence/web-gomorrah-exposure.json",
@@ -1301,8 +1301,8 @@
   },
   {
     "path": "docs/CHAM_BA_MAU_WEB.md",
-    "bytes": 8248,
-    "sha256": "cb12f14349c3c0bed82d4fc4a1b2d408ada03c62817d8da6e155efb98d9c7852"
+    "bytes": 8785,
+    "sha256": "59834ef0d420d762811c35c015152acea4579d93af93eb7161f2e6f5372392a5"
   },
   {
     "path": "docs/CHAM_BAO_CAO_WEB.md",
@@ -1502,7 +1502,7 @@
   {
     "path": "docs/STATUS.md",
     "bytes": 42161,
-    "sha256": "5d3acaec5389f4665325eb9630715d1cf7cb5773e1e52d0cf9335f6d44ef656d"
+    "sha256": "9fa05ea6307badbc33e4a234995e43e6cd5101c3782e79778a80d05c499b00cb"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",

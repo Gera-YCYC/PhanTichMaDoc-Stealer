@@ -329,27 +329,11 @@
       "atoms": [
         {
           "start": 0,
-          "end": 89,
-          "label": "incorrect",
-          "unit_key": "rootnum-unsigned-assignment",
-          "reference_id": null,
-          "reason": "Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ.",
-          "source_references": [
-            {
-              "evidence_id": "ev_9c1fe7f89a594a3d",
-              "line": 1489,
-              "end_line": 1520,
-              "projected_quote_sha256": "03339d631f2b237a753c27857a89350b349792853843f79205467d255f15be2a"
-            }
-          ]
-        },
-        {
-          "start": 89,
           "end": 135,
           "label": "correct",
-          "unit_key": "rootnum-offsets",
-          "reference_id": "rootnum-offsets",
-          "reason": "Hàm chuyển đổi trả số không dấu nhưng tại 1518, kết quả được ép sang long có dấu trước phép gán. Phần mô tả cách tính vị trí và độ dài có căn cứ.",
+          "unit_key": "rootnum-converted-assignment",
+          "reference_id": "rootnum-converted-assignment",
+          "reason": "Dòng 1518 tính đầu vào từ độ lệch và mảng, gọi ConvertToULong rồi ép sang long trước khi gán. Câu mô tả giá trị đã chuyển đổi, không khẳng định kiểu khai báo của trường đích.",
           "source_references": [
             {
               "evidence_id": "ev_9c1fe7f89a594a3d",

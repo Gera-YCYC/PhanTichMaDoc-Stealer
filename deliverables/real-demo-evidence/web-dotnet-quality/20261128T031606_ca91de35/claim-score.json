@@ -6,13 +6,13 @@
   "raw": {
     "claim_count": 19,
     "counts": {
-      "correct": 15,
-      "incorrect": 2,
+      "correct": 16,
+      "incorrect": 1,
       "unsupported": 2
     },
-    "precision": 0.7894736842105263,
+    "precision": 0.8421052631578947,
     "hallucination_rate": 0.10526315789473684,
-    "grounding_rate": 0.7894736842105263,
+    "grounding_rate": 0.8421052631578947,
     "recall": null,
     "f1": null,
     "verified_tool_citation_count": 19,
@@ -21,21 +21,21 @@
   "after_filter": {
     "claim_count": 16,
     "counts": {
-      "correct": 13,
-      "incorrect": 2,
+      "correct": 14,
+      "incorrect": 1,
       "unsupported": 1
     },
-    "precision": 0.8125,
+    "precision": 0.875,
     "hallucination_rate": 0.0625,
-    "grounding_rate": 0.8125,
+    "grounding_rate": 0.875,
     "recall": null,
     "f1": null,
     "verified_tool_citation_count": 16,
     "verified_tool_citation_rate": 1.0
   },
   "review_filter": {
-    "accepted_correct": 13,
-    "accepted_not_supported": 3,
+    "accepted_correct": 14,
+    "accepted_not_supported": 2,
     "rejected_correct": 2,
     "rejected_not_supported": 1
   },

@@ -4,7 +4,7 @@
 
 ## Cập nhật hiện tại
 
-**Bản web hiện hành đạt mốc ba mẫu có nhật ký của buổi 6.** PythonStealer, Gomorrah và Mercurial đã được phân tích tĩnh trong VM, dùng cùng mã agent và Qwen3 8B trên Windows. Tính mỗi mẫu một lần, kết quả sau tự duyệt là precision 87,50%, recall 36,08%, F1 51,09%, F1 riêng IOC và ATT&CK 42,86%, verdict đúng 0/3. Đã chấm nguồn cho cả câu giữ lại và câu bị loại. [Bảng điểm, giới hạn và cách trình diễn](CHAM_BA_MAU_WEB.md)
+**Bản web hiện hành đạt mốc ba mẫu có nhật ký của buổi 6.** PythonStealer, Gomorrah và Mercurial đã được phân tích tĩnh trong VM, dùng cùng mã agent và Qwen3 8B trên Windows. Tính mỗi mẫu một lần, kết quả sau tự duyệt là precision 89,74%, recall 36,08%, F1 51,47%, F1 riêng IOC và ATT&CK 42,86%, verdict đúng 0/3. Đã chấm nguồn cho cả câu giữ lại và câu bị loại. [Bảng điểm, giới hạn và cách trình diễn](CHAM_BA_MAU_WEB.md)
 
 Đã chấm toàn bộ ba báo cáo web trên cùng mẫu Python phát triển, gồm 99 lượt nhận định trước lọc. Sau lọc, từng báo cáo phủ 19, 20 và 19 trên 36 mục. F1 lần lượt 69,09%, 70,18% và 65,52%. Trên web có thể xem cả câu sai được giữ, câu đúng bị loại và vị trí các mục bị bỏ sót trong quá trình điều tra. [Bảng chấm, bằng chứng và lệnh tái lập](CHAM_BAO_CAO_WEB.md)
 
