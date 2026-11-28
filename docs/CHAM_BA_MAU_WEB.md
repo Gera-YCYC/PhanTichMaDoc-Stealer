@@ -54,6 +54,25 @@ Nhóm đã thử đổi đoạn, mở rộng đoạn và gửi thêm hai đoạn
 
 ## Kiểm lại từ Git
 
+### Tìm thêm chứng cứ trong VM trên hai mẫu .NET
+
+Mở **Đánh giá**, chọn Gomorrah hoặc Mercurial rồi mở **Tìm lại dòng nguồn còn thiếu**. Phép thử `search_aa2525df5080` bắt đầu tại cuối hai lượt gốc. VM dịch ngược lại từng mẫu bằng ILSpy và so SHA-256 toàn bộ đầu ra với hồ sơ đã chấm. Mỗi nhánh nhận cùng những dòng và truy vấn từng thấy trước đó. Nhánh cố định lấy bốn từ khóa đầu tiên chưa dùng trong danh sách có sẵn. Ở nhánh thích nghi, sau mỗi kết quả, Qwen chọn một tên từ các đối số hoặc lời gọi đã quan sát. Chương trình chấm vị trí nguồn sau khi kết thúc cả hai nhánh. [Biên bản, số dòng cần tìm và chi phí từng truy vấn](../deliverables/real-demo-evidence/web-dotnet-followup.json)
+
+| Mẫu | Cách tìm | Mục lấy đủ các dòng còn thiếu | Số dòng mới khác nhau | Lượt tìm VM / gọi Qwen | Thời gian tìm |
+|---|---|---:|---:|---:|---:|
+| Gomorrah | Danh sách cố định | 5/14 | 65 | 4 / 0 | 3,686 s |
+| Gomorrah | Qwen chọn theo chứng cứ | 1/14 | 105 | 4 / 4 | 34,227 s |
+| Mercurial | Danh sách cố định | 1/6 | 113 | 4 / 0 | 0,524 s |
+| Mercurial | Qwen chọn theo chứng cứ | 2/6 | 134 | 4 / 4 | 6,704 s |
+
+Trên Gomorrah, các truy vấn cố định tìm đủ dòng cho năm mục liên quan đến trình duyệt. Nhánh thích nghi tìm đủ dòng cho mục `logs-fragment`, nằm ngoài năm mục đó. Trên Mercurial, cả hai nhánh tìm được `ip-message`. Chỉ nhánh thích nghi tìm thêm `hardware-message`. Tính cả hai mẫu, số mục đủ dòng là **6/20** với danh sách cố định và **3/20** với Qwen. Nhánh Qwen dùng 3.327 token vào và 69 token ra. Thời gian trong bảng tính phần chọn và tìm, sau bước chuẩn bị chung. Trình tự hai nhánh đảo giữa hai mẫu. Cache và lần nạp model có thể ảnh hưởng thời gian.
+
+Hai nhánh thu những vị trí bổ sung cho nhau. Cộng hai kết quả sẽ sử dụng gấp đôi ngân sách, nên bảng giữ từng nhánh riêng. Các số đo này chỉ đánh giá **sự hiện diện của dòng nguồn** trên hồ sơ phát triển. Để một mục được tính vào recall của báo cáo, agent còn phải trích đúng dòng và phát biểu đúng ý. Lượt thử dừng trước bước tạo báo cáo. Nhóm giữ cấu hình demo hiện hành.
+
+Ở máy thành viên, `python -m eval.dotnet_followup` tính lại số mục đủ dòng từ các tọa độ công bố. Trên máy có nhật ký riêng, thêm `--replay` để đối chiếu từng lượt tìm với lựa chọn cho phép và nguồn gốc của mẫu. Muốn chạy thí nghiệm mới, bật lab như khi trình diễn, đồng bộ và kiểm VM, rồi chạy `python -m eval.dotnet_followup --live` từ PowerShell thứ hai khi web đang rảnh. Lệnh này cần hai nhật ký gốc nêu đầu trang. Kết quả mới nằm trong `private/dotnet-followups/<mã thử>/receipt.json`. Bấm **Tắt lab** sau khi nhận kết quả.
+
+### Điểm báo cáo của ba mẫu
+
 ```powershell
 .\.venv\Scripts\python.exe -m eval.web_report_quality
 ```

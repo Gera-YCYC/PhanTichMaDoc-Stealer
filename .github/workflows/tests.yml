@@ -22,4 +22,8 @@ jobs:
         run: python -m eval.score_public_batch
       - name: Chấm lại báo cáo web Python và .NET trước và sau tự duyệt
         run: python -m eval.web_report_quality
+      - name: Đối chiếu kết quả đọc lại từng câu và tìm thêm chứng cứ .NET
+        run: |
+          python -m eval.narrow_audit
+          python -m eval.dotnet_followup
       - run: python -m compileall -q stealer_agent vm_tools training

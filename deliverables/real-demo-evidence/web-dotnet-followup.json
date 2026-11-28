@@ -1,0 +1,594 @@
+{
+  "trial": "search_aa2525df5080",
+  "journal_sha256": "339ce8fe92a8b35e1f2272a97f32ad2c95a23bdac7731395476793492ef92693",
+  "code_sha256": "da55c3ac552f18813c0dcda303424660ea5c6f286fc981a9abda103bed11e2bf",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "budget": 4,
+  "samples": {
+    "gomorrah": {
+      "run": "20261128T030521_c76fc69a",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+      "parent_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+      "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+      "needed_rows": {
+        "opera-open": [
+          1055
+        ],
+        "opera-table": [
+          1055
+        ],
+        "chrome-open": [
+          1103
+        ],
+        "chrome-table": [
+          1103
+        ],
+        "dpapi": [
+          880
+        ],
+        "utf8": [
+          884
+        ],
+        "capture": [
+          4200
+        ],
+        "save-capture": [
+          4200,
+          4201,
+          4202
+        ],
+        "self-read": [
+          3444,
+          3446
+        ],
+        "config-split": [
+          3446,
+          3448
+        ],
+        "config-field": [
+          3448,
+          3449
+        ],
+        "logs-fragment": [
+          3573
+        ],
+        "browser-attack": [
+          1103
+        ],
+        "screen-attack": [
+          4200,
+          4202
+        ]
+      },
+      "arms": {
+        "fixed": {
+          "calls": [
+            {
+              "hits": 18,
+              "added": [
+                [
+                  1039,
+                  1039
+                ],
+                [
+                  1041,
+                  1053
+                ],
+                [
+                  1055,
+                  1055
+                ],
+                [
+                  1089,
+                  1101
+                ],
+                [
+                  1103,
+                  1103
+                ],
+                [
+                  1965,
+                  2000
+                ]
+              ],
+              "model_usage": null,
+              "query_sha256": "bbd33231ce78d8e090017e2f278652e16fa66e99750465b699f5ff135d91777c"
+            },
+            {
+              "hits": 9,
+              "added": [
+                [
+                  1055,
+                  1055
+                ],
+                [
+                  1103,
+                  1103
+                ]
+              ],
+              "model_usage": null,
+              "query_sha256": "957d415cabeebcf1ef4fb0480362653ab7772d11b2b5738fe0bd633db0fdd808"
+            },
+            {
+              "hits": 0,
+              "added": [],
+              "model_usage": null,
+              "query_sha256": "d7e83e28a04b537e64424546b14caf9b67bad2f28dabce68116e0d372319fa00"
+            },
+            {
+              "hits": 0,
+              "added": [],
+              "model_usage": null,
+              "query_sha256": "3c469e9d6c5875d37a43f353d4f88e61fcf812c66eee3457465a40b0da4153e0"
+            }
+          ],
+          "seconds": 3.686,
+          "covered": [
+            "browser-attack",
+            "chrome-open",
+            "chrome-table",
+            "opera-open",
+            "opera-table"
+          ],
+          "eligible": 14,
+          "new_source_rows": 65,
+          "vm_calls": 4,
+          "model_calls": 0
+        },
+        "adaptive": {
+          "calls": [
+            {
+              "hits": 2,
+              "added": [
+                [
+                  4800,
+                  4802
+                ],
+                [
+                  4819,
+                  4828
+                ],
+                [
+                  4868,
+                  4873
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 17.8186,
+                "prompt_tokens": 441,
+                "completion_tokens": 10
+              },
+              "query_sha256": "a28135d2f92d4b451222c55db74e550a8612c3b6b39125862309060b5c1ebfb7"
+            },
+            {
+              "hits": 2,
+              "added": [
+                [
+                  4716,
+                  4720
+                ],
+                [
+                  4722,
+                  4722
+                ],
+                [
+                  4760,
+                  4770
+                ],
+                [
+                  4772,
+                  4785
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 2.0764,
+                "prompt_tokens": 440,
+                "completion_tokens": 10
+              },
+              "query_sha256": "8aa81d213b97daee43b5c95d4416a009a417207d7d6fba369385fb28161316b9"
+            },
+            {
+              "hits": 2,
+              "added": [
+                [
+                  3567,
+                  3573
+                ],
+                [
+                  3575,
+                  3575
+                ],
+                [
+                  4707,
+                  4714
+                ],
+                [
+                  4716,
+                  4720
+                ],
+                [
+                  4722,
+                  4722
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 1.887,
+                "prompt_tokens": 446,
+                "completion_tokens": 9
+              },
+              "query_sha256": "bd837c7d40d0e543c2b23ec3c5c65182f653d0dbcbef9e593544f820dbb143c4"
+            },
+            {
+              "hits": 29,
+              "added": [
+                [
+                  3239,
+                  3243
+                ],
+                [
+                  3245,
+                  3259
+                ],
+                [
+                  3261,
+                  3269
+                ],
+                [
+                  3453,
+                  3455
+                ],
+                [
+                  3472,
+                  3478
+                ],
+                [
+                  3567,
+                  3573
+                ],
+                [
+                  3575,
+                  3575
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 1.6863,
+                "prompt_tokens": 447,
+                "completion_tokens": 7
+              },
+              "query_sha256": "be146b37a00983092b5487f2371e8bd6ddb89e875c8b16e1316c732921455ebb"
+            }
+          ],
+          "seconds": 34.227,
+          "covered": [
+            "logs-fragment"
+          ],
+          "eligible": 14,
+          "new_source_rows": 105,
+          "vm_calls": 4,
+          "model_calls": 4
+        }
+      }
+    },
+    "mercurial": {
+      "run": "20261128T031606_ca91de35",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+      "parent_sha256": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+      "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+      "needed_rows": {
+        "tag-length": [
+          409,
+          458
+        ],
+        "password-error-call": [
+          830,
+          833
+        ],
+        "ip-message": [
+          279
+        ],
+        "hardware-message": [
+          285
+        ],
+        "post-body": [
+          1896,
+          1897
+        ],
+        "webhook-config": [
+          37
+        ]
+      },
+      "arms": {
+        "adaptive": {
+          "calls": [
+            {
+              "hits": 2,
+              "added": [
+                [
+                  58,
+                  65
+                ],
+                [
+                  82,
+                  82
+                ],
+                [
+                  84,
+                  88
+                ],
+                [
+                  90,
+                  93
+                ],
+                [
+                  270,
+                  273
+                ],
+                [
+                  282,
+                  286
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 1.632,
+                "prompt_tokens": 384,
+                "completion_tokens": 9
+              },
+              "query_sha256": "06aef41b562400e17ddef246e4f0ae5e72c3221424971a737c32b03410fca8ce"
+            },
+            {
+              "hits": 2,
+              "added": [
+                [
+                  54,
+                  65
+                ],
+                [
+                  82,
+                  82
+                ],
+                [
+                  84,
+                  88
+                ],
+                [
+                  236,
+                  246
+                ],
+                [
+                  248,
+                  268
+                ],
+                [
+                  275,
+                  280
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 1.4704,
+                "prompt_tokens": 387,
+                "completion_tokens": 8
+              },
+              "query_sha256": "c55d3ccc20737f7777129a675dc174f0eba32ac9476517043cf731c5fa4e927b"
+            },
+            {
+              "hits": 2,
+              "added": [
+                [
+                  39,
+                  40
+                ],
+                [
+                  42,
+                  43
+                ],
+                [
+                  45,
+                  65
+                ],
+                [
+                  82,
+                  82
+                ],
+                [
+                  84,
+                  88
+                ],
+                [
+                  90,
+                  96
+                ],
+                [
+                  98,
+                  133
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 1.2455,
+                "prompt_tokens": 388,
+                "completion_tokens": 8
+              },
+              "query_sha256": "80e35df3192754fad7df6b61878cc831db8f25f4a253a61325dd181b7b12a243"
+            },
+            {
+              "hits": 2,
+              "added": [
+                [
+                  57,
+                  65
+                ],
+                [
+                  82,
+                  82
+                ],
+                [
+                  84,
+                  88
+                ],
+                [
+                  90,
+                  92
+                ],
+                [
+                  266,
+                  268
+                ],
+                [
+                  270,
+                  273
+                ],
+                [
+                  275,
+                  280
+                ],
+                [
+                  282,
+                  290
+                ],
+                [
+                  292,
+                  292
+                ],
+                [
+                  294,
+                  294
+                ],
+                [
+                  296,
+                  296
+                ],
+                [
+                  298,
+                  298
+                ],
+                [
+                  1834,
+                  1838
+                ]
+              ],
+              "model_usage": {
+                "latency_s": 1.2413,
+                "prompt_tokens": 394,
+                "completion_tokens": 8
+              },
+              "query_sha256": "72346ff427ac46f41a733764cea758551341db2613929c3383fa0070efa8b0a9"
+            }
+          ],
+          "seconds": 6.704,
+          "covered": [
+            "hardware-message",
+            "ip-message"
+          ],
+          "eligible": 6,
+          "new_source_rows": 134,
+          "vm_calls": 4,
+          "model_calls": 4
+        },
+        "fixed": {
+          "calls": [
+            {
+              "hits": 14,
+              "added": [
+                [
+                  1724,
+                  1731
+                ],
+                [
+                  1733,
+                  1761
+                ]
+              ],
+              "model_usage": null,
+              "query_sha256": "d7e83e28a04b537e64424546b14caf9b67bad2f28dabce68116e0d372319fa00"
+            },
+            {
+              "hits": 14,
+              "added": [
+                [
+                  54,
+                  65
+                ],
+                [
+                  82,
+                  82
+                ],
+                [
+                  84,
+                  88
+                ],
+                [
+                  244,
+                  246
+                ],
+                [
+                  248,
+                  268
+                ],
+                [
+                  270,
+                  273
+                ],
+                [
+                  275,
+                  280
+                ]
+              ],
+              "model_usage": null,
+              "query_sha256": "3c469e9d6c5875d37a43f353d4f88e61fcf812c66eee3457465a40b0da4153e0"
+            },
+            {
+              "hits": 0,
+              "added": [],
+              "model_usage": null,
+              "query_sha256": "cb37442090bd29574d58e7ea089dcf20b1eafe7f34dbe5c372f071d90d58cbe0"
+            },
+            {
+              "hits": 17,
+              "added": [
+                [
+                  62,
+                  65
+                ],
+                [
+                  245,
+                  246
+                ],
+                [
+                  248,
+                  268
+                ],
+                [
+                  270,
+                  273
+                ],
+                [
+                  275,
+                  280
+                ],
+                [
+                  1911,
+                  1911
+                ],
+                [
+                  1913,
+                  1935
+                ]
+              ],
+              "model_usage": null,
+              "query_sha256": "9fd09dc33545f9cc19b81ebd0b98c4fd8c66ed1e34de89f4c9a81e6b26dc0d54"
+            }
+          ],
+          "seconds": 0.524,
+          "covered": [
+            "ip-message"
+          ],
+          "eligible": 6,
+          "new_source_rows": 113,
+          "vm_calls": 4,
+          "model_calls": 0
+        }
+      }
+    }
+  }
+}

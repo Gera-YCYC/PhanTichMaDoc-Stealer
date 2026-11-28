@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Hai mẫu .NET đã được truy vấn bổ sung trong VM theo hai cách, cùng bốn lần tìm mỗi mẫu mỗi cách. Danh sách cố định lấy đủ dòng cho **6/20** mục còn thiếu ở tầng truy xuất, Qwen chọn theo tên đã quan sát được **3/20**. Nhánh Qwen tốt hơn trên Mercurial và kém hơn trên Gomorrah. Phần Đánh giá có bảng riêng để xem thời gian và các mục tìm thấy. [Phương pháp và kết quả cụ thể](CHAM_BA_MAU_WEB.md#tìm-thêm-chứng-cứ-trong-vm-trên-hai-mẫu-net)
+
 Đã kiểm tra trực tiếp chức năng đọc lại câu bị loại trên Mercurial và Gomorrah. Cùng được Qwen giữ nhưng chỉ câu Mercurial có đủ chứng cứ. Phần Đánh giá công bố cả nhãn đối chiếu, số lần gọi và thời gian của hai cách chọn dòng trên 13 câu. [Cách mở hai ví dụ và tái lập](DOC_LAI_NHAN_DINH.md)
 
 Nhóm đã chạy lại demo web thật trên mẫu Python trong 495,58 giây, kiểm tra hai câu hỏi điều tra, kết quả YARA và tắt lab. Cả 30 câu trước lọc trùng với lượt Python đầu tiên, bộ duyệt thay hai quyết định. Lượt lặp đạt F1 70,18% trên hồ sơ 36 mục. [Mã lượt, tọa độ, số liệu và cách trình diễn](WEB_DIEU_TRA.md)

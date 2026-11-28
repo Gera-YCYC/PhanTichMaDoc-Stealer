@@ -1,6 +1,6 @@
 # Cài và demo thật trên máy của từng thành viên
 
-Sau bước dựng và kiểm lab, thành viên có thể chạy demo bằng trình duyệt qua `.\scripts\Start-Web.ps1` ở thư mục gốc trên Windows. [Hướng dẫn giao diện và điều tra](WEB_DIEU_TRA.md)
+Để demo điều tra bằng **trình duyệt**, chuẩn bị VM của nhóm và cài **Qwen3 8B** vào kho Ollama của dự án trên máy Windows. Sau đó chạy `.\scripts\Start-Web.ps1` từ thư mục gốc. Cấu hình dòng lệnh mặc định dùng **Qwen2.5 Coder 7B**. Nếu chỉ cần xem bảng điểm đã công bố trên máy mới, dùng `.\scripts\Start-Web.ps1 -HistoryOnly` sau khi cài môi trường Python của dự án. [Hướng dẫn giao diện và điều tra](WEB_DIEU_TRA.md) · [Cấu hình model 8B](DEMO_COVERAGE.md)
 
 Các cập nhật sau mốc 4 dùng Qwen7B mặc định và Release `tai-nguyen-lab-20261127` ngay trong repo nhóm. Có thêm ranker đã train (checkpoint JSON nhỏ nằm trong source), decoder Python literal và kiểm RAM khả dụng giữa các request. Không chạy đồng thời hai lab cùng IP. Qwen3 8B đã chạy được sau khi giới hạn cache, nhưng vẫn là candidate vì chất lượng chưa được chấm đủ; thành viên không cần tải nó để chạy mặc định. Xem [MODEL_COMPARISON](MODEL_COMPARISON.md), [PYTHON_STATIC_DECODING](PYTHON_STATIC_DECODING.md), [hồ sơ train](../training/RANKER_EXPERIMENT.md).
 

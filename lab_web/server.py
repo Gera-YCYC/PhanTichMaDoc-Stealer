@@ -356,7 +356,8 @@ class Handler(BaseHTTPRequestHandler):
                         "current_batch": current_batch(),
                         "card_supplements": read(base / "web-card-supplements.json"),
                         "cng_trial": read(base / "web-cng-review.json"),
-                        "narrow_trials":read(base / "web-narrow-review.json"),
+                        "narrow_trials": read(base / "web-narrow-review.json"),
+                        "dotnet_followup": read(base / "web-dotnet-followup.json")["samples"],
                     },
                 )
             if p == "/api/yara/regression":

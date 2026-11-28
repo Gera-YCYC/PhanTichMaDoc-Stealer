@@ -506,6 +506,22 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   }
   table(["Cách dẫn", "Câu nguồn", "Câu viết lại", "Thực tế", "Nhãn", "Qwen"], tested, narrowing);
   panel.append(narrowing);
+  const followup = data.dotnet_followup[sample];
+  if (followup) {
+    const details = el("details", undefined, "card");
+    details.append(el("summary", "Tìm lại dòng nguồn còn thiếu · " + names[sample]));
+    details.append(el("p", "Hai cách tìm bắt đầu từ cùng nhật ký ILSpy. Một mục được tính khi truy vấn bổ sung trả đủ các dòng còn thiếu của mục đó. Để kết luận hành vi, người phân tích vẫn cần kiểm tra ý nghĩa của những dòng này."));
+    const rows = Object.entries(followup.arms).map(([mode, arm]) => [
+      mode === "fixed" ? "Danh sách cố định" : "Qwen chọn theo chứng cứ",
+      arm.covered.length + "/" + arm.eligible,
+      String(arm.new_source_rows),
+      arm.vm_calls + " / " + arm.model_calls,
+      arm.seconds.toLocaleString("vi-VN"),
+      arm.covered.join(", ") || "Chưa đủ dòng cho mục nào",
+    ]);
+    table(["Cách tìm", "Mục đủ dòng", "Dòng mới", "VM / Qwen", "Giây", "Mục tham chiếu"], rows, details);
+    panel.append(details);
+  }
   const batch = data.current_batch;
   panel.append(
     el("h2", "Kết quả gộp trên " + batch.total_attempts + " mẫu của bản web"),

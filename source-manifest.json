@@ -6,8 +6,8 @@
   },
   {
     "path": ".github/workflows/tests.yml",
-    "bytes": 931,
-    "sha256": "515eb838182e2ba60b4c0ff1d6f79a1553015d302e8dc30fff6e2bd22ac3d787"
+    "bytes": 1124,
+    "sha256": "9836d717ffcbb6a72b02ca7b2d444165b9b22670a0812801928a709b3fd8f294"
   },
   {
     "path": ".gitignore",
@@ -1035,6 +1035,11 @@
     "sha256": "bfc6b37681b38a805082d11f028c350c051f9af7e01bbee8852896d10fa395a6"
   },
   {
+    "path": "deliverables/real-demo-evidence/web-dotnet-followup.json",
+    "bytes": 15042,
+    "sha256": "ba3c9b80b57b9991d41abedf89ca4872bb43f3ecde3d1c077dcc2a9205a1c797"
+  },
+  {
     "path": "deliverables/real-demo-evidence/web-dotnet-quality/20261128T030521_c76fc69a/atomic-mapping.json",
     "bytes": 39279,
     "sha256": "c7a3c76c76655fee74c856fa869f8bdb918f5c69b0470370db55bb65556fd622"
@@ -1336,8 +1341,8 @@
   },
   {
     "path": "docs/CHAM_BA_MAU_WEB.md",
-    "bytes": 8820,
-    "sha256": "378e09cb902c1f040684eb535652a0346dfd58a1ef90ae456f69ad29526425ea"
+    "bytes": 12053,
+    "sha256": "4bd4255d9566ef4e6eb87646e77629560086afec7e7b8da358c13c0973140f58"
   },
   {
     "path": "docs/CHAM_BAO_CAO_WEB.md",
@@ -1356,8 +1361,8 @@
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 18646,
-    "sha256": "7ec1a9f0187ced56a368f2a866c37f2ebb9c00748c37838a64f62a48e7d87a29"
+    "bytes": 19371,
+    "sha256": "1036b2223d06d7269b56f18452d536a4106e450ec97a94bf20179cacdddaa08d"
   },
   {
     "path": "docs/DATASET.md",
@@ -1431,8 +1436,8 @@
   },
   {
     "path": "docs/PROJECT_GOAL.md",
-    "bytes": 12154,
-    "sha256": "5c8a38ac4a7da0e2e45d88bcec96ccefdaae4f5d812155c4b88c124d29d4a228"
+    "bytes": 12608,
+    "sha256": "e5dd3916fe6a0543a54fbe99be83ebc3f6fc00c62c1621f5b4d17e80d6c0e625"
   },
   {
     "path": "docs/PUBLISH_STATUS.md",
@@ -1541,8 +1546,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 43432,
-    "sha256": "56d477958cdb32b0f42caa95d250e346f5fcea65fe170996ac2148ba6beb9c9d"
+    "bytes": 43985,
+    "sha256": "b1719525f6e7df54d76c157bc65174a470c314817628af85a15d6396a26f90b2"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -1551,8 +1556,8 @@
   },
   {
     "path": "docs/TEAM_SETUP.md",
-    "bytes": 15879,
-    "sha256": "b126f9e248f0b1b427bf5a11e8a4754db893fa25aa47015f3a277b01d415cfb7"
+    "bytes": 16215,
+    "sha256": "57c9023959fb2c72315d55af8b340e15cb4129b590e28c19cac1bb7dac39647c"
   },
   {
     "path": "docs/THIRD_PARTY.md",
@@ -1833,6 +1838,11 @@
     "path": "eval/corpora/real-yara-v1.json",
     "bytes": 8807,
     "sha256": "fa952b971dfe90afc42a41e2682f40c764a388cf27da44c94223855fba0f09ab"
+  },
+  {
+    "path": "eval/dotnet_followup.py",
+    "bytes": 16245,
+    "sha256": "da55c3ac552f18813c0dcda303424660ea5c6f286fc981a9abda103bed11e2bf"
   },
   {
     "path": "eval/exposure.py",
@@ -2131,13 +2141,13 @@
   },
   {
     "path": "lab_web/server.py",
-    "bytes": 16274,
-    "sha256": "7e489a0804d327718893c22f5b3f041db986aab68db2e28c61a8052f32634ed3"
+    "bytes": 16370,
+    "sha256": "c5b2ab72b0f089b3f35ce080022992870c686d0bfbf79cf9ac495062e57933d2"
   },
   {
     "path": "lab_web/static/app.js",
-    "bytes": 37970,
-    "sha256": "37ff50a0d66bd7b5f8058c758806683a8a68d9e26265f8ef9bcd013c418cb48c"
+    "bytes": 39063,
+    "sha256": "f3493042a09f1f3741f11333a3e6fa5c492310b1797ef9e646bf2a33192f75e5"
   },
   {
     "path": "lab_web/static/index.html",
@@ -2883,6 +2893,11 @@
     "path": "tests/test_demo_measurements.py",
     "bytes": 1201,
     "sha256": "f33a61a443c7edeff3d85f7f70cc809f8fcc2c94c29a68a12cdd1118f24c4083"
+  },
+  {
+    "path": "tests/test_dotnet_followup.py",
+    "bytes": 921,
+    "sha256": "9dda892d9cd7c6105190e5f1c03e8f264c5ff8147e03d0f8470c3e766359b3b8"
   },
   {
     "path": "tests/test_evaluation.py",
