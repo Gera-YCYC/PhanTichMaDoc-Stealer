@@ -20,6 +20,8 @@ Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-versio
 
 ## Giảng viên và thành viên nhóm bắt đầu tại đây
 
+Để trình diễn một câu hỏi có thể kiểm ngay trên mã, mở phụ lục Mercurial và để Qwen chọn lời gọi cho VM tìm thân hàm. Bản đồ cho mở lại dòng chứng minh thao tác đọc tệp hoặc thao tác HTTP. Gomorrah có ví dụ agent đã thử ba lần và dừng khi thiếu nguồn. [Kịch bản demo và số liệu đối chứng](docs/DOI_CHIEU_THAN_HAM.md)
+
 Để demo trực tiếp nhánh .NET, dùng profile `techniques-8b` với Mercurial. Lượt v13 tìm được cấu hình webhook ở dòng 37, trích đủ chứng cứ cho T1539 và xác nhận mẫu khớp luật YARA. Khi thầy hỏi về sai số, có thể mở dòng 1928 để giải thích vì sao nhóm loại URL ảnh đại diện khỏi các IOC của kênh gửi. [Lệnh chạy, kết quả và bảng chấm Mercurial](docs/DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
 
 | Cần xem | Tài liệu |

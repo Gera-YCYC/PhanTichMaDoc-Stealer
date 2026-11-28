@@ -1,0 +1,501 @@
+{
+  "scope": "Development only. Two unique Mercurial method bodies. Gomorrah contributes navigation abstentions. No overall verdict or dataflow score.",
+  "trials": {
+    "all_visible_lines": [
+      {
+        "cases": [
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "auto",
+            "id": "check_36fb9cf85d6c",
+            "line": 261,
+            "status": "source_candidate",
+            "ranges": {
+              "call": [
+                261,
+                261
+              ],
+              "field": [
+                37,
+                37
+              ],
+              "method": [
+                1888,
+                1911
+              ]
+            },
+            "answers": {
+              "call": {
+                "file_read": 0,
+                "http_io": 0
+              },
+              "with_method": {
+                "file_read": 0,
+                "http_io": 1900
+              }
+            },
+            "attempts": [
+              {
+                "line": 261,
+                "status": "source_candidate"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 3,
+            "seconds": 5.167,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "0eac545ff9b41894574d833edb2ac1ef38bc64d06692f2c103cd1557d10cfa21",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [
+              {
+                "phase": "choose_call",
+                "prompt_tokens": 209,
+                "output_tokens": 9
+              },
+              {
+                "phase": "call",
+                "prompt_tokens": 139,
+                "output_tokens": 15
+              },
+              {
+                "phase": "with_method",
+                "prompt_tokens": 443,
+                "output_tokens": 18
+              }
+            ],
+            "opened_source": true
+          },
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "245",
+            "id": "check_2f39b7d380e7",
+            "line": 245,
+            "status": "source_candidate",
+            "ranges": {
+              "call": [
+                245,
+                245
+              ],
+              "field": [
+                37,
+                37
+              ],
+              "method": [
+                1913,
+                1934
+              ]
+            },
+            "answers": {
+              "call": {
+                "file_read": 0,
+                "http_io": 0
+              },
+              "with_method": {
+                "file_read": 1919,
+                "http_io": 1929
+              }
+            },
+            "attempts": [
+              {
+                "line": 245,
+                "status": "source_candidate"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 2,
+            "seconds": 4.155,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "d2fb67f00bd39a4bef6683b6a94bb835348c0ee8764faca3d2a80d913a3993cc",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [
+              {
+                "phase": "call",
+                "prompt_tokens": 151,
+                "output_tokens": 15
+              },
+              {
+                "phase": "with_method",
+                "prompt_tokens": 546,
+                "output_tokens": 21
+              }
+            ],
+            "opened_source": true
+          },
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "244",
+            "id": "check_05761455d474",
+            "line": 244,
+            "status": "unresolved",
+            "ranges": {},
+            "answers": {},
+            "attempts": [
+              {
+                "line": 244,
+                "status": "unresolved"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 0,
+            "seconds": 0.547,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "bb5fbae89822d9f1d744c3290c43461bb145a0dc3c68e0b4da9f27d635755bc2",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [],
+            "opened_source": true
+          },
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "272",
+            "id": "check_96c7079bddae",
+            "line": 272,
+            "status": "source_candidate",
+            "ranges": {
+              "call": [
+                272,
+                272
+              ],
+              "field": [
+                37,
+                37
+              ],
+              "method": [
+                1888,
+                1911
+              ]
+            },
+            "answers": {
+              "call": {
+                "file_read": 0,
+                "http_io": 0
+              },
+              "with_method": {
+                "file_read": 0,
+                "http_io": 1900
+              }
+            },
+            "attempts": [
+              {
+                "line": 272,
+                "status": "source_candidate"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 2,
+            "seconds": 3.517,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "dc67eeb4a0a93980170dd6430cbe8fa1a4e843a5022d0c2ee9dccb8e4ce0af6c",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [
+              {
+                "phase": "call",
+                "prompt_tokens": 146,
+                "output_tokens": 15
+              },
+              {
+                "phase": "with_method",
+                "prompt_tokens": 450,
+                "output_tokens": 18
+              }
+            ],
+            "opened_source": true
+          }
+        ],
+        "reopened": true,
+        "report_sha256": "b9c53805f3f9e03ddf1aeecc191433ed9cd47b4c751461390c6a3e1edbbf3b76",
+        "page_errors": 0,
+        "viewport_width": 390
+      }
+    ],
+    "operation_lines": [
+      {
+        "cases": [
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "auto",
+            "id": "check_c2b36fd4d84a",
+            "line": 261,
+            "status": "source_candidate",
+            "ranges": {
+              "call": [
+                261,
+                261
+              ],
+              "field": [
+                37,
+                37
+              ],
+              "method": [
+                1888,
+                1911
+              ]
+            },
+            "answers": {
+              "call": {
+                "file_read": 0,
+                "http_io": 0
+              },
+              "with_method": {
+                "file_read": 0,
+                "http_io": 1906
+              }
+            },
+            "attempts": [
+              {
+                "line": 261,
+                "status": "source_candidate"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 3,
+            "seconds": 5.373,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "cc2895756018545cd3cb03df7e395edbd60ecd8534b402c1badf7a684f1e5517",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [
+              {
+                "phase": "choose_call",
+                "prompt_tokens": 209,
+                "output_tokens": 9
+              },
+              {
+                "phase": "call",
+                "prompt_tokens": 140,
+                "output_tokens": 15
+              },
+              {
+                "phase": "with_method",
+                "prompt_tokens": 444,
+                "output_tokens": 18
+              }
+            ],
+            "opened_source": true
+          },
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "245",
+            "id": "check_08c4f6a4cb8a",
+            "line": 245,
+            "status": "source_candidate",
+            "ranges": {
+              "call": [
+                245,
+                245
+              ],
+              "field": [
+                37,
+                37
+              ],
+              "method": [
+                1913,
+                1934
+              ]
+            },
+            "answers": {
+              "call": {
+                "file_read": 0,
+                "http_io": 0
+              },
+              "with_method": {
+                "file_read": 1921,
+                "http_io": 0
+              }
+            },
+            "attempts": [
+              {
+                "line": 245,
+                "status": "source_candidate"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 2,
+            "seconds": 3.87,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "ded14c55f292f5836561c6d119e63430435aee870e87c800e11db5c47faf6293",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [
+              {
+                "phase": "call",
+                "prompt_tokens": 152,
+                "output_tokens": 15
+              },
+              {
+                "phase": "with_method",
+                "prompt_tokens": 547,
+                "output_tokens": 18
+              }
+            ],
+            "opened_source": true
+          },
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "244",
+            "id": "check_6a6abeebe733",
+            "line": 244,
+            "status": "unresolved",
+            "ranges": {},
+            "answers": {},
+            "attempts": [
+              {
+                "line": 244,
+                "status": "unresolved"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 0,
+            "seconds": 0.417,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "7c3744d95fbccbc9e800ad862c9be61ac53a7946b4000c93b0ab2b1cebb1819b",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [],
+            "opened_source": true
+          },
+          {
+            "run": "20261128T031606_ca91de35",
+            "supplement": "extra_2058df8b023d",
+            "requested": "272",
+            "id": "check_8bf32315e5ef",
+            "line": 272,
+            "status": "source_candidate",
+            "ranges": {
+              "call": [
+                272,
+                272
+              ],
+              "field": [
+                37,
+                37
+              ],
+              "method": [
+                1888,
+                1911
+              ]
+            },
+            "answers": {
+              "call": {
+                "file_read": 0,
+                "http_io": 0
+              },
+              "with_method": {
+                "file_read": 0,
+                "http_io": 1906
+              }
+            },
+            "attempts": [
+              {
+                "line": 272,
+                "status": "source_candidate"
+              }
+            ],
+            "vm_calls": 2,
+            "model_calls": 2,
+            "seconds": 3.569,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+            "output_sha256": "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2",
+            "journal_sha256": "fda8bd6550360e4c928b5cf355d0016254515054fa8096d353a1f98b94c08263",
+            "parent_sha256": "0be6c422bf305749cdf2e0189c3c3ae8f0184cd151d216efec05a3d19672b757",
+            "model_usage": [
+              {
+                "phase": "call",
+                "prompt_tokens": 147,
+                "output_tokens": 15
+              },
+              {
+                "phase": "with_method",
+                "prompt_tokens": 451,
+                "output_tokens": 18
+              }
+            ],
+            "opened_source": true
+          }
+        ],
+        "reopened": true,
+        "map_opened": true,
+        "report_sha256": "b9c53805f3f9e03ddf1aeecc191433ed9cd47b4c751461390c6a3e1edbbf3b76",
+        "page_errors": 0,
+        "viewport_width": 390
+      },
+      {
+        "cases": [
+          {
+            "run": "20261128T030521_c76fc69a",
+            "supplement": "extra_e0243253cd13",
+            "requested": "auto",
+            "id": "check_28ca1d6742df",
+            "line": 1056,
+            "status": "unresolved",
+            "ranges": {},
+            "answers": {},
+            "attempts": [
+              {
+                "line": 1070,
+                "status": "unresolved"
+              },
+              {
+                "line": 1067,
+                "status": "unresolved"
+              },
+              {
+                "line": 1056,
+                "status": "unresolved"
+              }
+            ],
+            "vm_calls": 4,
+            "model_calls": 3,
+            "seconds": 4.9,
+            "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+            "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+            "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+            "journal_sha256": "efdf6c6f437230fd8907e6f3459f5ddefbebcf5015991cdd8b53fe95c85bdd89",
+            "parent_sha256": "a9796884588b085b97644f7daaf054d3a3e55bd22d3429af40fd0cc40bb29ca8",
+            "model_usage": [
+              {
+                "phase": "choose_call",
+                "prompt_tokens": 273,
+                "output_tokens": 10
+              },
+              {
+                "phase": "choose_call",
+                "prompt_tokens": 241,
+                "output_tokens": 10
+              },
+              {
+                "phase": "choose_call",
+                "prompt_tokens": 227,
+                "output_tokens": 10
+              }
+            ],
+            "opened_source": true
+          }
+        ],
+        "reopened": true,
+        "map_opened": true,
+        "report_sha256": "5c77d9616595c50151686f9c33bfe1d3f6301358e478c3fe6f52985071f69371",
+        "page_errors": 0,
+        "viewport_width": 390
+      }
+    ]
+  }
+}

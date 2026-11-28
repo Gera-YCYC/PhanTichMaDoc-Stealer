@@ -63,7 +63,23 @@ class ToolService:
         backend, limits = "unavailable", []
         try:
             if action == "read_evidence":
-                self.store.get(arguments["evidence_id"], digest)
+                eid = arguments["evidence_id"]
+                record = self.store.get(eid, digest)
+                if "field_call_line" in arguments:
+                    if record["tool"] != "decompile_dotnet" or record["status"] != "ok":
+                        raise ValueError("Field navigation requires successful ILSpy evidence")
+                    root = Path(self.config["evidence_dir"])
+                    result = json.loads(bounded_process(
+                        [sys.executable, "-m", "vm_tools.field_call", str((root / (eid + ".json")).resolve()),
+                         str(arguments["field_call_line"])], root / "work", timeout=20, max_bytes=32_000,
+                        strict_stderr=True, memory_limit=True,
+                        env_overrides={"PYTHONPATH": str(Path(__file__).resolve().parents[1]) +
+                                       os.pathsep + os.environ.get("PYTHONPATH", "")}))
+                    if any(r != record["lines"][r["line"] - 1] for r in result["lines"]):
+                        raise ValueError("Field navigation returned different source rows")
+                    return {**{k: record[k] for k in ("sample", "sample_sha256", "output_sha256", "evidence_id", "tool")},
+                            "status": "ok", "navigation": result["status"], "ranges": result["ranges"],
+                            "requested_line": result["line"], "lines": result["lines"]}
                 return self.store.page(arguments["evidence_id"], arguments.get("page", 0))
             if action == "search_evidence":
                 result = self.store.search(arguments['evidence_id'], digest, arguments['query'],

@@ -229,6 +229,15 @@ class Handler(BaseHTTPRequestHandler):
             if self.headers.get("Origin") != origin or not secrets.compare_digest(
                 self.headers.get("X-Lab-Key", ""), KEY
             ):
+                # Drain a small declared body before closing. On Windows an unread
+                # POST can otherwise reset the socket ahead of the 403 response.
+                length = self.headers.get("Content-Length", "")
+                if length.isascii() and length.isdecimal() and len(length) <= 4 and int(length) <= 4096:
+                    self.connection.settimeout(1)
+                    try:
+                        self.rfile.read(int(length))
+                    except TimeoutError:
+                        pass
                 return self.reply(403, {"error": "Phiên trình duyệt không hợp lệ."})
             n = int(self.headers.get("Content-Length", "0"))
             if (
@@ -258,6 +267,7 @@ class Handler(BaseHTTPRequestHandler):
                 "/api/question",
                 "/api/claim-review",
                 "/api/dotnet-supplement",
+                "/api/field-review",
             ):
                 return self.reply(
                     409, {"error": "Chế độ xem lịch sử. Mở Start-Web.ps1 để dùng lab."}
@@ -270,6 +280,14 @@ class Handler(BaseHTTPRequestHandler):
                 reserve("dotnet-supplement")
                 try:
                     return self.reply(200, generate(data.get("run"), read(ROOT / CFG), token()))
+                finally:
+                    with LOCK:
+                        JOB.update(active=False)
+            if p == "/api/field-review":
+                from .field_review import review
+                reserve("field-review")
+                try:
+                    return self.reply(200, review(data, read(ROOT / CFG), token()))
                 finally:
                     with LOCK:
                         JOB.update(active=False)

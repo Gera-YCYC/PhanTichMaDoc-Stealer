@@ -398,6 +398,10 @@ def case(run):
     from .dotnet_supplement import latest
     dotnet = any(rec["tool"] == "decompile_dotnet" for rec in records.values())
     supplement = latest(directory(run), run, r["sample_sha256"], r["model"]["digest"]) if dotnet else None
+    if supplement:
+        from .field_review import recent
+        parent = directory(run) / "supplements" / supplement["id"]
+        supplement["field_reviews"] = recent(parent, parent / "events.jsonl")
     questions = []
     for path in sorted(
         directory(run).glob("questions/q_*/events.jsonl"),

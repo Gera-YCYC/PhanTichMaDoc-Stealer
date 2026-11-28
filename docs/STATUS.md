@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Web đã đối chiếu thân hàm trên hai mẫu .NET thật. Ở Mercurial, Qwen dẫn được dòng đọc tệp và dòng lấy phản hồi mạng trên hai thân hàm khác nhau. Ở Gomorrah, cả ba lần chọn lời gọi vẫn thiếu nguồn. Bảng điểm báo cáo toàn mẫu hiện giữ mức 39/97 mục cho cấu hình có phụ lục. [Các dòng nguồn, phép đối chứng và thao tác demo](DOI_CHIEU_THAN_HAM.md)
+
 Đã chạy trực tiếp nút lập phụ lục trên Gomorrah và Mercurial. Khi ghép phụ lục kết hợp vào hai báo cáo gốc, giữ cùng báo cáo Python và mẫu số 97, precision đạt 81,25%, recall 40,21%, F1 53,79%. Cả bốn mục tăng đều ở Gomorrah. Chế độ phụ lục là lựa chọn của người phân tích. Ba verdict gốc và kết quả nghiệm thu buổi 8 vẫn cần cải thiện. [So ba phương án trên cùng hồ sơ](PHU_LUC_DIEU_TRA_NET.md)
 
 Hai mẫu .NET đã được truy vấn bổ sung trong VM theo hai cách, cùng bốn lần tìm mỗi mẫu mỗi cách. Danh sách cố định lấy đủ dòng cho **6/20** mục còn thiếu ở tầng truy xuất, Qwen chọn theo tên đã quan sát được **3/20**. Nhánh Qwen tốt hơn trên Mercurial và kém hơn trên Gomorrah. Phần Đánh giá có bảng riêng để xem thời gian và các mục tìm thấy. [Phương pháp và kết quả cụ thể](CHAM_BA_MAU_WEB.md#tìm-thêm-chứng-cứ-trong-vm-trên-hai-mẫu-net)

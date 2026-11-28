@@ -65,6 +65,7 @@ ACTION_SCHEMA = {
                 "sample": {"type": "string", "maxLength": 100},
                 "evidence_id": {"type": "string", "pattern": "^ev_[a-f0-9]{16}$"},
                 "page": {"type": "integer", "minimum": 0, "maximum": 1000},
+                "field_call_line": {"type": "integer", "minimum": 1, "maximum": 16000},
                 "type_name": {"type": "string", "maxLength": 150},
                 "entry_index": {"type": "integer", "minimum": 0, "maximum": 31},
                 "rule": {"type": "string", "minLength": 10, "maxLength": 6000},
@@ -102,7 +103,7 @@ def validate_action(value: dict) -> dict:
         "decompile_dotnet": {"sample", "type_name"},
         "extract_ioc": {"sample", "evidence_id"},
         "decode_python_literals": {"sample", "evidence_id"},
-        "read_evidence": {"sample", "evidence_id", "page"}, "finish": set(), "finalize": set(),
+        "read_evidence": {"sample", "evidence_id", "page", "field_call_line"}, "finish": set(), "finalize": set(),
         "unpack_pyinstaller": {"sample"}, "decompile_python": {"sample", "entry_index"},
         "disassemble_python": {"sample", "entry_index"},
         "test_yara": {"sample", "rule", "corpus", "profile"},
@@ -114,6 +115,8 @@ def validate_action(value: dict) -> dict:
         required.add("evidence_id")
     if action == "search_evidence":
         required.add("query")
+    if action == "read_evidence" and "field_call_line" in args and "page" in args:
+        raise ValueError("Choose one evidence row or one page")
     if action in {"decompile_python", "disassemble_python"}:
         required.add("entry_index")
     if action == "test_yara":

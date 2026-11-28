@@ -200,6 +200,73 @@ function showSupplement(panel, result) {
     panel.append(detail);
   }
   panel.append(el("small", "Nhật ký phụ lục · " + result.id));
+  const run = record.run;
+  const inspector = el("details");
+  inspector.append(el("summary", "Đối chiếu lời gọi với thân hàm"));
+  inspector.append(el("p", "Qwen có thể chọn một lời gọi còn thiếu chứng cứ. VM tìm trường và thân hàm ứng viên trong cùng bản dịch ngược. Bạn cũng có thể chọn dòng để hỏi lại."));
+  const select = el("select");
+  select.setAttribute("aria-label", "Dòng nguồn cần kiểm tra");
+  select.add(new Option("Để agent chọn lời gọi", "auto"));
+  const seen = new Map();
+  for (const window of Object.values(result.windows)) {
+    for (const [n, text] of window.rows) {
+      if (/\.\s*\w+\s*\(/.test(text)) seen.set(n, text.trim());
+    }
+  }
+  for (const [n, text] of [...seen].sort((a,b) => a[0]-b[0])) {
+    select.add(new Option("Dòng " + n + " · " + text.slice(0, 40), n));
+  }
+  const log = el("div"), note = el("p");
+  const draw = () => {
+    log.replaceChildren();
+    for (const check of [...(result.field_reviews || [])].reverse()) {
+      const box = el("details");
+      box.append(el("summary", (check.auto ? "Agent chọn dòng " : "Kiểm tra dòng ") + check.line +
+        " · " + (check.status === "source_candidate" ? "Đã tìm được thân hàm ứng viên" : "Chưa đủ chứng cứ")));
+      if (check.attempts?.length > 1) box.append(el("p", "Các dòng VM đã kiểm tra theo thứ tự: " +
+        check.attempts.map(a => a.line + (a.status === "unresolved" ? " (chưa xác định)" : " (có ứng viên)")).join(" → ")));
+      if (check.status === "source_candidate") {
+        const r = check.ranges;
+        box.append(el("p", "Khai báo trường ở dòng " + r.field.join("–") + ". Thân hàm ở dòng " + r.method.join("–") + "."));
+        if (!check.rows.some(([n]) => n === r.field[0])) box.append(el("small", "Nội dung khai báo trường đã được che. Qwen chỉ nhận những dòng mở được bên dưới."));
+        for (const [phase, title] of [["call", "Chỉ đọc lời gọi"], ["with_method", "Đọc thêm thân hàm"]]) {
+          const a = check.answers[phase];
+          const cited = x => x ? "dòng " + x : "chưa có dẫn chứng";
+          box.append(el("p", title + " · Đọc nội dung tệp: " + cited(a.file_read) + " · I/O HTTP trực tiếp: " + cited(a.http_io)));
+        }
+        box.append(el("small", "Qwen chọn dòng nguồn. Quan hệ cú pháp chưa chứng minh đường truyền dữ liệu hoặc kết quả khi chạy."));
+      }
+      const source = el("details", undefined, "ref");
+      source.append(el("summary", "Mở các dòng VM đã trả"), el("pre", check.rows.map(([n,s])=> n + " │ " + s).join("\n")));
+      box.append(source, el("small", check.vm_calls + " lần gọi VM · " + check.model_calls + " lần gọi Qwen · " +
+        check.seconds.toLocaleString("vi-VN") + " giây · " + check.id));
+      log.append(box);
+    }
+  };
+  const inspect = button("Kiểm tra trong VM", async () => {
+    inspect.disabled = true;
+    inspect.dataset.pending = "1";
+    note.textContent = "Đang đối chiếu mã trong VM…";
+    try {
+      const data = await api("field-review", {run, supplement: result.id,
+        line: select.value === "auto" ? "auto" : Number(select.value)});
+      if (record?.run === run && record.supplement?.id === result.id) {
+        result.field_reviews = [...(result.field_reviews || []), data].slice(-6);
+        draw();
+      }
+      note.textContent = "";
+    } catch (err) {
+      note.textContent = err.message;
+    } finally {
+      delete inspect.dataset.pending;
+      inspect.disabled = init.history_only;
+    }
+  });
+  inspect.disabled = init.history_only || job.active;
+  inspect.dataset.claimReview = "";
+  draw();
+  inspector.append(select, inspect, note, log);
+  panel.append(inspector);
 }
 
 function map(panel) {
@@ -308,6 +375,32 @@ function map(panel) {
   }
   split.append(list, detail);
   panel.append(split);
+  if (record.supplement?.field_reviews?.length) {
+    const section = el("details", undefined, "card");
+    section.append(el("summary", "Các lời gọi .NET đã đối chiếu trong phụ lục"));
+    section.append(el("p", "Mở từng vị trí để xem Qwen đã dẫn dòng nào. Để xác nhận liên kết giữa hai thao tác, cần truy được cùng dữ liệu qua các đối số."));
+    const seen = new Set();
+    for (const check of [...record.supplement.field_reviews].reverse()) {
+      if (seen.has(check.line)) continue;
+      seen.add(check.line);
+      const entry = el("details", undefined, "ref");
+      entry.append(el("summary", "Lời gọi ở dòng " + check.line));
+      if (check.status === "source_candidate") {
+        const source = new Map(check.rows), a = check.answers.with_method;
+        entry.append(el("p", "Thân hàm ứng viên · dòng " + check.ranges.method.join("–")));
+        for (const [key,title] of [["file_read","Đọc nội dung tệp"],["http_io","I/O HTTP trực tiếp"]]) {
+          const n = a[key];
+          entry.append(el("small", title + (n ? " · dòng " + n : " · chưa có dẫn chứng")));
+          if (n && source.has(n)) entry.append(el("pre", source.get(n)));
+        }
+      } else {
+        entry.append(el("p", "Chưa đủ chứng cứ để đối chiếu tác dụng của lời gọi."));
+      }
+      entry.append(el("small", check.id));
+      section.append(entry);
+    }
+    panel.append(section);
+  }
 }
 function renderEvaluation(panel, data, sample = evaluationSample) {
   panel.replaceChildren();
@@ -1130,7 +1223,7 @@ async function poll() {
         " · " +
         (job.lines.at(-1) || job.kind)
       : job.error || (job.yara_run ? "Đã ghi lượt YARA " + job.yara_run : "");
-      if (!job.active && old.active && !["claim-review", "dotnet-supplement"].includes(old.kind)) {
+    if (!job.active && old.active && !["claim-review", "dotnet-supplement", "field-review"].includes(old.kind)) {
       await bootstrap();
       if (job.run) await load(job.run);
       else await render();

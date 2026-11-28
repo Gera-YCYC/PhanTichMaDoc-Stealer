@@ -2,6 +2,8 @@
 
 ## Ưu tiên của nhóm
 
+Đã kiểm riêng phần thân hàm sau lời gọi qua trường .NET trên hai hồ sơ. Bước tiếp theo của người phụ trách phân tích là truy được cùng dữ liệu từ nguồn tới thao tác gửi và ghi rõ nơi chuỗi dừng. Người phụ trách đánh giá cần chấm trên chương trình giữ riêng, có cả file lành, trước khi nhập kết quả đối chiếu vào verdict toàn mẫu. [Hai kết quả dương và một trường hợp hết ngân sách](DOI_CHIEU_THAN_HAM.md)
+
 Đã thử cả ba cách dùng bốn lượt tìm và chấm từng câu phụ lục. Chế độ kết hợp trên web tăng bốn mục đúng trên Gomorrah và không tăng mục đúng trên Mercurial. Bước tiếp theo của người phụ trách agent là tách **lời gọi hàm** khỏi **tác dụng bên trong**, kiểm tra thân hàm hoặc nơi gán biến trước khi phát biểu về tác dụng. Trên Mercurial có ví dụ ở dòng 75 và 245. Người phụ trách đánh giá cần kiểm lại precision, recall, chất lượng verdict, lỗi tự duyệt và độ ổn định trên tập tách riêng. [Sáu phụ lục và điểm gộp](PHU_LUC_DIEU_TRA_NET.md)
 
 Phần đọc lại câu hẹp đã có hai lượt web thật và bảng chấm 13 câu. Khi cho chọn từng dòng, 5/7 câu Qwen giữ vẫn thiếu căn cứ. Người phụ trách đánh giá giữ kết quả này riêng, kiểm tra lại nhãn trên tập tách biệt và chỉ gộp một đề xuất vào báo cáo sau khi xác minh đủ nguồn. Ưu tiên kỹ thuật tiếp theo là tìm mắt xích .NET còn thiếu bằng công cụ trong VM. [Thí nghiệm và giới hạn](DOC_LAI_NHAN_DINH.md)
