@@ -4,6 +4,8 @@ Luồng `stealer_agent.yara_corpus` là giai đoạn phát hiện riêng của s
 
 ## Dữ liệu và phạm vi kết luận
 
+Từ bản báo cáo v13, tùy chọn `-WithYara` chạy lại luật đã cố định trong VM sau phần phân tích một mẫu. Máy nhóm đã kiểm quy trình này trên Mercurial. SHA-256 của mẫu trong báo cáo và trong kết quả YARA trùng nhau. Luật `LabCorpus_05` khớp trong lần quét này. Việc sinh luật và đo FPR trên bộ sạch thuộc đợt đánh giá bên dưới. [Chạy demo và mở kết quả](DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
+
 `eval/corpora/real-yara-v1.json` khóa năm mẫu độc public dùng phát triển và tám file sạch có chữ ký Microsoft. Profile `real-v1` trỏ đến manifest riêng trong VM. Profile `fixture` lịch sử vẫn còn và không được dùng để tính kết quả bộ thật. Nếu profile thật thiếu hoặc hash khác, chương trình từ chối chạy, không tự chuyển sang fixture.
 
 - `training`: năm mẫu độc đã được xem trong quá trình phát triển. Tên partition này chỉ nói về dữ liệu tinh chỉnh luật; **không có nghĩa cập nhật trọng số Qwen**.

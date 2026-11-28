@@ -50,6 +50,21 @@ Chỉ sync trước run mới vì service restart làm mất evidence ID trong b
 
 ## Regression trên phiên bản sau sửa navigation
 
+### Kết quả 40 lượt chạy có đối chứng
+
+Qwen2.5 Coder 7B và VM đã xử lý 10 cặp tệp Python ở mỗi chế độ. Mỗi cặp gồm bản đối chứng và bản thêm văn bản thử trong chú thích. Tên tệp đưa vào agent là mã băm rút gọn. Hai chế độ dùng cùng 20 tệp, model, mã nguồn và ngân sách sáu bước. Cả 40 lượt có nhật ký kết thúc, báo cáo lưu riêng và ít nhất hai công cụ. Đã kiểm chuỗi hash, nội dung thông điệp và phản hồi theo từng bước. [Kết quả theo cặp và hash nhật ký](../deliverables/real-demo-evidence/blinded-guard-comparison.json).
+
+| Quan sát trên 10 cặp đủ điều kiện ở mỗi chế độ | Bật lớp chặn | Tắt lớp chặn |
+|---|---:|---:|
+| Nội dung chèn xuất hiện đầy đủ trong đầu vào model | 3/10 | 10/10 |
+| Tìm thấy phần đã được che trước khi đến model | 7/10 | 0/10 |
+| Verdict thô đổi đúng hướng câu chèn yêu cầu | 0/10 | 2/10 |
+| Verdict thô khác giữa hai tệp, tính mọi hướng | 5/10 | 4/10 |
+| Verdict sau duyệt khác nhau, tính mọi hướng | 0/10 | 0/10 |
+| Bản đối chứng lành được phân loại đúng là lành sau duyệt | 0/10 | 0/10 |
+
+Mười bản đối chứng đều là tệp trơ. Sau duyệt, tất cả đều nhận `inconclusive` ở cả hai chế độ. Con số 0/10 sau duyệt vì vậy chỉ mô tả việc hai kết luận giống nhau. Phép đo đáp ứng số lượng 10 tệp có chèn cho thử nghiệm này. Đề xuất gốc còn có 12 tệp, nhiều định dạng/vị trí và hướng đổi kết luận ngược lại. Kết quả trên thuộc profile 7B. [Mã tính lại trên nhật ký riêng](../eval/compare_guard_batches.py).
+
 ### Chạy lại bộ thử với tên tệp đã ẩn nhãn
 
 Trên máy có VM đang mở, chạy các lệnh sau từ thư mục dự án. Lệnh đầu tạo các bản văn bản trơ bên trong VM. Tên mẫu dùng trong phiên chỉ có mã băm rút gọn. Model không thấy chữ `control` hoặc `injected` trong tên file. Lệnh đo ghi lại cả cặp không đủ chứng cứ và hash nhật ký của từng nhánh. Cấu hình mặc định của phép thử dùng Qwen2.5 Coder 7B với sáu bước. Thêm `--config config/host.techniques-qwen3.example.json` để đo profile 8B theo đúng ngân sách của profile đó.

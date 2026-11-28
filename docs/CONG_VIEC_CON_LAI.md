@@ -27,7 +27,7 @@ Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ kh�
 | A01 | Chọn chứng cứ và báo cáo hành vi | Parser API v3, context v3, card v8; đã có archive/attachment/SMTP và AES kèm binding. Còn nhãn parser thành tên hàm, card rời thiếu helper và field/biến bị nhầm | Có claim thực chất, atomic, dẫn chứng đủ; không suy vai trò đối số từ tên biến |
 | A02 | Reviewer và ATT&CK | Có kiểm chuỗi căn cứ verdict v3; reviewer vẫn loại sai và giữ sai | Đối chiếu source, kiểm liên kết thu/gửi; nguồn MITRE; không coi tự gán vai trò là chứng minh dữ liệu |
 | S01 | Unicode và kiểm dữ liệu tới model | Có kiểm nội dung thông điệp theo hash, tọa độ nguồn và phản hồi cùng pha. Receipt P06 cũ thiếu nội dung để xác nhận lại. | Lưu đầu vào riêng trong lab và kiểm lại từ nhật ký |
-| S02 | Bộ injection | Ba bộ receipt lịch sử có 0 cặp đủ theo phép đối chiếu mới | Đo tỷ lệ đổi kết luận trên ít nhất 10 file đủ bằng chứng theo slide, ghi thêm tác động bật/tắt lớp chặn và phạm vi hướng đổi đã thử |
+| S02 | Bộ injection | Đã chạy 40 lượt trên cùng 10 cặp có tên tệp ẩn nhãn. Cả 10 cặp mỗi chế độ đủ chứng cứ. Bật chặn có 3/10 đầu vào model còn nguyên văn thử. | Kiểm trên bộ 12 tệp đa định dạng của đề xuất và cấu hình chốt. Kiểm độ đúng của cả bản đối chứng, ghi riêng kết quả theo hướng đổi verdict. |
 | Y01 | Tập YARA thật | V3: 5 độc development, 39 sạch gồm 37 Microsoft và 2 PyInstaller; hash/nguồn/nhãn có lock | Đã đủ số file sạch dự kiến30–50; nếu muốn nói khả năng tổng quát hóa cần positive mới và thêm ứng dụng/họ độc lập |
 | Y02 | Sinh và đo YARA | 7B/8B cùng bản: 5/5 độc, 0/39 sạch; replay độc lập khớp. Ngưỡng đạt trên corpus công bố | Giữ phạm vi development và luật theo bản build; kiểm rename/repack và tích hợp với báo cáo cuối. Kết quả âm v1 1/38 vẫn giữ |
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
@@ -40,6 +40,8 @@ Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ kh�
 | R02 | Tái lập máy khác | Đã dựng VM mới trên cùng host ở bản cũ | Kiểm bản installer mới; máy vật lý khác chưa được xác nhận |
 
 ## Phần nhóm có thể chia nhau
+
+Ngày 28/11, v13 đã bổ sung trích dẫn liền mạch và quét YARA ngay sau phần phân tích. Trên Mercurial, C21 đủ căn cứ cho T1539. Ưu tiên tiếp theo của nhánh .NET là phân biệt địa chỉ tài nguyên hiển thị với đích truyền, giữ ngữ cảnh hàm khi nhiều đoạn mã cạnh tranh vị trí trong prompt. Của nhánh Python là kiểm luồng SMTP và chạy lại cùng bản v13. Cả nhóm cần chốt hồ sơ tham chiếu độc lập trước khi xem đầu ra của bộ kiểm cuối. [Bảng chấm mới](../deliverables/real-demo-evidence/20261128T012820_c485ff68/review.md).
 
 | Vai trò | Việc còn lại | Bằng chứng để bàn giao |
 |---|---|---|

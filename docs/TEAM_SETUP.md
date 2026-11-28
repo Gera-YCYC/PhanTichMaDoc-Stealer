@@ -186,6 +186,14 @@ Sau khi đo xong, chạy Stop-Lab để giải phóng RAM/VRAM của mô hình v
 
 ## Demo trước lớp với Qwen3 8B
 
+Sau khi đã chuẩn bị profile YARA `real-v3` trong VM và Qwen3 8B trên host, có thể quét lại bằng luật đã cố định ngay sau phần phân tích hành vi. Lệnh sau cũng đo RAM khả dụng của toàn máy và VRAM NVIDIA trong suốt lần phân tích.
+
+```powershell
+.\scripts\Run-Demo.ps1 -Profile techniques-8b -Sample public_mercurial.bin -MeasureResources -WithYara
+```
+
+Mở `report.md` trong thư mục run để theo dõi các nhận định. Dòng `YARA` in đường dẫn đến `ket-qua.md` của lần quét vừa chạy. Phiếu này có liên kết trở về báo cáo, luật, hash mẫu và tên luật khớp. Tệp `host-resources.json` ghi bộ nhớ ở các lần lấy mẫu, gồm cả ứng dụng khác. Sau demo, `.\scripts\Stop-Lab.ps1` kiểm lại cổng của Ollama và danh sách máy ảo VMware rồi ghi kết quả vào `evidence/local/runtime-stopped-latest.json`. [Cách chuẩn bị corpus và sinh luật](YARA_REAL_CORPUS.md).
+
 Mở PowerShell trên máy Windows chứa dự án và kích hoạt lab. Máy thật điều phối và chạy Ollama. Công cụ bên trong Ubuntu VM mới có quyền đọc bản mẫu. Trong video, mỗi dòng CALL là một thao tác được lưu ở lần chạy tương ứng. Để thầy thấy một lượt chạy trực tiếp, dùng profile và lệnh trong [hướng dẫn demo](DEMO_COVERAGE.md). Máy nhóm đã đo mất khoảng 10 phút cho PythonStealer 2024. Có thể mở sẵn [video 72 giây](../deliverables/Demo_phan_tich_tinh.mp4) và [bảng chấm Python](../deliverables/real-demo-evidence/20261127T233612_212f9fbb/review.md) để giải thích một nhận định khi model đang xử lý.
 
 Nếu thầy hỏi nhóm đã train gì, mở bảng loss và checkpoint trong [hồ sơ huấn luyện](../training/RANKER_EXPERIMENT.md). Có thể chạy lại bộ huấn luyện ngay trên CPU bằng `.\.venv\Scripts\python.exe training/verify_ranker_reproduction.py`. Lệnh in kết quả đối chiếu với mô hình được triển khai trong VM.

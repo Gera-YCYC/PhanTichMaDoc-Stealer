@@ -6,7 +6,7 @@ AI Agent ReAct dùng SLM cục bộ để phân tích tĩnh stealer .NET/Python.
 
 Bản `coverage-8b` chạy Qwen3 8B và kiểm lại từng thao tác tĩnh bằng kết quả công cụ trước khi tổng hợp kết luận. Trên PythonStealer 2024, agent gọi 4 công cụ thật trong VM, xác định kênh SMTP và phủ 22/36 đơn vị tham chiếu. F1 đạt 72,13%, dưới mục tiêu 75% của môn. [Cách chạy, số đo và lỗi còn lại](docs/DEMO_COVERAGE.md).
 
-Qwen2.5 Coder 7B là cấu hình mặc định. Thành phần nhóm đã train là bộ xếp hạng kết quả tìm mã. Các lần đo bằng Qwen dùng trọng số có sẵn. [Hồ sơ training](training/RANKER_EXPERIMENT.md) · [Các phép thử v9/v10](docs/OPERATIONS_CONTEXT_V9.md).
+Qwen2.5 Coder 7B là cấu hình mặc định. Thành phần nhóm đã train là bộ xếp hạng kết quả tìm mã. Giảng viên có thể xem hai job Windows và Ubuntu thực hiện 300 bước cập nhật rồi so trọng số, loss và kết quả xếp hạng. Qwen dùng trọng số có sẵn. [Hồ sơ training](training/RANKER_EXPERIMENT.md) · [Xem hai lần train trong GitHub Actions](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer/actions/runs/46092717873).
 
 [Luồng YARA thật](docs/YARA_REAL_CORPUS.md) vẫn giữ số đo5/5 mẫu độc development và0/39 file sạch báo nhầm với cả7B/8B, replay độc lập khớp. [Báo cáo v8](docs/OPERATIONS_CONTEXT_V8.md) chưa đạt: Python8/11 câu đủ căn cứ, .NET14/20. Không ghép điểm các phiên bản để nghiệm thu. Xem [trạng thái](docs/STATUS.md), [đối chiếu nhận định](docs/CLAIM_AUDIT.md), [đơn vị tham chiếu](eval/reference_units/README.md).
 
@@ -16,7 +16,7 @@ Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-versio
 
 ## Giảng viên và thành viên nhóm bắt đầu tại đây
 
-Để demo trực tiếp nhánh .NET, dùng profile `techniques-8b` với Mercurial. Một lần chạy đã tìm được cấu hình webhook tại dòng 37. Nhóm có thể chỉ ra một câu ATT&CK mà bộ tự duyệt giữ dù phần trích dẫn còn thiếu, rồi mở bảng chấm để giải thích. [Lệnh chạy và kết quả Mercurial](docs/DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
+Để demo trực tiếp nhánh .NET, dùng profile `techniques-8b` với Mercurial. Lượt v13 tìm được cấu hình webhook ở dòng 37, trích đủ chứng cứ cho T1539 và xác nhận mẫu khớp luật YARA. Khi thầy hỏi về sai số, có thể mở dòng 1928 để giải thích vì sao nhóm loại URL ảnh đại diện khỏi các IOC của kênh gửi. [Lệnh chạy, kết quả và bảng chấm Mercurial](docs/DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
 
 | Cần xem | Tài liệu |
 |---|---|

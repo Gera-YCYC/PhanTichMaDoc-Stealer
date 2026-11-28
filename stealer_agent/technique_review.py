@@ -53,22 +53,29 @@ def candidate_ranges(record, patterns):
             nearest.add(min(neighbors, key=lambda n: (abs(n - anchor), n)))
         selected = sorted(nearest)
         width = selected[-1] - selected[0]
-        if width <= 48 and (best is None or (width, selected) < best):
+        # A disjoint excerpt may hide the assignment linking the source file
+        # to the object actually read. Require every intervening row.
+        complete = width <= 48 and all(n in record['line_map'] and '[REDACTED-' not in record['line_map'][n]
+                                       for n in range(selected[0], selected[-1] + 1))
+        if complete and (best is None or (width, selected) < best):
             best = (width, selected)
     if best is None:
         return []
-    # Expand only over retrieved neighboring rows. Preserve gaps as separate
-    # ranges and cap the source presented to the model and copied to the claim.
-    numbers = sorted({n for center in best[1] for n in range(center - 4, center + 5)
-                      if n in record['line_map'] and '[REDACTED-' not in record['line_map'][n]})
-    ranges = []
-    for n in numbers:
-        if ranges and n == ranges[-1][-1] + 1:
-            ranges[-1].append(n)
-        else:
-            ranges.append([n])
-    if len(ranges) > 6:
-        return []
+    start, stop = best[1][0], best[1][-1]
+    for direction in (-1, 1):
+        for _ in range(4):
+            index = start - 1 if direction < 0 else stop + 1
+            if index not in record['line_map'] or '[REDACTED-' in record['line_map'][index]:
+                break
+            if direction < 0:
+                start = index
+            else:
+                stop = index
+    # The report validator permits at most 40 lines per reference. Balance
+    # adjacent spans so the second citation is not a single closing brace.
+    middle = (start + stop) // 2
+    ranges = ([range(start, stop + 1)] if stop - start < 40 else
+              [range(start, middle + 1), range(middle + 1, stop + 1)])
     refs = []
     for group in ranges:
         quote = '\n'.join(record['line_map'][n] for n in group)

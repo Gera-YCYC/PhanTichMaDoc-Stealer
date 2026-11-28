@@ -28,6 +28,13 @@ Giảng viên có thể mở GitHub Actions và chọn bước **Train lại b�
 
 Tệp tìm mã trong VM đã có thêm hàm điều hướng trang sau lần train đầu. Bản nguồn lưu theo hash của lần train và bản hiện tại có cùng định nghĩa 13 đặc trưng. Phép tái lập train đọc lại vector đã khóa. Việc trích lại các vector từ mẫu là một thí nghiệm riêng. [Mã nguồn ở thời điểm tạo mô hình](corpus/feature-source-v1.txt) · [Chương trình tái lập](verify_ranker_reproduction.py).
 
+| Lần tái lập trên GitHub Actions | Số bước cập nhật | Chênh loss lớn nhất | Chênh trọng số hoặc bias lớn nhất | Kết quả phân loại và xếp hạng |
+|---|---:|---:|---:|---|
+| Windows, Python 3.11.9 | 300 | 0 | 0 | Trùng |
+| Ubuntu, Python 3.11.18 | 300 | 1,67 × 10⁻¹⁶ | 2,22 × 10⁻¹⁶ | Trùng |
+
+Hai job chạy từ cùng commit. Trong mỗi job, mở bước train để xem hồ sơ kiểm và bước tính điểm để kiểm lại bảng bốn mẫu. [Nhật ký thực nghiệm trên Windows và Ubuntu](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer/actions/runs/46092717873).
+
 Run [20261127T153436999877Z](experiments/20261127T153436999877Z/receipt.json): CPU, Python 3.11.9, 300 bước full-batch gradient descent, learning rate 0,3, L2 0,01, khởi tạo zero, threshold 0,5. [Loss từng bước](experiments/20261127T153436999877Z/loss.json), [config](experiments/20261127T153436999877Z/config.json), [checkpoint](experiments/20261127T153436999877Z/model.json).
 
 Thời gian ghi nhận 0,0896 giây vì đây là mô hình rất nhỏ; không dùng GPU và không có epoch/loss giả của Qwen. Dataset SHA256 `688a894a07060601925c7d9571d6f2672b372f22d811889400fda76349149905`. Checkpoint SHA256 `030347e4b6d2662df8d68a5424918b835115d2738eb35e1ebb9575216a3d09fd`.

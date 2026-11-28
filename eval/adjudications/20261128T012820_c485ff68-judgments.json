@@ -1,0 +1,478 @@
+{
+  "run_id": "20261128T012820_c485ff68",
+  "raw_report_sha256": "141844cf472ee897155bf799b68dff3e93b795616ebee7d495dfa45b059950ae",
+  "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+  "claims": {
+    "C1": {
+      "public_summary": "Gọi hàm xử lý cookie, sao chép cơ sở dữ liệu cookie Chrome tới tệp tạm rồi đọc bảng cookie.",
+      "reason": "Dòng 75 gọi hàm. Đoạn 713–720 xác định bản sao. Dòng 727–728 mở bản sao và chọn bảng.",
+      "atoms": [
+        {
+          "key": "cookie-helper",
+          "until": " which copies"
+        },
+        {
+          "key": "cookie-copy",
+          "until": " and reads"
+        },
+        {
+          "key": "cookie-table"
+        }
+      ]
+    },
+    "C2": {
+      "public_summary": "Gọi hàm xử lý mật khẩu rồi suy đoán mục đích lấy mật khẩu đã lưu.",
+      "reason": "Dòng 76 có lời gọi. Phần mã nêu trong câu thiếu thân hàm xử lý mật khẩu.",
+      "atoms": [
+        {
+          "key": "password-helper-call",
+          "label": "correct",
+          "until": " which is likely"
+        },
+        {
+          "key": "password-intent-from-name",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C3": {
+      "public_summary": "Tạo yêu cầu multipart chứa nội dung tệp và trường mô tả, rồi xác định đích là một webhook.",
+      "reason": "Các dòng 1919–1929 chuẩn bị multipart, đoạn 1728–1752 tạo POST và ghi vào luồng yêu cầu. Dòng 1929 dùng biến địa chỉ. Các trích dẫn của câu chưa giải được giá trị của biến đó.",
+      "atoms": [
+        {
+          "key": "multipart-form-construction",
+          "label": "correct",
+          "until": ", sending"
+        },
+        {
+          "key": "multipart-http-write",
+          "label": "correct",
+          "until": " to a webhook URL"
+        },
+        {
+          "key": "multipart-webhook-destination",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C4": {
+      "public_summary": "Tạo POST, đặt user-agent, đính kèm các trường tệp và khẳng định đích webhook.",
+      "reason": "Dòng 1744–1752 xác nhận phương thức, user-agent và ghi yêu cầu. Các trường riêng có ở 1924–1927. URL ở 1929 là một biến và địa chỉ khởi tạo nằm ngoài đoạn trích.",
+      "atoms": [
+        {
+          "key": "multipart-http-write",
+          "label": "correct",
+          "until": " to a webhook URL"
+        },
+        {
+          "key": "multipart-webhook-destination",
+          "label": "unsupported",
+          "until": " with a user-agent"
+        },
+        {
+          "key": "multipart-http-user-agent",
+          "label": "correct",
+          "until": " and includes"
+        },
+        {
+          "key": "multipart-fields",
+          "label": "correct"
+        }
+      ]
+    },
+    "C5": {
+      "public_summary": "Liệt kê địa chỉ của ảnh đại diện làm IOC.",
+      "reason": "Dòng 1928 xác nhận URL là ảnh đại diện. Khi chấm đúng loại IOC theo mục tiêu kênh gửi, gán địa chỉ tài nguyên hiển thị vào danh sách IOC là sai loại. Literal trong tệp là có thật.",
+      "atoms": [
+        {
+          "key": "avatar-as-channel-indicator",
+          "label": "incorrect"
+        }
+      ]
+    },
+    "C6": {
+      "public_summary": "Sao chép tệp Login Data của Chrome đến vị trí tạm.",
+      "reason": "Đường dẫn nguồn ở dòng 779, đích tạm ở 783–784 và thao tác sao chép ở 787.",
+      "atoms": [
+        {
+          "key": "login-copy"
+        }
+      ]
+    },
+    "C7": {
+      "public_summary": "Đọc bảng logins từ bản sao Login Data qua SQLite.",
+      "reason": "Dòng 779–787 xác định nguồn và sao chép tệp. Dòng 795–796 mở bản sao và đọc bảng.",
+      "atoms": [
+        {
+          "key": "login-table",
+          "label": "correct"
+        }
+      ]
+    },
+    "C8": {
+      "public_summary": "Gọi hàm cookie và suy ra rằng hàm lấy cookie trình duyệt.",
+      "reason": "Dòng 75 xác nhận lời gọi. Trích dẫn của câu dừng ở phía gọi và các hàm khác. Phần đọc cơ sở dữ liệu cookie nằm ngoài các đoạn đã nêu.",
+      "atoms": [
+        {
+          "key": "cookie-helper",
+          "label": "correct",
+          "until": " to steal"
+        },
+        {
+          "key": "cookie-effect-from-name",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C9": {
+      "public_summary": "Gọi hai hàm xử lý nội dung token và suy ra việc truyền token tới webhook.",
+      "reason": "Dòng 259–261 cho thấy hai lời gọi cùng dữ liệu chuyển giữa chúng. Đoạn trích thiếu thao tác mạng và cấu hình đích của hàm nhận nội dung.",
+      "atoms": [
+        {
+          "key": "token-helper-call",
+          "label": "correct",
+          "until": " and wh.SendContent"
+        },
+        {
+          "key": "token-content-call",
+          "label": "correct",
+          "until": " to send token"
+        },
+        {
+          "key": "token-webhook-effect",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C10": {
+      "public_summary": "Truyền đường dẫn tệp cookie và kiểu nội dung multipart vào hàm SendData.",
+      "reason": "Dòng 761 xác nhận đường dẫn và hai vai trò đối số được nêu.",
+      "atoms": [
+        {
+          "key": "cookie-handoff",
+          "label": "correct"
+        }
+      ]
+    },
+    "C11": {
+      "public_summary": "Truyền thông điệp của ngoại lệ cho hàm Send.",
+      "reason": "Các dòng 765–768 nối nhánh bắt lỗi với đối số của hàm.",
+      "atoms": [
+        {
+          "key": "cookie-error-call",
+          "label": "correct"
+        }
+      ]
+    },
+    "C12": {
+      "public_summary": "Gửi tệp mật khẩu theo kiểu multipart qua hàm SendData.",
+      "reason": "Dòng 826 xác nhận lời gọi, tệp và kiểu nội dung. Để xác nhận hiệu ứng gửi cần kiểm tra tiếp thân hàm.",
+      "atoms": [
+        {
+          "key": "password-send-effect",
+          "label": "unsupported",
+          "until": " a file named"
+        },
+        {
+          "key": "password-handoff",
+          "label": "correct"
+        }
+      ]
+    },
+    "C13": {
+      "public_summary": "Gửi thông báo lỗi qua hàm Send.",
+      "reason": "Dòng 833 truyền trường Message của ngoại lệ. Trích dẫn thiếu phần hàm thực hiện truyền.",
+      "atoms": [
+        {
+          "key": "error-send-effect",
+          "label": "unsupported",
+          "until": " an error message"
+        },
+        {
+          "key": "password-error-call",
+          "label": "correct"
+        }
+      ]
+    },
+    "C14": {
+      "public_summary": "Gọi hàm cookie rồi diễn giải lời gọi thành hành vi lấy cookie.",
+      "reason": "Dòng 75 xác nhận lời gọi. Phần thân hàm đọc kho cookie nằm ngoài các dòng 63–94.",
+      "atoms": [
+        {
+          "key": "cookie-helper",
+          "label": "correct",
+          "until": " which is an operation"
+        },
+        {
+          "key": "cookie-effect-from-name",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C15": {
+      "public_summary": "Gọi hàm mật khẩu rồi diễn giải lời gọi thành hành vi lấy mật khẩu.",
+      "reason": "Dòng 76 xác nhận lời gọi. Trích dẫn 63–94 thiếu thân hàm để kiểm phần diễn giải.",
+      "atoms": [
+        {
+          "key": "password-helper-call",
+          "label": "correct",
+          "until": " which is an operation"
+        },
+        {
+          "key": "password-intent-from-name",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C16": {
+      "public_summary": "Sao chép kho cookie của Chrome sang cookies.db trong thư mục tạm.",
+      "reason": "Các dòng 713–714 tạo đường dẫn nguồn và đích từ biến thư mục tạm. Dòng 720 thực hiện phép sao chép.",
+      "atoms": [
+        {
+          "key": "cookie-copy",
+          "label": "correct"
+        }
+      ]
+    },
+    "C17": {
+      "public_summary": "Thử giải mã một mảng byte qua ProtectedData.Unprotect.",
+      "reason": "Dòng 696–700 chuẩn bị mảng đầu vào và gọi đúng API. Câu chỉ mô tả một lần thử.",
+      "atoms": [
+        {
+          "key": "dpapi-unprotect-attempt",
+          "label": "correct"
+        }
+      ]
+    },
+    "C18": {
+      "public_summary": "Mở luồng để đọc tệp theo đối số đường dẫn.",
+      "reason": "Các dòng 1919–1921 mở luồng và đọc nội dung tệp vào mảng.",
+      "atoms": [
+        {
+          "key": "file-upload-stream-read",
+          "label": "correct"
+        }
+      ]
+    },
+    "C19": {
+      "public_summary": "Gửi multipart qua helper và liệt kê các trường trong từ điển.",
+      "reason": "Dòng 1924–1929 cho thấy cấu trúc từ điển và lời gọi hàm. Trích dẫn 1911–1935 thiếu thân hàm ghi yêu cầu ra mạng.",
+      "atoms": [
+        {
+          "key": "multipart-send-from-call",
+          "label": "unsupported",
+          "until": " using the"
+        },
+        {
+          "key": "multipart-fields",
+          "label": "correct"
+        }
+      ]
+    },
+    "C20": {
+      "public_summary": "Đưa URL tĩnh làm ứng viên IOC.",
+      "reason": "URL tồn tại ở dòng 1928 dưới trường ảnh đại diện. Tính như C5 khi chấm độ liên quan của IOC với kênh gửi. Hai câu lặp cùng một chỉ báo sai loại, được gộp khi tính theo đơn vị.",
+      "atoms": [
+        {
+          "key": "avatar-as-channel-indicator",
+          "label": "incorrect"
+        }
+      ]
+    },
+    "C21": {
+      "public_summary": "Gán T1539 cho luồng thu thập cookie phiên.",
+      "reason": "Hai trích dẫn liền nhau 709–730 và 731–751 xác định kho Chrome, đích sao chép, phép sao chép ở 720, thao tác đọc bảng ở 727–728 và xử lý giá trị ở 747. Bằng chứng đủ cho kỹ thuật thu thập cookie trong mã tĩnh.",
+      "atoms": [
+        {
+          "key": "cookie-technique",
+          "label": "correct"
+        }
+      ]
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "password-helper-call",
+      "kind": "behavior",
+      "proposition": "Invokes the local browser password helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 76,
+          "end_line": 76
+        }
+      ]
+    },
+    {
+      "id": "multipart-form-construction",
+      "kind": "behavior",
+      "proposition": "Builds a multipart form from file content and related fields.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1728,
+          "end_line": 1728
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1729,
+          "end_line": 1729
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1921,
+          "end_line": 1921
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1923,
+          "end_line": 1923
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1925,
+          "end_line": 1925
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1929,
+          "end_line": 1929
+        }
+      ]
+    },
+    {
+      "id": "multipart-http-write",
+      "kind": "behavior",
+      "proposition": "Writes the multipart body to the HTTP POST request stream.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1730,
+          "end_line": 1730
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1744,
+          "end_line": 1744
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1749,
+          "end_line": 1749
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1752,
+          "end_line": 1752
+        }
+      ]
+    },
+    {
+      "id": "multipart-http-user-agent",
+      "kind": "behavior",
+      "proposition": "Sets the HTTP user-agent on the outbound request.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1746,
+          "end_line": 1746
+        }
+      ]
+    },
+    {
+      "id": "multipart-fields",
+      "kind": "behavior",
+      "proposition": "Adds a file parameter, filename, username and content fields to the form.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1924,
+          "end_line": 1924
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1925,
+          "end_line": 1925
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1926,
+          "end_line": 1926
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1927,
+          "end_line": 1927
+        }
+      ]
+    },
+    {
+      "id": "token-helper-call",
+      "kind": "behavior",
+      "proposition": "Calls the helper that prepares content from a token variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 259,
+          "end_line": 259
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 260,
+          "end_line": 260
+        }
+      ]
+    },
+    {
+      "id": "token-content-call",
+      "kind": "behavior",
+      "proposition": "Passes prepared content into the SendContent helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 260,
+          "end_line": 260
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 261,
+          "end_line": 261
+        }
+      ]
+    },
+    {
+      "id": "dpapi-unprotect-attempt",
+      "kind": "behavior",
+      "proposition": "Passes a byte array to ProtectedData.Unprotect.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 696,
+          "end_line": 696
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 700,
+          "end_line": 700
+        }
+      ]
+    },
+    {
+      "id": "file-upload-stream-read",
+      "kind": "behavior",
+      "proposition": "Opens a stream for the path argument and reads its bytes.",
+      "source_references": [
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1919,
+          "end_line": 1919
+        },
+        {
+          "evidence_id": "ev_f43db7e88cd340f1",
+          "line": 1921,
+          "end_line": 1921
+        }
+      ]
+    }
+  ]
+}

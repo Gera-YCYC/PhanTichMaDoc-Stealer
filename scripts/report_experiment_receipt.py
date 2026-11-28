@@ -5,12 +5,73 @@ import argparse
 from collections import Counter
 import hashlib
 import json
+import math
 from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from stealer_agent.journal import canonical, dump_json, utc_now, verify_journal
+
+
+def additional_measurements(directory, analysis, journal_hash):
+    from stealer_agent.yara_case import RULES, select_row
+    from stealer_agent.yara_corpus import validate_scan
+
+    result = {}
+    path = directory/'host-resources.json'
+    sample = analysis['sample_sha256']
+    if path.exists():
+        obs = json.loads(path.read_bytes())
+        if (obs['run_id'], obs['sample_sha256'], obs['journal_sha256'], obs['model_digest']) != (
+                directory.name, sample, journal_hash, analysis['model']['digest']):
+            raise ValueError('Memory observation and journal identities differ')
+        m = obs['measurements']
+        numbers = ('target_interval_s','samples','ram_samples','gpu_samples',
+                   'max_sample_gap_s','minimum_available_ram_bytes')
+        numeric = {k: m[k] for k in numbers}
+        if any(v is not None and (type(v) not in (int, float) or not math.isfinite(v) or v < 0)
+               for v in numeric.values()):
+            raise ValueError('Invalid resource measurement')
+        for key in ('gpu_peak_used_mib_by_index','gpu_total_mib_by_index'):
+            if not all(i.isascii() and i.isdigit() and type(v) is int and v >= 0 for i,v in m[key].items()):
+                raise ValueError('Invalid GPU index or memory measurement')
+            numeric[key] = m[key]
+        result['sampled_host_resources'] = numeric
+    scans = []
+    for path in sorted(directory.glob('yara/scan_*/result.json')):
+        public = json.loads(path.read_bytes())
+        log = path.parent/'events.jsonl'
+        n = verify_journal(log)
+        rows = [json.loads(line) for line in log.read_bytes().splitlines()]
+        saved = rows[-1].get('result')
+        if (rows[-1]['event'] != 'rescan_finished' or public !=
+                {**saved, 'scan_journal_events': n, 'scan_journal_sha256': hashlib.sha256(log.read_bytes()).hexdigest()}
+                or saved['sample_sha256'] != sample or saved['analysis_run'] != directory.name
+                or saved['analysis_journal_sha256'] != journal_hash or saved['model'] != analysis['model']['tag']
+                or saved['analysis_verdict'] != analysis['analysis']['verdict']):
+            raise ValueError('YARA attachment differs from the journal or the analyzed sample')
+        pages = [e['raw'] for e in rows if e['event'] in ('vm_observation','evidence_page')]
+        identifiers = {(p['evidence_id'],p['output_sha256'],p['sample_sha256']) for p in pages}
+        lines = [line for p in pages for line in p['lines']]
+        if (len(identifiers) != 1 or pages[0]['sample_sha256'] != sample or pages[0]['tool'] != 'test_yara'
+                or [r['line'] for r in lines] != list(range(1, pages[0]['total_lines'] + 1))):
+            raise ValueError('Incomplete or mixed YARA output pages')
+        generation, rule_name = RULES[saved['model']]
+        corpus = json.loads((ROOT/'eval/corpora/real-yara-development-v3.json').read_bytes())
+        rule = (ROOT/'rules'/rule_name).read_text(encoding='utf-8')
+        scan = validate_scan(json.loads(''.join(r['text'] for r in lines)), corpus, 'training', rule)
+        match = select_row(scan, analysis['sample'], sample)
+        if (saved['rule_names'] != match['rules'] or saved['matched'] is not match['matched']
+                or saved['generation_run'] != generation or saved['rule_sha256'] != scan['rule_sha256']):
+            raise ValueError('YARA result differs from original VM output or frozen rule')
+        scans.append({'generation_run': generation, 'rule_file': rule_name, 'rule_sha256': scan['rule_sha256'],
+                      'matched': match['matched'], 'rule_names': match['rules'],
+                      'partition': scan['corpus'], 'partition_size': len(scan['results']),
+                      'scan_journal_sha256': public['scan_journal_sha256'], 'scan_journal_events': n})
+    if scans:
+        result['subsequent_vm_yara_scans'] = scans
+    return result
 
 
 def summarize(directory):
@@ -66,6 +127,7 @@ def summarize(directory):
     experiment_config.pop('expected_sample_sha256', None)
     decisions = [e for e in events if e['event'] == 'operation_review_decision']
     return {
+        **additional_measurements(directory, result, hashlib.sha256(path.read_bytes()).hexdigest()),
         'run_id': result['run_id'], 'sample': result['sample'], 'sample_sha256': result['sample_sha256'],
         'evidence_kind': result.get('evidence_kind'), 'status': result['status'],
         'source_manifest_sha256': source['manifest_sha256'],

@@ -22,10 +22,18 @@ Khi trình bày trực tiếp, chỉ vào dòng `CALL` để giải thích công
 Trên máy nhóm đã chuẩn bị, khởi động lab, đồng bộ và kiểm tra VM theo ba lệnh đầu ở trên. Dùng lệnh sau để trình bày lượt phân tích .NET. Sau khi xem kết quả, chạy `.\scripts\Stop-Lab.ps1` để trả bộ nhớ.
 
 ```powershell
-.\scripts\Run-Demo.ps1 -Sample public_mercurial.bin -Profile techniques-8b
+.\scripts\Run-Demo.ps1 -Sample public_mercurial.bin -Profile techniques-8b -WithYara -MeasureResources
 ```
 
-Lượt `20261128T004729_8df9f715` dùng Qwen3 8B, mất 8 phút 13 giây. Agent gọi công cụ 17 lần qua hai backend pefile và ILSpy, gọi SLM 48 lần và ghi 252 sự kiện. Trong báo cáo, mở phần IOC để thấy **dòng 37**. Trình phân tích cú pháp trong VM xác định một cấu hình Discord webhook chứa thành phần có dạng khóa. Báo cáo công khai giữ loại IOC, vị trí và hash. Đây là bằng chứng về cấu hình trong tệp. Muốn khẳng định dữ liệu đã truyền đi cần bằng chứng khác. [Biên bản từ nhật ký thực](../deliverables/real-demo-evidence/mercurial-techniques-v12-run.json).
+Lượt mới `20261128T012820_c485ff68` dùng Qwen3 8B với bản báo cáo v13. Agent gọi pefile và ILSpy trong VM, thực hiện 17 lần gọi công cụ và 50 lần gọi model trong 637,9 giây. Nhật ký của vòng phân tích có 262 sự kiện. Kết luận là `suspicious` trên mẫu đã biết độc. [Biên bản lượt chạy](../deliverables/real-demo-evidence/mercurial-techniques-v13-run.json).
+
+Khi trình bày, mở mục **Chỉ dấu cấu hình kênh gửi** để chỉ dòng 37 chứa cấu hình Discord webhook. Tiếp theo, mở **C21**. Hai khoảng 709–730 và 731–751 cho phép lần từ kho cookie Chrome qua phép sao chép ở dòng 720 tới chỗ đọc và xử lý giá trị. Câu T1539 nay có đủ chứng cứ tĩnh. Cuối buổi, mở `ket-qua.md` từ đường dẫn YARA in ra. YARA trong VM quét lại sáu tệp trong phân vùng phát triển bằng luật đã cố định và xác nhận đúng SHA-256 của Mercurial khớp `LabCorpus_05`. Máy đo 299 lần, VRAM toàn GPU cao nhất quan sát được là 4.173/6.144 MiB. [Bảng đối chiếu 21 câu](../deliverables/real-demo-evidence/20261128T012820_c485ff68/review.md).
+
+Sau tự duyệt, 8/14 câu đúng, 2 câu sai và 4 câu thiếu căn cứ. Hai câu sai đều đưa địa chỉ ảnh đại diện vào danh sách IOC của kênh gửi. Dòng 1928 có literal thật nhưng cho thấy vai trò hiển thị của nó. Hai câu tính là một nhầm lẫn khi gộp chỉ báo trùng. F1 riêng IOC + ATT&CK là **40,00%** trên ba mục tham chiếu, so với 0% ở v12. F1 trên toàn bộ 21 mục giảm từ 62,86% xuống **43,75%**. Hai lượt lấy các đoạn mã khác nhau và chỉ dùng một mẫu development. [Điểm v13 trước và sau tự duyệt](../deliverables/real-demo-evidence/20261128T012820_c485ff68/atomic-score.json).
+
+### Lượt đối chiếu trước khi sửa trích dẫn
+
+Lượt v12 `20261128T004729_8df9f715` dùng Qwen3 8B, mất 8 phút 13 giây. Agent gọi công cụ 17 lần qua hai backend pefile và ILSpy, gọi SLM 48 lần và ghi 252 sự kiện. Trong báo cáo, mở phần IOC để thấy **dòng 37**. Trình phân tích cú pháp trong VM xác định một cấu hình Discord webhook chứa thành phần có dạng khóa. Báo cáo công khai giữ loại IOC, vị trí và hash. Đây là bằng chứng về cấu hình trong tệp. Muốn khẳng định dữ liệu đã truyền đi cần bằng chứng khác. [Biên bản từ nhật ký thực](../deliverables/real-demo-evidence/mercurial-techniques-v12-run.json).
 
 Để minh họa giới hạn của SLM, mở câu **C19**. Qwen gán T1539. Toàn hàm phù hợp với hành vi lấy cookie phiên, nhưng ba khoảng dòng mà model trích bỏ qua dòng 720 nối nguồn Chrome với bản sao SQLite đang đọc. Bộ tự duyệt giữ câu này. Phép chấm kỹ thuật gắn nhãn *thiếu căn cứ* vì người đọc phải tra ngoài trích dẫn mới kiểm được quan hệ đó. IOC mà công cụ phát hiện được ghi riêng và có thể kiểm tra độc lập. [Bảng chấm 19 câu](../deliverables/real-demo-evidence/20261128T004729_8df9f715/review.md).
 

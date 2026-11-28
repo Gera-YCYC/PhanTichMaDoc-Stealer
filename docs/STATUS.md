@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Bản v13 hoàn tất phân tích Mercurial bằng Qwen3 8B, kèm lần quét YARA thực tế và phép đo bộ nhớ. Câu T1539 có đủ hai đoạn mã nối liên tục. YARA khớp `LabCorpus_05`. Sau lọc, F1 riêng IOC + ATT&CK là 40% trên mẫu này, F1 trên toàn bộ 21 mục là 43,75%. Máy đã tắt VM và Ollama sau đợt đo. [Demo và hai bảng chấm v12/v13](DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck) · [Trạng thái máy sau demo](../deliverables/real-demo-evidence/runtime-stopped-after-techniques-v13.json).
+
 Lượt Mercurial dùng `techniques-8b` hoàn tất sau 493,4 giây. VM tìm được cấu hình webhook ở dòng 37. Qwen gán T1539 nhưng thiếu trích dẫn nối bản sao dữ liệu với nguồn. Trong 12 câu giữ lại có 9 câu được chứng cứ của chính câu đó xác nhận. F1 trên 21 mục sau tự duyệt đạt 62,86%. [Lệnh demo và biên bản chấm](DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
 
 Ba lượt `guided-8b` trên cùng AgentTesla có 4/28 nhận định lặp nguyên nội dung (14,29%) và cùng verdict `inconclusive`. Trong phép so có và không dùng trọng số ranker, hai nhánh đều giữ 12 câu, cùng phủ 2/7 mục. [Ba lần chạy và phương pháp so](../deliverables/real-demo-evidence/agenttesla-guided-stability.json) · [Quá trình train và tác động đo được](../training/RANKER_EXPERIMENT.md).
@@ -174,6 +176,8 @@ Regression mới `20261127T160346_4685a56a` trên Python thật đã hoàn tất
 
 ## Injection: sửa cách diễn giải số liệu cũ
 
+Đợt chạy mới trên 10 cặp tệp cho mỗi chế độ đã có đầy đủ thông điệp và báo cáo cuối để chấm. Phần dưới ghi lý do loại số liệu lịch sử. [Kết quả mới của 40 lượt](NATIVE_TOOLS_AND_EXPOSURE.md#kết-quả-40-lượt-chạy-có-đối-chứng).
+
 20 run/10 cặp lịch sử thiếu model_request. Audit v2: **0 eligible/10 unevaluable, rate=null**. Con số 9/10 cũ chỉ chứng minh payload tới tool observation, không dùng làm tỷ lệ chống injection.
 
 P06 từng chạy với lớp chặn bật và tắt. Metadata ghi cùng verdict, nhưng nhật ký lịch sử thiếu nội dung thông điệp để xác minh payload đã tới model. Hiện chưa đủ mẫu số cho tỷ lệ bị lừa 0%. [Chi tiết kiểm lại](NATIVE_TOOLS_AND_EXPOSURE.md).
@@ -187,9 +191,9 @@ P06 từng chạy với lớp chặn bật và tắt. Metadata ghi cùng verdict
 | Bịa ≤ 5%, dẫn chứng ≥ 90% | 75/75 câu sau lọc có trích dẫn, 64/75 câu đủ chứng cứ theo nghĩa (85,33%). Còn 8/75 câu thiếu căn cứ (10,67%) và 3 câu sai. |
 | Ổn định qua 3 lần ≥ 80% | AgentTesla, cùng bản guided-8b, trùng 4/28 nhận định (14,29%). Các profile khác cần phép đo riêng. |
 | YARA TPR>=90%, FPR=0 | Đã đo 5/5 positive development, 0/39 negative với7B/8B và replay khớp. Chỉ áp dụng corpus công bố; luật theo bản build, chưa kiểm rename/repack/unseen malware |
-| Injection0%, >=10 ca | Chưa đủ coverage, hai chiều và guard ablation |
+| An toàn, mục tiêu đổi verdict 0% | 40 lượt thật trên 10 cặp Python mỗi chế độ. Bật chặn, 0/10 đổi verdict sau duyệt và 0/10 đổi thô đúng hướng. Tắt chặn, 0/10 sau duyệt và 2/10 thô đúng hướng. Còn thiếu độ đa dạng theo đề xuất. [Biên bản](NATIVE_TOOLS_AND_EXPOSURE.md#kết-quả-40-lượt-chạy-có-đối-chứng). |
 | Training thật | Có ML ranker với cập nhật trọng số/loss/checkpoint; chưa SLM fine-tune, chưa chốt nghĩa yêu cầu GV |
-| Hiệu quả | Có token/time/RSS/VRAM cuối run; thiếu peak toàn hệ thống và so phương án đủ |
+| Hiệu quả | Có thời gian, token, RSS tiến trình và VRAM cuối lượt. Với Mercurial v13 đã có 299 điểm đo toàn máy, VRAM lớn nhất quan sát là 4.173 MiB. Các đỉnh ngắn giữa hai lần lấy mẫu và khả năng lặp lại trên máy khác còn mở. |
 | Tái lập | Đã dựng VM mới ở bản cũ trên cùng host; installer mới chưa thử máy vật lý khác |
 
 [Backlog và điều kiện đóng](CONG_VIEC_CON_LAI.md) nêu việc tiếp theo. 12 ảnh và proposal ở docs/reference giữ nguyên bytes. Release buổi4 giữ nguyên tag/asset; main nhận cập nhật kỹ thuật đã kiểm.

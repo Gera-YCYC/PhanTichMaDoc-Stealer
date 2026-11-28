@@ -24,4 +24,6 @@ Nguồn ground truth phải độc lập với chính output của agent. Log c�
 
 ## Mercurial với profile techniques-8b
 
+Lượt v13 `20261128T012820_c485ff68` có 21 câu. Bảng chấm ở C21 chỉ ra hai trích dẫn T1539 liền nhau. C5 và C20 minh họa lỗi đưa URL ảnh đại diện vào danh sách IOC của kênh gửi. Sau lọc còn 8 câu đúng, 2 sai và 4 thiếu căn cứ. [Bảng đầy đủ v13](../deliverables/real-demo-evidence/20261128T012820_c485ff68/review.md).
+
 Run `20261128T004729_8df9f715` có 19 câu đã đối chiếu, gồm cả 7 câu bộ tự duyệt loại. Trong 12 câu giữ có 9 đúng và 3 thiếu căn cứ. Mười mục trong đáp án 21 mục còn thiếu sau lọc. Thông tin IOC mà VM trích được có bảng riêng trong biên bản để người chấm phân biệt với nhận định của SLM. [Agent nói gì, trích dẫn ở đâu, nhãn và lý do](../deliverables/real-demo-evidence/20261128T004729_8df9f715/review.md) · [Kết quả các công cụ trong VM](../deliverables/real-demo-evidence/mercurial-techniques-v12-run.json).

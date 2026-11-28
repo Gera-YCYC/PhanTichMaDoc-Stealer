@@ -320,6 +320,31 @@
     "sha256": "dc4fdcc91635dd71b90be6453878d24c76e8b8bd4f0bcd71385677650c03ae2f"
   },
   {
+    "path": "deliverables/real-demo-evidence/20261128T012820_c485ff68/atomic-mapping.json",
+    "bytes": 36435,
+    "sha256": "b57b8c58074f66df282f38192e7e81404603310ce3a0e148a7de9feedde6c2a7"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/20261128T012820_c485ff68/atomic-score.json",
+    "bytes": 15024,
+    "sha256": "ec34225449d853fc5d89eabda4b72ac22c87058ca7f82250fd7cecdafae00998"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/20261128T012820_c485ff68/claim-score.json",
+    "bytes": 1739,
+    "sha256": "a595472a3c218f938d3e66b34fff4072e748bf04c36a62eb34e0b812abc5f717"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/20261128T012820_c485ff68/review.md",
+    "bytes": 6383,
+    "sha256": "82ecc605ba3d5cd25f614f77e02500c22b5fd6256a9337856db7d7305d19a6b3"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/20261128T012820_c485ff68/source-audit.json",
+    "bytes": 17374,
+    "sha256": "e32b3830af2b40a6654f653c237a9202fed65b3be412f488298fa3d83c2d7153"
+  },
+  {
     "path": "deliverables/real-demo-evidence/agenttesla-atomic-source-check.json",
     "bytes": 856,
     "sha256": "317b7d24916bd7a187e8bf285b6e4535b81d2355695276cd072ece1d31b6a5e4"
@@ -383,6 +408,11 @@
     "path": "deliverables/real-demo-evidence/atomic-report-stage/comparison.json",
     "bytes": 470,
     "sha256": "6cc94f494f27c7338b0d6e863ec30bd9d8d0fc2bf4a330aee1fb62ee26d44b17"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/blinded-guard-comparison.json",
+    "bytes": 35950,
+    "sha256": "84a715294b830f88aca04eb31838647047765f3d2c212a719942c37cd002abe3"
   },
   {
     "path": "deliverables/real-demo-evidence/cards-qwen25-runs.json",
@@ -543,6 +573,11 @@
     "path": "deliverables/real-demo-evidence/mercurial-techniques-v12-run.json",
     "bytes": 4847,
     "sha256": "018a96a276ef07ce40b73412cf5b0978eef7c0ae921edd14745e5f1d615d7bb4"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/mercurial-techniques-v13-run.json",
+    "bytes": 5662,
+    "sha256": "72fce4eafa8bf86c7bbe2b69baf86e668235f2b5ce0dc01da82217b16a6e935d"
   },
   {
     "path": "deliverables/real-demo-evidence/model-projection-v5-baseline-audit.json",
@@ -845,9 +880,19 @@
     "sha256": "18638eb304ce5eddfdf5db3fc14d4e501f5ea994de6997c09ac7f80333643118"
   },
   {
+    "path": "deliverables/real-demo-evidence/runtime-stopped-after-guided-batch.json",
+    "bytes": 422,
+    "sha256": "5306b08681c0efe1c7035d6dd2650069a689a9a392a3ad02c2d4bb5b5f92b814"
+  },
+  {
     "path": "deliverables/real-demo-evidence/runtime-stopped-after-operations-v8.json",
     "bytes": 367,
     "sha256": "4f823357ef2d779caec898212d9445b9adc41a781847a4ca99e3d093ced25ffe"
+  },
+  {
+    "path": "deliverables/real-demo-evidence/runtime-stopped-after-techniques-v13.json",
+    "bytes": 421,
+    "sha256": "7fce6e3d5997e18b5984ef528f30ac8d164bb5f1fceef023d219753fd1b16273"
   },
   {
     "path": "deliverables/real-demo-evidence/runtime-stopped-after-yara-v3.json",
@@ -1011,8 +1056,8 @@
   },
   {
     "path": "docs/CONG_VIEC_CON_LAI.md",
-    "bytes": 14317,
-    "sha256": "dbde787f897e0954ed93c82d01b56a97833f14d0780c70f90bf8a6f113dec121"
+    "bytes": 15083,
+    "sha256": "b3ebb82fd65230d9cdb190b059db7e8ded79d9090ea999d328923da31cd98da2"
   },
   {
     "path": "docs/DATASET.md",
@@ -1021,8 +1066,8 @@
   },
   {
     "path": "docs/DEMO_COVERAGE.md",
-    "bytes": 18390,
-    "sha256": "307d3fa14d8056fb557220548b1eb5cb29597406190045ece3163a7f13f05261"
+    "bytes": 20377,
+    "sha256": "f35c4efe34ff939060f654dd05c4b0c11561850e1601e2b765b57f24c45bee8c"
   },
   {
     "path": "docs/EVIDENCE_CARDS.md",
@@ -1056,8 +1101,8 @@
   },
   {
     "path": "docs/NATIVE_TOOLS_AND_EXPOSURE.md",
-    "bytes": 7395,
-    "sha256": "72c916f6e93bfb737589676889fbc1fd89393fdae79dcc0ba6ac54565d1297d3"
+    "bytes": 9232,
+    "sha256": "51ac2d7fac7574a5eeb085bf693f10e96432b8d21e1bd1622a0cb5b4fe7eb2b6"
   },
   {
     "path": "docs/OPERATIONS_CONTEXT_V8.md",
@@ -1076,8 +1121,8 @@
   },
   {
     "path": "docs/PHIEU_DANH_GIA.md",
-    "bytes": 5127,
-    "sha256": "d51c9d604663bc51c869bf637f57fd94ccf3b2cbcc84c0ac9c346488e8a6d35c"
+    "bytes": 5505,
+    "sha256": "540d060d306976353931fc43d9a27dc7af0846b8dbe799598431e6f5011952f5"
   },
   {
     "path": "docs/PROJECT_GOAL.md",
@@ -1191,8 +1236,8 @@
   },
   {
     "path": "docs/STATUS.md",
-    "bytes": 38469,
-    "sha256": "5d320f6dee541ca76f52c0dcee67a89df0df3725517bd60f557ea8079e47a0ea"
+    "bytes": 39844,
+    "sha256": "b0bf0d6352ae162a7c962335f5b9e2715b08f61ad49f9df27dfc1d162b93e8eb"
   },
   {
     "path": "docs/SYNTAX_CONTEXT.md",
@@ -1201,8 +1246,8 @@
   },
   {
     "path": "docs/TEAM_SETUP.md",
-    "bytes": 14652,
-    "sha256": "509de89c76981536e91ae222485c00e513f7c8dcb47f1b23da8c8f9d56fb1e12"
+    "bytes": 15656,
+    "sha256": "eff128416494191134ae9ca68b73a70fd8ece0ae0544e73f94d611d68c964e74"
   },
   {
     "path": "docs/THIRD_PARTY.md",
@@ -1221,8 +1266,8 @@
   },
   {
     "path": "docs/YARA_REAL_CORPUS.md",
-    "bytes": 11920,
-    "sha256": "0d68ade5d0cb473ac9565dd56391ea5fdff9a39f834893351265d004472d29fc"
+    "bytes": 12431,
+    "sha256": "8fab1f89bf2baed04adb8c544bc9c8648b948c5d65a483d58432bef24b74b8ce"
   },
   {
     "path": "docs/YEU_CAU_GIANG_VIEN.md",
@@ -1303,6 +1348,11 @@
     "path": "eval/adjudications/20261128T004729_8df9f715-judgments.json",
     "bytes": 9183,
     "sha256": "7f58bba12717814c3650de3bebb58c7e3a408780cba8687968efc4bf682580bf"
+  },
+  {
+    "path": "eval/adjudications/20261128T012820_c485ff68-judgments.json",
+    "bytes": 15687,
+    "sha256": "61b2f2830b74b6e4424bab676b6ed4fdccb4efb77246a54572e94ad9496b461e"
   },
   {
     "path": "eval/adjudications/gomorrah-operations-v8-full-audit.json",
@@ -1696,8 +1746,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 14396,
-    "sha256": "93d1bb754691329aede362ad56fdb4b150e9df755cee25405d02d29d1143c30d"
+    "bytes": 14671,
+    "sha256": "e641e52710f7e65be25b3bb6ad7e1bc13ed3ab181704d68d9f9695d3c0333b99"
   },
   {
     "path": "requirements-dev.lock.txt",
@@ -2061,8 +2111,8 @@
   },
   {
     "path": "scripts/report_experiment_receipt.py",
-    "bytes": 7900,
-    "sha256": "9d6f67913f8ff40575d9e908234a9582119f9a540b89b460edfb4a2232632d84"
+    "bytes": 11943,
+    "sha256": "9ca7cfa19b5e51a6f6778216b0fec06baeaab8b1cd640fca1f564994e5f271ba"
   },
   {
     "path": "scripts/restore_release_model.py",
@@ -2071,8 +2121,8 @@
   },
   {
     "path": "scripts/Run-Demo.ps1",
-    "bytes": 1248,
-    "sha256": "b0116435a019d1ed38aae08dbc36348aa7b7d125c6cbef469bbeddda2c7bf0be"
+    "bytes": 1401,
+    "sha256": "55c0bd66abae653ddfa93414b1a7ff0cb1570ae0cedf97e5a79e378832a17028"
   },
   {
     "path": "scripts/Run-YaraCorpus.ps1",
@@ -2111,8 +2161,8 @@
   },
   {
     "path": "scripts/Stop-Lab.ps1",
-    "bytes": 402,
-    "sha256": "97dac38b7952dc3e08aadbbf6b3f23202bb61303f6d3dff8409854fef3dd3416"
+    "bytes": 2715,
+    "sha256": "13d866d4d02283e7e412e24a5c87c0be4c6eead8a63f17a3594100800b0fef20"
   },
   {
     "path": "scripts/Stop-LocalModel.ps1",
@@ -2211,8 +2261,8 @@
   },
   {
     "path": "stealer_agent/cli.py",
-    "bytes": 2288,
-    "sha256": "f70bbd9faec485df4edd0928c225422c9e93d581301e42a68ec66720ae56c136"
+    "bytes": 3721,
+    "sha256": "30af9227e03e3d7d817117e46c184eec93b4d417da48bd5a669637c90342001e"
   },
   {
     "path": "stealer_agent/context_cards.py",
@@ -2232,7 +2282,7 @@
   {
     "path": "stealer_agent/evidence_cards.py",
     "bytes": 22868,
-    "sha256": "9973c358c50cca19e1910f635bde5ac3b47d99420ffe77ff8468d0c2610eb834"
+    "sha256": "197472caae987f805c2c8b24eb1561a26b363864f7ed7d45e41f5ee3fdfe5f4e"
   },
   {
     "path": "stealer_agent/grounding.py",
@@ -2285,6 +2335,11 @@
     "sha256": "cc1b0386899309af942dfe1adc36c7e0ebaf89da2d435b1a3c1af700ef0caa05"
   },
   {
+    "path": "stealer_agent/resource_window.py",
+    "bytes": 3101,
+    "sha256": "12f747f678de12682a43edda2fb5a2e09dd3e4b0f44be2d27fffc5e7da865c57"
+  },
+  {
     "path": "stealer_agent/reviewer.py",
     "bytes": 5258,
     "sha256": "0fd3353eeef6cd61b31dad70ba2ae09ad474d7b99d37fc7531aebb8c27a62c34"
@@ -2301,8 +2356,8 @@
   },
   {
     "path": "stealer_agent/technique_review.py",
-    "bytes": 5736,
-    "sha256": "f88ffe06771b7e9b9dc4a2d077dfe8615e8bbaa455cccc6127000bc629d90c30"
+    "bytes": 6232,
+    "sha256": "21f975b5c4250df7d3b88da102dd660fe0ddb585068cd7f7f4ba1a880cfc9ad7"
   },
   {
     "path": "stealer_agent/telemetry.py",
@@ -2323,6 +2378,11 @@
     "path": "stealer_agent/yara_agent.py",
     "bytes": 5881,
     "sha256": "8f25b0d64ec99ed90447ea55e3e4c99b4cea68ee315a5634b0ba6baa7e52f7a0"
+  },
+  {
+    "path": "stealer_agent/yara_case.py",
+    "bytes": 7020,
+    "sha256": "2fe020b2a7297ec7ca918ec548d4866f436fe8687db9d5a40e470748a4620ade"
   },
   {
     "path": "stealer_agent/yara_corpus.py",
@@ -2373,6 +2433,11 @@
     "path": "tests/test_core.py",
     "bytes": 12990,
     "sha256": "f5b9f97b0096708fb96ebd8f3ecf7dec9cc20ad604d766c6fe770fc9b24db46c"
+  },
+  {
+    "path": "tests/test_demo_measurements.py",
+    "bytes": 1201,
+    "sha256": "f33a61a443c7edeff3d85f7f70cc809f8fcc2c94c29a68a12cdd1118f24c4083"
   },
   {
     "path": "tests/test_evaluation.py",
@@ -2511,8 +2576,8 @@
   },
   {
     "path": "tests/test_technique_review.py",
-    "bytes": 1454,
-    "sha256": "eef4593f983ea50224e8bda43e22cd4d53ff3031b028d6959e347809013696b4"
+    "bytes": 2268,
+    "sha256": "dfc368fb507ff7135c5a1471e579dc0d2f43ac803486ce14788a2e8e4950f970"
   },
   {
     "path": "tests/test_training_contract.py",
@@ -2601,8 +2666,8 @@
   },
   {
     "path": "training/RANKER_EXPERIMENT.md",
-    "bytes": 9820,
-    "sha256": "78ec004c4fca5964812f96ae835af45a5d7c463ac0a5c11816dec3d819618ddf"
+    "bytes": 10462,
+    "sha256": "2bb5a7a113fda51834f2eb6846542b3ba2ecf11ee5944176e0bffc197dc5d84c"
   },
   {
     "path": "training/README.md",

@@ -1,0 +1,942 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "profile_sha256": "5e1cbc42324dab0dc87fb86bf723656269784db260aeed81b3513155beaa663c",
+  "raw_report_sha256": "141844cf472ee897155bf799b68dff3e93b795616ebee7d495dfa45b059950ae",
+  "checked_report_sha256": "51bc7a6e8726af109ceaf946a85e86fb45a8736e20dbedf6ba8a7e624b5c8391",
+  "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+  "method": "Explicit exhaustive spans. Duplicate operations at the same site count once. API qualifiers are part of the asserted operation.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 37,
+          "label": "correct",
+          "unit_key": "cookie-helper",
+          "reference_id": "cookie-helper",
+          "reason": "Dòng 75 gọi hàm. Đoạn 713–720 xác định bản sao. Dòng 727–728 mở bản sao và chọn bảng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 65,
+              "end_line": 80,
+              "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 709,
+              "end_line": 744,
+              "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 282,
+              "end_line": 286,
+              "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+            }
+          ]
+        },
+        {
+          "start": 37,
+          "end": 85,
+          "label": "correct",
+          "unit_key": "cookie-copy",
+          "reference_id": "cookie-copy",
+          "reason": "Dòng 75 gọi hàm. Đoạn 713–720 xác định bản sao. Dòng 727–728 mở bản sao và chọn bảng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 65,
+              "end_line": 80,
+              "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 709,
+              "end_line": 744,
+              "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 282,
+              "end_line": 286,
+              "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+            }
+          ]
+        },
+        {
+          "start": 85,
+          "end": 139,
+          "label": "correct",
+          "unit_key": "cookie-table",
+          "reference_id": "cookie-table",
+          "reason": "Dòng 75 gọi hàm. Đoạn 713–720 xác định bản sao. Dòng 727–728 mở bản sao và chọn bảng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 65,
+              "end_line": 80,
+              "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 709,
+              "end_line": 744,
+              "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 282,
+              "end_line": 286,
+              "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 39,
+          "label": "correct",
+          "unit_key": "password-helper-call",
+          "reference_id": "password-helper-call",
+          "reason": "Dòng 76 có lời gọi. Phần mã nêu trong câu thiếu thân hàm xử lý mật khẩu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 65,
+              "end_line": 80,
+              "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 709,
+              "end_line": 744,
+              "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 282,
+              "end_line": 286,
+              "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+            }
+          ]
+        },
+        {
+          "start": 39,
+          "end": 103,
+          "label": "unsupported",
+          "unit_key": "password-intent-from-name",
+          "reference_id": null,
+          "reason": "Dòng 76 có lời gọi. Phần mã nêu trong câu thiếu thân hàm xử lý mật khẩu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 65,
+              "end_line": 80,
+              "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 709,
+              "end_line": 744,
+              "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 282,
+              "end_line": 286,
+              "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 118,
+          "label": "correct",
+          "unit_key": "multipart-form-construction",
+          "reference_id": "multipart-form-construction",
+          "reason": "Các dòng 1919–1929 chuẩn bị multipart, đoạn 1728–1752 tạo POST và ghi vào luồng yêu cầu. Dòng 1929 dùng biến địa chỉ. Các trích dẫn của câu chưa giải được giá trị của biến đó.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        },
+        {
+          "start": 118,
+          "end": 157,
+          "label": "correct",
+          "unit_key": "multipart-http-write",
+          "reference_id": "multipart-http-write",
+          "reason": "Các dòng 1919–1929 chuẩn bị multipart, đoạn 1728–1752 tạo POST và ghi vào luồng yêu cầu. Dòng 1929 dùng biến địa chỉ. Các trích dẫn của câu chưa giải được giá trị của biến đó.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        },
+        {
+          "start": 157,
+          "end": 175,
+          "label": "unsupported",
+          "unit_key": "multipart-webhook-destination",
+          "reference_id": null,
+          "reason": "Các dòng 1919–1929 chuẩn bị multipart, đoạn 1728–1752 tạo POST và ghi vào luồng yêu cầu. Dòng 1929 dùng biến địa chỉ. Các trích dẫn của câu chưa giải được giá trị của biến đó.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 29,
+          "label": "correct",
+          "unit_key": "multipart-http-write",
+          "reference_id": "multipart-http-write",
+          "reason": "Dòng 1744–1752 xác nhận phương thức, user-agent và ghi yêu cầu. Các trường riêng có ở 1924–1927. URL ở 1929 là một biến và địa chỉ khởi tạo nằm ngoài đoạn trích.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        },
+        {
+          "start": 29,
+          "end": 46,
+          "label": "unsupported",
+          "unit_key": "multipart-webhook-destination",
+          "reference_id": null,
+          "reason": "Dòng 1744–1752 xác nhận phương thức, user-agent và ghi yêu cầu. Các trường riêng có ở 1924–1927. URL ở 1929 là một biến và địa chỉ khởi tạo nằm ngoài đoạn trích.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        },
+        {
+          "start": 46,
+          "end": 71,
+          "label": "correct",
+          "unit_key": "multipart-http-user-agent",
+          "reference_id": "multipart-http-user-agent",
+          "reason": "Dòng 1744–1752 xác nhận phương thức, user-agent và ghi yêu cầu. Các trường riêng có ở 1924–1927. URL ở 1929 là một biến và địa chỉ khởi tạo nằm ngoài đoạn trích.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        },
+        {
+          "start": 71,
+          "end": 169,
+          "label": "correct",
+          "unit_key": "multipart-fields",
+          "reference_id": "multipart-fields",
+          "reason": "Dòng 1744–1752 xác nhận phương thức, user-agent và ghi yêu cầu. Các trường riêng có ở 1924–1927. URL ở 1929 là một biến và địa chỉ khởi tạo nằm ngoài đoạn trích.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 31,
+          "label": "incorrect",
+          "unit_key": "avatar-as-channel-indicator",
+          "reference_id": null,
+          "reason": "Dòng 1928 xác nhận URL là ảnh đại diện. Khi chấm đúng loại IOC theo mục tiêu kênh gửi, gán địa chỉ tài nguyên hiển thị vào danh sách IOC là sai loại. Literal trong tệp là có thật.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1919,
+              "end_line": 1934,
+              "projected_quote_sha256": "f041915bdabc307e32b85a450594e6b07025d4a8b7837531281ba0c86409efce"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1724,
+              "end_line": 1731,
+              "projected_quote_sha256": "f1c9a0aff9b0d8e26f1ccc0c47deb45917af00106ed955acffdcc1218df40727"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1733,
+              "end_line": 1761,
+              "projected_quote_sha256": "11ae54ebd8603bc4f7f8fe21a17c259a551a3d12f45031723fb472c270893763"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 67,
+          "label": "correct",
+          "unit_key": "login-copy",
+          "reference_id": "login-copy",
+          "reason": "Đường dẫn nguồn ở dòng 779, đích tạm ở 783–784 và thao tác sao chép ở 787.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 66,
+              "end_line": 81,
+              "projected_quote_sha256": "17d628c44a2c627f4b80b008eb1f8106a2ae7bf698ed93def1ba635799aad23b"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 775,
+              "end_line": 810,
+              "projected_quote_sha256": "c79bfbc98d0d6d6597ef80f0887fcf1d3ee10459cadcac628f8ab753c8ff1540"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 97,
+          "label": "correct",
+          "unit_key": "login-table",
+          "reference_id": "login-table",
+          "reason": "Dòng 779–787 xác định nguồn và sao chép tệp. Dòng 795–796 mở bản sao và đọc bảng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 66,
+              "end_line": 81,
+              "projected_quote_sha256": "17d628c44a2c627f4b80b008eb1f8106a2ae7bf698ed93def1ba635799aad23b"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 775,
+              "end_line": 810,
+              "projected_quote_sha256": "c79bfbc98d0d6d6597ef80f0887fcf1d3ee10459cadcac628f8ab753c8ff1540"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 37,
+          "label": "correct",
+          "unit_key": "cookie-helper",
+          "reference_id": "cookie-helper",
+          "reason": "Dòng 75 xác nhận lời gọi. Trích dẫn của câu dừng ở phía gọi và các hàm khác. Phần đọc cơ sở dữ liệu cookie nằm ngoài các đoạn đã nêu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 62,
+              "end_line": 77,
+              "projected_quote_sha256": "88686d16d4ec61ac335486197f5077385cfe31643ab306a2602033be8f23563a"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 248,
+              "end_line": 268,
+              "projected_quote_sha256": "17b7c53ef150b841a34c29cd451717f68700db97af0584b380884e871581b19d"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 275,
+              "end_line": 280,
+              "projected_quote_sha256": "09324525be2592a4ea09ddd30fa7a086c3263c1d463758e1cb51ead0e59e9f69"
+            }
+          ]
+        },
+        {
+          "start": 37,
+          "end": 72,
+          "label": "unsupported",
+          "unit_key": "cookie-effect-from-name",
+          "reference_id": null,
+          "reason": "Dòng 75 xác nhận lời gọi. Trích dẫn của câu dừng ở phía gọi và các hàm khác. Phần đọc cơ sở dữ liệu cookie nằm ngoài các đoạn đã nêu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 62,
+              "end_line": 77,
+              "projected_quote_sha256": "88686d16d4ec61ac335486197f5077385cfe31643ab306a2602033be8f23563a"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 248,
+              "end_line": 268,
+              "projected_quote_sha256": "17b7c53ef150b841a34c29cd451717f68700db97af0584b380884e871581b19d"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 275,
+              "end_line": 280,
+              "projected_quote_sha256": "09324525be2592a4ea09ddd30fa7a086c3263c1d463758e1cb51ead0e59e9f69"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 37,
+          "label": "correct",
+          "unit_key": "token-helper-call",
+          "reference_id": "token-helper-call",
+          "reason": "Dòng 259–261 cho thấy hai lời gọi cùng dữ liệu chuyển giữa chúng. Đoạn trích thiếu thao tác mạng và cấu hình đích của hàm nhận nội dung.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 62,
+              "end_line": 77,
+              "projected_quote_sha256": "88686d16d4ec61ac335486197f5077385cfe31643ab306a2602033be8f23563a"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 248,
+              "end_line": 268,
+              "projected_quote_sha256": "17b7c53ef150b841a34c29cd451717f68700db97af0584b380884e871581b19d"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 275,
+              "end_line": 280,
+              "projected_quote_sha256": "09324525be2592a4ea09ddd30fa7a086c3263c1d463758e1cb51ead0e59e9f69"
+            }
+          ]
+        },
+        {
+          "start": 37,
+          "end": 58,
+          "label": "correct",
+          "unit_key": "token-content-call",
+          "reference_id": "token-content-call",
+          "reason": "Dòng 259–261 cho thấy hai lời gọi cùng dữ liệu chuyển giữa chúng. Đoạn trích thiếu thao tác mạng và cấu hình đích của hàm nhận nội dung.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 62,
+              "end_line": 77,
+              "projected_quote_sha256": "88686d16d4ec61ac335486197f5077385cfe31643ab306a2602033be8f23563a"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 248,
+              "end_line": 268,
+              "projected_quote_sha256": "17b7c53ef150b841a34c29cd451717f68700db97af0584b380884e871581b19d"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 275,
+              "end_line": 280,
+              "projected_quote_sha256": "09324525be2592a4ea09ddd30fa7a086c3263c1d463758e1cb51ead0e59e9f69"
+            }
+          ]
+        },
+        {
+          "start": 58,
+          "end": 92,
+          "label": "unsupported",
+          "unit_key": "token-webhook-effect",
+          "reference_id": null,
+          "reason": "Dòng 259–261 cho thấy hai lời gọi cùng dữ liệu chuyển giữa chúng. Đoạn trích thiếu thao tác mạng và cấu hình đích của hàm nhận nội dung.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 62,
+              "end_line": 77,
+              "projected_quote_sha256": "88686d16d4ec61ac335486197f5077385cfe31643ab306a2602033be8f23563a"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 248,
+              "end_line": 268,
+              "projected_quote_sha256": "17b7c53ef150b841a34c29cd451717f68700db97af0584b380884e871581b19d"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 275,
+              "end_line": 280,
+              "projected_quote_sha256": "09324525be2592a4ea09ddd30fa7a086c3263c1d463758e1cb51ead0e59e9f69"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 127,
+          "label": "correct",
+          "unit_key": "cookie-handoff",
+          "reference_id": "cookie-handoff",
+          "reason": "Dòng 761 xác nhận đường dẫn và hai vai trò đối số được nêu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 753,
+              "end_line": 784,
+              "projected_quote_sha256": "cf84287c1b9b67208476258cccec8b6db017ec21d3487d5b62bc869ca32d43ff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 82,
+          "label": "correct",
+          "unit_key": "cookie-error-call",
+          "reference_id": "cookie-error-call",
+          "reason": "Các dòng 765–768 nối nhánh bắt lỗi với đối số của hàm.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 753,
+              "end_line": 784,
+              "projected_quote_sha256": "cf84287c1b9b67208476258cccec8b6db017ec21d3487d5b62bc869ca32d43ff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 14,
+          "label": "unsupported",
+          "unit_key": "password-send-effect",
+          "reference_id": null,
+          "reason": "Dòng 826 xác nhận lời gọi, tệp và kiểu nội dung. Để xác nhận hiệu ứng gửi cần kiểm tra tiếp thân hàm.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 817,
+              "end_line": 848,
+              "projected_quote_sha256": "9484a5083b28d161e3a8f1ff0f3c7203955728673a7c035b7cf3b04a8648525a"
+            }
+          ]
+        },
+        {
+          "start": 14,
+          "end": 118,
+          "label": "correct",
+          "unit_key": "password-handoff",
+          "reference_id": "password-handoff",
+          "reason": "Dòng 826 xác nhận lời gọi, tệp và kiểu nội dung. Để xác nhận hiệu ứng gửi cần kiểm tra tiếp thân hàm.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 817,
+              "end_line": 848,
+              "projected_quote_sha256": "9484a5083b28d161e3a8f1ff0f3c7203955728673a7c035b7cf3b04a8648525a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 14,
+          "label": "unsupported",
+          "unit_key": "error-send-effect",
+          "reference_id": null,
+          "reason": "Dòng 833 truyền trường Message của ngoại lệ. Trích dẫn thiếu phần hàm thực hiện truyền.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 817,
+              "end_line": 848,
+              "projected_quote_sha256": "9484a5083b28d161e3a8f1ff0f3c7203955728673a7c035b7cf3b04a8648525a"
+            }
+          ]
+        },
+        {
+          "start": 14,
+          "end": 90,
+          "label": "correct",
+          "unit_key": "password-error-call",
+          "reference_id": "password-error-call",
+          "reason": "Dòng 833 truyền trường Message của ngoại lệ. Trích dẫn thiếu phần hàm thực hiện truyền.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 817,
+              "end_line": 848,
+              "projected_quote_sha256": "9484a5083b28d161e3a8f1ff0f3c7203955728673a7c035b7cf3b04a8648525a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 37,
+          "label": "correct",
+          "unit_key": "cookie-helper",
+          "reference_id": "cookie-helper",
+          "reason": "Dòng 75 xác nhận lời gọi. Phần thân hàm đọc kho cookie nằm ngoài các dòng 63–94.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 63,
+              "end_line": 94,
+              "projected_quote_sha256": "a188fd6f7ba31baf1f66d76c9f242bd264a8afe01a0b3b6787e628d2c1d10ec7"
+            }
+          ]
+        },
+        {
+          "start": 37,
+          "end": 94,
+          "label": "unsupported",
+          "unit_key": "cookie-effect-from-name",
+          "reference_id": null,
+          "reason": "Dòng 75 xác nhận lời gọi. Phần thân hàm đọc kho cookie nằm ngoài các dòng 63–94.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 63,
+              "end_line": 94,
+              "projected_quote_sha256": "a188fd6f7ba31baf1f66d76c9f242bd264a8afe01a0b3b6787e628d2c1d10ec7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 39,
+          "label": "correct",
+          "unit_key": "password-helper-call",
+          "reference_id": "password-helper-call",
+          "reason": "Dòng 76 xác nhận lời gọi. Trích dẫn 63–94 thiếu thân hàm để kiểm phần diễn giải.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 63,
+              "end_line": 94,
+              "projected_quote_sha256": "a188fd6f7ba31baf1f66d76c9f242bd264a8afe01a0b3b6787e628d2c1d10ec7"
+            }
+          ]
+        },
+        {
+          "start": 39,
+          "end": 98,
+          "label": "unsupported",
+          "unit_key": "password-intent-from-name",
+          "reference_id": null,
+          "reason": "Dòng 76 xác nhận lời gọi. Trích dẫn 63–94 thiếu thân hàm để kiểm phần diễn giải.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 63,
+              "end_line": 94,
+              "projected_quote_sha256": "a188fd6f7ba31baf1f66d76c9f242bd264a8afe01a0b3b6787e628d2c1d10ec7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C16",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 135,
+          "label": "correct",
+          "unit_key": "cookie-copy",
+          "reference_id": "cookie-copy",
+          "reason": "Các dòng 713–714 tạo đường dẫn nguồn và đích từ biến thư mục tạm. Dòng 720 thực hiện phép sao chép.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 693,
+              "end_line": 724,
+              "projected_quote_sha256": "6b035456241551eceb3d7d7bfc517d3d353d8fe3d1abdaebaceb0b7e8033605a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C17",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 104,
+          "label": "correct",
+          "unit_key": "dpapi-unprotect-attempt",
+          "reference_id": "dpapi-unprotect-attempt",
+          "reason": "Dòng 696–700 chuẩn bị mảng đầu vào và gọi đúng API. Câu chỉ mô tả một lần thử.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 693,
+              "end_line": 724,
+              "projected_quote_sha256": "6b035456241551eceb3d7d7bfc517d3d353d8fe3d1abdaebaceb0b7e8033605a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C18",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 76,
+          "label": "correct",
+          "unit_key": "file-upload-stream-read",
+          "reference_id": "file-upload-stream-read",
+          "reason": "Các dòng 1919–1921 mở luồng và đọc nội dung tệp vào mảng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1911,
+              "end_line": 1935,
+              "projected_quote_sha256": "d918262905b84ac15c4447d3f02aa7a93c3c59c14e1aac8d17e9e000762bc837"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C19",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 44,
+          "label": "unsupported",
+          "unit_key": "multipart-send-from-call",
+          "reference_id": null,
+          "reason": "Dòng 1924–1929 cho thấy cấu trúc từ điển và lời gọi hàm. Trích dẫn 1911–1935 thiếu thân hàm ghi yêu cầu ra mạng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1911,
+              "end_line": 1935,
+              "projected_quote_sha256": "d918262905b84ac15c4447d3f02aa7a93c3c59c14e1aac8d17e9e000762bc837"
+            }
+          ]
+        },
+        {
+          "start": 44,
+          "end": 169,
+          "label": "correct",
+          "unit_key": "multipart-fields",
+          "reference_id": "multipart-fields",
+          "reason": "Dòng 1924–1929 cho thấy cấu trúc từ điển và lời gọi hàm. Trích dẫn 1911–1935 thiếu thân hàm ghi yêu cầu ra mạng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1911,
+              "end_line": 1935,
+              "projected_quote_sha256": "d918262905b84ac15c4447d3f02aa7a93c3c59c14e1aac8d17e9e000762bc837"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C20",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 73,
+          "label": "incorrect",
+          "unit_key": "avatar-as-channel-indicator",
+          "reference_id": null,
+          "reason": "URL tồn tại ở dòng 1928 dưới trường ảnh đại diện. Tính như C5 khi chấm độ liên quan của IOC với kênh gửi. Hai câu lặp cùng một chỉ báo sai loại, được gộp khi tính theo đơn vị.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 1911,
+              "end_line": 1935,
+              "projected_quote_sha256": "d918262905b84ac15c4447d3f02aa7a93c3c59c14e1aac8d17e9e000762bc837"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C21",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 58,
+          "label": "correct",
+          "unit_key": "cookie-technique",
+          "reference_id": "cookie-technique",
+          "reason": "Hai trích dẫn liền nhau 709–730 và 731–751 xác định kho Chrome, đích sao chép, phép sao chép ở 720, thao tác đọc bảng ở 727–728 và xử lý giá trị ở 747. Bằng chứng đủ cho kỹ thuật thu thập cookie trong mã tĩnh.",
+          "source_references": [
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 709,
+              "end_line": 730,
+              "projected_quote_sha256": "d2f71fceaca469bdff9863f1c0dd2f65c58276c4fa9af723a3d2f623734ab9b7"
+            },
+            {
+              "evidence_id": "ev_f43db7e88cd340f1",
+              "line": 731,
+              "end_line": 751,
+              "projected_quote_sha256": "5585c7ff4d949e49404c9b4ff4e6b116d47f30e8e8b75b57d5899d937a787a31"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

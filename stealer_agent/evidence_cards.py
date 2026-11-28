@@ -309,7 +309,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     checked['rejected_claims'] += rejected
     checked['report_method'] = 'evidence-cards/11' if operation_review else 'evidence-cards/10'
     if technique_review:
-        checked['report_method'] = 'evidence-cards/12'
+        checked['report_method'] = 'evidence-cards/13'
     checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
     checked['api_guidance_enabled'] = api_guidance
     checked['review_output_order'] = 'evidence-assessment-before-decision'
