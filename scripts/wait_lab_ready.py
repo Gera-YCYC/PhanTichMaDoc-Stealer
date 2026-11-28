@@ -1,4 +1,5 @@
 """Bounded readiness wait after starting the VM and local model; no sample is analyzed."""
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -7,7 +8,10 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from stealer_agent.transport import OllamaClient, ToolClient
 
 ROOT=Path(__file__).resolve().parents[1]
-cfg=json.loads((ROOT/'config/host.example.json').read_text())
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--config', type=Path, default=Path('config/host.example.json'))
+args=parser.parse_args()
+cfg=json.loads((ROOT/args.config).read_text(encoding='utf-8-sig'))
 cfg['timeout_s']=3
 token=(ROOT/'config/lab.token').read_text().strip()
 deadline=time.monotonic()+45

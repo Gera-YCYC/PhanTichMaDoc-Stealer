@@ -1,4 +1,5 @@
 """Read-only inventory with source/dataset hashes. Never reads key contents to output."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -22,7 +23,10 @@ print(json.dumps({'source':source,'samples':samples,'tools':tools,'default_route
 
 
 def main():
-    cfg = json.loads((ROOT/'config/host.example.json').read_text())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config', type=Path, default=Path('config/host.example.json'))
+    args = parser.parse_args()
+    cfg = json.loads((ROOT/args.config).read_text(encoding='utf-8-sig'))
     client = ToolClient(cfg, (ROOT/'config/lab.token').read_text().strip())
     guest = json.loads(subprocess.check_output(['ssh',*SSH,DEST,'sudo python3 -'],input=GUEST_CHECK.encode(),timeout=30))
     expected = {p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()

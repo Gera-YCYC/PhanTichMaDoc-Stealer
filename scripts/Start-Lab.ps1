@@ -1,4 +1,4 @@
-param([ValidateRange(0,1024)][int]$PromptCacheMiB = 256)
+param([ValidateRange(0,1024)][int]$PromptCacheMiB = 256, [string]$Config = 'config/host.example.json')
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $projectRoot
@@ -37,6 +37,6 @@ if (-not $listener) {
         throw "Existing project server uses cache $($receipt.prompt_cache_mib) MiB. Stop the project model server before starting a different cache configuration."
     }
 }
-& '.\.venv\Scripts\python.exe' scripts/wait_lab_ready.py
+& '.\.venv\Scripts\python.exe' scripts/wait_lab_ready.py --config $Config
 if ($LASTEXITCODE -ne 0) { throw 'VM/model not ready; do not start the demo yet' }
 Write-Output 'Lab ready; use scripts/Run-Demo.ps1.'

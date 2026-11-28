@@ -1,0 +1,145 @@
+{
+  "run": "20261128T020459_8c1f0720",
+  "sample": "public_gomorrah.bin",
+  "sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "15e8a79f3671269cc890b126ebd555bdd0c8497041b33b0cd26bd07b16c9b183",
+  "current_logic_matches_run": false,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 503.3531,
+    "model_calls": 51,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 92711,
+    "completion_tokens": 3923,
+    "host_peak_rss_bytes": 29306880,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 975728640,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 273,
+  "journal_sha256": "424ac7ff06a1c01fa6a79394393a131f37f81d2d6c7cd6524d543c2311288d9f",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 4,
+      "edge": "process-write"
+    },
+    {
+      "step": 5,
+      "edge": "process-write"
+    },
+    {
+      "step": 6,
+      "edge": "query-rows"
+    }
+  ],
+  "accepted_claims": 18,
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_b4a3dee9b58a464c",
+          "line": 3577,
+          "end": 3577
+        },
+        {
+          "eid": "ev_b4a3dee9b58a464c",
+          "line": 3578,
+          "end": 3578
+        },
+        {
+          "eid": "ev_b4a3dee9b58a464c",
+          "line": 3603,
+          "end": 3603
+        },
+        {
+          "eid": "ev_b4a3dee9b58a464c",
+          "line": 3604,
+          "end": 3604
+        }
+      ]
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_01"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_df687f8baa41",
+      "events": 5,
+      "journal_sha256": "5674355542b2ee4b17993b8acc4b3604c68f99272fc08718ad11118e4b548ffa",
+      "topic": "archive-message",
+      "search_calls": 1,
+      "search_hits": [
+        0
+      ],
+      "source_refs": 0,
+      "related_locations": 0,
+      "status": "answered"
+    }
+  ],
+  "ranking_anchors_for_review": 28,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

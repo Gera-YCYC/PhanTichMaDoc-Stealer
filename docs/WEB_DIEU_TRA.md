@@ -49,6 +49,8 @@ Mỗi thí nghiệm tạo thư mục riêng trong `private/web-ranker` với cor
 
 ## Tái lập phép so sánh
 
+Mở **Đánh giá** để xem bảng chấm bốn mẫu v11 trước và sau tự duyệt, số lượt verdict đúng và kết quả tìm liên kết của hai phương án. Dòng tiêu đề ghi rõ phiên bản và tập được chấm. Mọi số liệu lấy từ biên bản thực nghiệm trong Git. Trên máy mới mục này đọc được ngay ở chế độ xem lịch sử.
+
 ```powershell
 .\.venv\Scripts\python.exe -m eval.compare_link_search
 ```
@@ -68,6 +70,31 @@ Mười vị trí chấm gồm bảy quan hệ xử lý phản hồi trong mẫu
 Ở các vị trí có đáp án, cả hai phương án đều có 0 lần nối sai nguồn. Phương án cố định còn 1 quan hệ nằm ngoài danh sách chấm, agent còn 2. Agent dùng tổng cộng 8 lần gọi Qwen để điều hướng, quy trình cố định dùng 0. Chi phí và thời gian trên chỉ tính giai đoạn tìm chứng cứ. Bộ phát triển nhỏ, trình tự chạy và cache cũng ảnh hưởng đến độ trễ. Các số này không thay F1 của báo cáo toàn mẫu.
 
 Thử nghiệm đầu cho kết quả bất lợi: agent tìm đúng 0/10 và quy trình cố định tìm đúng 1/10. Nhật ký cho thấy truy vấn khác nền tảng và thao tác nằm trong cửa sổ tìm nhưng chưa được đưa vào danh sách kiểm kiểu. Nhóm bổ sung lọc truy vấn và kiểm các lời gọi trong phần mã VM thực sự đã trả, rồi so lại hai phương án. Việc sửa có sử dụng quan sát từ chính bộ phát triển này. [Lượt đầu](../deliverables/real-demo-evidence/web-comparison-initial.json) · [Lượt sau](../deliverables/real-demo-evidence/web-comparison.json)
+
+## Hai câu hỏi để trình diễn trên hồ sơ Python
+
+Trong **Nhật ký**, mục **Token, bộ nhớ và chi phí của lượt này** lấy số đo từ báo cáo cuối. RAM đỉnh ở đây thuộc tiến trình điều phối. Số VRAM là giá trị Ollama ghi ở cuối lượt. Mục thiếu số đo hiện “chưa đo”.
+
+Trên máy demo, chọn lượt `20261128T021511_bec5b2e5`. Trên máy vừa cài, chọn mẫu Python/PyInstaller và chạy điều tra để tạo hồ sơ riêng. Lần đo dưới đây dùng Qwen3 8B, mất 376,77 giây, gọi model 38 lần và công cụ 17 lần. Một lần dịch ngược trả lỗi. Agent đã chuyển sang đọc bytecode để tiếp tục. Nhật ký có 232 sự kiện và bốn công cụ phân tích thành công. [Biên bản lượt Python](../deliverables/real-demo-evidence/web-20261128T021511_bec5b2e5.json)
+
+| Thao tác trong web | Kết quả đã quan sát |
+|---|---|
+| Bấm đường nối từ **Tạo bản nén** đến **Tuần tự hóa thông điệp** | Mở 11 vị trí có cùng nguồn dịch ngược. Bản đồ trong nhật ký kết thúc và bản đồ hiển thị khớp nhau. |
+| Hỏi “Có chứng cứ cho thấy tệp nén được đưa vào thông điệp email không?” | Qwen chọn đúng quan hệ. Hệ thống dẫn lại 11 vị trí trong hồ sơ. Số lượt tìm VM bổ sung bằng 0. |
+| Hỏi “Bản ghi fetch có được xử lý giải mã không?” | Agent gọi tìm kiếm trong VM, nhận 8 kết quả. Chưa chứng minh được các bản ghi đó đi vào phép giải mã. Hệ thống giữ trạng thái cần kiểm tra thêm. |
+| Mở **Nhật ký** và xem bước 12 | Phép tìm cho quan hệ giữa thông điệp và lời gọi gửi trả về một kết quả. Bộ kiểm chứng chuyển quan hệ sang trạng thái có bằng chứng sau khi đối chiếu nơi tạo và nơi dùng. |
+
+Bản đồ cuối có 3/7 quan hệ được hỗ trợ, 4/7 cần kiểm tra thêm. Verdict của agent là `suspicious`. Đây là kết quả đọc tĩnh. Lượt .NET Gomorrah trước đó cũng ghi nhận một câu hỏi về bản nén và email. VM tìm thêm, thu được 0 vị trí và câu trả lời giữ nguyên mức chưa đủ căn cứ. [Biên bản .NET](../deliverables/real-demo-evidence/web-20261128T020459_8c1f0720.json)
+
+Hồ sơ có bản đồ đã lưu sẽ hiển thị bản đồ tại thời điểm kết thúc lượt chạy. Với các lượt cũ hơn tính năng này, giao diện ghi rõ khi phải dựng lại sơ đồ từ nhật ký. Khi xem lịch sử, chỉ các nút cần chạy lab bị khóa. Nhóm vẫn có thể đọc nguồn và ghi nhận xét trên máy.
+
+## Kết quả YARA từ web
+
+Để trình bày một báo nhầm thật, mở **YARA → Báo nhầm đã ghi trên tệp sạch**. Bộ luật đầu đánh dấu nhầm yt-dlp trong 1/38 tệp sạch. Nhóm đưa đúng tệp đó vào tập phát triển, sửa quy trình chọn dấu hiệu và sinh lại luật. Giao diện đối chiếu SHA-256 để xác nhận cùng tệp ở hai phép thử. Sau lần sửa, yt-dlp hết khớp và 38 tệp sạch giữ riêng đều qua. Đây là lịch sử hai phiên bản. Nút tạo luật phía trên chạy một thí nghiệm mới trong VM. [Bộ dữ liệu, biên bản và lịch sử sửa luật](YARA_REAL_CORPUS.md)
+
+Nút **Tạo và kiểm thử luật trong VM** đã chạy trên tệp gốc. Một lượt tạo 5 luật trong 57,48 giây và gọi model 5 lần. Bộ luật phát hiện 5/5 mẫu phát triển. Một tệp sạch dùng trong phát triển và 38 tệp sạch giữ riêng đều không báo nhầm. Lần quét lại bộ luật đã cố định cho kết quả trùng khớp.. Tập giữ riêng hiện có 0 mẫu độc nên TPR trên mẫu độc chưa từng thấy vẫn chưa đo được. [Biên bản và số mẫu từng phần](../deliverables/real-demo-evidence/yara-runs/yara_real_8fd631667863/receipt.json)
+
+Luật và từng lần thử xuất hiện trong thẻ YARA sau khi bấm mở mã lượt. Nhóm có thể so số lần biên dịch, lượt bị loại, khớp và báo nhầm theo từng mẫu. Trong lần kiểm lại bằng trình duyệt, cả năm luật đều đạt yêu cầu ngay từ lần thử đầu. [Lượt kiểm lại trên web](../deliverables/real-demo-evidence/yara-runs/yara_real_a2f8ca844220/receipt.json)
 
 ## Tệp cục bộ sau khi chạy
 

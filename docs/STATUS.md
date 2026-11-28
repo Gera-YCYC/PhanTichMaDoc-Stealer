@@ -4,6 +4,12 @@
 
 ## Cập nhật hiện tại
 
+Giao diện web đã gọi agent, Ollama Qwen3 8B và VM cô lập trên máy lab. Lượt Python có 3/7 quan hệ tĩnh đủ bằng chứng. Khi hỏi về hai quan hệ khác nhau, một câu dùng lại 11 trích dẫn và một câu cần truy vấn VM bổ sung. Cả hai được ghi thành nhật ký riêng. Trên mười vị trí có đáp án phát triển, quy trình cố định tìm được một vị trí, quy trình chọn truy vấn theo quan sát tìm được ba vị trí với cùng tám lần tìm trong VM. Quy trình thứ hai dùng thêm tám lượt gọi model. [Demo, thời gian và số liệu đối chứng](WEB_DIEU_TRA.md)
+
+Bảng chấm bốn mẫu v11 là mốc so sánh chất lượng toàn báo cáo. Sau lọc, precision đạt 81,67%, recall 47,12%, F1 59,76% trên 104 mục, verdict đạt 0/4 theo cách chấm lành/độc. Chưa có bảng chấm độc lập đầy đủ cho phiên bản web. [Phạm vi và kết quả chấm](DEMO_COVERAGE.md)
+
+### Các phép đo trước khi có giao diện web
+
 Bản v13 hoàn tất phân tích Mercurial bằng Qwen3 8B, kèm lần quét YARA thực tế và phép đo bộ nhớ. Câu T1539 có đủ hai đoạn mã nối liên tục. YARA khớp `LabCorpus_05`. Sau lọc, F1 riêng IOC + ATT&CK là 40% trên mẫu này, F1 trên toàn bộ 21 mục là 43,75%. Máy đã tắt VM và Ollama sau đợt đo. [Demo và hai bảng chấm v12/v13](DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck) · [Trạng thái máy sau demo](../deliverables/real-demo-evidence/runtime-stopped-after-techniques-v13.json).
 
 Lượt Mercurial dùng `techniques-8b` hoàn tất sau 493,4 giây. VM tìm được cấu hình webhook ở dòng 37. Qwen gán T1539 nhưng thiếu trích dẫn nối bản sao dữ liệu với nguồn. Trong 12 câu giữ lại có 9 câu được chứng cứ của chính câu đó xác nhận. F1 trên 21 mục sau tự duyệt đạt 62,86%. [Lệnh demo và biên bản chấm](DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).

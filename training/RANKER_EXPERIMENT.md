@@ -95,3 +95,7 @@ Chạy trên máy đã dựng lab, trong PowerShell ở thư mục dự án. Sau
 .\scripts\Run-Demo.ps1 -Sample public_agenttesla.bin -Profile guided-8b -OccurrenceOrder
 .\scripts\Run-Demo.ps1 -Sample public_agenttesla.bin -Profile guided-8b
 ```
+
+## Nhãn từ giao diện điều tra
+
+Mục **Gán nhãn** cho phép người phân tích đối chiếu từng vị trí với nguồn của một lượt thật. Lệnh `python -m training.train_web_ranker` kiểm mã nguồn, phiên bản đặc trưng và phân chia theo mẫu trước khi tạo trọng số ứng viên. Nhóm cần bổ sung nhãn do người đọc mã xác nhận để đo tác động của phản hồi mới lên báo cáo. [Quy trình nhập nhãn và train lại](../docs/WEB_DIEU_TRA.md#huấn-luyện-từ-nhận-xét)

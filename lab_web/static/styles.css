@@ -121,8 +121,31 @@ aside > .primary {
   width: 100%;
 }
 select {
+  max-width: 100%;
   font-size: 14px;
   margin-top: 5px;
+}
+#panel .box p,
+#panel .card p {
+  overflow-wrap: anywhere;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 20px;
+}
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.table-wrap th,
+.table-wrap td {
+  text-align: left;
+  border-bottom: 1px solid #344044;
+  padding: 8px 10px;
+}
+.table-wrap th {
+  color: #bbd7ad;
 }
 article {
   min-width: 0;

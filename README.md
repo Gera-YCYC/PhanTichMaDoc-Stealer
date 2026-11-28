@@ -145,7 +145,7 @@ Xem `eval/README.md` để chấm đúng/sai/bịa/bỏ sót và ổn định 3 
 - `docs/KIEN_TRUC.md`: thiết kế, lý do chọn VM, những điểm khác đề xuất gốc.
 - `docs/REUSE_DECISIONS.md`, `audit/AUDIT_REPORT.md`: lý do tận dụng/tự xây so với repo ban đầu.
 
-Source/Release đã công bố theo yêu cầu nhóm; video thật chưa ghi. Không coi unit test hoặc fixture là nghiệm thu cuối. Các chỉ số chất lượng phải tính từ nhận định đối chiếu đáp án độc lập trên bộ public đã chốt.
+Nhóm demo trực tiếp bằng web trên máy lab. Trạng thái nghiệm thu và bảng điểm từng đợt đo nằm trong [trạng thái sản phẩm](docs/STATUS.md). [Ví dụ hai câu hỏi trên hồ sơ Python](docs/WEB_DIEU_TRA.md#hai-câu-hỏi-để-trình-diễn-trên-hồ-sơ-python)
 
 ## Kiểm tra lại môi trường và log
 

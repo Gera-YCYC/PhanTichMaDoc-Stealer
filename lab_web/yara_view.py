@@ -1,7 +1,50 @@
 """Project an actual generation journal onto per-attempt compile and scan outcomes."""
 
 import json
+from hashlib import sha256
 from stealer_agent.journal import verify_journal
+
+
+def regression(root):
+    """Compare the same clean bytes across the two published validation runs."""
+    base = root / "deliverables/real-demo-evidence"
+    old = json.loads((base / "yara-challenge-yara_real_14243d3cbc98.json").read_bytes())
+    new = json.loads(
+        (base / "yara-runs/yara_real_4054c42e1321/receipt.json").read_bytes()
+    )
+    before, after = old["result"], new["development"]
+    for name, result in [
+        ("yara-v1-observed-false-positive.yar", before),
+        ("yara-v3-qwen8b.yar", after),
+    ]:
+        rules = (root / "rules" / name).read_text(encoding="utf8")
+        if sha256(rules.encode()).hexdigest() != result["rule_sha256"]:
+            raise ValueError("Hash của luật khác biên bản.")
+    if not old["independent_replay_equal"] or not new["independent_replay_equal"]:
+        raise ValueError("Kết quả chạy lại chưa khớp.")
+    negatives = {r["sha256"]: r for r in after["results"] if not r["positive"]}
+    changes = []
+    for row in before["results"]:
+        if not row["positive"] and row["matched"] and row["sha256"] in negatives:
+            changes.append(
+                {
+                    "sample": row["sample"],
+                    "sha256": row["sha256"],
+                    "matched_before": row["matched"],
+                    "matched_after": negatives[row["sha256"]]["matched"],
+                }
+            )
+    return {
+        "before_run": old["source_run"],
+        "after_run": new["run_id"],
+        "changes": changes,
+        "before_clean": before["negative_count"],
+        "before_fp": sum(r["matched"] for r in before["results"] if not r["positive"]),
+        "holdout_clean": new["holdout"]["negative_count"],
+        "holdout_fp": sum(
+            r["matched"] for r in new["holdout"]["results"] if not r["positive"]
+        ),
+    }
 
 
 def attempts(path, summary):

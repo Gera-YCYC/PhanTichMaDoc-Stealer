@@ -124,12 +124,13 @@ def start(kind, sample):
                                 if line.startswith("[RUN]")
                                 else line[:220]
                             )
-                        if kind == "yara":
-                            match = re.search(
-                                r'"run_id":\s*"(yara_real_[0-9a-f]{12})"', line
-                            )
-                            if match:
-                                JOB["yara_run"] = match[1]
+                        if kind == "yara" and line.startswith("{"):
+                            result = json.loads(line)
+                            folder = Path(result.get("run_directory", "")).resolve()
+                            if folder.parent == ROOT / "runs" and re.fullmatch(
+                                r"yara_real_[0-9a-f]{12}", folder.name
+                            ):
+                                JOB["yara_run"] = folder.name
                 ok = child.wait() == 0
         finally:
             with LOCK:
@@ -273,6 +274,43 @@ class Handler(BaseHTTPRequestHandler):
                 return self.reply(200, snapshot)
             if p == "/api/yara":
                 return self.reply(200, yara_history())
+            if p == "/api/evaluation":
+                base = ROOT / "deliverables/real-demo-evidence"
+                rubric = read(base / "coverage-v11-rubric.json")
+                paired = read(base / "web-comparison.json")
+                repeats = base / "web-stability-python.json"
+                return self.reply(
+                    200,
+                    {
+                        "rubric": {
+                            k: rubric[k]
+                            for k in (
+                                "raw",
+                                "after_filter",
+                                "total_attempts",
+                                "correct_verdicts",
+                            )
+                        },
+                        "search": [
+                            {
+                                "sample": row["sample"],
+                                "mode": row["mode"],
+                                "found": len(row["covered"]),
+                                "missed": len(row["missed"]),
+                                "wrong": row["wrong_producer_at_graded_site"],
+                                "tool_calls": row["tool_calls"],
+                                "model_calls": row["model_calls"],
+                                "seconds": row["elapsed_s"],
+                            }
+                            for row in paired["results"]
+                        ],
+                        "stability": read(repeats) if repeats.exists() else None,
+                    },
+                )
+            if p == "/api/yara/regression":
+                from .yara_view import regression
+
+                return self.reply(200, regression(ROOT))
             if p.startswith("/api/case/"):
                 return self.reply(200, case(p[len("/api/case/") :]))
         self.reply(404, {"error": "Không tìm thấy."})

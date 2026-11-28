@@ -8,6 +8,7 @@ from hashlib import sha256
 from vm_tools.code_search import structural_features
 from stealer_agent.investigation import CODE, excerpt, ledger
 from stealer_agent.journal import verify_journal
+from stealer_agent.redaction import redact_document
 
 ROOT = Path(__file__).resolve().parents[1]
 RUN = re.compile(r"\d{8}T\d{6}_[a-f0-9]{8}")
@@ -176,16 +177,22 @@ def source(run, fingerprint):
         or last["result"]["model"]["digest"] != r["model"]["digest"]
     ):
         raise ValueError("Thông tin model hoặc mẫu không khớp.")
-    return records, timeline, list(anchors.values())
+    saved = last["result"].get("investigation")
+    frozen_graph = redact_document(saved)[0] if saved is not None else None
+    return records, timeline, list(anchors.values()), frozen_graph
 
 
 def case(run):
     r = trusted_report(run)
     log = directory(run) / "events.jsonl"
-    records, timeline, anchors = source(
+    records, timeline, anchors, frozen_graph = source(
         run, (log.stat().st_size, log.stat().st_mtime_ns)
     )
-    graph = ledger(records, r["sample_sha256"])
+    graph = (
+        frozen_graph
+        if frozen_graph is not None
+        else ledger(records, r["sample_sha256"])
+    )
     analysis = r["analysis"]
     claims = [
         {
@@ -242,10 +249,22 @@ def case(run):
         "verdict": analysis["verdict"],
         "metrics": {
             k: r["metrics"].get(k)
-            for k in ("elapsed_s", "model_calls", "tool_calls", "tool_errors")
+            for k in (
+                "elapsed_s",
+                "model_calls",
+                "tool_calls",
+                "tool_errors",
+                "prompt_tokens",
+                "completion_tokens",
+                "host_peak_rss_bytes",
+                "model_vram_bytes_after_run",
+                "minimum_observed_host_available_memory_bytes",
+                "api_cost_usd",
+            )
         },
         "timeline": timeline,
         "graph": graph,
+        "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "yara": yara,
         "anchors": anchors,

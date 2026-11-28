@@ -80,6 +80,8 @@ def answer(data, cfg, key):
     j.append("topic_selected", topic=topic, metrics=usage)
     note = "Đã đọc hồ sơ của lượt " + run + "."
     refs = []
+    leads = []
+    search = None
     if topic == "outside":
         text = (
             "Câu hỏi nằm ngoài các thao tác và liên kết mà hồ sơ này có thể kiểm chứng."
@@ -144,6 +146,11 @@ def answer(data, cfg, key):
             )
             args = {"sample": r["sample"], "query": selected, "evidence_id": eid}
             vm = ToolClient(cfg, key)
+            search = {
+                "evidence_id": eid,
+                "output_sha256": src["output_sha256"],
+                "status": "error",
+            }
             j.append(
                 "action_dispatched",
                 action="search_evidence",
@@ -172,6 +179,7 @@ def answer(data, cfg, key):
                     i for i in graph["edges"] + graph["nodes"] if i["id"] == topic
                 )
                 note = f"VM đã tìm thêm một lần, nhận {o['hit_count']} kết quả cho vị trí cần kiểm tra."
+                search.update(status="ok", hit_count=o["hit_count"])
                 j.append(
                     "observation",
                     evidence_id=eid,
@@ -183,6 +191,8 @@ def answer(data, cfg, key):
                 j.append("tool_error", error_class=type(exc).__name__)
                 note = "VM chưa trả thêm chứng cứ. Nếu VM đã khởi động lại, hãy chạy một ca mới để tạo mã chứng cứ hiện hành."
         refs = item.get("trail") or item["refs"]
+        if item["status"] != "supported":
+            leads = item.get("leads") or ([item["lead"]] if item.get("lead") else [])
         text = (
             item["label"]
             + ". "
@@ -197,6 +207,8 @@ def answer(data, cfg, key):
         "topic": topic,
         "text": text,
         "refs": refs,
+        "related_locations": leads,
+        "search": search,
         "note": note,
         "journal": j.directory.name,
     }

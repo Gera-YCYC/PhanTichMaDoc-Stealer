@@ -1,0 +1,135 @@
+{
+  "run": "20261128T015052_95e9e735",
+  "sample": "public_python2024.bin",
+  "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "0369d64967f36c638799e4bf92437ceb00af8faa0463a65d3cf849c7df6d8527",
+  "current_logic_matches_run": false,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 603.0757,
+    "model_calls": 46,
+    "tool_calls": 17,
+    "tool_errors": 1,
+    "prompt_tokens": 88927,
+    "completion_tokens": 3377,
+    "host_peak_rss_bytes": 29892608,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 842629120,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decode_python_literals",
+    "disassemble_python",
+    "identify",
+    "unpack_pyinstaller"
+  ],
+  "journal_events": 254,
+  "journal_sha256": "f7d8ce5be8f9f564e674847ca00151527e90fa063b56594d981ed5b05d567b6b",
+  "gaps": [
+    {
+      "step": 6,
+      "edge": "query-rows"
+    },
+    {
+      "step": 7,
+      "edge": "rows-process"
+    },
+    {
+      "step": 8,
+      "edge": "rows-process"
+    },
+    {
+      "step": 9,
+      "edge": "rows-process"
+    }
+  ],
+  "accepted_claims": 32,
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_33a4075e47264594",
+          "line": 142,
+          "end": 142
+        },
+        {
+          "eid": "ev_33a4075e47264594",
+          "line": 143,
+          "end": 143
+        }
+      ]
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_03"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_7d94cde7d07c",
+      "events": 3,
+      "journal_sha256": "6dbfbe4397aea33aeca0cd5aac71235b6638bd8bdf2f2a07e15c964744913ed5",
+      "topic": "verdict",
+      "search_calls": 0,
+      "search_hits": [],
+      "source_refs": 0,
+      "related_locations": 0,
+      "status": "answered"
+    }
+  ],
+  "ranking_anchors_for_review": 19,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

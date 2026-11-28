@@ -1,0 +1,682 @@
+[
+  {
+    "sequence": 1,
+    "timestamp": "2026-11-28T02:28:43.046523+00:00",
+    "event": "start",
+    "sha256": "4730ed1f9cf6753293ceca86e080ba3ff7a3e243cc812ff5557b41699e0afa51"
+  },
+  {
+    "sequence": 2,
+    "timestamp": "2026-11-28T02:28:43.090754+00:00",
+    "event": "candidate_observation",
+    "sha256": "39fe6321f486c569f07b1f4f5363b03924b7480aa86ddc533f958cf9aa5f2fd3",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_b8db5d1685e241f0",
+      "output_sha256": "727bee73e4a2123e3c48bb71d07917ed6bd645e44d3f14f1e3d7276ad10861cc",
+      "duration_s": 0.0099,
+      "page": 0,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 3,
+    "timestamp": "2026-11-28T02:28:43.123996+00:00",
+    "event": "evidence_page",
+    "sha256": "af89437fa0853446f3d6c561479c7debdf32e2c78d0a927514519e77ad08f0d5",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_b8db5d1685e241f0",
+      "output_sha256": "727bee73e4a2123e3c48bb71d07917ed6bd645e44d3f14f1e3d7276ad10861cc",
+      "duration_s": 0.0099,
+      "page": 1,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 4,
+    "timestamp": "2026-11-28T02:28:43.152988+00:00",
+    "event": "evidence_page",
+    "sha256": "38c143c20805b425797d1a869937d02d74b7d03ce41c668be74f5e03d982420d",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_b8db5d1685e241f0",
+      "output_sha256": "727bee73e4a2123e3c48bb71d07917ed6bd645e44d3f14f1e3d7276ad10861cc",
+      "duration_s": 0.0099,
+      "page": 2,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 5,
+    "timestamp": "2026-11-28T02:28:43.164992+00:00",
+    "event": "model_request",
+    "sha256": "cb82a6dd6fc0f91b33ecc3bb3926c143d512cccd9578310a37fd97fb66412378",
+    "sample": "public_gomorrah.bin",
+    "attempt": 1,
+    "phase": "yara_corpus",
+    "messages_sha256": "2fb575022383c11304dca6dd622e7ca80197d7970960058e0cf52b2718773dcd",
+    "schema_sha256": "bd48d1edaa60c39fdd63349748ec65a069d73eab07f580f35c91a1d47ca6dc58"
+  },
+  {
+    "sequence": 6,
+    "timestamp": "2026-11-28T02:29:06.316205+00:00",
+    "event": "model_draft",
+    "sha256": "67ad0f867ae85af3bb88395d5605b88bdb68362f7aafabc183336cda567621b6",
+    "sample": "public_gomorrah.bin",
+    "attempt": 1,
+    "selection": {
+      "selected_ids": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S25"
+      ],
+      "condition": "all"
+    },
+    "metrics": {
+      "latency_s": 23.1455,
+      "prompt_tokens": 1433,
+      "completion_tokens": 93,
+      "done_reason": "stop"
+    }
+  },
+  {
+    "sequence": 7,
+    "timestamp": "2026-11-28T02:29:06.743554+00:00",
+    "event": "development_feedback",
+    "sha256": "b92761d49073bb35be6f5cbe4c2f82156eca70a8d69e8b277bb50dc2fdfb4693",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_3ad3149f7c7d4cb9",
+      "output_sha256": "f3516e8eff68996476cf9899dfbb3a3967ac82dd57e030ad73e0aa4ccec4b9ca",
+      "duration_s": 0.4129,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 8,
+    "timestamp": "2026-11-28T02:29:06.817456+00:00",
+    "event": "candidate_observation",
+    "sha256": "5d7838c7b498caf710f9c9a1c5a6fa66d85c2c90bbdc69c31151683ace5e5ba6",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_agenttesla.bin",
+      "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_d4d6707780f6479b",
+      "output_sha256": "aab9c3e31d2c5c602dd3884f1ca0fd7427df4a5c9a341a5cb87be9e54d0087b1",
+      "duration_s": 0.0542,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 9,
+    "timestamp": "2026-11-28T02:29:06.819458+00:00",
+    "event": "model_request",
+    "sha256": "84d3221d10a0388393717c10d3b2fbf0eb22ad6daca0dd7fd6469e5a33b5ccad",
+    "sample": "public_agenttesla.bin",
+    "attempt": 1,
+    "phase": "yara_corpus",
+    "messages_sha256": "81f8d47df481c24c35be1f2266c16f8f0c0748503afc53b2decf43a5d338a8ec",
+    "schema_sha256": "018e51dee116b7788706ee9776f15c2ec4990103bd058f936189f317bd8b9bb3"
+  },
+  {
+    "sequence": 10,
+    "timestamp": "2026-11-28T02:29:13.308336+00:00",
+    "event": "model_draft",
+    "sha256": "c0fa2b226d1f68bb5d620863738176191506e266f4f1f8700fb8851dc7bf269e",
+    "sample": "public_agenttesla.bin",
+    "attempt": 1,
+    "selection": {
+      "selected_ids": [
+        "S1",
+        "S2"
+      ],
+      "condition": "all"
+    },
+    "metrics": {
+      "latency_s": 6.4851,
+      "prompt_tokens": 298,
+      "completion_tokens": 75,
+      "done_reason": "stop"
+    }
+  },
+  {
+    "sequence": 11,
+    "timestamp": "2026-11-28T02:29:13.595454+00:00",
+    "event": "development_feedback",
+    "sha256": "3ecd0714d26b177de2c477a4bbc7fdd26054649395e9b6532401493aa21427de",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_d0317cfe99c24a6f",
+      "output_sha256": "bfeb7116b786ad9fe0060c9a8ec3570ade6043c5621163c022a4290b887b430c",
+      "duration_s": 0.2573,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 12,
+    "timestamp": "2026-11-28T02:29:14.459205+00:00",
+    "event": "candidate_observation",
+    "sha256": "379210e8d64a7fba5f8dc457f87192c9f8fb42c5ea988528a91a379c55527ec9",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_b16010d52be64fa9",
+      "output_sha256": "04a0883e2121be2f8ad93371f04466830da05c67ca6bb8d844e0896ca0edbe0a",
+      "duration_s": 0.7907,
+      "page": 0,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 13,
+    "timestamp": "2026-11-28T02:29:14.500206+00:00",
+    "event": "evidence_page",
+    "sha256": "19e9e853efe5414f2fb9871c7f34f742b4427c895f9a42396f90ebfa6dd11852",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_b16010d52be64fa9",
+      "output_sha256": "04a0883e2121be2f8ad93371f04466830da05c67ca6bb8d844e0896ca0edbe0a",
+      "duration_s": 0.7907,
+      "page": 1,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 14,
+    "timestamp": "2026-11-28T02:29:14.527205+00:00",
+    "event": "evidence_page",
+    "sha256": "3cae8b12845c0d13742148b11d5ab4279752bff5360d7061da16636a583c3bf7",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_python2024.bin",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_b16010d52be64fa9",
+      "output_sha256": "04a0883e2121be2f8ad93371f04466830da05c67ca6bb8d844e0896ca0edbe0a",
+      "duration_s": 0.7907,
+      "page": 2,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 15,
+    "timestamp": "2026-11-28T02:29:14.531211+00:00",
+    "event": "model_request",
+    "sha256": "ccbf31f7648ebf95e30b15d0c22a1b6031247b7c01da8f18814f75f6da4eed3b",
+    "sample": "public_python2024.bin",
+    "attempt": 1,
+    "phase": "yara_corpus",
+    "messages_sha256": "7f9715dd30dfe35f7ed0fd0b56a579ae9bfc6e6db178a3fcb20c3c5240b49234",
+    "schema_sha256": "bd48d1edaa60c39fdd63349748ec65a069d73eab07f580f35c91a1d47ca6dc58"
+  },
+  {
+    "sequence": 16,
+    "timestamp": "2026-11-28T02:29:25.961031+00:00",
+    "event": "model_draft",
+    "sha256": "d4fc976cd3154a80d370c9ee0056a61684b7ffb18992171bf6a89960377a6a04",
+    "sample": "public_python2024.bin",
+    "attempt": 1,
+    "selection": {
+      "selected_ids": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6"
+      ],
+      "condition": "all"
+    },
+    "metrics": {
+      "latency_s": 11.427,
+      "prompt_tokens": 1544,
+      "completion_tokens": 108,
+      "done_reason": "stop"
+    }
+  },
+  {
+    "sequence": 17,
+    "timestamp": "2026-11-28T02:29:26.251705+00:00",
+    "event": "development_feedback",
+    "sha256": "f56ba058d546d89c197041878bf5f4ffcce1eb64fdbe9b20a2becf577c61817e",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_13527a07aec749b7",
+      "output_sha256": "2f413f0a7719b35cbd8a1b354a3db22aeec487b01f4b61cbd9986f302aad496c",
+      "duration_s": 0.2578,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 18,
+    "timestamp": "2026-11-28T02:29:27.039038+00:00",
+    "event": "candidate_observation",
+    "sha256": "69e8aae1c4b4072583ca17b67f9ddb73746d5c5ded38235909ab487515850b09",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_luna.bin",
+      "sample_sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_2bf2ffaae5744ca9",
+      "output_sha256": "ff005151b0c592a7733bca2235524c06170976e6f62e7b6521220c140d6d79c0",
+      "duration_s": 0.7409,
+      "page": 0,
+      "page_count": 4
+    }
+  },
+  {
+    "sequence": 19,
+    "timestamp": "2026-11-28T02:29:27.092597+00:00",
+    "event": "evidence_page",
+    "sha256": "eccb08f136d4f83a9c4054eaf2df5669eefeb32c34a5dc38e20fade42cadfc55",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_luna.bin",
+      "sample_sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_2bf2ffaae5744ca9",
+      "output_sha256": "ff005151b0c592a7733bca2235524c06170976e6f62e7b6521220c140d6d79c0",
+      "duration_s": 0.7409,
+      "page": 1,
+      "page_count": 4
+    }
+  },
+  {
+    "sequence": 20,
+    "timestamp": "2026-11-28T02:29:27.119099+00:00",
+    "event": "evidence_page",
+    "sha256": "9559c6b93221566937c36c3ff30e994ca1211616f707f20ca30b9268a5c2503b",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_luna.bin",
+      "sample_sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_2bf2ffaae5744ca9",
+      "output_sha256": "ff005151b0c592a7733bca2235524c06170976e6f62e7b6521220c140d6d79c0",
+      "duration_s": 0.7409,
+      "page": 2,
+      "page_count": 4
+    }
+  },
+  {
+    "sequence": 21,
+    "timestamp": "2026-11-28T02:29:27.169377+00:00",
+    "event": "evidence_page",
+    "sha256": "ef2d2f24ceddbb80adfaf07cf58ecc7cf44f1c500f87648f6a4c05a36468d280",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_luna.bin",
+      "sample_sha256": "d4f57b427a281c4dc32d6b8cc12195e0ce262c9f80ac8a8505ff3a0b47536324",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_2bf2ffaae5744ca9",
+      "output_sha256": "ff005151b0c592a7733bca2235524c06170976e6f62e7b6521220c140d6d79c0",
+      "duration_s": 0.7409,
+      "page": 3,
+      "page_count": 4
+    }
+  },
+  {
+    "sequence": 22,
+    "timestamp": "2026-11-28T02:29:27.173376+00:00",
+    "event": "model_request",
+    "sha256": "ba6468246d5661fd560afaeedf9ac756f081368377c3d189ec1cf17098243708",
+    "sample": "public_luna.bin",
+    "attempt": 1,
+    "phase": "yara_corpus",
+    "messages_sha256": "d32f76c83fe19d4c99fa2271d2a67289d6790bdfa920ba90a3ad4699ab25e456",
+    "schema_sha256": "bd48d1edaa60c39fdd63349748ec65a069d73eab07f580f35c91a1d47ca6dc58"
+  },
+  {
+    "sequence": 23,
+    "timestamp": "2026-11-28T02:29:38.559773+00:00",
+    "event": "model_draft",
+    "sha256": "b7da05fcfa66723b135d1c58d0a22e3c7f51cc2457133154e7daeeb598840b61",
+    "sample": "public_luna.bin",
+    "attempt": 1,
+    "selection": {
+      "selected_ids": [
+        "S1",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8"
+      ],
+      "condition": "all"
+    },
+    "metrics": {
+      "latency_s": 11.3823,
+      "prompt_tokens": 1583,
+      "completion_tokens": 106,
+      "done_reason": "stop"
+    }
+  },
+  {
+    "sequence": 24,
+    "timestamp": "2026-11-28T02:29:38.841099+00:00",
+    "event": "development_feedback",
+    "sha256": "ea798d801cd439d05286fbac4303cc8223cfc126a5bef8721588e17a237c395a",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_a257e03507e443e1",
+      "output_sha256": "41623ea5437867594cc619a02d6ae6b1f9d0a5f2ea67c3a557fc7d72cbd5c919",
+      "duration_s": 0.2542,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 25,
+    "timestamp": "2026-11-28T02:29:38.877096+00:00",
+    "event": "candidate_observation",
+    "sha256": "7b15fd07e010a0bb62994f17681d41476e488133fa0e91945a8435624ce8da44",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_mercurial.bin",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_c77156161019409b",
+      "output_sha256": "ada69cf85c7a47b67493e1d42d31e979968baf9cf45616d2f48ae498d93ad2d6",
+      "duration_s": 0.007,
+      "page": 0,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 26,
+    "timestamp": "2026-11-28T02:29:38.901491+00:00",
+    "event": "evidence_page",
+    "sha256": "dd9a95f19c87b70b1718908545e3b3a9f84a8dc5b37cab8f375364d1e70d43dd",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_mercurial.bin",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_c77156161019409b",
+      "output_sha256": "ada69cf85c7a47b67493e1d42d31e979968baf9cf45616d2f48ae498d93ad2d6",
+      "duration_s": 0.007,
+      "page": 1,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 27,
+    "timestamp": "2026-11-28T02:29:38.933251+00:00",
+    "event": "evidence_page",
+    "sha256": "a11e0652976e54bd5e368129deedf8a5c23aa0a50fa77371544572fcb9608f3c",
+    "tool": {
+      "tool": "yara_candidates",
+      "sample": "public_mercurial.bin",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "status": "ok",
+      "backend": "raw-yara-candidates/2",
+      "evidence_id": "ev_c77156161019409b",
+      "output_sha256": "ada69cf85c7a47b67493e1d42d31e979968baf9cf45616d2f48ae498d93ad2d6",
+      "duration_s": 0.007,
+      "page": 2,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 28,
+    "timestamp": "2026-11-28T02:29:38.936178+00:00",
+    "event": "model_request",
+    "sha256": "aeacaf32b890278055b224249d8daa0134c1be93462528b9817403416e7de6a9",
+    "sample": "public_mercurial.bin",
+    "attempt": 1,
+    "phase": "yara_corpus",
+    "messages_sha256": "2f8053054aa771e32be7fd57053c810eb4bbbf6d6a8d950a4449c47508effc30",
+    "schema_sha256": "bd48d1edaa60c39fdd63349748ec65a069d73eab07f580f35c91a1d47ca6dc58"
+  },
+  {
+    "sequence": 29,
+    "timestamp": "2026-11-28T02:29:51.869773+00:00",
+    "event": "model_draft",
+    "sha256": "04553771ea999d41b2d6213490f2418ed92001e5124bcf76a9005c41ad63fc97",
+    "sample": "public_mercurial.bin",
+    "attempt": 1,
+    "selection": {
+      "selected_ids": [
+        "S1",
+        "S2",
+        "S15",
+        "S16",
+        "S17",
+        "S24"
+      ],
+      "condition": "all"
+    },
+    "metrics": {
+      "latency_s": 12.9299,
+      "prompt_tokens": 1429,
+      "completion_tokens": 103,
+      "done_reason": "stop"
+    }
+  },
+  {
+    "sequence": 30,
+    "timestamp": "2026-11-28T02:29:52.155554+00:00",
+    "event": "development_feedback",
+    "sha256": "f914c2585f48a3ae21affe23f8ae020ce59ef041c7718ceb61d6e9c3236ff75f",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_9df480ece1d743e1",
+      "output_sha256": "fe2061787078304a161717278c8907402374813d5d5c780375d9bccbb50d99b8",
+      "duration_s": 0.2581,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 31,
+    "timestamp": "2026-11-28T02:29:52.157553+00:00",
+    "event": "rules_frozen",
+    "sha256": "7d91f20925b77e8feff9d83edd7aafc5a3cc4adb32185c4233c35dd1ffebd0e3"
+  },
+  {
+    "sequence": 32,
+    "timestamp": "2026-11-28T02:29:52.437792+00:00",
+    "event": "frozen_development",
+    "sha256": "f2aed956b35830a18437637c9c1cf87ef740269e65e4182e37d454e5e1a74ab9",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_28ab18117dd243c4",
+      "output_sha256": "66b6bff3c8cfa935d65fc3e422ab5796db08be10e4c23a22da3dabafc52564e6",
+      "duration_s": 0.2546,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 33,
+    "timestamp": "2026-11-28T02:29:52.765700+00:00",
+    "event": "holdout_once",
+    "sha256": "f0f2020dbbe9836bbf9605fc6b169ea84b3f8dcdec9facda062672f428409af8",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_7d04f32d30cf4b12",
+      "output_sha256": "43776920d5eabb62bd08b738949ff8b3aa1457dba6b2fba09b87e4e9598f2362",
+      "duration_s": 0.315,
+      "page": 0,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 34,
+    "timestamp": "2026-11-28T02:29:52.791175+00:00",
+    "event": "evidence_page",
+    "sha256": "39b029f0245b7c1eb218a3f366c067fc0ee603e062e7906c8fc838da2e63932d",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_7d04f32d30cf4b12",
+      "output_sha256": "43776920d5eabb62bd08b738949ff8b3aa1457dba6b2fba09b87e4e9598f2362",
+      "duration_s": 0.315,
+      "page": 1,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 35,
+    "timestamp": "2026-11-28T02:29:52.820811+00:00",
+    "event": "evidence_page",
+    "sha256": "9b678825978c7f1e7e8024dbc2a0931126545c71b3ca56d6b5a5c1122745f85b",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_7d04f32d30cf4b12",
+      "output_sha256": "43776920d5eabb62bd08b738949ff8b3aa1457dba6b2fba09b87e4e9598f2362",
+      "duration_s": 0.315,
+      "page": 2,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 36,
+    "timestamp": "2026-11-28T02:29:53.086018+00:00",
+    "event": "independent_replay_development",
+    "sha256": "a843b5d06d02dba59957c053b525b42d6a243cca7cfb46c13cd7cefa07f2e951",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_5de003e71aa14fd1",
+      "output_sha256": "66b6bff3c8cfa935d65fc3e422ab5796db08be10e4c23a22da3dabafc52564e6",
+      "duration_s": 0.2556,
+      "page": 0,
+      "page_count": 1
+    }
+  },
+  {
+    "sequence": 37,
+    "timestamp": "2026-11-28T02:29:53.273256+00:00",
+    "event": "independent_replay_holdout",
+    "sha256": "706b73c81310f0e9a4c0dca4d1d430b6314d0fe8b0a5d49061d6c65c39f15246",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_6727dcaccf6e4e4d",
+      "output_sha256": "43776920d5eabb62bd08b738949ff8b3aa1457dba6b2fba09b87e4e9598f2362",
+      "duration_s": 0.1542,
+      "page": 0,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 38,
+    "timestamp": "2026-11-28T02:29:53.289654+00:00",
+    "event": "evidence_page",
+    "sha256": "e1002af4157388dab130317c22757ed395c5fe9c0500c06ef758034d9b15e7ec",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_6727dcaccf6e4e4d",
+      "output_sha256": "43776920d5eabb62bd08b738949ff8b3aa1457dba6b2fba09b87e4e9598f2362",
+      "duration_s": 0.1542,
+      "page": 1,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 39,
+    "timestamp": "2026-11-28T02:29:53.319654+00:00",
+    "event": "evidence_page",
+    "sha256": "279d01166224d9c6a57d0665b588e5ed4f1149f99a598d43afb2705290c5a8f6",
+    "tool": {
+      "tool": "test_yara",
+      "sample": "public_gomorrah.bin",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "status": "ok",
+      "backend": "yara-python/4.5.4",
+      "evidence_id": "ev_6727dcaccf6e4e4d",
+      "output_sha256": "43776920d5eabb62bd08b738949ff8b3aa1457dba6b2fba09b87e4e9598f2362",
+      "duration_s": 0.1542,
+      "page": 2,
+      "page_count": 3
+    }
+  },
+  {
+    "sequence": 40,
+    "timestamp": "2026-11-28T02:29:53.320663+00:00",
+    "event": "finished",
+    "sha256": "1c5cf4e5637810e488862785330c359ef5f6d2775b5070e705832b745bf7560e"
+  }
+]

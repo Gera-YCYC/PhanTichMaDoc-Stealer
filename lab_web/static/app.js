@@ -99,6 +99,11 @@ async function load(id) {
   await render();
 }
 async function check() {
+  if (init.history_only) {
+    $("#health").textContent = "Chế độ xem lịch sử";
+    $("#health").title = "Đọc các biên bản trên máy";
+    return;
+  }
   const h = await api("health");
   $("#health").textContent =
     "● Ollama " +
@@ -180,6 +185,13 @@ function map(panel) {
     legend.append(s);
   }
   panel.append(legend);
+  if (record.graph_origin === "reconstructed")
+    panel.append(
+      el(
+        "p",
+        "Lượt cũ chưa lưu bản đồ. Sơ đồ này được dựng lại từ nhật ký theo phiên bản đang mở.",
+      ),
+    );
   if (item) {
     detail.append(el("small", states[item.status]), el("h2", item.label));
     if (item.refs.length) {
@@ -226,17 +238,164 @@ function map(panel) {
   split.append(list, detail);
   panel.append(split);
 }
+function renderEvaluation(panel, data) {
+  const percent = (n) =>
+    n == null
+      ? "Chưa đo"
+      : n.toLocaleString("vi", { style: "percent", maximumFractionDigits: 2 });
+  function table(headings, rows) {
+    const grid = el("table");
+    const header = grid.createTHead().insertRow();
+    for (const name of headings) header.append(el("th", name));
+    const body = grid.createTBody();
+    for (const row of rows) {
+      const tr = body.insertRow();
+      for (const cell of row) tr.append(el("td", String(cell)));
+    }
+    const frame = el("div", undefined, "table-wrap");
+    frame.append(grid);
+    panel.append(frame);
+  }
+  const r = data.rubric,
+    after = r.after_filter,
+    raw = r.raw;
+  panel.append(
+    el("h2", "Bảng chấm bốn mẫu · phiên bản v11"),
+    el(
+      "p",
+      "Đáp án phát triển do nhóm đối chiếu. Bảng này tổng hợp các lượt đã chấm của phiên bản v11.",
+    ),
+  );
+  const scores = [
+    [
+      "Precision các mục tham chiếu",
+      raw.declared_units.precision,
+      after.declared_units.precision,
+      "≥ 80%",
+    ],
+    [
+      "Recall các mục tham chiếu",
+      raw.declared_units.recall,
+      after.declared_units.recall,
+      "≥ 70%",
+    ],
+    [
+      "F1 các mục tham chiếu",
+      raw.declared_units.f1,
+      after.declared_units.f1,
+      "≥ 75%",
+    ],
+    [
+      "F1 riêng IOC và ATT&CK",
+      raw.ioc_and_attack.f1,
+      after.ioc_and_attack.f1,
+      "≥ 80% để đạt xuất sắc",
+    ],
+    [
+      "Câu đủ dẫn chứng về nghĩa",
+      raw.sentences.source_supported_rate,
+      after.sentences.source_supported_rate,
+      "≥ 90%",
+    ],
+    [
+      "Câu thiếu căn cứ",
+      raw.sentences.hallucination_rate,
+      after.sentences.hallucination_rate,
+      "≤ 5%",
+    ],
+  ];
+  table(
+    ["Chỉ số", "Trước lọc", "Sau lọc", "Mục tiêu"],
+    scores.map(([name, a, b, target]) => [
+      name,
+      percent(a),
+      percent(b),
+      target,
+    ]),
+  );
+  panel.append(
+    el(
+      "p",
+      "Verdict đúng " +
+        r.correct_verdicts +
+        "/" +
+        r.total_attempts +
+        " mẫu. Mục tiêu của lớp là 100%.",
+    ),
+  );
+  panel.append(
+    el("h2", "Tìm liên kết trên 10 vị trí phát triển"),
+    el(
+      "p",
+      "Mỗi phương án được tìm bốn lần trên mỗi mẫu. Thời gian chỉ tính giai đoạn tìm chứng cứ.",
+    ),
+  );
+  table(
+    [
+      "Mẫu",
+      "Cách tìm",
+      "Tìm đúng",
+      "Bỏ sót",
+      "Sai tại vị trí chấm",
+      "Gọi VM / model",
+      "Giây",
+    ],
+    data.search.map((s) => [
+      s.sample,
+      s.mode === "fixed" ? "Cố định" : "Agent",
+      s.found,
+      s.missed,
+      s.wrong,
+      s.tool_calls + " / " + s.model_calls,
+      s.seconds.toLocaleString("vi"),
+    ]),
+  );
+  if (data.stability) {
+    const s = data.stability,
+      c = s.claim_stability;
+    panel.append(
+      el("h2", "Ba lượt trên cùng mẫu Python"),
+      el(
+        "p",
+        c.stable_claims +
+          "/" +
+          c.union_claims +
+          " nhận định trùng cả ba lượt (" +
+          percent(c.stability) +
+          "). Mục tiêu ≥ 80%.",
+      ),
+      el(
+        "p",
+        "Quan hệ có bằng chứng trong cả ba lượt: " +
+          s.web_graph.supported_all_three.length +
+          "/" +
+          s.web_graph.supported_at_least_once.length +
+          " quan hệ từng có bằng chứng. Verdict từng lượt: " +
+          s.verdicts.join(", ") +
+          ".",
+      ),
+    );
+  }
+}
 async function render() {
   const panel = $("#panel");
   panel.replaceChildren();
   document
     .querySelectorAll("nav button")
     .forEach((b) => b.classList.toggle("selected", b.dataset.view === view));
+  if (view === "evaluation") {
+    const result = await api("evaluation");
+    if (view === "evaluation") renderEvaluation(panel, result);
+    return;
+  }
   if (view === "yara") {
-    panel.append(
-      el("h2", "Luật phát hiện YARA"),
-      button("Tạo và kiểm thử luật trong VM", () => launch("yara"), "primary"),
+    const generate = button(
+      "Tạo và kiểm thử luật trong VM",
+      () => launch("yara"),
+      "primary",
     );
+    generate.disabled = init.history_only || job.active;
+    panel.append(el("h2", "Luật phát hiện YARA"), generate);
     if (record?.yara.length)
       for (const y of record.yara)
         panel.append(
@@ -249,8 +408,49 @@ async function render() {
               y.yara_version,
           ),
         );
-    const rows = await api("yara");
+    const [rows, comparison] = await Promise.all([
+      api("yara"),
+      api("yara/regression"),
+    ]);
     if (view !== "yara") return;
+    const reference = el("details", undefined, "card");
+    reference.append(el("summary", "Báo nhầm đã ghi trên tệp sạch"));
+    reference.append(
+      el(
+        "p",
+        "Luật ban đầu · " +
+          comparison.before_fp +
+          "/" +
+          comparison.before_clean +
+          " tệp sạch báo nhầm · " +
+          comparison.before_run,
+      ),
+    );
+    for (const c of comparison.changes) {
+      reference.append(
+        el(
+          "p",
+          c.sample +
+            " · " +
+            (c.matched_after ? "vẫn khớp luật sau" : "đã hết báo nhầm") +
+            " · SHA-256 " +
+            c.sha256,
+        ),
+      );
+    }
+    reference.append(
+      el(
+        "p",
+        "Lượt sau · " +
+          comparison.after_run +
+          " · " +
+          comparison.holdout_fp +
+          "/" +
+          comparison.holdout_clean +
+          " tệp sạch giữ riêng báo nhầm. Tệp đã biết báo nhầm được chuyển vào tập phát triển để sửa luật.",
+      ),
+    );
+    panel.append(reference);
     for (const r of rows) {
       const d = el("details", undefined, "card");
       d.append(
@@ -328,6 +528,39 @@ async function render() {
     if (!record.claims.length) panel.append("Không có nhận định được giữ.");
   }
   if (view === "log") {
+    const m = record.metrics;
+    const number = (n) => (n == null ? "chưa đo" : n.toLocaleString("vi"));
+    const mib = (n) =>
+      n == null ? "chưa đo" : number(Math.round(n / 1048576)) + " MiB";
+    const cost = el("details", undefined, "card");
+    cost.append(
+      el("summary", "Token, bộ nhớ và chi phí của lượt này"),
+      el(
+        "p",
+        "Token đầu vào / đầu ra · " +
+          number(m.prompt_tokens) +
+          " / " +
+          number(m.completion_tokens) +
+          " · phí API " +
+          number(m.api_cost_usd) +
+          " USD",
+      ),
+      el(
+        "p",
+        "RAM đỉnh tiến trình điều phối · " +
+          mib(m.host_peak_rss_bytes) +
+          " · RAM còn trống thấp nhất quan sát trên máy · " +
+          mib(m.minimum_observed_host_available_memory_bytes),
+      ),
+      el(
+        "p",
+        "VRAM Ollama ghi nhận ở cuối lượt · " +
+          mib(m.model_vram_bytes_after_run) +
+          " · số lần công cụ trả lỗi · " +
+          number(m.tool_errors),
+      ),
+    );
+    panel.append(cost);
     for (const e of record.timeline) {
       const d = el("div", undefined, "logrow");
       d.append(
@@ -339,6 +572,19 @@ async function render() {
   }
   if (view === "qa") {
     panel.append(el("h2", "Hỏi trên hồ sơ này"));
+    const saved = record.questions ?? [];
+    if (saved.length > 1) {
+      const select = el("select");
+      select.setAttribute("aria-label", "Câu hỏi đã lưu trong lượt này");
+      for (const previous of saved)
+        select.add(new Option(previous.question, previous.journal));
+      select.value = answerResult?.journal ?? saved.at(-1).journal;
+      select.onchange = () => {
+        answerResult = saved.find((a) => a.journal === select.value);
+        render();
+      };
+      panel.append(select);
+    }
     const q = el("textarea");
     q.placeholder =
       "Ví dụ: Có chứng cứ cho thấy dữ liệu truy vấn được đọc lại không?";
@@ -349,6 +595,10 @@ async function render() {
       try {
         const a = await api("question", { run, question: q.value });
         if (record.run === run) {
+          if (
+            !record.questions.some((existing) => existing.journal === a.journal)
+          )
+            record.questions.push(a);
           answerResult = a;
           if (view === "qa") render();
         }
@@ -356,6 +606,7 @@ async function render() {
         act.disabled = false;
       }
     });
+    act.disabled = init.history_only || job.active;
     panel.append(q, act);
     if (answerResult) {
       const d = el("div", undefined, "box");
@@ -365,6 +616,31 @@ async function render() {
         el("small", answerResult.note),
       );
       refs(d, answerResult.refs);
+      if (answerResult.related_locations?.length) {
+        d.append(
+          el(
+            "p",
+            "Vị trí liên quan đã quan sát. Mối liên hệ vẫn cần kiểm tra.",
+          ),
+        );
+        refs(d, answerResult.related_locations);
+      }
+      if (answerResult.search?.status === "ok")
+        d.append(
+          el(
+            "p",
+            "Nguồn VM · " +
+              answerResult.search.evidence_id +
+              " · SHA-256 " +
+              answerResult.search.output_sha256,
+          ),
+        );
+      d.append(
+        el(
+          "small",
+          "Hồ sơ " + record.run + " · nhật ký hỏi đáp " + answerResult.journal,
+        ),
+      );
       panel.append(d);
     }
   }
@@ -386,7 +662,7 @@ async function poll() {
         (job.sample || job.kind) +
         " · " +
         (job.lines.at(-1) || job.kind)
-      : job.error || "";
+      : job.error || (job.yara_run ? "Đã ghi lượt YARA " + job.yara_run : "");
     if (!job.active && old.active) {
       await bootstrap();
       if (job.run) await load(job.run);

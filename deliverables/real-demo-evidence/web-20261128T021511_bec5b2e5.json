@@ -1,0 +1,329 @@
+{
+  "run": "20261128T021511_bec5b2e5",
+  "sample": "public_python2024.bin",
+  "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "786ba586484d8b09975bbde9a8156d1e008fe6c81616d67a59888ce86cb3aa9f",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 376.7699,
+    "model_calls": 38,
+    "tool_calls": 17,
+    "tool_errors": 1,
+    "prompt_tokens": 79528,
+    "completion_tokens": 2850,
+    "host_peak_rss_bytes": 30617600,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 2188738560,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decode_python_literals",
+    "disassemble_python",
+    "identify",
+    "unpack_pyinstaller"
+  ],
+  "journal_events": 232,
+  "journal_sha256": "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+  "gaps": [
+    {
+      "step": 6,
+      "edge": "rows-process"
+    },
+    {
+      "step": 6,
+      "edge": "rows-process",
+      "status": "partial",
+      "hit_count": 5
+    },
+    {
+      "step": 7,
+      "edge": "write-archive"
+    },
+    {
+      "step": 7,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 8,
+      "edge": "write-archive"
+    },
+    {
+      "step": 8,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 9,
+      "edge": "message-send"
+    },
+    {
+      "step": 9,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 10,
+      "edge": "message-send"
+    },
+    {
+      "step": 10,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 11,
+      "edge": "message-send"
+    },
+    {
+      "step": 11,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 12,
+      "edge": "message-send"
+    },
+    {
+      "step": 12,
+      "edge": "message-send",
+      "status": "supported",
+      "hit_count": 1
+    },
+    {
+      "step": 13,
+      "edge": "write-archive"
+    },
+    {
+      "step": 13,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 14,
+      "edge": "rows-process"
+    },
+    {
+      "step": 14,
+      "edge": "rows-process",
+      "status": "partial",
+      "hit_count": 8
+    },
+    {
+      "step": 15,
+      "edge": "write-archive"
+    },
+    {
+      "step": 15,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 6
+    },
+    {
+      "step": 16,
+      "edge": "write-archive"
+    },
+    {
+      "step": 16,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 17,
+      "edge": "write-archive"
+    },
+    {
+      "step": 17,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 1
+    }
+  ],
+  "accepted_claims": 29,
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 142,
+          "end": 142
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 143,
+          "end": 143
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 247,
+          "end": 247
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 248,
+          "end": 248
+        }
+      ]
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 276,
+          "end": 276
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 278,
+          "end": 278
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 279,
+          "end": 279
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 286,
+          "end": 286
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 315,
+          "end": 315
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 323,
+          "end": 323
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 82,
+          "end": 82
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 96,
+          "end": 96
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 98,
+          "end": 98
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 102,
+          "end": 102
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 103,
+          "end": 103
+        }
+      ]
+    },
+    {
+      "id": "message-send",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 103,
+          "end": 103
+        },
+        {
+          "eid": "ev_5163775067da451a",
+          "line": 109,
+          "end": 109
+        }
+      ]
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_03"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_277e181e659b",
+      "events": 3,
+      "journal_sha256": "e952ee7457f851a8f3c4e7626fadd2a18500bf3c9a9fe8ed6a9b7dd54a65ee9d",
+      "topic": "archive-message",
+      "search_calls": 0,
+      "search_hits": [],
+      "source_refs": 11,
+      "related_locations": 0,
+      "status": "answered"
+    },
+    {
+      "id": "q_ae87d6976786",
+      "events": 5,
+      "journal_sha256": "cef6494a53fbb89944191a7da63272583d7faa311c6f2aa99a12f9ff24ebc0c5",
+      "topic": "rows-process",
+      "search_calls": 1,
+      "search_hits": [
+        8
+      ],
+      "source_refs": 0,
+      "related_locations": 0,
+      "status": "answered"
+    }
+  ],
+  "ranking_anchors_for_review": 19,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}
