@@ -186,6 +186,12 @@ def source(run, fingerprint):
                 desc = f"{o['tool']} · {o['status']} · {len(o.get('lines', []))} dòng"
             elif kind == "action_dispatched":
                 desc = e["action"]
+            elif kind == "flow_review_inventory":
+                desc = f"Đối chiếu đường truyền · {len(e['routes'])} đề xuất"
+            elif kind == "flow_review_decision":
+                if re.fullmatch(r"C[1-9][0-9]*", e["claim_id"]):
+                    outcome = "có hỗ trợ" if e["decision"]["supported"] else "chưa đủ hỗ trợ"
+                    desc = f"Qwen duyệt {e['claim_id']} · {outcome}"
             elif kind == "hypothesis_open":
                 desc = "Tìm liên kết " + e["edge"]
             elif kind == "hypothesis_result":
@@ -445,6 +451,7 @@ def case(run):
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,
+        "transfer_evidence_claim_ids": analysis.get("transfer_evidence_claim_ids", []),
         "can_supplement": dotnet,
         "supplement": supplement,
         "yara": yara,

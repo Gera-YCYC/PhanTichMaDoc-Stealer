@@ -44,6 +44,9 @@ def write_report(directory: Path, result: dict, *, redaction_context=()) -> None
     if not report.get('claims'):
         lines.extend(['Chưa giữ lại nhận định nào sau kiểm tra. Xem claim thô và lý do loại trong log.', ''])
     for claim in report.get("claims", []):
+        if claim["id"] in report.get("transfer_evidence_claim_ids", []):
+            lines.append("**Đối chiếu đường truyền trên mã tĩnh**")
+            lines.append("")
         lines.append(f"- **{claim['id']} / {claim['kind']}**: {claim['text']}")
         for ref in claim["evidence"]:
             if 'end_line' in ref:

@@ -311,7 +311,8 @@ class Agent:
                         raw, checked = create_card_report(evidence, digest, report_call, journal,
                                                           max_cards=self.config.get('max_report_cards', 10),
                                                           operation_review=self.config.get('review_operations', False),
-                                                          technique_review=self.config.get('review_techniques', False))
+                                                          technique_review=self.config.get('review_techniques', False),
+                                                          flow_review=self.config.get('review_transfer_evidence', False))
                         if detected_pyinstaller and 'decompile_python' not in successful:
                             checked['limitations'].append('pycdc did not recover the full module; decoded candidates do not prove whole-module reachability.')
                             if 'decode_python_literals' not in successful:

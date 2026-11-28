@@ -198,7 +198,7 @@ Do not accept a claim merely because an operation ID is present."""
 
 
 def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True,
-                       operation_review=False, technique_review=False, card_selector=select_cards):
+                       operation_review=False, technique_review=False, card_selector=select_cards, flow_review=False):
     """call_model(messages, schema, phase, evidence_records) owns telemetry/exposure logs."""
     cards = card_selector(evidence, max_cards=max_cards)
     journal.append('evidence_cards_selected', cards=cards,
@@ -265,6 +265,31 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
         from .contracts import REPORT_SCHEMA
         capacity = REPORT_SCHEMA['properties']['claims']['maxItems'] - len(claims)
         review_operations(evidence, digest, call_model, journal, claims, accepted, capacity)
+    if flow_review:
+        from .flow_review import review
+        prior_claim_count = len(claims)
+        review(evidence, digest, call_model, journal, claims, accepted, rejected)
+    raw, checked = finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal)
+    checked['report_method'] = 'evidence-cards/11' if operation_review else 'evidence-cards/10'
+    if technique_review:
+        checked['report_method'] = 'evidence-cards/13'
+    if flow_review:
+        checked['report_method'] = 'evidence-cards/14'
+        checked['transfer_evidence_claim_ids'] = [c['id'] for c in claims[prior_claim_count:]]
+    checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
+    checked['api_guidance_enabled'] = api_guidance
+    checked['review_output_order'] = 'evidence-assessment-before-decision'
+    checked['local_semantic_check'] = 'per-claim same-SLM heuristic, not independent ground truth'
+    checked['local_semantic_support_fraction'] = len(checked['claims']) / len(claims) if claims else None
+    checked['candidate_claim_count'] = len(claims)
+    checked['card_count'] = len(cards)
+    checked['skipped_import_cards'] = skipped
+    checked['validation_notes'].append('Verdict synthesized from accepted claims only; all rejected candidates retained for grading.')
+    return raw, checked
+
+
+def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal):
+    """Apply citation checks and synthesize the verdict from all retained behaviors."""
     limitations = ['Static code excerpts only; sample execution was not observed.',
                   'Bounded retrieval is incomplete; absence of a finding does not establish benignness.',
                   'Same-model review is heuristic; independent content grading is still required.']
@@ -272,7 +297,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     # Persist drafts before synthesis so a later resource/transport failure loses no candidates.
     dump_json(journal.directory / 'report.card-candidates.json', raw)
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
-    rejected += checked['rejected_claims']
+    rejected = [*rejected, *checked['rejected_claims']]
     accepted = checked['claims']
     verdict = {'verdict': 'inconclusive', 'verdict_claim_ids': []}
     support = {key: [] for key in SUPPORT_KEYS}
@@ -307,16 +332,4 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
     checked = enforce_stealer_support(checked, support)
     checked['rejected_claims'] += rejected
-    checked['report_method'] = 'evidence-cards/11' if operation_review else 'evidence-cards/10'
-    if technique_review:
-        checked['report_method'] = 'evidence-cards/13'
-    checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
-    checked['api_guidance_enabled'] = api_guidance
-    checked['review_output_order'] = 'evidence-assessment-before-decision'
-    checked['local_semantic_check'] = 'per-claim same-SLM heuristic, not independent ground truth'
-    checked['local_semantic_support_fraction'] = len(accepted) / len(claims) if claims else None
-    checked['candidate_claim_count'] = len(claims)
-    checked['card_count'] = len(cards)
-    checked['skipped_import_cards'] = skipped
-    checked['validation_notes'].append('Verdict synthesized from accepted claims only; all rejected candidates retained for grading.')
     return raw, checked

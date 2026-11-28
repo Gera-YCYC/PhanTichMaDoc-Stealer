@@ -93,6 +93,8 @@ Linux VM chưa bao phủ phân tích động Windows. Phân tích động vốn 
 
 ## 6. Chọn model dựa trên gì?
 
+Giao diện điều tra dùng **Qwen3 8B**. Model đáp ứng mức 7B của hướng 6 và đã chạy được trên chính máy lab qua Ollama. Việc cố định tag, digest, cấu hình và ba hồ sơ cho phép đo tác động của bước duyệt đường truyền. Qwen2.5 Coder 7B vẫn là cấu hình dòng lệnh mặc định. [Phép đo bằng Qwen3 8B](DOI_CHIEU_DUONG_TRUYEN.md)
+
 | Lựa chọn | Nhận xét và quyết định |
 |---|---|
 | Qwen2.5 1.5B có sẵn ở D | Dùng được cho smoke/phát triển, nhưng dưới mốc 7B của hướng 6; không chọn làm model chính |
@@ -108,8 +110,8 @@ Chọn Q4_K_M để giảm bộ nhớ suy luận là lựa chọn triển khai. 
 
 | Mẫu | Vai trò | Lý do chọn và giới hạn |
 |---|---|---|
-| Gomorrah, 85.041 B | Đại diện .NET thay vai trò I trong demo | Kho nghiên cứu public có nguồn/PCAP/mô tả; ILSpy đọc được; agent đã gọi 4 tool. Chưa có bảng chấm đầy đủ |
-| PythonStealer 2024, 22.183.360 B | Đại diện PyInstaller thay vai trò J trong demo | Hash cố định, nhận diện PyInstaller/Python 3.11; unpack được, pycdas đọc entry thurs5. pycdc chưa phục hồi source đầy đủ, nên mới là lựa chọn cho mốc tích hợp |
+| Gomorrah, 85.041 B | Đại diện .NET thay vai trò I trong demo | Có nguồn nghiên cứu công khai, ILSpy đọc được mã quản lý. Bảng chấm phát triển khóa 40 mục và phân biệt chuỗi đứng riêng với đối số thật sự đi vào lời gọi. |
+| PythonStealer 2024, 22.183.360 B | Đại diện PyInstaller thay vai trò J trong demo | Nhận diện được gói PyInstaller/Python 3.11. Khi pycdc gặp lỗi, agent chuyển sang bytecode và trích đoạn giải mã tĩnh. Bảng chấm phát triển khóa 36 mục. |
 | AgentTesla, 608.768 B | .NET bổ sung cho >=3 mẫu | Có nguồn nghiên cứu SMTP; cần đối chiếu hành vi và IOC độc lập |
 | LunaGrabber, 23.250.383 B | Ca khó Python/obfuscation | Giữ để đánh giá hạn chế, không chọn chỉ vì tên họ |
 | Mercurial, 43.008 B | Ứng viên định dạng MSIL | Không dùng thay J vì nguồn MSIL không chứng minh Python |
@@ -153,6 +155,8 @@ Không giữ giới hạn YARA filesize<10MB trong đề xuất một cách máy
 Bảng ATT&CK của đề xuất cũng cần rà soát: T1555.004 là Windows Credential Manager, không phải mã chung cho mọi lời gọi DPAPI. Dùng mã theo hành vi được chứng minh: [MITRE T1555.004](https://attack.mitre.org/techniques/T1555/004/). File gốc được giữ nguyên; phần hiệu chỉnh nằm ở tài liệu/code hiện tại.
 
 ## 10. Cách chạy và cách đọc bằng chứng
+
+Để demo bằng trình duyệt trên máy đã dựng, mở PowerShell ở thư mục gốc, chạy `.\scripts\Start-Web.ps1` và vào `http://127.0.0.1:4180`. Bản đồ cho mở từng đường nối, nhật ký tìm thêm và nhận định có trích dẫn cùng nguồn. [Các bước trình diễn](DOI_CHIEU_DUONG_TRUYEN.md)
 
 Cài mới theo [TEAM_SETUP](TEAM_SETUP.md). Trên máy đã dựng:
 

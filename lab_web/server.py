@@ -381,6 +381,7 @@ class Handler(BaseHTTPRequestHandler):
                         "web_report_quality": reports(),
                         "dotnet_quality": {key: reports(sample=key) for key in dotnet_profiles()},
                         "current_batch": current_batch(),
+                        "transfer_comparison": read(base / "transfer-report-comparison.json")["scores"],
                         "card_supplements": read(base / "web-card-supplements.json"),
                         "cng_trial": read(base / "web-cng-review.json"),
                         "narrow_trials": read(base / "web-narrow-review.json"),

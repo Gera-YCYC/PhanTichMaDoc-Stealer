@@ -1,0 +1,56 @@
+{
+  "run": "20261128T065309_3102f839",
+  "donor": "20261128T030521_c76fc69a",
+  "journal_sha256": "ecf1a90d14b2bcc2d075a18d26d62ab91bf0c0f0155e4c4b10054da3d8a19976",
+  "source_profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+  "accepted": 26,
+  "unmatched": [],
+  "graded_score": {
+    "correct": 13,
+    "incorrect": 1,
+    "unsupported": 2,
+    "missed": 27,
+    "precision": 0.8125,
+    "recall": 0.325,
+    "f1": 0.4642857142857143
+  },
+  "verdict": "suspicious",
+  "interaction": {
+    "run": "20261128T065309_3102f839",
+    "claims": [
+      {
+        "id": "C29",
+        "sources": [
+          {
+            "first": 15,
+            "last": 15,
+            "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+          },
+          {
+            "first": 3573,
+            "last": 3577,
+            "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+          }
+        ]
+      },
+      {
+        "id": "C30",
+        "sources": [
+          {
+            "first": 15,
+            "last": 15,
+            "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+          },
+          {
+            "first": 3677,
+            "last": 3681,
+            "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+          }
+        ]
+      }
+    ],
+    "width": 390,
+    "page_errors": [],
+    "external_requests": []
+  }
+}

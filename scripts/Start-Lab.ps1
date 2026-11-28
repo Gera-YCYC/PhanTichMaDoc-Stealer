@@ -12,12 +12,13 @@ if (-not ($running -contains $vmx)) {
     if ($LASTEXITCODE -ne 0) { throw 'VM failed to start' }
 }
 $ready=$false
-for ($attempt=0;$attempt -lt 12;$attempt++) {
+$bootDeadline=[DateTime]::UtcNow.AddSeconds(120)
+while ([DateTime]::UtcNow -lt $bootDeadline) {
     & ssh -i private/lab-vm/admin_ed25519 -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=private/lab-vm/known_hosts -o ConnectTimeout=3 labadmin@192.168.56.101 'test -f /opt/stealer-lab/BOOTSTRAP_READY' 2>$null
     if ($LASTEXITCODE -eq 0) { $ready=$true; break }
     Start-Sleep -Seconds 1
 }
-if (-not $ready) { throw 'VM is booting or SSH is unavailable; inspect it and retry' }
+if (-not $ready) { throw 'VM did not report bootstrap readiness on pinned SSH within two minutes.' }
 $epoch=[DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
 & ssh -i private/lab-vm/admin_ed25519 -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=private/lab-vm/known_hosts labadmin@192.168.56.101 "sudo date -u -s '@$epoch'; sudo systemctl start stealer-lab.service"
 if ($LASTEXITCODE -ne 0) { throw 'VM service failed' }

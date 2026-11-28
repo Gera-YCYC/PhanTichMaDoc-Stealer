@@ -328,7 +328,25 @@ function map(panel) {
             "Cùng biểu thức đường dẫn từ thao tác tạo bản nén tới đối số mở tệp đính kèm. Chứng cứ mô tả luồng tĩnh trong mã.",
           ),
         );
-      refs(detail, item.trail || item.refs, !item.trail);
+      const sites = item.trail || item.refs;
+      const links = el("div", undefined, "line");
+      for (const claim of record.claims) {
+        if (!record.transfer_evidence_claim_ids?.includes(claim.id)) continue;
+        const common = claim.refs.some(r => sites.some(s =>
+          s.eid === r.eid && s.line <= r.end && r.line <= s.end));
+        if (common) links.append(button("Mở " + claim.id + " trong báo cáo", async () => {
+          view = "claims";
+          await render();
+          const card = document.getElementById("report-" + claim.id);
+          if (card) {
+            card.open = true;
+            card.querySelector("summary").focus();
+            card.scrollIntoView({block: "start"});
+          }
+        }));
+      }
+      if (links.childElementCount) detail.append(el("small", "Nhận định trích cùng vị trí nguồn"), links);
+      refs(detail, sites, !item.trail);
     } else if (item.leads?.length) {
       detail.append(
         el(
@@ -488,6 +506,22 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     ],
     reportRows,
   );
+  if (data.transfer_comparison) {
+    const comparison = data.transfer_comparison;
+    const block = el("details", undefined, "card");
+    block.append(el("summary", "Đường truyền trong báo cáo · đối chứng trên ba mẫu"),
+      el("p", "Cùng dữ liệu công cụ đã lưu và cùng đáp án. Qwen duyệt từng liên kết rồi ra kết luận lần nữa. Mỗi mục trong đáp án chỉ được tính một lần."));
+    const rows = [["Gốc", comparison.baseline], ["Thêm đối chiếu", comparison.reviewed]].map(([label, score]) => {
+      const all = score.declared_units;
+      return [label, all.correct + "/" + (all.correct + all.missed), percent(all.precision),
+        percent(all.recall), percent(all.f1), percent(score.ioc_and_attack.f1),
+        score.sentences.unsupported + "/" + score.sentences.count];
+    });
+    table(["Báo cáo", "Mục khớp", "Precision", "Recall", "F1", "F1 IOC và ATT&CK", "Câu thiếu căn cứ"], rows, block);
+    block.append(el("p", "Verdict đúng sau đối chiếu: " + comparison.strict_correct_verdicts + "/" +
+      comparison.sample_count + ". Nhãn chuẩn của cả ba mẫu phát triển là độc."));
+    panel.append(block);
+  }
   const labelName = {
     correct: "Đúng",
     incorrect: "Sai",
@@ -1038,7 +1072,9 @@ async function render() {
     }
     for (const c of record.claims) {
       const d = el("details", undefined, "card");
-      d.append(el("summary", c.id + " · " + c.text));
+      d.id = "report-" + c.id;
+      const origin = record.transfer_evidence_claim_ids?.includes(c.id) ? "Đối chiếu đường truyền · " : "";
+      d.append(el("summary", c.id + " · " + origin + c.text));
       refs(d, c.refs);
       panel.append(d);
     }
@@ -1264,8 +1300,12 @@ document.querySelectorAll("nav button").forEach(
 try {
   await bootstrap();
   await check();
-  if (init.history.length) await load(init.history[0].run);
-  else await render();
+  // A user can open a case while the first live health check is in flight.
+  // Do not replace that selection or collapse an already opened citation.
+  if (!request) {
+    if (init.history.length) await load(init.history[0].run);
+    else await render();
+  }
   await poll();
   setInterval(() => poll().catch(fail), 2000);
 } catch (e) {

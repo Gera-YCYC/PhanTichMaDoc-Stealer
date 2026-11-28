@@ -1,0 +1,47 @@
+{
+  "run": "20261128T065309_3102f839",
+  "scope": "Source review of the eight retained propositions not byte-equivalent to earlier graded statements. No independent human reviewer.",
+  "claims": {
+    "C2": {
+      "signature": "62f43587da420b0eeca558bbb122371b10ced9e5f4408bc5956da5fadb3138fb",
+      "lines": [3655, 3656], "atoms": [["cc-ascii", "correct"]],
+      "reason": "The returned byte array is the next ASCII decoder input and its result is assigned to the cited field."
+    },
+    "C3": {
+      "signature": "4743a2ed1e2c21e4e119aae331a96e991c3cd223acba609718d82ed9b61d83e1",
+      "lines": [3603], "atoms": [["emails-upload", "correct"]],
+      "reason": "Both arguments agree with the upload call. The candidate identifies a file argument without asserting its contents."
+    },
+    "C4": {
+      "signature": "edb7c7159af6eb84b99b3116ec1d550b74863d5101f0fe6e4574b48afb55b9a4",
+      "lines": [3603, 3604], "atoms": [["emails-ascii", "correct"]],
+      "reason": "The next assignment decodes the response from the same call to the named destination."
+    },
+    "C7": {
+      "signature": "e0c3cddbd70bad2a7e6cacad6f7dc89ea556b938882cd6361292a79231eacc61",
+      "lines": [3629], "atoms": [["info-upload", "correct"], ["info-response-assignment", "correct"]],
+      "reason": "The source supports the argument roles and the local byte array receiving the response."
+    },
+    "C13": {
+      "signature": "8e28f6ac827140970762829e40dacfca65203fa1e4e939a666fc6d057e138fe3",
+      "lines": [4099], "atoms": [["local-unprotect-call-4099", "correct"], ["invalid-dpapi-scope-name-4099", "incorrect"]],
+      "reason": "The call exists at this site. Its numeric scope is zero, which the .NET enum defines as CurrentUser. The report named a nonexistent None member. The declared dpapi target uses a different site.",
+      "api_reference": "https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.dataprotectionscope"
+    },
+    "C15": {
+      "signature": "cd2de8cdcab1acd5fbd51d808677e82f22e3b839021629a355cb9837778487ec",
+      "lines": [3514, 3515], "atoms": [["write-control-one-3515", "correct"]],
+      "reason": "The writer constructed with the named path receives the indicated control text. Its site is outside the reference list."
+    },
+    "C16": {
+      "signature": "cfea1738f0c2f0a50910aacf3d24d20af4f3900b69b70f456efa2638700719e1",
+      "lines": [3518, 3519], "atoms": [["write-control-two-3519", "correct"]],
+      "reason": "The second writer targets the indicated path and is passed the other control text. Its site is outside the reference list."
+    },
+    "C29": {
+      "signature": "c16fc8a36186b5f3973acf6b631af1121ccc94688bf4947354a76407a47a89f9",
+      "lines": [3573, 3577], "atoms": [["logs-fragment", "correct"]],
+      "reason": "The fresh retrieval contains the predeclared prefix definition and its use as part of the upload address at the required site. The host remains unknown."
+    }
+  }
+}

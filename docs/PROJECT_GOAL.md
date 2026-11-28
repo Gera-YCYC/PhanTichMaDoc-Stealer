@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Mục tiêu nghiệm thu là người dùng có thể đi từ giả thuyết còn thiếu, qua hành động của agent trong VM, đến từng nhận định có nguồn và verdict đủ căn cứ. Bản web đã đưa liên kết vào báo cáo chính và đo tác động trên ba hồ sơ cố định. Mốc tiếp theo là chứng minh nguồn dữ liệu nhạy cảm đi tới bên gửi, đo lại độ phủ và verdict trên tập giữ riêng, rồi tái lập trên máy thành viên. [Bằng chứng và giới hạn hiện tại](DOI_CHIEU_DUONG_TRUYEN.md)
+
 Khi agent gặp một lời gọi .NET còn thiếu phần thân, người dùng có thể để Qwen tự chọn vị trí để VM kiểm tra. Bản đồ cần mở được kết quả từng lượt và giữ trạng thái thiếu bằng chứng nếu chưa chứng minh được dữ liệu đi qua các bước. Đã đo phần đối chiếu hai thân hàm trên tập phát triển. Mục tiêu tiếp theo là xác minh luồng dữ liệu trên tập giữ riêng, sau đó chấm lại toàn báo cáo theo ngưỡng gốc. [Cách thử và giới hạn](DOI_CHIEU_THAN_HAM.md)
 
 Đã nối việc tìm thêm dòng trong VM với phụ lục có thể mở và chấm từng câu trên web. Cấu hình kết hợp được thử trực tiếp trên hồ sơ .NET. Tiêu chí còn mở là chứng minh chất lượng của báo cáo hoàn chỉnh trên tập tách riêng và khả năng nối dữ liệu thu thập với dữ liệu gửi đi. [Phương pháp đối chứng và kiểm lại](PHU_LUC_DIEU_TRA_NET.md)

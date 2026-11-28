@@ -1,5 +1,7 @@
 # StealerLab — Đồ án Phân tích mã độc
 
+**Demo đường truyền.** Từ bản đồ, bấm một đường nối rồi mở nhận định trích cùng vị trí để xem dòng mã và hash nguồn. Lượt Python chạy từ trình duyệt đạt 21/36 mục. Phép đối chứng báo cáo trên ba hồ sơ phát triển đạt 37/97 mục và verdict đúng 0/3. [Các bước demo và cách đọc điểm](docs/DOI_CHIEU_DUONG_TRUYEN.md)
+
 **Demo bằng trình duyệt trên máy đã dựng lab.** Mở PowerShell tại thư mục dự án, chạy `.\scripts\Start-Web.ps1`, rồi mở http://127.0.0.1:4180. Chọn mẫu, bấm **Chạy điều tra** và mở **Nhật ký**. Khi có báo cáo, bấm từng nút hoặc đường nối để kiểm tra bằng chứng. [Hướng dẫn demo web](docs/WEB_DIEU_TRA.md) · [Cài trên máy nhóm](docs/TEAM_SETUP.md)
 
 Để xem kết quả bản hiện hành, mở **Đánh giá** và chọn PythonStealer, Gomorrah hoặc Mercurial. Repo có bảng chấm cả những câu agent đã tự loại, các mục bỏ sót và số lần gọi công cụ của từng mẫu. [Đối chiếu ba mẫu với slide giảng viên](docs/CHAM_BA_MAU_WEB.md)

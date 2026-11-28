@@ -2,7 +2,7 @@
 
 Để demo điều tra bằng **trình duyệt**, chuẩn bị VM của nhóm và cài **Qwen3 8B** vào kho Ollama của dự án trên máy Windows. Sau đó chạy `.\scripts\Start-Web.ps1` từ thư mục gốc. Cấu hình dòng lệnh mặc định dùng **Qwen2.5 Coder 7B**. Nếu chỉ cần xem bảng điểm đã công bố trên máy mới, dùng `.\scripts\Start-Web.ps1 -HistoryOnly` sau khi cài môi trường Python của dự án. [Hướng dẫn giao diện và điều tra](WEB_DIEU_TRA.md) · [Cấu hình model 8B](DEMO_COVERAGE.md)
 
-Các cập nhật sau mốc 4 dùng Qwen7B mặc định và Release `tai-nguyen-lab-20261127` ngay trong repo nhóm. Có thêm ranker đã train (checkpoint JSON nhỏ nằm trong source), decoder Python literal và kiểm RAM khả dụng giữa các request. Không chạy đồng thời hai lab cùng IP. Qwen3 8B đã chạy được sau khi giới hạn cache, nhưng vẫn là candidate vì chất lượng chưa được chấm đủ; thành viên không cần tải nó để chạy mặc định. Xem [MODEL_COMPARISON](MODEL_COMPARISON.md), [PYTHON_STATIC_DECODING](PYTHON_STATIC_DECODING.md), [hồ sơ train](../training/RANKER_EXPERIMENT.md).
+Luồng dòng lệnh dùng bộ 7B ở Release của repo nhóm. Web dùng riêng cấu hình 8B. Trọng số bộ xếp hạng chứng cứ nằm trong source và được đồng bộ vào VM cùng công cụ. Hai lab dùng chung địa chỉ VM phải chạy lần lượt. [So sánh model](MODEL_COMPARISON.md) · [Luồng Python](PYTHON_STATIC_DECODING.md) · [Hồ sơ train](../training/RANKER_EXPERIMENT.md) · [Kết quả web trên ba mẫu](DOI_CHIEU_DUONG_TRUYEN.md)
 
 Mục tiêu: chạy lại hai mẫu public .NET/PyInstaller bằng Qwen2.5 Coder 7B và công cụ thật trong VM. Không dùng mock, không dùng fixture làm demo chính. Mẫu public thay thế I/J vì nhóm xác nhận GV không cấp mẫu; nguồn và hash trong DATASET.md và config/public-samples.json.
 

@@ -21,5 +21,6 @@
   "review_operations": true,
   "recover_empty_searches": true,
   "review_techniques": true,
-  "investigate_links": true
+  "investigate_links": true,
+  "review_transfer_evidence": true
 }

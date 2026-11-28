@@ -1,5 +1,14 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+| Phụ trách | Việc kế tiếp | Bằng chứng để đóng |
+|---|---|---|
+| Phân tích .NET/Python | Truy tiếp quan hệ giữa dữ liệu nguồn, bước ghi và tệp đi vào kênh gửi. Ưu tiên vị trí còn thiếu trong báo cáo. | Dẫn được cả điểm tạo và điểm dùng của cùng dữ liệu. Đối chứng tệp khác, gán lại biến và nhánh rẽ. |
+| Đánh giá | Khóa mẫu và đáp án giữ riêng trước khi nhóm chỉnh agent. Chấm từng câu, toàn bộ mục bỏ sót, verdict, độ ổn định ba lần và injection trên hai định dạng. | Bảng theo mẫu, nguồn nhãn và mẫu số cho từng ngưỡng slide. Hiện bước đối chiếu mới đạt 37/97 mục phát triển, verdict đúng 0/3. |
+| YARA và train | Kiểm luật đã khóa trên mẫu độc giữ riêng. Thu nhãn do thành viên đối chiếu nguồn, train lại ranker rồi so với bản đang chạy. | Báo TPR/FPR theo tập, hash checkpoint, chất lượng tìm kiếm và thay đổi trong báo cáo cuối trên cùng mẫu. |
+| Tái lập và demo | Dựng lab từ repo trên máy thành viên khác, chạy từ trình duyệt rồi tắt lab. | Nhật ký thật, hash model/mẫu, hai trích dẫn mở được, xác nhận VM và Ollama dừng. |
+
+[Lượt web và cách tính điểm mới nhất](DOI_CHIEU_DUONG_TRUYEN.md)
+
 ## Ưu tiên của nhóm
 
 Đã kiểm riêng phần thân hàm sau lời gọi qua trường .NET trên hai hồ sơ. Bước tiếp theo của người phụ trách phân tích là truy được cùng dữ liệu từ nguồn tới thao tác gửi và ghi rõ nơi chuỗi dừng. Người phụ trách đánh giá cần chấm trên chương trình giữ riêng, có cả file lành, trước khi nhập kết quả đối chiếu vào verdict toàn mẫu. [Hai kết quả dương và một trường hợp hết ngân sách](DOI_CHIEU_THAN_HAM.md)

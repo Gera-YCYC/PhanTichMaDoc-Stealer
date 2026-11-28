@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Đã tích hợp việc đối chiếu đường truyền vào báo cáo trước bước ra verdict. Trong thí nghiệm cố định dữ liệu của ba mẫu, bốn câu mới có căn cứ và hai mục đáp án được bổ sung. Precision 90,24%, recall 38,14%, F1 53,62%, verdict đúng 0/3. Lượt Python bấm mới trên giao diện đạt 21/36 mục. [Phương pháp, mẫu số và cách mở bằng chứng](DOI_CHIEU_DUONG_TRUYEN.md)
+
 Web đã đối chiếu thân hàm trên hai mẫu .NET thật. Ở Mercurial, Qwen dẫn được dòng đọc tệp và dòng lấy phản hồi mạng trên hai thân hàm khác nhau. Ở Gomorrah, cả ba lần chọn lời gọi vẫn thiếu nguồn. Bảng điểm báo cáo toàn mẫu hiện giữ mức 39/97 mục cho cấu hình có phụ lục. [Các dòng nguồn, phép đối chứng và thao tác demo](DOI_CHIEU_THAN_HAM.md)
 
 Đã chạy trực tiếp nút lập phụ lục trên Gomorrah và Mercurial. Khi ghép phụ lục kết hợp vào hai báo cáo gốc, giữ cùng báo cáo Python và mẫu số 97, precision đạt 81,25%, recall 40,21%, F1 53,79%. Cả bốn mục tăng đều ở Gomorrah. Chế độ phụ lục là lựa chọn của người phân tích. Ba verdict gốc và kết quả nghiệm thu buổi 8 vẫn cần cải thiện. [So ba phương án trên cùng hồ sơ](PHU_LUC_DIEU_TRA_NET.md)

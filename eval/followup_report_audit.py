@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import importlib.util
 from collections import Counter
 from hashlib import sha256
 from pathlib import Path
@@ -12,11 +13,11 @@ from eval.followup_report_trial import prepare, sources
 from eval.score_public_batch import metrics
 from eval.web_report_quality import EVIDENCE, ROOT, current_batch, dotnet_profiles, read
 from lab_web.cases import records_for
-from stealer_agent.evidence_cards import create_card_report
 from stealer_agent.journal import Journal, canonical, dump_json, verify_journal
 
 GRADES = ROOT / "eval/adjudications/dotnet-followup-reports.json"
 RECEIPT = EVIDENCE / "web-dotnet-followup-reports.json"
+REPORTER = ROOT / "eval/reproductions/evidence-cards-v13/evidence_cards.py"
 
 
 def require(condition, detail):
@@ -92,7 +93,7 @@ def stage(sample, mode, labels, donor, sources_by_arm):
             and start["selector_sha256"]
             == fingerprint(ROOT / "stealer_agent/followup_report.py")
             and start["reporter_sha256"]
-            == fingerprint(ROOT / "stealer_agent/evidence_cards.py"),
+            == fingerprint(REPORTER),
             "Different report stage",
         )
         queries, old = sources_by_arm[sample, mode]
@@ -124,7 +125,10 @@ def stage(sample, mode, labels, donor, sources_by_arm):
         return res["response"]
 
     with TemporaryDirectory() as tmp:
-        raw, checked = create_card_report(
+        spec = importlib.util.spec_from_file_location("stealer_agent._measured_cards_v13", REPORTER)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        raw, checked = module.create_card_report(
             source,
             original["sample_sha256"],
             playback,

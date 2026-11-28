@@ -10,6 +10,8 @@ Mở **http://127.0.0.1:4180**. Script bật VM và Ollama, đồng bộ mã cô
 
 ## Một lượt trình bày
 
+Để trình bày từ giả thuyết tới kết luận, mở đường nối **Tuần tự hóa thông điệp → Gọi API gửi**, xem các lần truy vấn rồi bấm **Mở … trong báo cáo**. Trong **Đánh giá**, bảng **Đường truyền trong báo cáo** cho thấy hai mục tham chiếu tăng thêm và ba verdict vẫn cần cải thiện. [Hướng dẫn thực hành với lượt Python thật](DOI_CHIEU_DUONG_TRUYEN.md)
+
 Để minh họa cách phân biệt thao tác đọc tệp và lời gọi gửi dữ liệu, chọn Mercurial rồi mở **Nhận định → Điều tra bổ sung trên mã .NET → Đối chiếu lời gọi với thân hàm**. Có thể để Qwen chọn hoặc tự chọn dòng 245. Mở lại bằng chứng trong **Bản đồ chứng cứ**. [Năm lượt bấm thật và cách đối chiếu](DOI_CHIEU_THAN_HAM.md)
 
 Muốn chứng minh agent tìm thêm bằng chứng ngoài hồ sơ gốc, mở **Nhận định → Điều tra bổ sung trên mã .NET → Tìm thêm và lập phụ lục**. Trong VM, ILSpy dịch ngược lại chính mẫu đó. Web kiểm tra hash nguồn trước khi cho tìm mới, lập phụ lục và mở từng trích dẫn. [Các bước, điểm đo và hai lượt chạy trực tiếp](PHU_LUC_DIEU_TRA_NET.md)

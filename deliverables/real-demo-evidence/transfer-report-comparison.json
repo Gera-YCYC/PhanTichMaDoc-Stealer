@@ -1,0 +1,277 @@
+{
+  "trial": {
+    "trial": "trial_301512163b45",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "config_sha256": "9ec2b1314da1ec45e610f1a65537d1ff2eca024e5b108841b50c3a64aa8050ee",
+    "method_sha256": "adf7480cec21dd6987b6efa6edf02c28ad0578919025884179271f1b9b52b6c6",
+    "cases": [
+      {
+        "run": "20261128T021511_bec5b2e5",
+        "sample": "public_python2024.bin",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "parent_sha256": "85b542cd68669e7e99bc7425cf41f853ace7612b6601e35b832c3586afb64256",
+        "journal_sha256": "e9bff91df4f91b1019c8dfd3af9d7519c0c5b760ef9e02bf7eb368d2320e1327",
+        "baseline_claims": 29,
+        "retained": 31,
+        "verdict": "suspicious",
+        "calls": [
+          {
+            "phase": "flow_review",
+            "prompt_tokens": 318,
+            "completion_tokens": 65,
+            "latency_s": 22.9962
+          },
+          {
+            "phase": "flow_review",
+            "prompt_tokens": 428,
+            "completion_tokens": 66,
+            "latency_s": 8.1783
+          },
+          {
+            "phase": "card_verdict",
+            "prompt_tokens": 1580,
+            "completion_tokens": 201,
+            "latency_s": 29.6555
+          }
+        ],
+        "rows": [
+          {
+            "id": "C31",
+            "route": "attachment_payload",
+            "kind": "behavior",
+            "sha256": "8dc62a0fe0bb2948b5981dcee1e2aee8ef41297974b8bca3e1b72a4e133d42da",
+            "retained": true,
+            "ranges": [
+              [
+                82,
+                82
+              ],
+              [
+                96,
+                98
+              ],
+              [
+                102,
+                103
+              ]
+            ]
+          },
+          {
+            "id": "C32",
+            "route": "attachment_to_send",
+            "kind": "behavior",
+            "sha256": "73dd73ff25a6d8ca3ea72815f580b0dad03c3628dcb884ce79aead93a7f92b60",
+            "retained": true,
+            "ranges": [
+              [
+                82,
+                82
+              ],
+              [
+                96,
+                98
+              ],
+              [
+                102,
+                103
+              ],
+              [
+                103,
+                109
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "run": "20261128T030521_c76fc69a",
+        "sample": "public_gomorrah.bin",
+        "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+        "parent_sha256": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+        "journal_sha256": "3a23f411ac6ab75f037fcd73e58c3faf96da0a474f1fd57e3d0e1593a05f4eae",
+        "baseline_claims": 24,
+        "retained": 26,
+        "verdict": "suspicious",
+        "calls": [
+          {
+            "phase": "flow_review",
+            "prompt_tokens": 285,
+            "completion_tokens": 70,
+            "latency_s": 8.72
+          },
+          {
+            "phase": "flow_review",
+            "prompt_tokens": 286,
+            "completion_tokens": 30,
+            "latency_s": 3.755
+          },
+          {
+            "phase": "card_verdict",
+            "prompt_tokens": 1303,
+            "completion_tokens": 171,
+            "latency_s": 23.263
+          }
+        ],
+        "rows": [
+          {
+            "id": "C28",
+            "route": "upload_uri_prefix",
+            "kind": "ioc",
+            "sha256": "6b4704921f2969cf3bf70187179a4dd1d20670be6047b40f93aeb660d2746864",
+            "retained": true,
+            "ranges": [
+              [
+                15,
+                15
+              ],
+              [
+                3599,
+                3603
+              ]
+            ]
+          },
+          {
+            "id": "C29",
+            "route": "upload_uri_prefix",
+            "kind": "ioc",
+            "sha256": "da04267d0480b2cdd1235fd64fca086624e2711ab989edba402af2d19225988d",
+            "retained": true,
+            "ranges": [
+              [
+                15,
+                15
+              ],
+              [
+                3677,
+                3681
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "run": "20261128T031606_ca91de35",
+        "sample": "public_mercurial.bin",
+        "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+        "parent_sha256": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+        "journal_sha256": "350da29e070b5a8e39218bbd50171cabd6215e6a0d3704e08d53271a9334a4c6",
+        "baseline_claims": 16,
+        "retained": 16,
+        "verdict": "suspicious",
+        "calls": [
+          {
+            "phase": "card_verdict",
+            "prompt_tokens": 889,
+            "completion_tokens": 130,
+            "latency_s": 16.6837
+          }
+        ],
+        "rows": []
+      }
+    ]
+  },
+  "grades": {
+    "8dc62a0fe0bb2948b5981dcee1e2aee8ef41297974b8bca3e1b72a4e133d42da": [
+      [
+        "PY24-A19"
+      ],
+      "At 96–98 bytes from the attachment parameter supply the MIME payload."
+    ],
+    "73dd73ff25a6d8ca3ea72815f580b0dad03c3628dcb884ce79aead93a7f92b60": [
+      [],
+      "Serialization and the send argument refer to the same value. The statement does not establish which collected data the file contained."
+    ],
+    "6b4704921f2969cf3bf70187179a4dd1d20670be6047b40f93aeb660d2746864": [
+      [],
+      "Real upload site at 3599–3603. The logs-fragment unit requires the separately declared occurrence at 3573 and 3577."
+    ],
+    "da04267d0480b2cdd1235fd64fca086624e2711ab989edba402af2d19225988d": [
+      [
+        "screen-fragment"
+      ],
+      "The relative prefix at 3677 is used in the address expression at 3681. The host is unresolved."
+    ]
+  },
+  "scores": {
+    "baseline": {
+      "declared_units": {
+        "correct": 35,
+        "incorrect": 1,
+        "unsupported": 3,
+        "missed": 62,
+        "precision": 0.8974358974358975,
+        "recall": 0.36082474226804123,
+        "f1": 0.5147058823529411
+      },
+      "ioc_and_attack": {
+        "correct": 3,
+        "incorrect": 0,
+        "unsupported": 0,
+        "missed": 8,
+        "precision": 1.0,
+        "recall": 0.2727272727272727,
+        "f1": 0.42857142857142855
+      },
+      "sentences": {
+        "count": 69,
+        "correct": 64,
+        "incorrect": 1,
+        "unsupported": 4,
+        "citations": 69,
+        "citation_rate": 1.0,
+        "source_supported_rate": 0.927536231884058,
+        "hallucination_rate": 0.057971014492753624
+      }
+    },
+    "reviewed": {
+      "declared_units": {
+        "correct": 37,
+        "incorrect": 1,
+        "unsupported": 3,
+        "missed": 60,
+        "precision": 0.9024390243902439,
+        "recall": 0.38144329896907214,
+        "f1": 0.5362318840579711
+      },
+      "ioc_and_attack": {
+        "correct": 4,
+        "incorrect": 0,
+        "unsupported": 0,
+        "missed": 7,
+        "precision": 1.0,
+        "recall": 0.36363636363636365,
+        "f1": 0.5333333333333333
+      },
+      "sentences": {
+        "count": 73,
+        "correct": 68,
+        "incorrect": 1,
+        "unsupported": 4,
+        "citations": 73,
+        "citation_rate": 1.0,
+        "source_supported_rate": 0.9315068493150684,
+        "hallucination_rate": 0.0547945205479452
+      }
+    },
+    "samples": [
+      {
+        "sample": "public_python2024.bin",
+        "new_units": [
+          "PY24-A19"
+        ]
+      },
+      {
+        "sample": "public_gomorrah.bin",
+        "new_units": [
+          "screen-fragment"
+        ]
+      },
+      {
+        "sample": "public_mercurial.bin",
+        "new_units": []
+      }
+    ],
+    "strict_correct_verdicts": 0,
+    "sample_count": 3
+  }
+}

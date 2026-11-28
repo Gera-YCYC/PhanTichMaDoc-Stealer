@@ -1,0 +1,71 @@
+{
+  "run": "20261128T053257_fbd5c41a",
+  "donor": "20261128T021511_bec5b2e5",
+  "journal_sha256": "735e0dcbdce09936e9ded19a73d903012dc5fd21f825a5bddcd2ca28c582e746",
+  "source_profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "accepted": 31,
+  "unmatched": [],
+  "graded_score": {
+    "correct": 21,
+    "incorrect": 1,
+    "unsupported": 0,
+    "missed": 15,
+    "precision": 0.9545454545454546,
+    "recall": 0.5833333333333334,
+    "f1": 0.7241379310344828
+  },
+  "verdict": "suspicious",
+  "interaction": {
+    "run": "20261128T053257_fbd5c41a",
+    "claims": [
+      {
+        "id": "C31",
+        "sources": [
+          {
+            "first": 82,
+            "last": 82,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          },
+          {
+            "first": 96,
+            "last": 98,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          },
+          {
+            "first": 102,
+            "last": 103,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          }
+        ]
+      },
+      {
+        "id": "C32",
+        "sources": [
+          {
+            "first": 82,
+            "last": 82,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          },
+          {
+            "first": 96,
+            "last": 98,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          },
+          {
+            "first": 102,
+            "last": 103,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          },
+          {
+            "first": 103,
+            "last": 109,
+            "output_sha256": "440969e8b15f0468229e7d6d37340545b38b48f1da56ec98fd91f02a88c3b0a6"
+          }
+        ]
+      }
+    ],
+    "width": 390,
+    "page_errors": [],
+    "external_requests": []
+  }
+}
