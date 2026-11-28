@@ -4,7 +4,9 @@
 
 ## Cập nhật hiện tại
 
-### Python: mở rộng thao tác, đo phần bỏ sót và sửa IOC biểu thức
+Lượt đầu-cuối Python với Qwen3 8B và báo cáo v11 đã hoàn tất trong 588,6 giây. Có 36/39 câu đủ chứng cứ, Recall 61,11% trên 36 mục tham chiếu và verdict `suspicious`. Nhóm đã lập thêm 40 đơn vị tham chiếu .NET từ kết quả ILSpy của Gomorrah. [Số đo và hướng dẫn tái lập](DEMO_COVERAGE.md).
+
+### Các lượt trước với báo cáo v9 và v10
 
 Parser v4 nhận diện thêm copy/read/write/fetchall/DPAPI/MIME/TLS; kiểm riêng source thật có39 fact Python và10 .NET, kiểm HTTP dùng phiên mới đạt. **Đó là kiểm công cụ, không là accuracy của SLM.** Run ReAct v9 mới mất495,9s,4 backend thành công,18 câu raw có13 đúng/5 thiếu căn cứ; sau lọc11/14 đúng. Có hostname SMTP thật trong source nhưng không có ATT&CK. [Nguồn và phân tích lỗi](OPERATIONS_CONTEXT_V9.md).
 

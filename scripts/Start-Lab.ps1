@@ -1,3 +1,4 @@
+param([ValidateRange(0,1024)][int]$PromptCacheMiB = 256)
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $projectRoot
@@ -22,7 +23,7 @@ $epoch=[DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
 if ($LASTEXITCODE -ne 0) { throw 'VM service failed' }
 $listener = Get-NetTCPConnection -LocalPort 11435 -State Listen -ErrorAction SilentlyContinue
 if (-not $listener) {
-    & .\scripts\Start-LocalModel.ps1 -ModelDirectory (Join-Path $projectRoot 'private\ollama-models')
+    & .\scripts\Start-LocalModel.ps1 -ModelDirectory (Join-Path $projectRoot 'private\ollama-models') -PromptCacheMiB $PromptCacheMiB
 } else {
     $receipt = Get-Content -LiteralPath 'evidence/local/ollama/process.json' -Raw | ConvertFrom-Json
     $owned = Get-Process -Id $receipt.pid -ErrorAction Stop
@@ -31,6 +32,9 @@ if (-not $listener) {
         $owned.StartTime.ToUniversalTime().Ticks -ne $recordedStart.UtcDateTime.Ticks -or
         $receipt.model_directory -ne (Join-Path $projectRoot 'private\ollama-models')) {
         throw 'Existing port owner/model store differs from project receipt; refusing to reuse it'
+    }
+    if ($PSBoundParameters.ContainsKey('PromptCacheMiB') -and $receipt.prompt_cache_mib -ne $PromptCacheMiB) {
+        throw "Existing project server uses cache $($receipt.prompt_cache_mib) MiB. Stop the project model server before starting a different cache configuration."
     }
 }
 & '.\.venv\Scripts\python.exe' scripts/wait_lab_ready.py

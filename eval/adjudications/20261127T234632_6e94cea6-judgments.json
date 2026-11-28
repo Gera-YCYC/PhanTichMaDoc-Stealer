@@ -1,0 +1,492 @@
+{
+  "run_id": "20261127T234632_6e94cea6",
+  "raw_report_sha256": "1c2d7048821f4c1dbeda73214a8d1baa75f6a548b5b28db1a9fa25e88e4901e6",
+  "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+  "claims": {
+    "C1": {
+      "reason": "The source supplies emails_pass as an expression and builds the URI argument from the named components.",
+      "atoms": [
+        {
+          "key": "emails-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C2": {
+      "reason": "CC is a variable supplying a path. The citation does not prove a file literally named CC. The incorrect path qualifier belongs to the upload operation.",
+      "atoms": [
+        {
+          "key": "literal-cc-file",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C3": {
+      "reason": "The call uploads the path_screenshot expression. This excerpt does not establish the actual contents of the file as a screenshot.",
+      "atoms": [
+        {
+          "key": "unproven-screenshot-contents",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C4": {
+      "reason": "The bytes returned from the upload are decoded as ASCII and assigned to Fileuri4.",
+      "atoms": [
+        {
+          "key": "screen-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C5": {
+      "reason": "The file supplied through info_pc is uploaded to the composed address. The description identifies outgoing file contents and makes no claim of plaintext recovery.",
+      "atoms": [
+        {
+          "key": "info-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C6": {
+      "reason": "The upload result bytes are explicitly decoded and assigned to Fileuri2.",
+      "atoms": [
+        {
+          "key": "info-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C7": {
+      "reason": "The upload uses the Passwords variable as the local path and the concatenated destination expression.",
+      "atoms": [
+        {
+          "key": "passwords-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C8": {
+      "reason": "The returned response is ASCII decoded and assigned to Fileuri.",
+      "atoms": [
+        {
+          "key": "passwords-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C9": {
+      "reason": "The Opera path is opened and the logins fields are actually read. The sentence does not name each field separately.",
+      "atoms": [
+        {
+          "key": "opera-open",
+          "label": "correct",
+          "until": " to extract"
+        },
+        {
+          "key": "opera-generic-credential-read",
+          "label": "correct"
+        }
+      ]
+    },
+    "C10": {
+      "reason": "Encoding.Default.GetBytes converts the selected field to bytes before the custom helper. The claimed direction from bytes is contradicted. No body here verifies decryption.",
+      "atoms": [
+        {
+          "key": "wrong-opera-byte-direction",
+          "label": "incorrect"
+        }
+      ]
+    },
+    "C11": {
+      "reason": "The Chrome Login Data path and field reads are visible. No separate credit for a specific field name absent from the sentence.",
+      "atoms": [
+        {
+          "key": "chrome-open",
+          "label": "correct",
+          "until": " to extract"
+        },
+        {
+          "key": "chrome-generic-credential-read",
+          "label": "correct"
+        }
+      ]
+    },
+    "C12": {
+      "reason": "Account construction is explicit. The two decrypted-result clauses both rely on the unseen custom helper body and are the same unsupported proposition.",
+      "atoms": [
+        {
+          "key": "unverified-chrome-decryption",
+          "label": "unsupported",
+          "until": " and constructs"
+        },
+        {
+          "key": "chrome-account-constructor",
+          "label": "correct",
+          "until": " with the"
+        },
+        {
+          "key": "unverified-chrome-decryption",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C13": {
+      "reason": "GetValue and the byte-array cast are in the quoted source. This identifies a stored configuration value, not a real SMTP connection.",
+      "atoms": [
+        {
+          "key": "smtp-config-bytes",
+          "label": "correct"
+        }
+      ]
+    },
+    "C14": {
+      "reason": "The recovered account and URL assignment contain the encoding operation on bytes.",
+      "atoms": [
+        {
+          "key": "account-url-decode",
+          "label": "correct"
+        }
+      ]
+    },
+    "C15": {
+      "reason": "The code writes the enumerated browser account fields with a StreamWriter. The target is a path variable and no quoted literal basename is demonstrated.",
+      "atoms": [
+        {
+          "key": "credential-write",
+          "label": "correct",
+          "until": " to a file"
+        },
+        {
+          "key": "literal-passwords-file",
+          "label": "unsupported",
+          "until": " using a"
+        },
+        {
+          "key": "credential-write",
+          "label": "correct"
+        }
+      ]
+    },
+    "C16": {
+      "reason": "The shown File.WriteAllText call overwrites with an empty string. It does not write system information and the path variable does not establish a literal filename.",
+      "atoms": [
+        {
+          "key": "wrong-info-write",
+          "label": "incorrect",
+          "until": " by overwriting"
+        },
+        {
+          "key": "clear-info-file",
+          "label": "correct"
+        }
+      ]
+    },
+    "C17": {
+      "reason": "The WebClient late-bound upload call is visible. A variable named current does not prove a path originating in the process current directory.",
+      "atoms": [
+        {
+          "key": "late-one-call",
+          "label": "correct",
+          "until": ", passing"
+        },
+        {
+          "key": "current-working-directory",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C18": {
+      "reason": "The returned object is converted to bytes then ASCII-decoded at the first late-bound site.",
+      "atoms": [
+        {
+          "key": "late-one-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C19": {
+      "reason": "The second late-bound local-file upload call is real. The actual destination host or remote server is not resolved by this citation.",
+      "atoms": [
+        {
+          "key": "late-two-call",
+          "label": "correct",
+          "until": " to a remote"
+        },
+        {
+          "key": "resolved-remote-destination",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C20": {
+      "reason": "The ASCII decoder acts on the upload response. It does not retrieve the uploaded file contents. The following clause correctly describes the response conversion.",
+      "atoms": [
+        {
+          "key": "response-is-uploaded-file",
+          "label": "incorrect",
+          "until": ", converting"
+        },
+        {
+          "key": "late-two-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C21": {
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
+      "atoms": [
+        {
+          "key": "emails-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C22": {
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
+      "atoms": [
+        {
+          "key": "emails-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C23": {
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
+      "atoms": [
+        {
+          "key": "passwords-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C24": {
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
+      "atoms": [
+        {
+          "key": "passwords-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C25": {
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
+      "atoms": [
+        {
+          "key": "screen-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C26": {
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
+      "atoms": [
+        {
+          "key": "screen-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C27": {
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
+      "atoms": [
+        {
+          "key": "info-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C28": {
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
+      "atoms": [
+        {
+          "key": "info-ascii",
+          "label": "correct"
+        }
+      ]
+    },
+    "C29": {
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site.",
+      "atoms": [
+        {
+          "key": "cc-upload",
+          "label": "correct"
+        }
+      ]
+    },
+    "C30": {
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site.",
+      "atoms": [
+        {
+          "key": "cc-ascii",
+          "label": "correct"
+        }
+      ]
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "opera-generic-credential-read",
+      "kind": "behavior",
+      "proposition": "Reads login credentials from the Opera store, without detailing the separate fields.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1055,
+          "end_line": 1055
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1068,
+          "end_line": 1068
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1069,
+          "end_line": 1069
+        }
+      ]
+    },
+    {
+      "id": "chrome-generic-credential-read",
+      "kind": "behavior",
+      "proposition": "Reads login credentials from the Chrome store, without detailing the separate fields.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1103,
+          "end_line": 1103
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1116,
+          "end_line": 1116
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1117,
+          "end_line": 1117
+        }
+      ]
+    },
+    {
+      "id": "chrome-account-constructor",
+      "kind": "behavior",
+      "proposition": "Constructs a Chrome Account object without specifying its credential field bindings.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1119,
+          "end_line": 1119
+        }
+      ]
+    },
+    {
+      "id": "smtp-config-bytes",
+      "kind": "behavior",
+      "proposition": "Retrieves the configured SMTP Server value and casts it to a byte array.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4841,
+          "end_line": 4841
+        }
+      ]
+    },
+    {
+      "id": "account-url-decode",
+      "kind": "behavior",
+      "proposition": "Assigns a string decoded from bytes to the recovered account URL.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4855,
+          "end_line": 4855
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4856,
+          "end_line": 4856
+        }
+      ]
+    },
+    {
+      "id": "credential-write",
+      "kind": "behavior",
+      "proposition": "Writes browser account fields with StreamWriter.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3486,
+          "end_line": 3486
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3489,
+          "end_line": 3489
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3491,
+          "end_line": 3491
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3492,
+          "end_line": 3492
+        }
+      ]
+    },
+    {
+      "id": "clear-info-file",
+      "kind": "behavior",
+      "proposition": "Overwrites the previous contents of the file at info_pc.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3500,
+          "end_line": 3500
+        }
+      ]
+    },
+    {
+      "id": "late-one-call",
+      "kind": "behavior",
+      "proposition": "Calls UploadFile through late binding at the first site.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4244,
+          "end_line": 4244
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4253,
+          "end_line": 4253
+        }
+      ]
+    },
+    {
+      "id": "late-two-call",
+      "kind": "behavior",
+      "proposition": "Calls UploadFile through late binding at the second site.",
+      "source_references": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4302,
+          "end_line": 4302
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4303,
+          "end_line": 4303
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4306,
+          "end_line": 4306
+        }
+      ]
+    }
+  ]
+}

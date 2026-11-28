@@ -12,6 +12,8 @@ Người dùng xác nhận ngày 27/11/2026: giảng viên không cấp I/J, nh�
 
 Không file nào ở bảng được thực thi. Archive nguồn được chuyển vào VM để giải mã. Bộ Release lưu archive AES mã hóa ở host; plaintext chỉ ở VM. Không tải file mẫu lên dịch vụ phân tích cloud. Mọi truy vấn nguồn ngoài chỉ là đọc metadata hoặc tải dữ liệu đã công khai.
 
+Đợt đo v11 dùng Gomorrah cho nhánh .NET, PythonStealer 2024 cho nhánh PyInstaller và AgentTesla để kiểm phạm vi trên mẫu thứ ba. MD5 `b0f2d519ccae5bf1435264e0979770ce` của AgentTesla trong VM khớp định danh của nhà nghiên cứu công bố quan sát SMTP. Bộ chấm phân biệt quan sát bên ngoài với điều agent tự chứng minh trong lượt chạy. [Biên bản đối chiếu](../deliverables/real-demo-evidence/agenttesla-atomic-source-check.json).
+
 ## Nguồn và định danh
 
 **Gomorrah** — SHA256 `93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d`.

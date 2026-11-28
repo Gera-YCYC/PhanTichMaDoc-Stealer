@@ -197,7 +197,8 @@ correct plaintext, password recovery, or text decoding. Do not upgrade a parser 
 Do not accept a claim merely because an operation ID is present."""
 
 
-def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True):
+def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True,
+                       operation_review=False):
     """call_model(messages, schema, phase, evidence_records) owns telemetry/exposure logs."""
     cards = select_cards(evidence, max_cards=max_cards)
     journal.append('evidence_cards_selected', cards=cards,
@@ -256,6 +257,11 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
             else:
                 rejected.append({'claim': claim, 'reasons': ['local_semantic_check_unconfirmed'],
                                  'review_note': check['reason']})
+    if operation_review:
+        from .operation_review import review_operations
+        from .contracts import REPORT_SCHEMA
+        capacity = REPORT_SCHEMA['properties']['claims']['maxItems'] - len(claims)
+        review_operations(evidence, digest, call_model, journal, claims, accepted, capacity)
     limitations = ['Static code excerpts only; sample execution was not observed.',
                   'Bounded retrieval is incomplete; absence of a finding does not establish benignness.',
                   'Same-model review is heuristic; independent content grading is still required.']
@@ -298,7 +304,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
     checked = enforce_stealer_support(checked, support)
     checked['rejected_claims'] += rejected
-    checked['report_method'] = 'evidence-cards/10'
+    checked['report_method'] = 'evidence-cards/11' if operation_review else 'evidence-cards/10'
     checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
     checked['api_guidance_enabled'] = api_guidance
     checked['review_output_order'] = 'evidence-assessment-before-decision'

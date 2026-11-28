@@ -2,7 +2,7 @@
 
 Mục tiêu hiện tại là toàn bộ sản phẩm theo slide và đề xuất gốc; buổi 4 chỉ là mốc đã có bằng chứng tích hợp. Không dùng số tool hay unit test để suy ra chất lượng phân tích. Tài liệu bàn giao là Markdown kỹ thuật, không yêu cầu thông tin sinh viên.
 
-Ưu tiên hiện tại: tiếp tục A01/A02 về chất lượng nhận định, chuẩn hóa đáp án/prediction để tính Recall/F1, chạy >=3 mẫu cùng bản chốt, rồi đo ổn định ba lần và injection đủ điều kiện. Phần YARA đã có hai lượt 7B/8B đạt 5/5 positive và 0/39 negative trên corpus công bố; xem YARA_REAL_CORPUS để biết giới hạn theo bản build và kết quả âm trước sửa.
+Ưu tiên hiện tại là nâng độ phủ hành vi, kiểm ATT&CK và kiểm quan hệ giữa dữ liệu được thu và dữ liệu được gửi. Trên Python, bản v11 đạt F1 72,13% trên 36 mục. Ba câu có phần diễn giải tác dụng helper vượt quá trích dẫn. Đã có 40 mục .NET cho Gomorrah và 7 mục cho AgentTesla. Xem [điểm từng mẫu và cách chạy](DEMO_COVERAGE.md). Phép đo ổn định cần ba lượt trên **cùng mẫu**. Ba mẫu khác nhau phục vụ mốc buổi 6.
 
 **Cập nhật parser v4 / card v10:** đã mở rộng copy/read/write/fetchall/DPAPI/MIME/TLS và có kiểm source/HTTP thật. V9 vẫn sai ở IOC biểu thức, nhãn lớp API thành tên hàm và tự duyệt loại câu đúng. Đã có profile34 đơn vị và mapping22 đơn vị prediction cho v9: raw P 77,27%, R 50%, F1 60,71%, sau lọc F1 52%. V10 giới hạn IOC literal và tách nhãn API,318 test đạt; chạy đầu-cuối bị guard RAM dừng, nên còn phải đo chất lượng/độ ổn định trên bản này. Xem [chi tiết và kết quả âm](OPERATIONS_CONTEXT_V9.md).
 
@@ -19,7 +19,7 @@ Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ kh�
 | ID | Phần việc | Trạng thái thực tế | Điều kiện đóng |
 |---|---|---|---|
 | D01 | Chốt tập .NET/Python và file sạch | 5 mẫu độc public development;39 file sạch gồm37 Microsoft và2 PyInstaller; chưa có positive holdout | Manifest phân vai development/validation/test rõ; không đổi dữ liệu đã xem thành holdout |
-| D02 | Đáp án .NET độc lập với agent | Đang đối chiếu ILSpy và phân tích nguồn | Liên kết luồng lấy dữ liệu → lưu/xử lý → gửi; source hash/dòng; nhãn có provenance |
+| D02 | Đáp án .NET độc lập với agent | Có 40 mục Gomorrah đối chiếu 46 dòng ILSpy, thêm bảy mục AgentTesla với nguồn tĩnh và quan sát công bố | Mở rộng các luồng còn thiếu, giữ hash/dòng, ghi riêng kết quả người chấm độc lập |
 | D03 | Phân tích Python3.11 | Đã giải mã payload candidate 332 dòng PythonStealer; pycdc vẫn lỗi | Đối chiếu luồng dữ liệu và claim cuối; tiếp tục Luna; không coi literal decode là đầy đủ mọi mẫu |
 | D04 | >=3 mẫu có nhật ký | Đã có log lịch sử; cần chạy lại bản chốt | Cùng source/model/config, đủ report và evidence |
 | T01 | Detect It Easy | Đã chạy backend thật và được SLM chọn trên Gomorrah | Kiểm thêm mẫu Python và môi trường dựng mới sau thay đổi installer |

@@ -138,7 +138,9 @@ def main():
 
     start = time.perf_counter()
     raw, checked = reporter(evidence, source_result['sample_sha256'], invoke, journal,
-                                      max_cards=args.cards, api_guidance=not args.no_api_guidance)
+                                      max_cards=args.cards, api_guidance=not args.no_api_guidance,
+                                      **({'operation_review': True} if args.method == 'cards' and
+                                         cfg.get('review_operations') else {}))
     metrics['elapsed_s'] = round(time.perf_counter() - start, 4)
     dump_json(journal.directory / 'report.model-raw.json', raw)
     dump_json(journal.directory / 'report.checked.json', checked)

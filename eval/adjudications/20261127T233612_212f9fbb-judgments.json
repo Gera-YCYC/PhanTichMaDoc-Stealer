@@ -1,0 +1,528 @@
+{
+  "run_id": "20261127T233612_212f9fbb",
+  "raw_report_sha256": "2629971fa7ee98f74ea6a7026f79ee163a1018243e2e67f23dd7c511de7fb682",
+  "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "claims": {
+    "C1": {
+      "reason": "make_archive uses zip format and the temporary Browser directory; its returned archive path is Browser.zip. No contents or runtime success asserted.",
+      "atoms": [
+        {
+          "key": "PY24-A18",
+          "label": "correct"
+        }
+      ]
+    },
+    "C2": {
+      "reason": "Archive body, return value, caller and complete send_email body are supplied. The archive path is read, attached, serialized and passed to sendmail after login. Static capability, not successful delivery.",
+      "atoms": [
+        {
+          "key": "PY24-A25",
+          "label": "correct",
+          "until": " with the zipped"
+        },
+        {
+          "key": "PY24-A26",
+          "label": "correct",
+          "until": ", including authentication"
+        },
+        {
+          "key": "PY24-A24",
+          "label": "correct"
+        }
+      ]
+    },
+    "C3": {
+      "reason": "The exact SMTP hostname literal is assigned and used by the SMTP constructor. This is a configured destination candidate, not confirmed malicious infrastructure or observed traffic.",
+      "atoms": [
+        {
+          "key": "PY24-A27",
+          "label": "correct"
+        }
+      ]
+    },
+    "C4": {
+      "reason": "The source constructs the Login Data path then copies it to the user temporary login_db path.",
+      "atoms": [
+        {
+          "key": "PY24-A05",
+          "label": "correct"
+        }
+      ]
+    },
+    "C5": {
+      "reason": "The database connection receives the copy destination as its argument.",
+      "atoms": [
+        {
+          "key": "PY24-A06",
+          "label": "correct"
+        }
+      ]
+    },
+    "C6": {
+      "reason": "The history helper constructs the History database path and calls shutil.copy at line 192.",
+      "atoms": [
+        {
+          "key": "history-copy",
+          "label": "correct"
+        }
+      ]
+    },
+    "C7": {
+      "reason": "The history helper opens the copy destination with sqlite3.connect at line 193.",
+      "atoms": [
+        {
+          "key": "history-open",
+          "label": "correct"
+        }
+      ]
+    },
+    "C8": {
+      "reason": "The implementation calls the imported CryptUnprotectData with master_key. The assertion does not describe the five-byte slice required by A03.",
+      "atoms": [
+        {
+          "key": "key-api",
+          "label": "correct"
+        }
+      ]
+    },
+    "C9": {
+      "reason": "The encoded key accessed under os_crypt is the operand of the Base64 decoder.",
+      "atoms": [
+        {
+          "key": "PY24-A02",
+          "label": "correct"
+        }
+      ]
+    },
+    "C10": {
+      "reason": "The submitted caller proves the helper invocation, arguments and assignment. Its implementation is absent from this claim, so the asserted collection effect is unverified here.",
+      "atoms": [
+        {
+          "key": "helper-login-call",
+          "label": "correct",
+          "until": " to retrieve"
+        },
+        {
+          "key": "unproven-login-helper-effect",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C11": {
+      "reason": "The caller actually passes login_data and Saved_Passwords to the save helper. A comment mentions text output, but these references do not include the implementation which establishes the file write.",
+      "atoms": [
+        {
+          "key": "PY24-A16",
+          "label": "correct",
+          "until": " to save"
+        },
+        {
+          "key": "unproven-file-effect-at-caller",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C12": {
+      "reason": "The complete write helper contains the non-null guard and constructs the browser/data-type text path under the temporary directory.",
+      "atoms": [
+        {
+          "key": "PY24-A15",
+          "label": "correct"
+        }
+      ]
+    },
+    "C13": {
+      "reason": "The serialized text and the use of that text in the SMTP send call are visible at lines 103 and 109.",
+      "atoms": [
+        {
+          "key": "PY24-A25",
+          "label": "correct",
+          "until": " with the message"
+        },
+        {
+          "key": "PY24-A21",
+          "label": "correct"
+        }
+      ]
+    },
+    "C14": {
+      "reason": "The executed SELECT lists all three named fields and the logins table.",
+      "atoms": [
+        {
+          "key": "PY24-A07",
+          "label": "correct"
+        }
+      ]
+    },
+    "C15": {
+      "reason": "The loop iterates fetchall results and passes the password column and master_key to a helper. The submitted excerpts omit the body needed to establish actual cryptographic decryption.",
+      "atoms": [
+        {
+          "key": "PY24-A08",
+          "label": "correct",
+          "until": " and decrypts"
+        },
+        {
+          "key": "unproven-decrypt-effect-at-caller",
+          "label": "unsupported",
+          "until": " using the"
+        },
+        {
+          "key": "PY24-A09",
+          "label": "correct"
+        }
+      ]
+    },
+    "C16": {
+      "reason": "The cursor executes the two-column SELECT on the downloads table.",
+      "atoms": [
+        {
+          "key": "PY24-A31",
+          "label": "correct"
+        }
+      ]
+    },
+    "C17": {
+      "reason": "The copy operands are visible. This narrower statement does not resolve the source expression to a specific browser database.",
+      "atoms": [
+        {
+          "key": "copy-login-expr",
+          "label": "correct"
+        }
+      ]
+    },
+    "C18": {
+      "reason": "The bound sqlite3.connect call takes the temporary login_db path.",
+      "atoms": [
+        {
+          "key": "PY24-A06",
+          "label": "correct"
+        }
+      ]
+    },
+    "C19": {
+      "reason": "The bound cursor executes the same logins SELECT with all declared columns.",
+      "atoms": [
+        {
+          "key": "PY24-A07",
+          "label": "correct"
+        }
+      ]
+    },
+    "C20": {
+      "reason": "The same cursor calls fetchall after the logins SELECT.",
+      "atoms": [
+        {
+          "key": "PY24-A08",
+          "label": "correct"
+        }
+      ]
+    },
+    "C21": {
+      "reason": "The interpolated output and write operand are visible. This two-line claim does not supply the non-null guard.",
+      "atoms": [
+        {
+          "key": "browser-write-expr",
+          "label": "correct"
+        }
+      ]
+    },
+    "C22": {
+      "reason": "The destination and write operand are cited. The claim does not say append or identify the guard required by A30.",
+      "atoms": [
+        {
+          "key": "autofill-write-expr",
+          "label": "correct"
+        }
+      ]
+    },
+    "C23": {
+      "reason": "The source supplies zip format, the temporary base name and Browser staging root.",
+      "atoms": [
+        {
+          "key": "PY24-A18",
+          "label": "correct"
+        }
+      ]
+    },
+    "C24": {
+      "reason": "The SMTP receiver, sendmail call and three named expressions are present.",
+      "atoms": [
+        {
+          "key": "PY24-A25",
+          "label": "correct"
+        }
+      ]
+    },
+    "C25": {
+      "reason": "The SMTP receiver and its two credential argument positions are explicit. A local display suppresses sensitive literals. No successful authentication is claimed.",
+      "atoms": [
+        {
+          "key": "PY24-A24",
+          "label": "correct"
+        }
+      ]
+    },
+    "C26": {
+      "reason": "The bound SMTP client explicitly requests STARTTLS.",
+      "atoms": [
+        {
+          "key": "PY24-A23",
+          "label": "correct"
+        }
+      ]
+    },
+    "C27": {
+      "reason": "The SMTP constructor takes the configured host and port expressions.",
+      "atoms": [
+        {
+          "key": "PY24-A22",
+          "label": "correct"
+        }
+      ]
+    },
+    "C28": {
+      "reason": "The multipart message attaches MIMEText of the plain message body.",
+      "atoms": [
+        {
+          "key": "PY24-A35",
+          "label": "correct"
+        }
+      ]
+    },
+    "C29": {
+      "reason": "The multipart message attaches the MIME part.",
+      "atoms": [
+        {
+          "key": "PY24-A20",
+          "label": "correct"
+        }
+      ]
+    },
+    "C30": {
+      "reason": "as_string is invoked on the multipart message.",
+      "atoms": [
+        {
+          "key": "PY24-A21",
+          "label": "correct"
+        }
+      ]
+    },
+    "C31": {
+      "reason": "The bound cipher comes from AES GCM with this key/nonce. Its decrypt method takes the payload expression.",
+      "atoms": [
+        {
+          "key": "PY24-A04",
+          "label": "correct"
+        }
+      ]
+    },
+    "C32": {
+      "reason": "The import and call establish DPAPI with this argument. These citations do not include the prefix-removal operation.",
+      "atoms": [
+        {
+          "key": "key-api",
+          "label": "correct"
+        }
+      ]
+    },
+    "C33": {
+      "reason": "The Base64 argument contains the local_state encrypted key lookup.",
+      "atoms": [
+        {
+          "key": "PY24-A02",
+          "label": "correct"
+        }
+      ]
+    },
+    "C34": {
+      "reason": "The file object opened at the Local State path is read.",
+      "atoms": [
+        {
+          "key": "PY24-A01",
+          "label": "correct"
+        }
+      ]
+    },
+    "C35": {
+      "reason": "The text file path uses the filename parameter and the write operand formats each item.",
+      "atoms": [
+        {
+          "key": "PY24-A36",
+          "label": "correct"
+        }
+      ]
+    },
+    "C36": {
+      "reason": "The operands and copy call point to the same history-file copy site as C6.",
+      "atoms": [
+        {
+          "key": "history-copy",
+          "label": "correct"
+        }
+      ]
+    },
+    "C37": {
+      "reason": "The SQLite call uses the same temporary history path as C7.",
+      "atoms": [
+        {
+          "key": "history-open",
+          "label": "correct"
+        }
+      ]
+    },
+    "C38": {
+      "reason": "The history SELECT names the url, title and last-visit columns.",
+      "atoms": [
+        {
+          "key": "history-query",
+          "label": "correct"
+        }
+      ]
+    },
+    "C39": {
+      "reason": "The bound history cursor calls fetchall following that SELECT.",
+      "atoms": [
+        {
+          "key": "history-fetch",
+          "label": "correct"
+        }
+      ]
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "history-copy",
+      "kind": "behavior",
+      "proposition": "Copies the history database expression to the temporary history file.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 187,
+          "end_line": 187
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 192,
+          "end_line": 192
+        }
+      ]
+    },
+    {
+      "id": "history-open",
+      "kind": "behavior",
+      "proposition": "Opens the temporary history database with SQLite.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 193,
+          "end_line": 193
+        }
+      ]
+    },
+    {
+      "id": "history-query",
+      "kind": "behavior",
+      "proposition": "Selects URL, title and visit time from the history table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 195,
+          "end_line": 195
+        }
+      ]
+    },
+    {
+      "id": "history-fetch",
+      "kind": "behavior",
+      "proposition": "Fetches the result rows of the history query.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 195,
+          "end_line": 195
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 196,
+          "end_line": 196
+        }
+      ]
+    },
+    {
+      "id": "key-api",
+      "kind": "behavior",
+      "proposition": "Calls the DPAPI unprotect API on the master_key variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 11,
+          "end_line": 11
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 65,
+          "end_line": 65
+        }
+      ]
+    },
+    {
+      "id": "helper-login-call",
+      "kind": "behavior",
+      "proposition": "Calls the login helper for the Default profile and assigns its result.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 299,
+          "end_line": 299
+        }
+      ]
+    },
+    {
+      "id": "copy-login-expr",
+      "kind": "behavior",
+      "proposition": "Copies the login_db expression into the named temporary path. The cited call alone does not resolve its source path.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 139,
+          "end_line": 139
+        }
+      ]
+    },
+    {
+      "id": "browser-write-expr",
+      "kind": "behavior",
+      "proposition": "Writes content at the interpolated temporary browser path. The cited two lines do not identify the non-null guard.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 123,
+          "end_line": 123
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 124,
+          "end_line": 124
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-expr",
+      "kind": "behavior",
+      "proposition": "Writes content to the autofill text path. The assertion omits the append operation and guard.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 128,
+          "end_line": 128
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 129,
+          "end_line": 129
+        }
+      ]
+    }
+  ]
+}

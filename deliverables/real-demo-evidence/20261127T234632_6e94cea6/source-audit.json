@@ -1,0 +1,796 @@
+{
+  "run_id": "20261127T234632_6e94cea6",
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "raw_report_sha256": "1c2d7048821f4c1dbeda73214a8d1baa75f6a548b5b28db1a9fa25e88e4901e6",
+  "journal_sha256": "67f83b349d730c4dc639394e954a267041a4418c9497965bf5abb8646708a2bf",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3518,
+          "end_line": 3533,
+          "projected_quote_sha256": "c8a1b4811efbd1d3b48783bff8ee161f9f8c16191c0f4d969131d059286d5ff7"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3593,
+          "end_line": 3617,
+          "projected_quote_sha256": "82eff11fa7db3a2de00cbbc7966d02f3b234645b93aa28b09c5efa17f22e89f7"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3645,
+          "end_line": 3669,
+          "projected_quote_sha256": "a2dcad2d56cfad8ca46403c8f55fcf55442f547dbca09998b5412ef5c611184c"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The source supplies emails_pass as an expression and builds the URI argument from the named components."
+    },
+    {
+      "claim_id": "C2",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3518,
+          "end_line": 3533,
+          "projected_quote_sha256": "c8a1b4811efbd1d3b48783bff8ee161f9f8c16191c0f4d969131d059286d5ff7"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3593,
+          "end_line": 3617,
+          "projected_quote_sha256": "82eff11fa7db3a2de00cbbc7966d02f3b234645b93aa28b09c5efa17f22e89f7"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3645,
+          "end_line": 3669,
+          "projected_quote_sha256": "a2dcad2d56cfad8ca46403c8f55fcf55442f547dbca09998b5412ef5c611184c"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "CC is a variable supplying a path. The citation does not prove a file literally named CC. The incorrect path qualifier belongs to the upload operation."
+    },
+    {
+      "claim_id": "C3",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3520,
+          "end_line": 3535,
+          "projected_quote_sha256": "50cf762ace21c4c3ae2e244fb2d9c9b2ece88fe02c678a865ed7c5e22964e78f"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3671,
+          "end_line": 3695,
+          "projected_quote_sha256": "1a332fefa5f1d7dba4464e1399e33e8ade3b7eaa525e28e36b54b23e9f039d0d"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The call uploads the path_screenshot expression. This excerpt does not establish the actual contents of the file as a screenshot."
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3520,
+          "end_line": 3535,
+          "projected_quote_sha256": "50cf762ace21c4c3ae2e244fb2d9c9b2ece88fe02c678a865ed7c5e22964e78f"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3671,
+          "end_line": 3695,
+          "projected_quote_sha256": "1a332fefa5f1d7dba4464e1399e33e8ade3b7eaa525e28e36b54b23e9f039d0d"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The bytes returned from the upload are decoded as ASCII and assigned to Fileuri4."
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3514,
+          "end_line": 3529,
+          "projected_quote_sha256": "04ea1d129b1dcff71a3afdc49b02f151b82d9d361c04d8098e3a50e345775903"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3619,
+          "end_line": 3643,
+          "projected_quote_sha256": "cf676f1717a2b9457c61be4c8a517f9986cebcef6cc2964333f8c4072cdca927"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The file supplied through info_pc is uploaded to the composed address. The description identifies outgoing file contents and makes no claim of plaintext recovery."
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3514,
+          "end_line": 3529,
+          "projected_quote_sha256": "04ea1d129b1dcff71a3afdc49b02f151b82d9d361c04d8098e3a50e345775903"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3619,
+          "end_line": 3643,
+          "projected_quote_sha256": "cf676f1717a2b9457c61be4c8a517f9986cebcef6cc2964333f8c4072cdca927"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The upload result bytes are explicitly decoded and assigned to Fileuri2."
+    },
+    {
+      "claim_id": "C7",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3512,
+          "end_line": 3527,
+          "projected_quote_sha256": "6e65852cbe7d93b92b99b0ba11e18a651f3bc77900633bb3c69f9a533bc8ae05"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3567,
+          "end_line": 3591,
+          "projected_quote_sha256": "bf280479585a880af4dc57c7af39443c13acce80d12328dc237d79564b93e588"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The upload uses the Passwords variable as the local path and the concatenated destination expression."
+    },
+    {
+      "claim_id": "C8",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3512,
+          "end_line": 3527,
+          "projected_quote_sha256": "6e65852cbe7d93b92b99b0ba11e18a651f3bc77900633bb3c69f9a533bc8ae05"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3567,
+          "end_line": 3591,
+          "projected_quote_sha256": "bf280479585a880af4dc57c7af39443c13acce80d12328dc237d79564b93e588"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        }
+      ],
+      "reason": "The returned response is ASCII decoded and assigned to Fileuri."
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1040,
+          "end_line": 1071,
+          "projected_quote_sha256": "d7f4de43669055e5326f52f27e07d1bf37a51edb0e44af7309e09d0c08c0bee7"
+        }
+      ],
+      "reason": "The Opera path is opened and the logins fields are actually read. The sentence does not name each field separately."
+    },
+    {
+      "claim_id": "C10",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1040,
+          "end_line": 1071,
+          "projected_quote_sha256": "d7f4de43669055e5326f52f27e07d1bf37a51edb0e44af7309e09d0c08c0bee7"
+        }
+      ],
+      "reason": "Encoding.Default.GetBytes converts the selected field to bytes before the custom helper. The claimed direction from bytes is contradicted. No body here verifies decryption."
+    },
+    {
+      "claim_id": "C11",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1088,
+          "end_line": 1119,
+          "projected_quote_sha256": "cbe750551dda5f925f23d2225e88e4d2b1d4add9c3eace61b716824c8e472f98"
+        }
+      ],
+      "reason": "The Chrome Login Data path and field reads are visible. No separate credit for a specific field name absent from the sentence."
+    },
+    {
+      "claim_id": "C12",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 1088,
+          "end_line": 1119,
+          "projected_quote_sha256": "cbe750551dda5f925f23d2225e88e4d2b1d4add9c3eace61b716824c8e472f98"
+        }
+      ],
+      "reason": "Account construction is explicit. The two decrypted-result clauses both rely on the unseen custom helper body and are the same unsupported proposition."
+    },
+    {
+      "claim_id": "C13",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4841,
+          "end_line": 4870,
+          "projected_quote_sha256": "25350fc65f84d9da83bac3b59dc0f0c6428f9f31ce8a56c777558e4c1d1ace25"
+        }
+      ],
+      "reason": "GetValue and the byte-array cast are in the quoted source. This identifies a stored configuration value, not a real SMTP connection."
+    },
+    {
+      "claim_id": "C14",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4841,
+          "end_line": 4870,
+          "projected_quote_sha256": "25350fc65f84d9da83bac3b59dc0f0c6428f9f31ce8a56c777558e4c1d1ace25"
+        }
+      ],
+      "reason": "The recovered account and URL assignment contain the encoding operation on bytes."
+    },
+    {
+      "claim_id": "C15",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3473,
+          "end_line": 3500,
+          "projected_quote_sha256": "a6a452a06fe4b35e782a6a09b0590af560698179cb6d4537b905d317b7ddd63c"
+        }
+      ],
+      "reason": "The code writes the enumerated browser account fields with a StreamWriter. The target is a path variable and no quoted literal basename is demonstrated."
+    },
+    {
+      "claim_id": "C16",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3473,
+          "end_line": 3500,
+          "projected_quote_sha256": "a6a452a06fe4b35e782a6a09b0590af560698179cb6d4537b905d317b7ddd63c"
+        }
+      ],
+      "reason": "The shown File.WriteAllText call overwrites with an empty string. It does not write system information and the path variable does not establish a literal filename."
+    },
+    {
+      "claim_id": "C17",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4240,
+          "end_line": 4267,
+          "projected_quote_sha256": "a618ba84a99573a8cb57ed60e447f24d9fd2703791a3dbfd8a9580f95edd3756"
+        }
+      ],
+      "reason": "The WebClient late-bound upload call is visible. A variable named current does not prove a path originating in the process current directory."
+    },
+    {
+      "claim_id": "C18",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4240,
+          "end_line": 4267,
+          "projected_quote_sha256": "a618ba84a99573a8cb57ed60e447f24d9fd2703791a3dbfd8a9580f95edd3756"
+        }
+      ],
+      "reason": "The returned object is converted to bytes then ASCII-decoded at the first late-bound site."
+    },
+    {
+      "claim_id": "C19",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4289,
+          "end_line": 4320,
+          "projected_quote_sha256": "e967bd2d218a627bde83d0c4b011d42acf86f7fc946cac14e5e3d476348b9103"
+        }
+      ],
+      "reason": "The second late-bound local-file upload call is real. The actual destination host or remote server is not resolved by this citation."
+    },
+    {
+      "claim_id": "C20",
+      "label": "incorrect",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 4289,
+          "end_line": 4320,
+          "projected_quote_sha256": "e967bd2d218a627bde83d0c4b011d42acf86f7fc946cac14e5e3d476348b9103"
+        }
+      ],
+      "reason": "The ASCII decoder acts on the upload response. It does not retrieve the uploaded file contents. The following clause correctly describes the response conversion."
+    },
+    {
+      "claim_id": "C21",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3600,
+          "end_line": 3600,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3603,
+          "end_line": 3603,
+          "projected_quote_sha256": "21ab7fa1461509bfc04ca47bfd7c1eac18b15932996b1fc7ef9c2162d5c73d14"
+        }
+      ],
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site."
+    },
+    {
+      "claim_id": "C22",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3600,
+          "end_line": 3600,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3603,
+          "end_line": 3603,
+          "projected_quote_sha256": "21ab7fa1461509bfc04ca47bfd7c1eac18b15932996b1fc7ef9c2162d5c73d14"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3604,
+          "end_line": 3604,
+          "projected_quote_sha256": "d428ba61da7fab67612214d5f66e652d048a8857f595923f5bab00d5fe506fdd"
+        }
+      ],
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site."
+    },
+    {
+      "claim_id": "C23",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3574,
+          "end_line": 3574,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3577,
+          "end_line": 3577,
+          "projected_quote_sha256": "6147819475d66037b6393cd8ffc946815ec079995b72f65b419b62e979cf56a4"
+        }
+      ],
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site."
+    },
+    {
+      "claim_id": "C24",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3574,
+          "end_line": 3574,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3577,
+          "end_line": 3577,
+          "projected_quote_sha256": "6147819475d66037b6393cd8ffc946815ec079995b72f65b419b62e979cf56a4"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3578,
+          "end_line": 3578,
+          "projected_quote_sha256": "8600d1d7bb2821d4d12eac9c532d146f24076f0093ee37c8e0a802108563ab8a"
+        }
+      ],
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site."
+    },
+    {
+      "claim_id": "C25",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3678,
+          "end_line": 3678,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3681,
+          "end_line": 3681,
+          "projected_quote_sha256": "ee7a41c08fe304ff3cda674136f0cf823684c863db1c4bdf6705bb7d91815869"
+        }
+      ],
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site."
+    },
+    {
+      "claim_id": "C26",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3678,
+          "end_line": 3678,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3681,
+          "end_line": 3681,
+          "projected_quote_sha256": "ee7a41c08fe304ff3cda674136f0cf823684c863db1c4bdf6705bb7d91815869"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3682,
+          "end_line": 3682,
+          "projected_quote_sha256": "76e5a0206e0535c340ec6b92971438f78eeecfe5099aa4d2a633c7c929dbae94"
+        }
+      ],
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site."
+    },
+    {
+      "claim_id": "C27",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3626,
+          "end_line": 3626,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3629,
+          "end_line": 3629,
+          "projected_quote_sha256": "54a8ded5dc864a3c0f9bdbbfc064825ee118796dc6800de9579612c608656a22"
+        }
+      ],
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site."
+    },
+    {
+      "claim_id": "C28",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3626,
+          "end_line": 3626,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3629,
+          "end_line": 3629,
+          "projected_quote_sha256": "54a8ded5dc864a3c0f9bdbbfc064825ee118796dc6800de9579612c608656a22"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3630,
+          "end_line": 3630,
+          "projected_quote_sha256": "97fa14914556973072e6d21cee45212874bd1c9296543ad7dc5e98f6f9a3785e"
+        }
+      ],
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site."
+    },
+    {
+      "claim_id": "C29",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3652,
+          "end_line": 3652,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3655,
+          "end_line": 3655,
+          "projected_quote_sha256": "a7bfe1c5003b54aa19a0c1e55aa406377cfd058ad1234f20ee4fb7ffb3b7d9f4"
+        }
+      ],
+      "reason": "The imported/bound client and cited call establish the stated operand roles at this upload site."
+    },
+    {
+      "claim_id": "C30",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 15,
+          "end_line": 15,
+          "projected_quote_sha256": "0a99a80d06a0989ca92ea818df291dd620a1c9054f94742ef3377cae897d1cdf"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3652,
+          "end_line": 3652,
+          "projected_quote_sha256": "4ad8e95beb63779afebde577736f19e32b732a85d186e2ac7c7ecb7e70040c83"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3655,
+          "end_line": 3655,
+          "projected_quote_sha256": "a7bfe1c5003b54aa19a0c1e55aa406377cfd058ad1234f20ee4fb7ffb3b7d9f4"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 22,
+          "end_line": 22,
+          "projected_quote_sha256": "1612de90cf08c2136e8e775e9b793af8078604b25667aeeb7fe1fa5d48ad6e36"
+        },
+        {
+          "evidence_id": "ev_1f7db98463144db0",
+          "line": 3656,
+          "end_line": 3656,
+          "projected_quote_sha256": "cb761c625aaeed72887ee93b6a73e6ce02114e25975d5b785498a93bbc3107a9"
+        }
+      ],
+      "reason": "The documented upload result is explicitly supplied to the ASCII decoder at this site."
+    }
+  ],
+  "human_reviewers": [],
+  "dataset_origin": "public development sample, static analysis in isolated VM"
+}

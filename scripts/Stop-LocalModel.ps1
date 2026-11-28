@@ -16,5 +16,12 @@ try {
         Invoke-RestMethod -Uri ($receipt.endpoint + '/api/generate') -Method Post -ContentType 'application/json' -Body $body -TimeoutSec 10 | Out-Null
     }
 } catch { }
-Stop-Process -Id $proc.Id
+Stop-Process -InputObject $proc
+if (-not $proc.WaitForExit(10000)) { throw 'The project model server is still stopping' }
+$port = ([uri]$receipt.endpoint).Port
+$deadline = [DateTime]::UtcNow.AddSeconds(10)
+while (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
+    if ([DateTime]::UtcNow -ge $deadline) { throw "The model process exited but port $port is still occupied" }
+    Start-Sleep -Milliseconds 200
+}
 Write-Output 'Stopped project-owned Ollama server'

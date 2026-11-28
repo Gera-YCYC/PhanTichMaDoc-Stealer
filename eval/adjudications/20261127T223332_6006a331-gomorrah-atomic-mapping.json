@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+  "raw_report_sha256": "dc97559842131eefcfe35383dbc1681b93f4ab8a8444b3e69fffc7c6b4be44bd",
+  "checked_report_sha256": "7d8ecb77f22eea9cd5f0f2a59e056b69abd22ea9cfe7ef0ae3132d2d14a894d1",
+  "reviewer": "source audit of pinned ILSpy code and submitted citations",
+  "method": "An API operation includes its source site, argument roles and asserted result. An incorrect qualifier invalidates that operation. All raw and rejected claims retained.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 125,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3603 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "emails-upload",
+          "reference_id": "emails-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3600,
+              "end_line": 3600
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3603,
+              "end_line": 3603
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 98,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3604 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "emails-ascii",
+          "reference_id": "emails-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3600,
+              "end_line": 3600
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3603,
+              "end_line": 3603
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3604,
+              "end_line": 3604
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 123,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3577 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "passwords-upload",
+          "reference_id": "passwords-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3574,
+              "end_line": 3574
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3577,
+              "end_line": 3577
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 98,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3578 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "passwords-ascii",
+          "reference_id": "passwords-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3574,
+              "end_line": 3574
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3577,
+              "end_line": 3577
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3578,
+              "end_line": 3578
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 121,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3629 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "info-upload",
+          "reference_id": "info-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3626,
+              "end_line": 3626
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3629,
+              "end_line": 3629
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 98,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3630 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "info-ascii",
+          "reference_id": "info-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3626,
+              "end_line": 3626
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3629,
+              "end_line": 3629
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3630,
+              "end_line": 3630
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 129,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3681 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "screen-upload",
+          "reference_id": "screen-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3678,
+              "end_line": 3678
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3681,
+              "end_line": 3681
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 98,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3682 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "screen-ascii",
+          "reference_id": "screen-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3678,
+              "end_line": 3678
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3681,
+              "end_line": 3681
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3682,
+              "end_line": 3682
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 116,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3655 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "cc-upload",
+          "reference_id": "cc-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3652,
+              "end_line": 3652
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3655,
+              "end_line": 3655
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 98,
+          "label": "correct",
+          "reason": "System.Net import, local WebClient constructor and source call at row 3656 establish the path/destination or response-character-decoding assertion. No file contents or cryptographic decryption inferred.",
+          "unit_key": "cc-ascii",
+          "reference_id": "cc-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3652,
+              "end_line": 3652
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3655,
+              "end_line": 3655
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3656,
+              "end_line": 3656
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

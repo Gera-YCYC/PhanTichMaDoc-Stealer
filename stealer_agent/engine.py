@@ -285,7 +285,8 @@ class Agent:
                             raise ValueError('Evidence-card finalization is not enabled or ready')
                         from .evidence_cards import create_card_report
                         raw, checked = create_card_report(evidence, digest, report_call, journal,
-                                                          max_cards=self.config.get('max_report_cards', 10))
+                                                          max_cards=self.config.get('max_report_cards', 10),
+                                                          operation_review=self.config.get('review_operations', False))
                         if detected_pyinstaller and 'decompile_python' not in successful:
                             checked['limitations'].append('pycdc did not recover the full module; decoded candidates do not prove whole-module reachability.')
                             if 'decode_python_literals' not in successful:

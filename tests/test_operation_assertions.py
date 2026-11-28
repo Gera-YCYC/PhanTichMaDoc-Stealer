@@ -110,3 +110,24 @@ def test_non_code_evidence_never_supplies_operation_catalog(tmp_path):
     ev = evidence(tmp_path)
     next(iter(ev.values()))['tool'] = 'strings'
     assert catalog(ev, 'a' * 64) == ([], [])
+
+
+def test_batch_selection_needs_each_decision_and_exact_binding(tmp_path):
+    from stealer_agent.operation_review import review_operations
+    ev = evidence(tmp_path)
+    journal = Journal(tmp_path / 'batch')
+    claims, accepted = [{'id': 'C1'}], []
+    def invoke(messages, schema, phase, exposure):
+        proposed = json.loads(messages[-1]['content'])['F1']
+        assert schema['required'] == ['F1'] and phase == 'operation_review'
+        by_number = {r['line']: r['text'] for r in exposure[0]['lines']}
+        for ref in proposed['references']:
+            assert ref['quote'] == '\n'.join(by_number[n] for n in range(ref['line'], ref['end_line']+1))
+        return {'F1': True}
+    review_operations(ev, 'a'*64, invoke, journal, claims, accepted, 1)
+    assert claims[1] == accepted[0] and accepted[0]['id'] == 'C2'
+    with pytest.raises(ValidationError):
+        review_operations(ev, 'a'*64, lambda *args: {}, journal, claims, accepted, 1)
+    assert len(claims) == 2
+    review_operations(ev, 'a'*64, None, journal, claims, accepted, 0)
+    assert 'report claim budget' in journal.path.read_text()

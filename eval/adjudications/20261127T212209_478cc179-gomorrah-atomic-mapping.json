@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "profile_sha256": "70e21746dcb8a4110f16032d8dfec73b31741d67110a79fab4e2f0c033f9569f",
+  "raw_report_sha256": "bcd3b305eed12a5a355ad331ec5d03dc294758d97cfbc925627c1392d53713f6",
+  "checked_report_sha256": "b1cd5ee578664279e8a12015dece2341dddad0a2c7afbb9cd19904bb100d427f",
+  "reviewer": "source audit of pinned ILSpy code and submitted citations",
+  "method": "An API operation includes its source site, argument roles and asserted result. An incorrect qualifier invalidates that operation. All raw and rejected claims retained.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 167,
+          "label": "correct",
+          "reason": "The complete upload_emails body calls WebClient.UploadFile(urlbot + text, emails_pass). The prose correctly treats emails_pass as an expression naming the file, not as proven email or credential contents.",
+          "unit_key": "emails-upload",
+          "reference_id": "emails-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3518,
+              "end_line": 3533
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3593,
+              "end_line": 3617
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3645,
+              "end_line": 3669
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 158,
+          "label": "correct",
+          "reason": "The supplied upload_cc body calls UploadFile(urlbot + text, CC); the claim describes file-path and destination expressions without guessing actual file contents.",
+          "unit_key": "cc-upload",
+          "reference_id": "cc-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3518,
+              "end_line": 3533
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3593,
+              "end_line": 3617
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3645,
+              "end_line": 3669
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 116,
+          "label": "correct",
+          "reason": "The supplied upload_screenshot implementation directly calls UploadFile with path_screenshot as the file-path expression. No screenshot creation or successful runtime transfer is inferred.",
+          "unit_key": "screen-upload",
+          "reference_id": "screen-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3520,
+              "end_line": 3535
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3671,
+              "end_line": 3695
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 143,
+          "label": "correct",
+          "reason": "The return byte array from UploadFile is passed to Encoding.ASCII.GetString and assigned to Fileuri4. This is response decoding, not encoding the uploaded file.",
+          "unit_key": "screen-ascii",
+          "reference_id": "screen-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3520,
+              "end_line": 3535
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3671,
+              "end_line": 3695
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 127,
+          "label": "correct",
+          "reason": "The supplied upload_info body calls UploadFile with info_pc as file-path expression and urlbot + text as destination. The claim does not infer the file contains system information merely from its name.",
+          "unit_key": "info-upload",
+          "reference_id": "info-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3514,
+              "end_line": 3529
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3619,
+              "end_line": 3643
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 163,
+          "label": "correct",
+          "reason": "The returned response array is decoded with Encoding.ASCII.GetString and assigned to Fileuri2, as stated.",
+          "unit_key": "info-ascii",
+          "reference_id": "info-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3514,
+              "end_line": 3529
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3619,
+              "end_line": 3643
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 154,
+          "label": "correct",
+          "reason": "The upload_passwords body passes Passwords as the filename expression to UploadFile; the claim explicitly describes the variable and does not assert its contents are passwords.",
+          "unit_key": "passwords-upload",
+          "reference_id": "passwords-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3512,
+              "end_line": 3527
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3567,
+              "end_line": 3591
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 161,
+          "label": "correct",
+          "reason": "The upload response array is converted to ASCII text and assigned to Fileuri; the claim distinguishes this result from outgoing bytes.",
+          "unit_key": "passwords-ascii",
+          "reference_id": "passwords-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3512,
+              "end_line": 3527
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 3567,
+              "end_line": 3591
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 15,
+              "end_line": 15
+            },
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 22,
+              "end_line": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 148,
+          "label": "incorrect",
+          "reason": "The actual database field is password_value; value3 is the local variable receiving GetValue(..., password_value). The claim incorrectly calls value3 a field of the logins table. The subsequent GetBytes/Decrypt call description is otherwise present.",
+          "unit_key": "unsupported-C9",
+          "reference_id": null,
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 1040,
+              "end_line": 1071
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 138,
+          "label": "unsupported",
+          "reason": "The Account construction and arguments are shown, but the decrypted-password qualifier relies on a custom Decrypt implementation absent from this claim citation. A helper name alone does not establish its effect.",
+          "unit_key": "unsupported-C10",
+          "reference_id": null,
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 1040,
+              "end_line": 1071
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 97,
+          "label": "unsupported",
+          "reason": "The Chrome code reads password_value and calls a method named Decrypt. Its useful implementation is absent from the submitted range, so this citation does not establish cryptographic decryption.",
+          "unit_key": "unsupported-C11",
+          "reference_id": null,
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 1088,
+              "end_line": 1119
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 119,
+          "label": "unsupported",
+          "reason": "The Account constructor is visible, but describing its password argument as decrypted requires the missing Decrypt body. Partial support does not establish the entire sentence.",
+          "unit_key": "unsupported-C12",
+          "reference_id": null,
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 1088,
+              "end_line": 1119
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 126,
+          "label": "unsupported",
+          "reason": "The file path is the value of local variable current from an enumerator. The claim instead says a file named current, without identifying it as a variable expression; the submitted source does not establish that literal filename. This strict qualifier judgement remains open to independent review.",
+          "unit_key": "unsupported-C13",
+          "reference_id": null,
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 4240,
+              "end_line": 4267
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 137,
+          "label": "correct",
+          "reason": "A WebClient instance is the LateGet receiver for UploadFile; its return object becomes a byte array, which Encoding.ASCII.GetString assigns to current. This describes static return-value processing, not successful network execution.",
+          "unit_key": "late-one-ascii",
+          "reference_id": "late-one-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 4240,
+              "end_line": 4267
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 173,
+          "label": "correct",
+          "reason": "The source binds a WebClient receiver, UploadFile member name, URL_CC2 address argument and enumerated current file-path argument. The claim describes this static call without inferring credential contents or runtime success.",
+          "unit_key": "late-two-upload",
+          "reference_id": "late-two-upload",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 4289,
+              "end_line": 4320
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C16",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 140,
+          "label": "correct",
+          "reason": "The byte-array cast of the UploadFile response is passed to Encoding.ASCII.GetString and assigned back to current.",
+          "unit_key": "late-two-ascii",
+          "reference_id": "late-two-ascii",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 4289,
+              "end_line": 4320
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C17",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 93,
+          "label": "correct",
+          "reason": "The range contains an actual CryptUnprotectData call with the input/output data and protection-related structures. It supports the narrow static API operation, not Windows Credential Manager theft or runtime success.",
+          "unit_key": "dpapi",
+          "reference_id": "dpapi",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 865,
+              "end_line": 896
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C18",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 80,
+          "label": "correct",
+          "reason": "Encoding.UTF8.GetString(array) is visible and assigned to text; no cryptographic effect is attributed to character decoding.",
+          "unit_key": "utf8",
+          "reference_id": "utf8",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 865,
+              "end_line": 896
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C19",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 92,
+          "label": "unsupported",
+          "reason": "The range contains the P/Invoke declaration of CryptUnprotectData from Crypt32.dll and the start of Decrypt, but no call. A declaration does not establish the claimed execution statement; the call is in another claim range.",
+          "unit_key": "unsupported-C19",
+          "reference_id": null,
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 776,
+              "end_line": 807
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C20",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 67,
+          "label": "correct",
+          "reason": "The source declares private string Decrypt(byte[] Datas), supporting the structural observation about its byte-array parameter. This does not prove what the body does.",
+          "unit_key": "decrypt-declaration",
+          "reference_id": "decrypt-declaration",
+          "source_references": [
+            {
+              "evidence_id": "ev_810c7f7d23014486",
+              "line": 776,
+              "end_line": 807
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

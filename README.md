@@ -4,11 +4,9 @@ AI Agent ReAct dùng SLM cục bộ để phân tích tĩnh stealer .NET/Python.
 
 **Sản phẩm đang phát triển, chưa đạt toàn bộ tiêu chí chất lượng.** Repo chính: [Gera-YCYC/PhanTichMaDoc-Stealer](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer). Source ở root; model và mẫu public mã hóa ở Release có khóa hash. Tài liệu bàn giao là Markdown kỹ thuật, không cần thông tin sinh viên.
 
-Cập nhật mới: [parser v4 và báo cáo v9/v10](docs/OPERATIONS_CONTEXT_V9.md) mở rộng copy/read/write/DPAPI/MIME/TLS, thêm IOC/ATT&CK vào schema. Lượt Python v9 thật có13/18 câu thô đúng; chuẩn hóa thành22 đơn vị cho P 77,27%, R 50%, F1 60,71% trên34 đơn vị development. Các lỗi vẫn được giữ, không báo đạt. Bản v10 sửa IOC biểu thức và nhãn API;318 test Windows đạt, nhưng lượt chạy lại từ đầu bị guard RAM dừng trước báo cáo. Kiểm riêng bước report được phân biệt với demo đầu-cuối trong tài liệu.
+Bản `coverage-8b` chạy Qwen3 8B và kiểm lại từng thao tác tĩnh bằng kết quả công cụ trước khi tổng hợp kết luận. Trên PythonStealer 2024, agent gọi 4 công cụ thật trong VM, xác định kênh SMTP và phủ 22/36 đơn vị tham chiếu. F1 đạt 72,13%, dưới mục tiêu 75% của môn. [Cách chạy, số đo và lỗi còn lại](docs/DEMO_COVERAGE.md).
 
-[Thử nghiệm nhận định theo thao tác](docs/ATOMIC_REPORT_STAGE.md) trước đó đã đo3 lượt SLM thật trên đặc trưng mẫu thật; catalog API hẹp **chưa thay demo chính**. Có bộ chấm nguyên tử giữ raw/rejected và tính câu lặp một lần. Model mặc định/Release vẫn Qwen2.5 Coder7B; chưa fine-tune trọng số Qwen.
-
-Phép thử report v10 trên chứng cứ thật đã thu hoàn tất:12/12 câu đúng nhưng chỉ phủ15/34 đơn vị (R 44,12%, F1 61,22%), reviewer còn loại nhầm2 câu đúng và chưa có ATT&CK. **Chưa đạt chất lượng cuối môn.** Xem [số đo, nguồn chấm và giới hạn](docs/OPERATIONS_CONTEXT_V9.md); model/VM đã dừng sau đợt đo.
+Qwen2.5 Coder 7B là cấu hình mặc định. Thành phần nhóm đã train là bộ xếp hạng kết quả tìm mã. Các lần đo bằng Qwen dùng trọng số có sẵn. [Hồ sơ training](training/RANKER_EXPERIMENT.md) · [Các phép thử v9/v10](docs/OPERATIONS_CONTEXT_V9.md).
 
 [Luồng YARA thật](docs/YARA_REAL_CORPUS.md) vẫn giữ số đo5/5 mẫu độc development và0/39 file sạch báo nhầm với cả7B/8B, replay độc lập khớp. [Báo cáo v8](docs/OPERATIONS_CONTEXT_V8.md) chưa đạt: Python8/11 câu đủ căn cứ, .NET14/20. Không ghép điểm các phiên bản để nghiệm thu. Xem [trạng thái](docs/STATUS.md), [đối chiếu nhận định](docs/CLAIM_AUDIT.md), [đơn vị tham chiếu](eval/reference_units/README.md).
 

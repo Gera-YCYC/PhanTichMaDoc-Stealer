@@ -18,6 +18,9 @@ def summarize(directory):
     count = verify_journal(path)
     events = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines()]
     result = json.loads((directory / 'report.private.json').read_text(encoding='utf-8'))
+    if (events[-1]['event'] != 'run_finished' or events[-1]['result'] != result
+            or result['run_id'] != directory.name):
+        raise ValueError('Terminal journal event and saved report must describe the same run')
     raw_path = directory / 'report.model-raw.json'
     raw = json.loads(raw_path.read_text(encoding='utf-8')) if raw_path.is_file() else None
     source = next(e for e in events if e['event'] == 'source_version')
@@ -45,13 +48,19 @@ def summarize(directory):
         key = (fact['evidence_id'], fact['sample_sha256'], fact['output_sha256'])
         assert key[1] == result['sample_sha256']
         assert all(n in observed.get(key, set()) for ref in fact['ranges'] for n in range(ref['line'], ref['end_line']+1))
+    experiment_config = dict(started['config'])
+    experiment_config.pop('expected_sample_sha256', None)
+    decisions = [e for e in events if e['event'] == 'operation_review_decision']
     return {
         'run_id': result['run_id'], 'sample': result['sample'], 'sample_sha256': result['sample_sha256'],
         'evidence_kind': result.get('evidence_kind'), 'status': result['status'],
         'source_manifest_sha256': source['manifest_sha256'],
         'model': {k: result['model'].get(k) for k in ('tag', 'digest', 'size_bytes', 'details')},
         'settings': {k: started['config'].get(k) for k in ('max_steps', 'num_ctx', 'num_predict', 'seed', 'think',
-                    'report_mode', 'max_report_cards', 'min_code_searches', 'evidence_chars', 'code_evidence_chars')},
+                    'report_mode', 'max_report_cards', 'min_code_searches', 'evidence_chars', 'code_evidence_chars',
+                    'review_operations', 'semantic_review')},
+        'config_sha256_excluding_sample': hashlib.sha256(canonical(experiment_config)).hexdigest(),
+        'operation_review': {'decisions':len(decisions), 'selected':sum(e['selected'] is True for e in decisions)},
         'successful_tools': result['successful_tools'], 'metrics': result['metrics'],
         'journal': {'events': count, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                     'chain_verified': True, 'every_response_has_request': paired},

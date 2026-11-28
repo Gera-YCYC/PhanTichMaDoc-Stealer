@@ -1,0 +1,674 @@
+{
+  "schema_version": 1,
+  "profile_id": "gomorrah.atomic-development/1",
+  "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+  "scope": "Declared ILSpy sites for two browser stores, DPAPI, configuration, screen capture and file uploads.",
+  "source_references": [
+    {
+      "evidence_id": "ev_810c7f7d23014486",
+      "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5"
+    },
+    "eval/reference_profiles/gomorrah.static.json"
+  ],
+  "reference_method": "Source-level development audit. Every declared reference site checked against immutable VM rows.",
+  "model_self_review_used_as_truth": false,
+  "human_reviewers": [],
+  "dataset_split": "development",
+  "reference_created_after_development_runs": true,
+  "scoring_ready": true,
+  "units": [
+    {
+      "id": "opera-open",
+      "kind": "behavior",
+      "proposition": "Opens the Opera Login Data path with SQLiteHandler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1055,
+          "end_line": 1055
+        }
+      ]
+    },
+    {
+      "id": "opera-table",
+      "kind": "behavior",
+      "proposition": "Selects the logins table in Opera data.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1055,
+          "end_line": 1055
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1056,
+          "end_line": 1056
+        }
+      ]
+    },
+    {
+      "id": "opera-origin_url",
+      "kind": "behavior",
+      "proposition": "Reads origin_url from the Opera logins table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1056,
+          "end_line": 1056
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1067,
+          "end_line": 1067
+        }
+      ]
+    },
+    {
+      "id": "opera-username_value",
+      "kind": "behavior",
+      "proposition": "Reads username_value from the Opera logins table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1056,
+          "end_line": 1056
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1068,
+          "end_line": 1068
+        }
+      ]
+    },
+    {
+      "id": "opera-password_value",
+      "kind": "behavior",
+      "proposition": "Reads password_value from the Opera logins table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1056,
+          "end_line": 1056
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1069,
+          "end_line": 1069
+        }
+      ]
+    },
+    {
+      "id": "opera-decrypt-call",
+      "kind": "behavior",
+      "proposition": "Passes bytes derived from the selected password_value to the local Decrypt helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1069,
+          "end_line": 1069
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1070,
+          "end_line": 1070
+        }
+      ]
+    },
+    {
+      "id": "opera-account",
+      "kind": "behavior",
+      "proposition": "Constructs a Opera Account using the selected fields and password variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1071,
+          "end_line": 1071
+        }
+      ]
+    },
+    {
+      "id": "chrome-open",
+      "kind": "behavior",
+      "proposition": "Opens the Chrome Login Data path with SQLiteHandler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1103,
+          "end_line": 1103
+        }
+      ]
+    },
+    {
+      "id": "chrome-table",
+      "kind": "behavior",
+      "proposition": "Selects the logins table in Chrome data.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1103,
+          "end_line": 1103
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1104,
+          "end_line": 1104
+        }
+      ]
+    },
+    {
+      "id": "chrome-origin_url",
+      "kind": "behavior",
+      "proposition": "Reads origin_url from the Chrome logins table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1104,
+          "end_line": 1104
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1115,
+          "end_line": 1115
+        }
+      ]
+    },
+    {
+      "id": "chrome-username_value",
+      "kind": "behavior",
+      "proposition": "Reads username_value from the Chrome logins table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1104,
+          "end_line": 1104
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1116,
+          "end_line": 1116
+        }
+      ]
+    },
+    {
+      "id": "chrome-password_value",
+      "kind": "behavior",
+      "proposition": "Reads password_value from the Chrome logins table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1104,
+          "end_line": 1104
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1117,
+          "end_line": 1117
+        }
+      ]
+    },
+    {
+      "id": "chrome-decrypt-call",
+      "kind": "behavior",
+      "proposition": "Passes bytes derived from the selected password_value to the local Decrypt helper.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1117,
+          "end_line": 1117
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1118,
+          "end_line": 1118
+        }
+      ]
+    },
+    {
+      "id": "chrome-account",
+      "kind": "behavior",
+      "proposition": "Constructs a Chrome Account using the selected fields and password variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1119,
+          "end_line": 1119
+        }
+      ]
+    },
+    {
+      "id": "passwords-upload",
+      "kind": "behavior",
+      "proposition": "Supplies Passwords as the local file path to WebClient.UploadFile with urlbot + text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3577,
+          "end_line": 3577
+        }
+      ]
+    },
+    {
+      "id": "passwords-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the passwords upload response bytes as ASCII text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3577,
+          "end_line": 3577
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3578,
+          "end_line": 3578
+        }
+      ]
+    },
+    {
+      "id": "emails-upload",
+      "kind": "behavior",
+      "proposition": "Supplies emails_pass as the local file path to WebClient.UploadFile with urlbot + text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3603,
+          "end_line": 3603
+        }
+      ]
+    },
+    {
+      "id": "emails-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the emails upload response bytes as ASCII text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3603,
+          "end_line": 3603
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3604,
+          "end_line": 3604
+        }
+      ]
+    },
+    {
+      "id": "info-upload",
+      "kind": "behavior",
+      "proposition": "Supplies info_pc as the local file path to WebClient.UploadFile with urlbot + text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3629,
+          "end_line": 3629
+        }
+      ]
+    },
+    {
+      "id": "info-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the info upload response bytes as ASCII text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3629,
+          "end_line": 3629
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3630,
+          "end_line": 3630
+        }
+      ]
+    },
+    {
+      "id": "cc-upload",
+      "kind": "behavior",
+      "proposition": "Supplies CC as the local file path to WebClient.UploadFile with urlbot + text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3655,
+          "end_line": 3655
+        }
+      ]
+    },
+    {
+      "id": "cc-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the cc upload response bytes as ASCII text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3655,
+          "end_line": 3655
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3656,
+          "end_line": 3656
+        }
+      ]
+    },
+    {
+      "id": "screen-upload",
+      "kind": "behavior",
+      "proposition": "Supplies path_screenshot as the local file path to WebClient.UploadFile with urlbot + text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3681,
+          "end_line": 3681
+        }
+      ]
+    },
+    {
+      "id": "screen-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the screen upload response bytes as ASCII text.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3681,
+          "end_line": 3681
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3682,
+          "end_line": 3682
+        }
+      ]
+    },
+    {
+      "id": "late-one-upload",
+      "kind": "behavior",
+      "proposition": "Invokes UploadFile by name with destination URL_CC1 and the current path variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4249,
+          "end_line": 4249
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4250,
+          "end_line": 4250
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4253,
+          "end_line": 4253
+        }
+      ]
+    },
+    {
+      "id": "late-one-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the late-bound URL_CC1 upload response and stores the ASCII text in current.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4253,
+          "end_line": 4253
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4262,
+          "end_line": 4262
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4263,
+          "end_line": 4263
+        }
+      ]
+    },
+    {
+      "id": "late-two-upload",
+      "kind": "behavior",
+      "proposition": "Invokes UploadFile by name with destination URL_CC2 and the current path variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4302,
+          "end_line": 4302
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4303,
+          "end_line": 4303
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4306,
+          "end_line": 4306
+        }
+      ]
+    },
+    {
+      "id": "late-two-ascii",
+      "kind": "behavior",
+      "proposition": "Decodes the late-bound URL_CC2 upload response and stores the ASCII text in current.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4306,
+          "end_line": 4306
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4315,
+          "end_line": 4315
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4316,
+          "end_line": 4316
+        }
+      ]
+    },
+    {
+      "id": "dpapi",
+      "kind": "behavior",
+      "proposition": "Calls CryptUnprotectData with input and output data structures.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 880,
+          "end_line": 880
+        }
+      ]
+    },
+    {
+      "id": "utf8",
+      "kind": "behavior",
+      "proposition": "Decodes bytes to text with the UTF-8 decoder.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 884,
+          "end_line": 884
+        }
+      ]
+    },
+    {
+      "id": "decrypt-declaration",
+      "kind": "observation",
+      "proposition": "Declares a Decrypt method taking a byte array.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 793,
+          "end_line": 793
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "kind": "behavior",
+      "proposition": "Implements copying pixels from the screen.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4200,
+          "end_line": 4200
+        }
+      ]
+    },
+    {
+      "id": "save-capture",
+      "kind": "behavior",
+      "proposition": "Saves the capture to the screenshot path in PNG format.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4200,
+          "end_line": 4200
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4201,
+          "end_line": 4201
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4202,
+          "end_line": 4202
+        }
+      ]
+    },
+    {
+      "id": "self-read",
+      "kind": "behavior",
+      "proposition": "Reads data from the executable path.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3444,
+          "end_line": 3444
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3446,
+          "end_line": 3446
+        }
+      ]
+    },
+    {
+      "id": "config-split",
+      "kind": "behavior",
+      "proposition": "Splits the self-read configuration text at the literal delimiter.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3446,
+          "end_line": 3446
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3448,
+          "end_line": 3448
+        }
+      ]
+    },
+    {
+      "id": "config-field",
+      "kind": "behavior",
+      "proposition": "Assigns element 1 of the split data to urlbot.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3448,
+          "end_line": 3448
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3449,
+          "end_line": 3449
+        }
+      ]
+    },
+    {
+      "id": "logs-fragment",
+      "kind": "ioc",
+      "proposition": "Static relative upload URI fragment /logs.php?hwid= (destination host unresolved).",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3573,
+          "end_line": 3573
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3577,
+          "end_line": 3577
+        }
+      ]
+    },
+    {
+      "id": "screen-fragment",
+      "kind": "ioc",
+      "proposition": "Static relative upload URI fragment /screen.php?hwid= (destination host unresolved).",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3677,
+          "end_line": 3677
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 3681,
+          "end_line": 3681
+        }
+      ]
+    },
+    {
+      "id": "browser-attack",
+      "kind": "attack",
+      "proposition": "T1555.003: reads stored browser login credentials.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1103,
+          "end_line": 1103
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1104,
+          "end_line": 1104
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1116,
+          "end_line": 1116
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 1117,
+          "end_line": 1117
+        }
+      ]
+    },
+    {
+      "id": "screen-attack",
+      "kind": "attack",
+      "proposition": "T1113: code implements screen capture.",
+      "source_references": [
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4200,
+          "end_line": 4200
+        },
+        {
+          "evidence_id": "ev_810c7f7d23014486",
+          "line": 4202,
+          "end_line": 4202
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Coverage is limited to these source sites. Runtime delivery and exact destination host remain unverified."
+  ]
+}

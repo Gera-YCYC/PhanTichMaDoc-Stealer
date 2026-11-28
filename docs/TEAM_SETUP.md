@@ -8,6 +8,8 @@ Sau demo phân tích, có thể chạy giai đoạn [sinh/kiểm YARA trên bộ
 
 ## 1. Chuẩn bị
 
+Để trình diễn đúng cấu hình Qwen3 8B dùng cho đợt đo v11, hoàn thành phần cài đặt bên dưới rồi mở [hướng dẫn demo và đối chiếu nhật ký](DEMO_COVERAGE.md). Mỗi lần demo trực tiếp sẽ tạo một run ID mới.
+
 - Windows 10/11 x64, Python **3.11 trở lên** có Python Launcher (`py`), Git, VMware Workstation và Ollama cho Windows. OpenSSH Client phải có lệnh `ssh`, `scp`, `ssh-keygen`. Python host đã kiểm là 3.11; guest Ubuntu dùng Python 3.12 và có bộ wheel riêng.
 - Cấu hình đã chạy: i5-12450HX, RAM 12 GB, RTX3050 6 GB. Máy khác cần tự kiểm tốc độ; GPU không bắt buộc nhưng chạy CPU sẽ chậm hơn.
 - Dành tối thiểu khoảng 25 GB trống trên C cho source, 4,68 GB model, bản tải model, VM và snapshot; nên để 35 GB trở lên. VM dùng 2 GB RAM/2 vCPU.

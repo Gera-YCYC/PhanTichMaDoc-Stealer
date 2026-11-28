@@ -50,6 +50,17 @@ def test_same_atomic_denominators_duplicates_and_rejected_are_preserved():
     assert result['by_kind']['ioc']['raw']['recall'] is None
 
 
+def test_scoped_metrics_preserve_frozen_denominator_and_charge_false_predictions():
+    from scripts.score_reviewed_run import scoped_counts
+    result = run(*setup())
+    scoped = scoped_counts(result['raw'], {'U1', 'U3'})
+    assert scoped['supported_outside_scope'] == ['U2']
+    assert scoped['prediction_atoms'] == 4 and scoped['duplicate_atoms'] == 1
+    assert scoped['unsupported'] == 1 and scoped['all_prediction_precision'] == 2/3
+    assert scoped['precision'] == scoped['recall'] == scoped['f1'] == .5
+    assert scoped_counts(result['raw'], set())['recall'] is None
+
+
 @pytest.mark.parametrize('error', ['missing_claim', 'missing_atom', 'overlap', 'uncovered', 'tail', 'wrong_kind',
                                  'invented_credit', 'outside_reference', 'conflicting_duplicate', 'changed_checked'])
 def test_mappings_cannot_hide_errors_or_gain_duplicate_credit(error):

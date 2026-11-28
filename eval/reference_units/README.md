@@ -30,7 +30,17 @@ Run `20261127T193524_b2342ecf` phủ **7/13 đơn vị (53,85%)** trong câu th�
 
 Nhật ký raw nằm trên máy thực nghiệm, không được công bố vì có source/credential. Thành viên chạy mẫu thật sẽ có run ID và hash mới, phải lập bảng ghép riêng. Muốn kiểm lại tọa độ trên VM: chạy `scripts/verify_reference_units.py --profile ... --evidence-id ev_... --output private/unit-source-check.json` với record của cùng source đã phục hồi.
 
-## ATT&CK và phạm vi còn thiếu
+## Các tập chấm đã chuẩn hóa theo thao tác
+
+| Mẫu | Mục tham chiếu | Căn cứ |
+|---|---:|---|
+| PythonStealer 2024 | 36 | File `python2024.atomic-v3.json` chốt phạm vi trước khi có báo cáo cuối của lượt v11. Các thao tác đúng ngoài phạm vi có nhãn riêng. |
+| Gomorrah | 40 | File `gomorrah.atomic-v1.json` có tọa độ nguồn cho từng nhận định. Script `record_dotnet_reference.py` đối chiếu 46 dòng ILSpy trong VM. |
+| AgentTesla | 7 | File `agenttesla.atomic-v1.json` gồm sáu thao tác hoặc khai báo tĩnh và kênh SMTP do nhà nghiên cứu quan sát. MD5 của file có đúng SHA-256 trong lab trùng định danh ở bài phân tích. |
+
+Khi đọc điểm, đối chiếu cùng mẫu, cùng phạm vi tham chiếu và cùng cách xử lý câu lặp. Mỗi tập trên có phạm vi riêng. [Phương pháp và số đo của bản v11](../../docs/DEMO_COVERAGE.md).
+
+## ATT&CK và phạm vi của tập lịch sử 13 đơn vị
 
 Các mapping là suy luận từ source audit theo [T1555.003 — Credentials from Web Browsers](https://attack.mitre.org/techniques/T1555/003/) và [T1560.002 — Archive via Library](https://attack.mitre.org/techniques/T1560/002/). Dùng `shutil.make_archive` thuộc nhánh thư viện, không đổi thành Archive via Utility. Chỉ có SMTP chưa đủ khẳng định giao thức khác C2 theo [T1048](https://attack.mitre.org/techniques/T1048/); profile này chưa gán mã đó.
 

@@ -1,0 +1,533 @@
+{
+  "contract": "frozen-reference-plus-separate-source-findings/1",
+  "run_id": "20261127T233612_212f9fbb",
+  "profile_id": "python2024.atomic-development/3",
+  "profile_sha256": "867160826749591744456751238da1396cedd707d22e970374b413f13d8a7b8b",
+  "raw_report_sha256": "2629971fa7ee98f74ea6a7026f79ee163a1018243e2e67f23dd7c511de7fb682",
+  "method": "P and F1 on declared units charge all incorrect or unsupported predictions. Supported extra findings are listed separately. All-prediction precision includes them. Recall uses the frozen denominator.",
+  "additional_findings": [
+    {
+      "id": "history-copy",
+      "kind": "behavior",
+      "proposition": "Copies the history database expression to the temporary history file.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 187,
+          "end_line": 187
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 192,
+          "end_line": 192
+        }
+      ]
+    },
+    {
+      "id": "history-open",
+      "kind": "behavior",
+      "proposition": "Opens the temporary history database with SQLite.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 193,
+          "end_line": 193
+        }
+      ]
+    },
+    {
+      "id": "history-query",
+      "kind": "behavior",
+      "proposition": "Selects URL, title and visit time from the history table.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 195,
+          "end_line": 195
+        }
+      ]
+    },
+    {
+      "id": "history-fetch",
+      "kind": "behavior",
+      "proposition": "Fetches the result rows of the history query.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 195,
+          "end_line": 195
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 196,
+          "end_line": 196
+        }
+      ]
+    },
+    {
+      "id": "key-api",
+      "kind": "behavior",
+      "proposition": "Calls the DPAPI unprotect API on the master_key variable.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 11,
+          "end_line": 11
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 65,
+          "end_line": 65
+        }
+      ]
+    },
+    {
+      "id": "helper-login-call",
+      "kind": "behavior",
+      "proposition": "Calls the login helper for the Default profile and assigns its result.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 299,
+          "end_line": 299
+        }
+      ]
+    },
+    {
+      "id": "copy-login-expr",
+      "kind": "behavior",
+      "proposition": "Copies the login_db expression into the named temporary path. The cited call alone does not resolve its source path.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 139,
+          "end_line": 139
+        }
+      ]
+    },
+    {
+      "id": "browser-write-expr",
+      "kind": "behavior",
+      "proposition": "Writes content at the interpolated temporary browser path. The cited two lines do not identify the non-null guard.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 123,
+          "end_line": 123
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 124,
+          "end_line": 124
+        }
+      ]
+    },
+    {
+      "id": "autofill-write-expr",
+      "kind": "behavior",
+      "proposition": "Writes content to the autofill text path. The assertion omits the append operation and guard.",
+      "source_references": [
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 128,
+          "end_line": 128
+        },
+        {
+          "evidence_id": "ev_e9908d1f15b1430b",
+          "line": 129,
+          "end_line": 129
+        }
+      ]
+    }
+  ],
+  "human_reviewers": [],
+  "full_coursework_quality_gate_passed": false,
+  "raw": {
+    "reference_units": 36,
+    "correct": 22,
+    "missed": 14,
+    "supported_outside_scope": [
+      "autofill-write-expr",
+      "browser-write-expr",
+      "copy-login-expr",
+      "helper-login-call",
+      "history-copy",
+      "history-fetch",
+      "history-open",
+      "history-query",
+      "key-api"
+    ],
+    "incorrect": 0,
+    "unsupported": 3,
+    "prediction_atoms": 46,
+    "duplicate_atoms": 12,
+    "unique_prediction_units": 34,
+    "all_prediction_precision": 0.9117647058823529,
+    "all_prediction_hallucination_rate": 0.08823529411764706,
+    "precision": 0.88,
+    "recall": 0.6111111111111112,
+    "f1": 0.7213114754098361,
+    "matched_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A04",
+      "PY24-A05",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A15",
+      "PY24-A16",
+      "PY24-A18",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A31",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "missed_reference_ids": [
+      "PY24-A03",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A28",
+      "PY24-A29",
+      "PY24-A30",
+      "PY24-A32",
+      "PY24-A33",
+      "PY24-A34"
+    ]
+  },
+  "after_filter": {
+    "reference_units": 36,
+    "correct": 22,
+    "missed": 14,
+    "supported_outside_scope": [
+      "autofill-write-expr",
+      "browser-write-expr",
+      "copy-login-expr",
+      "helper-login-call",
+      "history-copy",
+      "history-fetch",
+      "history-open",
+      "history-query",
+      "key-api"
+    ],
+    "incorrect": 0,
+    "unsupported": 3,
+    "prediction_atoms": 46,
+    "duplicate_atoms": 12,
+    "unique_prediction_units": 34,
+    "all_prediction_precision": 0.9117647058823529,
+    "all_prediction_hallucination_rate": 0.08823529411764706,
+    "precision": 0.88,
+    "recall": 0.6111111111111112,
+    "f1": 0.7213114754098361,
+    "matched_reference_ids": [
+      "PY24-A01",
+      "PY24-A02",
+      "PY24-A04",
+      "PY24-A05",
+      "PY24-A06",
+      "PY24-A07",
+      "PY24-A08",
+      "PY24-A09",
+      "PY24-A15",
+      "PY24-A16",
+      "PY24-A18",
+      "PY24-A20",
+      "PY24-A21",
+      "PY24-A22",
+      "PY24-A23",
+      "PY24-A24",
+      "PY24-A25",
+      "PY24-A26",
+      "PY24-A27",
+      "PY24-A31",
+      "PY24-A35",
+      "PY24-A36"
+    ],
+    "missed_reference_ids": [
+      "PY24-A03",
+      "PY24-A10",
+      "PY24-A11",
+      "PY24-A12",
+      "PY24-A13",
+      "PY24-A14",
+      "PY24-A17",
+      "PY24-A19",
+      "PY24-A28",
+      "PY24-A29",
+      "PY24-A30",
+      "PY24-A32",
+      "PY24-A33",
+      "PY24-A34"
+    ]
+  },
+  "by_kind": {
+    "attack": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 0,
+        "missed": 2,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "PY24-A28",
+          "PY24-A29"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 0,
+        "missed": 2,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "PY24-A28",
+          "PY24-A29"
+        ]
+      }
+    },
+    "behavior": {
+      "raw": {
+        "reference_units": 32,
+        "correct": 21,
+        "missed": 11,
+        "supported_outside_scope": [
+          "autofill-write-expr",
+          "browser-write-expr",
+          "copy-login-expr",
+          "helper-login-call",
+          "history-copy",
+          "history-fetch",
+          "history-open",
+          "history-query",
+          "key-api"
+        ],
+        "incorrect": 0,
+        "unsupported": 3,
+        "prediction_atoms": 45,
+        "duplicate_atoms": 12,
+        "unique_prediction_units": 33,
+        "all_prediction_precision": 0.9090909090909091,
+        "all_prediction_hallucination_rate": 0.09090909090909091,
+        "precision": 0.875,
+        "recall": 0.65625,
+        "f1": 0.75,
+        "matched_reference_ids": [
+          "PY24-A01",
+          "PY24-A02",
+          "PY24-A04",
+          "PY24-A05",
+          "PY24-A06",
+          "PY24-A07",
+          "PY24-A08",
+          "PY24-A09",
+          "PY24-A15",
+          "PY24-A16",
+          "PY24-A18",
+          "PY24-A20",
+          "PY24-A21",
+          "PY24-A22",
+          "PY24-A23",
+          "PY24-A24",
+          "PY24-A25",
+          "PY24-A26",
+          "PY24-A31",
+          "PY24-A35",
+          "PY24-A36"
+        ],
+        "missed_reference_ids": [
+          "PY24-A03",
+          "PY24-A10",
+          "PY24-A11",
+          "PY24-A12",
+          "PY24-A13",
+          "PY24-A14",
+          "PY24-A17",
+          "PY24-A19",
+          "PY24-A30",
+          "PY24-A32",
+          "PY24-A33"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 32,
+        "correct": 21,
+        "missed": 11,
+        "supported_outside_scope": [
+          "autofill-write-expr",
+          "browser-write-expr",
+          "copy-login-expr",
+          "helper-login-call",
+          "history-copy",
+          "history-fetch",
+          "history-open",
+          "history-query",
+          "key-api"
+        ],
+        "incorrect": 0,
+        "unsupported": 3,
+        "prediction_atoms": 45,
+        "duplicate_atoms": 12,
+        "unique_prediction_units": 33,
+        "all_prediction_precision": 0.9090909090909091,
+        "all_prediction_hallucination_rate": 0.09090909090909091,
+        "precision": 0.875,
+        "recall": 0.65625,
+        "f1": 0.75,
+        "matched_reference_ids": [
+          "PY24-A01",
+          "PY24-A02",
+          "PY24-A04",
+          "PY24-A05",
+          "PY24-A06",
+          "PY24-A07",
+          "PY24-A08",
+          "PY24-A09",
+          "PY24-A15",
+          "PY24-A16",
+          "PY24-A18",
+          "PY24-A20",
+          "PY24-A21",
+          "PY24-A22",
+          "PY24-A23",
+          "PY24-A24",
+          "PY24-A25",
+          "PY24-A26",
+          "PY24-A31",
+          "PY24-A35",
+          "PY24-A36"
+        ],
+        "missed_reference_ids": [
+          "PY24-A03",
+          "PY24-A10",
+          "PY24-A11",
+          "PY24-A12",
+          "PY24-A13",
+          "PY24-A14",
+          "PY24-A17",
+          "PY24-A19",
+          "PY24-A30",
+          "PY24-A32",
+          "PY24-A33"
+        ]
+      }
+    },
+    "ioc": {
+      "raw": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A27"
+        ],
+        "missed_reference_ids": [
+          "PY24-A34"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 2,
+        "correct": 1,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 1,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 1,
+        "all_prediction_precision": 1.0,
+        "all_prediction_hallucination_rate": 0.0,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "matched_reference_ids": [
+          "PY24-A27"
+        ],
+        "missed_reference_ids": [
+          "PY24-A34"
+        ]
+      }
+    },
+    "observation": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    }
+  }
+}

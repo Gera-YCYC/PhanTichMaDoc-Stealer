@@ -1,0 +1,272 @@
+{
+  "source_run": "20261127T230331_8bd30a1f",
+  "replay": "20261127T232149_05950420",
+  "raw_report_sha256": "9e0164dc1e998979de887f9d7e5e5aed699cf40e2d187a4466758b07d6ad8f45",
+  "profile_sha256": "8290d24942da6c123640d92156ccc7593cc977b54fa7a96ea5faea75201d358d",
+  "counts": {
+    "kept": 11,
+    "all_rows_in_one_request_but_no_matching_claim": 14,
+    "lost_at_review": 4,
+    "retrieved_rows_missing_from_requests": 4,
+    "rows_split_between_requests": 1
+  },
+  "units": [
+    {
+      "unit": "PY24-A01",
+      "category": "kept",
+      "required_rows": 10,
+      "full_generation_windows": [
+        3
+      ]
+    },
+    {
+      "unit": "PY24-A02",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 4,
+      "full_generation_windows": [
+        3
+      ]
+    },
+    {
+      "unit": "PY24-A03",
+      "category": "lost_at_review",
+      "required_rows": 5,
+      "full_generation_windows": [
+        3
+      ]
+    },
+    {
+      "unit": "PY24-A04",
+      "category": "retrieved_rows_missing_from_requests",
+      "required_rows": 8,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A05",
+      "category": "kept",
+      "required_rows": 7,
+      "full_generation_windows": [
+        2
+      ]
+    },
+    {
+      "unit": "PY24-A06",
+      "category": "kept",
+      "required_rows": 2,
+      "full_generation_windows": [
+        2
+      ]
+    },
+    {
+      "unit": "PY24-A07",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 4,
+      "full_generation_windows": [
+        2
+      ]
+    },
+    {
+      "unit": "PY24-A08",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 4,
+      "full_generation_windows": [
+        2
+      ]
+    },
+    {
+      "unit": "PY24-A09",
+      "category": "retrieved_rows_missing_from_requests",
+      "required_rows": 13,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A10",
+      "category": "kept",
+      "required_rows": 8,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A11",
+      "category": "kept",
+      "required_rows": 2,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A12",
+      "category": "kept",
+      "required_rows": 5,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A13",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 5,
+      "full_generation_windows": [
+        5
+      ]
+    },
+    {
+      "unit": "PY24-A14",
+      "category": "retrieved_rows_missing_from_requests",
+      "required_rows": 17,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A15",
+      "category": "kept",
+      "required_rows": 9,
+      "full_generation_windows": [
+        4
+      ]
+    },
+    {
+      "unit": "PY24-A16",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 11,
+      "full_generation_windows": [
+        4
+      ]
+    },
+    {
+      "unit": "PY24-A17",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 11,
+      "full_generation_windows": [
+        4
+      ]
+    },
+    {
+      "unit": "PY24-A18",
+      "category": "kept",
+      "required_rows": 5,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A19",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 3,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A20",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 8,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A21",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 3,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A22",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 4,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A23",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 3,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A24",
+      "category": "lost_at_review",
+      "required_rows": 4,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A25",
+      "category": "lost_at_review",
+      "required_rows": 3,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A26",
+      "category": "lost_at_review",
+      "required_rows": 22,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A27",
+      "category": "kept",
+      "required_rows": 3,
+      "full_generation_windows": [
+        1
+      ]
+    },
+    {
+      "unit": "PY24-A28",
+      "category": "retrieved_rows_missing_from_requests",
+      "required_rows": 45,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A29",
+      "category": "rows_split_between_requests",
+      "required_rows": 28,
+      "full_generation_windows": []
+    },
+    {
+      "unit": "PY24-A30",
+      "category": "kept",
+      "required_rows": 16,
+      "full_generation_windows": [
+        4
+      ]
+    },
+    {
+      "unit": "PY24-A31",
+      "category": "kept",
+      "required_rows": 2,
+      "full_generation_windows": [
+        6
+      ]
+    },
+    {
+      "unit": "PY24-A32",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 14,
+      "full_generation_windows": [
+        6
+      ]
+    },
+    {
+      "unit": "PY24-A33",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 6,
+      "full_generation_windows": [
+        6
+      ]
+    },
+    {
+      "unit": "PY24-A34",
+      "category": "all_rows_in_one_request_but_no_matching_claim",
+      "required_rows": 7,
+      "full_generation_windows": [
+        6
+      ]
+    }
+  ],
+  "scope": "Presence of declared reference rows in logged generator messages. Does not establish causality, semantic correctness or complete attention to the input."
+}

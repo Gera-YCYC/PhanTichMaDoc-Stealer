@@ -1,0 +1,18 @@
+{
+  "sample_md5": "b0f2d519ccae5bf1435264e0979770ce",
+  "checked_source_units": 6,
+  "checked_at": "2026-11-27T23:54:43.623516+00:00",
+  "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+  "source": {
+    "evidence_id": "ev_7548315e8c494f18",
+    "output_sha256": "b707af40e0f6a0aea0381212c71907ef70a34645671b53a6695381b472a0a7a0"
+  },
+  "publisher": {
+    "url": "https://raw.githubusercontent.com/jstrosch/malware-samples/1b3add9538fc40c0e59bd7488d267b1ec796a43d/binaries/agenttesla/2020/April/README.md",
+    "content_sha256": "efc6954514c9b3dbb47ce3617632ae8c5586a0890d22a4c5448ca2ad5b7d1949",
+    "line": 12
+  },
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "publisher_sample_identifier_verified": true,
+  "source_only_confirms_technical_sites": true
+}
