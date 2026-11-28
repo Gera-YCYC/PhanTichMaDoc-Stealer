@@ -16,6 +16,8 @@ Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-versio
 
 ## Giảng viên và thành viên nhóm bắt đầu tại đây
 
+Để demo trực tiếp nhánh .NET, dùng profile `techniques-8b` với Mercurial. Một lần chạy đã tìm được cấu hình webhook tại dòng 37. Nhóm có thể chỉ ra một câu ATT&CK mà bộ tự duyệt giữ dù phần trích dẫn còn thiếu, rồi mở bảng chấm để giải thích. [Lệnh chạy và kết quả Mercurial](docs/DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
+
 | Cần xem | Tài liệu |
 |---|---|
 | Mục tiêu, kiến trúc, cách xây dựng, luồng chạy, vì sao chọn model/mẫu | [Thuyết minh chi tiết](docs/THUYET_MINH_DU_AN.md) |

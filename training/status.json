@@ -17,5 +17,8 @@
   "auxiliary_checkpoint": "experiments/20261127T153436999877Z/model.json",
   "auxiliary_loss_curve": "experiments/20261127T153436999877Z/loss.json",
   "auxiliary_dataset_records": 117,
-  "auxiliary_human_reviewers": []
+  "auxiliary_human_reviewers": [],
+  "ranker_reproduction": "ranker-reproduction.json",
+  "end_to_end_ranker_comparison": "../deliverables/real-demo-evidence/agenttesla-ranker-ablation.json",
+  "completed_training_runs_scope": "Original deployed training experiment. Reproductions on the identical corpus are tracked separately."
 }

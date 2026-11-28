@@ -292,7 +292,8 @@ class Agent:
                         from .evidence_cards import create_card_report
                         raw, checked = create_card_report(evidence, digest, report_call, journal,
                                                           max_cards=self.config.get('max_report_cards', 10),
-                                                          operation_review=self.config.get('review_operations', False))
+                                                          operation_review=self.config.get('review_operations', False),
+                                                          technique_review=self.config.get('review_techniques', False))
                         if detected_pyinstaller and 'decompile_python' not in successful:
                             checked['limitations'].append('pycdc did not recover the full module; decoded candidates do not prove whole-module reachability.')
                             if 'decode_python_literals' not in successful:
@@ -487,6 +488,8 @@ class Agent:
                   "model": metadata, "successful_tools": sorted(successful), "analysis": report,
                   "metrics": metrics, "evidence_kind": self.config.get("evidence_kind", "real-model-vm-run"),
                   "file_facts": file_facts,
+                  "channel_shapes": [finding for record in evidence.values()
+                                     for finding in record.get('channel_shapes', [])],
                   "typed_operations": [fact for record in evidence.values() for fact in record.get('operation_facts', [])],
                   "acceptance": {"two_distinct_tools": len(successful) >= 2,
                                  "required_branch_tools": required_tools <= successful,

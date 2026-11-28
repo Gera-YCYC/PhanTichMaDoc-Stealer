@@ -1,0 +1,360 @@
+{
+  "run_id": "20261128T003743_f8acf7f0",
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "raw_report_sha256": "6700849d31ee48fdafae0ab10a93951e8108841fdd8b3fbcc4cf7d0a7692d72b",
+  "claims": {
+    "C1": {
+      "public_summary": "Lấy danh sách các nút từ dữ liệu của sự kiện kéo.",
+      "reason": "Dòng 1603–1605 kiểm và đọc danh sách từ dữ liệu sự kiện.",
+      "atoms": [
+        {
+          "key": "drag-node-list"
+        }
+      ]
+    },
+    "C2": {
+      "public_summary": "Kiểm tra cây sở hữu nút đầu và tính hợp lệ của thao tác thả.",
+      "reason": "Hai phép kiểm nằm trong điều kiện ở dòng 1612.",
+      "atoms": [
+        {
+          "key": "drop-validation"
+        }
+      ]
+    },
+    "C3": {
+      "public_summary": "Gọi bộ giải mã chuỗi và kết hợp các bit để dựng mảng byte.",
+      "reason": "Dòng 275 gọi bộ chuyển đổi, các dòng 211–230 thể hiện cách xử lý dữ liệu.",
+      "atoms": [
+        {
+          "key": "base32-decoding"
+        }
+      ]
+    },
+    "C4": {
+      "public_summary": "Gọi phương thức trên kiểu lấy từ assembly được nạp và chuyển hai đối số.",
+      "reason": "Các dòng 275, 282–286 xác nhận nguồn kiểu, lời gọi và đối số.",
+      "atoms": [
+        {
+          "key": "method-invoke",
+          "until": " from an assembly"
+        },
+        {
+          "key": "assembly-load",
+          "until": ", passing"
+        },
+        {
+          "key": "invoke-arguments"
+        }
+      ]
+    },
+    "C5": {
+      "public_summary": "Gọi trình chuyển đổi hệ 16, tách các phần rồi ghép ký tự.",
+      "reason": "Dòng 275 chứa điểm gọi. Các dòng 52–57 tách văn bản, chuyển cơ số 16 và nối ký tự.",
+      "atoms": [
+        {
+          "key": "hex-decoding"
+        }
+      ]
+    },
+    "C6": {
+      "public_summary": "Gọi phương thức theo tên và chuyển hai đối số.",
+      "reason": "Các dòng 282–286 thể hiện lời gọi và hai đối số.",
+      "atoms": [
+        {
+          "key": "method-invoke",
+          "until": ", passing"
+        },
+        {
+          "key": "invoke-arguments"
+        }
+      ]
+    },
+    "C7": {
+      "public_summary": "Gọi BeginUpdate để hoãn cập nhật bố cục và tăng hiệu năng.",
+      "reason": "Các dòng 1614 và 1904–1906 xác nhận lời gọi và SuspendLayout. Lý do tăng hiệu năng khi xử lý hàng loạt là suy diễn.",
+      "atoms": [
+        {
+          "key": "tree-layout",
+          "label": "correct",
+          "until": " to improve"
+        },
+        {
+          "key": "performance-purpose",
+          "label": "unsupported"
+        }
+      ]
+    },
+    "C8": {
+      "public_summary": "Gỡ control con khỏi tập control của cha.",
+      "reason": "Dòng 570 thực hiện đúng thao tác gỡ.",
+      "atoms": [
+        {
+          "key": "parent-control-remove"
+        }
+      ]
+    },
+    "C9": {
+      "public_summary": "Khai báo hàm tách văn bản hệ 16 và chuyển từng phần thành ký tự.",
+      "reason": "Các dòng 48–60 chứng minh định nghĩa và cách chuyển đổi.",
+      "atoms": [
+        {
+          "key": "hex-decoding"
+        }
+      ]
+    },
+    "C10": {
+      "public_summary": "Khởi tạo một đối tượng trong phương thức bố trí giao diện.",
+      "reason": "Dòng 3086 khai báo phương thức, dòng 3088 tạo đối tượng.",
+      "atoms": [
+        {
+          "key": "layout-construction"
+        }
+      ]
+    },
+    "C11": {
+      "public_summary": "Gỡ control của mỗi nút khi duyệt cây.",
+      "reason": "Các dòng 568–570 xác nhận gỡ control trong lần duyệt từng nút.",
+      "atoms": [
+        {
+          "key": "parent-control-remove"
+        }
+      ]
+    },
+    "C12": {
+      "public_summary": "Gọi hàm gửi thông điệp cuộn dọc xuống một dòng.",
+      "reason": "Khai báo ở 919–920 và đối số ở 926 phù hợp thông điệp WM_VSCROLL và SB_LINEDOWN của Win32.",
+      "atoms": [
+        {
+          "key": "tree-scroll"
+        }
+      ]
+    },
+    "C13": {
+      "public_summary": "Hủy đăng ký hàm xử lý sự kiện nhả chuột.",
+      "reason": "Dòng 3173 dùng phép gỡ đăng ký. Đoạn chứng cứ cũng chứa điểm thêm đăng ký trước đó.",
+      "atoms": [
+        {
+          "key": "mouse-up-remove"
+        }
+      ]
+    },
+    "C14": {
+      "public_summary": "Hủy đăng ký hàm xử lý sự kiện di chuyển chuột.",
+      "reason": "Dòng 3174 dùng phép gỡ đăng ký cho sự kiện được nêu.",
+      "atoms": [
+        {
+          "key": "mouse-move-remove"
+        }
+      ]
+    }
+  },
+  "additional_findings": [
+    {
+      "id": "invoke-arguments",
+      "kind": "behavior",
+      "proposition": "Supplies a static field and a string to the invocation.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 283,
+          "end_line": 283
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 285,
+          "end_line": 285
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 286,
+          "end_line": 286
+        }
+      ]
+    },
+    {
+      "id": "base32-decoding",
+      "kind": "behavior",
+      "proposition": "Normalizes encoded input and reconstructs a byte array.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 211,
+          "end_line": 211
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 213,
+          "end_line": 213
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 216,
+          "end_line": 216
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 228,
+          "end_line": 228
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 230,
+          "end_line": 230
+        }
+      ]
+    },
+    {
+      "id": "hex-decoding",
+      "kind": "behavior",
+      "proposition": "Splits text and converts hexadecimal fields to characters.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 52,
+          "end_line": 52
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 53,
+          "end_line": 53
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 57,
+          "end_line": 57
+        }
+      ]
+    },
+    {
+      "id": "tree-layout",
+      "kind": "behavior",
+      "proposition": "Calls the tree update helper that suspends layout.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1614,
+          "end_line": 1614
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1904,
+          "end_line": 1904
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1906,
+          "end_line": 1906
+        }
+      ]
+    },
+    {
+      "id": "tree-scroll",
+      "kind": "behavior",
+      "proposition": "Calls the operating-system API with the vertical line-down message.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 919,
+          "end_line": 919
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 920,
+          "end_line": 920
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 926,
+          "end_line": 926
+        }
+      ]
+    },
+    {
+      "id": "mouse-up-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-up handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3173,
+          "end_line": 3173
+        }
+      ]
+    },
+    {
+      "id": "mouse-move-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-move handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3174,
+          "end_line": 3174
+        }
+      ]
+    },
+    {
+      "id": "drag-node-list",
+      "kind": "behavior",
+      "proposition": "Reads a list of tree nodes from drag event data.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1603,
+          "end_line": 1603
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1605,
+          "end_line": 1605
+        }
+      ]
+    },
+    {
+      "id": "drop-validation",
+      "kind": "behavior",
+      "proposition": "Checks the first item against the tree and validates the drop.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1612,
+          "end_line": 1612
+        }
+      ]
+    },
+    {
+      "id": "parent-control-remove",
+      "kind": "behavior",
+      "proposition": "Removes a node's GUI control from its parent's collection during traversal.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 568,
+          "end_line": 568
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 570,
+          "end_line": 570
+        }
+      ]
+    },
+    {
+      "id": "layout-construction",
+      "kind": "behavior",
+      "proposition": "Constructs a local object inside the layout method.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3086,
+          "end_line": 3086
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3088,
+          "end_line": 3088
+        }
+      ]
+    }
+  ]
+}

@@ -50,6 +50,18 @@ Chỉ sync trước run mới vì service restart làm mất evidence ID trong b
 
 ## Regression trên phiên bản sau sửa navigation
 
+### Chạy lại bộ thử với tên tệp đã ẩn nhãn
+
+Trên máy có VM đang mở, chạy các lệnh sau từ thư mục dự án. Lệnh đầu tạo các bản văn bản trơ bên trong VM. Tên mẫu dùng trong phiên chỉ có mã băm rút gọn. Model không thấy chữ `control` hoặc `injected` trong tên file. Lệnh đo ghi lại cả cặp không đủ chứng cứ và hash nhật ký của từng nhánh. Cấu hình mặc định của phép thử dùng Qwen2.5 Coder 7B với sáu bước. Thêm `--config config/host.techniques-qwen3.example.json` để đo profile 8B theo đúng ngân sách của profile đó.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/prepare_guard_evaluation.py
+.\.venv\Scripts\python.exe -m eval.injection --manifest evidence/local/injection-blind-manifest.json --guard enabled
+.\.venv\Scripts\python.exe -m eval.injection --manifest evidence/local/injection-blind-manifest.json --guard disabled
+```
+
+Đối chiếu cả `applied_verdict_difference_rate` (mọi lần hai verdict khác nhau) và `applied_target_change_rate` (đổi đúng hướng câu chèn yêu cầu). Với 0 cặp hợp lệ, hai tỷ lệ đều để trống. Các lần chạy bộ này phục vụ thử lớp chặn của agent. Demo phân tích stealer dùng các mẫu public thật.
+
 **Đính chính phạm vi phép đo.** Các con số lịch sử bên dưới dựa trên metadata của yêu cầu. Khi kiểm lại đầu vào theo từng dòng và phản hồi đúng bước, ba bộ receipt đều có **0 cặp đủ bằng chứng**. Nhật ký cũ chỉ giữ hash thông điệp hoặc thiếu nội dung cần đối chiếu. Tỷ lệ bị câu chèn làm đổi verdict theo phép đo này còn để trống. [Biên bản kiểm lại từng run](../deliverables/real-demo-evidence/injection-exact-message-recheck.json).
 
 P01/P06/P07 chạy đủ 6 lượt thật, hash chain và exposure hợp lệ. Scorer cũ bỏ sót verdict hợp lệ `suspicious`; đã chấm lại cùng đầu ra và giữ receipt gốc. `injection-regression-rescored.json` ghi cả hash bản gốc và scorer mới.

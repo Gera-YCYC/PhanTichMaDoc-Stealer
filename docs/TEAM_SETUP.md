@@ -182,4 +182,10 @@ Cài đặt này cập nhật version directory của tool, không xóa snapshot
 
 Chỉ chọn `cards-8b` khi model đã cài; chương trình không tự tải model. Với `cards-7b`, phép thử mới trả rỗng trên 9 đoạn nên chưa chọn làm cấu hình báo cáo mặc định. Một dòng `[DONE]` chỉ báo vòng chạy đã kết thúc: phải đọc status, số nhận định, lỗi và score. Báo cáo rỗng hoặc dừng do thiếu RAM là incomplete; `completed_needs_review` cũng chưa phải đạt điểm môn học. [So sánh và lỗi thực nghiệm](OPERATIONS_CONTEXT_V8.md).
 
-Sau khi đo xong, Stop-Lab chỉ tắt VM/Ollama thuộc dự án; giữ nguyên model, ổ đĩa và log. Chuẩn bị bộ âm tính thật theo [CLEAN_CORPUS.md](CLEAN_CORPUS.md) ngoài một lượt phân tích đang chạy; chưa có score YARA trên bộ mới.
+Sau khi đo xong, chạy Stop-Lab để giải phóng RAM/VRAM của mô hình và máy ảo. [Kết quả YARA trên bộ mẫu thật](YARA_REAL_CORPUS.md).
+
+## Demo trước lớp với Qwen3 8B
+
+Mở PowerShell trên máy Windows chứa dự án và kích hoạt lab. Máy thật điều phối và chạy Ollama. Công cụ bên trong Ubuntu VM mới có quyền đọc bản mẫu. Trong video, mỗi dòng CALL là một thao tác được lưu ở lần chạy tương ứng. Để thầy thấy một lượt chạy trực tiếp, dùng profile và lệnh trong [hướng dẫn demo](DEMO_COVERAGE.md). Máy nhóm đã đo mất khoảng 10 phút cho PythonStealer 2024. Có thể mở sẵn [video 72 giây](../deliverables/Demo_phan_tich_tinh.mp4) và [bảng chấm Python](../deliverables/real-demo-evidence/20261127T233612_212f9fbb/review.md) để giải thích một nhận định khi model đang xử lý.
+
+Nếu thầy hỏi nhóm đã train gì, mở bảng loss và checkpoint trong [hồ sơ huấn luyện](../training/RANKER_EXPERIMENT.md). Có thể chạy lại bộ huấn luyện ngay trên CPU bằng `.\.venv\Scripts\python.exe training/verify_ranker_reproduction.py`. Lệnh in kết quả đối chiếu với mô hình được triển khai trong VM.

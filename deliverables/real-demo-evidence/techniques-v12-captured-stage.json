@@ -1,0 +1,130 @@
+{
+  "runs": [
+    {
+      "kind": "real-model-technique-stage-on-captured-vm-features",
+      "run_id": "20261128T004708_8ef56d26",
+      "source_run": "20261127T233612_212f9fbb",
+      "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "metrics": {
+        "model_calls": 1,
+        "prompt_tokens": 364,
+        "completion_tokens": 55,
+        "minimum_free_ram_bytes": 968491008,
+        "elapsed_s": 6.2543
+      },
+      "source_journal_sha256": "5e0a74e7b950a260a47462656b148e74b16a25273982081c65ae6705349b3a80",
+      "stage_journal_sha256": "11d9f83cdc58b35902aa3318286fc69df575564e8b038de19bdcf66c3be43c4c",
+      "code_sha256": "f88ffe06771b7e9b9dc4a2d077dfe8615e8bbaa455cccc6127000bc629d90c30",
+      "selected": [
+        {
+          "technique_id": "T1555.003",
+          "source": [
+            {
+              "evidence_id": "ev_e9908d1f15b1430b",
+              "line": 131,
+              "end_line": 147
+            }
+          ]
+        }
+      ],
+      "full_agent_run": false
+    },
+    {
+      "kind": "real-model-technique-stage-on-captured-vm-features",
+      "run_id": "20261128T004716_12a2b5c5",
+      "source_run": "20261127T234632_6e94cea6",
+      "sample_sha256": "93d03c6d0c24ce480a06e77c84b33e0bbc0d606fd055ef7cedf772db05c7891d",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "metrics": {
+        "model_calls": 1,
+        "prompt_tokens": 574,
+        "completion_tokens": 59,
+        "minimum_free_ram_bytes": 942399488,
+        "elapsed_s": 6.2866
+      },
+      "source_journal_sha256": "67f83b349d730c4dc639394e954a267041a4418c9497965bf5abb8646708a2bf",
+      "stage_journal_sha256": "ce2e4138e87e79ffb0ed367e37918b9068f5b10fcd20050eced609f30b0ea4f7",
+      "code_sha256": "f88ffe06771b7e9b9dc4a2d077dfe8615e8bbaa455cccc6127000bc629d90c30",
+      "selected": [
+        {
+          "technique_id": "T1555.003",
+          "source": [
+            {
+              "evidence_id": "ev_1f7db98463144db0",
+              "line": 1051,
+              "end_line": 1060
+            },
+            {
+              "evidence_id": "ev_1f7db98463144db0",
+              "line": 1065,
+              "end_line": 1073
+            }
+          ]
+        }
+      ],
+      "full_agent_run": false
+    },
+    {
+      "kind": "real-model-technique-stage-on-captured-vm-features",
+      "run_id": "20261128T004722_7525321b",
+      "source_run": "20261128T000247_b054cbfb",
+      "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "metrics": {
+        "model_calls": 1,
+        "prompt_tokens": 592,
+        "completion_tokens": 53,
+        "minimum_free_ram_bytes": 1098919936,
+        "elapsed_s": 5.4802
+      },
+      "source_journal_sha256": "81c8ce2c8b28d9119dc4ddf8dd0d066e608b8e20fb48b65d53c020d2a09d0a0e",
+      "stage_journal_sha256": "b5506b356a977a86a0ee8129faed39f0958853215d4dfa0651d7a8b01c27a753",
+      "code_sha256": "f88ffe06771b7e9b9dc4a2d077dfe8615e8bbaa455cccc6127000bc629d90c30",
+      "selected": [
+        {
+          "technique_id": "T1539",
+          "source": [
+            {
+              "evidence_id": "ev_a21681d563b34039",
+              "line": 709,
+              "end_line": 717
+            },
+            {
+              "evidence_id": "ev_a21681d563b34039",
+              "line": 724,
+              "end_line": 732
+            },
+            {
+              "evidence_id": "ev_a21681d563b34039",
+              "line": 743,
+              "end_line": 751
+            }
+          ]
+        }
+      ],
+      "full_agent_run": false
+    },
+    {
+      "kind": "real-model-technique-stage-on-captured-vm-features",
+      "run_id": "20261128T004729_a091e8bf",
+      "source_run": "20261128T001144_4a8326ca",
+      "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+      "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "metrics": {
+        "model_calls": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "minimum_free_ram_bytes": null,
+        "elapsed_s": 0.003
+      },
+      "source_journal_sha256": "4c4d98622feb0c883a20a602060fb663a1cd60c8289ace91966b12b585ef4bbe",
+      "stage_journal_sha256": "c72954e3c51b1217c33c777a4f990a6dfa082d6acd427ecf358feb3d5dd17533",
+      "code_sha256": "f88ffe06771b7e9b9dc4a2d077dfe8615e8bbaa455cccc6127000bc629d90c30",
+      "selected": [],
+      "full_agent_run": false
+    }
+  ],
+  "all_request_evidence_verified": true,
+  "scope": "Only technique decisions on features captured in earlier full runs. No change to historical full-agent scores. No external destinations contacted."
+}

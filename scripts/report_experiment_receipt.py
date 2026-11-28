@@ -48,6 +48,20 @@ def summarize(directory):
         key = (fact['evidence_id'], fact['sample_sha256'], fact['output_sha256'])
         assert key[1] == result['sample_sha256']
         assert all(n in observed.get(key, set()) for ref in fact['ranges'] for n in range(ref['line'], ref['end_line']+1))
+    channel_features = []
+    for feature in result.get('channel_shapes', []):
+        if (set(feature) != {'kind', 'credential_shape_present', 'evidence_id', 'line', 'sample_sha256', 'output_sha256'}
+                or feature['kind'] != 'discord_webhook_literal' or feature['credential_shape_present'] is not True
+                or feature['sample_sha256'] != result['sample_sha256'] or type(feature['line']) is not int):
+            raise ValueError('Unrecognized channel shape or unexpected data')
+        if not any(e['event'] == 'observation' and e['raw']['status'] == 'ok'
+                   and e['raw']['sample_sha256'] == feature['sample_sha256']
+                   and e['raw']['output_sha256'] == feature['output_sha256']
+                   and e['raw']['evidence_id'] == feature['evidence_id']
+                   and 1 <= feature['line'] <= e['raw']['total_lines'] and feature in e['raw'].get('channel_shapes', [])
+                   for e in events):
+            raise ValueError('Channel shape has no matching successful VM observation')
+        channel_features.append(feature)
     experiment_config = dict(started['config'])
     experiment_config.pop('expected_sample_sha256', None)
     decisions = [e for e in events if e['event'] == 'operation_review_decision']
@@ -58,7 +72,7 @@ def summarize(directory):
         'model': {k: result['model'].get(k) for k in ('tag', 'digest', 'size_bytes', 'details')},
         'settings': {k: started['config'].get(k) for k in ('max_steps', 'num_ctx', 'num_predict', 'seed', 'think',
                     'report_mode', 'max_report_cards', 'min_code_searches', 'evidence_chars', 'code_evidence_chars',
-                    'review_operations', 'semantic_review')},
+                    'review_operations', 'semantic_review', 'recover_empty_searches', 'review_techniques', 'occurrence_order')},
         'config_sha256_excluding_sample': hashlib.sha256(canonical(experiment_config)).hexdigest(),
         'operation_review': {'decisions':len(decisions), 'selected':sum(e['selected'] is True for e in decisions)},
         'successful_tools': result['successful_tools'], 'metrics': result['metrics'],
@@ -77,6 +91,11 @@ def summarize(directory):
         'verdict_support_invalid': analysis.get('verdict_support_invalid'),
         'error_classes': [e['error'].split(':', 1)[0] for e in events if e['event'] == 'run_error'],
         'quality_metrics': None,
+        'tool_channel_shapes': channel_features,
+        'reviewed_techniques': [{'technique_id': c['technique_id'],
+                                'citations': [{k: ref[k] for k in ('evidence_id','line','end_line') if k in ref}
+                                              for ref in c['evidence']]}
+                               for c in analysis.get('claims',[]) if c['kind'] == 'attack'],
         'typed_operations': {'count':len(operations), 'counts_by_operation':dict(Counter(f['operation'] for f in operations)),
                              'backends': sorted(backends), 'fact_hashes_and_cited_rows_verified': True,
                              'used_to_adjudicate_slm_claims': False,

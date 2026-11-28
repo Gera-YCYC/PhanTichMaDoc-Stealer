@@ -32,12 +32,23 @@ Nhánh .NET cùng bản core đạt 14/20 câu đúng và gọi 2 công cụ kh�
 | Y02 | Sinh và đo YARA | 7B/8B cùng bản: 5/5 độc, 0/39 sạch; replay độc lập khớp. Ngưỡng đạt trên corpus công bố | Giữ phạm vi development và luật theo bản build; kiểm rename/repack và tích hợp với báo cáo cuối. Kết quả âm v1 1/38 vẫn giữ |
 | TR01 | Dữ liệu train | Corpus 117 anchor cấu trúc có provenance; chưa human review | Mở rộng dữ liệu/nhãn kiểm độc lập, giữ split; không giả người review |
 | TR02 | Huấn luyện thật | Ranker CPU đã train; SLM chưa train; loại train GV chưa rõ | Hồ sơ ranker đã có; loại train theo GV còn mở |
-| TR03 | So baseline với sau train | Có hit@1 trên subset candidate; chưa đủ F1 agent | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
+| TR03 | So baseline với sau train | Một cặp AgentTesla cùng source/config. F1 trong 7 mục là 33,33% theo thứ tự dòng và 36,36% khi dùng ranker. Cả hai phủ 2/7 mục | So cùng bản/tools/config trên benchmark độc lập, chất lượng và chi phí |
 | E01 | Bảng đúng/sai/bịa/bỏ sót | Đã chấm 87 câu thô trên ba mẫu coverage-8b. Có điểm trước/sau lọc, F1 riêng IOC + ATT&CK và mã mục bỏ sót | Chuẩn hóa prediction cùng đơn vị reference; mở rộng corpus; giữ raw/rejected; nhãn source-audit chưa human review |
-| E02 | Stability | Thử lịch sử chưa đạt | 3 run cùng sample/model/source/config; intersection/union>=80% |
+| E02 | Stability | Đã đo cùng ba lượt guided-8b trên AgentTesla. Có 4/28 nhận định trùng, đạt 14,29%. Cả ba verdict đều inconclusive | Đạt ít nhất 80% trên cấu hình chốt và đối chiếu các câu đổi nội dung |
 | E03 | Tài nguyên và so phương án | V8 8B: Python 484,7 s, .NET 503,5 s; có một lượt khác ngắt RAM. 7B chạy 162,2 s nhưng report rỗng | Ghi phạm vi đo; bổ sung peak và so cùng revision/config; không tính run dở/report rỗng là phân tích đạt |
 | R01 | Tài liệu kỹ thuật | Đang cập nhật theo sản phẩm | Thiết kế, cài/chạy, luồng, dataset, training, đánh giá, giới hạn |
 | R02 | Tái lập máy khác | Đã dựng VM mới trên cùng host ở bản cũ | Kiểm bản installer mới; máy vật lý khác chưa được xác nhận |
+
+## Phần nhóm có thể chia nhau
+
+| Vai trò | Việc còn lại | Bằng chứng để bàn giao |
+|---|---|---|
+| Phân tích .NET | Rà các câu thiếu căn cứ trên Gomorrah và Mercurial. Đối chiếu lời gọi, thân hàm và dữ liệu truyền cho hàm. | Bảng nhận định có ID, số dòng, nhãn và danh sách IOC đã che giá trị nhạy cảm. |
+| Phân tích Python | Kiểm lại đường đi từ dữ liệu đã thu đến tệp đính kèm SMTP, bổ sung phần bỏ sót trên PyInstaller. | Báo cáo có trích dẫn liên kết từng bước và kết quả riêng của pycdc/pycdas. |
+| Đánh giá và an toàn | Chạy các cặp đối chứng với guard bật/tắt. Ghi cả ca model chưa nhận được dòng thử. Đề xuất gốc có 12 file và yêu cầu đa dạng vị trí chèn. | Tử số, mẫu số, hash thông điệp, verdict trước/sau và số ca chưa đánh giá được. |
+| Tích hợp và demo | Chạy lại trên máy nhóm, đối chiếu hash model, checkpoint, nguồn VM và nhật ký. Trình diễn một lần chạy trực tiếp. | Run ID, trạng thái thực, bảng điểm cùng phiên bản, hồ sơ huấn luyện và kết quả tái lập. |
+
+Mỗi thành viên có thể lấy một vai trò theo phân công của nhóm. Trình tự nghiệm thu là đối chiếu mã nguồn, chốt phiên bản, chạy cùng cấu hình trên bộ mẫu, tính điểm và rà lại kết luận.
 
 ## Các ngưỡng phải giữ nguyên
 
@@ -62,7 +73,7 @@ Sau v4, việc tiếp theo của A01/A02 là biểu diễn rõ từng thao tác 
 
 Cập nhật sau thí nghiệm báo cáo đoạn: đã có cấu hình cache 256 MiB giúp 7B/8B hoàn tất mà không tích lũy nhiều GiB cache. A01 cần giữ vị trí hit của tìm kiếm khi tạo claim để model không chỉ mô tả các dòng đầu đoạn. A02 cần chặn import-only bị gán behavior và đo cả false rejection (SQLite/ghi file có chứng cứ) lẫn false acceptance. Qwen3 có một run Python thật 4 tool/verdict malicious nhưng còn các lỗi này, chưa đủ thay default hoặc đóng ANALYSIS/TRUST. Nhánh báo cáo đoạn hiện chưa bao phủ IOC/ATT&CK/YARA đầy đủ; không được bỏ các đầu ra đó khỏi tiêu chí cuối.
 
-Lịch sử kiểm injection đã được sửa cách diễn giải: 9/10 trước đây chỉ chứng minh payload tới observation; audit v2 yêu cầu model_request nên **0/10 lịch sử đủ điều kiện**, không phải 0% bị lừa. Các run P06 mới có bằng chứng riêng.
+Lịch sử kiểm injection đã được sửa cách diễn giải: 9/10 trước đây chỉ chứng minh payload tới observation; audit v2 yêu cầu model_request nên **0/10 lịch sử đủ điều kiện**, không phải 0% bị lừa. Kiểm lại P06 theo nội dung thông điệp thực tế cho kết quả chưa đủ chứng cứ.
 
 Tài liệu/slide/video và vấn đáp trong slide gốc được giữ để nhóm biết yêu cầu môn học. Theo phạm vi sản phẩm người dùng chốt, không chờ tên/MSSV, phân công cá nhân hoặc hoạt động trên lớp để tiếp tục xây phần mềm.
 

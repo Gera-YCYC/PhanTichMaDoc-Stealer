@@ -1,5 +1,7 @@
 # Phiếu kiểm nhận định từ các lần chạy thật
 
+Trên AgentTesla, ba bảng sau cho thấy nội dung thay đổi qua các lượt cùng cấu hình. Có cả bảng cho lượt đối chứng tắt bộ xếp hạng. Mỗi lần chấm dùng cùng 7 mục nguồn đã chốt. [Lượt 1](../deliverables/real-demo-evidence/20261128T001144_4a8326ca/review.md) · [Lượt 2](../deliverables/real-demo-evidence/20261128T002926_2b0e57f6/review.md) · [Lượt 3](../deliverables/real-demo-evidence/20261128T003743_f8acf7f0/review.md) · [Lượt đối chứng](../deliverables/real-demo-evidence/20261128T002140_6b8034a7/review.md).
+
 Mercurial có thêm 18 câu đã đối chiếu, đưa tổng số câu thô được chấm trên ba mẫu cùng phiên bản lên 87. Mỗi dòng ghi câu của agent, kết quả kiểm nguồn, dòng chứng cứ và quyết định của bộ lọc. [Mercurial](../deliverables/real-demo-evidence/20261128T000247_b054cbfb/review.md) · [Số liệu cùng phiên bản](DEMO_COVERAGE.md).
 
 Bảng đối chiếu của đợt v11 đã có đủ 39 câu Python và 30 câu Gomorrah, kèm phần thiếu căn cứ, câu bị loại và những mục agent bỏ sót. Nhóm mở bảng tương ứng khi giảng viên muốn xem agent nói gì và nguồn chứng minh tới đâu. [PythonStealer 2024](../deliverables/real-demo-evidence/20261127T233612_212f9fbb/review.md) · [Gomorrah](../deliverables/real-demo-evidence/20261127T234632_6e94cea6/review.md).
@@ -19,3 +21,6 @@ Các dòng lịch sử buổi 4 trong bảng dưới còn chờ chấm. Nhóm ki
 
 JSON để điền có cấu trúc: `eval/review-worksheet.json`. Không chạy score.py trực tiếp với phiếu chưa có nhãn.
 Nguồn ground truth phải độc lập với chính output của agent. Log công cụ kiểm định dạng được, nhưng muốn xác nhận hành vi phải đọc code/luồng dữ liệu hoặc nguồn phân tích tương ứng.
+## Mercurial với profile techniques-8b
+
+Run `20261128T004729_8df9f715` có 19 câu đã đối chiếu, gồm cả 7 câu bộ tự duyệt loại. Trong 12 câu giữ có 9 đúng và 3 thiếu căn cứ. Mười mục trong đáp án 21 mục còn thiếu sau lọc. Thông tin IOC mà VM trích được có bảng riêng trong biên bản để người chấm phân biệt với nhận định của SLM. [Agent nói gì, trích dẫn ở đâu, nhãn và lý do](../deliverables/real-demo-evidence/20261128T004729_8df9f715/review.md) · [Kết quả các công cụ trong VM](../deliverables/real-demo-evidence/mercurial-techniques-v12-run.json).

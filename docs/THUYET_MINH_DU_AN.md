@@ -79,7 +79,7 @@ flowchart LR
 | Kiểm báo cáo | grounding.py, reviewer.py | Kiểm quote/line/source; reviewer SLM chỉ là heuristic |
 | Nhật ký | journal.py, reporting.py, telemetry.py | JSONL, hash chain, báo cáo, token/time/RAM/VRAM |
 | Đánh giá | eval/score.py, stability.py, injection.py | Chấm theo đáp án độc lập, stability và thử injection |
-| YARA | yara_agent.py, vm_tools/yara_tools.py | Sinh đặc tả luật, render/compile/test; ngưỡng chất lượng chưa đạt |
+| YARA | yara_agent.py, vm_tools/yara_tools.py | SLM sinh đặc tả, YARA biên dịch và chạy thật. Trên bộ development, phát hiện 5/5 mẫu và 0/39 file sạch báo nhầm |
 
 Host không mở binary mẫu để đưa cho SLM. VM chỉ trả đặc trưng/excerpt JSON; nội dung từ mẫu vẫn là dữ liệu không tin cậy. Model không có tool shell, không được chọn đường dẫn tùy ý hay tự đổi mẫu.
 
@@ -114,7 +114,7 @@ Chọn Q4_K_M để giảm bộ nhớ suy luận là lựa chọn triển khai. 
 | LunaGrabber, 23.250.383 B | Ca khó Python/obfuscation | Giữ để đánh giá hạn chế, không chọn chỉ vì tên họ |
 | Mercurial, 43.008 B | Ứng viên định dạng MSIL | Không dùng thay J vì nguồn MSIL không chứng minh Python |
 
-Hash đầy đủ/nguồn ở [DATASET](DATASET.md) và [manifest](../config/public-samples.json). Kích thước lớn hơn slide là hệ quả chọn mẫu thay thế public, không phải lỗi đọc file. Không có đủ bằng chứng để gọi mẫu Python hiện tại là đã đáp ứng đầu ra kênh gửi/token/webhook của đồ án cuối.
+Hash đầy đủ/nguồn ở [DATASET](DATASET.md) và [manifest](../config/public-samples.json). Kích thước lớn hơn slide là hệ quả chọn mẫu thay thế public, không phải lỗi đọc file. PythonStealer 2024 đã có chứng cứ tĩnh về kênh SMTP và tệp đính kèm. Trên Mercurial, kiểm nguồn ghi nhận một webhook có thành phần giống khóa ở dòng 37. Agent coverage bỏ sót chỉ dấu này. Xem [bằng chứng theo mẫu](DEMO_COVERAGE.md).
 
 Tiêu chí chốt mẫu cuối: nguồn hợp lệ và hash ổn định; đúng nền tảng; phân tích được đủ luồng lấy dữ liệu → xử lý → gửi; có đáp án độc lập; thêm tập sạch/cases mới để kiểm báo nhầm và tổng quát hóa. Năm file hiện tại không tạo thành một benchmark thống kê đủ lớn.
 
@@ -144,7 +144,7 @@ ReAct là cách tổ chức tương tác suy luận/hành động/quan sát, kh�
 | Python fallback | dis dự kiến | pycdas thật khi pycdc lỗi |
 | Ngân sách | 15 bước, context 8192 | max_steps 16, num_ctx 8192, num_predict 2200; context code/tìm kiếm có giới hạn |
 | Timeout | 120s/tool dự kiến | VM tool 90 s; HTTP/model 180 s theo config |
-| Model | qwen2.5 hoặc coder7b | Chỉ coder7b đã chạy baseline; đối chứng chưa hoàn tất |
+| Model | qwen2.5 hoặc coder7b | Coder 7B là baseline. Qwen3 8B chạy được hai nhánh và là cấu hình của đợt đo buổi 6 |
 | Nhật ký | logs/ dạng ví dụ | runs/<run-id>/events.jsonl + reports và version hash |
 | Mẫu/YARA | I/J; biến thể, 30–50 file sạch dự kiến | Public replacements; bộ đánh giá độc lập chưa hoàn thiện |
 

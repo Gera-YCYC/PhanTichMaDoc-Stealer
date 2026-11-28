@@ -1,0 +1,391 @@
+{
+  "run_id": "20261128T004729_8df9f715",
+  "sample_sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "raw_report_sha256": "973464ffadf7fdcb61ff3a4b20d2e08d61980000f5b0cf151d2f7cfe40e06456",
+  "journal_sha256": "3ee836f6143d5a7c7cabb90db855c308d4f5e7a2c1f8e5aff39f799106042234",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 65,
+          "end_line": 80,
+          "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 709,
+          "end_line": 744,
+          "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 282,
+          "end_line": 286,
+          "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+        }
+      ],
+      "reason": "Dòng 75 gọi hàm. Đoạn 713–720 xác định bản sao. Dòng 727–728 mở bản sao và chọn bảng."
+    },
+    {
+      "claim_id": "C2",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 65,
+          "end_line": 80,
+          "projected_quote_sha256": "9b761516dd2279557bdcd0ab505afede201a81e59c34686d7a4ec9a49ce491a4"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 709,
+          "end_line": 744,
+          "projected_quote_sha256": "086bd6d9bac75f5492e5e261eb6de8befaaf2406783f3b33cf3ceb7711b09910"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 282,
+          "end_line": 286,
+          "projected_quote_sha256": "7c347d56cded747215966ed87c418cf1d61c0ba6ad8c2140579002dc3c5a20e7"
+        }
+      ],
+      "reason": "Dòng 76 xác nhận lời gọi. Các đoạn còn lại mô tả cookie và thông tin hệ thống. Thân hàm xử lý mật khẩu nằm ngoài trích dẫn của câu."
+    },
+    {
+      "claim_id": "C3",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 66,
+          "end_line": 81,
+          "projected_quote_sha256": "17d628c44a2c627f4b80b008eb1f8106a2ae7bf698ed93def1ba635799aad23b"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 775,
+          "end_line": 810,
+          "projected_quote_sha256": "c79bfbc98d0d6d6597ef80f0887fcf1d3ee10459cadcac628f8ab753c8ff1540"
+        }
+      ],
+      "reason": "Đường dẫn nguồn ở dòng 779, đích tạm ở 783–784 và thao tác sao chép ở 787."
+    },
+    {
+      "claim_id": "C4",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 66,
+          "end_line": 81,
+          "projected_quote_sha256": "17d628c44a2c627f4b80b008eb1f8106a2ae7bf698ed93def1ba635799aad23b"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 775,
+          "end_line": 810,
+          "projected_quote_sha256": "c79bfbc98d0d6d6597ef80f0887fcf1d3ee10459cadcac628f8ab753c8ff1540"
+        }
+      ],
+      "reason": "Dòng 779–787 nối tệp nguồn với bản sao. Dòng 795–796 mở bản sao và đọc bảng logins."
+    },
+    {
+      "claim_id": "C5",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 375,
+          "end_line": 388,
+          "projected_quote_sha256": "7aad51b67acce72dad72bb8e4c5bce6b20489633e3090076455a8c5f51191545"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 407,
+          "end_line": 417,
+          "projected_quote_sha256": "b35076fb4e5fdbbe69f6b60262adbc8a1cf84730fb28780c9817237b0bee6fa3"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 453,
+          "end_line": 470,
+          "projected_quote_sha256": "643ccb446cbec68fbbfeab47411cfcee5dd41939e305849eb8027c07d5de24c5"
+        }
+      ],
+      "reason": "Các dòng 382–385 thể hiện đối số và lời gọi API."
+    },
+    {
+      "claim_id": "C6",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 375,
+          "end_line": 388,
+          "projected_quote_sha256": "7aad51b67acce72dad72bb8e4c5bce6b20489633e3090076455a8c5f51191545"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 407,
+          "end_line": 417,
+          "projected_quote_sha256": "b35076fb4e5fdbbe69f6b60262adbc8a1cf84730fb28780c9817237b0bee6fa3"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 453,
+          "end_line": 470,
+          "projected_quote_sha256": "643ccb446cbec68fbbfeab47411cfcee5dd41939e305849eb8027c07d5de24c5"
+        }
+      ],
+      "reason": "Trích dẫn chứa cả lần chọn thuộc tính lẫn lời gọi API đọc thuộc tính."
+    },
+    {
+      "claim_id": "C7",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 375,
+          "end_line": 385,
+          "projected_quote_sha256": "bb16c89c490c3b45fe39226e2da30d4912d1c06f2833237e1ee69be82ff15e9c"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 419,
+          "end_line": 436,
+          "projected_quote_sha256": "5251cd826ea925d0feb5a6528dacecffe542f4a43d0c2148f5c20e9ee5757c83"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 438,
+          "end_line": 451,
+          "projected_quote_sha256": "273b9f0621a3a4e0c81308ebab59e70af9c29c6fe8e1f7c2ada4d49d445af741"
+        }
+      ],
+      "reason": "Dòng 380 chọn AES/GCM. Đoạn 419–436 chứa thao tác cấu hình."
+    },
+    {
+      "claim_id": "C8",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 375,
+          "end_line": 385,
+          "projected_quote_sha256": "bb16c89c490c3b45fe39226e2da30d4912d1c06f2833237e1ee69be82ff15e9c"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 419,
+          "end_line": 436,
+          "projected_quote_sha256": "5251cd826ea925d0feb5a6528dacecffe542f4a43d0c2148f5c20e9ee5757c83"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 438,
+          "end_line": 451,
+          "projected_quote_sha256": "273b9f0621a3a4e0c81308ebab59e70af9c29c6fe8e1f7c2ada4d49d445af741"
+        }
+      ],
+      "reason": "Lời gọi nhập khóa nằm ở dòng 445."
+    },
+    {
+      "claim_id": "C9",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 753,
+          "end_line": 784,
+          "projected_quote_sha256": "cf84287c1b9b67208476258cccec8b6db017ec21d3487d5b62bc869ca32d43ff"
+        }
+      ],
+      "reason": "Dòng 761 xác nhận đường dẫn và hai vai trò đối số được nêu."
+    },
+    {
+      "claim_id": "C10",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 753,
+          "end_line": 784,
+          "projected_quote_sha256": "cf84287c1b9b67208476258cccec8b6db017ec21d3487d5b62bc869ca32d43ff"
+        }
+      ],
+      "reason": "Các dòng 765–768 nối nhánh bắt lỗi với đối số của hàm."
+    },
+    {
+      "claim_id": "C11",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 817,
+          "end_line": 848,
+          "projected_quote_sha256": "9484a5083b28d161e3a8f1ff0f3c7203955728673a7c035b7cf3b04a8648525a"
+        }
+      ],
+      "reason": "Dòng 826 xác nhận lời gọi, tệp và kiểu nội dung. Để xác nhận hiệu ứng gửi cần kiểm tra tiếp thân hàm."
+    },
+    {
+      "claim_id": "C12",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 817,
+          "end_line": 848,
+          "projected_quote_sha256": "9484a5083b28d161e3a8f1ff0f3c7203955728673a7c035b7cf3b04a8648525a"
+        }
+      ],
+      "reason": "Dòng 833 truyền trường Message của ngoại lệ. Trích dẫn thiếu phần hàm thực hiện truyền."
+    },
+    {
+      "claim_id": "C13",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 264,
+          "end_line": 295,
+          "projected_quote_sha256": "f5752abefe24bb52ae509ba119139c975190a0e34401f5dca9d8e71226cde0bd"
+        }
+      ],
+      "reason": "Lời gọi và các trường dữ liệu được nêu cùng ở dòng 279."
+    },
+    {
+      "claim_id": "C14",
+      "label": "correct",
+      "grounded": true,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 264,
+          "end_line": 295,
+          "projected_quote_sha256": "f5752abefe24bb52ae509ba119139c975190a0e34401f5dca9d8e71226cde0bd"
+        }
+      ],
+      "reason": "Đối tượng ở dòng 285 có các trường được nêu."
+    },
+    {
+      "claim_id": "C15",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 732,
+          "end_line": 763,
+          "projected_quote_sha256": "d39d12e1e3d6e8a2a9071f8e961b6c160df9539d176b161766cea70489fa3573"
+        }
+      ],
+      "reason": "Đoạn mã chứng minh dữ liệu và khóa được truyền vào helper. Thân hàm quyết định hiệu ứng giải mã nằm ngoài trích dẫn."
+    },
+    {
+      "claim_id": "C16",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 732,
+          "end_line": 763,
+          "projected_quote_sha256": "d39d12e1e3d6e8a2a9071f8e961b6c160df9539d176b161766cea70489fa3573"
+        }
+      ],
+      "reason": "Dòng 761 chứng minh thao tác chuyển đối số. Đoạn này thiếu thân hàm để xác nhận tác dụng truyền dữ liệu."
+    },
+    {
+      "claim_id": "C17",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 797,
+          "end_line": 828,
+          "projected_quote_sha256": "e3d69d97589cdd07f5a135a74d5daf287cfa88461ae8cb52f2ae9f2fc2f4ff2e"
+        }
+      ],
+      "reason": "Dòng 807 lấy khóa và dòng 812 chuyển khóa cùng dữ liệu mật khẩu cho helper. Tác dụng giải mã chưa được chứng minh bởi các dòng của câu."
+    },
+    {
+      "claim_id": "C18",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 797,
+          "end_line": 828,
+          "projected_quote_sha256": "e3d69d97589cdd07f5a135a74d5daf287cfa88461ae8cb52f2ae9f2fc2f4ff2e"
+        }
+      ],
+      "reason": "Lời gọi ở dòng 826 xác nhận tệp và kiểu multipart. Trích dẫn không xác minh trạng thái nội dung của tệp hay đích đến."
+    },
+    {
+      "claim_id": "C19",
+      "label": "unsupported",
+      "grounded": false,
+      "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+      "truth_reference": [
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 709,
+          "end_line": 717,
+          "projected_quote_sha256": "f7e8af434c2456287cf3ac5f86ef8df52c5e9801903efb0f170dc9d9806a7362"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 724,
+          "end_line": 732,
+          "projected_quote_sha256": "655ee088fd2273b89f540ff87891555ee0d965c022a0a065c7eccebff9ecf49b"
+        },
+        {
+          "evidence_id": "ev_05a7618a1e88417d",
+          "line": 743,
+          "end_line": 751,
+          "projected_quote_sha256": "92b7a371977b35548d65c5df17e1b00773b1ccf4612e41161ad0a1f904161f98"
+        }
+      ],
+      "reason": "T1539 phù hợp với toàn bộ hàm. Ba đoạn trích cho thấy kho cookie, bảng SQLite và hàm xử lý giá trị. Chúng thiếu dòng 720 nối kho gốc với bản sao được đọc và thiếu phần xuất kết quả. Theo quy tắc chấm trên chính chứng cứ của câu, chuỗi này chưa đủ."
+    }
+  ],
+  "human_reviewers": [],
+  "dataset_origin": "public development sample, static analysis in isolated VM"
+}

@@ -167,8 +167,20 @@ class ToolService:
                 if not text.strip():
                     raise RuntimeError("ILSpy returned empty output")
                 limits = ["Static decompilation; runtime behavior has not been observed"]
-            return self.store.add(sample=sample, sample_sha256=digest, tool=action, backend=backend,
-                                  text=text, limitations=limits, duration_s=time.perf_counter() - started)
+            result = self.store.add(sample=sample, sample_sha256=digest, tool=action, backend=backend,
+                                    text=text, limitations=limits, duration_s=time.perf_counter() - started)
+            if action in {'decompile_dotnet', 'decompile_python', 'decode_python_literals'} and '/webhooks/' in text.casefold():
+                record_path = self.store.directory / (result['evidence_id'] + '.json')
+                try:
+                    features = bounded_process(
+                        [sys.executable, '-m', 'vm_tools.channel_shapes', str(record_path.resolve())],
+                        self.store.directory / 'work', timeout=15, max_bytes=24000, memory_limit=True, strict_stderr=True,
+                        env_overrides={'PYTHONPATH': str(Path(__file__).resolve().parents[1]) +
+                                       os.pathsep + os.environ.get('PYTHONPATH', '')})
+                    result['channel_shapes'] = json.loads(features)
+                except (RuntimeError, ValueError, OSError) as exc:
+                    result['channel_feature_error'] = type(exc).__name__
+            return result
         except Exception as exc:
             status = "unavailable" if isinstance(exc, (ImportError, FileNotFoundError)) else "error"
             return self.store.add(sample=sample, sample_sha256=digest, tool=action, backend=backend,

@@ -1,0 +1,519 @@
+{
+  "contract": "frozen-reference-plus-separate-source-findings/1",
+  "run_id": "20261128T003743_f8acf7f0",
+  "profile_id": "agenttesla.atomic-development/1",
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "raw_report_sha256": "6700849d31ee48fdafae0ab10a93951e8108841fdd8b3fbcc4cf7d0a7692d72b",
+  "method": "P and F1 on declared units charge all incorrect or unsupported predictions. Supported extra findings are listed separately. All-prediction precision includes them. Recall uses the frozen denominator.",
+  "additional_findings": [
+    {
+      "id": "invoke-arguments",
+      "kind": "behavior",
+      "proposition": "Supplies a static field and a string to the invocation.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 283,
+          "end_line": 283
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 285,
+          "end_line": 285
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 286,
+          "end_line": 286
+        }
+      ]
+    },
+    {
+      "id": "base32-decoding",
+      "kind": "behavior",
+      "proposition": "Normalizes encoded input and reconstructs a byte array.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 211,
+          "end_line": 211
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 213,
+          "end_line": 213
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 216,
+          "end_line": 216
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 228,
+          "end_line": 228
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 230,
+          "end_line": 230
+        }
+      ]
+    },
+    {
+      "id": "hex-decoding",
+      "kind": "behavior",
+      "proposition": "Splits text and converts hexadecimal fields to characters.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 52,
+          "end_line": 52
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 53,
+          "end_line": 53
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 57,
+          "end_line": 57
+        }
+      ]
+    },
+    {
+      "id": "tree-layout",
+      "kind": "behavior",
+      "proposition": "Calls the tree update helper that suspends layout.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1614,
+          "end_line": 1614
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1904,
+          "end_line": 1904
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1906,
+          "end_line": 1906
+        }
+      ]
+    },
+    {
+      "id": "tree-scroll",
+      "kind": "behavior",
+      "proposition": "Calls the operating-system API with the vertical line-down message.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 919,
+          "end_line": 919
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 920,
+          "end_line": 920
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 926,
+          "end_line": 926
+        }
+      ]
+    },
+    {
+      "id": "mouse-up-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-up handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3173,
+          "end_line": 3173
+        }
+      ]
+    },
+    {
+      "id": "mouse-move-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-move handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3174,
+          "end_line": 3174
+        }
+      ]
+    },
+    {
+      "id": "drag-node-list",
+      "kind": "behavior",
+      "proposition": "Reads a list of tree nodes from drag event data.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1603,
+          "end_line": 1603
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1605,
+          "end_line": 1605
+        }
+      ]
+    },
+    {
+      "id": "drop-validation",
+      "kind": "behavior",
+      "proposition": "Checks the first item against the tree and validates the drop.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 1612,
+          "end_line": 1612
+        }
+      ]
+    },
+    {
+      "id": "parent-control-remove",
+      "kind": "behavior",
+      "proposition": "Removes a node's GUI control from its parent's collection during traversal.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 568,
+          "end_line": 568
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 570,
+          "end_line": 570
+        }
+      ]
+    },
+    {
+      "id": "layout-construction",
+      "kind": "behavior",
+      "proposition": "Constructs a local object inside the layout method.",
+      "source_references": [
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3086,
+          "end_line": 3086
+        },
+        {
+          "evidence_id": "ev_46af9fdb72024f89",
+          "line": 3088,
+          "end_line": 3088
+        }
+      ]
+    }
+  ],
+  "human_reviewers": [],
+  "full_coursework_quality_gate_passed": false,
+  "raw": {
+    "reference_units": 7,
+    "correct": 2,
+    "missed": 5,
+    "supported_outside_scope": [
+      "base32-decoding",
+      "drag-node-list",
+      "drop-validation",
+      "hex-decoding",
+      "invoke-arguments",
+      "layout-construction",
+      "mouse-move-remove",
+      "mouse-up-remove",
+      "parent-control-remove",
+      "tree-layout",
+      "tree-scroll"
+    ],
+    "incorrect": 0,
+    "unsupported": 1,
+    "prediction_atoms": 18,
+    "duplicate_atoms": 4,
+    "unique_prediction_units": 14,
+    "all_prediction_precision": 0.9285714285714286,
+    "all_prediction_hallucination_rate": 0.07142857142857142,
+    "precision": 0.6666666666666666,
+    "recall": 0.2857142857142857,
+    "f1": 0.4,
+    "matched_reference_ids": [
+      "assembly-load",
+      "method-invoke"
+    ],
+    "missed_reference_ids": [
+      "interop-declaration",
+      "manifest-stream",
+      "method-lookup",
+      "resource-object",
+      "smtp-exfil"
+    ]
+  },
+  "after_filter": {
+    "reference_units": 7,
+    "correct": 1,
+    "missed": 6,
+    "supported_outside_scope": [
+      "base32-decoding",
+      "drag-node-list",
+      "drop-validation",
+      "hex-decoding",
+      "invoke-arguments",
+      "layout-construction",
+      "mouse-move-remove",
+      "mouse-up-remove",
+      "parent-control-remove",
+      "tree-layout",
+      "tree-scroll"
+    ],
+    "incorrect": 0,
+    "unsupported": 1,
+    "prediction_atoms": 15,
+    "duplicate_atoms": 2,
+    "unique_prediction_units": 13,
+    "all_prediction_precision": 0.9230769230769231,
+    "all_prediction_hallucination_rate": 0.07692307692307693,
+    "precision": 0.5,
+    "recall": 0.14285714285714285,
+    "f1": 0.2222222222222222,
+    "matched_reference_ids": [
+      "method-invoke"
+    ],
+    "missed_reference_ids": [
+      "assembly-load",
+      "interop-declaration",
+      "manifest-stream",
+      "method-lookup",
+      "resource-object",
+      "smtp-exfil"
+    ]
+  },
+  "by_kind": {
+    "attack": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    },
+    "behavior": {
+      "raw": {
+        "reference_units": 6,
+        "correct": 2,
+        "missed": 4,
+        "supported_outside_scope": [
+          "base32-decoding",
+          "drag-node-list",
+          "drop-validation",
+          "hex-decoding",
+          "invoke-arguments",
+          "layout-construction",
+          "mouse-move-remove",
+          "mouse-up-remove",
+          "parent-control-remove",
+          "tree-layout",
+          "tree-scroll"
+        ],
+        "incorrect": 0,
+        "unsupported": 1,
+        "prediction_atoms": 18,
+        "duplicate_atoms": 4,
+        "unique_prediction_units": 14,
+        "all_prediction_precision": 0.9285714285714286,
+        "all_prediction_hallucination_rate": 0.07142857142857142,
+        "precision": 0.6666666666666666,
+        "recall": 0.3333333333333333,
+        "f1": 0.4444444444444444,
+        "matched_reference_ids": [
+          "assembly-load",
+          "method-invoke"
+        ],
+        "missed_reference_ids": [
+          "manifest-stream",
+          "method-lookup",
+          "resource-object",
+          "smtp-exfil"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 6,
+        "correct": 1,
+        "missed": 5,
+        "supported_outside_scope": [
+          "base32-decoding",
+          "drag-node-list",
+          "drop-validation",
+          "hex-decoding",
+          "invoke-arguments",
+          "layout-construction",
+          "mouse-move-remove",
+          "mouse-up-remove",
+          "parent-control-remove",
+          "tree-layout",
+          "tree-scroll"
+        ],
+        "incorrect": 0,
+        "unsupported": 1,
+        "prediction_atoms": 15,
+        "duplicate_atoms": 2,
+        "unique_prediction_units": 13,
+        "all_prediction_precision": 0.9230769230769231,
+        "all_prediction_hallucination_rate": 0.07692307692307693,
+        "precision": 0.5,
+        "recall": 0.16666666666666666,
+        "f1": 0.25,
+        "matched_reference_ids": [
+          "method-invoke"
+        ],
+        "missed_reference_ids": [
+          "assembly-load",
+          "manifest-stream",
+          "method-lookup",
+          "resource-object",
+          "smtp-exfil"
+        ]
+      }
+    },
+    "ioc": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    },
+    "observation": {
+      "raw": {
+        "reference_units": 1,
+        "correct": 0,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "interop-declaration"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 1,
+        "correct": 0,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "interop-declaration"
+        ]
+      }
+    }
+  },
+  "rubric_ioc_attack": {
+    "raw": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 0,
+      "reference_units": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "supported_outside_scope_count": 0
+    },
+    "after_filter": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 0,
+      "reference_units": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "supported_outside_scope_count": 0
+    }
+  }
+}

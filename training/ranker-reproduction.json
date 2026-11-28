@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-11-28T00:34:34.424093+00:00",
+  "original_run": "20261127T153436999877Z",
+  "repeat_run": "20261128T003434263744Z",
+  "optimizer_updates": 300,
+  "corpus_sha256": "688a894a07060601925c7d9571d6f2672b372f22d811889400fda76349149905",
+  "trainer_sha256": "7c0c603897d243dbadde725615967e76ebd9d3d7f79d957aa7cfda85b920e8b1",
+  "original_artifact_sha256": "030347e4b6d2662df8d68a5424918b835115d2738eb35e1ebb9575216a3d09fd",
+  "repeat_artifact_sha256": "ba967e80a47b004e7c0959fc02afe864f8430795fd52b369ff5a85df83fcc998",
+  "model_content_sha256": [
+    "5ac82866b8e6c38045aa8debf7758fdd51a6199b8aab2e59688a6ce1c896b44b",
+    "5ac82866b8e6c38045aa8debf7758fdd51a6199b8aab2e59688a6ce1c896b44b"
+  ],
+  "loss_sha256": "3e0bf4d86b6e432849a372685655314ec704a7101b0dc264360ec759da725789",
+  "passed": true,
+  "checks": {
+    "model_content_except_run_id": true,
+    "loss_curve_bytes": true,
+    "training_config_bytes": true,
+    "metrics": true,
+    "same_trainer": true,
+    "same_corpus": true,
+    "deployment_is_original": true
+  },
+  "slm_weights_updated": false,
+  "scope": "Repeated local CPU training on the same numeric data. Artifact bytes include a fresh run ID."
+}

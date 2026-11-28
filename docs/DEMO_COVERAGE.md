@@ -17,6 +17,28 @@ Mở PowerShell tại thư mục gốc trên máy Windows đã cài theo hướn
 
 Khi trình bày trực tiếp, chỉ vào dòng `CALL` để giải thích công cụ SLM chọn, tiếp đó chỉ vào tên backend và trạng thái trong dòng kết quả. Sau khi có `DONE`, mở `report.md` trong thư mục run ID vừa in. Đối chiếu một kết luận với ID chứng cứ và khoảng dòng trong báo cáo cục bộ. Giữ nhật ký riêng tại máy lab. Có thể mở hồ sơ kiểm chứng trong Git để thầy xem cách chấm. [Nguồn yêu cầu và đề xuất gốc](YEU_CAU_GIANG_VIEN.md).
 
+## Demo Mercurial với chứng cứ IOC và ATT&CK
+
+Trên máy nhóm đã chuẩn bị, khởi động lab, đồng bộ và kiểm tra VM theo ba lệnh đầu ở trên. Dùng lệnh sau để trình bày lượt phân tích .NET. Sau khi xem kết quả, chạy `.\scripts\Stop-Lab.ps1` để trả bộ nhớ.
+
+```powershell
+.\scripts\Run-Demo.ps1 -Sample public_mercurial.bin -Profile techniques-8b
+```
+
+Lượt `20261128T004729_8df9f715` dùng Qwen3 8B, mất 8 phút 13 giây. Agent gọi công cụ 17 lần qua hai backend pefile và ILSpy, gọi SLM 48 lần và ghi 252 sự kiện. Trong báo cáo, mở phần IOC để thấy **dòng 37**. Trình phân tích cú pháp trong VM xác định một cấu hình Discord webhook chứa thành phần có dạng khóa. Báo cáo công khai giữ loại IOC, vị trí và hash. Đây là bằng chứng về cấu hình trong tệp. Muốn khẳng định dữ liệu đã truyền đi cần bằng chứng khác. [Biên bản từ nhật ký thực](../deliverables/real-demo-evidence/mercurial-techniques-v12-run.json).
+
+Để minh họa giới hạn của SLM, mở câu **C19**. Qwen gán T1539. Toàn hàm phù hợp với hành vi lấy cookie phiên, nhưng ba khoảng dòng mà model trích bỏ qua dòng 720 nối nguồn Chrome với bản sao SQLite đang đọc. Bộ tự duyệt giữ câu này. Phép chấm kỹ thuật gắn nhãn *thiếu căn cứ* vì người đọc phải tra ngoài trích dẫn mới kiểm được quan hệ đó. IOC mà công cụ phát hiện được ghi riêng và có thể kiểm tra độc lập. [Bảng chấm 19 câu](../deliverables/real-demo-evidence/20261128T004729_8df9f715/review.md).
+
+| Phép đo trên một mẫu development | Báo cáo thô | Sau tự duyệt |
+|---|---:|---:|
+| Câu đủ căn cứ / tổng số câu | 11/19 | 9/12 |
+| Mục khớp / 21 mục tham chiếu | 17/21 | 11/21 |
+| F1 trên đáp án 21 mục | 72,34% | 62,86% |
+| IOC và ATT&CK trong nhận định của SLM, có đủ căn cứ | 0/3 mục | 0/3 mục |
+| Verdict trên mẫu đã biết độc | suspicious | suspicious |
+
+Hai câu đúng cũng bị loại khi tự duyệt. Đây là lượt mới trên mẫu đã dùng để phát triển. Bảng ba mẫu của đợt v11 bên dưới giữ nguyên để so sánh trong cùng một phiên bản. [Cách tách và chấm từng nhận định](../eval/adjudications/20261128T004729_8df9f715-judgments.json) · [Điểm trước và sau tự duyệt](../deliverables/real-demo-evidence/20261128T004729_8df9f715/atomic-score.json).
+
 ## Agent tạo báo cáo như thế nào
 
 Profile `coverage-8b` dùng Qwen3 8B để chọn công cụ theo phản hồi từ VM. Khi tổng hợp, agent nhóm các dòng mã đã đọc thành từng đoạn có số dòng gốc. Model đề xuất nhận định và tự kiểm mỗi nhận định. Một lượt bổ sung duyệt các thao tác API mà parser đã nhận ra, tối đa bốn thao tác mỗi yêu cầu. Mỗi câu được chọn mang các dòng chứng minh đối tượng gọi và đối số. Bộ kiểm trích dẫn đối chiếu ID mẫu, ID chứng cứ và nội dung rồi mới đưa danh sách câu đã giữ vào bước kết luận. Việc xếp vai trò thu thập, gửi và liên kết dữ liệu vẫn do model thực hiện. Đánh giá ngữ nghĩa bên dưới dùng kết quả đối chiếu nguồn riêng.
@@ -62,6 +84,14 @@ Cùng source, digest model và cấu hình điều phối, ba mẫu có báo cá
 | AgentTesla, coverage | Chưa có nhận định | Đáp án 7 mục thuộc hành vi và quan sát | Chưa xác định | 0 câu |
 
 Ba mẫu có bảng chấm cho kết quả gộp IOC + ATT&CK là **1 đúng, 10 bỏ sót, 0 sai, 0 bịa** sau lọc trong phạm vi đã khai báo. F1 gộp là 2/(2+10) = **16,67%**. Có thể kiểm tra các bộ đếm trong trường `rubric_ioc_attack` của từng bảng điểm. Các mẫu số trên phản ánh tập development của nhóm. Cả bốn lượt đều chưa đưa ra verdict `malicious` nên độ đúng verdict trên bốn mẫu độc trong đợt này là **0/4**. [Python](../deliverables/real-demo-evidence/20261127T233612_212f9fbb/atomic-score.json) · [Gomorrah](../deliverables/real-demo-evidence/20261127T234632_6e94cea6/atomic-score.json) · [Mercurial](../deliverables/real-demo-evidence/20261128T000247_b054cbfb/atomic-score.json).
+
+### Độ ổn định của guided-8b
+
+Ba lượt liên tiếp trong nhánh dùng ranker trên AgentTesla cùng kết luận `inconclusive`. Số câu giữ lại lần lượt là 12, 13 và 13. Hợp ba tập có 28 nhận định khác nhau, giao ba tập có 4. Tỷ lệ theo phép so nội dung chính xác là **4/28 = 14,29%**, dưới ngưỡng 80%. Khác cách diễn đạt được tính là khác câu. Lượt đối chứng dùng thứ tự dòng được loại khỏi phép đo vì khác cấu hình truy xuất. [Ba nhật ký đã kiểm](../deliverables/real-demo-evidence/agenttesla-guided-stability.json) · [Thí nghiệm đối chứng](../training/RANKER_EXPERIMENT.md).
+
+### Phần ánh xạ ATT&CK trên đoạn mã đã thu
+
+Profile `techniques-8b` bổ sung một lượt hỏi model về kỹ thuật có đủ dấu hiệu để xem xét. Bộ điều phối giới hạn đoạn đưa vào bằng tọa độ dòng và kiểm lại trích dẫn. Trên đoạn mã đã thu từ bốn lượt thật trước đó, Qwen chọn T1555.003 ở PythonStealer và Gomorrah, chọn T1539 ở Mercurial. AgentTesla không có đoạn đủ điều kiện để hỏi. Tại Gomorrah, hai đoạn cho thấy việc mở cơ sở dữ liệu Opera, chọn bảng đăng nhập và đọc trường mật khẩu. Tại Mercurial, đoạn trình cho model có đường dẫn Chrome và đọc bảng cookie, nhưng thiếu dòng 720 xác nhận bản sao của cơ sở dữ liệu. Khi chấm cần kiểm phần liên kết đó. Phép thử này dùng lại chứng cứ cũ, do đó số điểm của bốn lần chạy v11 được giữ riêng. [Danh sách đoạn mã theo tọa độ và hash](../deliverables/real-demo-evidence/techniques-v12-captured-stage.json) · [MITRE T1555.003](https://attack.mitre.org/techniques/T1555/003/) · [MITRE T1539](https://attack.mitre.org/techniques/T1539/) · [MITRE T1113](https://attack.mitre.org/techniques/T1113/).
 
 ## Đối chiếu các bản trước
 

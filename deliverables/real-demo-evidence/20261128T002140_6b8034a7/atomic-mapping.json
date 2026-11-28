@@ -1,0 +1,524 @@
+{
+  "schema_version": 1,
+  "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "raw_report_sha256": "27a2f13f216003b549fedb722efa5ec4897a40d59e49a1c990abf7444310c305",
+  "checked_report_sha256": "d2b0d05afcf926766d349e6773b6f30418fb8cc8636396a931517a884a621932",
+  "reviewer": "Source audit of raw and rejected candidates. No lecturer or human approval.",
+  "method": "Explicit exhaustive spans. Duplicate operations at the same site count once. API qualifiers are part of the asserted operation.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 134,
+          "label": "correct",
+          "unit_key": "base32-map",
+          "reference_id": "base32-map",
+          "reason": "Dòng 218 và 235 xác nhận ánh xạ. Các dòng 219–223 thêm từng bit riêng, khác với thêm trực tiếp giá trị đã ánh xạ.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 223,
+              "projected_quote_sha256": "309620576f691b4e5a1abcb61bea11ca0a210e0eb50b7423becd07c4c535aecc"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 233,
+              "end_line": 268,
+              "projected_quote_sha256": "0243acdacfef394f69df19b2b9c09b469877f082b6038c5a2ef15112fde4c454"
+            }
+          ]
+        },
+        {
+          "start": 134,
+          "end": 179,
+          "label": "incorrect",
+          "unit_key": "mapped-value-direct-add",
+          "reference_id": null,
+          "reason": "Dòng 218 và 235 xác nhận ánh xạ. Các dòng 219–223 thêm từng bit riêng, khác với thêm trực tiếp giá trị đã ánh xạ.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 223,
+              "projected_quote_sha256": "309620576f691b4e5a1abcb61bea11ca0a210e0eb50b7423becd07c4c535aecc"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 233,
+              "end_line": 268,
+              "projected_quote_sha256": "0243acdacfef394f69df19b2b9c09b469877f082b6038c5a2ef15112fde4c454"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 116,
+          "label": "correct",
+          "unit_key": "bit-list",
+          "reference_id": "bit-list",
+          "reason": "Các dòng 219–223 xác nhận tách bit. Điểm dùng danh sách dựng mảng cuối ở 225–230 nằm ngoài hai trích dẫn.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 223,
+              "projected_quote_sha256": "309620576f691b4e5a1abcb61bea11ca0a210e0eb50b7423becd07c4c535aecc"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 233,
+              "end_line": 268,
+              "projected_quote_sha256": "0243acdacfef394f69df19b2b9c09b469877f082b6038c5a2ef15112fde4c454"
+            }
+          ]
+        },
+        {
+          "start": 116,
+          "end": 180,
+          "label": "unsupported",
+          "unit_key": "unseen-final-decode",
+          "reference_id": null,
+          "reason": "Các dòng 219–223 xác nhận tách bit. Điểm dùng danh sách dựng mảng cuối ở 225–230 nằm ngoài hai trích dẫn.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 223,
+              "projected_quote_sha256": "309620576f691b4e5a1abcb61bea11ca0a210e0eb50b7423becd07c4c535aecc"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 233,
+              "end_line": 268,
+              "projected_quote_sha256": "0243acdacfef394f69df19b2b9c09b469877f082b6038c5a2ef15112fde4c454"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 104,
+          "label": "correct",
+          "unit_key": "assembly-load",
+          "reference_id": "assembly-load",
+          "reason": "Dòng 275 chứng minh thao tác nạp và truy xuất kiểu ở vị trí đầu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        },
+        {
+          "start": 104,
+          "end": 161,
+          "label": "correct",
+          "unit_key": "first-type",
+          "reference_id": "first-type",
+          "reason": "Dòng 275 chứng minh thao tác nạp và truy xuất kiểu ở vị trí đầu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 81,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Dòng 282–286 cho thấy thao tác gọi và đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        },
+        {
+          "start": 81,
+          "end": 156,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Dòng 282–286 cho thấy thao tác gọi và đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 211,
+              "end_line": 231,
+              "projected_quote_sha256": "a301531bc2c8a0bf3434cfc2b1d99b2662503cce3d1fd70132a444625357c2cd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 165,
+          "label": "correct",
+          "unit_key": "hex-decoding",
+          "reference_id": "hex-decoding",
+          "reason": "Dòng 275 là điểm gọi. Các dòng 52–57 chứng minh tách và chuyển đổi.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 48,
+              "end_line": 60,
+              "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 75,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Dòng 282–286 xác nhận thao tác và các đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 48,
+              "end_line": 60,
+              "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        },
+        {
+          "start": 75,
+          "end": 164,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Dòng 282–286 xác nhận thao tác và các đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 48,
+              "end_line": 60,
+              "projected_quote_sha256": "0d5b77ac087ee90685e02eb425f7abbd78bf0ee792cfc34eb88ca2ad985169f2"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 120,
+          "label": "correct",
+          "unit_key": "assembly-load",
+          "reference_id": "assembly-load",
+          "reason": "Điểm nạp và các lời gọi lồng cùng xuất hiện ở dòng 275. Câu mô tả nguồn đầu vào.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 43,
+              "end_line": 46,
+              "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 81,
+          "label": "correct",
+          "unit_key": "method-invoke",
+          "reference_id": "method-invoke",
+          "reason": "Các dòng 282–286 đủ để xác định lời gọi và hai đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 43,
+              "end_line": 46,
+              "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        },
+        {
+          "start": 81,
+          "end": 143,
+          "label": "correct",
+          "unit_key": "invoke-arguments",
+          "reference_id": "invoke-arguments",
+          "reason": "Các dòng 282–286 đủ để xác định lời gọi và hai đối số.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 43,
+              "end_line": 46,
+              "projected_quote_sha256": "e637da745f6bdc7726bfee7d6c46ac6129c589b3fcd081d23ba3a76001119010"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 273,
+              "end_line": 278,
+              "projected_quote_sha256": "82aa5310d2e7650a654abfd2751af17ba421e8862072ef6b17faaf92355c76e3"
+            },
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 280,
+              "end_line": 288,
+              "projected_quote_sha256": "6842169712ff8c1133057efbc869ba35767d2a2180f67592db05647855ae76db"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 96,
+          "label": "unsupported",
+          "unit_key": "hardcoded-hex-call",
+          "reference_id": null,
+          "reason": "Đoạn 35–66 có định nghĩa hàm. Điểm gọi truyền một hằng chuỗi chưa được dẫn chứng.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 35,
+              "end_line": 66,
+              "projected_quote_sha256": "f0237349edab80be6155b05a345ef29e4598fdb8f762b6e7b7ceee4041ebc97e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 111,
+          "label": "correct",
+          "unit_key": "tree-scroll",
+          "reference_id": "tree-scroll",
+          "reason": "Khai báo ở 919–920 và đối số ở 926 phù hợp thông điệp WM_VSCROLL và SB_LINEDOWN của Win32.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 905,
+              "end_line": 936,
+              "projected_quote_sha256": "e15b6888f4c4de487ca1213345c2eadf93f2522c3ccf1aa7ab8dcc9eb53597a8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 79,
+          "label": "correct",
+          "unit_key": "mouse-up-remove",
+          "reference_id": "mouse-up-remove",
+          "reason": "Dòng 3173 dùng phép gỡ đăng ký. Đoạn chứng cứ cũng chứa điểm thêm đăng ký trước đó.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 3146,
+              "end_line": 3177,
+              "projected_quote_sha256": "b863313f61bc204a000a860ba0e3553be6e8535bed838e4ba64f4f3128d086ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 83,
+          "label": "correct",
+          "unit_key": "mouse-move-remove",
+          "reference_id": "mouse-move-remove",
+          "reason": "Dòng 3174 dùng phép gỡ đăng ký cho sự kiện được nêu.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 3146,
+              "end_line": 3177,
+              "projected_quote_sha256": "b863313f61bc204a000a860ba0e3553be6e8535bed838e4ba64f4f3128d086ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "atoms": [
+        {
+          "start": 0,
+          "end": 81,
+          "label": "correct",
+          "unit_key": "mouse-move-remove",
+          "reference_id": "mouse-move-remove",
+          "reason": "Dòng 3174 xác nhận thao tác. Đây là cùng thao tác với C12.",
+          "source_references": [
+            {
+              "evidence_id": "ev_4f523a495163497f",
+              "line": 3171,
+              "end_line": 3202,
+              "projected_quote_sha256": "5d8d2f8bf352daf99a581b209e2a6d96467628eb743d295032ca3e8febdc135a"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

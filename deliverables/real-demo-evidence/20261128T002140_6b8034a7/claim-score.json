@@ -1,0 +1,51 @@
+{
+  "run_id": "20261128T002140_6b8034a7",
+  "raw_report_sha256": "27a2f13f216003b549fedb722efa5ec4897a40d59e49a1c990abf7444310c305",
+  "dataset_origin": "public development sample, static analysis in isolated VM",
+  "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+  "raw": {
+    "claim_count": 13,
+    "counts": {
+      "correct": 10,
+      "incorrect": 1,
+      "unsupported": 2
+    },
+    "precision": 0.7692307692307693,
+    "hallucination_rate": 0.15384615384615385,
+    "grounding_rate": 0.7692307692307693,
+    "recall": null,
+    "f1": null,
+    "verified_tool_citation_count": 13,
+    "verified_tool_citation_rate": 1.0
+  },
+  "after_filter": {
+    "claim_count": 12,
+    "counts": {
+      "correct": 9,
+      "incorrect": 1,
+      "unsupported": 2
+    },
+    "precision": 0.75,
+    "hallucination_rate": 0.16666666666666666,
+    "grounding_rate": 0.75,
+    "recall": null,
+    "f1": null,
+    "verified_tool_citation_count": 12,
+    "verified_tool_citation_rate": 1.0
+  },
+  "review_filter": {
+    "accepted_correct": 9,
+    "accepted_not_supported": 3,
+    "rejected_correct": 1,
+    "rejected_not_supported": 0
+  },
+  "proposed_verdict": "inconclusive",
+  "checked_verdict": "inconclusive",
+  "quality_gate_passed": false,
+  "limits": [
+    "Complete prediction audit for one development run, not a full-corpus evaluation.",
+    "No human or lecturer approval is asserted; source-audit labels may need correction.",
+    "Recall/F1 remain null until independently declared reference units are fully adjudicated.",
+    "Raw/rejected candidates remain in the primary denominator; filtered scores are secondary."
+  ]
+}

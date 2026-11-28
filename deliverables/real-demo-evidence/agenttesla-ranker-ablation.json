@@ -1,0 +1,130 @@
+{
+  "experiment": "full-agent-source-order-vs-trained-retriever",
+  "before": {
+    "run_id": "20261128T002140_6b8034a7",
+    "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "source_manifest_sha256": "32da09d6ea11fb7eaafe1b09aefa821b2bd4bc7ad5526f0e54b207611ad1fcaa",
+    "shared_config_sha256": "2043a8f022f3cb40f352023f0e69d74d50c6ccdaa89a9117c35ea99bf5ab0601",
+    "journal_sha256": "a5624865d87d1c898e518d46701b3ae7b5a679b1af1731e96d6429db62ea09b2",
+    "status": "completed_with_rejected_claims",
+    "verdict": "inconclusive",
+    "backend_ranker_sha256": null,
+    "code_searches": 14,
+    "nonempty_code_searches": 9,
+    "fallback_reads": 1,
+    "raw_claim_count": 13,
+    "accepted_claim_count": 12,
+    "successful_tools": [
+      "decompile_dotnet",
+      "identify"
+    ],
+    "metrics": {
+      "model_calls": 41,
+      "tool_calls": 17,
+      "tool_errors": 0,
+      "validation_errors": 0,
+      "guard_hits": 0,
+      "prompt_tokens": 77551,
+      "completion_tokens": 3159,
+      "api_cost_usd": 0,
+      "model_vram_bytes_after_run": 4206582824,
+      "host_rss_bytes": 20299776,
+      "minimum_observed_host_available_memory_bytes": 1169969152,
+      "elapsed_s": 465.7895,
+      "host_peak_rss_bytes": 29868032
+    },
+    "source_review": {
+      "reference_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+      "raw": {
+        "counts": {
+          "correct": 10,
+          "incorrect": 1,
+          "unsupported": 2
+        },
+        "correct_units": 2,
+        "reference_units": 7,
+        "precision": 0.4,
+        "recall": 0.2857142857142857,
+        "f1": 0.3333333333333333
+      },
+      "after_filter": {
+        "counts": {
+          "correct": 9,
+          "incorrect": 1,
+          "unsupported": 2
+        },
+        "correct_units": 2,
+        "reference_units": 7,
+        "precision": 0.4,
+        "recall": 0.2857142857142857,
+        "f1": 0.3333333333333333
+      }
+    }
+  },
+  "after": {
+    "run_id": "20261128T001144_4a8326ca",
+    "sample_sha256": "a4fdc26d6b70eaf0a62cca36286412901f48881eae616d38b96d8ae0cb0f29c7",
+    "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "source_manifest_sha256": "32da09d6ea11fb7eaafe1b09aefa821b2bd4bc7ad5526f0e54b207611ad1fcaa",
+    "shared_config_sha256": "2043a8f022f3cb40f352023f0e69d74d50c6ccdaa89a9117c35ea99bf5ab0601",
+    "journal_sha256": "4c4d98622feb0c883a20a602060fb663a1cd60c8289ace91966b12b585ef4bbe",
+    "status": "completed_with_rejected_claims",
+    "verdict": "inconclusive",
+    "backend_ranker_sha256": "030347e4b6d2662df8d68a5424918b835115d2738eb35e1ebb9575216a3d09fd",
+    "code_searches": 14,
+    "nonempty_code_searches": 8,
+    "fallback_reads": 1,
+    "raw_claim_count": 15,
+    "accepted_claim_count": 12,
+    "successful_tools": [
+      "decompile_dotnet",
+      "identify"
+    ],
+    "metrics": {
+      "model_calls": 44,
+      "tool_calls": 17,
+      "tool_errors": 0,
+      "validation_errors": 0,
+      "guard_hits": 0,
+      "prompt_tokens": 80752,
+      "completion_tokens": 3390,
+      "api_cost_usd": 0,
+      "model_vram_bytes_after_run": 4206582824,
+      "host_rss_bytes": 20529152,
+      "minimum_observed_host_available_memory_bytes": 752861184,
+      "elapsed_s": 575.077,
+      "host_peak_rss_bytes": 29888512
+    },
+    "source_review": {
+      "reference_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+      "raw": {
+        "counts": {
+          "correct": 13,
+          "incorrect": 0,
+          "unsupported": 2
+        },
+        "correct_units": 2,
+        "reference_units": 7,
+        "precision": 0.5,
+        "recall": 0.2857142857142857,
+        "f1": 0.36363636363636365
+      },
+      "after_filter": {
+        "counts": {
+          "correct": 10,
+          "incorrect": 0,
+          "unsupported": 2
+        },
+        "correct_units": 2,
+        "reference_units": 7,
+        "precision": 0.5,
+        "recall": 0.2857142857142857,
+        "f1": 0.36363636363636365
+      }
+    }
+  },
+  "scope": "Paired runs on one development sample. Different trajectories are possible. Number of claims is not semantic accuracy.",
+  "slm_weights_updated": false,
+  "human_reviewers": []
+}

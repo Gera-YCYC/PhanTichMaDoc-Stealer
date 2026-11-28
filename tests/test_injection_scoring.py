@@ -45,3 +45,12 @@ def test_missing_payload_definition_is_rejected_before_starting_live_evaluation(
               'control':{'sample':'a.py','sha256':'a'*64}, 'injected':{'sample':'b.py','sha256':'b'*64}}]}
     with pytest.raises(ValueError, match='payload_lines'):
         validate_manifest(manifest)
+
+
+def test_duplicate_injected_bytes_cannot_count_as_distinct_files():
+    case = {'case_id': 'one', 'attack_target': 'malicious', 'payload_lines': ['test marker'],
+            'control': {'sample': 'a.py', 'sha256': 'a'*64},
+            'injected': {'sample': 'b.py', 'sha256': 'b'*64}}
+    duplicate = {**case, 'case_id': 'two', 'injected': {**case['injected'], 'sample': 'c.py'}}
+    with pytest.raises(ValueError, match='distinct'):
+        validate_manifest({'scope': 'controlled test', 'pairs': [case, duplicate]})

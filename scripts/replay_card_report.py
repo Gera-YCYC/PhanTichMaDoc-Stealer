@@ -47,6 +47,9 @@ def select_reporter(method, measured_revision=False):
     if method == 'operations':
         from stealer_agent.operation_assertions import create_operation_report
         return create_operation_report, source_files, 'stealer_agent/operation_assertions.py'
+    if method == 'techniques':
+        from stealer_agent.technique_review import review_techniques
+        return review_techniques, source_files, 'stealer_agent/technique_review.py'
     return create_card_report, source_files, 'stealer_agent/evidence_cards.py'
 
 
@@ -85,8 +88,8 @@ def main():
     parser.add_argument('--config', type=Path, required=True)
     parser.add_argument('--model')
     parser.add_argument('--cards', type=int, default=3)
-    parser.add_argument('--method', choices=['cards', 'operations'], default='cards',
-                        help='operations is a narrow reporting ablation, not a full analysis profile')
+    parser.add_argument('--method', choices=['cards', 'operations', 'techniques'], default='cards',
+                        help='Select full card reporting, operation-only review or technique-only review on captured evidence')
     parser.add_argument('--measured-revision', action='store_true',
                         help='Replay the archived operation reporter; verify every dependency hash first')
     parser.add_argument('--no-api-guidance', action='store_true', help='Controlled ablation; same v5 prompts without API reference notes')
@@ -99,6 +102,8 @@ def main():
     verify_journal(path)
     events = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines()]
     source_result = json.loads((directory / 'report.private.json').read_text(encoding='utf-8'))
+    if events[-1]['event'] != 'run_finished' or events[-1]['result'] != source_result:
+        raise ValueError('Captured features must come from a terminal journal matching its saved report')
     evidence = reconstruct(events)
     cfg = json.loads(args.config.read_text(encoding='utf-8'))
     if args.model:
@@ -137,10 +142,32 @@ def main():
         return response
 
     start = time.perf_counter()
+    if args.method == 'techniques':
+        proposed, selected = [], []
+        reporter(evidence, source_result['sample_sha256'], invoke, journal, proposed, selected)
+        metrics['elapsed_s'] = round(time.perf_counter() - start, 4)
+        journal.append('technique_stage_finished', selected=selected, metrics=metrics)
+        verify_journal(journal.path)
+        receipt = {'kind': 'real-model-technique-stage-on-captured-vm-features', 'run_id': run_id,
+                   'source_run': args.run, 'sample_sha256': source_result['sample_sha256'],
+                   'model_digest': model['digest'], 'metrics': metrics,
+                   'source_journal_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                   'stage_journal_sha256': hashlib.sha256(journal.path.read_bytes()).hexdigest(),
+                   'code_sha256': source_files[reporter_path],
+                   'selected': [{'technique_id': c['technique_id'],
+                                 'source': [{k: ref[k] for k in ('evidence_id','line','end_line')}
+                                            for ref in c['evidence']]} for c in selected],
+                   'full_agent_run': False}
+        dump_json(journal.directory / 'technique-receipt.json', receipt)
+        print(json.dumps({'run_id': run_id, 'source_run': args.run,
+                          'selected': [c['technique_id'] for c in selected], 'full_agent_run': False}))
+        return
+    options = {}
+    if args.method == 'cards':
+        options.update(operation_review=cfg.get('review_operations', False),
+                       technique_review=cfg.get('review_techniques', False))
     raw, checked = reporter(evidence, source_result['sample_sha256'], invoke, journal,
-                                      max_cards=args.cards, api_guidance=not args.no_api_guidance,
-                                      **({'operation_review': True} if args.method == 'cards' and
-                                         cfg.get('review_operations') else {}))
+                            max_cards=args.cards, api_guidance=not args.no_api_guidance, **options)
     metrics['elapsed_s'] = round(time.perf_counter() - start, 4)
     dump_json(journal.directory / 'report.model-raw.json', raw)
     dump_json(journal.directory / 'report.checked.json', checked)

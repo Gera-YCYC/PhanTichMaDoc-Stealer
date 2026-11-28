@@ -1,0 +1,461 @@
+{
+  "contract": "frozen-reference-plus-separate-source-findings/1",
+  "run_id": "20261128T002140_6b8034a7",
+  "profile_id": "agenttesla.atomic-development/1",
+  "profile_sha256": "f5db2cba827029f03f2fd3b00b8d881671ca29572fcedf2a86e43daff8963280",
+  "raw_report_sha256": "27a2f13f216003b549fedb722efa5ec4897a40d59e49a1c990abf7444310c305",
+  "method": "P and F1 on declared units charge all incorrect or unsupported predictions. Supported extra findings are listed separately. All-prediction precision includes them. Recall uses the frozen denominator.",
+  "additional_findings": [
+    {
+      "id": "first-type",
+      "kind": "behavior",
+      "proposition": "Selects the first type from the loaded assembly.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 275,
+          "end_line": 275
+        }
+      ]
+    },
+    {
+      "id": "invoke-arguments",
+      "kind": "behavior",
+      "proposition": "Supplies a static field and a string to the invocation.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 283,
+          "end_line": 283
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 285,
+          "end_line": 285
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 286,
+          "end_line": 286
+        }
+      ]
+    },
+    {
+      "id": "hex-decoding",
+      "kind": "behavior",
+      "proposition": "Splits text and converts hexadecimal fields to characters.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 52,
+          "end_line": 52
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 53,
+          "end_line": 53
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 57,
+          "end_line": 57
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 275,
+          "end_line": 275
+        }
+      ]
+    },
+    {
+      "id": "tree-scroll",
+      "kind": "behavior",
+      "proposition": "Calls the operating-system API with the vertical line-down message.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 919,
+          "end_line": 919
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 920,
+          "end_line": 920
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 926,
+          "end_line": 926
+        }
+      ]
+    },
+    {
+      "id": "mouse-up-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-up handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 3173,
+          "end_line": 3173
+        }
+      ]
+    },
+    {
+      "id": "mouse-move-remove",
+      "kind": "behavior",
+      "proposition": "Unsubscribes a mouse-move handler.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 3174,
+          "end_line": 3174
+        }
+      ]
+    },
+    {
+      "id": "base32-map",
+      "kind": "behavior",
+      "proposition": "Maps an input character to its encoded numeric value.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 216,
+          "end_line": 216
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 218,
+          "end_line": 218
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 235,
+          "end_line": 235
+        }
+      ]
+    },
+    {
+      "id": "bit-list",
+      "kind": "behavior",
+      "proposition": "Appends the individual bits as bytes to the intermediate list.",
+      "source_references": [
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 219,
+          "end_line": 219
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 220,
+          "end_line": 220
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 221,
+          "end_line": 221
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 222,
+          "end_line": 222
+        },
+        {
+          "evidence_id": "ev_4f523a495163497f",
+          "line": 223,
+          "end_line": 223
+        }
+      ]
+    }
+  ],
+  "human_reviewers": [],
+  "full_coursework_quality_gate_passed": false,
+  "raw": {
+    "reference_units": 7,
+    "correct": 2,
+    "missed": 5,
+    "supported_outside_scope": [
+      "base32-map",
+      "bit-list",
+      "first-type",
+      "hex-decoding",
+      "invoke-arguments",
+      "mouse-move-remove",
+      "mouse-up-remove",
+      "tree-scroll"
+    ],
+    "incorrect": 1,
+    "unsupported": 2,
+    "prediction_atoms": 19,
+    "duplicate_atoms": 6,
+    "unique_prediction_units": 13,
+    "all_prediction_precision": 0.7692307692307693,
+    "all_prediction_hallucination_rate": 0.15384615384615385,
+    "precision": 0.4,
+    "recall": 0.2857142857142857,
+    "f1": 0.3333333333333333,
+    "matched_reference_ids": [
+      "assembly-load",
+      "method-invoke"
+    ],
+    "missed_reference_ids": [
+      "interop-declaration",
+      "manifest-stream",
+      "method-lookup",
+      "resource-object",
+      "smtp-exfil"
+    ]
+  },
+  "after_filter": {
+    "reference_units": 7,
+    "correct": 2,
+    "missed": 5,
+    "supported_outside_scope": [
+      "base32-map",
+      "bit-list",
+      "first-type",
+      "hex-decoding",
+      "invoke-arguments",
+      "mouse-move-remove",
+      "mouse-up-remove",
+      "tree-scroll"
+    ],
+    "incorrect": 1,
+    "unsupported": 2,
+    "prediction_atoms": 18,
+    "duplicate_atoms": 5,
+    "unique_prediction_units": 13,
+    "all_prediction_precision": 0.7692307692307693,
+    "all_prediction_hallucination_rate": 0.15384615384615385,
+    "precision": 0.4,
+    "recall": 0.2857142857142857,
+    "f1": 0.3333333333333333,
+    "matched_reference_ids": [
+      "assembly-load",
+      "method-invoke"
+    ],
+    "missed_reference_ids": [
+      "interop-declaration",
+      "manifest-stream",
+      "method-lookup",
+      "resource-object",
+      "smtp-exfil"
+    ]
+  },
+  "by_kind": {
+    "attack": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    },
+    "behavior": {
+      "raw": {
+        "reference_units": 6,
+        "correct": 2,
+        "missed": 4,
+        "supported_outside_scope": [
+          "base32-map",
+          "bit-list",
+          "first-type",
+          "hex-decoding",
+          "invoke-arguments",
+          "mouse-move-remove",
+          "mouse-up-remove",
+          "tree-scroll"
+        ],
+        "incorrect": 1,
+        "unsupported": 2,
+        "prediction_atoms": 19,
+        "duplicate_atoms": 6,
+        "unique_prediction_units": 13,
+        "all_prediction_precision": 0.7692307692307693,
+        "all_prediction_hallucination_rate": 0.15384615384615385,
+        "precision": 0.4,
+        "recall": 0.3333333333333333,
+        "f1": 0.36363636363636365,
+        "matched_reference_ids": [
+          "assembly-load",
+          "method-invoke"
+        ],
+        "missed_reference_ids": [
+          "manifest-stream",
+          "method-lookup",
+          "resource-object",
+          "smtp-exfil"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 6,
+        "correct": 2,
+        "missed": 4,
+        "supported_outside_scope": [
+          "base32-map",
+          "bit-list",
+          "first-type",
+          "hex-decoding",
+          "invoke-arguments",
+          "mouse-move-remove",
+          "mouse-up-remove",
+          "tree-scroll"
+        ],
+        "incorrect": 1,
+        "unsupported": 2,
+        "prediction_atoms": 18,
+        "duplicate_atoms": 5,
+        "unique_prediction_units": 13,
+        "all_prediction_precision": 0.7692307692307693,
+        "all_prediction_hallucination_rate": 0.15384615384615385,
+        "precision": 0.4,
+        "recall": 0.3333333333333333,
+        "f1": 0.36363636363636365,
+        "matched_reference_ids": [
+          "assembly-load",
+          "method-invoke"
+        ],
+        "missed_reference_ids": [
+          "manifest-stream",
+          "method-lookup",
+          "resource-object",
+          "smtp-exfil"
+        ]
+      }
+    },
+    "ioc": {
+      "raw": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      },
+      "after_filter": {
+        "reference_units": 0,
+        "correct": 0,
+        "missed": 0,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "matched_reference_ids": [],
+        "missed_reference_ids": []
+      }
+    },
+    "observation": {
+      "raw": {
+        "reference_units": 1,
+        "correct": 0,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "interop-declaration"
+        ]
+      },
+      "after_filter": {
+        "reference_units": 1,
+        "correct": 0,
+        "missed": 1,
+        "supported_outside_scope": [],
+        "incorrect": 0,
+        "unsupported": 0,
+        "prediction_atoms": 0,
+        "duplicate_atoms": 0,
+        "unique_prediction_units": 0,
+        "all_prediction_precision": null,
+        "all_prediction_hallucination_rate": null,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_ids": [],
+        "missed_reference_ids": [
+          "interop-declaration"
+        ]
+      }
+    }
+  },
+  "rubric_ioc_attack": {
+    "raw": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 0,
+      "reference_units": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "supported_outside_scope_count": 0
+    },
+    "after_filter": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsupported": 0,
+      "missed": 0,
+      "reference_units": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "supported_outside_scope_count": 0
+    }
+  }
+}

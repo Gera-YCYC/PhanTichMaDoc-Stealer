@@ -4,6 +4,10 @@
 
 ## Cập nhật hiện tại
 
+Lượt Mercurial dùng `techniques-8b` hoàn tất sau 493,4 giây. VM tìm được cấu hình webhook ở dòng 37. Qwen gán T1539 nhưng thiếu trích dẫn nối bản sao dữ liệu với nguồn. Trong 12 câu giữ lại có 9 câu được chứng cứ của chính câu đó xác nhận. F1 trên 21 mục sau tự duyệt đạt 62,86%. [Lệnh demo và biên bản chấm](DEMO_COVERAGE.md#demo-mercurial-với-chứng-cứ-ioc-và-attck).
+
+Ba lượt `guided-8b` trên cùng AgentTesla có 4/28 nhận định lặp nguyên nội dung (14,29%) và cùng verdict `inconclusive`. Trong phép so có và không dùng trọng số ranker, hai nhánh đều giữ 12 câu, cùng phủ 2/7 mục. [Ba lần chạy và phương pháp so](../deliverables/real-demo-evidence/agenttesla-guided-stability.json) · [Quá trình train và tác động đo được](../training/RANKER_EXPERIMENT.md).
+
 Đợt `coverage-8b` đã chạy trên bốn mẫu thật trong VM. PythonStealer, Gomorrah và Mercurial có báo cáo chứa nhận định, đủ mốc buổi 6. AgentTesla có 14 truy vấn rỗng và được tính vào bốn lượt đã thử. F1 gộp IOC + ATT&CK trên ba mẫu có đáp án cho hai loại này là 16,67%. Verdict chính xác trên bốn mẫu độc là 0/4. [Các mẫu số và lý do chấm](DEMO_COVERAGE.md) · [Video nhật ký thật](../deliverables/Demo_phan_tich_tinh.mp4).
 
 Lượt đầu-cuối Python với Qwen3 8B và báo cáo v11 đã hoàn tất trong 588,6 giây. Có 36/39 câu đủ chứng cứ, Recall 61,11% trên 36 mục tham chiếu và verdict `suspicious`. Nhóm đã lập thêm 40 đơn vị tham chiếu .NET từ kết quả ILSpy của Gomorrah. [Số đo và hướng dẫn tái lập](DEMO_COVERAGE.md).
@@ -181,7 +185,7 @@ P06 từng chạy với lớp chặn bật và tắt. Metadata ghi cùng verdict
 | Buổi4, >=2 tool thật; SLM>=7B; >=4 tool thật | Có bằng chứng tích hợp/backend trên mẫu thật |
 | P>=0,8; R>=0,7; F1>=0,75/0,8; verdict100% | Chưa đạt/chưa chấm đủ; inconclusive không tính đúng cho mẫu malicious |
 | Bịa<=5%; grounding>=90% | Chưa có kiểm chứng nội dung đủ; còn lỗi citation/reviewer |
-| Stability3 lần>=80% | Chưa đo đủ 3 run cùng revision/config mới |
+| Ổn định qua 3 lần ≥ 80% | AgentTesla, cùng bản guided-8b, trùng 4/28 nhận định (14,29%). Các profile khác cần phép đo riêng. |
 | YARA TPR>=90%, FPR=0 | Đã đo 5/5 positive development, 0/39 negative với7B/8B và replay khớp. Chỉ áp dụng corpus công bố; luật theo bản build, chưa kiểm rename/repack/unseen malware |
 | Injection0%, >=10 ca | Chưa đủ coverage, hai chiều và guard ablation |
 | Training thật | Có ML ranker với cập nhật trọng số/loss/checkpoint; chưa SLM fine-tune, chưa chốt nghĩa yêu cầu GV |

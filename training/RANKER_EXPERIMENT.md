@@ -59,3 +59,28 @@ Thu lại dữ liệu gốc cần VM và output tương ứng. `scripts/collect_
 `search_evidence` dùng checkpoint thật, trả lại anchor, score và hash model. Context luôn giữ anchor dù bị giới hạn dung lượng, và các dòng vẫn có số trong output gốc. Nhật ký run ghi cả hash JSON checkpoint cùng source. Báo cáo cuối vẫn phải kiểm trích dẫn và ngữ nghĩa riêng.
 
 Lượt Gomorrah `20261127T153601_a3240ca6` đã sử dụng retriever mới nhưng vẫn kết luận inconclusive và có claim sai. Đây là bằng chứng cải thiện ranking chưa đủ sửa chất lượng suy luận; không giấu kết quả âm hoặc gọi train này là hoàn thành đồ án.
+
+## So sánh trong vòng ReAct trên AgentTesla
+
+Để tái lập quá trình học trên máy nhóm, chạy `python training/verify_ranker_reproduction.py` từ thư mục gốc sau khi kích hoạt môi trường Python. Lệnh chạy lại 300 bước trên corpus đã khóa và đối chiếu từng trường của mô hình, cấu hình, đường loss cùng chỉ số đánh giá. Lượt kiểm ngày 28/11 cho cùng trọng số, bias, loss và chỉ số. Mỗi lần train sinh một run ID riêng nên hai tệp checkpoint có SHA-256 khác nhau. [Kết quả đối chiếu](ranker-reproduction.json).
+
+Hai lượt dùng cùng mẫu, cùng phiên bản bộ điều phối, model Qwen3 8B và seed 42. Ở nhánh đối chứng, VM trả kết quả theo thứ tự dòng trong mã. Ở nhánh dùng ranker, mỗi lần tìm mã ghi lại hash checkpoint đã nạp. Hai nhánh cùng được phép chuyển sang trang mới khi tìm rỗng. Trình đối chiếu kiểm các điều kiện này từ nhật ký thật. [Biên bản hai lượt](../deliverables/real-demo-evidence/agenttesla-ranker-ablation.json).
+
+| Phép đo | Theo thứ tự dòng | Dùng ranker đã train |
+|---|---:|---:|
+| Truy vấn có kết quả / tổng | 9/14 | 8/14 |
+| Câu được giữ / câu thô | 12/13 | 12/15 |
+| Câu được giữ có đủ căn cứ | 9/12 | 10/12 |
+| Mục đúng / 7 mục đã chốt | 2/7 | 2/7 |
+| F1 trong phạm vi 7 mục sau lọc | 33,33% | 36,36% |
+| Thời gian | 465,8 giây | 575,1 giây |
+| Verdict | inconclusive | inconclusive |
+
+Cả hai lượt tìm thấy thao tác nạp assembly và gọi phương thức qua phản chiếu. Cả hai bỏ sót kênh SMTP được tác giả bộ mẫu ghi nhận. Chênh lệch F1 đến từ số nhận định sai hoặc thiếu căn cứ. Độ phủ bằng nhau và nhánh dùng ranker tốn thêm khoảng 109 giây. Một cặp trên một mẫu phát triển chưa đủ để kết luận ranker cải thiện hiệu quả trên các họ khác. [Bảng 13 câu của đối chứng](../deliverables/real-demo-evidence/20261128T002140_6b8034a7/review.md) · [Bảng 15 câu của nhánh đã train](../deliverables/real-demo-evidence/20261128T001144_4a8326ca/review.md).
+
+Chạy trên máy đã dựng lab, trong PowerShell ở thư mục dự án. Sau hai lượt, lấy chính hai run ID do máy in ra để dùng với `scripts/compare_ranker_runs.py --before ID_DOI_CHUNG --after ID_RANKER --output evidence/local/so-sanh-ranker.json`.
+
+```powershell
+.\scripts\Run-Demo.ps1 -Sample public_agenttesla.bin -Profile guided-8b -OccurrenceOrder
+.\scripts\Run-Demo.ps1 -Sample public_agenttesla.bin -Profile guided-8b
+```

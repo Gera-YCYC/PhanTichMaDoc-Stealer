@@ -2,7 +2,7 @@
 import argparse
 import json
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,7 +34,9 @@ def compare(run_ids):
     if len(fingerprints) != 1 or not all(next(iter(fingerprints))):
         raise ValueError('Different settings, code or model in batch')
     # No favorable selection among >3 repeats. Request an explicit series of three.
-    repeated = {sample: stability(items) for sample, items in reports.items() if len(items) == 3}
+    attempts = Counter(r['sample_sha256'] for r in rows)
+    repeated = {sample: stability(items) for sample, items in reports.items()
+                if attempts[sample] == 3 and len(items) == 3}
     tools = set()
     for r in rows:
         if r['status'].startswith('completed'):

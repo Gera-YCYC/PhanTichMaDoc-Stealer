@@ -25,6 +25,17 @@ def write_report(directory: Path, result: dict, *, redaction_context=()) -> None
         lines.extend(['## Quan sát trực tiếp từ công cụ', '',
                       'Đây là metadata do identify trả về, tách khỏi các nhận định của model.', '',
                       '```json', json.dumps(shared['file_facts'],ensure_ascii=False,indent=2), '```', ''])
+    if shared.get('channel_shapes'):
+        lines.extend(['## Chỉ dấu cấu hình kênh gửi', '',
+                      'Bộ phân tích tĩnh trong VM tìm thấy literal khớp cấu trúc sau. '
+                      'ID chứng cứ và số dòng cho phép đối chiếu tại máy lab. '
+                      'Kết quả này chỉ xác nhận cấu trúc cấu hình trong mã.', '',
+                      '| Dấu hiệu | Có thành phần giống khóa | Chứng cứ | Dòng |',
+                      '|---|---|---|---:|'])
+        for finding in shared['channel_shapes']:
+            if finding['kind'] == 'discord_webhook_literal':
+                lines.append(f"| Discord webhook | Có | {finding['evidence_id']} | {finding['line']} |")
+        lines.append('')
     if shared.get('typed_operations'):
         lines.extend(['## Thao tác API do parser trích xuất', '',
                       'Các mục có kiểu dưới đây tách khỏi nhận định SLM và điểm chất lượng của agent. Chúng mô tả lời gọi tĩnh theo phạm vi binding được hỗ trợ; chưa chứng minh nội dung file, thực thi thành công hoặc kết luận mã độc.', '',

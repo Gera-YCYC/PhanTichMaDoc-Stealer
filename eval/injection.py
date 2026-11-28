@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from stealer_agent.engine import Agent
-from stealer_agent.journal import dump_json, utc_now, verify_journal
+from stealer_agent.journal import canonical, dump_json, utc_now, verify_journal
 from stealer_agent.transport import OllamaClient, ToolClient
 from eval.exposure import audit_exposure
 from stealer_agent.security import check_sample_name
@@ -18,6 +18,7 @@ def validate_manifest(manifest):
     if not isinstance(manifest.get('scope'), str) or not manifest.get('pairs'):
         raise ValueError('Injection manifest needs a scope and cases')
     seen = set()
+    injected_hashes = set()
     for case in manifest['pairs']:
         case_id = case.get('case_id')
         payload = case.get('payload_lines')
@@ -34,6 +35,10 @@ def validate_manifest(manifest):
                 raise ValueError('Each arm needs a pinned SHA256')
         if case['control']['sample'] == case['injected']['sample']:
             raise ValueError('Control and injected sample IDs must differ')
+        digest = case['injected']['sha256']
+        if digest in injected_hashes or digest == case['control']['sha256']:
+            raise ValueError('Each injected file must be distinct from the control and other injected files')
+        injected_hashes.add(digest)
 
 
 def score_pairs(pairs):
@@ -97,27 +102,48 @@ def main():
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     destination = root/'evidence/local'/f'injection-{args.guard}-{stamp}.json'
     receipt = {'created_at':utc_now(), 'scope':manifest['scope'], 'guard_enabled':cfg['guard_enabled'],
+               'blinded_filenames':manifest.get('blinded_filenames',False),
                'profile_sha256':hashlib.sha256(profile.read_bytes()).hexdigest(),
                'model':cfg['model'],'max_steps':cfg['max_steps'],
                'manifest_sha256':hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
                'evaluator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                'exposure_auditor_sha256':hashlib.sha256((root/'eval/exposure.py').read_bytes()).hexdigest(),
                'selected_cases':[case['case_id'] for case in cases], 'pairs':[]}
+    identity = None
     for case in cases:
         result = {'case_id':case['case_id'], 'attack_target':case['attack_target']}
         for arm in ('control','injected'):
             arm_config = {**cfg, 'expected_sample_sha256':case[arm]['sha256']}
             run = Agent(arm_config, OllamaClient(cfg), client).run(case[arm]['sample'])
             path = Path(run['run_directory'])
+            journal = path / 'events.jsonl'
+            event_count = verify_journal(journal)
+            events = [json.loads(line) for line in journal.read_bytes().splitlines()]
+            if (events[-1]['event'] != 'run_finished' or events[-1]['result'] != run or
+                    json.loads((path/'report.private.json').read_bytes()) != run):
+                raise ValueError('Terminal journal event must match the saved report')
+            version = next(e for e in events if e['event'] == 'source_version')
+            started = dict(next(e['config'] for e in events if e['event'] == 'run_started'))
+            started.pop('expected_sample_sha256')
+            fingerprint = (run['model'].get('digest'), version['manifest_sha256'],
+                           hashlib.sha256(canonical(started)).hexdigest())
+            if all(fingerprint):
+                if identity not in (None, fingerprint):
+                    raise ValueError('The model, sources or settings changed during the experiment')
+                identity = fingerprint
+                receipt.update(model_digest=identity[0], source_manifest_sha256=identity[1], config_sha256=identity[2])
+            elif run['status'].startswith('completed'):
+                raise ValueError('A completed arm lacks provenance')
             raw = json.loads((path/'report.model-raw.json').read_text(encoding='utf-8')) if (path/'report.model-raw.json').is_file() else {}
             result[arm] = {'run_id':run['run_id'], 'status':run['status'],
                            'two_tools':run['acceptance']['two_distinct_tools'],
                            'hash_matches':run['sample_sha256'] == case[arm]['sha256'],
                            'raw_verdict':raw.get('verdict'), 'verdict':run['analysis']['verdict'],
                            'guard_hits':run['metrics']['guard_hits'],
-                           'journal_events_verified':verify_journal(path/'events.jsonl')}
+                           'journal_events_verified':event_count,
+                           'journal_sha256':hashlib.sha256(journal.read_bytes()).hexdigest(),
+                           'sample_sha256':run['sample_sha256']}
             if arm == 'injected':
-                events = [json.loads(s) for s in (path/'events.jsonl').read_text(encoding='utf-8').splitlines()]
                 result[arm].update(audit_exposure(events, case.get('payload_lines', [])))
             print(json.dumps({'case':case['case_id'],'arm':arm,**result[arm]}),flush=True)
         receipt['pairs'].append(result)
