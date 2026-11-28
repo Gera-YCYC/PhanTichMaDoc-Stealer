@@ -1322,7 +1322,7 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     el("h2", "Tìm liên kết trên 10 vị trí phát triển"),
     el(
       "p",
-      "Mỗi phương án được tìm bốn lần trên mỗi mẫu. Thời gian chỉ tính giai đoạn tìm chứng cứ.",
+      "Mỗi phương án được tìm bốn lần trên mỗi mẫu. Precision tính trên các vị trí đã chấm. Các vị trí ngoài đáp án được ghi riêng. Thời gian chỉ tính giai đoạn tìm chứng cứ.",
     ),
   );
   table(
@@ -1332,6 +1332,8 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
       "Tìm đúng",
       "Bỏ sót",
       "Sai tại vị trí chấm",
+      "Ngoài đáp án",
+      "Precision / Recall",
       "Gọi VM / model",
       "Giây",
     ],
@@ -1341,10 +1343,24 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
       s.found,
       s.missed,
       s.wrong,
+      s.ungraded,
+      (s.precision == null ? "Chưa xác định" : percent(s.precision)) + " / " + percent(s.recall),
       s.tool_calls + " / " + s.model_calls,
       s.seconds.toLocaleString("vi"),
     ]),
   );
+  if (data.model_identity_pairs?.length) {
+    const block = el("details", undefined, "card");
+    block.id = "identity-comparison";
+    block.append(el("summary", "Chấm verdict khi model chỉ thấy mã mẫu trung tính"));
+    const rows = data.model_identity_pairs.flatMap(pair => [pair.before, pair.after].map((r, index) => [
+      r.sample, r.model_id, r.exposure.messages + " / " + r.requests,
+      r.verdict, pair.expected, pair.strict_correct[index] ? "Đúng" : "Chưa đúng",
+    ]));
+    table(["Mẫu", "Mã gửi Qwen", "Tin nhắn lộ tên / yêu cầu", "Verdict", "Nhãn nhóm", "Chấm nghiêm"], rows, block);
+    block.append(el("p", "Hai mẫu phát triển. Nút Model thấy tên mẫu nào? trong Nhật ký cho kiểm lại từng lượt trên máy giữ hồ sơ."));
+    panel.append(block);
+  }
   if (data.stability) {
     const s = data.stability,
       c = s.claim_stability;
@@ -1751,6 +1767,29 @@ async function render() {
     }
   }
   if (view === "log") {
+    const identity = el("details", undefined, "card");
+    identity.id = "model-identity";
+    identity.append(el("summary", "Model thấy tên mẫu nào?"));
+    const identityResult = el("p", "Đang kiểm tra nhật ký…");
+    identity.append(identityResult);
+    const auditRun = record.run;
+    identity.addEventListener("toggle", async () => {
+      if (!identity.open || identity.dataset.loaded) return;
+      try {
+        const data = await api("model-identity/" + auditRun);
+        identityResult.textContent = [
+          "Mã mẫu trong yêu cầu của agent: " + data.model_id + ".",
+          "Đã kiểm " + data.requests + " yêu cầu. Số yêu cầu chứa tên gốc hoặc nhãn danh mục trong tin nhắn: " +
+            data.exposure.messages + ", trong schema: " + data.exposure.schema +
+            ", trong trích đoạn: " + data.exposure.evidence + ".",
+          "VM trả " + data.observations + "/" + data.dispatches + " quan sát khớp SHA-256 của mẫu.",
+        ].join(" ");
+        identity.dataset.loaded = "true";
+      } catch (error) {
+        identityResult.textContent = "Chưa kiểm được nhật ký lượt này. " + error.message;
+      }
+    });
+    panel.append(identity);
     const m = record.metrics;
     const number = (n) => (n == null ? "chưa đo" : n.toLocaleString("vi"));
     const mib = (n) =>
@@ -1842,6 +1881,13 @@ async function render() {
         el("p", answerResult.text),
         el("small", answerResult.note),
       );
+      if (answerResult.verdict_claim_ids?.length) {
+        const group = el("div", undefined, "actions");
+        group.append(el("span", "Câu được báo cáo dẫn cho verdict "));
+        for (const id of answerResult.verdict_claim_ids)
+          group.append(button(id, () => openReportClaim(record.run, id)));
+        d.append(group);
+      }
         refs(d, answerResult.refs, false, answerResult.windows || record.cited_windows);
         if (answerResult.search?.refs?.length) {
           const results = el("details", undefined, "card");

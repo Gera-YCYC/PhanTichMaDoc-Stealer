@@ -1,5 +1,7 @@
 # Trạng thái sản phẩm ngày 28/11/2026
 
+Web đã chạy lại Qwen3 8B và VM trên một mẫu Python đóng gói và một đối chứng .NET. Trong hai lượt mới, 72 yêu cầu model có 0 lần lộ tên đăng ký theo ba trường đã kiểm. Mỗi lượt nhận 17/17 quan sát VM khớp hash. Verdict đúng theo nhãn nhóm là 0/2. Python đạt 20/36 ý và F1 71,43%. Hỏi đáp đã mở được câu và nguồn mà verdict thực sự dẫn trên cả hai mẫu. [Mã lượt, bằng chứng và lệnh kiểm lại](DOI_CHIEU_TEN_MAU.md)
+
 Lượt PythonStealer bản 17 đã loại được vai trò nối dữ liệu mà Qwen gán cho C2 dựa vào đường dẫn tệp ZIP. Agent vẫn phục hồi điểm gửi C21. Báo cáo mới tìm đúng 21/36 ý, có một ý sai, F1 72,41%. Trong **Đánh giá**, mở phần tìm câu gửi để đối chiếu hai lượt, rồi bấm mã lượt để xem nguồn tại máy giữ nhật ký. [So sánh, lần dừng vì thiếu RAM và cách tái lập](KIEM_DIEM_GUI.md#kiểm-nguồn-của-dữ-liệu-trước-khi-giữ-đường-nối)
 
 Bản web đã phục hồi C21 ở dòng SMTP 109 trên PythonStealer thật. Báo cáo đạt 21/36 ý, F1 73,68%, verdict `suspicious`. Trên đối chứng .NET có chữ ký, verdict là `inconclusive`. Cả hai kết luận đều chưa khớp nhãn lành/độc khi chấm nghiêm theo slide. [Mã lượt, phương pháp chấm và hướng dẫn demo](KIEM_DIEM_GUI.md)

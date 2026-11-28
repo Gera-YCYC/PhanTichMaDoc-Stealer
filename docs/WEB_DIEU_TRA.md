@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Nếu giảng viên muốn kiểm tra liệu agent có đoán từ tên tệp, vào **Nhật ký → Model thấy tên mẫu nào?** của một lượt vừa chạy. Số liệu được tính lại từ nhật ký trên máy. Bản phân tích chính dùng cùng mã `case.bin` cho các mẫu nhị phân. Câu hỏi về verdict trong **Hỏi đáp** mở được các câu đang được dẫn và nguồn của chúng. [Quy trình và đối chứng](DOI_CHIEU_TEN_MAU.md)
+
 Để chạy một lượt mới và kiểm tra trường hợp Qwen bỏ sót lời gọi gửi, xem [kịch bản PythonStealer và tệp .NET đối chứng](KIEM_DIEM_GUI.md). Tab **Nhật ký** mở khi bấm **Chạy điều tra**. Mã lượt xuất hiện khi agent tạo nhật ký trên máy.
 
 Trong lượt chạy có kiểm nguồn theo vai trò, mở **Nhận định → Vì sao báo cáo đưa ra verdict này?** rồi chọn một mã câu dưới vai trò thu thập, gửi hoặc nối dữ liệu. Người xem có thể mở riêng dòng chứng minh từng phần và trở lại nguyên câu. [Cách dùng và cách chấm](KIEM_VAI_TRO_VERDICT.md)

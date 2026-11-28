@@ -2,6 +2,8 @@
 
 ## Sản phẩm nhóm trình diễn
 
+Mục tiêu đánh giá hai lớp là dùng cùng mã trung tính cho model, giữ ràng buộc SHA-256 của tệp ở VM và tính mọi lần bỏ ngỏ vào mẫu số verdict. Khi được hỏi vì sao chưa thể kết luận, agent cần truy lại đúng câu đã dùng và chỉ ra vai trò còn thiếu chứng cứ. Người demo mở được các nguồn này ngay trong trình duyệt. [Cách kiểm lại từng lượt](DOI_CHIEU_TEN_MAU.md)
+
 Đối với mỗi liên kết mà Qwen đề xuất, người trình diễn cần chỉ được vị trí đọc ở đầu nguồn và giải thích dữ liệu đi vào đối số gửi qua những bước nào. Thử riêng đường dẫn tệp, bản nén và giá trị đã đọc, chấm cả liên kết được giữ nhầm lẫn liên kết bị loại nhầm. [Kiểm điểm đọc và các giới hạn đã đo](KIEM_DIEM_GUI.md#kiểm-nguồn-của-dữ-liệu-trước-khi-giữ-đường-nối)
 
 Khi một câu gửi có đủ nguồn nhưng bị bỏ khỏi danh sách dẫn chứng, agent cần truy lại quyết định duyệt thao tác và đưa câu đó vào phần giải thích verdict. Đo riêng khả năng tìm điểm gửi và khả năng chứng minh dữ liệu nhạy cảm đi tới điểm đó. Trình diễn cả một chương trình .NET có chữ ký qua cùng giao diện, ghi cả lần agent bỏ ngỏ kết luận. [Cách chạy và số liệu](KIEM_DIEM_GUI.md)

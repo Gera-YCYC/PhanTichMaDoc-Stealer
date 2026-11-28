@@ -61,7 +61,7 @@ ssh -V
 ollama --version
 ```
 
-Các thư mục scripts/, stealer_agent/, vm_tools/, docs/, training/ nằm ngay tại root repo mới. Nếu thiếu, kiểm revision theo PUBLISH_STATUS.md. Demo chính dùng Run-Demo.ps1, không có chế độ mock.
+Các thư mục scripts/, stealer_agent/, vm_tools/, docs/, training/ nằm ngay tại gốc repo. Thành viên dùng web khởi động bằng `Start-Web.ps1` sau khi dựng lab và cài Qwen3 8B. Luồng dòng lệnh dùng `Run-Demo.ps1`. Cả hai ghi nhật ký riêng cho từng lượt.
 
 ## 3. Tải model, mẫu mã hóa và công cụ
 

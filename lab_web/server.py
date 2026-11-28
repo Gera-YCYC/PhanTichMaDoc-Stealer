@@ -381,6 +381,7 @@ class Handler(BaseHTTPRequestHandler):
                 from eval.report_series import ARGUMENT_SERIES, web_results
                 from eval.verdict_trial import PUBLIC as verdict_receipt, score as score_verdict
                 from eval.web_report_quality import current_batch, dotnet_profiles, reports
+                from eval.model_identity import published as identity_pairs
 
                 base = ROOT / "deliverables/real-demo-evidence"
                 parts = read(parts_receipt)
@@ -416,12 +417,16 @@ class Handler(BaseHTTPRequestHandler):
                                 "found": len(row["covered"]),
                                 "missed": len(row["missed"]),
                                 "wrong": row["wrong_producer_at_graded_site"],
+                                "ungraded": row["ungraded_other_sites"],
+                                "precision": row["site_precision"],
+                                "recall": row["site_recall"],
                                 "tool_calls": row["tool_calls"],
                                 "model_calls": row["model_calls"],
                                 "seconds": row["elapsed_s"],
                             }
                             for row in paired["results"]
                         ],
+                        "model_identity_pairs": identity_pairs(),
                         "stability": read(repeats) if repeats.exists() else None,
                         "current_stability": web_results(),
                         "argument_stability": web_results(ARGUMENT_SERIES),
@@ -456,6 +461,10 @@ class Handler(BaseHTTPRequestHandler):
                 from .yara_view import regression
 
                 return self.reply(200, regression(ROOT))
+            if p.startswith("/api/model-identity/"):
+                from eval.model_identity import audit
+
+                return self.reply(200, audit(p.removeprefix("/api/model-identity/")))
             if p.startswith("/api/case/"):
                 return self.reply(200, case(p[len("/api/case/") :]))
         self.reply(404, {"error": "Không tìm thấy."})

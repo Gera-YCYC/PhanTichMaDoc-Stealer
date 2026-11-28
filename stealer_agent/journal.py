@@ -30,6 +30,9 @@ def record_model_request(journal, *, step, messages, schema, evidence, phase='re
     claim an incomplete/truncated log proves exposure to a complete payload.
     """
     body={'messages':messages,'schema':schema,'evidence':evidence}
+    binding = getattr(journal, "sample_binding", None)
+    if binding is not None:
+        binding.check_request(body)
     if len(canonical(body)) > 512_000:
         raise ValueError('Model request provenance exceeds 512000-byte bound')
     return journal.append('model_request',step=step,phase=phase,**body,
@@ -40,13 +43,14 @@ def record_model_request(journal, *, step, messages, schema, evidence, phase='re
 
 
 class Journal:
-    def __init__(self, directory: Path, live: bool = False):
+    def __init__(self, directory: Path, live: bool = False, sample_binding=None):
         directory.mkdir(parents=True, exist_ok=False)
         self.directory = directory
         self.path = directory / "events.jsonl"
         self.previous = "0" * 64
         self.sequence = 0
         self.live = live
+        self.sample_binding = sample_binding
 
     def append(self, event: str, **details) -> dict:
         self.sequence += 1

@@ -1,0 +1,153 @@
+{
+  "scope": "Primary analysis only. Known development cases, grouped by sample, not an independent holdout. No causal estimate of verdict or latency.",
+  "pairs": [
+    {
+      "expected": "benign",
+      "before": {
+        "run": "20261128T124233_ca348a88",
+        "sample": "clean_ms_addinprocess.bin",
+        "sample_sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+        "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "other_config_sha256": "eb8f75e61511f2495d0f8b392ce06afff25cb6871872a51ccd00792217705aac",
+        "source_sha256": "7a1b9eca58b9091ff37a8742f6e5fee6133aa8625bad36663178674d55fad8a1",
+        "report_method": "evidence-cards/16",
+        "neutral_id": false,
+        "model_id": "clean_ms_addinprocess.bin",
+        "requests": 27,
+        "responses": 27,
+        "phases": {
+          "react": 18,
+          "card_generate": 4,
+          "card_review": 4,
+          "card_verdict": 1
+        },
+        "exposure": {
+          "messages": 18,
+          "schema": 17,
+          "evidence": 0
+        },
+        "dispatches": 17,
+        "observations": 17,
+        "status": "completed_needs_review",
+        "verdict": "inconclusive",
+        "seconds": 325.4251,
+        "tool_errors": 0,
+        "journal_sha256": "799f399a4ab32dd8167975ebd62f3601a6c8d06ec60b56b1627399b8521fe629"
+      },
+      "after": {
+        "run": "20261128T132044_0180f1cd",
+        "sample": "clean_ms_addinprocess.bin",
+        "sample_sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+        "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "other_config_sha256": "eb8f75e61511f2495d0f8b392ce06afff25cb6871872a51ccd00792217705aac",
+        "source_sha256": "dc537a6ab0c9f131d653b4aca542c71ecec01b3df1d6f16c98b492568fc15642",
+        "report_method": "evidence-cards/17",
+        "neutral_id": true,
+        "model_id": "case.bin",
+        "requests": 27,
+        "responses": 27,
+        "phases": {
+          "react": 18,
+          "card_generate": 4,
+          "card_review": 4,
+          "card_verdict": 1
+        },
+        "exposure": {
+          "messages": 0,
+          "schema": 0,
+          "evidence": 0
+        },
+        "dispatches": 17,
+        "observations": 17,
+        "status": "completed_needs_review",
+        "verdict": "inconclusive",
+        "seconds": 272.3702,
+        "tool_errors": 0,
+        "journal_sha256": "9503ce920565aef4e6ec6396def09a88c8214c0b29525db807b1cc2e2e68074f"
+      },
+      "strict_correct": [
+        false,
+        false
+      ],
+      "method_changed": true
+    },
+    {
+      "expected": "malicious",
+      "before": {
+        "run": "20261128T130249_0fdc121a",
+        "sample": "public_python2024.bin",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "other_config_sha256": "0725fe72f9813196f99638d5bcf4d849340ba83dffd2a1c36b49478c8ac7a4ea",
+        "source_sha256": "eafab2357b33f23089c31917bb9e8b5abce8a614f388f9cda1962b6c1c0ef740",
+        "report_method": "evidence-cards/17",
+        "neutral_id": false,
+        "model_id": "public_python2024.bin",
+        "requests": 48,
+        "responses": 48,
+        "phases": {
+          "react": 18,
+          "card_generate": 5,
+          "card_review": 9,
+          "technique_review": 1,
+          "operation_review": 5,
+          "flow_review": 4,
+          "card_verdict": 1,
+          "verdict_role_evidence": 5
+        },
+        "exposure": {
+          "messages": 18,
+          "schema": 17,
+          "evidence": 0
+        },
+        "dispatches": 17,
+        "observations": 17,
+        "status": "completed_needs_review",
+        "verdict": "suspicious",
+        "seconds": 453.4485,
+        "tool_errors": 1,
+        "journal_sha256": "c8c19c50e60260c0daa32b39c2e948861c493b593a8e7170e8598965606f2967"
+      },
+      "after": {
+        "run": "20261128T132617_7af6d50a",
+        "sample": "public_python2024.bin",
+        "sample_sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+        "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "other_config_sha256": "0725fe72f9813196f99638d5bcf4d849340ba83dffd2a1c36b49478c8ac7a4ea",
+        "source_sha256": "dc537a6ab0c9f131d653b4aca542c71ecec01b3df1d6f16c98b492568fc15642",
+        "report_method": "evidence-cards/17",
+        "neutral_id": true,
+        "model_id": "case.bin",
+        "requests": 45,
+        "responses": 45,
+        "phases": {
+          "react": 18,
+          "card_generate": 5,
+          "card_review": 9,
+          "technique_review": 1,
+          "operation_review": 5,
+          "flow_review": 4,
+          "card_verdict": 1,
+          "verdict_role_evidence": 2
+        },
+        "exposure": {
+          "messages": 0,
+          "schema": 0,
+          "evidence": 0
+        },
+        "dispatches": 17,
+        "observations": 17,
+        "status": "completed_with_rejected_claims",
+        "verdict": "suspicious",
+        "seconds": 417.5865,
+        "tool_errors": 1,
+        "journal_sha256": "82957777e78d5a95b3dd37361dca30f5533717b1498dd1d56432e9d5528ef02d"
+      },
+      "strict_correct": [
+        false,
+        false
+      ],
+      "method_changed": false
+    }
+  ]
+}

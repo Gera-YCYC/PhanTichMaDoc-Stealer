@@ -1,0 +1,12 @@
+{
+  "run": "20261128T132617_7af6d50a",
+  "inherit": "20261128T130249_0fdc121a",
+  "claims": {
+    "C3": {
+      "signature": "2c661729a05180094ce3143035da39fb8ee0116f042c727074063833f3f91e09",
+      "lines": [83, 84, 106],
+      "atoms": [["PY24-A27", "correct"]],
+      "reason": "The IOC matches the literal assigned to the SMTP host. The cited range includes the constructor consuming that variable at the reference site. This grades a static destination."
+    }
+  }
+}

@@ -5,7 +5,7 @@ import {createRequire} from "node:module";
 
 const {chromium} = createRequire(import.meta.url)("playwright-core");
 const [mode, id] = process.argv.slice(2);
-assert.ok(["start", "inspect"].includes(mode));
+assert.ok(["start", "inspect", "identity", "ask"].includes(mode));
 const origin = process.env.LAB_WEB_ORIGIN || "http://127.0.0.1:4180";
 assert.equal(new URL(origin).hostname, "127.0.0.1");
 const browser = await chromium.launch({executablePath: process.env.LAB_CHROMIUM || undefined});
@@ -27,6 +27,60 @@ try {
     await page.locator("#start").click();
     assert.equal((await response).status(), 202);
     console.log("accepted", id, health.model, health.digest);
+  } else if (mode === "identity" || mode === "ask") {
+    assert.match(id, /^\d{8}T\d{6}_[a-f0-9]{8}$/);
+    await page.locator("#history-filter").fill(id);
+    await page.locator("#history button").filter({hasText:id}).click();
+    await page.waitForFunction(id => document.querySelector("#run").textContent === id, id);
+    if (mode === "ask") {
+      await page.locator('[data-view="qa"]').click();
+      await page.locator("textarea").fill("Vì sao verdict của lượt này vẫn chưa đủ bằng chứng để kết luận?");
+      const request = page.waitForResponse(r => r.url() === origin + "/api/question", {timeout:180000});
+      await page.getByRole("button", {name:"Tra cứu chứng cứ", exact:true}).click();
+      const response = await request;
+      assert.equal(response.status(), 200);
+      const answer = await response.json();
+      assert.equal(answer.topic, "verdict");
+      assert.ok(answer.refs.length && Object.keys(answer.windows).length && answer.verdict_claim_ids.length);
+      const box = page.locator("#panel .box").last();
+      const source = box.locator(".ref").filter({has:page.getByText("Xem đoạn mã đã dẫn", {exact:true})}).first();
+      await source.getByText("Xem đoạn mã đã dẫn", {exact:true}).click();
+      const ref = answer.refs.find(r => answer.windows[[r.eid, r.line, r.end].join(":")]);
+      const output = answer.windows[[ref.eid, ref.line, ref.end].join(":")].output_sha256;
+      assert.ok((await source.locator("details small").innerText()).endsWith(output));
+      assert.match(await source.locator("details pre").innerText(), new RegExp("^→ " + ref.line + " │", "m"));
+      const cid = answer.verdict_claim_ids[0];
+      await box.getByRole("button", {name:cid, exact:true}).click();
+      assert.equal(await page.locator("#report-" + cid).evaluate(e => e.open), true);
+      assert.deepEqual(errors, []);
+      assert.deepEqual(external, []);
+      await mkdir("evidence/local", {recursive:true});
+      await writeFile("evidence/local/verdict-" + answer.journal + ".json", JSON.stringify({
+        run:id, journal:answer.journal, claim:cid, source:{eid:ref.eid, line:ref.line, end:ref.end, output_sha256:output},
+        windows:Object.keys(answer.windows).length, errors, external,
+      }));
+      console.log(id, answer.journal, "claim", cid, "source windows", Object.keys(answer.windows).length);
+    } else {
+      for (const width of [390, 1360]) {
+        await page.setViewportSize({width, height:844});
+        await page.locator('[data-view="log"]').click();
+        const response = page.waitForResponse(r => r.url() === origin + "/api/model-identity/" + id);
+        await page.locator("#model-identity > summary").click();
+        const receipt = await (await response).json();
+        assert.equal(receipt.run, id);
+        await page.waitForFunction(() => document.querySelector("#model-identity")?.dataset.loaded === "true");
+        assert.ok((await page.locator("#model-identity").innerText()).includes(receipt.model_id));
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+        console.log(id, width, receipt.model_id, receipt.requests, receipt.exposure);
+      }
+      await page.locator('[data-view="evaluation"]').click();
+      const scores = page.locator("#identity-comparison");
+      await scores.locator(":scope > summary").click();
+      assert.equal(await scores.locator("tbody tr").count(), 4);
+      assert.equal(await scores.locator("tbody td").getByText("Chưa đúng", {exact:true}).count(), 4);
+    }
+    assert.deepEqual(errors, []);
+    assert.deepEqual(external, []);
   } else {
     assert.match(id, /^\d{8}T\d{6}_[a-f0-9]{8}$/);
     const snapshot = await page.request.get(origin + "/api/case/" + id);

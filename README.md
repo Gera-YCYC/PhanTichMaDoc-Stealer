@@ -4,10 +4,6 @@ StealerLab là đồ án phân tích tĩnh stealer .NET/Python bằng agent ReAc
 
 ## Demo trực tiếp
 
-Chọn **Chạy điều tra** để xem nhật ký thật của lượt mới. Trong **Nhận định**, mục **Kiểm tra lại điểm gửi** cho mở các dòng VM đã dùng và giải thích vì sao dữ liệu gửi đi còn cần kiểm chứng. Danh sách mẫu có thêm đối chứng .NET có chữ ký Microsoft. [Năm bước demo và số liệu đối chứng](docs/KIEM_DIEM_GUI.md)
-
-Để kiểm tra một câu có thực sự hỗ trợ kết luận, mở **Nhận định → Vì sao báo cáo đưa ra verdict này?**. Bản mới lưu từng vai trò Qwen đề xuất, những dòng đã đọc và quyết định sau kiểm tra. Điểm gửi đã xuất hiện trong báo cáo nhưng bị bỏ qua cũng có thể mở từ đây. [Demo trên Mercurial, Python và Gomorrah](docs/KIEM_VAI_TRO_VERDICT.md)
-
 Trên máy Windows đã dựng lab, mở PowerShell trong thư mục chứa `agent_react.py`. Lệnh dưới đây bật VMware và Ollama, kiểm kết nối rồi mở dịch vụ web trên máy. Thành viên dùng máy mới làm theo [hướng dẫn cài đặt](docs/TEAM_SETUP.md).
 
 ```powershell
@@ -18,6 +14,8 @@ Trên máy Windows đã dựng lab, mở PowerShell trong thư mục chứa `age
 2. Với **Mercurial (.NET)**, mở **Nhận định → Vì sao báo cáo đưa ra verdict này? → Kiểm tra trên bản đồ**. Bấm một mắt xích, xem điểm tạo và nơi sử dụng dữ liệu. Trong **Nhánh xử lý lỗi**, đối chiếu đối số với khai báo ngoại lệ. Lượt tham chiếu gần nhất mất khoảng 11 phút 34 giây. [Kịch bản, số dòng và bảng chấm](docs/NHANH_XU_LY_LOI.md)
 3. Với **PythonStealer (PyInstaller)**, mở **Bản đồ chứng cứ → Đọc kết quả truy vấn → Xử lý dữ liệu**. Chọn một đường nối rồi bấm **Hỏi tiếp về đường nối này → Tra cứu chứng cứ**. Câu trả lời có nguồn và dấu vết lần tìm mới khi agent cần gọi công cụ. [Kịch bản Python](docs/KIEM_TRA_DOI_SO.md)
 4. Trong **YARA**, xem luật từng vòng, kết quả quét và trường hợp báo nhầm. Trong **Gán nhãn**, mở nguồn của một nhận định trước khi đánh dấu nó để train bộ xếp hạng. Khi mọi tác vụ hoàn tất, bấm **Tắt lab**. [Thực nghiệm YARA](docs/YARA_REAL_CORPUS.md) · [Dữ liệu, 300 bước train và kết quả trước/sau](training/RANKER_EXPERIMENT.md)
+
+Để đối chiếu cách chấm mẫu lành và độc, mở **Nhật ký → Model thấy tên mẫu nào?**. Web kiểm từng yêu cầu gửi Qwen và từng quan sát VM trả về. Trong **Hỏi đáp**, nhập “Vì sao verdict của lượt này vẫn chưa đủ bằng chứng để kết luận?” rồi bấm mã câu trong câu trả lời để mở nhận định gốc. [Hai cặp lượt thật và giới hạn của phép đo](docs/DOI_CHIEU_TEN_MAU.md)
 
 **Đã có minh chứng cho mốc buổi 4 và buổi 6.** Trên cùng một bản web đã có ba mẫu thật với nhật ký và năm công cụ khác nhau thành công khi tính gộp. Với bộ thử điều hướng hai mẫu và cùng ngân sách bốn lần tìm mỗi mẫu, agent tìm đúng 3/10 liên kết tham chiếu, quy trình cố định tìm đúng 1/10. Các ngưỡng recall, F1 và verdict toàn mẫu vẫn còn mở. [Bảng đối chiếu ba mẫu](docs/CHAM_BA_MAU_WEB.md) · [So sánh hai quy trình](docs/WEB_DIEU_TRA.md#kết-quả-đối-chứng-trên-hai-mẫu-phát-triển) · [Phân công phần còn lại](docs/CONG_VIEC_CON_LAI.md)
 

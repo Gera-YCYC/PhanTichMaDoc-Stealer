@@ -156,6 +156,25 @@ def export(run):
                         or [r["line"] for r in search["refs"]] != observed["opened_anchors"]):
                     raise ValueError("Browser field differs from the question or VM source")
                 questions[-1]["schema_search"] = {**expected, "literal":query}
+        if selected.get("topic") == "verdict" and qs[-1]["event"] == "answered":
+            clicks_file = ROOT / "evidence/local" / f"verdict-{p.parent.name}.json"
+            if clicks_file.is_file():
+                clicks = read(clicks_file)
+                answer = qs[-1]["answer"]
+                ids = (view.get("verdict_trace") or {}).get("citations", [])
+                claim = next(c for c in view["claims"] if c["id"] == clicks["claim"])
+                loc = clicks["source"]
+                key = f"{loc['eid']}:{loc['line']}:{loc['end']}"
+                request, = (e for e in qs if e["event"] == "model_request" and e["phase"] == "qa_route")
+                response, = (e for e in qs if e["event"] == "model_response" and e["step"] == request["step"])
+                if (ids != answer.get("verdict_claim_ids") or claim["id"] not in ids
+                        or not any(all(ref[k] == loc[k] for k in ("eid", "line", "end")) for ref in claim["refs"])
+                        or loc["output_sha256"] != answer["windows"][key]["output_sha256"]
+                        or qs[0]["model"] != pre["model"]["digest"] or clicks["run"] != run
+                        or clicks["journal"] != p.parent.name or clicks["windows"] != len(answer["windows"])
+                        or clicks["errors"] or clicks["external"] or response["action"]["choice"] != "verdict"):
+                    raise ValueError("Browser verdict citation differs from question or source")
+                questions[-1]["verdict_click"] = clicks
         if selected.get("origin") == "map_edge":
             clicks_file = ROOT / "evidence/local" / f"focus-{p.parent.name}.json"
             if clicks_file.is_file():

@@ -15,6 +15,8 @@ def main() -> int:
     parser.add_argument("--sample", required=True, help="Filename/sample ID in VM, never a host path")
     parser.add_argument("--runs", type=int, default=1, choices=(1, 3))
     parser.add_argument("--public-demo", action="store_true", help="Require an exact public sample hash and a >=7B local model")
+    parser.add_argument("--show-registry-id", action="store_true",
+                        help="Reproduce the historical public-demo prompt that exposes the registry filename")
     parser.add_argument("--live", action="store_true", help="Print tool dispatch/status without raw sample strings or secrets")
     parser.add_argument("--occurrence-order", action="store_true", help="Use source order in VM code searches for a ranker ablation")
     parser.add_argument("--with-yara", action="store_true", help="Rescan the registered sample with the frozen project rules after analysis")
@@ -22,6 +24,8 @@ def main() -> int:
     args = parser.parse_args()
     if args.with_yara and not args.public_demo:
         parser.error('--with-yara requires --public-demo and a registered corpus')
+    if args.show_registry_id and not args.public_demo:
+        parser.error('--show-registry-id requires --public-demo')
     config = json.loads(Path(args.config).read_text(encoding="utf-8-sig"))
     config['live_progress'] = args.live
     if args.occurrence_order:
@@ -34,6 +38,7 @@ def main() -> int:
         if args.with_yara and entry['evidence_kind'] != MALWARE:
             parser.error('For clean files use the corpus YARA evaluation')
         config['expected_sample_sha256']=entry['sha256']
+        config['neutral_sample_id'] = not args.show_registry_id
         config['require_course_model']=True
         config['evidence_kind']=entry['evidence_kind']
     token = os.environ.get(config.get("token_env", "STEALER_LAB_TOKEN"), "")

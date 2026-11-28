@@ -20,6 +20,7 @@ from .security import check_sample_name, guard_observation
 from .telemetry import process_memory, available_memory_bytes
 from .model_projection import ModelEvidenceView
 from .search_queries import query_options
+from .sample_binding import SampleBinding
 
 
 class ResourceBudgetExceeded(RuntimeError):
@@ -87,8 +88,14 @@ class Agent:
         check_sample_name(sample)
         started = time.perf_counter()
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S") + "_" + uuid.uuid4().hex[:8]
-        journal = Journal(Path(self.config.get("output_dir", "runs")) / run_id, live=self.config.get('live_progress',False))
+        binding = SampleBinding(sample) if self.config.get("neutral_sample_id") else None
+        model_sample = binding.alias if binding else sample
+        journal = Journal(Path(self.config.get("output_dir", "runs")) / run_id,
+                          live=self.config.get('live_progress',False), sample_binding=binding)
         journal.append("run_started", sample=sample, config={k: v for k, v in self.config.items() if "token" not in k})
+        if binding:
+            journal.append("sample_binding", alias=binding.alias, sample=sample, run=run_id,
+                           expected_sha256=self.config.get("expected_sample_sha256"))
         project = Path(__file__).resolve().parents[1]
         source = {p.relative_to(project).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                   for folder in ('stealer_agent', 'vm_tools') for p in sorted([*(project / folder).glob('*.py'),*(project / folder).glob('code_ranker.json')])}
@@ -148,7 +155,7 @@ class Agent:
             if "identify" not in available or len(set(available) & set(ANALYSIS_TOOLS)) < 2:
                 raise RuntimeError("VM has fewer than two usable analysis tools")
             messages = [{"role": "system", "content": system_prompt(available)},
-                        {"role": "user", "content": f"Analyze sample ID {sample}. Start with identify. Only this sample ID is authorized."}]
+                        {"role": "user", "content": f"Analyze sample ID {model_sample}. Start with identify. Only this sample ID is authorized."}]
             if card_report:
                 messages[0]['content'] += ('\nREPORT MODE: When sufficient code has been retrieved, use finalize with '
                                            'arguments={} and report=null. A separate bounded evidence-card phase writes '
@@ -246,7 +253,7 @@ class Agent:
                         search_options = preferred
                 if can_finish and step == self.config.get('max_steps', 12):
                     eligible = []
-                state = {"authorized_sample": sample, "successful_tools": sorted(successful),
+                state = {"authorized_sample": model_sample, "successful_tools": sorted(successful),
                          "required_tools": sorted(required_tools), "finish_allowed": can_finish,
                          "available_next_tools": eligible, "evidence_ids": successful_eids,
                          "remaining_turns": self.config.get('max_steps', 12) - step + 1,
@@ -278,7 +285,7 @@ class Agent:
                              if item['status'] == 'ok' for line in item['lines']
                              if 4 <= len(line['text'].strip()) <= 600 and '[REDACTED-INJECTION]' not in line['text']][:160]
                 action_schema=decision_schema(
-                    sample, eligible, successful_eids, can_finish, unread_pages=unread,
+                    model_sample, eligible, successful_eids, can_finish, unread_pages=unread,
                     ioc_sources=ioc_sources, python_entries=python_entries, citation_options=citations,
                     search_options=search_options, card_report=card_report)
                 for branch in action_schema['anyOf']:
@@ -357,8 +364,12 @@ class Agent:
                         break
                     if name not in available:
                         raise ValueError(f"Tool is unavailable: {name}")
-                    if args["sample"] != sample:
+                    if binding:
+                        args = binding.vm_arguments(args)
+                    elif args["sample"] != sample:
                         raise ValueError("Model attempted to change the authorized sample ID")
+                    else:
+                        args = args.copy()
                     if name == 'search_evidence':
                         query = args['query']
                         if not 3 <= len(query.strip()) <= 80 or any(c in query for c in '\r\n\x00'):
