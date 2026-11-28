@@ -1,5 +1,22 @@
 # Goal và điều kiện nghiệm thu
 
+## Sản phẩm nhóm trình diễn
+
+**Agent ReAct dùng SLM cục bộ để điều tra và kiểm chứng chuỗi đánh cắp thông tin của stealer .NET/Python.** Giảng viên có thể chọn mẫu trên web, xem công cụ VM đang chạy, bấm vào một quan hệ và đối chiếu nhận định với đúng dòng nguồn. Một lượt mới có mã và nhật ký riêng. [Chạy trên máy nhóm](TEAM_SETUP.md) · [Demo trực tiếp](WEB_DIEU_TRA.md)
+
+| Ưu tiên | Người demo có thể làm gì? | Cách kiểm chứng |
+|---|---|---|
+| 1. Điều tra | Mở giả thuyết, xem mắt xích còn thiếu và quan sát lựa chọn tiếp theo của agent. | Theo dõi câu hỏi, hành động, quan sát và trạng thái sau tìm kiếm. So với quy trình cố định trên cùng mẫu và cấu hình. [Thí nghiệm đối chứng](CHAM_BA_MAU_WEB.md) |
+| 2. Bản đồ | Bấm vào một bước hoặc đường nối để xem đoạn nguồn, SHA-256 và câu xuất hiện trong báo cáo. | Kiểm cả vị trí tạo và vị trí dùng. Nếu dữ liệu có thể bị thay đổi ở giữa, liên kết còn cần kiểm tra. [Ví dụ trên Python](DUONG_DAN_GHI_VA_NEN.md) |
+| 3. Hỏi đáp | Hỏi tiếp về một đường nối, hoặc yêu cầu tìm lược đồ cho một vị trí đọc cột số trên .NET. | Nhật ký liên kết câu hỏi với lượt gốc. Chỉ kết luận tên cột khi có lược đồ của đúng bảng và đúng thứ tự. [Đối chiếu trên Mercurial](KIEM_LUOC_DO.md) |
+| 4. Luật phát hiện | Theo dõi chọn dấu hiệu, tạo luật YARA, biên dịch, quét và sửa luật khi có báo nhầm. | Lưu luật từng vòng, kết quả quét, mẫu số TPR/FPR và tập dùng để sửa luật. [Thực nghiệm YARA](YARA_REAL_CORPUS.md) |
+| 5. Huấn luyện | Mở vị trí nguồn, gán nhãn độ liên quan và xem dữ liệu dùng để train bộ xếp hạng. | Tái tạo trọng số, so loss, thứ hạng và báo cáo trước/sau. Tách dữ liệu phát triển, dữ liệu đánh giá và nguồn nhãn. [Hồ sơ train](../training/RANKER_EXPERIMENT.md) |
+
+Các ngưỡng của môn học ở bảng tiêu chí bên dưới. Phiên bản web dùng Qwen3 8B trên Windows. VM Ubuntu cô lập giữ mẫu và chạy công cụ phân tích tĩnh. Nút **Tắt lab** giải phóng tài nguyên sau buổi demo. Nhóm bàn giao mã nguồn, Markdown và minh chứng chạy thật qua repo Gera-YCYC/PhanTichMaDoc-Stealer. [Trạng thái đo](STATUS.md) · [Việc còn lại để nghiệm thu](CONG_VIEC_CON_LAI.md)
+
+<details>
+<summary>Lịch sử triển khai và các quyết định theo từng phiên bản</summary>
+
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
 Nhóm trình diễn trực tiếp trên web cục bộ. Bằng chứng nghiệm thu là mã lượt, phiên bản model, quan sát từ VM và vị trí nguồn mở được. Với .NET, phải phân biệt đối số tên trường và chỉ số cột. Chỉ kết luận tên cột từ chỉ số khi có lược đồ ràng buộc đúng bảng. So sánh agent và luồng cố định trên cùng dữ liệu, lưu cả báo nhầm YARA, và đo ranker sau khi có nhãn độc lập. [Đo trên các lượt .NET thật](DOC_COT_NET.md)
@@ -60,6 +77,10 @@ Mã nguồn, môi trường phát triển, artifact và báo cáo đặt trên *
 **Lịch sử phân phối trước khi đổi repo đích:** người dùng yêu cầu push vào Gera-YCYC/PhanTichMaDoc-Stealer, đưa cả model/mẫu tải về cho nhóm, hướng dẫn từng bước và demo thật. Đã chọn Git cho source/docs, Release cùng repo cho 3 phần model + 5 mẫu public mã hóa + 2 manifest; không phân phối khóa cá nhân hay VM chứa khóa. Quyền Write đang chờ chủ repo cấp. Đây là ủy quyền publish cụ thể, thay cho quy tắc không tự publish khi chưa được yêu cầu. Tại thời điểm cập nhật cũ này, goal chưa được tạo lại; trạng thái mới nhất nằm ở mục cập nhật tiếp theo.
 
 **Cập nhật giai đoạn phát hành trước khi tiếp tục toàn đồ án, 27/11/2026:** theo yêu cầu nhóm, repo đích chuyển sang https://github.com/duongthanhmong/PhanTichMaDoc_DoAn; source ở root, model/mẫu mã hóa ở Release. Goal đã được tạo lại, vẫn chưa hoàn thành toàn đồ án. Người dùng yêu cầu dừng runtime sau kiểm chứng, nên không tự bật lại Ollama/VM trong công việc tài liệu/publish. Không thêm tác giả/co-author AI hoặc cấp quyền collaborator cho công cụ. Yêu cầu training còn chờ GV làm rõ; xem training/DECISION_LOG.md.
+
+</details>
+
+## Tiêu chí theo slide và đề xuất gốc
 
 | ID | Yêu cầu nguồn | Điều kiện đạt | Bằng chứng bắt buộc |
 |---|---|---|---|

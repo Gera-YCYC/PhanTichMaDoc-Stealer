@@ -1,0 +1,577 @@
+{
+  "plan": "6f92dc5d1113c556a71b9b5d1e16958218082224f0938c86542226881be9024e",
+  "labels": "ccc9ff88eb4e089ea1ba014a5df8abee4e0b5c59dcd73421740441245d28a507",
+  "paired_journal": "e327715ca5ea86effd74d563bcc123e86b325a68613c5c086f1b13d87ebb1a66",
+  "paired": [
+    {
+      "id": "C1",
+      "reference": true,
+      "before": false,
+      "after": true,
+      "ruling": "ordinary_review",
+      "claim_sha256": "867715e8b1e02bb21f30b51c7905d3094df0ea4b6f9bddeff97dab8f83ffa3cc",
+      "request_sha256": "6f4289e911335db084ccd60a3c102e7f4a172aa07165fd6d84d0300c6fa200ec",
+      "lines": [
+        779,
+        783,
+        787,
+        795,
+        796
+      ]
+    },
+    {
+      "id": "C2",
+      "reference": false,
+      "before": true,
+      "after": false,
+      "ruling": "explicit_ordinal_mapping",
+      "claim_sha256": "381d329bf800331e265a7ff3d8eec1c603ca225db23bb4e59a780dbfecda0675",
+      "request_sha256": "ea41f83f13bac09474eb43d7dfbbf13354aed61bc4b3b406092a0e062a0d46e1",
+      "lines": [
+        796,
+        800,
+        801,
+        802
+      ]
+    },
+    {
+      "id": "C3",
+      "reference": false,
+      "before": false,
+      "after": false,
+      "ruling": "ordinary_review",
+      "claim_sha256": "034b4a9ce7a32da8904e565cae50e9454cf7d6c830ea20810f85724a004c05ae",
+      "request_sha256": "00a3b6333f7c73283e3377d873655c587ff65de2a969ce961cf67af921f3d95e",
+      "lines": [
+        728,
+        739
+      ]
+    },
+    {
+      "id": "C4",
+      "reference": false,
+      "before": false,
+      "after": false,
+      "ruling": "ordinary_review",
+      "claim_sha256": "ef7d2270f32c59708733656e37deb1e0c069652aa31463f14274f2e89110be04",
+      "request_sha256": "57405b70549771f1285014a551953930792bbc56b514a11d86089b2dedd9dcb3",
+      "lines": [
+        681,
+        693,
+        747
+      ]
+    },
+    {
+      "id": "C6",
+      "reference": true,
+      "before": true,
+      "after": true,
+      "ruling": "ordinary_review",
+      "claim_sha256": "d03d452799956495b775f67918fbe5f53791b472b00d47b5389616bbc07bb3a0",
+      "request_sha256": "385e9f83903c6a8b281053948808bbb43dde6fa8730f22af49242f677c1eef05",
+      "lines": [
+        795,
+        796,
+        800
+      ]
+    },
+    {
+      "id": "C7",
+      "reference": true,
+      "before": true,
+      "after": true,
+      "ruling": "ordinary_review",
+      "claim_sha256": "2285650efb1131b37db88f025cd175063467a4af8356b17a5b0123a3c2c46749",
+      "request_sha256": "c1f2015419959045f23ba3482db543aa8c66813d9afb788070a9afa50dbd4d42",
+      "lines": [
+        795,
+        796,
+        801
+      ]
+    },
+    {
+      "id": "C8",
+      "reference": true,
+      "before": true,
+      "after": true,
+      "ruling": "ordinary_review",
+      "claim_sha256": "d9dfc9fbf1bf07c8fbec8141d00427c44d80470f8d08a6afd7a1d46a9bc918b9",
+      "request_sha256": "26febed35f23a91cc3aaba2c992e7ccfd1b7d88caf4e2ac145486f293d78c6e6",
+      "lines": [
+        713,
+        714,
+        720
+      ]
+    },
+    {
+      "id": "C9",
+      "reference": true,
+      "before": true,
+      "after": false,
+      "ruling": "ordinary_review",
+      "claim_sha256": "c5d80eef54248222df3728c3514b271627dbfa56cb634ffdb5189e5685ccfb6e",
+      "request_sha256": "92ea37fdc9fb69e6816d23654e845b23de6e98b50bac789339bb4a6675299b9c",
+      "lines": [
+        727,
+        728,
+        732,
+        739
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "run": "20261128T110548_0cb9678e",
+      "status": "completed_with_rejected_claims",
+      "journal": "2140fc6556d08aa4b0f40d7605fb8de8f8864c4a330c4bef67a2b5ce8e198b23",
+      "score": {
+        "correct": 4,
+        "incorrect": 1,
+        "unsupported": 3,
+        "missed": 17,
+        "precision": 0.5,
+        "recall": 0.19047619047619047,
+        "f1": 0.27586206896551724
+      },
+      "claims": 22,
+      "verdict": "suspicious",
+      "tool_calls": 17,
+      "seconds": 677.7102
+    },
+    {
+      "run": "20261128T112458_a0bfcbd3",
+      "status": "completed_with_rejected_claims",
+      "journal": "a7919914335dd823990b05e07d758ec540493cad72adc59460dbcbb57f2f4a69",
+      "score": {
+        "correct": 7,
+        "incorrect": 1,
+        "unsupported": 3,
+        "missed": 14,
+        "precision": 0.6363636363636364,
+        "recall": 0.3333333333333333,
+        "f1": 0.4375
+      },
+      "claims": 20,
+      "verdict": "suspicious",
+      "tool_calls": 17,
+      "seconds": 636.6306
+    }
+  ],
+  "sentences": {
+    "20261128T110548_0cb9678e": [
+      {
+        "claim": "C2",
+        "signature": "c56e755a17a98c4beec96e64f56567ebaad6c963f843b3d5db4c2ae7c88e1cec",
+        "citations": 2,
+        "labels": [
+          "correct",
+          "correct",
+          "correct",
+          "correct",
+          "unsupported",
+          "unsupported",
+          "unsupported"
+        ]
+      },
+      {
+        "claim": "C5",
+        "signature": "c22f8face16ee3da36342fbbaea815a84358884196588b0472c3e88dace756fa",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C6",
+        "signature": "309073039505ec8ca92f2d914ffe817b7b04a957d9e34fd30ae084dd85f50080",
+        "citations": 4,
+        "labels": [
+          "correct",
+          "correct"
+        ]
+      },
+      {
+        "claim": "C7",
+        "signature": "8afe78d2a192521dbfd47f10e1f6263def273ce654e117ef2282a9f7c79ba7fd",
+        "citations": 4,
+        "labels": [
+          "correct",
+          "correct"
+        ]
+      },
+      {
+        "claim": "C8",
+        "signature": "70a238a5131a3c4fcdfceeb9e133efcd09d4ad53685959a608e383266a0a2246",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C9",
+        "signature": "5bb850cf4779d254af7e09775c95e1e62ae5bb0cc3fb9b8dcf513f956934aafe",
+        "citations": 1,
+        "labels": [
+          "correct",
+          "correct",
+          "correct"
+        ]
+      },
+      {
+        "claim": "C11",
+        "signature": "9d7c319294fd8778d6963797ba5ff3cd30b6a5e98fb3015e399384e4097d4496",
+        "citations": 1,
+        "labels": [
+          "correct",
+          "correct"
+        ]
+      },
+      {
+        "claim": "C12",
+        "signature": "a07ba5f71bcdc1137b61c18af1d5deee56fe1abe809ff1c74045b82e3c14dc88",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C13",
+        "signature": "40b0f3919b14afe4819c328ffea6422076c2fcc8b8399ca0761aa61554d426a9",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C15",
+        "signature": "32d765525f96b52248653b9a1a6ab88c07828156df46ca523176a87af86675f1",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C16",
+        "signature": "e568b730769448dbc4b3edf65d2bee17add9a1c40a268036cae9b47ec518e2bd",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C17",
+        "signature": "1348eb39528634aca60f4105d298d8a6691039178289f4a4cab3c86dc8e955f0",
+        "citations": 1,
+        "labels": [
+          "incorrect"
+        ]
+      },
+      {
+        "claim": "C18",
+        "signature": "da9f19d54836ea949dc7cb815f61535de022f7c203a9963f70503fad15b9b2df",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C19",
+        "signature": "b98b9f7f975d93e9749a22ba210e9a4693d1a1d01c8489ee307f3540e942b1e3",
+        "citations": 2,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C20",
+        "signature": "75b7d511a554ab182866c93f0f9988ebbf88c4358c0779ae5882547c00fc014e",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C21",
+        "signature": "3973910b169d35489bb1c546762b21cf28ae92e4f9f77fb15920db1341a8c7d7",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C22",
+        "signature": "a31a0944de4ae035e1818a32421801db0ddbca95819f7f3fa32a5e2bb9c7aa93",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C23",
+        "signature": "681a04126c5edb32099ee68101bd817fe743e457180f1723861db8643dd5deaa",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C24",
+        "signature": "995c1167ea1e6cafaf859b94b54a31605a62ea6b5e47741dfe89598286ddcdab",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C25",
+        "signature": "c2862f13915bf277a39afc91df3ef9376f6d6c4de505ada16668c3a7399b2cd9",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C26",
+        "signature": "5dcba0ed71a46262abea3f97c0c979bdc51facc89fbd8292110c04d5993ce524",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C27",
+        "signature": "2d7f0a8e1ee535787923a03048b26c727a87285b94a41f59caad085793980a7b",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      }
+    ],
+    "20261128T112458_a0bfcbd3": [
+      {
+        "claim": "C1",
+        "signature": "1c1e20058189d95b7bf8616f0e8818654accf8e8870e8fe31fba6cf24d248401",
+        "citations": 2,
+        "labels": [
+          "correct",
+          "correct"
+        ]
+      },
+      {
+        "claim": "C5",
+        "signature": "c22f8face16ee3da36342fbbaea815a84358884196588b0472c3e88dace756fa",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C7",
+        "signature": "835ebbb0c55a8a60e3226f41ad364059e11cddde867ccd7bc7f49443ba7085ad",
+        "citations": 4,
+        "labels": [
+          "correct",
+          "correct",
+          "unsupported"
+        ]
+      },
+      {
+        "claim": "C8",
+        "signature": "4d470cacc1b91ae1851ebf7c73f29053c80ecb0721d92a0b8ae512f7f7e7c7b1",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C9",
+        "signature": "6a1fcca9236af4c8dc54e76345bc098d6850a737d16f948c8d22d67b415177d3",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C12",
+        "signature": "2159c8bcfec64b93d0593ea2dbafe77a3758d8a42947a43e1c7ef6d36f4ad06f",
+        "citations": 1,
+        "labels": [
+          "correct",
+          "correct",
+          "unsupported"
+        ]
+      },
+      {
+        "claim": "C13",
+        "signature": "1348eb39528634aca60f4105d298d8a6691039178289f4a4cab3c86dc8e955f0",
+        "citations": 1,
+        "labels": [
+          "incorrect"
+        ]
+      },
+      {
+        "claim": "C14",
+        "signature": "da9f19d54836ea949dc7cb815f61535de022f7c203a9963f70503fad15b9b2df",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C15",
+        "signature": "c845561a2f4eb084521c716171b61ec36b6b6635da8d1287ae8da9f065b034db",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C17",
+        "signature": "0c9dac437356f83f822d3c0e7a1119ce933bac5512b811412bbf14ccfd3c9aa2",
+        "citations": 1,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C18",
+        "signature": "e439d11ceece951dbdbac182e42725881ee7d65743bd636627072a8cd87ced29",
+        "citations": 1,
+        "labels": [
+          "correct",
+          "unsupported"
+        ]
+      },
+      {
+        "claim": "C19",
+        "signature": "b98b9f7f975d93e9749a22ba210e9a4693d1a1d01c8489ee307f3540e942b1e3",
+        "citations": 2,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C20",
+        "signature": "75b7d511a554ab182866c93f0f9988ebbf88c4358c0779ae5882547c00fc014e",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C21",
+        "signature": "681a04126c5edb32099ee68101bd817fe743e457180f1723861db8643dd5deaa",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C22",
+        "signature": "3973910b169d35489bb1c546762b21cf28ae92e4f9f77fb15920db1341a8c7d7",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C23",
+        "signature": "a31a0944de4ae035e1818a32421801db0ddbca95819f7f3fa32a5e2bb9c7aa93",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C24",
+        "signature": "995c1167ea1e6cafaf859b94b54a31605a62ea6b5e47741dfe89598286ddcdab",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C25",
+        "signature": "c2862f13915bf277a39afc91df3ef9376f6d6c4de505ada16668c3a7399b2cd9",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C26",
+        "signature": "5dcba0ed71a46262abea3f97c0c979bdc51facc89fbd8292110c04d5993ce524",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      },
+      {
+        "claim": "C27",
+        "signature": "2d7f0a8e1ee535787923a03048b26c727a87285b94a41f59caad085793980a7b",
+        "citations": 3,
+        "labels": [
+          "correct"
+        ]
+      }
+    ]
+  },
+  "live_checks": [
+    {
+      "id": "C1",
+      "card": "K1",
+      "basis": "position_only",
+      "ruling": "ordinary_review",
+      "retained": true
+    },
+    {
+      "id": "C2",
+      "card": "K1",
+      "basis": "position_only",
+      "ruling": "ordinary_review",
+      "retained": false
+    },
+    {
+      "id": "C3",
+      "card": "K2",
+      "basis": "position_only",
+      "ruling": "ordinary_review",
+      "retained": false
+    },
+    {
+      "id": "C4",
+      "card": "K2",
+      "basis": "position_only",
+      "ruling": "ordinary_review",
+      "retained": false
+    },
+    {
+      "id": "C6",
+      "card": "K4",
+      "basis": "independent_operation",
+      "ruling": "ordinary_review",
+      "retained": false
+    },
+    {
+      "id": "C7",
+      "card": "K4",
+      "basis": "independent_operation",
+      "ruling": "ordinary_review",
+      "retained": true
+    },
+    {
+      "id": "C11",
+      "card": "K7",
+      "basis": "position_only",
+      "ruling": "ordinary_review",
+      "retained": false
+    },
+    {
+      "id": "C12",
+      "card": "K7",
+      "basis": "position_only",
+      "ruling": "ordinary_review",
+      "retained": true
+    }
+  ]
+}

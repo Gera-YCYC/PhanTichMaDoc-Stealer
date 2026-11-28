@@ -1,0 +1,24 @@
+{
+  "registered_at": "2026-11-28T11:24:15.981642+00:00",
+  "sample": "public_mercurial.bin",
+  "baseline": "20261128T110548_0cb9678e",
+  "baseline_journal_sha256": "2140fc6556d08aa4b0f40d7605fb8de8f8864c4a330c4bef67a2b5ce8e198b23",
+  "config_sha256": "9ec2b1314da1ec45e610f1a65537d1ff2eca024e5b108841b50c3a64aa8050ee",
+  "source_sha256": {
+    "stealer_agent/column_review.py": "eac3963ca9439a3581f679ff2cd34bc3ab5d26e700d3a80dfd5396f612279bd4",
+    "stealer_agent/evidence_cards.py": "f4947e5988ae5540db303e1f0af83347d7f1aada8a503b57286c4f0cb7bb7c31"
+  },
+  "live": "First subsequent normal web run of the same development sample. Keep partial or adverse results.",
+  "paired": "Review every original proposed claim from cards with verified ordinal reads against the same original projected excerpts, regardless of its original disposition.",
+  "paired_claims": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C6",
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "primary": "Check unsupported field names, collateral rejection and full-report precision, recall, F1, verdict, tools and elapsed seconds. Same-model decisions are not reference labels."
+}

@@ -369,6 +369,7 @@ class Handler(BaseHTTPRequestHandler):
                 from eval.argument_review import review as argument_review
                 from eval.cross_format import published as cross_format
                 from eval.table_access_study import METHOD_RESULT, method_result, published as table_access
+                from eval.ordinal_review_study import PUBLIC as ordinal_receipt, published as ordinal_study
                 from eval.parts_audit import PUBLIC as parts_receipt, score as score_parts, web_details
                 from eval.report_series import ARGUMENT_SERIES, web_results
                 from eval.verdict_trial import PUBLIC as verdict_receipt, score as score_verdict
@@ -419,6 +420,7 @@ class Handler(BaseHTTPRequestHandler):
                         "argument_stability": web_results(ARGUMENT_SERIES),
                         "argument_batch": cross_format(),
                         "reader_comparison": table_access(),
+                        "ordinal_review": ordinal_study() if ordinal_receipt.is_file() else None,
                         "intact_methods": method_result() if METHOD_RESULT.is_file() else None,
                         "verdict_format_trial": score_verdict(read(verdict_receipt)),
                         "argument_review": argument_review(),

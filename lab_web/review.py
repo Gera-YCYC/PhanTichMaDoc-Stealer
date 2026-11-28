@@ -108,6 +108,12 @@ def answer(data, cfg, key):
     graph = r["graph"]
     topics = {i["id"]: i for i in graph["nodes"] + graph["edges"]}
     focus = data.get("focus_edge")
+    field_id = data.get("focus_field")
+    field = None
+    if field_id is not None:
+        field = next((f for f in r["reader_fields"] if f["id"] == field_id and f["ordinal"]), None)
+        if not field or focus is not None or q != f"Có căn cứ đặt tên cột số ở dòng {field['refs'][-1]['line']} không?":
+            raise ValueError("Chọn lại vị trí đọc cột số trên bản đồ của lượt này.")
     edge_ids = {edge["id"] for edge in graph["edges"]}
     if focus is not None and (not isinstance(focus, str) or focus not in edge_ids
                              or q != f"Bằng chứng nào nối hai bước {topics[focus]['label']}?"):
@@ -120,7 +126,10 @@ def answer(data, cfg, key):
     j.append(
         "question", run=run, sample_sha256=r["sha"], question=q, model=meta["digest"]
     )
-    if focus is not None:
+    if field is not None:
+        topic = "reader_schema"
+        j.append("topic_selected", topic=topic, origin="map_field", field=field_id, metrics={})
+    elif focus is not None:
         topic = focus
         j.append("topic_selected", topic=topic, origin="map_edge", metrics={})
     elif (r.get("reader_fields") and "rows" in question_choices(q, topics)
@@ -205,9 +214,12 @@ def answer(data, cfg, key):
             + "."
         )
     else:
-        item = topics[topic]
+        if field is not None:
+            item = {"label": "Lược đồ liên kết đúng với bảng đang đọc", "status": "unresolved", "refs": field["refs"]}
+        else:
+            item = topics[topic]
         if item["status"] != "supported" and records:
-            queries = list(
+            queries = ["CREATE TABLE", "table_info", "sqlite_master"] if field is not None else list(
                 dict.fromkeys(
                     qry for stage in topic.split("-") for qry in STAGES[stage][2]
                 )
@@ -237,8 +249,8 @@ def answer(data, cfg, key):
             )
             # Prefer recovered application source over wrappers. Refuse stale IDs
             # rather than silently reusing storage for a different guest session.
-            if path_check:
-                eid = path_check["refs"][0]["eid"]
+            if field is not None or path_check:
+                eid = (field or path_check)["refs"][0]["eid"]
                 src = records[eid]
             else:
                 eid, src = max(
@@ -280,10 +292,11 @@ def answer(data, cfg, key):
                 obs = view.observation(guard_observation(o)[0])
                 absorb(records, obs)
                 view.refresh(records)
-                graph = ledger(records, r["sha"])
-                item = next(
-                    i for i in graph["edges"] + graph["nodes"] if i["id"] == topic
-                )
+                if field is None:
+                    graph = ledger(records, r["sha"])
+                    item = next(
+                        i for i in graph["edges"] + graph["nodes"] if i["id"] == topic
+                    )
                 note = f"VM đã tìm thêm một lần, nhận {o['hit_count']} kết quả cho vị trí cần kiểm tra."
                 search.update(
                     status="ok", hit_count=o["hit_count"], **search_excerpts(obs)
@@ -318,6 +331,14 @@ def answer(data, cfg, key):
                     f"Dòng {proof['roles']['argument']} truyền trường này vào đối số thứ {proof['position'] + 1}. "
                     f"Dòng {proof['roles']['operation']} dùng dữ liệu từ tham số đó trong lời gọi xử lý. "
                     "Kết quả ghi nhận quan hệ tĩnh trong mã.")
+        if field is not None:
+            line = field["refs"][-1]["line"]
+            text = f"Dòng {line} dùng chỉ số {field['column']}. "
+            if search and search["status"] == "ok":
+                text += f"VM tìm chuỗi «{selected}» trong bản dịch ngược và trả {search['hit_count']} kết quả. "
+                if search["hit_count"]:
+                    text += "Cần kiểm tra kết quả có mô tả đúng bảng và đúng thứ tự cột không. "
+            text += "Tên cột ở vị trí này vẫn chưa xác minh được."
         if item.get("path_check"):
             check = item["path_check"]
             refs = check["refs"]

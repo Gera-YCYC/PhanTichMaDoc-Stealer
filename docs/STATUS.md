@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+**Web đã chạy hết quy trình với Mercurial và Qwen3 8B.** Lượt `20261128T112458_a0bfcbd3` đạt 7/21 mục, precision 63,64%, recall 33,33%, F1 43,75%, verdict `suspicious`. Trong 20 câu có 3 câu thiếu căn cứ dù tất cả đều có trích dẫn. Trên tám câu cố định, bước kiểm chỉ số đã loại được C2 gán tên cho ba cột, đồng thời loại nhầm C9. Màn hình bản đồ có thể gửi một câu hỏi mới tới Qwen và VM để tìm lược đồ đúng nguồn. Đã kiểm tra trực tiếp thao tác và nhật ký trên máy nhóm. [Cách demo, số liệu đối chứng và điều kiện nghiệm thu](KIEM_LUOC_DO.md)
+
 Lượt Mercurial kiểm riêng các hàm còn nguyên đã trả 8 vị trí dùng chỉ số cột, mở được 24 trích dẫn. Báo cáo chỉ đúng 4/21 mục, F1 27,59%. Câu C2 tự gán ba tên cho ba chỉ số khi chưa có nguồn lược đồ. Mục hỏi đáp về kiểu đối số giờ tra cứu lại đúng các sự kiện của lượt. [Mã lượt và thao tác tái kiểm](DOC_COT_NET.md#lần-kiểm-riêng-trên-mercurial)
 
 Ở hai lượt đã đăng ký trước trên bản đọc cột .NET, Gomorrah tăng từ 12 lên 15 trong 40 mục, Mercurial giữ 5/21. Cả hai verdict đều là `suspicious`. Đã kiểm thao tác mở từng vị trí trên giao diện 390 px và 1360 px. [Lượt chạy, tiêu chí chấm và phạm vi của lần sửa tiếp theo](DOC_COT_NET.md)

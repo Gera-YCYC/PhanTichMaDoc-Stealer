@@ -373,9 +373,26 @@ function map(panel) {
           : "Đối số là tên cột" + (field.column ? " · " + field.column : " · đã ẩn tên riêng");
         box.append(el("summary", "Dòng " + call.line + " · " + name));
         refs(box, field.refs);
+        if (field.ordinal && !init.history_only) box.append(button("Tìm lược đồ trong VM", async () => {
+          questionDraft = {field: field.id, text: "Có căn cứ đặt tên cột số ở dòng " + call.line + " không?"};
+          view = "qa";
+          await render();
+          $("#panel textarea")?.focus();
+        }));
         if (field.claim) box.append(button("Mở " + field.claim + " trong báo cáo",
           () => openReportClaim(record.run, field.claim)));
         else box.append(el("small", "Báo cáo cuối chưa giữ nhận định riêng cho vị trí này."));
+        if (field.reviews?.length) {
+          const group = el("div", undefined, "column-reviews");
+          group.append(el("small", "Các câu Qwen đã duyệt với vị trí này"));
+          for (const check of field.reviews) {
+            const outcome = check.kept ? "được giữ" : "bị loại";
+            const reason = ["unverified_column_identity", "explicit_ordinal_mapping"].includes(check.ruling)
+              ? " · thiếu căn cứ xác định tên cột" : "";
+            group.append(button(check.claim + " · " + outcome + reason, () => openReportClaim(record.run, check.claim)));
+          }
+          box.append(group);
+        }
         section.append(box);
       }
       detail.append(section);
@@ -654,6 +671,38 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   label.append(selector);
   panel.append(label);
   const reader = data.reader_comparison?.find(r => r.sample === "public_" + sample + ".bin");
+  if (sample === "mercurial" && data.ordinal_review) {
+    const study = data.ordinal_review;
+    const group = el("details", undefined, "card");
+    group.append(el("summary", "Kiểm tra câu gán tên cho cột số"));
+    group.append(el("p", "Hai cách duyệt cùng " + study.paired.length +
+      " câu, cùng đoạn trích và model. Chỉ giữ một câu khi mọi ý đều có chứng cứ. Nhãn đối chiếu do nhóm lập trên nguồn tĩnh."));
+    const labels = {before:"Trước", after:"Có bước kiểm cột"};
+    table(["Cách duyệt", "Câu đúng được giữ", "Câu sai được giữ", "Câu đúng bị loại", "Câu sai bị loại"],
+      Object.entries(study.paired_counts).map(([name,c]) => [labels[name], c.keep_right || 0, c.keep_wrong || 0,
+        c.reject_right || 0, c.reject_wrong || 0]), group);
+    const baseline = study.arms[0].run;
+    const hasBaseline = init.history.some(r => r.run === baseline);
+    table(["Câu gốc", "Dòng đối chiếu", "Căn cứ cho toàn câu", "Duyệt cũ", "Duyệt mới"],
+      study.paired.map(r => [hasBaseline ? button("Xem " + r.id, () => openReportClaim(baseline, r.id)) : r.id,
+        r.lines.join(", "), r.reference ? "Đủ" : "Thiếu hoặc sai", r.before ? "Giữ" : "Loại", r.after ? "Giữ" : "Loại"]), group);
+    group.append(el("p", "Báo cáo toàn mẫu trong hai lần điều tra riêng"));
+    table(["Lượt", "Mục đúng", "Precision", "Recall", "F1", "Verdict", "Lần gọi công cụ", "Giây"],
+      study.arms.map(a => {
+        const link = init.history.some(r => r.run === a.run) ? button(a.run, async () => {
+          view = "map"; await load(a.run);
+          if (record?.run === a.run) { item = record.graph.nodes.find(n => n.id === "rows"); await render(); }
+        }) : a.run;
+        return [link, a.score ? a.score.correct + "/" + (a.score.correct + a.score.missed) : "Chưa chấm",
+          percent(a.score?.precision), percent(a.score?.recall), percent(a.score?.f1), a.verdict,
+          a.tool_calls, Math.round(a.seconds)];
+      }), group);
+    group.append(el("p", "Chấm từng câu trong báo cáo. Một câu có nhiều ý được tính một lần. Nếu có ý thiếu chứng cứ, xếp toàn câu vào cột thiếu căn cứ."));
+    table(["Lượt", "Câu đúng / tổng", "Câu sai", "Câu thiếu căn cứ", "Tỷ lệ thiếu căn cứ", "Có trích dẫn"],
+      Object.entries(study.sentence_rates).map(([run,s]) => [run, s.correct + "/" + s.total, s.incorrect,
+        s.unsupported, percent(s.unsupported_rate), percent(s.citation_rate)]), group);
+    panel.append(group);
+  }
   if (reader) {
     const group = el("details", undefined, "card");
     group.append(el("summary", "Đối chiếu cách đọc cột trên " + names[sample]));
@@ -1551,7 +1600,8 @@ async function render() {
       const run = record.run;
       act.disabled = true;
       try {
-        const focused = q.value === questionDraft?.text ? {focus_edge: questionDraft.edge} : {};
+        const focused = q.value === questionDraft?.text
+          ? {focus_edge: questionDraft.edge, focus_field: questionDraft.field} : {};
         const a = await api("question", { run, question: q.value, ...focused });
         if (record.run === run) {
           if (

@@ -15,7 +15,9 @@ const scoreOnly = args.includes("--score");
 const fieldsOnly = args.includes("--fields");
 const askColumns = args.includes("--ask-columns");
 const fieldScore = args.includes("--field-score");
-const [run, port = "4180"] = args.filter(arg => !["--report", "--argument", "--ask-argument", "--score", "--fields", "--ask-columns", "--field-score"].includes(arg));
+const ordinalScore = args.includes("--ordinal-score");
+const askSchema = args.includes("--ask-schema");
+const [run, port = "4180"] = args.filter(arg => !arg.startsWith("--"));
 assert.match(run ?? "", /^\d{8}T\d{6}_[a-f0-9]{8}$/, "Cần mã lượt chạy Python vừa hoàn tất.");
 assert.match(port, /^\d{1,5}$/);
 const origin = "http://127.0.0.1:" + port;
@@ -56,7 +58,100 @@ try {
   await page.waitForFunction(id => document.querySelector("#run").textContent === id, run);
   const directory = fileURLToPath(new URL("../evidence/local/", import.meta.url));
   await mkdir(directory, {recursive: true});
-  if (fieldScore) {
+  if (askSchema) {
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    const field = data.reader_fields.find(f => f.ordinal);
+    await page.locator('[data-view="map"]').click();
+    await page.getByRole("button", {name:"Đọc kết quả truy vấn", exact:true}).click();
+    const box = page.locator('[data-fact="' + field.id + '"]');
+    await box.locator(":scope > summary").click();
+    await box.getByRole("button", {name:"Tìm lược đồ trong VM", exact:true}).click();
+    const pending = page.waitForResponse(r => r.url() === origin + "/api/question", {timeout:160000});
+    await page.getByRole("button", {name:"Tra cứu chứng cứ", exact:true}).click();
+    const response = await pending;
+    assert.equal(response.status(), 200);
+    const answer = await response.json();
+    assert.equal(answer.topic, "reader_schema");
+    assert.equal(answer.search.status, "ok");
+    assert.equal(answer.search.output_sha256, field.refs[0].output_sha256);
+    assert.deepEqual(answer.refs, field.refs);
+    assert.match(answer.text, /vẫn chưa xác minh/);
+    const answerBox = page.getByText(answer.text, {exact:true}).locator("..");
+    const fieldBoxes = await answerBox.locator(":scope > .ref").all();
+    assert.equal(fieldBoxes.length, field.refs.length);
+    for (const [i, ref] of fieldBoxes.entries()) {
+      const button = ref.getByText("Xem đoạn mã đã dẫn", {exact:true});
+      await button.click();
+      assert.ok((await button.locator("..").innerText()).includes(field.refs[i].output_sha256));
+      const lines = [...(await button.locator("..").locator("pre").innerText()).matchAll(/^→ (\d+) │ /gm)].map(m => Number(m[1]));
+      assert.deepEqual(lines, Array.from({length:field.refs[i].end-field.refs[i].line+1}, (_, k) => k+field.refs[i].line));
+    }
+    let locations = [];
+    if (answer.search.refs.length) {
+      const summary = page.getByText("Vị trí VM vừa tìm", {exact:true});
+      await summary.click();
+      locations = await openReferences(summary.locator(".."));
+    }
+    assert.deepEqual(locations, answer.search.refs.map(r => [r.line,r.end,r.output_sha256]));
+    assert.deepEqual(errors, []); assert.deepEqual(external, []);
+    const evidence = {run, journal:answer.journal, field:field.id, source_sha256:answer.search.output_sha256,
+      hits:answer.search.hit_count, field_spans:field.refs.map(r => [r.line,r.end]), locations, errors, external};
+    await writeFile(resolve(directory, "schema-" + answer.journal + ".json"), JSON.stringify(evidence, null, 2));
+    console.log(JSON.stringify(evidence));
+  } else if (ordinalScore) {
+    const evalData = await (await page.request.get(origin + "/api/evaluation")).json();
+    const study = evalData.ordinal_review;
+    assert.equal(study.arms[1].run, run);
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    const reviewed = data.reader_fields.filter(f => f.reviews.length);
+    assert.ok(reviewed.length);
+    const opened = [];
+    for (const width of [390, 1360]) {
+      await page.setViewportSize({width, height: 850});
+      await page.locator('[data-view="evaluation"]').click();
+      await page.getByLabel("Mẫu dùng để đối chiếu").selectOption("mercurial");
+      const group = page.getByText("Kiểm tra câu gán tên cho cột số", {exact:true}).locator("..");
+      await group.locator("summary").click();
+      const score = study.sentence_rates[run];
+      assert.ok((await group.innerText()).includes(score.correct + "/" + score.total));
+      const pairedButtons = group.getByRole("button", {name:/^Xem C\d+$/});
+      assert.equal(await pairedButtons.count(), study.paired.length);
+      await group.getByRole("button", {name:"Xem C2",exact:true}).click();
+      await page.waitForFunction(id => document.querySelector("#run").textContent === id, study.arms[0].run);
+      const before = page.locator("#report-C2[open]");
+      await before.waitFor();
+      const parentSpans = await openReferences(before);
+      assert.ok(study.paired.find(r => r.id === "C2").lines.every(n => parentSpans.some(([a,b]) => a <= n && n <= b)));
+      await page.locator('[data-view="evaluation"]').click();
+      await group.locator("summary").click();
+      await group.getByRole("button", {name:run, exact:true}).click();
+      const decisions = new Set();
+      for (const f of reviewed) {
+        for (const d of f.reviews) {
+          if (decisions.has(d.claim)) continue;
+          decisions.add(d.claim);
+          const box = page.locator('[data-fact="' + f.id + '"]');
+          await box.locator(":scope > summary").click();
+          await box.locator(".column-reviews button").filter({hasText: new RegExp("^" + d.claim + " ·")}).click();
+          const card = page.locator("#report-" + d.claim + "[open]");
+          await card.waitFor();
+          const spans = await openReferences(card);
+          const expected = (d.kept ? data.claims : data.rejected_claims).find(c => c.id === d.claim);
+          assert.deepEqual(spans, expected.refs.map(r => [r.line, r.end, data.cited_windows[[r.eid,r.line,r.end].join(":")].output_sha256]));
+          await page.locator('[data-view="map"]').click();
+          await page.getByRole("button", {name:"Đọc kết quả truy vấn",exact:true}).click();
+        }
+      }
+      for (const cid of decisions) assert.ok(study.live_checks.some(c => c.id === cid));
+      assert.deepEqual([...decisions].sort(), [...new Set(reviewed.flatMap(f => f.reviews.map(d => d.claim)))].sort());
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+      opened.push({width, ids:[...decisions].sort(), paired_claim:"C2",
+        paired_run:study.arms[0].run, paired_spans:parentSpans});
+    }
+    assert.deepEqual(errors, []); assert.deepEqual(external, []);
+    await writeFile(resolve(directory, "ordinal-web-" + run + ".json"), JSON.stringify({run, opened, errors, external}, null, 2));
+    console.log(JSON.stringify({run, opened}));
+  } else if (fieldScore) {
     const response = await page.request.get(origin + "/api/evaluation");
     assert.equal(response.status(), 200);
     const study = (await response.json()).intact_methods;

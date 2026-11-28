@@ -1,0 +1,147 @@
+{
+  "run": "20261128T112458_a0bfcbd3",
+  "inherit": "20261128T110548_0cb9678e",
+  "scope": "Chấm từng ý mới với nguồn ILSpy trong tập phát triển. Chưa có người chấm độc lập.",
+  "claims": {
+    "C1": {
+      "signature": "1c1e20058189d95b7bf8616f0e8818654accf8e8870e8fe31fba6cf24d248401",
+      "lines": [
+        779,
+        783,
+        787,
+        795,
+        796
+      ],
+      "atoms": [
+        [
+          "login-copy",
+          "correct"
+        ],
+        [
+          "login-table",
+          "correct"
+        ]
+      ],
+      "reason": "Đoạn trích xác định tệp nguồn, thao tác sao chép và reader chọn bảng trong bản sao."
+    },
+    "C7": {
+      "signature": "835ebbb0c55a8a60e3226f41ad364059e11cddde867ccd7bc7f49443ba7085ad",
+      "lines": [
+        681,
+        687,
+        802,
+        807,
+        812
+      ],
+      "atoms": [
+        [
+          "key-from-state",
+          "correct"
+        ],
+        [
+          "login-key-call",
+          "correct"
+        ],
+        [
+          "login-decrypt-effect-at-call",
+          "unsupported"
+        ]
+      ],
+      "reason": "Có vị trí trích khóa và điểm gọi helper với giá trị đọc và khóa. Phần thân helper chứng minh hiệu ứng giải mã nằm ngoài các dòng câu này dẫn."
+    },
+    "C8": {
+      "signature": "4d470cacc1b91ae1851ebf7c73f29053c80ecb0721d92a0b8ae512f7f7e7c7b1",
+      "lines": [
+        667,
+        668
+      ],
+      "atoms": [
+        [
+          "aes-wrapper-call",
+          "correct"
+        ]
+      ],
+      "reason": "Lời gọi và thứ tự đối số khớp với đoạn trích."
+    },
+    "C9": {
+      "signature": "6a1fcca9236af4c8dc54e76345bc098d6850a737d16f948c8d22d67b415177d3",
+      "lines": [
+        668
+      ],
+      "atoms": [
+        [
+          "utf8-wrapper-return-668",
+          "correct"
+        ]
+      ],
+      "reason": "Giá trị trả về của lời gọi bên trong là đối số trực tiếp của hàm chuyển sang chuỗi."
+    },
+    "C12": {
+      "signature": "2159c8bcfec64b93d0593ea2dbafe77a3758d8a42947a43e1c7ef6d36f4ad06f",
+      "lines": [
+        714,
+        727,
+        728,
+        732
+      ],
+      "atoms": [
+        [
+          "cookie-table",
+          "correct"
+        ],
+        [
+          "cookies-ordinal-12",
+          "correct"
+        ],
+        [
+          "cookie-rank-twelfth",
+          "unsupported"
+        ]
+      ],
+      "reason": "Có đường dẫn, bảng và đối số nguyên 12. Cách nói “12th” khẳng định thứ tự từ một. Đoạn trích không xác định quy ước đánh số của reader."
+    },
+    "C15": {
+      "signature": "c845561a2f4eb084521c716171b61ec36b6b6635da8d1287ae8da9f065b034db",
+      "lines": [
+        761
+      ],
+      "atoms": [
+        [
+          "cookie-handoff",
+          "correct"
+        ]
+      ],
+      "reason": "Đường dẫn và kiểu nội dung đều là đối số ở điểm gọi đã dẫn."
+    },
+    "C17": {
+      "signature": "0c9dac437356f83f822d3c0e7a1119ce933bac5512b811412bbf14ccfd3c9aa2",
+      "lines": [
+        812
+      ],
+      "atoms": [
+        [
+          "login-helper-callsite-812",
+          "correct"
+        ]
+      ],
+      "reason": "Câu mô tả việc gọi helper với hai biến đang thấy tại điểm gọi. Đoạn trích thiếu vị trí lấy khóa ở dòng 807 để ghi điểm cho mục login-key-call."
+    },
+    "C18": {
+      "signature": "e439d11ceece951dbdbac182e42725881ee7d65743bd636627072a8cd87ced29",
+      "lines": [
+        826
+      ],
+      "atoms": [
+        [
+          "password-handoff",
+          "correct"
+        ],
+        [
+          "password-network-delivery-at-call",
+          "unsupported"
+        ]
+      ],
+      "reason": "Có lời gọi với đường dẫn và kiểu nội dung. Riêng điểm gọi chưa chứng minh bên nhận là máy chủ hoặc nội dung tệp thực sự được gửi."
+    }
+  }
+}

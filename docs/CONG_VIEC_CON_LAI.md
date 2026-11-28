@@ -1,5 +1,14 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+| Người phụ trách theo phần việc | Từ kết quả Mercurial mới | Minh chứng cần nộp |
+|---|---|---|
+| Phân tích .NET | Xác định quy ước chỉ số và lược đồ của đúng bảng. Tại nơi gọi helper, kiểm nguồn của giá trị và phần thân trước khi kết luận tác dụng hoặc gửi thành công. | Cặp tọa độ tạo–dùng, liên kết dữ liệu và ví dụ phản chứng. Tìm `sqlite_master` trong lượt vừa đo trả 0 kết quả. |
+| Đánh giá chất lượng | Chốt nhãn độc lập cho mẫu giữ riêng. Kiểm lại cả câu đúng bị loại, câu có trích dẫn nhưng suy sai và các mục bỏ sót. | So hai chế độ với cùng ngân sách. Đo precision, recall, F1, verdict và độ ổn định trong ba lượt cho mỗi cấu hình. Lượt phát triển mới còn bỏ sót 14/21 mục. |
+| YARA, an toàn và train | Kiểm luật đã khóa trên tập độc giữ riêng, bổ sung phép thử injection theo định dạng, thu nhãn nguồn do người phân tích đối chiếu và train lại ranker. | TPR/FPR kèm mẫu số, số lần đổi verdict trên các cặp thử, phiên bản dữ liệu, checkpoint và kết quả trước/sau. |
+| Tái lập | Dựng lab từ repo trên máy thành viên, thực hiện câu hỏi tìm lược đồ và kiểm việc dừng runtime sau demo. | Mã lượt mới, hash mẫu/model, nguồn mở được từ bản đồ, nhật ký Q&A và bằng chứng VM/Ollama đã tắt. |
+
+[Lượt web đã chấm và các lỗi cụ thể](KIEM_LUOC_DO.md)
+
 Ưu tiên .NET là lần theo đối số đọc cột tới nơi sử dụng, rồi đo lại mức bỏ sót và sai nghĩa. Gomorrah còn 17 mục có đủ dòng trong một lượt hỏi model nhưng chưa được đưa vào báo cáo. Với Mercurial, cần nguồn xác định lược đồ trước khi gán nghĩa cho cột số. [Phân loại chỗ thiếu theo nhật ký thật](DOC_COT_NET.md)
 
 Người phụ trách môi trường cần tái lập ba lượt liên tiếp trong điều kiện đủ RAM và ghi cả lượt dừng. Người phụ trách agent cần kiểm câu được gán cho vai trò nối dữ liệu với nơi gửi, đặc biệt trên Gomorrah. Người phụ trách đánh giá cần chốt trước mẫu độc và lành độc lập, so cả verdict lẫn dẫn chứng đúng. Dùng nguyên ngưỡng slide. [Lần ngắt và kết quả thực nghiệm](DOI_CHIEU_KET_LUAN.md)

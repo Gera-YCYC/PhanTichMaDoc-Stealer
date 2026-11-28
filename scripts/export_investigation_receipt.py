@@ -130,6 +130,32 @@ def export(run):
             }
         )
         selected = next((e for e in qs if e["event"] == "topic_selected"), {})
+        if selected.get("origin") == "map_field":
+            clicks_file = ROOT / "evidence/local" / f"schema-{p.parent.name}.json"
+            if clicks_file.is_file():
+                field, = (f for f in view["reader_fields"] if f["id"] == selected["field"] and f["ordinal"])
+                answer = qs[-1]["answer"]
+                search = answer["search"]
+                observed, = (e for e in qs if e["event"] == "observation")
+                action, = (e for e in qs if e["event"] == "action_dispatched")
+                digest = field["refs"][0]["output_sha256"]
+                location = field["refs"][-1]["line"]
+                eid = field["refs"][0]["eid"]
+                query = action["arguments"]["query"]
+                expected = {"run": run, "journal": p.parent.name, "field": field["id"], "source_sha256": digest,
+                            "hits": observed["hit_count"], "field_spans": [[r["line"], r["end"]] for r in field["refs"]],
+                            "locations": [[r["line"], r["end"], digest] for r in search["refs"]], "errors": [], "external": []}
+                if (read(clicks_file) != expected or qs[0]["model"] != pre["model"]["digest"]
+                        or qs[0]["question"] != f"Có căn cứ đặt tên cột số ở dòng {location} không?"
+                        or answer["topic"] != "reader_schema" or search["status"] != "ok" or answer["refs"] != field["refs"]
+                        or action["action"] != "search_evidence" or query not in ("CREATE TABLE", "table_info", "sqlite_master")
+                        or action["arguments"] != {"sample":view["sample"], "evidence_id":eid, "query":query}
+                        or not selected["sequence"] < action["sequence"] < observed["sequence"] < qs[-1]["sequence"]
+                        or observed["output_sha256"] != digest or search["output_sha256"] != digest
+                        or observed["evidence_id"] != eid or search["hit_count"] != observed["hit_count"]
+                        or [r["line"] for r in search["refs"]] != observed["opened_anchors"]):
+                    raise ValueError("Browser field differs from the question or VM source")
+                questions[-1]["schema_search"] = {**expected, "literal":query}
         if selected.get("origin") == "map_edge":
             clicks_file = ROOT / "evidence/local" / f"focus-{p.parent.name}.json"
             if clicks_file.is_file():
@@ -243,6 +269,20 @@ def export(run):
                 raise ValueError("Question differs from the checked source")
             proof["question_journal_sha256"] = question["journal_sha256"]
         browser["argument_browser"] = proof
+    ordinal_file = ROOT / "evidence/local" / f"ordinal-web-{run}.json"
+    if ordinal_file.is_file():
+        clicks = read(ordinal_file)
+        plan = read(ROOT / "eval/adjudications/ordinal-review-protocol.json")
+        parent = case(plan["baseline"])
+        c2, = (c for c in parent["claims"] if c["id"] == "C2")
+        fields = {entry["claim"] for field in view["reader_fields"] for entry in field["reviews"]}
+        spans = [[r["line"], r["end"], parent["cited_windows"][f"{r['eid']}:{r['line']}:{r['end']}"]["output_sha256"]]
+                 for r in c2["refs"]]
+        expected = [{"width": w, "ids": sorted(fields), "paired_claim": "C2",
+                     "paired_run": parent["run"], "paired_spans": spans} for w in (390, 1360)]
+        if not fields or clicks != {"run": run, "opened": expected, "errors": [], "external": []}:
+            raise ValueError("Browser clicks differ from the column reviews or the paired source")
+        browser["ordinal_columns_browser"] = clicks
     return {
         **({"termination": view["termination"]} if view["termination"] else {}),
         **browser,

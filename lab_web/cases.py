@@ -172,6 +172,7 @@ def source(run, fingerprint):
     records, timeline, anchors = {}, [], {}
     attempts = {}
     operation_reviews = {}
+    column_reviews = {}
     reviewable = set()
     last = {}
     termination = {"last_model_phase": None, "error_class": None, "model_unloaded": False}
@@ -183,6 +184,8 @@ def source(run, fingerprint):
             kind = e["event"]
             if kind == "operation_review_decision":
                 operation_reviews[e["fact_id"]] = e["claim_id"] if e["selected"] else None
+            if kind == "column_review":
+                column_reviews[e["claim_id"]] = (e["fact_ids"], e["ruling"], e["assessment"].get("column_basis"))
             if kind == "card_claim_review" and not e["check"]["supported"]:
                 reviewable.add(e["claim_id"])
             desc = None
@@ -254,8 +257,18 @@ def source(run, fingerprint):
         raise ValueError("Các nguồn dẫn cho verdict khác với nhật ký gốc.")
     frozen_graph = redact_document(saved)[0] if saved is not None else None
     kept = {c["id"]: c for c in last["result"]["analysis"]["claims"]}
+    terminal = {**kept, **{c["claim"]["id"]: c["claim"] for c in last["result"]["analysis"].get("rejected_claims", [])}}
     for record in records.values():
         record["reader_fields"] = reader_fields(record, operation_reviews, kept)
+        for field in record["reader_fields"]:
+            field["reviews"] = []
+            for cid, (ids, ruling, basis) in column_reviews.items():
+                if field["id"] not in ids or cid not in terminal:
+                    continue
+                refs = terminal[cid]["evidence"]
+                if all(any(r["evidence_id"] == span["eid"] and r["line"] <= span["line"]
+                           and span["end"] <= r["end_line"] for r in refs) for span in field["refs"]):
+                    field["reviews"].append({"claim": cid, "ruling": ruling, "basis": basis, "kept": cid in kept})
     return (
         records,
         timeline,

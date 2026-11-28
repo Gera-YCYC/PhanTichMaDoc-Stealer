@@ -17,6 +17,7 @@ from .api_reference import reference_for, reference_prompt
 from .operation_context import enrich_card, model_operations
 from .contracts import ATTACK
 from .indicator_candidates import candidates as indicator_candidates
+from . import column_review
 
 CODE_TOOLS = {'decompile_dotnet', 'decompile_python', 'decode_python_literals',
               'disassemble_python', 'python_ast'}
@@ -227,6 +228,11 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
                        scope='Conservative lexical vocabulary from projected excerpts; not proof of C2 or maliciousness')
         api_pack = reference_for(numbered_sections) if api_guidance else {'entries': []}
         api_context = reference_prompt(api_pack) + (OPERATION_GUIDANCE if card.get('operations') else '')
+        ordinal_ids = [f['fact_id'] for f in card.get('operations', [])
+                       if f['operation'] == 'reader_ordinal_field']
+        review_schema = column_review.SCHEMA if ordinal_ids else REVIEW_SCHEMA
+        if ordinal_ids:
+            api_context += column_review.GUIDANCE
         journal.append('card_operation_context',card_id=card['card_id'],operations=card.get('operations',[]),
                        scope='Fact integrity and all binding/call ranges verified; not an automatic semantic grade of model claims')
         journal.append('card_api_reference', card_id=card['card_id'], reference=api_pack,
@@ -241,13 +247,24 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
                      'evidence': copy.deepcopy(refs)}
             claims.append(claim)
             journal.append('card_claim_proposed', card_id=card['card_id'], claim=claim)
-            check = call_model([{'role': 'system', 'content': REVIEW_PROMPT + api_context},
+            review_prompt = REVIEW_PROMPT + api_context + (column_review.REVIEW if ordinal_ids else '')
+            assessment = call_model([{'role': 'system', 'content': review_prompt},
                                 {'role': 'user', 'content': json.dumps({'claim': claim['text'],
                                                                        'kind':claim['kind'], 'value':claim['value'],
                                                                        'technique_id':claim['technique_id'],
                                                                        'code': numbered_sections,
                                                                        'parser_operations':model_operations(card)}, ensure_ascii=False)}],
-                               REVIEW_SCHEMA, 'card_review', exposure)
+                               review_schema, 'card_review', exposure)
+            check = {k: assessment[k] for k in ('supported', 'reason') if isinstance(assessment, dict) and k in assessment}
+            rejection = 'local_semantic_check_unconfirmed'
+            if ordinal_ids:
+                ruling = column_review.decision(claim['text'], assessment)
+                journal.append('column_review', claim_id=claim['id'], card_id=card['card_id'],
+                               fact_ids=ordinal_ids, method=column_review.VERSION, ruling=ruling,
+                               assessment=assessment)
+                if ruling != 'ordinary_review':
+                    rejection = ruling
+                    check = {'supported': False, 'reason': 'Thiếu nguồn ràng buộc tên hoặc ý nghĩa của cột với chỉ số.'}
             if not Draft202012Validator(REVIEW_SCHEMA).is_valid(check):
                 check = {'supported': False, 'reason': 'Invalid reviewer response'}
             journal.append('card_claim_review', claim_id=claim['id'], check=check,
@@ -255,7 +272,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
             if check['supported']:
                 accepted.append(claim)
             else:
-                rejected.append({'claim': claim, 'reasons': ['local_semantic_check_unconfirmed'],
+                rejected.append({'claim': claim, 'reasons': [rejection],
                                  'review_note': check['reason']})
     if technique_review:
         from .technique_review import review_techniques
@@ -278,6 +295,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
         checked['transfer_evidence_claim_ids'] = [c['id'] for c in claims[prior_claim_count:]]
     checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
     checked['api_guidance_enabled'] = api_guidance
+    checked['column_review_method'] = column_review.VERSION
     checked['review_output_order'] = 'evidence-assessment-before-decision'
     checked['local_semantic_check'] = 'per-claim same-SLM heuristic, not independent ground truth'
     checked['local_semantic_support_fraction'] = len(checked['claims']) / len(claims) if claims else None

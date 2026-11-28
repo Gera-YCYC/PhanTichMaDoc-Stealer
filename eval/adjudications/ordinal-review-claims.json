@@ -1,0 +1,14 @@
+{
+  "run": "20261128T110548_0cb9678e",
+  "scope": "Source audit of whole sentences on the registered development case before paired model inference. True requires every part of the original sentence. No human or lecturer approval.",
+  "claims": {
+    "C1": {"supported": true, "lines": [779,783,787,795,796], "reason": "The source and destination are defined, the copy is explicit, and the reader opens the copy and selects the table."},
+    "C2": {"supported": false, "lines": [796,800,801,802], "reason": "Three numeric arguments are visible. Their three proposed semantic names lack a bound schema."},
+    "C3": {"supported": false, "lines": [728,739], "reason": "The named ReadTable call selects a table. A different method reads the column. The stated API attribution conflates the two operations."},
+    "C4": {"supported": false, "lines": [681,693,747], "reason": "The caller supplies the helper return as a key argument. The cited spans do not establish that the invoked decrypt helper carries out decryption."},
+    "C6": {"supported": true, "lines": [795,796,800], "reason": "The local reader selects the table, supplies the literal index zero and assigns the result to a string."},
+    "C7": {"supported": true, "lines": [795,796,801], "reason": "The local reader selects the table, supplies the literal index three and assigns the result to a string."},
+    "C8": {"supported": true, "lines": [713,714,720], "reason": "The defined source file is copied to the temporary destination with the stated filename."},
+    "C9": {"supported": true, "lines": [727,728,732,739], "reason": "The named table and two numeric field reads are present. No semantic names are assigned to these positions."}
+  }
+}

@@ -21,6 +21,19 @@ def test_directory_is_not_a_mail_stage_in_a_path_question():
     assert question_choices("Bản nén có vào thư không?", {}) == ["archive-message"]
 
 
+@pytest.mark.parametrize("field_id,question", [
+    ("unknown", "Có căn cứ đặt tên cột số ở dòng 8 không?"),
+    ("named", "Có căn cứ đặt tên cột số ở dòng 8 không?"),
+    ("ordinal", "Có căn cứ đặt tên cột số ở dòng 99 không?"),
+])
+def test_schema_search_is_bound_to_a_registered_ordinal_before_contacting_model(monkeypatch, field_id, question):
+    fields = [{"id": k, "ordinal": k == "ordinal", "refs": [{"line": 8}]} for k in ("named", "ordinal")]
+    monkeypatch.setattr(review, "case", lambda _: {"graph": {"edges": [], "nodes": []}, "reader_fields": fields})
+    monkeypatch.setattr(review, "records_for", lambda _: {})
+    with pytest.raises(ValueError, match="vị trí đọc cột"):
+        review.answer({"run": "example", "question": question, "focus_field": field_id}, {}, None)
+
+
 def test_search_cites_only_current_visible_matching_anchors():
     observation = {
         "evidence_id": "ev_example",
