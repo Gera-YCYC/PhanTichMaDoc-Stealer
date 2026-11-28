@@ -27,13 +27,15 @@ def main() -> int:
     if args.occurrence_order:
         config['occurrence_order'] = True
     if args.public_demo:
-        manifest_path=Path(__file__).resolve().parents[1]/'config/public-samples.json'
-        manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
-        if args.sample not in manifest['samples']:
-            parser.error('Public demo requires a sample in config/public-samples.json; fixtures are not accepted')
-        config['expected_sample_sha256']=manifest['samples'][args.sample]['sha256']
+        from .demo_samples import MALWARE, registry
+        entry = registry(Path(__file__).resolve().parents[1]).get(args.sample)
+        if entry is None:
+            parser.error('Public demo requires a registered sample or signed control')
+        if args.with_yara and entry['evidence_kind'] != MALWARE:
+            parser.error('For clean files use the corpus YARA evaluation')
+        config['expected_sample_sha256']=entry['sha256']
         config['require_course_model']=True
-        config['evidence_kind']='real-public-malware-local-slm-vm'
+        config['evidence_kind']=entry['evidence_kind']
     token = os.environ.get(config.get("token_env", "STEALER_LAB_TOKEN"), "")
     code = 0
     for _ in range(args.runs):

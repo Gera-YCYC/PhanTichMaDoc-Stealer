@@ -199,7 +199,8 @@ Do not accept a claim merely because an operation ID is present."""
 
 
 def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True,
-                       operation_review=False, technique_review=False, card_selector=select_cards, flow_review=False):
+                       operation_review=False, technique_review=False, card_selector=select_cards, flow_review=False,
+                       recover_sends=False):
     """call_model(messages, schema, phase, evidence_records) owns telemetry/exposure logs."""
     cards = card_selector(evidence, max_cards=max_cards)
     journal.append('evidence_cards_selected', cards=cards,
@@ -277,23 +278,32 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     if technique_review:
         from .technique_review import review_techniques
         review_techniques(evidence, digest, call_model, journal, claims, accepted)
+    selected_operations = {}
     if operation_review:
         from .operation_review import review_operations
         from .contracts import REPORT_SCHEMA
         capacity = REPORT_SCHEMA['properties']['claims']['maxItems'] - len(claims)
-        review_operations(evidence, digest, call_model, journal, claims, accepted, capacity)
+        selected_operations = review_operations(evidence, digest, call_model, journal, claims, accepted, capacity)
     if flow_review:
         from .flow_review import review
         prior_claim_count = len(claims)
         review(evidence, digest, call_model, journal, claims, accepted, rejected)
     raw, checked = finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal,
-                                   review_roles=flow_review)
+                                   review_roles=flow_review,
+                                   send_candidates=selected_operations if recover_sends and flow_review else None)
     checked['report_method'] = 'evidence-cards/11' if operation_review else 'evidence-cards/10'
     if technique_review:
         checked['report_method'] = 'evidence-cards/13'
     if flow_review:
         checked['report_method'] = 'evidence-cards/15'
         checked['transfer_evidence_claim_ids'] = [c['id'] for c in claims[prior_claim_count:]]
+        if recover_sends and operation_review:
+            from .send_recovery import recover
+            receipt = recover(checked, evidence, digest, selected_operations)
+            checked['send_recovery'] = receipt
+            checked['report_method'] = 'evidence-cards/16'
+            checked['verdict_support_scope'] += '; missing send citations checked against previously approved static operations'
+            journal.append('send_recovery', receipt=receipt)
     checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
     checked['api_guidance_enabled'] = api_guidance
     checked['column_review_method'] = column_review.VERSION
@@ -307,7 +317,8 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     return raw, checked
 
 
-def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal, *, review_roles=False):
+def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal, *, review_roles=False,
+                    send_candidates=None):
     """Apply citation checks and synthesize the verdict from all retained behaviors."""
     limitations = ['Static code excerpts only; sample execution was not observed.',
                   'Bounded retrieval is incomplete; absence of a finding does not establish benignness.',
@@ -329,6 +340,14 @@ def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, jo
         schema = object_schema({'verdict': {'enum': ['inconclusive', 'suspicious', 'malicious']},
                                 'verdict_claim_ids': id_list,
                                 **{key: id_list for key in SUPPORT_KEYS}})
+        if send_candidates:
+            from .send_recovery import reviewed_sites
+            reviewed = list(reviewed_sites(accepted, evidence, digest, send_candidates))
+            # Keep room for exact source-bound calls omitted from the first synthesis.
+            # Other roles retain at least half the decision budget.
+            reserved = min(len(reviewed), id_list['maxItems'] // 2)
+            schema['properties']['verdict_claim_ids'] = {**id_list, 'maxItems': id_list['maxItems'] - reserved}
+            journal.append('send_citation_budget', eligible=len(reviewed), reserved=reserved)
         synthesis = call_model([
             {'role': 'system', 'content': 'Assess only these screened static-code claims. '
              'Use malicious only if their combination establishes sensitive-data collection and outbound '

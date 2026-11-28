@@ -298,6 +298,25 @@ def export(run):
             raise ValueError("Browser clicks differ from the column reviews or the paired source")
         browser["ordinal_columns_browser"] = clicks
     checks = (view["verdict_trace"] or {}).get("checks")
+    recovery = (view["verdict_trace"] or {}).get("send_recovery")
+    if recovery is not None:
+        browser["send_recovery"] = recovery
+        browser["evidence_kind"] = report["evidence_kind"]
+        browser["report_method"] = report["analysis"]["report_method"]
+        browser["support_after_recovery"] = report["analysis"]["verdict_support"]
+        budget = [e for e in events if e["event"] == "send_citation_budget"]
+        if budget:
+            entry, = budget
+            browser["send_citation_budget"] = {k:entry[k] for k in ("eligible","reserved")}
+        click_file = ROOT / "evidence/local" / f"send-recovery-web-{run}.json"
+        if click_file.is_file():
+            opened = [{"claim":site["claim"], "fact":site["fact"], **ref}
+                      for site in recovery["sites"] for ref in site["refs"]]
+            expected = {"run":run, "screens":[{"width":w,"opened":opened} for w in (390,1360)],
+                        "errors":[], "external":[]}
+            if read(click_file) != expected:
+                raise ValueError("Các dòng mở trên web khác nguồn của thao tác gửi.")
+            browser["send_recovery_browser"] = expected
     if checks is not None:
         browser["role_evidence_checks"] = checks
         proof_file = ROOT / "evidence/local" / f"role-lines-web-{run}.json"

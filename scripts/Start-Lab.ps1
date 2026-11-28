@@ -14,8 +14,14 @@ if (-not ($running -contains $vmx)) {
 $ready=$false
 $bootDeadline=[DateTime]::UtcNow.AddSeconds(120)
 while ([DateTime]::UtcNow -lt $bootDeadline) {
-    & ssh -i private/lab-vm/admin_ed25519 -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=private/lab-vm/known_hosts -o ConnectTimeout=3 labadmin@192.168.56.101 'test -f /opt/stealer-lab/BOOTSTRAP_READY' 2>$null
-    if ($LASTEXITCODE -eq 0) { $ready=$true; break }
+    # Windows PowerShell treats redirected native stderr as an error record.
+    # During boot, a closed SSH port should consume one retry.
+    $ready = & {
+        $ErrorActionPreference='Continue'
+        & ssh -i private/lab-vm/admin_ed25519 -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=private/lab-vm/known_hosts -o ConnectTimeout=3 labadmin@192.168.56.101 'test -f /opt/stealer-lab/BOOTSTRAP_READY' 2>$null
+        $LASTEXITCODE -eq 0
+    }
+    if ($ready) { break }
     Start-Sleep -Seconds 1
 }
 if (-not $ready) { throw 'VM did not report bootstrap readiness on pinned SSH within two minutes.' }

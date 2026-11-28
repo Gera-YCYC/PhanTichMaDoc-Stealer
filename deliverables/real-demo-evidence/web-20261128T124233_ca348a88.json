@@ -1,0 +1,241 @@
+{
+  "send_recovery": {
+    "prior_citations": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "prior_verdict": "inconclusive",
+    "sites": [],
+    "outcome": "searched"
+  },
+  "evidence_kind": "signed-clean-control-local-slm-vm",
+  "report_method": "evidence-cards/16",
+  "support_after_recovery": {
+    "sensitive_collection_claim_ids": [],
+    "outbound_transfer_claim_ids": [],
+    "data_link_claim_ids": []
+  },
+  "send_recovery_browser": {
+    "run": "20261128T124233_ca348a88",
+    "screens": [
+      {
+        "width": 390,
+        "opened": []
+      },
+      {
+        "width": 1360,
+        "opened": []
+      }
+    ],
+    "errors": [],
+    "external": []
+  },
+  "role_evidence_checks": [],
+  "run": "20261128T124233_ca348a88",
+  "sample": "clean_ms_addinprocess.bin",
+  "sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "7a1b9eca58b9091ff37a8742f6e5fee6133aa8625bad36663178674d55fad8a1",
+  "config_sha256_excluding_sample": "ec9b15833bc57c798b7df1a12c8da1d9c2ce1164d59fead314db2675d580ca87",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": false,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_needs_review",
+  "verdict": "inconclusive",
+  "metrics": {
+    "elapsed_s": 325.4251,
+    "model_calls": 27,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 53573,
+    "completion_tokens": 1978,
+    "host_peak_rss_bytes": 29933568,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 672874496,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 171,
+  "journal_sha256": "799f399a4ab32dd8167975ebd62f3601a6c8d06ec60b56b1627399b8521fe629",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 4,
+      "edge": "process-write"
+    },
+    {
+      "step": 4,
+      "edge": "process-write",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 6,
+      "edge": "query-rows"
+    },
+    {
+      "step": 6,
+      "edge": "query-rows",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 7,
+      "edge": "rows-process"
+    },
+    {
+      "step": 7,
+      "edge": "rows-process",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 9,
+      "edge": "archive-message"
+    },
+    {
+      "step": 9,
+      "edge": "archive-message",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 10,
+      "edge": "send-response"
+    },
+    {
+      "step": 10,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 4
+    },
+    {
+      "step": 11,
+      "edge": "send-response"
+    },
+    {
+      "step": 11,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 12,
+      "edge": "query-rows"
+    },
+    {
+      "step": 12,
+      "edge": "query-rows",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 14,
+      "edge": "archive-message"
+    },
+    {
+      "step": 14,
+      "edge": "archive-message",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 15,
+      "edge": "send-response"
+    },
+    {
+      "step": 15,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 4
+    },
+    {
+      "step": 16,
+      "edge": "send-response"
+    },
+    {
+      "step": 16,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 2
+    },
+    {
+      "step": 17,
+      "edge": "send-response"
+    },
+    {
+      "step": 17,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 2
+    }
+  ],
+  "accepted_claims": 4,
+  "accepted_claim_keys_sha256": "8c2533782db6d09626cf72b9fe93455986d2eb4d901bf721608e254d2ba828fe",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "missing",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [],
+  "questions": [],
+  "ranking_anchors_for_review": 6,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

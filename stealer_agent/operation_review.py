@@ -22,6 +22,7 @@ def batches(entries):
 
 def review_operations(evidence, digest, call_model, journal, claims, accepted, capacity):
     entries, omitted = catalog(evidence, digest)
+    selected_claims = {}
     for entry in entries[capacity:]:
         omitted.append({'fact_id': entry['fact_id'], 'reason': 'report claim budget'})
     journal.append('operation_review_inventory', eligible=len(entries), omitted=omitted)
@@ -56,5 +57,7 @@ def review_operations(evidence, digest, call_model, journal, claims, accepted, c
                          'technique_id': '', 'evidence': entry['evidence']}
                 claims.append(claim)
                 accepted.append(claim)
+                selected_claims[entry['fact_id']] = claim_id
             journal.append('operation_review_decision', fact_id=entry['fact_id'], selected=decisions[key],
                            claim_id=claim_id, scope='Model selection from bounded parser candidates')
+    return selected_claims

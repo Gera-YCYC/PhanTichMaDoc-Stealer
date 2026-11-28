@@ -4,6 +4,8 @@ StealerLab là đồ án phân tích tĩnh stealer .NET/Python bằng agent ReAc
 
 ## Demo trực tiếp
 
+Chọn **Chạy điều tra** để xem nhật ký thật của lượt mới. Trong **Nhận định**, mục **Kiểm tra lại điểm gửi** cho mở các dòng VM đã dùng và giải thích vì sao dữ liệu gửi đi còn cần kiểm chứng. Danh sách mẫu có thêm đối chứng .NET có chữ ký Microsoft. [Năm bước demo và số liệu đối chứng](docs/KIEM_DIEM_GUI.md)
+
 Để kiểm tra một câu có thực sự hỗ trợ kết luận, mở **Nhận định → Vì sao báo cáo đưa ra verdict này?**. Bản mới lưu từng vai trò Qwen đề xuất, những dòng đã đọc và quyết định sau kiểm tra. Điểm gửi đã xuất hiện trong báo cáo nhưng bị bỏ qua cũng có thể mở từ đây. [Demo trên Mercurial, Python và Gomorrah](docs/KIEM_VAI_TRO_VERDICT.md)
 
 Trên máy Windows đã dựng lab, mở PowerShell trong thư mục chứa `agent_react.py`. Lệnh dưới đây bật VMware và Ollama, kiểm kết nối rồi mở dịch vụ web trên máy. Thành viên dùng máy mới làm theo [hướng dẫn cài đặt](docs/TEAM_SETUP.md).

@@ -1,0 +1,18 @@
+{
+  "run": "20261128T124815_dca6f7b8",
+  "inherit": "20261128T085636_4eaac445",
+  "claims": {
+    "C1": {
+      "signature": "09d74204f987ad1e064e79bc36b8414d38ea22a0418a98609fa3f00a75d7ed50",
+      "lines": [10, 276, 277, 278, 279],
+      "reason": "The archive helper constructs the temporary zip path and calls the imported library with the matching archive base and root.",
+      "atoms": [["PY24-A18", "correct"]]
+    },
+    "C3": {
+      "signature": "2c661729a05180094ce3143035da39fb8ee0116f042c727074063833f3f91e09",
+      "lines": [83, 84, 106],
+      "reason": "The configured hostname matches the declared destination and the SMTP constructor uses that host. Static indicator only.",
+      "atoms": [["PY24-A27", "correct"]]
+    }
+  }
+}

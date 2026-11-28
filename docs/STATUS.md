@@ -1,5 +1,7 @@
 # Trạng thái sản phẩm ngày 28/11/2026
 
+Bản web đã phục hồi C21 ở dòng SMTP 109 trên PythonStealer thật. Báo cáo đạt 21/36 ý, F1 73,68%, verdict `suspicious`. Trên đối chứng .NET có chữ ký, verdict là `inconclusive`. Cả hai kết luận đều chưa khớp nhãn lành/độc khi chấm nghiêm theo slide. [Mã lượt, phương pháp chấm và hướng dẫn demo](KIEM_DIEM_GUI.md)
+
 **Chưa hoàn thành toàn bộ đồ án.** Mục tiêu là sản phẩm phân tích stealer .NET/Python theo toàn bộ slide/đề xuất, không còn dừng ở buổi 4. Tài liệu bàn giao là Markdown kỹ thuật; thông tin sinh viên và bìa báo cáo không là điều kiện chặn.
 
 ## Cập nhật hiện tại

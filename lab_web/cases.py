@@ -11,6 +11,7 @@ from stealer_agent.journal import verify_journal
 from stealer_agent.operation_context import valid_operations
 from stealer_agent.operation_assertions import render
 from stealer_agent.redaction import redact_document
+from stealer_agent.demo_samples import registry
 from .verdict import trace as verdict_trace
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,7 +23,7 @@ def read(path):
 
 
 def samples():
-    return read(ROOT / "config/public-samples.json")["samples"]
+    return registry(ROOT)
 
 
 def directory(run):
@@ -36,12 +37,12 @@ def directory(run):
 
 def trusted_report(run):
     data = read(directory(run) / "report.redacted.json")
-    sha = samples().get(data.get("sample"), {}).get("sha256")
+    entry = samples().get(data.get("sample"), {})
     if (
-        not sha
+        not entry
         or data.get("run_id") != run
-        or data.get("sample_sha256") != sha
-        or data.get("evidence_kind") != "real-public-malware-local-slm-vm"
+        or data.get("sample_sha256") != entry["sha256"]
+        or data.get("evidence_kind") != entry["evidence_kind"]
     ):
         raise ValueError("Hồ sơ chưa xác nhận được mẫu công khai.")
     return data
@@ -173,6 +174,7 @@ def source(run, fingerprint):
     attempts = {}
     operation_reviews = {}
     role_decisions = []
+    recoveries = []
     column_reviews = {}
     reviewable = set()
     last = {}
@@ -187,6 +189,8 @@ def source(run, fingerprint):
                 operation_reviews[e["fact_id"]] = e["claim_id"] if e["selected"] else None
             if kind == "verdict_role_checked":
                 role_decisions.append({k: e[k] for k in ("claim","role","status","witnesses")})
+            if kind == "send_recovery":
+                recoveries.append(e["receipt"])
             if kind == "column_review":
                 column_reviews[e["claim_id"]] = (e["fact_ids"], e["ruling"], e["assessment"].get("column_basis"))
             if kind == "card_claim_review" and not e["check"]["supported"]:
@@ -258,6 +262,9 @@ def source(run, fingerprint):
     ):
         raise ValueError("Thông tin model hoặc mẫu không khớp.")
     saved = last["result"].get("investigation")
+    recovery = last["result"]["analysis"].get("send_recovery")
+    if recoveries != ([recovery] if recovery is not None else []):
+        raise ValueError("Lượt bổ sung điểm gửi khác nhật ký.")
     if "role_checks" in last["result"]["analysis"] and role_decisions != last["result"]["analysis"]["role_checks"]:
         raise ValueError("Số lần kiểm nguồn theo vai trò khác nhật ký.")
     if verdict_trace(last["result"].get("analysis") or {}) != verdict_trace(r.get("analysis") or {}):
@@ -268,11 +275,16 @@ def source(run, fingerprint):
     context_ids = set(last["result"]["analysis"].get("catch_context_claim_ids", []))
     send_ids = set(last["result"]["analysis"].get("verdict_support", {}).get("outbound_transfer_claim_ids", []))
     cited_sends = send_ids.intersection(last["result"]["analysis"].get("verdict_claim_ids", []))
+    verified_sends = {}
     for record in records.values():
         record["reader_fields"] = reader_fields(record, operation_reviews, kept)
-        record["other_send_sites"] = [{"claim": cid, "fact": f["fact_id"], "refs": refs} for f, refs, cid
-            in bound_sites(record, operation_reviews, kept, {"smtp_send", "file_upload"})
-            if cid and cid not in cited_sends]
+        record["other_send_sites"] = []
+        for f, refs, cid in bound_sites(record, operation_reviews, kept, {"smtp_send", "file_upload"}):
+            if cid:
+                site = {"claim": cid, "fact": f["fact_id"], "refs": refs}
+                verified_sends[f["fact_id"]] = {**site, "operation": f["operation"]}
+                if cid not in cited_sends:
+                    record["other_send_sites"].append(site)
         record["catch_sites"] = [
             {"id": fact["fact_id"], "target": fact["inputs"]["call"], "refs": refs, "claim": claim,
              "context_only": claim in context_ids,
@@ -290,6 +302,9 @@ def source(run, fingerprint):
                 if all(any(r["evidence_id"] == span["eid"] and r["line"] <= span["line"]
                            and span["end"] <= r["end_line"] for r in refs) for span in field["refs"]):
                     field["reviews"].append({"claim": cid, "ruling": ruling, "basis": basis, "kept": cid in kept})
+    for site in (recovery or {}).get("sites", []):
+        if verified_sends.get(site["fact"]) != {k:v for k,v in site.items() if k != "status"}:
+            raise ValueError("Điểm gửi phục hồi khác kết quả VM và câu đã duyệt.")
     return (
         records,
         timeline,
@@ -562,7 +577,8 @@ def case(run):
         "reader_fields": fields,
         "other_send_sites": other_sends,
         "catch_sites": catch_sites,
-        "cited_windows": cited_windows(records, graph, claims + rejected + fields + catch_sites + role_points + other_sends),
+        "cited_windows": cited_windows(records, graph, claims + rejected + fields + catch_sites + role_points + other_sends
+                                      + analysis.get("send_recovery", {}).get("sites", [])),
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,

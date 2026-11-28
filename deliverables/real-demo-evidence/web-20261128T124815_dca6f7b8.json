@@ -1,0 +1,739 @@
+{
+  "send_recovery": {
+    "prior_citations": [
+      "C1",
+      "C2",
+      "C4",
+      "C5",
+      "C8",
+      "C9",
+      "C11",
+      "C12",
+      "C13"
+    ],
+    "prior_verdict": "suspicious",
+    "sites": [
+      {
+        "claim": "C21",
+        "fact": "op_824490c1b6810fc1",
+        "operation": "smtp_send",
+        "refs": [
+          {
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 14,
+            "end": 14,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          },
+          {
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 106,
+            "end": 106,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          },
+          {
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 109,
+            "end": 109,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          }
+        ],
+        "status": "recovered"
+      }
+    ],
+    "outcome": "searched"
+  },
+  "evidence_kind": "real-public-malware-local-slm-vm",
+  "report_method": "evidence-cards/16",
+  "support_after_recovery": {
+    "sensitive_collection_claim_ids": [],
+    "outbound_transfer_claim_ids": [
+      "C1",
+      "C2",
+      "C21"
+    ],
+    "data_link_claim_ids": [
+      "C2"
+    ]
+  },
+  "send_citation_budget": {
+    "eligible": 1,
+    "reserved": 1
+  },
+  "send_recovery_browser": {
+    "run": "20261128T124815_dca6f7b8",
+    "screens": [
+      {
+        "width": 390,
+        "opened": [
+          {
+            "claim": "C21",
+            "fact": "op_824490c1b6810fc1",
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 14,
+            "end": 14,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          },
+          {
+            "claim": "C21",
+            "fact": "op_824490c1b6810fc1",
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 106,
+            "end": 106,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          },
+          {
+            "claim": "C21",
+            "fact": "op_824490c1b6810fc1",
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 109,
+            "end": 109,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          }
+        ]
+      },
+      {
+        "width": 1360,
+        "opened": [
+          {
+            "claim": "C21",
+            "fact": "op_824490c1b6810fc1",
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 14,
+            "end": 14,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          },
+          {
+            "claim": "C21",
+            "fact": "op_824490c1b6810fc1",
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 106,
+            "end": 106,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          },
+          {
+            "claim": "C21",
+            "fact": "op_824490c1b6810fc1",
+            "eid": "ev_16ac10a849cf4b7c",
+            "line": 109,
+            "end": 109,
+            "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "external": []
+  },
+  "role_evidence_checks": [
+    {
+      "claim": "C4",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C5",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C11",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C12",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C13",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C31",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C33",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C34",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "claim": "C1",
+      "role": "outbound_transfer_claim_ids",
+      "status": "supported_by_review",
+      "witnesses": [
+        {
+          "part": "send",
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 109,
+          "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78",
+          "fact": "op_824490c1b6810fc1"
+        }
+      ]
+    },
+    {
+      "claim": "C2",
+      "role": "outbound_transfer_claim_ids",
+      "status": "supported_by_review",
+      "witnesses": [
+        {
+          "part": "send",
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 109,
+          "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78",
+          "fact": "op_824490c1b6810fc1"
+        }
+      ]
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C21",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C22",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C23",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C24",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C25",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C26",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C27",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "outbound_transfer_claim_ids",
+      "claim": "C28",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "claim": "C1",
+      "role": "data_link_claim_ids",
+      "status": "insufficient",
+      "witnesses": [
+        {
+          "part": "send",
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 109,
+          "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78",
+          "fact": "op_824490c1b6810fc1"
+        }
+      ]
+    },
+    {
+      "claim": "C2",
+      "role": "data_link_claim_ids",
+      "status": "supported_by_review",
+      "witnesses": [
+        {
+          "part": "sensitive_source",
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 278,
+          "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+        },
+        {
+          "part": "binding_to_payload",
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 96,
+          "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+        },
+        {
+          "part": "send",
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 109,
+          "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78",
+          "fact": "op_824490c1b6810fc1"
+        }
+      ]
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C21",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C22",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C23",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C24",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C25",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C26",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C27",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "data_link_claim_ids",
+      "claim": "C28",
+      "status": "not_cited",
+      "witnesses": []
+    }
+  ],
+  "run": "20261128T124815_dca6f7b8",
+  "sample": "public_python2024.bin",
+  "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "ca5e8bc9e19a9bc2a9e097f29501fa0c7dd6e083fddc4fad745309a861e950c5",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 471.5851,
+    "model_calls": 52,
+    "tool_calls": 17,
+    "tool_errors": 1,
+    "prompt_tokens": 94650,
+    "completion_tokens": 3347,
+    "host_peak_rss_bytes": 30445568,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 842260480,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decode_python_literals",
+    "disassemble_python",
+    "identify",
+    "unpack_pyinstaller"
+  ],
+  "journal_events": 312,
+  "journal_sha256": "0453315826b22ef0799bcd05f96165c83bd05fcd125f500d769d44cde99152e1",
+  "gaps": [
+    {
+      "step": 6,
+      "edge": "rows-process"
+    },
+    {
+      "step": 6,
+      "edge": "rows-process",
+      "status": "supported",
+      "hit_count": 5
+    },
+    {
+      "step": 7,
+      "edge": "write-archive"
+    },
+    {
+      "step": 7,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 8,
+      "edge": "write-archive"
+    },
+    {
+      "step": 8,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 9,
+      "edge": "message-send"
+    },
+    {
+      "step": 9,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 10,
+      "edge": "message-send"
+    },
+    {
+      "step": 10,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 11,
+      "edge": "message-send"
+    },
+    {
+      "step": 11,
+      "edge": "message-send",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 12,
+      "edge": "message-send"
+    },
+    {
+      "step": 12,
+      "edge": "message-send",
+      "status": "supported",
+      "hit_count": 1
+    },
+    {
+      "step": 13,
+      "edge": "write-archive"
+    },
+    {
+      "step": 13,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 8
+    },
+    {
+      "step": 15,
+      "edge": "write-archive"
+    },
+    {
+      "step": 15,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 6
+    },
+    {
+      "step": 16,
+      "edge": "write-archive"
+    },
+    {
+      "step": 16,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 2
+    },
+    {
+      "step": 17,
+      "edge": "write-archive"
+    },
+    {
+      "step": 17,
+      "edge": "write-archive",
+      "status": "partial",
+      "hit_count": 1
+    }
+  ],
+  "accepted_claims": 32,
+  "accepted_claim_keys_sha256": "5c08d01a3baff645cc20fd9704d8e1d406bf6b74d2957d4c346bb347cf63c91f",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 142,
+          "end": 142
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 143,
+          "end": 143
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 247,
+          "end": 247
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 248,
+          "end": 248
+        }
+      ]
+    },
+    {
+      "id": "rows-process",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 140,
+          "end": 144
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 69,
+          "end": 75
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 9,
+          "end": 9
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 12,
+          "end": 12
+        }
+      ]
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "partial",
+      "path_check": {
+        "relation": "writer_path_beneath_archive_input",
+        "possible_names": 16,
+        "unresolved": "file_presence_at_archive_time",
+        "spans": [
+          [
+            10,
+            10,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            25,
+            25,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            27,
+            45,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            116,
+            116,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            122,
+            124,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            262,
+            267,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            276,
+            276,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            279,
+            279,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            292,
+            292,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            294,
+            294,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            299,
+            299,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            308,
+            308,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ],
+          [
+            315,
+            315,
+            "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+          ]
+        ]
+      },
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 276,
+          "end": 276
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 278,
+          "end": 278
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 279,
+          "end": 279
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 286,
+          "end": 286
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 315,
+          "end": 315
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 323,
+          "end": 323
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 82,
+          "end": 82
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 96,
+          "end": 96
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 98,
+          "end": 98
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 102,
+          "end": 102
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 103,
+          "end": 103
+        }
+      ]
+    },
+    {
+      "id": "message-send",
+      "status": "supported",
+      "coordinates": [
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 103,
+          "end": 103
+        },
+        {
+          "eid": "ev_16ac10a849cf4b7c",
+          "line": 109,
+          "end": 109
+        }
+      ]
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_03"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [],
+  "ranking_anchors_for_review": 19,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

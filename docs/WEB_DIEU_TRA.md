@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Để chạy một lượt mới và kiểm tra trường hợp Qwen bỏ sót lời gọi gửi, xem [kịch bản PythonStealer và tệp .NET đối chứng](KIEM_DIEM_GUI.md). Tab **Nhật ký** mở khi bấm **Chạy điều tra**. Mã lượt xuất hiện khi agent tạo nhật ký trên máy.
+
 Trong lượt chạy có kiểm nguồn theo vai trò, mở **Nhận định → Vì sao báo cáo đưa ra verdict này?** rồi chọn một mã câu dưới vai trò thu thập, gửi hoặc nối dữ liệu. Người xem có thể mở riêng dòng chứng minh từng phần và trở lại nguyên câu. [Cách dùng và cách chấm](KIEM_VAI_TRO_VERDICT.md)
 
 Để giảng viên kiểm một kết luận của Qwen trên mẫu Mercurial, mở **Nhận định → Vì sao báo cáo đưa ra verdict này? → Kiểm tra trên bản đồ**. Web chọn đường nối đầu tiên còn thiếu trên tuyến đã lưu. Bấm **Hỏi tiếp về đường nối này** để đặt câu hỏi cho agent. Mục **Bản đồ chứng cứ → Nhánh xử lý lỗi** cho mở điểm khai báo và điểm dùng đối số. [Kịch bản .NET, thời gian chạy và kết quả](NHANH_XU_LY_LOI.md)

@@ -92,7 +92,7 @@ async function load(id, initial = false) {
   answerResult = r.questions?.at(-1) || null;
   $("#run").textContent = r.run;
   $("#title").textContent = r.sample;
-  $("#meta").textContent = r.model + "  ·  SHA-256 " + r.sha;
+  $("#meta").textContent = init.samples[r.sample].branch + "  ·  " + r.model + "  ·  SHA-256 " + r.sha;
   $("#metrics").replaceChildren(
     ...[
       [r.verdict, "Verdict của agent"],
@@ -693,6 +693,15 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   selector.className = "evaluation-sample";
   label.append(selector);
   panel.append(label);
+  if (data.send_site_retrieval) {
+    const {TP, FP, FN, TN} = data.send_site_retrieval;
+    const study = el("details", undefined, "card");
+    study.id = "send-site-study";
+    study.append(el("summary", "Tìm đúng câu mô tả thao tác gửi trên các báo cáo đã chấm"));
+    table(["Tìm đúng", "Gán nhầm", "Bỏ sót", "Loại đúng"], [[TP, FP, FN, TN]], study);
+    study.append(el("p", "Phép thử dùng " + (TP + FP + FN + TN) + " cặp câu và vai trò gửi từ các lượt phát triển .NET/Python. Mỗi câu được so với toàn bộ trích dẫn của thao tác tương ứng."));
+    panel.append(study);
+  }
   const reader = data.reader_comparison?.find(r => r.sample === "public_" + sample + ".bin");
   if (sample === "mercurial" && data.catch_study) {
     const study = data.catch_study;
@@ -1552,6 +1561,27 @@ async function render() {
           line.append(kept.has(id) ? button(name, () => openReportClaim(record.run, id)) : el("span", name));
         }
         section.append(role.ids.length ? line : el("p", v.checks ? "Chưa có câu qua bước kiểm cho vai trò này." : "Qwen để trống vai trò này."));
+        if (role.role === "outbound_transfer_claim_ids" && v.send_recovery) {
+          const review = v.send_recovery;
+          const box = el("details", undefined, "card");
+          box.id = "send-recovery";
+          box.append(el("summary", "Kiểm tra lại điểm gửi · " + review.sites.filter(s => s.status === "recovered").length + " câu bổ sung"));
+          box.append(el("p", review.outcome === "already_supported" ? "Bước kiểm trước đã có câu dẫn cho thao tác gửi."
+            : "Agent đối chiếu lại các thao tác VM đã xác định với câu Qwen đã duyệt. Nội dung dữ liệu gửi đi cần chứng cứ riêng."));
+          box.append(el("p", "Trước khi đối chiếu, verdict là " + review.prior_verdict +
+            (review.prior_citations.length ? " và dẫn " + review.prior_citations.join(", ") + "." : " và chưa dẫn câu nào.")));
+          if (review.outcome === "searched" && !review.sites.length) box.append(el("p", "Chưa tìm được câu khớp đủ với một lời gọi gửi."));
+          for (const site of review.sites) {
+            const entry = el("details", undefined, "card");
+            entry.dataset.recoveredFact = site.fact;
+            entry.append(el("summary", site.claim + " · dòng " + site.refs.at(-1).line +
+              (site.status === "citation_limit" ? " · đã đủ số câu dẫn" : " · đã bổ sung")));
+            refs(entry, site.refs);
+            entry.append(button("Mở câu " + site.claim, () => openReportClaim(record.run, site.claim)));
+            box.append(entry);
+          }
+          section.append(box);
+        }
         if (role.role === "outbound_transfer_claim_ids" && record.other_send_sites?.length) {
           const omitted = el("details", undefined, "card");
           omitted.id = "other-send-sites";
@@ -1817,6 +1847,10 @@ async function render() {
 async function launch(kind) {
   $("#banner").textContent = "";
   await api(kind, { sample: $("#sample").value });
+  if (kind === "analyze") {
+    view = "log";
+    await render();
+  }
   await poll();
 }
 async function poll() {
@@ -1843,7 +1877,8 @@ async function poll() {
     }
     if (job.active && view === "log") {
       const p = $("#panel");
-      p.replaceChildren(el("h2", "Đang chạy"));
+      p.replaceChildren(el("h2", "Nhật ký trực tiếp · " + (job.sample || job.kind)));
+      if (job.run) p.append(el("small", job.run));
       for (const line of job.lines) p.append(el("div", line, "card"));
     }
   } finally {
