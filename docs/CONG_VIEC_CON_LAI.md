@@ -1,5 +1,7 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+**Việc cần làm trước lần đo kế tiếp.** Lượt Mercurial mới đã chỉ ra rằng một câu mô tả đúng điểm gọi có thể bị dùng sai khi kết luận về đường truyền. Người phụ trách agent cần kiểm riêng từng vai trò bằng các dòng đủ hẹp để thấy đối số và nơi sử dụng. Dùng C12 làm ca thông báo lỗi, C11 làm ca đường dẫn bàn giao, và C1 làm đối chứng cho câu có trích dẫn rộng nhưng mô tả đúng thao tác đọc. Người chấm khóa nhãn và ca đối chứng trước khi thử trên mẫu độc, lành giữ riêng ở cả hai định dạng. Chỉ đóng việc khi có bảng câu–vai trò, trường hợp loại nhầm, recall và verdict theo từng mẫu. [Kết quả và tọa độ dòng của lượt phát triển](NHANH_XU_LY_LOI.md)
+
 | Người phụ trách theo phần việc | Từ kết quả Mercurial mới | Minh chứng cần nộp |
 |---|---|---|
 | Phân tích .NET | Xác định quy ước chỉ số và lược đồ của đúng bảng. Tại nơi gọi helper, kiểm nguồn của giá trị và phần thân trước khi kết luận tác dụng hoặc gửi thành công. | Cặp tọa độ tạo–dùng, liên kết dữ liệu và ví dụ phản chứng. Tìm `sqlite_master` trong lượt vừa đo trả 0 kết quả. |

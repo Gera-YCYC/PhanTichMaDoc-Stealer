@@ -258,8 +258,17 @@ def source(run, fingerprint):
     frozen_graph = redact_document(saved)[0] if saved is not None else None
     kept = {c["id"]: c for c in last["result"]["analysis"]["claims"]}
     terminal = {**kept, **{c["claim"]["id"]: c["claim"] for c in last["result"]["analysis"].get("rejected_claims", [])}}
+    context_ids = set(last["result"]["analysis"].get("catch_context_claim_ids", []))
     for record in records.values():
         record["reader_fields"] = reader_fields(record, operation_reviews, kept)
+        record["catch_sites"] = [
+            {"id": fact["fact_id"], "target": fact["inputs"]["call"], "refs": refs, "claim": claim,
+             "context_only": claim in context_ids,
+             "overlapping_claims": [cid for cid, c in kept.items() if cid != claim and all(
+                 any(r["evidence_id"] == span["eid"] and r["line"] <= span["line"] and r["end_line"] >= span["end"]
+                     for r in c["evidence"]) for span in refs)]}
+            for fact, refs, claim in bound_sites(record, operation_reviews, kept, {"catch_message_argument"})
+        ]
         for field in record["reader_fields"]:
             field["reviews"] = []
             for cid, (ids, ruling, basis) in column_reviews.items():
@@ -280,12 +289,10 @@ def source(run, fingerprint):
     )
 
 
-def reader_fields(record, reviews, kept):
-    """A static call site can be shown even if the final report did not use it."""
-    result = []
+def bound_sites(record, reviews, kept, kinds):
+    """Link a parser site to a claim only if the complete statement and source match."""
     for fact in valid_operations(record):
-        kind = fact["operation"]
-        if kind not in {"reader_named_field", "reader_ordinal_field"}:
+        if fact["operation"] not in kinds:
             continue
         try:
             statement = render(fact)
@@ -299,15 +306,21 @@ def reader_fields(record, reviews, kept):
         expected = [{"evidence_id": eid, **r, "quote": "\n".join(
             record["line_map"][n] for n in range(r["line"], r["end_line"] + 1))} for r in spans]
         linked = claim and claim["text"] == statement and claim["evidence"] == expected
+        yield fact, refs, claim["id"] if linked else None
+
+
+def reader_fields(record, reviews, kept):
+    result = []
+    for fact, refs, claim in bound_sites(record, reviews, kept, {"reader_named_field", "reader_ordinal_field"}):
         column = fact["inputs"]["column"]
         # Limit this label to familiar schema identifiers. The source viewer masks literals.
         known = {"origin_url", "action_url", "username_value", "password_value",
                  "host_key", "name", "value", "encrypted_value", "username", "password"}
-        ordinal = kind == "reader_ordinal_field"
+        ordinal = fact["operation"] == "reader_ordinal_field"
         show_column = column.isascii() and column.isdecimal() if ordinal else column in known
         result.append({"id": fact["fact_id"], "ordinal": ordinal,
                        "column": column if show_column else None,
-                       "refs": refs, "claim": claim["id"] if linked else None})
+                       "refs": refs, "claim": claim})
     return result
 
 
@@ -477,6 +490,7 @@ def case(run):
                 }
             )
     fields = [f for rec in records.values() for f in rec["reader_fields"]]
+    catch_sites = [s for rec in records.values() for s in rec["catch_sites"]]
     from .dotnet_supplement import latest
     dotnet = any(rec["tool"] == "decompile_dotnet" for rec in records.values())
     supplement = latest(directory(run), run, r["sample_sha256"], r["model"]["digest"]) if dotnet else None
@@ -526,7 +540,8 @@ def case(run):
         "search_attempts": attempts,
         "graph": graph,
         "reader_fields": fields,
-        "cited_windows": cited_windows(records, graph, claims + rejected + fields),
+        "catch_sites": catch_sites,
+        "cited_windows": cited_windows(records, graph, claims + rejected + fields + catch_sites),
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,

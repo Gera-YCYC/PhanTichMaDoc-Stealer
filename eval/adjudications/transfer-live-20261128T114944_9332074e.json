@@ -1,0 +1,142 @@
+{
+  "run": "20261128T114944_9332074e",
+  "inherit": "20261128T112458_a0bfcbd3",
+  "scope": "Đối chiếu từng ý với nguồn ILSpy trên tập phát triển. Câu đơn thuần chuyển Message vào đối số mô tả điểm gọi. Câu khẳng định gửi còn cần chứng cứ về hành vi. Chưa có người chấm độc lập.",
+  "claims": {
+    "C6": {
+      "signature": "74c0cf12ab6f48b3b976e0962c2ce8c6c3c998f6bed86b750fb8bd4ef395d93d",
+      "lines": [
+        795,
+        796,
+        800
+      ],
+      "atoms": [
+        [
+          "login-table",
+          "correct"
+        ],
+        [
+          "login-ordinal-0",
+          "correct"
+        ]
+      ],
+      "reason": "Bảng, đối số nguyên 0 và nơi dùng GetValue đều có trong đoạn trích. Câu chỉ rõ cách biểu diễn bằng chỉ số."
+    },
+    "C10": {
+      "signature": "8d2d55baab1813459cde0b312ed07465c72d77a7e89065f2dcf0f4b97a53dccd",
+      "lines": [
+        728,
+        747
+      ],
+      "atoms": [
+        [
+          "cookie-key-call",
+          "correct"
+        ]
+      ],
+      "reason": "Dòng gọi có hai biểu thức đối số như câu nêu, trong nhánh xử lý bảng. Câu chỉ khẳng định lời gọi."
+    },
+    "C11": {
+      "signature": "0722d0390fc761dd5bd97f1163ec03338e016a906ec02041c1b467bc2a936bf5",
+      "lines": [
+        761
+      ],
+      "atoms": [
+        [
+          "cookie-handoff",
+          "correct"
+        ]
+      ],
+      "reason": "Tên tệp, đường dẫn và kiểu nội dung đều là đối số đã thấy ở điểm gọi."
+    },
+    "C12": {
+      "signature": "9259f65555440a665ab806e3932540a77a360971ada3e70cef92eefc3a608231",
+      "lines": [
+        830,
+        833
+      ],
+      "atoms": [
+        [
+          "password-error-call",
+          "correct"
+        ],
+        [
+          "error-transmission-at-call-833",
+          "unsupported"
+        ]
+      ],
+      "reason": "Có chuyển thông báo của ngoại lệ vào đối số của Send. Cụm “sends the exception message” khẳng định tác dụng gửi trong khi đoạn trích chỉ có điểm gọi. Không có thân hàm hoặc quan sát truyền mạng trong trích dẫn."
+    },
+    "C16": {
+      "signature": "af8a41aef82d3b219ad786397c152fa6cb21672977958b926e1bb34d5a366a07",
+      "lines": [
+        424,
+        429,
+        430
+      ],
+      "atoms": [
+        [
+          "chaining-mode-at-open",
+          "incorrect"
+        ]
+      ],
+      "reason": "Lời gọi mở provider nhận cờ 0. Chaining mode được đặt sau đó bằng một lời gọi khác."
+    },
+    "C18": {
+      "signature": "5e1171e67507a74c2404a046ed88cafbb68a83c053b4a87f233cb82ed218510c",
+      "lines": [
+        1386,
+        1388
+      ],
+      "atoms": [
+        [
+          "read-table-default-encoding-1388",
+          "correct"
+        ]
+      ],
+      "reason": "Trong nhánh _dbEncoding bằng 1, kết quả giải mã ký tự từ mảng byte được gán cho mục bảng."
+    },
+    "C24": {
+      "signature": "335654f93fadf518578cbc0a85e6c36c0b057dc441b98c6a32677d5f4552f08e",
+      "lines": [
+        789,
+        791
+      ],
+      "atoms": [
+        [
+          "console-catch-message-791",
+          "correct"
+        ]
+      ],
+      "reason": "Biến được khai báo trong catch và thuộc tính Message của biến là đối số duy nhất của WriteLine."
+    },
+    "C25": {
+      "signature": "d1ec9bcd23ba0a0f581e16b569d4190854147f89f786b74b7bbe5e427b973f8c",
+      "lines": [
+        765,
+        768
+      ],
+      "atoms": [
+        [
+          "cookie-error-call",
+          "correct"
+        ]
+      ],
+      "reason": "Message của biến catch là nguồn của đối số duy nhất, có ghép ký tự phân cách. Câu chỉ quy nguồn đối số và tên lời gọi."
+    },
+    "C26": {
+      "signature": "da1c86e635ef221d81a67da20b772813c3707fbbcdf2a76bda708d718bf6a003",
+      "lines": [
+        830,
+        833
+      ],
+      "atoms": [
+        [
+          "password-error-call",
+          "correct"
+        ]
+      ],
+      "reason": "Biến của catch cấp phần Message cho đối số duy nhất có ký tự phân cách. Đây là cùng mục chuyển lỗi đã xuất hiện trong C12."
+    }
+  }
+}

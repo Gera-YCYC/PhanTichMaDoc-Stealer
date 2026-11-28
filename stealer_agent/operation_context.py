@@ -7,7 +7,7 @@ import copy
 import hashlib
 from .journal import canonical
 
-OPERATIONS = {'reader_named_field', 'reader_ordinal_field', 'database_open','sql_select','smtp_send','archive_create',
+OPERATIONS = {'catch_message_argument', 'reader_named_field', 'reader_ordinal_field', 'database_open','sql_select','smtp_send','archive_create',
               'file_upload','response_text_decode','aes_gcm_decrypt', 'file_copy', 'file_read',
               'file_write', 'base64_decode', 'dpapi_unprotect', 'smtp_connect', 'smtp_login',
               'smtp_starttls', 'mime_set_payload', 'mime_attach', 'mime_serialize',

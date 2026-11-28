@@ -1,0 +1,68 @@
+{
+  "journal_sha256": "20421c8cfa488473026569f2648d6607b6d0ff806d76d6dc1ee1b03566d68e7b",
+  "corpus_sha256": "75bd75378a9e49dda58629b4be29d5443c69c3251779524b8afe7678c8a29c26",
+  "queries": [
+    ".Message",
+    "catch ("
+  ],
+  "parser_sha256": "77c4f000ba27d3a94655dfe3bc74e978efdc2e6246ef0e44c88bdd1fa60efc44",
+  "isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "controls": [
+    {
+      "sample": "clean_ms_addinprocess.bin",
+      "sha256": "77fe49bdaa31a57a71ec543b54e4a8624e906a85b51c4e748231ad542785851a",
+      "status": "complete",
+      "hits": [
+        0,
+        0
+      ],
+      "sites": [],
+      "source_sha256": "e7df42c85dfb736461bb13fad5bac959ddd56ab71575f2d5bce76b3277cdafa9"
+    },
+    {
+      "sample": "clean_ms_addinprocess32.bin",
+      "sha256": "6fcafc5befae962ae7df6e16798ac802b30f33df9072e9153b4fe47154263e25",
+      "status": "complete",
+      "hits": [
+        0,
+        0
+      ],
+      "sites": [],
+      "source_sha256": "165f7fcbe76a394cd590a08879e0701daf42844fc6f6396a6f57a8a1c79fa96e"
+    },
+    {
+      "sample": "clean_ms_addinutil.bin",
+      "sha256": "bf165737e216ac7bfc7f5b49113d26ca9c770a2fef8b1fdf19dbbbee19bf37bc",
+      "status": "complete",
+      "hits": [
+        3,
+        4
+      ],
+      "sites": [],
+      "source_sha256": "69fdc9ea8b665f3286203ab8d7526c2ed361df35e5f049f647d76efb0ca4ef92"
+    },
+    {
+      "sample": "clean_ms_applaunch.bin",
+      "sha256": "1128d27961c249d325ff1ed3f389fa564933f469d65f45cca631dade2a789313",
+      "status": "tool_error",
+      "hits": [],
+      "sites": [],
+      "reason": "not_managed_pe"
+    },
+    {
+      "sample": "clean_ms_aspnet_compiler.bin",
+      "sha256": "bcb6a8883c6066a943302d00489d3bb5a5a2419d00f5db7defea9fedadae2270",
+      "status": "complete",
+      "hits": [
+        3,
+        2
+      ],
+      "sites": [],
+      "source_sha256": "ac0aea37e9487bc3643cfb8593a242922271d414cdbdb1ee1cad43870bd5ee3e"
+    }
+  ]
+}

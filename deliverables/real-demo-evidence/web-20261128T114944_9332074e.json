@@ -1,0 +1,372 @@
+{
+  "catch_sites_browser": {
+    "run": "20261128T114944_9332074e",
+    "screens": [
+      {
+        "width": 390,
+        "opened": [
+          {
+            "fact": "op_95031b1b3a8bead4",
+            "claim": "C24",
+            "spans": [
+              [
+                789,
+                789,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ],
+              [
+                791,
+                791,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ]
+            ],
+            "overlapping": [
+              "C1"
+            ]
+          },
+          {
+            "fact": "op_6bac9a095121fb8b",
+            "claim": "C25",
+            "spans": [
+              [
+                765,
+                765,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ],
+              [
+                768,
+                768,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ]
+            ],
+            "overlapping": [
+              "C10",
+              "C11"
+            ]
+          },
+          {
+            "fact": "op_bb131e7481cb36f2",
+            "claim": "C26",
+            "spans": [
+              [
+                830,
+                830,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ],
+              [
+                833,
+                833,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ]
+            ],
+            "overlapping": [
+              "C12"
+            ]
+          }
+        ],
+        "verdict_edge": "query-rows"
+      },
+      {
+        "width": 1360,
+        "opened": [
+          {
+            "fact": "op_95031b1b3a8bead4",
+            "claim": "C24",
+            "spans": [
+              [
+                789,
+                789,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ],
+              [
+                791,
+                791,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ]
+            ],
+            "overlapping": [
+              "C1"
+            ]
+          },
+          {
+            "fact": "op_6bac9a095121fb8b",
+            "claim": "C25",
+            "spans": [
+              [
+                765,
+                765,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ],
+              [
+                768,
+                768,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ]
+            ],
+            "overlapping": [
+              "C10",
+              "C11"
+            ]
+          },
+          {
+            "fact": "op_bb131e7481cb36f2",
+            "claim": "C26",
+            "spans": [
+              [
+                830,
+                830,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ],
+              [
+                833,
+                833,
+                "d8f40a4ebf12b48344a5c93328b0f718086ddf9aacb77e808036ca2893c1a7c2"
+              ]
+            ],
+            "overlapping": [
+              "C12"
+            ]
+          }
+        ],
+        "verdict_edge": "query-rows"
+      }
+    ],
+    "errors": [],
+    "external": []
+  },
+  "run": "20261128T114944_9332074e",
+  "sample": "public_mercurial.bin",
+  "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "479373f9f2b39c3580ae85134c67d2f7bec4c18bbb5dffa4074a272ba8cceb13",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 693.9748,
+    "model_calls": 51,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 95595,
+    "completion_tokens": 4252,
+    "host_peak_rss_bytes": 29188096,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 508071936,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 310,
+  "journal_sha256": "b096a2766e36fbdd6a546bc5c81ec76ead46b3cbc13b4a785763722b4fc66905",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 4,
+      "edge": "process-write"
+    },
+    {
+      "step": 4,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 5,
+      "edge": "query-rows"
+    },
+    {
+      "step": 5,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 6,
+      "edge": "archive-message"
+    },
+    {
+      "step": 6,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 7,
+      "edge": "process-write"
+    },
+    {
+      "step": 7,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 31
+    },
+    {
+      "step": 8,
+      "edge": "process-write"
+    },
+    {
+      "step": 8,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 9,
+      "edge": "query-rows"
+    },
+    {
+      "step": 9,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 10,
+      "edge": "archive-message"
+    },
+    {
+      "step": 10,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 9
+    },
+    {
+      "step": 11,
+      "edge": "send-response"
+    },
+    {
+      "step": 11,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 5
+    },
+    {
+      "step": 12,
+      "edge": "send-response"
+    },
+    {
+      "step": 12,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 13,
+      "edge": "send-response"
+    },
+    {
+      "step": 13,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 15,
+      "edge": "process-write"
+    },
+    {
+      "step": 15,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 5
+    },
+    {
+      "step": 16,
+      "edge": "process-write"
+    },
+    {
+      "step": 16,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 12
+    }
+  ],
+  "accepted_claims": 20,
+  "accepted_claim_keys_sha256": "c8d529dc0e29e56f435c041911df8bd45052e1ba268449d4a22f914e8866da30",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_05"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [],
+  "ranking_anchors_for_review": 22,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

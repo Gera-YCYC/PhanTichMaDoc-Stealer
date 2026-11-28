@@ -4,32 +4,20 @@ StealerLab là đồ án phân tích tĩnh stealer .NET/Python bằng agent ReAc
 
 ## Demo trực tiếp
 
-Để demo .NET, mở **Bản đồ chứng cứ → Đọc kết quả truy vấn**, chọn một dòng dùng chỉ số cột rồi bấm **Tìm lược đồ trong VM → Tra cứu chứng cứ**. Giảng viên có thể xem dấu vết Qwen chọn phép kiểm và mở kết quả công cụ ngay trên máy chạy lab. Tab **Đánh giá → Mercurial → Kiểm tra câu gán tên cho cột số** cho thấy việc kiểm chứng đã thay đổi những câu nào. [Kịch bản và số đo thực tế](docs/KIEM_LUOC_DO.md)
-
-Web dùng Qwen3 8B trên Windows và công cụ phân tích tĩnh trong VM Ubuntu. Nhóm có thể trình bày bằng chứng của từng mắt xích, hỏi tiếp về phần còn thiếu và kiểm vì sao Qwen đưa ra verdict. [Đối chiếu kết luận và nhật ký thật](docs/DOI_CHIEU_KET_LUAN.md)
-
-Trên máy đã dựng lab, mở PowerShell trong thư mục dự án và chạy lệnh dưới đây. Trên máy thành viên mới, hoàn thành bước cài VM, model và bộ công cụ trước. [Hướng dẫn cài đặt](docs/TEAM_SETUP.md)
+Trên máy Windows đã dựng lab, mở PowerShell trong thư mục chứa `agent_react.py`. Lệnh dưới đây bật VMware và Ollama, kiểm kết nối rồi mở dịch vụ web trên máy. Thành viên dùng máy mới làm theo [hướng dẫn cài đặt](docs/TEAM_SETUP.md).
 
 ```powershell
 .\scripts\Start-Web.ps1
 ```
 
-1. Mở `http://127.0.0.1:4180`, kiểm tra trạng thái Ollama và VM, chọn **public_python2024.bin** và bấm **Chạy điều tra**. Tab **Nhật ký** hiển thị công cụ agent đang gọi trong lượt mới.
-2. Mở **Bản đồ chứng cứ → Đọc kết quả truy vấn → Xử lý dữ liệu**. Bấm **Xem đoạn mã đã dẫn**, đối chiếu bên gọi và bên nhận. Nút **Mở C… trong báo cáo** đưa tới nhận định của đúng lượt. Một số đường nối khác có thể còn thiếu bằng chứng.
-3. Trong **Hỏi đáp**, hỏi “Bản ghi nào được truyền vào hàm xử lý?”. Mở nguồn của câu trả lời. Chuyển sang **YARA** để xem kết quả quét mẫu, hoặc **Gán nhãn** để đối chiếu và đánh dấu một vị trí.
-4. Trong **Đánh giá**, mở **Từ trường truy vấn đến hàm xử lý · hai lượt Python** để so với ba lượt trước. Khi hết demo, đợi tác vụ hoàn tất rồi bấm **Tắt lab**. [Chứng cứ và phạm vi kết luận](docs/KIEM_TRA_DOI_SO.md) · [Thao tác trên web](docs/WEB_DIEU_TRA.md)
+1. Mở `http://127.0.0.1:4180`. Khi thấy **Ollama sẵn sàng** và **VM cô lập**, chọn mẫu rồi bấm **Chạy điều tra**. Trong **Nhật ký**, theo dõi công cụ agent vừa gọi và ghi mã lượt.
+2. Với **Mercurial (.NET)**, mở **Nhận định → Vì sao báo cáo đưa ra verdict này? → Kiểm tra trên bản đồ**. Bấm một mắt xích, xem điểm tạo và nơi sử dụng dữ liệu. Trong **Nhánh xử lý lỗi**, đối chiếu đối số với khai báo ngoại lệ. Lượt tham chiếu gần nhất mất khoảng 11 phút 34 giây. [Kịch bản, số dòng và bảng chấm](docs/NHANH_XU_LY_LOI.md)
+3. Với **PythonStealer (PyInstaller)**, mở **Bản đồ chứng cứ → Đọc kết quả truy vấn → Xử lý dữ liệu**. Chọn một đường nối rồi bấm **Hỏi tiếp về đường nối này → Tra cứu chứng cứ**. Câu trả lời có nguồn và dấu vết lần tìm mới khi agent cần gọi công cụ. [Kịch bản Python](docs/KIEM_TRA_DOI_SO.md)
+4. Trong **YARA**, xem luật từng vòng, kết quả quét và trường hợp báo nhầm. Trong **Gán nhãn**, mở nguồn của một nhận định trước khi đánh dấu nó để train bộ xếp hạng. Khi mọi tác vụ hoàn tất, bấm **Tắt lab**. [Thực nghiệm YARA](docs/YARA_REAL_CORPUS.md) · [Dữ liệu, 300 bước train và kết quả trước/sau](training/RANKER_EXPERIMENT.md)
 
-**Sản phẩm đang phát triển, chưa đạt toàn bộ tiêu chí chất lượng.** Repo chính: [Gera-YCYC/PhanTichMaDoc-Stealer](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer). Source ở root; model và mẫu public mã hóa ở Release có khóa hash. Tài liệu bàn giao là Markdown kỹ thuật, không cần thông tin sinh viên.
+**Đã có minh chứng cho mốc buổi 4 và buổi 6.** Trên cùng một bản web đã có ba mẫu thật với nhật ký và năm công cụ khác nhau thành công khi tính gộp. Với bộ thử điều hướng hai mẫu và cùng ngân sách bốn lần tìm mỗi mẫu, agent tìm đúng 3/10 liên kết tham chiếu, quy trình cố định tìm đúng 1/10. Các ngưỡng recall, F1 và verdict toàn mẫu vẫn còn mở. [Bảng đối chiếu ba mẫu](docs/CHAM_BA_MAU_WEB.md) · [So sánh hai quy trình](docs/WEB_DIEU_TRA.md#kết-quả-đối-chứng-trên-hai-mẫu-phát-triển) · [Phân công phần còn lại](docs/CONG_VIEC_CON_LAI.md)
 
-Bản `coverage-8b` chạy Qwen3 8B và kiểm lại từng thao tác tĩnh bằng kết quả công cụ trước khi tổng hợp kết luận. Trên PythonStealer 2024, agent gọi 4 công cụ thật trong VM, xác định kênh SMTP và phủ 22/36 đơn vị tham chiếu. F1 đạt 72,13%, dưới mục tiêu 75% của môn. [Cách chạy, số đo và lỗi còn lại](docs/DEMO_COVERAGE.md).
-
-Web điều tra dùng Qwen3 8B. Luồng dòng lệnh mặc định dùng Qwen2.5 Coder 7B. Thành phần nhóm đã train là bộ xếp hạng kết quả tìm mã. Giảng viên có thể xem hai job Windows và Ubuntu thực hiện 300 bước cập nhật rồi so trọng số, loss và kết quả xếp hạng. Qwen dùng trọng số có sẵn. [Hồ sơ training](training/RANKER_EXPERIMENT.md) · [Hai lần train trong GitHub Actions](https://github.com/Gera-YCYC/PhanTichMaDoc-Stealer/actions/runs/46092717873).
-
-[Luồng YARA thật](docs/YARA_REAL_CORPUS.md) vẫn giữ số đo5/5 mẫu độc development và0/39 file sạch báo nhầm với cả7B/8B, replay độc lập khớp. [Báo cáo v8](docs/OPERATIONS_CONTEXT_V8.md) chưa đạt: Python8/11 câu đủ căn cứ, .NET14/20. Không ghép điểm các phiên bản để nghiệm thu. Xem [trạng thái](docs/STATUS.md), [đối chiếu nhận định](docs/CLAIM_AUDIT.md), [đơn vị tham chiếu](eval/reference_units/README.md).
-
-Bản ban đầu của nhóm được giữ nguyên trong [legacy/initial-version](legacy/initial-version/), kèm hash tại [manifest bảo toàn](docs/legacy-source-manifest.json). Khi chạy bản hiện tại, dùng `agent_react.py` và `scripts/Run-Demo.ps1` ở thư mục gốc; các báo cáo mô phỏng trong legacy chỉ là lịch sử phát triển.
-
-**Demo buổi 6 đã có ba mẫu hoàn tất trên cùng cấu hình Qwen3 8B.** Đợt đo gồm bốn mẫu, trong đó lượt AgentTesla ban đầu kết thúc với báo cáo rỗng. Video 72 giây dựng lại các bước và số đo từ nhật ký thật của cả bốn lượt. [Video](deliverables/Demo_phan_tich_tinh.mp4) · [Bằng chứng cùng cấu hình](deliverables/real-demo-evidence/coverage-v11-batch.json) · [Bảng đối chiếu nhận định của agent](docs/PHIEU_DANH_GIA.md).
+Web dùng trọng số Qwen3 8B có sẵn. Thành phần nhóm đã huấn luyện là bộ xếp hạng chứng cứ, có mã, nhãn, trọng số, loss và bước tái lập trong GitHub Actions. Các lượt demo dùng mẫu công khai thay I/J và công cụ phân tích tĩnh trong VM. [Yêu cầu và thông số mẫu của giảng viên](docs/YEU_CAU_GIANG_VIEN.md) · [Mục tiêu và tiêu chí nghiệm thu](docs/PROJECT_GOAL.md)
 
 ## Giảng viên và thành viên nhóm bắt đầu tại đây
 

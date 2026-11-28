@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Để giảng viên kiểm một kết luận của Qwen trên mẫu Mercurial, mở **Nhận định → Vì sao báo cáo đưa ra verdict này? → Kiểm tra trên bản đồ**. Web chọn đường nối đầu tiên còn thiếu trên tuyến đã lưu. Bấm **Hỏi tiếp về đường nối này** để đặt câu hỏi cho agent. Mục **Bản đồ chứng cứ → Nhánh xử lý lỗi** cho mở điểm khai báo và điểm dùng đối số. [Kịch bản .NET, thời gian chạy và kết quả](NHANH_XU_LY_LOI.md)
+
 Khi giảng viên hỏi về ý nghĩa của chỉ số cột trên mẫu .NET, mở một vị trí đọc cột trong bản đồ rồi bấm **Tìm lược đồ trong VM → Tra cứu chứng cứ**. Bảng hỏi đáp hiển thị đúng vị trí được chọn, số kết quả của phép tìm và các dòng có thể mở. Một chuỗi mô tả bảng vẫn cần được đối chiếu với bảng đang đọc. [Cách trình diễn và đối chứng](KIEM_LUOC_DO.md)
 
 Với mẫu .NET, nhóm có thể đi từ dòng đọc cột trong bản đồ sang câu tương ứng của báo cáo. Hỏi “VM thấy tên cột hay chỉ số cột khi mẫu đọc bản ghi?” để đối chiếu kiểu đối số với các vị trí đã thu. [Cách demo và phép đo toàn báo cáo](DOC_COT_NET.md)

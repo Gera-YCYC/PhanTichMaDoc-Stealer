@@ -17,6 +17,7 @@ const askColumns = args.includes("--ask-columns");
 const fieldScore = args.includes("--field-score");
 const ordinalScore = args.includes("--ordinal-score");
 const askSchema = args.includes("--ask-schema");
+const catchScore = args.includes("--catch-score");
 const [run, port = "4180"] = args.filter(arg => !arg.startsWith("--"));
 assert.match(run ?? "", /^\d{8}T\d{6}_[a-f0-9]{8}$/, "Cần mã lượt chạy Python vừa hoàn tất.");
 assert.match(port, /^\d{1,5}$/);
@@ -40,6 +41,7 @@ async function openReferences(container) {
 
 try {
   const page = await browser.newPage({viewport: {width: 390, height: 844}});
+  page.setDefaultTimeout(25000);
   const errors = [], external = [];
   page.on("pageerror", error => errors.push(error.name));
   await page.route("**/*", route => {
@@ -58,7 +60,78 @@ try {
   await page.waitForFunction(id => document.querySelector("#run").textContent === id, run);
   const directory = fileURLToPath(new URL("../evidence/local/", import.meta.url));
   await mkdir(directory, {recursive: true});
-  if (askSchema) {
+  if (catchScore) {
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    assert.equal(data.run, run);
+    const study = (await (await page.request.get(origin + "/api/evaluation")).json()).catch_study;
+    assert.equal(study.arms.at(-1).run, run);
+    assert.deepEqual(data.catch_sites.map(s => s.id).sort(), study.sites.map(s => s.fact).sort());
+    const screens = [];
+    for (const width of [390,1360]) {
+      await page.setViewportSize({width,height:850});
+      await page.locator('[data-view="evaluation"]').click();
+      await page.getByLabel("Mẫu dùng để đối chiếu").selectOption("mercurial");
+      const group = page.locator("#catch-evaluation");
+      await group.locator("summary").click();
+      const row = group.locator("tr").filter({has:page.getByRole("button",{name:run,exact:true})});
+      const score = study.arms.at(-1).score;
+      assert.ok((await row.innerText()).includes(score ? score.correct + "/" + (score.correct + score.missed) : "Chưa có báo cáo hoàn chỉnh"));
+      const controlRows = (await (await page.request.get(origin + "/api/evaluation")).json()).catch_controls;
+      assert.equal(controlRows.length, 5);
+      for (const c of controlRows) {
+        const cells = await group.locator("tr").filter({hasText:c.sample}).locator("td").allTextContents();
+        assert.deepEqual(cells,[c.sample,String(c.hits[0] ?? "—"),String(c.hits[1] ?? "—"),
+          c.status === "complete" ? String(c.sites.length) : "—",
+          c.status === "complete" ? "Hoàn tất" : c.reason === "not_managed_pe"
+            ? "ILSpy không nhận diện được PE .NET" : "Chưa hoàn tất"]);
+      }
+      await row.getByRole("button",{name:run,exact:true}).click();
+      await page.locator('[data-view="map"].selected').waitFor();
+      const opened = [];
+      for (const site of data.catch_sites) {
+        const panel = page.locator("#catch-sites");
+        if (await panel.getAttribute("open") === null) await panel.locator(":scope > summary").click();
+        const box = panel.locator('[data-site="' + site.id + '"]');
+        await box.locator("summary").first().click();
+        const spans = await openReferences(box);
+        assert.deepEqual(spans, site.refs.map(r => [r.line,r.end,r.output_sha256]));
+        if (site.claim) {
+          assert.ok((await box.innerText()).includes("Câu này được giữ để mô tả nhánh lỗi"));
+          await box.getByRole("button",{name:"Mở " + site.claim + " trong báo cáo",exact:true}).click();
+          const claim = page.locator("#report-" + site.claim + "[open]");
+          await claim.waitFor();
+          assert.deepEqual(await openReferences(claim), spans);
+          await page.locator('[data-view="map"]').click();
+        }
+        for (const other of site.overlapping_claims) {
+          if (await panel.getAttribute("open") === null) await panel.locator(":scope > summary").click();
+          if (await box.getAttribute("open") === null) await box.locator(":scope > summary").click();
+          await box.getByRole("button",{name:"Đối chiếu " + other,exact:true}).click();
+          await page.locator("#report-" + other + "[open]").waitFor();
+          assert.equal(await page.locator("#run").innerText(),run);
+          await page.locator('[data-view="map"]').click();
+        }
+        opened.push({fact:site.id,claim:site.claim,spans,overlapping:site.overlapping_claims});
+      }
+      await page.locator('[data-view="claims"]').click();
+      const verdict = page.getByText("Vì sao báo cáo đưa ra verdict này?", {exact:true}).locator("..");
+      await verdict.locator(":scope > summary").click();
+      const send = data.graph.edges.findIndex(e => e.id === "message-send");
+      assert.ok(send >= 0 && data.graph_origin === "terminal");
+      const route = data.graph.edges.slice(0, send + 1);
+      const target = route.find(e => e.status !== "supported") || route[send];
+      await verdict.getByRole("button", {name:"Kiểm tra trên bản đồ · " + target.label, exact:true}).click();
+      assert.equal(await page.locator("#panel .split h2").innerText(), target.label);
+      assert.equal(await page.locator("#run").innerText(), run);
+      await page.getByRole("button", {name:"Hỏi tiếp về đường nối này",exact:true}).waitFor();
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+      screens.push({width,opened,verdict_edge:target.id});
+    }
+    assert.deepEqual(errors,[]); assert.deepEqual(external,[]);
+    const receipt = {run,screens,errors,external};
+    await writeFile(resolve(directory,"catch-web-" + run + ".json"),JSON.stringify(receipt,null,2));
+    console.log(JSON.stringify({run,widths:screens.map(s => s.width),sites:data.catch_sites.length}));
+  } else if (askSchema) {
     const data = await (await page.request.get(origin + "/api/case/" + run)).json();
     const field = data.reader_fields.find(f => f.ordinal);
     await page.locator('[data-view="map"]').click();

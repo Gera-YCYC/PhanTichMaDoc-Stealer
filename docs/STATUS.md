@@ -4,6 +4,8 @@
 
 ## Cập nhật hiện tại
 
+Lượt web mới nhất trên Mercurial, `20261128T114944_9332074e`, hoàn tất với Qwen3 8B và công cụ trong VM. Theo thang chấm đã khóa, F1 tăng từ **43,75% lên 46,67%** trên hai lượt phát triển, recall vẫn **7/21 (33,33%)** và verdict vẫn là `suspicious`. Có 1/20 câu thiếu căn cứ, dù cả 20 câu đều có trích dẫn. Từ mục giải thích verdict có thể bấm thẳng tới đường nối còn thiếu trên bản đồ. Bộ trích nhánh lỗi đã kiểm riêng trên bốn tệp sạch, tệp thứ năm gặp lỗi nhận dạng. [Điểm, mã lượt, các lỗi C11/C12 và cách demo](NHANH_XU_LY_LOI.md)
+
 **Web đã chạy hết quy trình với Mercurial và Qwen3 8B.** Lượt `20261128T112458_a0bfcbd3` đạt 7/21 mục, precision 63,64%, recall 33,33%, F1 43,75%, verdict `suspicious`. Trong 20 câu có 3 câu thiếu căn cứ dù tất cả đều có trích dẫn. Trên tám câu cố định, bước kiểm chỉ số đã loại được C2 gán tên cho ba cột, đồng thời loại nhầm C9. Màn hình bản đồ có thể gửi một câu hỏi mới tới Qwen và VM để tìm lược đồ đúng nguồn. Đã kiểm tra trực tiếp thao tác và nhật ký trên máy nhóm. [Cách demo, số liệu đối chứng và điều kiện nghiệm thu](KIEM_LUOC_DO.md)
 
 Lượt Mercurial kiểm riêng các hàm còn nguyên đã trả 8 vị trí dùng chỉ số cột, mở được 24 trích dẫn. Báo cáo chỉ đúng 4/21 mục, F1 27,59%. Câu C2 tự gán ba tên cho ba chỉ số khi chưa có nguồn lược đồ. Mục hỏi đáp về kiểu đối số giờ tra cứu lại đúng các sự kiện của lượt. [Mã lượt và thao tác tái kiểm](DOC_COT_NET.md#lần-kiểm-riêng-trên-mercurial)

@@ -2,11 +2,13 @@
 
 ## Sản phẩm nhóm trình diễn
 
+Khi chứng minh đường truyền, cần xác định dữ liệu đi vào từng lời gọi. Một tham chiếu đến thông báo lỗi trong nhánh ngoại lệ chỉ dùng để mô tả ngữ cảnh, kể cả khi tên hàm gợi ý gửi mạng. Chấm đóng góp của phát hiện bằng cách giữ nguyên các câu còn lại của báo cáo và đối chiếu với một tập chương trình sạch có chữ ký. [Phép thử trên nhánh lỗi .NET](NHANH_XU_LY_LOI.md)
+
 **Agent ReAct dùng SLM cục bộ để điều tra và kiểm chứng chuỗi đánh cắp thông tin của stealer .NET/Python.** Giảng viên có thể chọn mẫu trên web, xem công cụ VM đang chạy, bấm vào một quan hệ và đối chiếu nhận định với đúng dòng nguồn. Một lượt mới có mã và nhật ký riêng. [Chạy trên máy nhóm](TEAM_SETUP.md) · [Demo trực tiếp](WEB_DIEU_TRA.md)
 
 | Ưu tiên | Người demo có thể làm gì? | Cách kiểm chứng |
 |---|---|---|
-| 1. Điều tra | Mở giả thuyết, xem mắt xích còn thiếu và quan sát lựa chọn tiếp theo của agent. | Theo dõi câu hỏi, hành động, quan sát và trạng thái sau tìm kiếm. So với quy trình cố định trên cùng mẫu và cấu hình. [Thí nghiệm đối chứng](CHAM_BA_MAU_WEB.md) |
+| 1. Điều tra | Mở giả thuyết, xem mắt xích còn thiếu và quan sát lựa chọn tiếp theo của agent. | Theo dõi câu hỏi, hành động, quan sát và trạng thái sau tìm kiếm. So với quy trình cố định trên cùng mẫu và cấu hình. [Thí nghiệm đối chứng](WEB_DIEU_TRA.md#kết-quả-đối-chứng-trên-hai-mẫu-phát-triển) |
 | 2. Bản đồ | Bấm vào một bước hoặc đường nối để xem đoạn nguồn, SHA-256 và câu xuất hiện trong báo cáo. | Kiểm cả vị trí tạo và vị trí dùng. Nếu dữ liệu có thể bị thay đổi ở giữa, liên kết còn cần kiểm tra. [Ví dụ trên Python](DUONG_DAN_GHI_VA_NEN.md) |
 | 3. Hỏi đáp | Hỏi tiếp về một đường nối, hoặc yêu cầu tìm lược đồ cho một vị trí đọc cột số trên .NET. | Nhật ký liên kết câu hỏi với lượt gốc. Chỉ kết luận tên cột khi có lược đồ của đúng bảng và đúng thứ tự. [Đối chiếu trên Mercurial](KIEM_LUOC_DO.md) |
 | 4. Luật phát hiện | Theo dõi chọn dấu hiệu, tạo luật YARA, biên dịch, quét và sửa luật khi có báo nhầm. | Lưu luật từng vòng, kết quả quét, mẫu số TPR/FPR và tập dùng để sửa luật. [Thực nghiệm YARA](YARA_REAL_CORPUS.md) |

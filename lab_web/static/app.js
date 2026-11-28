@@ -333,6 +333,29 @@ function map(panel) {
     legend.append(s);
   }
   panel.append(legend);
+  if (record.catch_sites?.length) {
+    const handlers = el("details", undefined, "card");
+    handlers.id = "catch-sites";
+    handlers.append(el("summary", "Nhánh xử lý lỗi · " + record.catch_sites.length + " lời gọi"),
+      el("p", "Đối số ở các vị trí dưới đây lấy từ thông báo của ngoại lệ vừa bắt. Mỗi lời gọi khác trong cùng nhánh cần được kiểm riêng."));
+    for (const site of record.catch_sites) {
+      const entry = el("details", undefined, "card");
+      entry.dataset.site = site.id;
+      entry.append(el("summary", "Dòng " + site.refs.at(-1).line + " · " + site.target));
+      refs(entry, site.refs);
+      if (site.claim) entry.append(button("Mở " + site.claim + " trong báo cáo", () => openReportClaim(record.run, site.claim)));
+      const note = site.context_only ? "Câu này được giữ để mô tả nhánh lỗi. Kết luận về thu thập và truyền dữ liệu cần bằng chứng khác."
+        : site.claim ? "Xem phần dẫn chứng verdict để kiểm tra vai trò của câu." : "Vị trí do VM ghi nhận. Báo cáo cuối chưa giữ câu riêng cho vị trí này.";
+      entry.append(el("p", note));
+      if (site.overlapping_claims?.length) {
+        entry.append(el("small", "Câu khác có trích dẫn bao trùm cả hai vị trí. Mở câu để kiểm tra nội dung và phạm vi."));
+        for (const cid of site.overlapping_claims)
+          entry.append(button("Đối chiếu " + cid, () => openReportClaim(record.run, cid)));
+      }
+      handlers.append(entry);
+    }
+    panel.append(handlers);
+  }
   const send = record.graph.edges.findIndex(edge => edge.id === "message-send");
   if (send >= 0) {
     const route = record.graph.edges.slice(0, send + 1);
@@ -671,6 +694,55 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   label.append(selector);
   panel.append(label);
   const reader = data.reader_comparison?.find(r => r.sample === "public_" + sample + ".bin");
+  if (sample === "mercurial" && data.catch_study) {
+    const study = data.catch_study;
+    const group = el("details", undefined, "card");
+    group.id = "catch-evaluation";
+    group.append(el("summary", "Đối chiếu nhánh lỗi và các mục bị bỏ sót"));
+    table(["Lượt", "Mục đúng", "Thiếu dòng trong VM", "Dòng ở nhiều lần hỏi", "Có dòng, chưa hỏi đủ",
+      "Đủ dòng trong một lần hỏi, vẫn bỏ sót", "Precision", "Recall", "F1"],
+      study.arms.map(a => {
+        const s = a.outcomes;
+        const link = init.history.some(r => r.run === a.run) ? button(a.run, async () => {
+          view = "map";
+          await load(a.run);
+          const sites = $("#catch-sites");
+          if (sites) { sites.open = true; sites.scrollIntoView({block:"nearest"}); }
+        }) : a.run;
+        return [link, a.score ? a.score.correct + "/" + (a.score.correct + a.score.missed) : "Chưa có báo cáo hoàn chỉnh", s.missing_source || 0, s.split_source || 0,
+          s.not_presented || 0, s.visible_in_one_request || 0, percent(a.score?.precision),
+          percent(a.score?.recall), percent(a.score?.f1)];
+      }), group);
+    const last = study.arms.at(-1);
+    const kept = study.sites.filter(s => s.claim);
+    group.append(el("p", "Bản sau giữ " + kept.length + "/" + study.sites.length +
+      " lời gọi có đối số lấy từ thông báo lỗi. Verdict của lượt này là " + last.verdict +
+      ". Các câu chỉ mô tả đối số trong nhánh lỗi được giữ để người đọc kiểm tra riêng."));
+    if (study.contribution) {
+      const e = study.contribution;
+      group.append(el("p", "Chấm lại cùng báo cáo khi ẩn riêng các câu về đối số lỗi. Mọi câu khác và verdict giữ nguyên."));
+      table(["Tập câu được chấm", "Mục đúng", "Bỏ sót", "Precision", "Recall", "F1"],
+        [["Ẩn câu về đối số lỗi", e.without], ["Toàn bộ báo cáo", e.with]].map(([label,s]) =>
+          [label,s.correct,s.missed,percent(s.precision),percent(s.recall),percent(s.f1)]), group);
+    }
+    if (study.table_regrade.every(Boolean)) {
+      group.append(el("p", "Kiểm lại cách chấm sau thí nghiệm. Một số câu đọc cột nêu rõ cả bảng và chỉ số nhưng nhãn cũ chỉ tính chỉ số. Bảng này tính thêm việc chọn bảng khi đủ dòng chứng minh, cùng quy tắc cho hai lượt."));
+      table(["Lượt", "Mục đúng (chấm lại)", "Precision", "Recall", "F1"], study.table_regrade.map((r,i) =>
+        [study.arms[i].run, r.score.correct, percent(r.score.precision), percent(r.score.recall), percent(r.score.f1)]), group);
+    }
+    if (data.catch_controls?.length) {
+      group.append(el("p", "Đối chứng trên năm chương trình Microsoft đã xác minh chữ ký. ILSpy chạy trong VM. Mỗi lần tìm chỉ trả một số đoạn mã. Bảng này đếm vị trí chứng minh được đối số lỗi."));
+      table(["Tệp đối chứng", "Số khớp .Message", "Số khớp catch (", "Vị trí đủ căn cứ", "Kết quả"],
+        data.catch_controls.map(r => [r.sample, r.hits[0] ?? "—", r.hits[1] ?? "—",
+          r.status === "complete" ? r.sites.length : "—",
+          r.status === "complete" ? "Hoàn tất" : r.reason === "not_managed_pe"
+            ? "ILSpy không nhận diện được PE .NET" : "Chưa hoàn tất"]), group);
+    }
+    table(["Lượt", "Câu đúng / tổng", "Câu thiếu căn cứ", "Có trích dẫn", "Lần gọi công cụ", "Giây"],
+      study.arms.map(a => [a.run, a.rates.correct + "/" + a.rates.total, a.rates.unsupported,
+        percent(a.rates.citation_rate), a.tool_calls, Math.round(a.seconds)]), group);
+    panel.append(group);
+  }
   if (sample === "mercurial" && data.ordinal_review) {
     const study = data.ordinal_review;
     const group = el("details", undefined, "card");
@@ -1446,6 +1518,24 @@ async function render() {
           line.append(kept.has(id) ? button(name, () => openReportClaim(record.run, id)) : el("span", name));
         }
         section.append(role.ids.length ? line : el("p", "Qwen để trống vai trò này."));
+        if (role.role === "data_link_claim_ids" && record.graph_origin === "terminal") {
+          const send = record.graph.edges.findIndex(edge => edge.id === "message-send");
+          if (send >= 0) {
+            const route = record.graph.edges.slice(0, send + 1);
+            const gaps = route.filter(edge => edge.status !== "supported");
+            const target = gaps[0] || route[send];
+            section.append(el("p", "Trên tuyến điều tra đã lưu, VM cung cấp chứng cứ cho " +
+              (route.length - gaps.length) + "/" + route.length + " đường nối tới bước gửi. " +
+              (gaps.length ? "Có thể mở mắt xích còn thiếu và yêu cầu agent tìm thêm." :
+                "Kiểm tra các điểm tạo và sử dụng dữ liệu trước khi kết luận.")));
+            section.append(button("Kiểm tra trên bản đồ · " + target.label, async () => {
+              item = target;
+              view = "map";
+              await render();
+              $("#panel .split h2")?.scrollIntoView({block:"nearest"});
+            }));
+          }
+        }
       }
       section.append(el("small", "Danh sách nhận định dùng cho verdict · " + (v.citations.join(", ") || "trống")));
       panel.append(section);

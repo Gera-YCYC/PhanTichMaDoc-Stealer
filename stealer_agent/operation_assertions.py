@@ -16,6 +16,8 @@ from .operation_context import valid_operations
 
 VERSION = 'operation-assertions/2'
 TEMPLATES = {
+    'catch_message_argument': ('handler_argument_only', ('call', 'variable'),
+        'Inside the catch handler, the code passes the Message of the caught variable {variable} to {call} as its sole argument.'),
     'reader_named_field': ('static_named_argument', ('table', 'column'),
         'In this C# scope the local reader calls ReadTable with {table} and GetValue with the field-name argument {column}.'),
     'reader_ordinal_field': ('static_ordinal_only', ('table', 'column'),
@@ -69,6 +71,7 @@ TEMPLATES = {
         'The code calls fetchall() on the SQLite cursor after SELECT query expression {query_expression}.'),
 }
 APIS = {
+    'catch_message_argument': 'CSharp.catch.member_argument',
     'reader_named_field': 'local.ReadTable/GetValue', 'reader_ordinal_field': 'local.ReadTable/GetValue',
     'database_open': 'sqlite3.connect', 'sql_select': 'sqlite3.execute',
     'smtp_send': 'smtplib.SMTP.sendmail', 'archive_create': 'shutil.make_archive',
@@ -139,6 +142,17 @@ def catalog(evidence, digest):
             except ValueError as exc:
                 omitted.append({'fact_id': fact['fact_id'], 'reason': str(exc)})
     return entries, omitted
+
+
+def catch_context_ids(evidence, digest, claims):
+    """Match the entire bound assertion. A catch argument alone proves no transfer role."""
+    if not any(f.get('operation') == 'catch_message_argument' for record in evidence.values()
+               for f in record.get('operation_facts', [])):
+        return []
+    entries, _ = catalog(evidence, digest)
+    handlers = [e for e in entries if e['operation'] == 'catch_message_argument']
+    return [c['id'] for c in claims if any(c['text'] == e['text'] and c['evidence'] == e['evidence']
+                                           for e in handlers)]
 
 
 def create_operation_report(evidence, digest, call_model, journal, *, max_cards=10, api_guidance=True):

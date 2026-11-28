@@ -3,6 +3,7 @@ from tree_sitter import Language, Parser
 import tree_sitter_c_sharp
 from .syntax_context import walk
 from .table_access import table_fields
+from .catch_arguments import catch_messages
 
 
 def text(node):
@@ -45,6 +46,7 @@ def intact_method_fields(root):
         if owner is None:
             calls = [n for n in walk(body) if n.type == "invocation_expression"]
             results.extend(table_fields(calls))
+            results.extend(catch_messages(calls))
     return results
 
 
@@ -181,4 +183,5 @@ def candidates(source):
                             'source_ranges':[*upload['source_ranges'],
                                              *([span(text_import)] if api == 'Encoding.ASCII.GetString' else []),span(call)]})
     results.extend(table_fields(calls))
+    results.extend(catch_messages(calls))
     return results

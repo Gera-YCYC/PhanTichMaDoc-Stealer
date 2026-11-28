@@ -38,4 +38,6 @@ jobs:
           python -m eval.verdict_trial --portable
           python -m eval.table_access_study
           python -m eval.ordinal_review_study
+          python -m eval.catch_argument_study
+          python -m eval.catch_clean_controls
       - run: python -m compileall -q stealer_agent vm_tools training

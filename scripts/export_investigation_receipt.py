@@ -270,6 +270,20 @@ def export(run):
             proof["question_journal_sha256"] = question["journal_sha256"]
         browser["argument_browser"] = proof
     ordinal_file = ROOT / "evidence/local" / f"ordinal-web-{run}.json"
+    catch_file = ROOT / "evidence/local" / f"catch-web-{run}.json"
+    if catch_file.is_file():
+        clicks = read(catch_file)
+        opened = [{"fact": site["id"], "claim": site["claim"], "overlapping":site["overlapping_claims"],
+                   "spans": [[r["line"], r["end"], r["output_sha256"]] for r in site["refs"]]}
+                  for site in view["catch_sites"]]
+        edges = view["graph"]["edges"]
+        stop = next(i for i, edge in enumerate(edges) if edge["id"] == "message-send")
+        target = next((e for e in edges[:stop + 1] if e["status"] != "supported"), edges[stop])
+        expected = {"run": run, "screens": [{"width": w, "opened": opened, "verdict_edge": target["id"]} for w in (390,1360)],
+                    "errors": [], "external": []}
+        if clicks != expected:
+            raise ValueError("Browser sources differ from the catch argument in the journal")
+        browser["catch_sites_browser"] = clicks
     if ordinal_file.is_file():
         clicks = read(ordinal_file)
         plan = read(ROOT / "eval/adjudications/ordinal-review-protocol.json")
