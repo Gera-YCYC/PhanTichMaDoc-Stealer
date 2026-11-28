@@ -297,6 +297,18 @@ def export(run):
         if not fields or clicks != {"run": run, "opened": expected, "errors": [], "external": []}:
             raise ValueError("Browser clicks differ from the column reviews or the paired source")
         browser["ordinal_columns_browser"] = clicks
+    checks = (view["verdict_trace"] or {}).get("checks")
+    if checks is not None:
+        browser["role_evidence_checks"] = checks
+        proof_file = ROOT / "evidence/local" / f"role-lines-web-{run}.json"
+        if proof_file.is_file():
+            opened = [{"role": d["role"], "claim": d["claim"], "status": d["status"],
+                       "spans": [[w["line"], w["line"], w["output_sha256"]] for w in d["witnesses"]]} for d in checks]
+            proof = read(proof_file)
+            if proof != {"run": run, "screens": [{"width": w, "opened": opened} for w in (390,1360)],
+                         "errors": [], "external": []}:
+                raise ValueError("Browser role evidence differs from the terminal journal")
+            browser["role_lines_browser"] = proof
     return {
         **({"termination": view["termination"]} if view["termination"] else {}),
         **browser,

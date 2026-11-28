@@ -18,6 +18,8 @@ const fieldScore = args.includes("--field-score");
 const ordinalScore = args.includes("--ordinal-score");
 const askSchema = args.includes("--ask-schema");
 const catchScore = args.includes("--catch-score");
+const roleLines = args.includes("--role-lines");
+const otherSends = args.includes("--other-sends");
 const [run, port = "4180"] = args.filter(arg => !arg.startsWith("--"));
 assert.match(run ?? "", /^\d{8}T\d{6}_[a-f0-9]{8}$/, "Cần mã lượt chạy Python vừa hoàn tất.");
 assert.match(port, /^\d{1,5}$/);
@@ -60,7 +62,79 @@ try {
   await page.waitForFunction(id => document.querySelector("#run").textContent === id, run);
   const directory = fileURLToPath(new URL("../evidence/local/", import.meta.url));
   await mkdir(directory, {recursive: true});
-  if (catchScore) {
+  if (otherSends) {
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    assert.ok(data.other_send_sites.length);
+    const screens = [];
+    for (const width of [390,1360]) {
+      await page.setViewportSize({width,height:850});
+      await page.locator('[data-view="claims"]').click();
+      const opened = [];
+      for (const s of data.other_send_sites) {
+        const verdict = page.getByText("Vì sao báo cáo đưa ra verdict này?", {exact:true}).locator("..");
+        await verdict.locator(":scope > summary").click();
+        const group = verdict.locator("#other-send-sites");
+        await group.locator(":scope > summary").click();
+        const box = group.locator('[data-send-fact="' + s.fact + '"]');
+        await box.locator(":scope > summary").click();
+        const spans = await openReferences(box);
+        assert.deepEqual(spans,s.refs.map(r => [r.line,r.end,r.output_sha256]));
+        await box.getByRole("button", {name:"Mở câu " + s.claim,exact:true}).click();
+        await page.locator("#report-" + s.claim + "[open]").waitFor();
+        assert.deepEqual(await openReferences(page.locator("#report-" + s.claim)), spans);
+        opened.push({claim:s.claim,fact:s.fact,spans});
+      }
+      screens.push({width,opened});
+    }
+    assert.deepEqual(errors,[]); assert.deepEqual(external,[]);
+    await writeFile(resolve(directory,"other-sends-" + run + ".json"),JSON.stringify({run,screens,errors,external},null,2));
+    console.log(JSON.stringify({run,sites:data.other_send_sites.length}));
+  } else if (roleLines) {
+    const data = await (await page.request.get(origin + "/api/case/" + run)).json();
+    const decisions = data.verdict_trace.checks;
+    assert.ok(decisions.length);
+    const screens = [];
+    for (const width of [390,1360]) {
+      await page.setViewportSize({width,height:850});
+      await page.locator('[data-view="claims"]').click();
+      const verdict = page.getByText("Vì sao báo cáo đưa ra verdict này?", {exact:true}).locator("..");
+      await verdict.locator(":scope > summary").click();
+      assert.equal(await verdict.locator("[data-role-check]").count(),decisions.length);
+      const opened = [];
+      for (const d of decisions) {
+        const entry = verdict.locator('[data-role-check="' + d.role + '/' + d.claim + '"]');
+        await entry.locator(":scope > summary").click();
+        const spans = await openReferences(entry);
+        assert.deepEqual(spans,d.witnesses.map(w => [w.line,w.line,w.output_sha256]));
+        await entry.getByRole("button",{name:"Đọc nhận định " + d.claim,exact:true}).click();
+        await page.locator("#report-" + d.claim + "[open]").waitFor();
+        assert.equal(await page.locator("#run").innerText(),run);
+        await verdict.locator(":scope > summary").click();
+        opened.push({role:d.role,claim:d.claim,status:d.status,spans});
+      }
+      await page.locator('[data-view="evaluation"]').click();
+      const evaluation = await (await page.request.get(origin + "/api/evaluation")).json();
+      for (const [key,sample] of [["python","public_python2024.bin"],["gomorrah","public_gomorrah.bin"],["mercurial","public_mercurial.bin"]]) {
+        await page.getByLabel("Mẫu dùng để đối chiếu").selectOption(key);
+        const block = page.locator("#role-line-evaluation");
+        await block.locator(":scope > summary").click();
+        const trials = evaluation.role_line_study.filter(t => t.sample === sample);
+        assert.ok(trials.length);
+        for (const [i, trial] of trials.entries()) {
+          for (const [j, mode] of ["baseline","screened","forced_review"].entries()) {
+            const s = trial.scores[mode];
+            const cells = await block.locator("table").nth(i).locator("tr").nth(j+1).locator("td").allTextContents();
+            assert.deepEqual(cells.slice(1),[s.tp,s.fp,s.fn,s.tn].map(String));
+          }
+        }
+      }
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth),width);
+      screens.push({width,opened});
+    }
+    assert.deepEqual(errors,[]); assert.deepEqual(external,[]);
+    await writeFile(resolve(directory,"role-lines-web-" + run + ".json"),JSON.stringify({run,screens,errors,external},null,2));
+    console.log(JSON.stringify({run,decisions:decisions.length,widths:screens.map(s => s.width)}));
+  } else if (catchScore) {
     const data = await (await page.request.get(origin + "/api/case/" + run)).json();
     assert.equal(data.run, run);
     const study = (await (await page.request.get(origin + "/api/evaluation")).json()).catch_study;

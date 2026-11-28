@@ -1,0 +1,109 @@
+{
+  "run": "20261128T121940_ea602383",
+  "inherit": "20261128T114944_9332074e",
+  "scope": "Chấm các mệnh đề với chứng cứ tĩnh. Ngưỡng và 21 đơn vị tham chiếu giữ như lần chấm trước.",
+  "claims": {
+    "C8": {
+      "signature": "c83613c44118b0de4da3956079fcab589541e07fe21cb6b270f9e8b2fe76ada4",
+      "lines": [
+        713,
+        714,
+        720
+      ],
+      "atoms": [
+        [
+          "cookie-copy",
+          "correct"
+        ]
+      ],
+      "reason": "Nguồn là cơ sở dữ liệu Cookies của Chrome, đích là tệp tạm và lời gọi sao chép có đủ dòng."
+    },
+    "C9": {
+      "signature": "8d99c681476c2a0eb104ae7eca222515ff0bb0002449229d06a52bfa3fe6f0d3",
+      "lines": [
+        714,
+        727,
+        728,
+        733,
+        734,
+        735,
+        739
+      ],
+      "atoms": [
+        [
+          "cookie-table",
+          "correct"
+        ],
+        [
+          "cookie-ordinal-1",
+          "correct"
+        ],
+        [
+          "cookie-ordinal-2",
+          "correct"
+        ],
+        [
+          "cookie-ordinal-4",
+          "correct"
+        ],
+        [
+          "cookie-ordinal-5",
+          "correct"
+        ]
+      ],
+      "reason": "Bảng cookies và bốn chỉ số nêu trong câu có mặt ở các lời gọi. Câu chỉ nêu một số chỉ số được đọc."
+    },
+    "C10": {
+      "signature": "10a2023a0719ae5b0667d4957d57c36e816189c984ec29b03ea6a7c2827523e6",
+      "lines": [
+        747
+      ],
+      "atoms": [
+        [
+          "cookie-key-call",
+          "correct"
+        ]
+      ],
+      "reason": "Dòng 747 chứa đúng helper và các biểu thức của cả hai đối số."
+    },
+    "C13": {
+      "signature": "a4ece61978f7f4c870a29f47d1a1feba0963d1887a7a004c679e6ee6318f6a06",
+      "lines": [
+        807,
+        812,
+        814,
+        816
+      ],
+      "atoms": [
+        [
+          "attempt-with-retrieved-key",
+          "correct"
+        ],
+        [
+          "login-fallback",
+          "correct"
+        ]
+      ],
+      "reason": "Điểm lấy khóa, lời gọi thử và giá trị dự phòng đều có dẫn chứng. Câu chỉ nói một giá trị, chưa xác định nó là dữ liệu mật khẩu nên không tính mục login-key-call."
+    },
+    "C28": {
+      "signature": "2d7f0a8e1ee535787923a03048b26c727a87285b94a41f59caad085793980a7b",
+      "lines": [
+        727,
+        728,
+        733
+      ],
+      "atoms": [
+        [
+          "cookie-table",
+          "correct"
+        ],
+        [
+          "cookie-ordinal-1",
+          "correct"
+        ]
+      ],
+      "reason": "Câu nêu rõ bảng cookies cùng chỉ số 1. Không tự đặt tên cột."
+    }
+  }
+}

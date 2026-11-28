@@ -40,4 +40,5 @@ jobs:
           python -m eval.ordinal_review_study
           python -m eval.catch_argument_study
           python -m eval.catch_clean_controls
+          python -m eval.role_line_study
       - run: python -m compileall -q stealer_agent vm_tools training

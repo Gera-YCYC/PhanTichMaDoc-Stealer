@@ -1,0 +1,454 @@
+{
+  "role_evidence_checks": [
+    {
+      "claim": "C1",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C8",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C9",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C20",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C21",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C22",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C23",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C27",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C28",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "claim": "C11",
+      "role": "outbound_transfer_claim_ids",
+      "status": "no_bound_send",
+      "witnesses": []
+    },
+    {
+      "claim": "C11",
+      "role": "data_link_claim_ids",
+      "status": "no_bound_send",
+      "witnesses": []
+    }
+  ],
+  "role_lines_browser": {
+    "run": "20261128T121940_ea602383",
+    "screens": [
+      {
+        "width": 390,
+        "opened": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C1",
+            "status": "insufficient",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C8",
+            "status": "insufficient",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C9",
+            "status": "insufficient",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C20",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C21",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C22",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C23",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C27",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C28",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "claim": "C11",
+            "status": "no_bound_send",
+            "spans": []
+          },
+          {
+            "role": "data_link_claim_ids",
+            "claim": "C11",
+            "status": "no_bound_send",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "width": 1360,
+        "opened": [
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C1",
+            "status": "insufficient",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C8",
+            "status": "insufficient",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C9",
+            "status": "insufficient",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C20",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C21",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C22",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C23",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C27",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "sensitive_collection_claim_ids",
+            "claim": "C28",
+            "status": "not_cited",
+            "spans": []
+          },
+          {
+            "role": "outbound_transfer_claim_ids",
+            "claim": "C11",
+            "status": "no_bound_send",
+            "spans": []
+          },
+          {
+            "role": "data_link_claim_ids",
+            "claim": "C11",
+            "status": "no_bound_send",
+            "spans": []
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "external": []
+  },
+  "run": "20261128T121940_ea602383",
+  "sample": "public_mercurial.bin",
+  "sha256": "926755cc31c239edc78b3ef4aa3b3cc64fbe7209d907f9d1cdaa4b560662adfc",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "66fe27ace510918fe4fe4267a2f0d53247701649cda50d1596d1f6d86db01ce2",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 567.3123,
+    "model_calls": 54,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 101130,
+    "completion_tokens": 4305,
+    "host_peak_rss_bytes": 29229056,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 497115136,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "decompile_dotnet",
+    "identify"
+  ],
+  "journal_events": 330,
+  "journal_sha256": "92318d38539feab337755c0acf054106ef825303783d92dd22e5f79cd68c7bf3",
+  "gaps": [
+    {
+      "step": 3,
+      "edge": "send-response"
+    },
+    {
+      "step": 3,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 0
+    },
+    {
+      "step": 4,
+      "edge": "process-write"
+    },
+    {
+      "step": 4,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 1
+    },
+    {
+      "step": 5,
+      "edge": "query-rows"
+    },
+    {
+      "step": 5,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 7
+    },
+    {
+      "step": 6,
+      "edge": "archive-message"
+    },
+    {
+      "step": 6,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 7,
+      "edge": "process-write"
+    },
+    {
+      "step": 7,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 31
+    },
+    {
+      "step": 8,
+      "edge": "process-write"
+    },
+    {
+      "step": 8,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 0
+    },
+    {
+      "step": 9,
+      "edge": "query-rows"
+    },
+    {
+      "step": 9,
+      "edge": "query-rows",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 10,
+      "edge": "archive-message"
+    },
+    {
+      "step": 10,
+      "edge": "archive-message",
+      "status": "partial",
+      "hit_count": 9
+    },
+    {
+      "step": 11,
+      "edge": "send-response"
+    },
+    {
+      "step": 11,
+      "edge": "send-response",
+      "status": "missing",
+      "hit_count": 5
+    },
+    {
+      "step": 12,
+      "edge": "send-response"
+    },
+    {
+      "step": 12,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 13,
+      "edge": "send-response"
+    },
+    {
+      "step": 13,
+      "edge": "send-response",
+      "status": "partial",
+      "hit_count": 11
+    },
+    {
+      "step": 14,
+      "edge": "process-write"
+    },
+    {
+      "step": 14,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 12
+    },
+    {
+      "step": 15,
+      "edge": "process-write"
+    },
+    {
+      "step": 15,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 3
+    },
+    {
+      "step": 16,
+      "edge": "process-write"
+    },
+    {
+      "step": 16,
+      "edge": "process-write",
+      "status": "partial",
+      "hit_count": 5
+    }
+  ],
+  "accepted_claims": 23,
+  "accepted_claim_keys_sha256": "133a01a34c68a235c8c286de8313148024165963fd83882ed8b1e0d9e4e01d6c",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "partial",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "partial",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [
+    {
+      "matched": true,
+      "rule_names": [
+        "LabCorpus_05"
+      ],
+      "yara_version": "4.5.4",
+      "dataset_partition": "training",
+      "files_scanned_in_partition": 6
+    }
+  ],
+  "questions": [],
+  "ranking_anchors_for_review": 22,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

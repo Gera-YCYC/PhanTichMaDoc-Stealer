@@ -372,6 +372,7 @@ class Handler(BaseHTTPRequestHandler):
                 from eval.ordinal_review_study import PUBLIC as ordinal_receipt, published as ordinal_study
                 from eval.catch_argument_study import PUBLIC as catch_receipt, published as catch_study
                 from eval.catch_clean_controls import PUBLIC as control_receipt, published as catch_controls
+                from eval.role_line_study import PUBLIC as roles_receipt, web_results as role_study
                 from eval.parts_audit import PUBLIC as parts_receipt, score as score_parts, web_details
                 from eval.report_series import ARGUMENT_SERIES, web_results
                 from eval.verdict_trial import PUBLIC as verdict_receipt, score as score_verdict
@@ -425,6 +426,7 @@ class Handler(BaseHTTPRequestHandler):
                         "ordinal_review": ordinal_study() if ordinal_receipt.is_file() else None,
                         "catch_study": catch_study() if catch_receipt.is_file() else None,
                         "catch_controls": catch_controls()["controls"] if control_receipt.is_file() else [],
+                        "role_line_study": role_study() if roles_receipt.is_file() else [],
                         "intact_methods": method_result() if METHOD_RESULT.is_file() else None,
                         "verdict_format_trial": score_verdict(read(verdict_receipt)),
                         "argument_review": argument_review(),

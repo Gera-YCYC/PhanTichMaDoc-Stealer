@@ -2,6 +2,8 @@
 
 ## Sản phẩm nhóm trình diễn
 
+Một nhận định dùng để kết luận cần có dòng nguồn cho đúng vai trò của nó. Đo cả trường hợp loại nhầm nhận định đúng và trường hợp Qwen bỏ qua một điểm gửi có căn cứ. [Phép thử trên .NET và Python](KIEM_VAI_TRO_VERDICT.md)
+
 Khi chứng minh đường truyền, cần xác định dữ liệu đi vào từng lời gọi. Một tham chiếu đến thông báo lỗi trong nhánh ngoại lệ chỉ dùng để mô tả ngữ cảnh, kể cả khi tên hàm gợi ý gửi mạng. Chấm đóng góp của phát hiện bằng cách giữ nguyên các câu còn lại của báo cáo và đối chiếu với một tập chương trình sạch có chữ ký. [Phép thử trên nhánh lỗi .NET](NHANH_XU_LY_LOI.md)
 
 **Agent ReAct dùng SLM cục bộ để điều tra và kiểm chứng chuỗi đánh cắp thông tin của stealer .NET/Python.** Giảng viên có thể chọn mẫu trên web, xem công cụ VM đang chạy, bấm vào một quan hệ và đối chiếu nhận định với đúng dòng nguồn. Một lượt mới có mã và nhật ký riêng. [Chạy trên máy nhóm](TEAM_SETUP.md) · [Demo trực tiếp](WEB_DIEU_TRA.md)

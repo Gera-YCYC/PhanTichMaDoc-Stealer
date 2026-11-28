@@ -1,5 +1,7 @@
 # Demo điều tra bằng trình duyệt
 
+Trong lượt chạy có kiểm nguồn theo vai trò, mở **Nhận định → Vì sao báo cáo đưa ra verdict này?** rồi chọn một mã câu dưới vai trò thu thập, gửi hoặc nối dữ liệu. Người xem có thể mở riêng dòng chứng minh từng phần và trở lại nguyên câu. [Cách dùng và cách chấm](KIEM_VAI_TRO_VERDICT.md)
+
 Để giảng viên kiểm một kết luận của Qwen trên mẫu Mercurial, mở **Nhận định → Vì sao báo cáo đưa ra verdict này? → Kiểm tra trên bản đồ**. Web chọn đường nối đầu tiên còn thiếu trên tuyến đã lưu. Bấm **Hỏi tiếp về đường nối này** để đặt câu hỏi cho agent. Mục **Bản đồ chứng cứ → Nhánh xử lý lỗi** cho mở điểm khai báo và điểm dùng đối số. [Kịch bản .NET, thời gian chạy và kết quả](NHANH_XU_LY_LOI.md)
 
 Khi giảng viên hỏi về ý nghĩa của chỉ số cột trên mẫu .NET, mở một vị trí đọc cột trong bản đồ rồi bấm **Tìm lược đồ trong VM → Tra cứu chứng cứ**. Bảng hỏi đáp hiển thị đúng vị trí được chọn, số kết quả của phép tìm và các dòng có thể mở. Một chuỗi mô tả bảng vẫn cần được đối chiếu với bảng đang đọc. [Cách trình diễn và đối chứng](KIEM_LUOC_DO.md)

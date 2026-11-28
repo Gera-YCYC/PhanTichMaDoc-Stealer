@@ -1,0 +1,94 @@
+{
+  "registered": "2026-11-28T12:19:05.068294+00:00",
+  "existing_controls": "d94aff447e9da59fe4eb1d72f610680d6325cdf45cab4f40b1ab41910563e2cc",
+  "extra": {
+    "run": "20261128T114944_9332074e",
+    "probes": [
+      {
+        "claim": "C1",
+        "role": "sensitive_collection_claim_ids",
+        "expected": true,
+        "reason": "Local copy of a browser credential store.",
+        "claim_sha256": "9973011c1135270311fab8be26e6238740efc1d72077b97ba4653cebce469586",
+        "ranges": [
+          [
+            66,
+            81
+          ],
+          [
+            775,
+            810
+          ]
+        ]
+      },
+      {
+        "claim": "C11",
+        "role": "outbound_transfer_claim_ids",
+        "expected": false,
+        "reason": "File handoff at an unknown helper.",
+        "claim_sha256": "03821d9feac88f8a67b9ed6330117f8f9e211f06f0314ad840acecf4ac150e3f",
+        "ranges": [
+          [
+            738,
+            769
+          ],
+          [
+            727,
+            727
+          ],
+          [
+            728,
+            728
+          ]
+        ]
+      },
+      {
+        "claim": "C11",
+        "role": "data_link_claim_ids",
+        "expected": false,
+        "reason": "Path handoff lacks a proven transfer of the collected content.",
+        "claim_sha256": "03821d9feac88f8a67b9ed6330117f8f9e211f06f0314ad840acecf4ac150e3f",
+        "ranges": [
+          [
+            738,
+            769
+          ],
+          [
+            727,
+            727
+          ],
+          [
+            728,
+            728
+          ]
+        ]
+      },
+      {
+        "claim": "C12",
+        "role": "outbound_transfer_claim_ids",
+        "expected": false,
+        "reason": "The visible call receives an error message; its network effect is unproven.",
+        "claim_sha256": "59141cf80b53a75506b02adbdeb352b49cfe0738590e430c9df531b8dbb210c3",
+        "ranges": [
+          [
+            803,
+            834
+          ]
+        ]
+      }
+    ]
+  },
+  "report_journals": {
+    "20261128T085636_4eaac445": "9a4400bf2e4afb39dc95572992389fa164add3ee8311bfc904ac956be145ea34",
+    "20261128T030521_c76fc69a": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+    "20261128T031606_ca91de35": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+    "20261128T114944_9332074e": "b096a2766e36fbdd6a546bc5c81ec76ead46b3cbc13b4a785763722b4fc66905"
+  },
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "config_sha256": "9ec2b1314da1ec45e610f1a65537d1ff2eca024e5b108841b50c3a64aa8050ee",
+  "implementation": {
+    "stealer_agent/role_evidence.py": "4355aa3fecd2189fcc4e4c4771c6614645dda06eb9acc0e4b04d0251d9347518",
+    "stealer_agent/evidence_cards.py": "4b67b8de06edd50e73c54e87366f36efb29962f2f04f25269da13627bf9f4982"
+  },
+  "design": "All 15 existing pairs and four development diagnostic pairs. Per-pair forced review (eligibility, all controls), and original eligible selections before/after screening. Retain all failures. Also retain first subsequent full Mercurial live attempt, original proposals and filtered decisions. No end-to-end label or holdout accuracy inferred from this diagnostic."
+}

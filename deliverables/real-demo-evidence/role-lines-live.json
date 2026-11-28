@@ -1,0 +1,129 @@
+{
+  "run": "20261128T121940_ea602383",
+  "protocol": "ebd61956d4ffda548b783cab02d936ba71f9dd2d36d57df10463de5cfc9a91bc",
+  "journal": "92318d38539feab337755c0acf054106ef825303783d92dd22e5f79cd68c7bf3",
+  "status": "completed_with_rejected_claims",
+  "verdict": "suspicious",
+  "metrics": {
+    "elapsed_s": 567.3123,
+    "model_calls": 54,
+    "tool_calls": 17,
+    "tool_errors": 0,
+    "prompt_tokens": 101130,
+    "completion_tokens": 4305,
+    "host_peak_rss_bytes": 29229056,
+    "model_vram_bytes_after_run": 4206582824,
+    "minimum_observed_host_available_memory_bytes": 497115136,
+    "api_cost_usd": 0
+  },
+  "checks": [
+    {
+      "claim": "C1",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C8",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "claim": "C9",
+      "role": "sensitive_collection_claim_ids",
+      "status": "insufficient",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C20",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C21",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C22",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C23",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C27",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "role": "sensitive_collection_claim_ids",
+      "claim": "C28",
+      "status": "not_cited",
+      "witnesses": []
+    },
+    {
+      "claim": "C11",
+      "role": "outbound_transfer_claim_ids",
+      "status": "no_bound_send",
+      "witnesses": []
+    },
+    {
+      "claim": "C11",
+      "role": "data_link_claim_ids",
+      "status": "no_bound_send",
+      "witnesses": []
+    }
+  ],
+  "proposed_roles": {
+    "sensitive_collection_claim_ids": [
+      "C1",
+      "C8",
+      "C9",
+      "C20",
+      "C21",
+      "C22",
+      "C23",
+      "C27",
+      "C28"
+    ],
+    "outbound_transfer_claim_ids": [
+      "C11"
+    ],
+    "data_link_claim_ids": [
+      "C11"
+    ]
+  },
+  "kept_roles": {
+    "sensitive_collection_claim_ids": [],
+    "outbound_transfer_claim_ids": [],
+    "data_link_claim_ids": []
+  },
+  "review_calls": [
+    {
+      "latency_s": 4.8164,
+      "prompt_tokens": 2118,
+      "completion_tokens": 25
+    },
+    {
+      "latency_s": 3.6356,
+      "prompt_tokens": 1392,
+      "completion_tokens": 25
+    },
+    {
+      "latency_s": 3.7885,
+      "prompt_tokens": 1406,
+      "completion_tokens": 25
+    }
+  ],
+  "proposed_verdict": "suspicious"
+}

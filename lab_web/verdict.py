@@ -17,5 +17,15 @@ def trace(analysis):
     for state in ("missing", "invalid"):
         if [r["role"] for r in roles if r["state"] == state] != analysis["verdict_support_" + state]:
             raise ValueError("Trạng thái dẫn chứng khác quyết định đã ghi.")
-    return {"proposed": analysis["proposed_verdict"], "final": analysis["verdict"],
-            "citations": cited, "roles": roles}
+    result = {"proposed": analysis["proposed_verdict"], "final": analysis["verdict"],
+              "citations": cited, "roles": roles}
+    if "role_checks" in analysis:
+        checks = analysis["role_checks"]
+        proposed = analysis["proposed_roles"]
+        if [(d["role"], d["claim"]) for d in checks] != [(k,i) for k in SUPPORT_KEYS for i in proposed[k]]:
+            raise ValueError("Thiếu lần kiểm vai trò đã đề xuất.")
+        for key in SUPPORT_KEYS:
+            if [d["claim"] for d in checks if d["role"] == key and d["status"] == "supported_by_review"] != analysis["verdict_support"][key]:
+                raise ValueError("Kết quả kiểm vai trò khác các câu dùng cho verdict.")
+        result["checks"] = checks
+    return result

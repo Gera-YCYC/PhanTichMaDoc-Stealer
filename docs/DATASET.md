@@ -50,4 +50,4 @@ Receipt tải/hash ở `evidence/local/public-*.json`. File `config/malwarebazaa
 
 ## Điều kiện chốt bộ mẫu
 
-Ít nhất một .NET stealer và một Python/PyInstaller stealer có kênh gửi/IOC phân tích được; ít nhất ba mẫu có log cho buổi 6; thêm file sạch và biến thể độc lập cho YARA. Hiện chưa có ground truth đầy đủ và chưa chốt mẫu Python chính. Giới hạn này phải giữ trong báo cáo tiến độ.
+Nhóm dùng Gomorrah cho nhánh I và PythonStealer 2024 cho nhánh J. Mercurial là ca .NET bổ sung. Cả ba đã có lượt chạy web dùng cùng cấu hình và bảng chấm từng nhận định. Các mục tham chiếu hiện do nhóm xây trên bộ phát triển. Cần bổ sung mẫu độc giữ riêng cho phép đo YARA và người đọc nguồn độc lập để chấm chất lượng báo cáo. [Ba mẫu, mã lượt và điểm](CHAM_BA_MAU_WEB.md)

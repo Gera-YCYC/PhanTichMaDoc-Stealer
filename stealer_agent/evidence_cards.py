@@ -286,12 +286,13 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
         from .flow_review import review
         prior_claim_count = len(claims)
         review(evidence, digest, call_model, journal, claims, accepted, rejected)
-    raw, checked = finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal)
+    raw, checked = finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal,
+                                   review_roles=flow_review)
     checked['report_method'] = 'evidence-cards/11' if operation_review else 'evidence-cards/10'
     if technique_review:
         checked['report_method'] = 'evidence-cards/13'
     if flow_review:
-        checked['report_method'] = 'evidence-cards/14'
+        checked['report_method'] = 'evidence-cards/15'
         checked['transfer_evidence_claim_ids'] = [c['id'] for c in claims[prior_claim_count:]]
     checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
     checked['api_guidance_enabled'] = api_guidance
@@ -306,7 +307,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
     return raw, checked
 
 
-def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal):
+def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, journal, *, review_roles=False):
     """Apply citation checks and synthesize the verdict from all retained behaviors."""
     limitations = ['Static code excerpts only; sample execution was not observed.',
                   'Bounded retrieval is incomplete; absence of a finding does not establish benignness.',
@@ -351,7 +352,14 @@ def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, jo
         verdict = {key: synthesis[key] for key in ('verdict', 'verdict_claim_ids')}
     raw.update(verdict)
     checked = validate_report({**raw, 'claims': accepted}, evidence, digest)
+    if review_roles:
+        from .role_evidence import screen
+        checked['proposed_roles'] = support
+        support, checked['role_checks'] = screen(support, checked['verdict_claim_ids'], checked['claims'],
+                                                evidence, digest, call_model, journal)
     checked = enforce_stealer_support(checked, support)
+    if review_roles:
+        checked['verdict_support_scope'] = 'Role-specific local model review with cited rows and parser-bound send sites; not independent proof'
     if context_only:
         checked['catch_context_claim_ids'] = context_only
     checked['rejected_claims'] += rejected

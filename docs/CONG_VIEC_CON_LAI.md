@@ -1,5 +1,7 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+**Sau lần kiểm nguồn cho từng vai trò.** Cần thử đưa những câu khớp trọn vẹn thao tác gửi trở lại lượt chọn chứng cứ, rồi đo xem Qwen có sử dụng đúng dữ liệu gửi. Nhóm phân tích cần kiểm bước đọc khi Qwen chọn chú thích hoặc dòng khởi tạo đường dẫn và kiểm việc lặp một dòng cho cả nguồn lẫn đích. Nhóm đánh giá cần ca dương độc lập cho liên kết dữ liệu đến bên gửi, ca hai câu có cùng trích đoạn nhưng mô tả hai thao tác, và ít nhất một ca lành có thao tác gửi thật. Đo lại nhãn vai trò, độ đúng của các dòng đã chọn và điểm cả báo cáo trước khi kết luận cải thiện. [Các điểm bỏ sót và hai ví dụ bấm được](KIEM_VAI_TRO_VERDICT.md)
+
 **Việc cần làm trước lần đo kế tiếp.** Lượt Mercurial mới đã chỉ ra rằng một câu mô tả đúng điểm gọi có thể bị dùng sai khi kết luận về đường truyền. Người phụ trách agent cần kiểm riêng từng vai trò bằng các dòng đủ hẹp để thấy đối số và nơi sử dụng. Dùng C12 làm ca thông báo lỗi, C11 làm ca đường dẫn bàn giao, và C1 làm đối chứng cho câu có trích dẫn rộng nhưng mô tả đúng thao tác đọc. Người chấm khóa nhãn và ca đối chứng trước khi thử trên mẫu độc, lành giữ riêng ở cả hai định dạng. Chỉ đóng việc khi có bảng câu–vai trò, trường hợp loại nhầm, recall và verdict theo từng mẫu. [Kết quả và tọa độ dòng của lượt phát triển](NHANH_XU_LY_LOI.md)
 
 | Người phụ trách theo phần việc | Từ kết quả Mercurial mới | Minh chứng cần nộp |

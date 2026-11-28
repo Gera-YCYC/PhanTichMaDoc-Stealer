@@ -172,6 +172,7 @@ def source(run, fingerprint):
     records, timeline, anchors = {}, [], {}
     attempts = {}
     operation_reviews = {}
+    role_decisions = []
     column_reviews = {}
     reviewable = set()
     last = {}
@@ -184,6 +185,8 @@ def source(run, fingerprint):
             kind = e["event"]
             if kind == "operation_review_decision":
                 operation_reviews[e["fact_id"]] = e["claim_id"] if e["selected"] else None
+            if kind == "verdict_role_checked":
+                role_decisions.append({k: e[k] for k in ("claim","role","status","witnesses")})
             if kind == "column_review":
                 column_reviews[e["claim_id"]] = (e["fact_ids"], e["ruling"], e["assessment"].get("column_basis"))
             if kind == "card_claim_review" and not e["check"]["supported"]:
@@ -215,6 +218,8 @@ def source(run, fingerprint):
                 if re.fullmatch(r"C[1-9][0-9]*", e["claim_id"]):
                     outcome = "có hỗ trợ" if e["decision"]["supported"] else "chưa đủ hỗ trợ"
                     desc = f"Qwen duyệt {e['claim_id']} · {outcome}"
+            elif kind == "verdict_role_checked":
+                desc = f"Kiểm nguồn cho {e['claim']} · {e['role']} · {e['status']}"
             elif kind == "hypothesis_open":
                 desc = "Tìm liên kết " + e["edge"]
             elif kind == "hypothesis_result":
@@ -253,14 +258,21 @@ def source(run, fingerprint):
     ):
         raise ValueError("Thông tin model hoặc mẫu không khớp.")
     saved = last["result"].get("investigation")
+    if "role_checks" in last["result"]["analysis"] and role_decisions != last["result"]["analysis"]["role_checks"]:
+        raise ValueError("Số lần kiểm nguồn theo vai trò khác nhật ký.")
     if verdict_trace(last["result"].get("analysis") or {}) != verdict_trace(r.get("analysis") or {}):
         raise ValueError("Các nguồn dẫn cho verdict khác với nhật ký gốc.")
     frozen_graph = redact_document(saved)[0] if saved is not None else None
     kept = {c["id"]: c for c in last["result"]["analysis"]["claims"]}
     terminal = {**kept, **{c["claim"]["id"]: c["claim"] for c in last["result"]["analysis"].get("rejected_claims", [])}}
     context_ids = set(last["result"]["analysis"].get("catch_context_claim_ids", []))
+    send_ids = set(last["result"]["analysis"].get("verdict_support", {}).get("outbound_transfer_claim_ids", []))
+    cited_sends = send_ids.intersection(last["result"]["analysis"].get("verdict_claim_ids", []))
     for record in records.values():
         record["reader_fields"] = reader_fields(record, operation_reviews, kept)
+        record["other_send_sites"] = [{"claim": cid, "fact": f["fact_id"], "refs": refs} for f, refs, cid
+            in bound_sites(record, operation_reviews, kept, {"smtp_send", "file_upload"})
+            if cid and cid not in cited_sends]
         record["catch_sites"] = [
             {"id": fact["fact_id"], "target": fact["inputs"]["call"], "refs": refs, "claim": claim,
              "context_only": claim in context_ids,
@@ -490,7 +502,15 @@ def case(run):
                 }
             )
     fields = [f for rec in records.values() for f in rec["reader_fields"]]
+    other_sends = [s for rec in records.values() for s in rec["other_send_sites"]]
     catch_sites = [s for rec in records.values() for s in rec["catch_sites"]]
+    role_points = []
+    for decision in analysis.get("role_checks", []):
+        for w in decision["witnesses"]:
+            rec = records.get(w["eid"], {})
+            if rec.get("output_sha256") != w["output_sha256"] or w["line"] not in rec.get("line_map", {}):
+                raise ValueError("Dòng dùng để kiểm vai trò khác với nguồn VM.")
+            role_points.append({"refs": [{**w, "end": w["line"]}]})
     from .dotnet_supplement import latest
     dotnet = any(rec["tool"] == "decompile_dotnet" for rec in records.values())
     supplement = latest(directory(run), run, r["sample_sha256"], r["model"]["digest"]) if dotnet else None
@@ -540,8 +560,9 @@ def case(run):
         "search_attempts": attempts,
         "graph": graph,
         "reader_fields": fields,
+        "other_send_sites": other_sends,
         "catch_sites": catch_sites,
-        "cited_windows": cited_windows(records, graph, claims + rejected + fields + catch_sites),
+        "cited_windows": cited_windows(records, graph, claims + rejected + fields + catch_sites + role_points + other_sends),
         "graph_origin": "terminal" if frozen_graph is not None else "reconstructed",
         "claims": claims,
         "rejected_claims": rejected,

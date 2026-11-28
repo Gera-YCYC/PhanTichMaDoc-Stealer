@@ -799,6 +799,33 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     group.append(el("small", "Cùng mẫu phát triển và cấu hình Qwen. Điểm chấm toàn bộ báo cáo. Bấm mã lượt trên máy đã chạy để mở chứng cứ."));
     panel.append(group);
   }
+  const lineTrials = (data.role_line_study || []).filter(r => r.sample === "public_" +
+    (sample === "python" ? "python2024" : sample) + ".bin");
+  if (lineTrials.length) {
+    const panelStudy = el("details", undefined, "card");
+    panelStudy.id = "role-line-evaluation";
+    panelStudy.append(el("summary","Kiểm lại từng vai trò bằng dòng nguồn"),
+      el("p","Mỗi cặp gồm một câu và một vai trò đã chấm trên nguồn. Hai hàng đầu đo những cặp Qwen đã chọn cho verdict. Hàng cuối yêu cầu xét mọi cặp, kể cả cặp Qwen bỏ qua."));
+    for (const trial of lineTrials) {
+      panelStudy.append(el("h3",trial.run + " · " + trial.pairs + " cặp"));
+      table(["Phạm vi","Giữ đúng","Giữ sai","Bỏ sót cặp đúng","Loại đúng"],
+        [["Đề xuất ban đầu","baseline"],["Sau kiểm nguồn","screened"],["Xét tất cả cặp","forced_review"]].map(([label,key]) => {
+          const s = trial.scores[key];
+          return [label,s.tp,s.fp,s.fn,s.tn];
+        }), panelStudy);
+      panelStudy.append(el("small",trial.calls + " lần gọi Qwen để kiểm các cặp trên nhật ký của lượt này."));
+      if (trial.witness_audit.length) {
+        const details = el("details", undefined, "card");
+        const count = trial.witness_audit.filter(row => row.complete).length;
+        details.append(el("summary","Dòng đã chọn đủ chứng minh · " + count + "/" + trial.witness_audit.length));
+        for (const row of trial.witness_audit) {
+          details.append(el("p",row.claim + " · " + row.reason));
+        }
+        panelStudy.append(details);
+      }
+    }
+    panel.append(panelStudy);
+  }
   const verdictTrial = data.verdict_format_trial?.find(r =>
     r.sample === ({python:"public_python2024.bin", gomorrah:"public_gomorrah.bin", mercurial:"public_mercurial.bin"})[sample]);
   if (verdictTrial) {
@@ -1506,10 +1533,17 @@ async function render() {
       const v = record.verdict_trace, section = el("details", undefined, "card");
       section.append(el("summary", "Vì sao báo cáo đưa ra verdict này?"),
         el("p", "Qwen đề xuất " + v.proposed + ". Báo cáo sau kiểm tra ghi " + v.final + "."),
-        el("p", "Qwen gán vai trò cho các câu dưới đây. Một ID hợp lệ cho biết câu hành vi đã được giữ và được verdict trích dẫn. Bấm vào câu để kiểm tra ý nghĩa trên nguồn."));
+        el("p", v.checks ? "Mỗi hàng ghi một vai trò Qwen đề xuất. Mở hàng để xem quyết định sau kiểm tra và những dòng Qwen đã chọn. Dòng được chọn trong một hàng thiếu chứng cứ vẫn cần đối chiếu."
+          : "Qwen gán vai trò cho các câu dưới đây. Một ID hợp lệ cho biết câu hành vi đã được giữ và được verdict trích dẫn. Bấm vào câu để kiểm tra ý nghĩa trên nguồn."));
       const labels = {sensitive_collection_claim_ids: "Thu thập dữ liệu nhạy cảm",
         outbound_transfer_claim_ids: "Gọi thao tác gửi", data_link_claim_ids: "Liên hệ dữ liệu thu thập với thao tác gửi"};
       const kept = new Set(record.claims.map(c => c.id));
+      const statusNames = {supported_by_review:"Có dẫn chứng sau kiểm tra", insufficient:"Qwen chưa tìm đủ chứng cứ",
+        no_bound_send:"Chưa có điểm gửi được bộ phân tích xác minh trong trích dẫn",
+        unverified_citation:"Trích dẫn chưa xác minh được", not_cited:"Câu nằm ngoài danh sách dẫn cho verdict",
+        source_over_budget:"Đoạn nguồn vượt giới hạn đọc"};
+      const partNames = {read:"Thao tác đọc", sensitive_source:"Nguồn dữ liệu nhạy cảm",
+        binding_to_payload:"Cách dữ liệu đi vào đối số gửi", send:"Lời gọi gửi"};
       for (const role of v.roles) {
         const line = el("div", undefined, "line");
         section.append(el("strong", labels[role.role]));
@@ -1517,7 +1551,34 @@ async function render() {
           const name = id + (role.unbound.includes(id) ? " · ngoài danh sách dẫn hợp lệ" : "");
           line.append(kept.has(id) ? button(name, () => openReportClaim(record.run, id)) : el("span", name));
         }
-        section.append(role.ids.length ? line : el("p", "Qwen để trống vai trò này."));
+        section.append(role.ids.length ? line : el("p", v.checks ? "Chưa có câu qua bước kiểm cho vai trò này." : "Qwen để trống vai trò này."));
+        if (role.role === "outbound_transfer_claim_ids" && record.other_send_sites?.length) {
+          const omitted = el("details", undefined, "card");
+          omitted.id = "other-send-sites";
+          omitted.append(el("summary", "Điểm gọi gửi có trong báo cáo nhưng chưa làm căn cứ · " + record.other_send_sites.length),
+            el("p", "VM đã ràng buộc thao tác và đối số với những dòng dưới đây. Báo cáo có câu mô tả đúng thao tác đó. Muốn xác định nội dung gửi đi cần lần ngược đối số."));
+          for (const site of record.other_send_sites) {
+            const box = el("details", undefined, "card");
+            box.dataset.sendFact = site.fact;
+            box.append(el("summary",site.claim + " · dòng " + site.refs.at(-1).line));
+            refs(box, site.refs);
+            box.append(button("Mở câu " + site.claim, () => openReportClaim(record.run, site.claim)));
+            omitted.append(box);
+          }
+          section.append(omitted);
+        }
+        for (const decision of (v.checks || []).filter(d => d.role === role.role)) {
+          const entry = el("details", undefined, "card");
+          entry.dataset.roleCheck = role.role + "/" + decision.claim;
+          entry.append(el("summary", decision.claim + " · " + statusNames[decision.status]));
+          if (kept.has(decision.claim))
+            entry.append(button("Đọc nhận định " + decision.claim, () => openReportClaim(record.run, decision.claim)));
+          for (const w of decision.witnesses) {
+            entry.append(el("strong", partNames[w.part]));
+            refs(entry, [{...w, end:w.line}]);
+          }
+          section.append(entry);
+        }
         if (role.role === "data_link_claim_ids" && record.graph_origin === "terminal") {
           const send = record.graph.edges.findIndex(edge => edge.id === "message-send");
           if (send >= 0) {
