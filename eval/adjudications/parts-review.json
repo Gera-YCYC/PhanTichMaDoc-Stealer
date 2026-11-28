@@ -1,0 +1,89 @@
+{
+  "journal_sha256": "adb0da99b9f91a1cef598baba963679af2e2db84b013f2a1bf5d787109957474",
+  "grades": {
+    "bc16817e2f59fd2d94408ad8406bc074f82097a42cc001e822d67d72db77fd0d": {
+      "label": "correct",
+      "reason": "Khai báo có hai tham số với chú thích kiểu bytes. Chỉ xác nhận chữ ký tĩnh."
+    },
+    "5eda268c6e367533f9bbe2a37226a63cc6cb90890db7cf77cc653239b47eead4": {
+      "label": "incorrect",
+      "reason": "Khoảng bắt đầu ở chỉ số 3, trong khi nhận định nói 12 byte đầu."
+    },
+    "be16a66d090b33d5520cf97f69e46e5f3553bde4dc7f3bdd83206d5f0fc4bf7f": {
+      "label": "unsupported",
+      "reason": "Dòng được trích khởi tạo đối tượng. Dòng gọi giải mã thiếu trong trích dẫn."
+    },
+    "b91adc6400db6e84588fa57cc38d246487d47c4a5891e6cfe0ba26a673c6f90e": {
+      "label": "unsupported",
+      "reason": "Sáu dòng chỉ cho thấy khai báo và mở khối. Thiếu cả phép ghép đích lẫn chỗ dùng."
+    },
+    "eb07edc58da6d728910524fe6d8210e21fee02710a5c0a31637b10a4248870a1": {
+      "label": "correct",
+      "reason": "Có khởi tạo đối tượng và lời gọi trên cùng biến. Hai đối số thể hiện biểu thức ghép đích và biến đường dẫn."
+    },
+    "4cf73109faf2060769ef63a3d8d9403c2133aedc87220cb2febbb11f79b71786": {
+      "label": "unsupported",
+      "reason": "Có bước đọc mảng bằng ASCII nhưng thiếu dòng gán kết quả UploadFile vào mảng đó."
+    },
+    "b50df1a2ff394ce30a86bbc3f9fafb53640dac73cffdc6001dba87753d7eb438": {
+      "label": "unsupported",
+      "reason": "Dòng trích chỉ ghép phần tương đối với kết quả hàm. Thành phần cơ sở không có ở dòng này."
+    },
+    "df9b5044e36e6dbe38275872566171aa4867ed83d4f8ce3bc0e46553005bbfae": {
+      "label": "unsupported",
+      "reason": "Một tên biến ở lời gọi gửi tệp chưa xác định nội dung tệp là ảnh chụp."
+    },
+    "f08a6969e43614c533fa44b1ba986aa43780f4df951ff9791e53ee5c1734fc64": {
+      "label": "correct",
+      "reason": "Có cả phép ghép phần tương đối với kết quả hàm và chỗ nối vào đối số của lời gọi gửi."
+    },
+    "18a7d7230cb1fc0b8887812d1ffdfbd9775c55bd7fb1ea971e21080686d5f6a8": {
+      "label": "correct",
+      "reason": "Vế trái và phép gán kết quả giải mã Unicode đều hiện diện."
+    },
+    "fe500d81227d008c43b882d4db4bcb2f15c595ee31b61240dd3661dc9c1757e8": {
+      "label": "correct",
+      "reason": "Biểu thức offset chọn phần bộ đệm đưa vào GetString dùng đủ ba thành phần được nêu. Chấm theo nghĩa phần dữ liệu được chọn."
+    },
+    "1906bfb2532084cbbca2ab9dfbefc172d0275bacf958057371b1a9181d7f5cd1": {
+      "label": "correct",
+      "reason": "Đối số độ dài của GetString nhận phần tử thứ hai của mảng sau ép kiểu. Đây là độ dài phần bộ đệm."
+    },
+    "b23a1aa1b61835bebf940b2985ed78582ebecf305a21f9f395f70729b9ee9502": {
+      "label": "unsupported",
+      "reason": "Có khởi tạo writer và hậu tố tên tệp. Dòng được dẫn không xác lập thư mục cơ sở thực sự là thư mục tạm của người dùng."
+    },
+    "d4f0b13e90eb19ab6bce8f7585d00c670c8a518525f5b068b0503ad387359942": {
+      "label": "incorrect",
+      "reason": "Biến nhận dữ liệu từ cột và biến truyền vào hàm khác nhau. Hai dòng không nối được hai giá trị."
+    },
+    "61b0503e5bc1a6ee6529c6d1076b5a848e2cf7c2f3b42fdf250431ce7bf9a7e1": {
+      "label": "unsupported",
+      "reason": "Dòng chỉ gán biểu thức đường dẫn. Thiếu lời gọi đọc tệp và xử lý dữ liệu được mô tả."
+    },
+    "78df023bd75e3359331298afb4eb18ee33c236097a18bd0e16087ab29a3544bf": {
+      "label": "unsupported",
+      "reason": "Các dòng chứa tên hàm và đường dẫn, thiếu lời gọi tìm trường bằng biểu thức chính quy."
+    },
+    "18d6ea2bf59afd0104416ff9b1a15a3313e5243a1cb72b7a0fb0310e01a8eca4": {
+      "label": "unsupported",
+      "reason": "Nhìn thấy regex và vòng lặp. Thiếu thao tác giải mã Base64 trong sáu dòng đã chọn."
+    },
+    "432fe703eb08eaa6776c9ed6f70918ab537fbed1016af5786848d676b177f1b9": {
+      "label": "unsupported",
+      "reason": "Nhìn thấy lời gọi xử lý mảng. Nguồn của mảng được gọi là đã trích xuất chưa được dẫn."
+    },
+    "446888416df83708841c76cb9399a8175fcaa2cfd95a9be00f319e5f45ae0d42": {
+      "label": "unsupported",
+      "reason": "Chứng minh sao chép 16 phần tử ở cuối mảng. Kiểu byte của phần tử chưa được xác lập trong dòng trích."
+    },
+    "d50b7c7b8b95a1635c8ba4af865ed7b6109a839cdd1b3247226ce5a8f9c0d3e7": {
+      "label": "unsupported",
+      "reason": "Độ dài sao chép phụ thuộc độ dài mảng khác. Dòng trích không xác lập độ dài cố định là 16 hoặc đơn vị byte."
+    },
+    "794020d1ba0ea3e9315d406074e4ef1e9e0fc045fc7613fe857dab98a7c36f4c": {
+      "label": "unsupported",
+      "reason": "Đủ tên biến, thứ tự đối số và lời gọi UTF-8. Thiếu dòng xác lập kiểu của đối tượng gọi Decrypt."
+    }
+  }
+}

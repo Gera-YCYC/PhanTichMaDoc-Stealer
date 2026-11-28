@@ -172,6 +172,25 @@ function refs(where, rows, canLabel = false, windows = record?.cited_windows) {
 function showClaimReview(panel, review) {
   panel.replaceChildren();
   if (!review) return;
+  if (review.mode === "parts") {
+    for (const [i, part] of review.parts.entries()) {
+      const group = el("details", undefined, "card");
+      const status = part.slice_check ? "Cần kiểm tra khoảng chỉ số" : (part.kept ? "Qwen giữ" : "Qwen loại");
+      group.append(el("summary", "Ý " + (i + 1) + " · " + status + " · " + part.text));
+      if (part.slice_check) {
+        const s = part.slice_check;
+        group.append(el("p", "Qwen " + (part.kept ? "giữ" : "loại") + " ý này. Dòng " + s.line +
+          " lấy khoảng [" + s.start + ", " + s.stop + "), vượt ra ngoài " + s.claimed_prefix +
+          " byte đầu được nêu trong câu."));
+      }
+      group.append(el("p", part.reason));
+      refs(group, part.refs, false, review.windows);
+      panel.append(group);
+    }
+    if (!review.parts.length) panel.append(el("p", "Chưa có ý tách ra với dẫn chứng hợp lệ."));
+    panel.append(el("small", review.model_calls + " lượt Qwen · " + review.id));
+    return;
+  }
   const outcomes = {
     accepted: "Qwen giữ câu viết lại trong lần đọc này.",
     rejected: "Qwen loại câu viết lại trong lần đọc này.",
@@ -731,6 +750,17 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
   }
   table(["Cách dẫn", "Câu nguồn", "Câu viết lại", "Thực tế", "Nhãn", "Qwen"], tested, narrowing);
   panel.append(narrowing);
+  const split = el("details", undefined, "card");
+  split.append(el("summary", "Đối chiếu từng ý trong bảy câu bị loại"));
+  split.append(el("p", "Cùng bảy câu trên PythonStealer, Gomorrah và Mercurial. Một câu gốc có thể có nhiều ý tách ra. Mỗi ý được đối chiếu với chính các dòng nó dẫn."));
+  const methods = {single:"Viết lại một câu", parts:"Tách và duyệt từng ý",
+    parts_after_slice_check:"Sau khi đánh dấu khoảng chỉ số mâu thuẫn"};
+  table(["Cách đọc", "Ý đã xét", "Ý giữ", "Giữ và đúng", "Giữ nhưng sai",
+    "Giữ dù thiếu căn cứ", "Câu gốc có ý đúng được giữ / 7"],
+    Object.entries(data.split_scores).map(([key, s]) => [methods[key], s.reviewed,
+      s.kept, s.kept_correct, s.kept_incorrect, s.kept_unsupported, s.parents_with_correct_kept + "/7"]), split);
+  split.append(el("p", "Kết quả đọc lại dùng để người phân tích kiểm tra. Verdict của ba báo cáo gốc được chấm riêng."));
+  panel.append(split);
   const followup = data.dotnet_followup[sample];
   if (followup) {
     const details = el("details", undefined, "card");
@@ -1176,28 +1206,32 @@ async function render() {
           " trích dẫn chưa đối chiếu được với các dòng đã lưu."));
         refs(d, c.refs);
         if (c.can_revisit) {
-          const result = el("div");
           const focusRun = record.run;
-          const retry = button("Đọc lại phần có chứng cứ", async () => {
-            retry.disabled = true;
-            retry.dataset.pending = "1";
-            result.textContent = "Qwen đang đối chiếu các dòng đã lưu…";
-            try {
-              const response = await api("claim-review", {run:focusRun, claim:c.id});
-              c.revisit = response;
-              if (record?.run === focusRun) showClaimReview(result, response);
-            } catch (err) {
-              result.textContent = err.message;
-            } finally {
-              delete retry.dataset.pending;
-              retry.disabled = init.history_only;
-            }
-          });
-          retry.disabled = init.history_only || job.active;
-          retry.dataset.claimReview = "";
-          d.append(el("p", "Lần đọc bổ sung dùng các dòng VM đã trả cho câu này. Người phân tích đối chiếu kết quả trước khi dùng. Báo cáo đã chấm giữ verdict gốc."),
-            retry, result);
-          showClaimReview(result, c.revisit);
+          d.append(el("p", "Lần đọc bổ sung dùng các dòng VM đã trả cho câu này. Người phân tích đối chiếu kết quả trước khi dùng. Báo cáo đã chấm giữ verdict gốc."));
+          for (const [mode, key, label] of [
+            ["lines", "revisit", "Đọc lại phần có chứng cứ"],
+            ["parts", "parts_review", "Tách và kiểm từng ý"],
+          ]) {
+            const result = el("div");
+            const retry = button(label, async () => {
+              retry.disabled = true;
+              retry.dataset.pending = "1";
+              result.textContent = "Qwen đang đối chiếu các dòng đã lưu…";
+              try {
+                c[key] = await api("claim-review", {run:focusRun, claim:c.id, mode});
+                if (record?.run === focusRun) showClaimReview(result, c[key]);
+              } catch (err) {
+                result.textContent = err.message;
+              } finally {
+                delete retry.dataset.pending;
+                retry.disabled = init.history_only || job.active;
+              }
+            });
+            retry.disabled = init.history_only || job.active;
+            retry.dataset.claimReview = "";
+            d.append(retry, result);
+            showClaimReview(result, c[key]);
+          }
         }
         group.append(d);
       }

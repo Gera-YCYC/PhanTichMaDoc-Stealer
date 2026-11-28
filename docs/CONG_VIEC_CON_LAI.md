@@ -1,5 +1,7 @@
 # Backlog để hoàn thành sản phẩm đồ án
 
+**Sau thử nghiệm tách ý**, ưu tiên kiểm chứng trường được truyền tại điểm gọi trước khi nối nó với xử lý trong thân hàm. Trên 7 câu phát triển, tách ý tìm được nhiều ý đúng hơn nhưng Qwen cũng chấp nhận 9 ý sai hoặc thiếu dẫn chứng. Giữ phần này ở màn hình đối chiếu. Việc tiếp theo của nhóm đánh giá là chấm lại tác động lên recall và verdict khi có bằng chứng phía gọi, dùng thêm mẫu giữ riêng. [Phép đo trên bảy câu](KIEM_TUNG_Y.md)
+
 **Ưu tiên sau ba lượt Python.** Người làm phần agent tách các suy luận gộp trong một câu, giữ trích dẫn riêng cho từng ý và thử lại A09, A26. Người làm phần truy xuất tập trung bảy mục còn thiếu dòng và bốn mục đã có dòng nhưng chưa được đưa chung vào một lần đọc. Người làm phần đánh giá khóa cấu hình trước khi chạy, ghi đủ các lượt, đo lại precision, recall, verdict và độ ổn định. Mức đối chiếu hiện tại là 28/40 nhận định trùng, 19/36 mục đúng chung và 0/3 verdict đúng trên cùng một mẫu phát triển. Sau đó lặp phép đo trên .NET và trên mẫu giữ riêng. [Phân loại bỏ sót và bằng chứng](DO_ON_DINH_BAN_DIEU_TRA.md)
 
 | Phụ trách | Việc kế tiếp | Bằng chứng để đóng |

@@ -2,6 +2,8 @@
 
 ## Mục tiêu sản phẩm cập nhật ngày 28/11/2026
 
+Đã đưa phép thử tách mệnh đề vào màn hình đối chiếu và đo đủ các quyết định trên bảy câu thật. Mục tiêu còn mở là tìm bằng chứng nối trường đầu vào với nơi sử dụng, kiểm soát suy diễn thiếu căn cứ rồi đo tác động lên báo cáo cuối của cả Python và .NET. [Số liệu và ca chưa giải quyết](KIEM_TUNG_Y.md)
+
 Đưa việc kiểm chứng vào thao tác demo. Từ bảng chấm, người dùng mở được câu gốc và dòng chứng minh của từng lượt. Bản hiện tại đã đo 3 lượt Python với cùng model, mẫu và mã lõi. 28/40 nhận định trùng nhau, dưới ngưỡng 80% của giảng viên. Mốc kế tiếp là phục hồi các ý đúng bị loại cùng câu ghép, đo lại cả hai định dạng và đối chứng trên tập giữ riêng. [Ba lượt và tiêu chí chấm](DO_ON_DINH_BAN_DIEU_TRA.md)
 
 Nhóm ưu tiên hai chức năng đi cùng nhau. Khi một liên kết còn thiếu, agent phải chọn phép kiểm dựa trên kết quả vừa đọc. Người dùng bấm được vào chính đường nối đó để mở bằng chứng và hỏi tiếp. Đích ghi dưới thư mục nén đã được kiểm trong một ca Python thật. Điều kiện nghiệm thu tiếp theo là xác minh dữ liệu còn nguyên đến điểm sử dụng và lặp lại phép đo trên tập giữ riêng. Số liệu đầy đủ vẫn gồm cả chất lượng toàn báo cáo, tuyên bố thiếu căn cứ và chi phí gọi công cụ. [Lượt thử và những mắt xích còn mở](DUONG_DAN_GHI_VA_NEN.md)

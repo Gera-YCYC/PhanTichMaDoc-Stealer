@@ -321,11 +321,11 @@ def display_claim(c, records, *, rejected=False):
     return {"id": c["id"], "text": c.get("statement", c.get("text", "")), "refs": refs}
 
 
-def recent_reviews(folder, run, sample_digest, model_digest):
+def recent_reviews(folder, run, sample_digest, model_digest, *, parts=False):
     result = {}
     source_digest = None
     for path in sorted(
-        folder.glob("claim-reviews/review_*/events.jsonl"),
+        folder.glob(("parts-reviews" if parts else "claim-reviews") + "/review_*/events.jsonl"),
         key=lambda p: p.stat().st_mtime_ns,
     ):
         # The UI can read the case while a review is appending. Only terminal
@@ -337,6 +337,7 @@ def recent_reviews(folder, run, sample_digest, model_digest):
         first, last = json.loads(entries[0]), json.loads(entries[-1])
         if (
             first["event"] == "review_started"
+            and first.get("mode", "lines") == ("parts" if parts else "lines")
             and first["run"] == run
             and first["sample_sha256"] == sample_digest
             and first["model_digest"] == model_digest
@@ -374,6 +375,8 @@ def case(run):
     prior_reviews = recent_reviews(
         directory(run), run, r["sample_sha256"], r["model"]["digest"]
     )
+    parts_reviews = recent_reviews(directory(run), run, r["sample_sha256"],
+                                   r["model"]["digest"], parts=True)
     for entry in analysis.get("rejected_claims", []):
         c = display_claim(entry["claim"], records, rejected=True)
         rejected.append(
@@ -382,6 +385,7 @@ def case(run):
                 "can_revisit": c["id"] in reviewable
                 and entry["claim"]["kind"] == "behavior",
                 "revisit": prior_reviews.get(c["id"]),
+                "parts_review": parts_reviews.get(c["id"]),
                 "reasons": entry.get("reasons", []),
                 "review_note": entry.get("review_note"),
                 "unverified_refs": len(entry["claim"].get("evidence", []))
