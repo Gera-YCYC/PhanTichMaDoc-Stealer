@@ -376,6 +376,7 @@ class Handler(BaseHTTPRequestHandler):
                 from eval.catch_clean_controls import PUBLIC as control_receipt, published as catch_controls
                 from eval.role_line_study import PUBLIC as roles_receipt, web_results as role_study
                 from eval.send_site_study import OUT as send_receipt, check as send_score
+                from eval.link_source_study import OUT as link_receipt, check as link_score, live_comparison
                 from eval.parts_audit import PUBLIC as parts_receipt, score as score_parts, web_details
                 from eval.report_series import ARGUMENT_SERIES, web_results
                 from eval.verdict_trial import PUBLIC as verdict_receipt, score as score_verdict
@@ -442,6 +443,8 @@ class Handler(BaseHTTPRequestHandler):
                         "transfer_comparison": read(base / "transfer-report-comparison.json")["scores"],
                         "staging_trials": path_trials,
                         "send_site_retrieval": send_score(read(send_receipt)),
+                        "link_source_study": link_score(read(link_receipt)),
+                        "link_live_comparison": live_comparison(),
                         "card_supplements": read(base / "web-card-supplements.json"),
                         "cng_trial": read(base / "web-cng-review.json"),
                         "narrow_trials": read(base / "web-narrow-review.json"),

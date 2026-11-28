@@ -42,4 +42,5 @@ jobs:
           python -m eval.catch_clean_controls
           python -m eval.role_line_study
           python -m eval.send_site_study
+          python -m eval.link_source_study --compare-runs
       - run: python -m compileall -q stealer_agent vm_tools training

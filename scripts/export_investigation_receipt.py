@@ -303,6 +303,8 @@ def export(run):
         browser["send_recovery"] = recovery
         browser["evidence_kind"] = report["evidence_kind"]
         browser["report_method"] = report["analysis"]["report_method"]
+        if browser["report_method"] == "evidence-cards/17":
+            browser["link_sources"] = view["link_sources"]
         browser["support_after_recovery"] = report["analysis"]["verdict_support"]
         budget = [e for e in events if e["event"] == "send_citation_budget"]
         if budget:
@@ -314,6 +316,12 @@ def export(run):
                       for site in recovery["sites"] for ref in site["refs"]]
             expected = {"run":run, "screens":[{"width":w,"opened":opened} for w in (390,1360)],
                         "errors":[], "external":[]}
+            if view.get("link_sources"):
+                ids = {s["claim"] for s in view["link_sources"]}
+                rows = [{"claim":c["claim"], "status":c["status"], "lines":[w["line"] for w in c["witnesses"]]}
+                        for c in checks if c["role"] == "data_link_claim_ids" and c["claim"] in ids]
+                for screen in expected["screens"]:
+                    screen["linkAudits"] = rows
             if read(click_file) != expected:
                 raise ValueError("Các dòng mở trên web khác nguồn của thao tác gửi.")
             browser["send_recovery_browser"] = expected

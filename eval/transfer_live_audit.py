@@ -110,7 +110,7 @@ def check(run, interaction, *, include_coverage=False, include_decisions=False):
             ]
     report = events[-1]["result"]["analysis"]
     require(
-        report["report_method"] in {"evidence-cards/14", "evidence-cards/15", "evidence-cards/16"}
+        report["report_method"] in {"evidence-cards/14", "evidence-cards/15", "evidence-cards/16", "evidence-cards/17"}
         and interaction["run"] == run
         and not interaction["page_errors"]
         and not interaction["external_requests"],

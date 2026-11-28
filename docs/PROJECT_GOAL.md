@@ -2,6 +2,8 @@
 
 ## Sản phẩm nhóm trình diễn
 
+Đối với mỗi liên kết mà Qwen đề xuất, người trình diễn cần chỉ được vị trí đọc ở đầu nguồn và giải thích dữ liệu đi vào đối số gửi qua những bước nào. Thử riêng đường dẫn tệp, bản nén và giá trị đã đọc, chấm cả liên kết được giữ nhầm lẫn liên kết bị loại nhầm. [Kiểm điểm đọc và các giới hạn đã đo](KIEM_DIEM_GUI.md#kiểm-nguồn-của-dữ-liệu-trước-khi-giữ-đường-nối)
+
 Khi một câu gửi có đủ nguồn nhưng bị bỏ khỏi danh sách dẫn chứng, agent cần truy lại quyết định duyệt thao tác và đưa câu đó vào phần giải thích verdict. Đo riêng khả năng tìm điểm gửi và khả năng chứng minh dữ liệu nhạy cảm đi tới điểm đó. Trình diễn cả một chương trình .NET có chữ ký qua cùng giao diện, ghi cả lần agent bỏ ngỏ kết luận. [Cách chạy và số liệu](KIEM_DIEM_GUI.md)
 
 Một nhận định dùng để kết luận cần có dòng nguồn cho đúng vai trò của nó. Đo cả trường hợp loại nhầm nhận định đúng và trường hợp Qwen bỏ qua một điểm gửi có căn cứ. [Phép thử trên .NET và Python](KIEM_VAI_TRO_VERDICT.md)

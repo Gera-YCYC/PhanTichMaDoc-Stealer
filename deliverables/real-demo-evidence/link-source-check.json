@@ -1,0 +1,94 @@
+[
+  {
+    "run": "20261128T085636_4eaac445",
+    "journal": "9a4400bf2e4afb39dc95572992389fa164add3ee8311bfc904ac956be145ea34",
+    "claim": "C34",
+    "scope": "fixed_negative",
+    "original_status": "no_bound_send",
+    "witnesses": [],
+    "read": null,
+    "after": false
+  },
+  {
+    "run": "20261128T030521_c76fc69a",
+    "journal": "b44cef1d0ff65dd4d4d72ec27b4a78843f1e7765cd6431768b3c6365c207b5f0",
+    "claim": "C1",
+    "scope": "fixed_negative",
+    "original_status": "supported_by_review",
+    "witnesses": [
+      {
+        "part": "sensitive_source",
+        "eid": "ev_98a9e5cedd7b4e5a",
+        "line": 3655,
+        "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+        "fact": "op_0b7a4cd990ddb428"
+      },
+      {
+        "part": "binding_to_payload",
+        "eid": "ev_98a9e5cedd7b4e5a",
+        "line": 3655,
+        "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+        "fact": "op_0b7a4cd990ddb428"
+      },
+      {
+        "part": "send",
+        "eid": "ev_98a9e5cedd7b4e5a",
+        "line": 3655,
+        "output_sha256": "cb2c5fe9b73249187551e5970da5c0637de37e8dd490695e24072bdd995693b5",
+        "fact": "op_0b7a4cd990ddb428"
+      }
+    ],
+    "read": null,
+    "after": false
+  },
+  {
+    "run": "20261128T031606_ca91de35",
+    "journal": "0b8079cfaab6dec85f7288d7d6ef5062b2cebdae1a7361e7771f803cd397e69e",
+    "claim": "C14",
+    "scope": "fixed_negative",
+    "original_status": "no_bound_send",
+    "witnesses": [],
+    "read": null,
+    "after": false
+  },
+  {
+    "run": "20261128T114944_9332074e",
+    "journal": "b096a2766e36fbdd6a546bc5c81ec76ead46b3cbc13b4a785763722b4fc66905",
+    "claim": "C11",
+    "scope": "fixed_negative",
+    "original_status": "no_bound_send",
+    "witnesses": [],
+    "read": null,
+    "after": false
+  },
+  {
+    "run": "20261128T124815_dca6f7b8",
+    "journal": "0453315826b22ef0799bcd05f96165c83bd05fcd125f500d769d44cde99152e1",
+    "claim": "C2",
+    "scope": "development_diagnosis",
+    "original_status": "supported_by_review",
+    "witnesses": [
+      {
+        "part": "sensitive_source",
+        "eid": "ev_16ac10a849cf4b7c",
+        "line": 278,
+        "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+      },
+      {
+        "part": "binding_to_payload",
+        "eid": "ev_16ac10a849cf4b7c",
+        "line": 96,
+        "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78"
+      },
+      {
+        "part": "send",
+        "eid": "ev_16ac10a849cf4b7c",
+        "line": 109,
+        "output_sha256": "8ac906b72bcb3c9d56bdd93233c3da67f48816c68961d8c21b4c1ce4a8173c78",
+        "fact": "op_824490c1b6810fc1"
+      }
+    ],
+    "read": null,
+    "after": false
+  }
+]

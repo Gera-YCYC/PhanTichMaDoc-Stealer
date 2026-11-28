@@ -1,5 +1,7 @@
 # Trạng thái sản phẩm ngày 28/11/2026
 
+Lượt PythonStealer bản 17 đã loại được vai trò nối dữ liệu mà Qwen gán cho C2 dựa vào đường dẫn tệp ZIP. Agent vẫn phục hồi điểm gửi C21. Báo cáo mới tìm đúng 21/36 ý, có một ý sai, F1 72,41%. Trong **Đánh giá**, mở phần tìm câu gửi để đối chiếu hai lượt, rồi bấm mã lượt để xem nguồn tại máy giữ nhật ký. [So sánh, lần dừng vì thiếu RAM và cách tái lập](KIEM_DIEM_GUI.md#kiểm-nguồn-của-dữ-liệu-trước-khi-giữ-đường-nối)
+
 Bản web đã phục hồi C21 ở dòng SMTP 109 trên PythonStealer thật. Báo cáo đạt 21/36 ý, F1 73,68%, verdict `suspicious`. Trên đối chứng .NET có chữ ký, verdict là `inconclusive`. Cả hai kết luận đều chưa khớp nhãn lành/độc khi chấm nghiêm theo slide. [Mã lượt, phương pháp chấm và hướng dẫn demo](KIEM_DIEM_GUI.md)
 
 **Chưa hoàn thành toàn bộ đồ án.** Mục tiêu là sản phẩm phân tích stealer .NET/Python theo toàn bộ slide/đề xuất, không còn dừng ở buổi 4. Tài liệu bàn giao là Markdown kỹ thuật; thông tin sinh viên và bìa báo cáo không là điều kiện chặn.

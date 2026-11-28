@@ -175,6 +175,7 @@ def source(run, fingerprint):
     operation_reviews = {}
     role_decisions = []
     recoveries = []
+    link_audits = []
     column_reviews = {}
     reviewable = set()
     last = {}
@@ -191,6 +192,8 @@ def source(run, fingerprint):
                 role_decisions.append({k: e[k] for k in ("claim","role","status","witnesses")})
             if kind == "send_recovery":
                 recoveries.append(e["receipt"])
+            if kind == "link_source_checked":
+                link_audits.append({k: e[k] for k in ("claim", "model_status", "read")})
             if kind == "column_review":
                 column_reviews[e["claim_id"]] = (e["fact_ids"], e["ruling"], e["assessment"].get("column_basis"))
             if kind == "card_claim_review" and not e["check"]["supported"]:
@@ -271,6 +274,23 @@ def source(run, fingerprint):
         raise ValueError("Các nguồn dẫn cho verdict khác với nhật ký gốc.")
     frozen_graph = redact_document(saved)[0] if saved is not None else None
     kept = {c["id"]: c for c in last["result"]["analysis"]["claims"]}
+    analysis = last["result"]["analysis"]
+    if analysis.get("report_method") == "evidence-cards/17":
+        from stealer_agent.link_source import source_read
+        from stealer_agent.role_evidence import LINK
+        checks = analysis["role_checks"]
+        expected = []
+        for index, dec in enumerate(checks):
+            if dec["role"] != LINK or dec["status"] not in {"source_read_unverified","supported_by_review"}:
+                continue
+            read_site = source_read(dec, checks[:index], records, r["sample_sha256"])
+            if bool(read_site) != (dec["status"] == "supported_by_review"):
+                raise ValueError("Vai trò liên kết khác thao tác đọc từ VM.")
+            expected.append({"claim":dec["claim"], "model_status":"supported_by_review","read":read_site})
+            origin = next(w for w in dec["witnesses"] if w["part"] == "sensitive_source")
+            records[origin["eid"]].setdefault("link_sources", []).append(expected[-1])
+        if expected != link_audits:
+            raise ValueError("Đối chiếu điểm đọc khác nhật ký.")
     terminal = {**kept, **{c["claim"]["id"]: c["claim"] for c in last["result"]["analysis"].get("rejected_claims", [])}}
     context_ids = set(last["result"]["analysis"].get("catch_context_claim_ids", []))
     send_ids = set(last["result"]["analysis"].get("verdict_support", {}).get("outbound_transfer_claim_ids", []))
@@ -520,6 +540,10 @@ def case(run):
     other_sends = [s for rec in records.values() for s in rec["other_send_sites"]]
     catch_sites = [s for rec in records.values() for s in rec["catch_sites"]]
     role_points = []
+    link_sources = [s for rec in records.values() for s in rec.get("link_sources", [])]
+    for s in link_sources:
+        if s["read"]:
+            role_points.append({"refs":[{**s["read"], "end":s["read"]["line"]}]})
     for decision in analysis.get("role_checks", []):
         for w in decision["witnesses"]:
             rec = records.get(w["eid"], {})
@@ -576,6 +600,7 @@ def case(run):
         "graph": graph,
         "reader_fields": fields,
         "other_send_sites": other_sends,
+        "link_sources": link_sources,
         "catch_sites": catch_sites,
         "cited_windows": cited_windows(records, graph, claims + rejected + fields + catch_sites + role_points + other_sends
                                       + analysis.get("send_recovery", {}).get("sites", [])),

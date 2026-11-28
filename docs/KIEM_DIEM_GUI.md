@@ -33,3 +33,26 @@ Lượt `20261128T124233_ca348a88` dùng Qwen3 8B, nhận diện tệp và ILSpy
 Lượt `20261128T124815_dca6f7b8` mất **471,59 giây**, gọi model 52 lần và gọi công cụ 17 lần. Có một lỗi ở bước dịch ngược Python. VM tiếp tục đọc tĩnh phần mã có thể khôi phục. Tổng hợp lần đầu dẫn chín câu. Bước phục hồi bổ sung C21 bằng ba trích dẫn ở dòng **14, 106 và 109**. Các trích dẫn đã mở được từ web ở cả chiều rộng 390 và 1360 px. [Quan sát, ngân sách, quyết định phục hồi và kết quả mở dòng](../deliverables/real-demo-evidence/web-20261128T124815_dca6f7b8.json)
 
 Trên bộ 36 ý tham chiếu phát triển, báo cáo giữ 32 câu, tìm đúng **21/36 ý**, bỏ sót 15 ý. Precision 100%, recall 58,33%, F1 73,68%. Số ý đúng và F1 bằng lượt Python dùng để đối chiếu. Verdict vẫn là `suspicious` trên tệp đã biết là độc. C2 mô tả việc đính kèm và gửi tệp ZIP. Qwen dùng dòng 278 tạo đường dẫn ZIP làm nguồn nhạy cảm cho C2, trong khi bản đồ còn thiếu liên kết xử lý → ghi và ghi → nén. Vì vậy không thể tính C2 là bằng chứng đã nối nguồn dữ liệu nhạy cảm tới SMTP. Sai ở vai trò của câu được ghi riêng với điểm nội dung câu. [Bảng chấm theo ý](../deliverables/real-demo-evidence/transfer-live-20261128T124815_dca6f7b8.json) · [Hai câu cần chấm thêm bằng nguồn](../eval/adjudications/transfer-live-20261128T124815_dca6f7b8.json)
+
+## Kiểm nguồn của dữ liệu trước khi giữ đường nối
+
+Ở bản 17, khi Qwen đã chọn đủ ba vị trí cho một liên kết, agent còn kiểm vị trí mà Qwen coi là nguồn. Tại đó phải có một thao tác đọc đã được bộ phân tích nhận dạng, hoặc một câu thu thập đã qua kiểm tra phải dẫn cùng vị trí nguồn và có thao tác đọc được ràng buộc trong cùng đầu ra. Agent so mã mẫu, hash đầu ra, mã thao tác, dòng gọi và loại API. Phạm vi hiện tại gồm đọc tệp, sao chép tệp và đọc kết quả truy vấn. Các API chưa hỗ trợ có thể làm agent bỏ sót. Một điểm đọc khớp mới chỉ chứng minh được thao tác ở đầu nguồn; thành phần dữ liệu và đường đi tới đối số gửi vẫn cần đối chiếu.
+
+Trên **4 cặp âm** về liên kết đã gán nhãn từ trước, Qwen duyệt nhầm 1 cặp. Sau khi đối chiếu lại cùng các dòng từ VM, còn 0/4 cặp được duyệt. C2 của lượt Python ở trên là ca chẩn đoán phát sinh sau, cũng bị loại khi kiểm dòng 278. Cả hai phép thử đều thiếu cặp dương đã gán nhãn độc lập, nên recall của bước kiểm liên kết chưa xác định. Để tính lại, chạy `.\.venv\Scripts\python.exe -m eval.link_source_study`; máy có nhật ký riêng có thể thêm `--replay`. [Các dòng được chọn và kết quả đối chiếu](../deliverables/real-demo-evidence/link-source-check.json)
+
+Lượt đầu bật bản 17 dừng sau 38,61 giây khi RAM khả dụng xuống khoảng 198 MiB, thấp hơn ngưỡng 256 MiB. Agent đã giải phóng model và lưu trạng thái `incomplete`. Biên bản này được giữ trong lịch sử thử nghiệm. [Lượt dừng trước khi tổng hợp](../deliverables/real-demo-evidence/web-20261128T130106_348c46bd.json)
+
+Lượt kế tiếp chạy hết với cùng giới hạn bộ nhớ. Trên PythonStealer, Qwen lại chọn dòng 278 cho nguồn nhạy cảm của C2. Bản 17 giữ vai trò gửi của C2, loại vai trò nối dữ liệu của C2 và phục hồi câu gửi C21. Có thể mở các dòng 278, 96, 109 từ hàng quyết định C2 và ba trích dẫn của C21 ở chiều rộng 390/1360 px. [Biên bản của lượt mới](../deliverables/real-demo-evidence/web-20261128T130249_0fdc121a.json)
+
+| PythonStealer | Bản 16 | Bản 17 |
+|---|---:|---:|
+| Thời gian | 471,59 s | 453,45 s |
+| Lần gọi model / công cụ / lỗi công cụ | 52 / 17 / 1 | 48 / 17 / 1 |
+| Câu được giữ | 32 | 34 |
+| Ý đúng / sai / thiếu căn cứ / bỏ sót | 21 / 0 / 0 / 15 | 21 / 1 / 0 / 15 |
+| Precision / recall / F1 | 100% / 58,33% / 73,68% | 95,45% / 58,33% / 72,41% |
+| Verdict / nhãn mẫu | suspicious / malicious | suspicious / malicious |
+
+Các lượt dùng cùng SHA-256 mẫu, digest model và cấu hình suy luận. Nội dung báo cáo được sinh lại. Ở bản 17, C7 mô tả sai kiểu dữ liệu trả về. Bước kiểm nguồn sửa được lỗi vai trò của C2, trong khi recall toàn báo cáo giữ nguyên và F1 giảm. Bảng trên dùng nhãn theo từng ý đã khóa trước, tái sử dụng khi câu và trích dẫn trùng khớp. Nhóm còn thiếu phép thử trên mẫu giữ riêng và một bộ liên kết dương được đối chiếu độc lập. [Bảng chấm bản 17](../deliverables/real-demo-evidence/transfer-live-20261128T130249_0fdc121a.json)
+
+Từ repo, chạy `python -m eval.link_source_study --compare-runs` để tính lại bảng so sánh. Trên máy có nhật ký gốc, dùng `python -m eval.link_source_study --verify-live 20261128T130249_0fdc121a` để kiểm lại từng yêu cầu, phản hồi, quyết định vai trò và việc bổ sung điểm gửi.

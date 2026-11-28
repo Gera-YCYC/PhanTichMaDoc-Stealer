@@ -242,9 +242,18 @@ def verify_live(run):
     if "role_checks" not in analysis:
         require(receipt["status"] == "incomplete","Missing screening on completed report")
         return result
+    kept, checks, calls = replay_screen(run, events, analysis, receipt["sha256"])
+    require(checks == analysis["role_checks"] == receipt["role_evidence_checks"]
+            and kept == analysis["verdict_support"], "Role projection differs from the source")
+    return {**result, "checks":checks, "proposed_roles":analysis["proposed_roles"], "kept_roles":kept,
+            "review_calls":calls,"proposed_verdict":analysis["proposed_verdict"]}
+
+
+def replay_screen(run, events, analysis, sha, *, require_link_read=False):
     response, = [e["action"] for e in events if e["event"] == "model_response" and e.get("phase") == "card_verdict"]
     require(all(response[k] == analysis["proposed_roles"][k] for k in SUPPORT_KEYS), "Different original roles")
-    trace = iter(e for e in events if e.get("phase") == "verdict_role_evidence" or e["event"] == "verdict_role_checked")
+    trace = iter(e for e in events if e.get("phase") == "verdict_role_evidence"
+                 or e["event"] in ("verdict_role_checked", "link_source_checked"))
     calls = []
 
     def call(messages, schema, phase, exposure):
@@ -260,12 +269,10 @@ def verify_live(run):
             entry = next(trace)
             require(entry["event"] == kind and all(entry[k] == v for k,v in data.items()), "Different live decision")
 
-    kept, checks = screen(analysis["proposed_roles"], analysis["verdict_claim_ids"], analysis["claims"],
-                          records_for(run), receipt["sha256"], call, Decisions())
-    require(next(trace,None) is None and checks == analysis["role_checks"] == receipt["role_evidence_checks"]
-            and kept == analysis["verdict_support"], "Role projection differs from the source")
-    return {**result, "checks":checks, "proposed_roles":analysis["proposed_roles"], "kept_roles":kept,
-            "review_calls":calls,"proposed_verdict":analysis["proposed_verdict"]}
+    kept, checks = screen(analysis["proposed_roles"], response["verdict_claim_ids"], analysis["claims"],
+                          records_for(run), sha, call, Decisions(), require_link_read=require_link_read)
+    require(next(trace,None) is None, "Unconsumed role decisions")
+    return kept, checks, calls
 
 
 if __name__ == "__main__":

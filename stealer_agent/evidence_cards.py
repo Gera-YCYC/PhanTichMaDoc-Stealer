@@ -301,7 +301,7 @@ def create_card_report(evidence, digest, call_model, journal, *, max_cards=10, a
             from .send_recovery import recover
             receipt = recover(checked, evidence, digest, selected_operations)
             checked['send_recovery'] = receipt
-            checked['report_method'] = 'evidence-cards/16'
+            checked['report_method'] = 'evidence-cards/17'
             checked['verdict_support_scope'] += '; missing send citations checked against previously approved static operations'
             journal.append('send_recovery', receipt=receipt)
     checked['parser_operation_context'] = 'verified fact hashes and complete retrieved citation ranges; not automatic acceptance of prose'
@@ -375,7 +375,8 @@ def finalize_claims(evidence, digest, claims, accepted, rejected, call_model, jo
         from .role_evidence import screen
         checked['proposed_roles'] = support
         support, checked['role_checks'] = screen(support, checked['verdict_claim_ids'], checked['claims'],
-                                                evidence, digest, call_model, journal)
+                                                evidence, digest, call_model, journal,
+                                                require_link_read=send_candidates is not None)
     checked = enforce_stealer_support(checked, support)
     if review_roles:
         checked['verdict_support_scope'] = 'Role-specific local model review with cited rows and parser-bound send sites; not independent proof'

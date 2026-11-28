@@ -90,7 +90,7 @@ def review_pair(claim, role, evidence, sample_sha256, call_model):
     return result
 
 
-def screen(support, cited, claims, evidence, sample_sha256, call_model, journal):
+def screen(support, cited, claims, evidence, sample_sha256, call_model, journal, *, require_link_read=False):
     behavior = {c["id"]: c for c in claims if c["kind"] == "behavior"}
     kept = {role: [] for role in SUPPORT_KEYS}
     checks = []
@@ -100,6 +100,12 @@ def screen(support, cited, claims, evidence, sample_sha256, call_model, journal)
                 decision = {"role": role, "claim": cid, "status": "not_cited", "witnesses": []}
             else:
                 decision = review_pair(behavior[cid], role, evidence, sample_sha256, call_model)
+            if require_link_read and role == LINK and decision["status"] == "supported_by_review":
+                from .link_source import source_read
+                read = source_read(decision, checks, evidence, sample_sha256)
+                journal.append("link_source_checked", claim=cid, model_status=decision["status"], read=read)
+                if read is None:
+                    decision["status"] = "source_read_unverified"
             checks.append(decision)
             journal.append("verdict_role_checked", **decision)
             if decision["status"] == "supported_by_review":

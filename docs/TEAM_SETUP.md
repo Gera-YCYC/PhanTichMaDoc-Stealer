@@ -33,6 +33,8 @@ Mục tiêu: chạy lại hai mẫu public .NET/PyInstaller bằng Qwen2.5 Coder
 
 Sau demo phân tích, có thể chạy giai đoạn [sinh/kiểm YARA trên bộ mẫu thật](YARA_REAL_CORPUS.md). Đã đo5mẫu độc và39file sạch, có kết quả âm trước sửa và hai lượt7B/8B sau sửa. Luồng này dùng7B có sẵn; không bắt buộc tải8B. Phải chuẩn bị corpus và đăng ký profile theo tài liệu trước khi chạy `scripts/Run-YaraCorpus.ps1`.
 
+Để thử trên tệp lành, chuẩn bị bộ Microsoft .NET trong phần **bộ mở rộng v3** của hướng dẫn YARA rồi chọn `clean_ms_addinprocess.bin` trên web. Cần cùng SHA-256 với tệp đã đăng ký. Có thể mở lượt đối chứng cũ bằng mã lượt trên máy giữ nhật ký. [Chuẩn bị và nhập corpus](YARA_REAL_CORPUS.md) · [Kết quả đối chứng](KIEM_DIEM_GUI.md)
+
 ## 1. Chuẩn bị
 
 Để trình diễn đúng cấu hình Qwen3 8B dùng cho đợt đo v11, hoàn thành phần cài đặt bên dưới rồi mở [hướng dẫn demo và đối chiếu nhật ký](DEMO_COVERAGE.md). Mỗi lần demo trực tiếp sẽ tạo một run ID mới.

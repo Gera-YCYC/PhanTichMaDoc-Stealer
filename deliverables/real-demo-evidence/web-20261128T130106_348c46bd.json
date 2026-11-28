@@ -1,0 +1,92 @@
+{
+  "termination": {
+    "last_model_phase": "react",
+    "error_class": "ResourceBudgetExceeded",
+    "model_unloaded": true,
+    "memory_floor_bytes": 268435456
+  },
+  "run": "20261128T130106_348c46bd",
+  "sample": "public_python2024.bin",
+  "sha256": "7430d4ff91880ad8296ea94fe9c43aab5a92f1901386ffdc0c7a829359d210db",
+  "model": "qwen3:8b",
+  "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "source_manifest_sha256": "22b64a4ddcbf0ac95ba7a792f6e8d104b60fdebf01d0e6f2f64fd5a58d1c804a",
+  "config_sha256_excluding_sample": "2eeb6181362591935ee3032d818418bf59dfacc00cf92a1f24f1e5ccec531057",
+  "staging_parser_sha256": "c9e84a45f7ad9c095c777fd1beae68c741a7d1eccc675d204bbef738249fffd6",
+  "current_logic_matches_run": true,
+  "vm_isolation": {
+    "vm_hardware": true,
+    "no_default_gateway": true,
+    "operator_attestations": true
+  },
+  "status": "incomplete",
+  "verdict": "inconclusive",
+  "metrics": {
+    "elapsed_s": 38.6146,
+    "model_calls": 3,
+    "tool_calls": 3,
+    "tool_errors": 1,
+    "prompt_tokens": 5401,
+    "completion_tokens": 186,
+    "host_peak_rss_bytes": 29327360,
+    "model_vram_bytes_after_run": null,
+    "minimum_observed_host_available_memory_bytes": 207245312,
+    "api_cost_usd": 0
+  },
+  "tools": [
+    "identify",
+    "unpack_pyinstaller"
+  ],
+  "journal_events": 23,
+  "journal_sha256": "1e69f2f08977612547aa0938def9b579d88f4806ddc3004ce9a52bb66d0fe32c",
+  "gaps": [],
+  "accepted_claims": 0,
+  "accepted_claim_keys_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "terminal_edges": [
+    {
+      "id": "query-rows",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "rows-process",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "process-write",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "write-archive",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "archive-message",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "message-send",
+      "status": "missing",
+      "coordinates": []
+    },
+    {
+      "id": "send-response",
+      "status": "missing",
+      "coordinates": []
+    }
+  ],
+  "display_graph_origin": "terminal",
+  "displayed_edges_match_terminal": true,
+  "yara": [],
+  "questions": [],
+  "ranking_anchors_for_review": 0,
+  "limits": [
+    "Static development run. An evidence link is not runtime delivery.",
+    "current_logic_matches_run compares the run's core source manifest to the local core at export; the UI can be revised independently.",
+    "Coordinates and counts only. No raw source, model messages or secret values exported."
+  ]
+}

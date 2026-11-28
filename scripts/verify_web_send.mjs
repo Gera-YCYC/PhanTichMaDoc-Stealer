@@ -58,8 +58,30 @@ try {
           opened.push({claim:site.claim, fact:site.fact, ...ref});
         }
       }
+      const linkAudits = [];
+      for (const audit of data.link_sources || []) {
+        const entry = page.locator('[data-link-source="' + audit.claim + '"]');
+        await entry.locator(":scope > summary").click();
+        const expected = data.verdict_trace.checks.find(c => c.claim === audit.claim &&
+          c.role === "data_link_claim_ids");
+        for (const [i, ref] of [...expected.witnesses, ...(audit.read ? [audit.read] : [])].entries()) {
+          const line = entry.locator(".ref").nth(i);
+          await line.getByText("Xem đoạn mã đã dẫn").click();
+          assert.match(await line.locator("pre").last().innerText(), new RegExp("^→ " + ref.line + " │ ", "m"));
+          assert.ok((await line.locator("details small").innerText()).endsWith(ref.output_sha256));
+        }
+        linkAudits.push({claim:audit.claim, status:expected.status, lines:expected.witnesses.map(w => w.line)});
+      }
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
-      screens.push({width, opened});
+      if (data.link_sources?.length) {
+        await page.locator('[data-view="evaluation"]').click();
+        const study = page.locator("#send-site-study");
+        await study.locator(":scope > summary").click();
+        await study.getByRole("button",{name:id, exact:true}).click();
+        await page.locator("#send-recovery[open]").waitFor();
+        assert.equal(await page.locator("#run").innerText(), id);
+      }
+      screens.push({width, opened, ...(data.link_sources?.length ? {linkAudits} : {})});
     }
     assert.deepEqual(errors, []);
     assert.deepEqual(external, []);

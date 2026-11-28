@@ -700,6 +700,32 @@ function renderEvaluation(panel, data, sample = evaluationSample) {
     study.append(el("summary", "Tìm đúng câu mô tả thao tác gửi trên các báo cáo đã chấm"));
     table(["Tìm đúng", "Gán nhầm", "Bỏ sót", "Loại đúng"], [[TP, FP, FN, TN]], study);
     study.append(el("p", "Phép thử dùng " + (TP + FP + FN + TN) + " cặp câu và vai trò gửi từ các lượt phát triển .NET/Python. Mỗi câu được so với toàn bộ trích dẫn của thao tác tương ứng."));
+    if (data.link_source_study) {
+      const group = data.link_source_study.fixed_negative;
+      study.append(el("strong", "Kiểm nguồn dữ liệu của đường nối"));
+      table(["Liên kết âm đã chấm", "Qwen duyệt nhầm", "Còn được duyệt sau khi kiểm điểm đọc"],
+        [[group.count, group.before, group.after]], study);
+      study.append(el("p", "Tập này chưa có liên kết dương đã chấm độc lập để đo recall."));
+      if (data.link_live_comparison) {
+        const rows = data.link_live_comparison.completed_arms.map(arm => {
+          const link = init.history.some(r => r.run === arm.run) ? button(arm.run, async () => {
+            view = "claims";
+            await load(arm.run);
+            const review = $("#send-recovery");
+            if (review) {
+              review.parentElement.open = true;
+              review.open = true;
+              review.scrollIntoView({block:"nearest"});
+            }
+          }) : arm.run;
+          return [link, (arm.restored || []).join(", ") || "—", (arm.links || []).join(", ") || "Chưa đủ",
+            percent(arm.grade?.recall), percent(arm.grade?.f1), arm.verdict || arm.status];
+        });
+        study.append(el("strong","Hai lượt PythonStealer trên cùng mẫu và model"));
+        table(["Mã lượt","Câu gửi bổ sung","Câu được giữ cho liên kết","Recall","F1","Verdict"],rows,study);
+        study.append(el("p","Lượt " + data.link_live_comparison.interrupted + " dừng vì thiếu RAM trước khi có báo cáo hoàn chỉnh."));
+      }
+    }
     panel.append(study);
   }
   const reader = data.reader_comparison?.find(r => r.sample === "public_" + sample + ".bin");
@@ -1548,6 +1574,7 @@ async function render() {
         outbound_transfer_claim_ids: "Gọi thao tác gửi", data_link_claim_ids: "Liên hệ dữ liệu thu thập với thao tác gửi"};
       const kept = new Set(record.claims.map(c => c.id));
       const statusNames = {supported_by_review:"Có dẫn chứng sau kiểm tra", insufficient:"Qwen chưa tìm đủ chứng cứ",
+        source_read_unverified:"Qwen đề xuất liên kết, VM chưa xác minh thao tác đọc tại nguồn được dẫn",
         no_bound_send:"Chưa có điểm gửi được bộ phân tích xác minh trong trích dẫn",
         unverified_citation:"Trích dẫn chưa xác minh được", not_cited:"Câu nằm ngoài danh sách dẫn cho verdict",
         source_over_budget:"Đoạn nguồn vượt giới hạn đọc"};
@@ -1606,6 +1633,15 @@ async function render() {
           for (const w of decision.witnesses) {
             entry.append(el("strong", partNames[w.part]));
             refs(entry, [{...w, end:w.line}]);
+          }
+          if (role.role === "data_link_claim_ids") {
+            const audit = record.link_sources?.find(s => s.claim === decision.claim);
+            if (audit) {
+              entry.dataset.linkSource = decision.claim;
+              entry.append(el("p", audit.read ? "VM đối chiếu được thao tác đọc tại nguồn được dẫn."
+                : "Qwen chọn đủ ba vị trí. VM chưa tìm được thao tác đọc ở nguồn đã chọn hoặc trong một câu thu thập trùng nguồn. Liên kết vẫn còn thiếu."));
+              if (audit.read) refs(entry, [{...audit.read,end:audit.read.line}]);
+            }
           }
           section.append(entry);
         }
